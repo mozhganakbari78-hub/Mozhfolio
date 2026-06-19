@@ -1,43 +1,25 @@
 @import "tailwindcss";
 
+/* ── Dark-only palette ───────────────────────────────────────────────── */
 :root {
-  --bg: #f2f2f1;
-  --bg-secondary: #e7e7e5;
-  --text-primary: #151515;
-  --text-secondary: #4a4a48;
-  --text-tertiary: #6e6e6b;
-  --accent: #151515;
-  --accent-color: #0039ff;
+  --bg: #07080a;
+  --bg-secondary: #101216;
+  --text-primary: #f4f5f7;
+  --text-secondary: #a4a8b0;
+  --text-tertiary: #6d7178;
+  --accent: #f4f5f7;
+  --accent-color: #4d6dff;
+  --accent-soft: rgba(77, 109, 255, 0.14);
   --accent-contrast: #ffffff;
-  --border: #d8d8d5;
-  --border-strong: #c4c4c0;
-  --border-subtle: #e4e4e1;
-  --surface: #ffffff;
-  --surface-elevated: rgba(242,242,241,0.82);
-  --grid-line: rgba(21,21,21,0.055);
-  --shadow: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 6px 24px rgba(0,0,0,0.06);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.10);
-}
-
-.dark {
-  --bg: #0b0b0b;
-  --bg-secondary: #151515;
-  --text-primary: #f2f2f0;
-  --text-secondary: #a0a09e;
-  --text-tertiary: #717170;
-  --accent: #f2f2f0;
-  --accent-color: #3d6bff;
-  --accent-contrast: #ffffff;
-  --border: #232323;
-  --border-strong: #353533;
-  --border-subtle: #1a1a1a;
-  --surface: #131313;
-  --surface-elevated: rgba(11,11,11,0.85);
-  --grid-line: rgba(242,242,240,0.05);
-  --shadow: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md: 0 6px 24px rgba(0,0,0,0.4);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.55);
+  --border: #1c1f26;
+  --border-strong: #2a2e37;
+  --border-subtle: #14161b;
+  --surface: #0c0e12;
+  --surface-elevated: rgba(9, 10, 13, 0.72);
+  --grid-line: rgba(244, 245, 247, 0.035);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -46,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
@@ -54,7 +37,6 @@ body {
   font-family: var(--font-inter), -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .font-mono {
@@ -67,15 +49,16 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 0; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
 
 /* Focus styles */
 :focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Technical label utility */
@@ -92,6 +75,23 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 80px 80px;
+}
+
+/* Soft radial accent glow utility */
+.accent-glow {
+  background: radial-gradient(
+    600px circle at center,
+    var(--accent-soft),
+    transparent 70%
+  );
+}
+
+/* ── Custom cursor: hide native cursor only on fine-pointer (desktop) ──── */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

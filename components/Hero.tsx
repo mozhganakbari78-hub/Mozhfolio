@@ -9,11 +9,11 @@ import ParticleField from "./ParticleField";
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const stagger: Variants = {
-  animate: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } },
+  animate: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
 };
 
 const fadeUp: Variants = {
-  initial: { y: 28, opacity: 0 },
+  initial: { y: 26, opacity: 0 },
   animate: { y: 0, opacity: 1, transition: { duration: 0.8, ease } },
 };
 
@@ -21,96 +21,80 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 overflow-hidden text-center"
       aria-label="Introduction"
     >
-      {/* Grid background */}
+      {/* Layered background */}
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
-
-      {/* Interactive particle constellation */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <ParticleField />
       </div>
-
-      {/* top hairline + corner labels */}
       <div
-        className="absolute top-20 inset-x-6 h-px hidden md:block"
-        style={{ background: "var(--border)" }}
+        className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none accent-glow"
         aria-hidden="true"
       />
 
-      <div className="relative max-w-5xl mx-auto w-full">
+      <div className="relative max-w-4xl mx-auto w-full">
         <motion.div variants={stagger} initial="initial" animate="animate">
-          {/* status row */}
-          <motion.div
-            variants={fadeUp}
-            className="flex items-center justify-between mb-12 md:mb-16"
-          >
-            <span className="mono-label flex items-center gap-2" style={{ color: "var(--text-secondary)" }}>
-              <span
-                className="w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: "var(--accent-color)" }}
-              />
-              Available — 2026
-            </span>
-            <span className="mono-label hidden sm:block" style={{ color: "var(--text-tertiary)" }}>
-              Tehran, Iran / Remote
+          {/* Availability pill */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+            <span
+              className="mono-label inline-flex items-center gap-2 px-4 py-2 rounded-full border"
+              style={{ color: "var(--text-secondary)", borderColor: "var(--border-strong)", background: "var(--surface)" }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-color)" }} />
+              Available for work — 2026
             </span>
           </motion.div>
 
-          {/* Name / headline */}
+          {/* Headline */}
           <motion.h1
             variants={fadeUp}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-semibold tracking-tight leading-[0.92] mb-8"
+            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tight leading-[0.95] mb-8"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.04em" }}
           >
-            Product
+            Product designer
             <br />
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 300 }}>designer.</span>
+            <span style={{ color: "var(--text-tertiary)", fontWeight: 300 }}>
+              for complex products.
+            </span>
           </motion.h1>
 
-          <motion.div
+          {/* Subtext */}
+          <motion.p
             variants={fadeUp}
-            className="grid md:grid-cols-12 gap-8 items-end border-t pt-8"
-            style={{ borderColor: "var(--border)" }}
+            className="text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
+            style={{ color: "var(--text-secondary)" }}
           >
-            <div className="md:col-span-5">
-              <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
-                Mozhgan Akbari
-              </div>
-              <p className="text-base md:text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                I turn messy, high-stakes B2B products into tools people actually trust — enterprise UX, design systems, and friction reduction.
-              </p>
-            </div>
+            I&apos;m Mozhgan Akbari. I turn messy, high-stakes B2B products into tools people
+            actually trust — enterprise UX, design systems, and friction reduction.
+          </motion.p>
 
-            <div className="md:col-span-4 md:col-start-9">
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-tertiary)" }}>
-                I read 734 support tickets to understand one system. The detail is the work.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-                  style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
-                >
-                  View work
-                  <ArrowUpRight size={14} />
-                </button>
-                <button
-                  onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-70 border"
-                  style={{ color: "var(--text-primary)", borderColor: "var(--border-strong)" }}
-                >
-                  Contact
-                </button>
-              </div>
-            </div>
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-3 mb-20">
+            <button
+              data-hand
+              onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+              style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
+            >
+              View case studies
+              <ArrowUpRight size={15} />
+            </button>
+            <button
+              data-hand
+              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-80 border"
+              style={{ color: "var(--text-primary)", borderColor: "var(--border-strong)" }}
+            >
+              Get in touch
+            </button>
           </motion.div>
 
           {/* Stats strip */}
           <motion.dl
             variants={fadeUp}
-            className="grid grid-cols-3 gap-px mt-16 border-t border-l"
+            className="grid grid-cols-3 max-w-2xl mx-auto gap-px border rounded-2xl overflow-hidden"
             style={{ borderColor: "var(--border)", background: "var(--border)" }}
           >
             {[
@@ -118,12 +102,10 @@ export default function Hero() {
               { value: "400K+", label: "Users impacted" },
               { value: "2,000+", label: "UX cases improved" },
             ].map((stat) => (
-              <motion.div
+              <div
                 key={stat.label}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="p-5 md:p-6 border-r border-b"
-                style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+                className="p-5 md:p-6"
+                style={{ background: "var(--surface)" }}
               >
                 <dt
                   className="text-2xl md:text-4xl font-semibold mb-2 tracking-tight"
@@ -134,27 +116,27 @@ export default function Hero() {
                 <dd className="mono-label" style={{ color: "var(--text-tertiary)" }}>
                   {stat.label}
                 </dd>
-              </motion.div>
+              </div>
             ))}
           </motion.dl>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          className="hidden md:flex absolute -bottom-4 right-0 items-center gap-2"
-          aria-hidden="true"
-        >
-          <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-            Scroll
-          </span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-            <ArrowDown size={14} style={{ color: "var(--text-tertiary)" }} />
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 0.6 }}
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 items-center gap-2"
+        aria-hidden="true"
+      >
+        <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+          Scroll
+        </span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
+          <ArrowDown size={14} style={{ color: "var(--text-tertiary)" }} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

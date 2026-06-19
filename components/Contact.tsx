@@ -35,7 +35,7 @@ export default function Contact() {
 
   const socials = [
     { icon: GithubIcon, label: "GitHub", href: "https://github.com/mozhganakbari78-hub" },
-    { icon: LinkedinIcon, label: "LinkedIn", href: "#" },
+    { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/mozhgan-akbari/" },
     { icon: Mail, label: "Email", href: "mailto:akbarimozhgan99@gmail.com" },
   ];
 
@@ -50,7 +50,7 @@ export default function Contact() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-              [ 04 ] — Contact
+              [ 05 ] — Contact
             </div>
             <h2
               id="contact-heading"
@@ -71,6 +71,16 @@ export default function Contact() {
               >
                 <Mail size={15} />
                 akbarimozhgan99@gmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mozhgan-akbari/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm transition-opacity hover:opacity-70"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <LinkedinIcon size={15} />
+                linkedin.com/in/mozhgan-akbari
               </a>
             </div>
 
@@ -176,6 +186,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
+                  data-hand
                   disabled={status === "sending"}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-50"
                   style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
