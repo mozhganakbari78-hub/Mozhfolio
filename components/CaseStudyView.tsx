@@ -8,6 +8,76 @@ import BackToTop from "@/components/BackToTop";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+/* ── Ghost SVG illustrations — outline only, one per case study ──────────── */
+
+function IllustrationSupport() {
+  return (
+    <svg viewBox="0 0 480 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.5">
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i} transform={`translate(0, ${i * 34})`}>
+            <rect x="30" y="14" width="420" height="24" rx="6" />
+            <rect x="44" y="21" width="70" height="10" rx="3" />
+            <rect x="128" y="21" width="190" height="10" rx="3" />
+            <circle cx="424" cy="26" r="6" />
+          </g>
+        ))}
+        <path d="M30 215 L150 150 L330 150 L450 215" strokeDasharray="4 4" />
+        <line x1="150" y1="150" x2="330" y2="150" />
+        <rect x="205" y="166" width="70" height="20" rx="4" />
+      </g>
+    </svg>
+  );
+}
+
+function IllustrationBatch() {
+  return (
+    <svg viewBox="0 0 480 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.5">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <line key={`h${i}`} x1="30" y1={20 + i * 32} x2="450" y2={20 + i * 32} />
+        ))}
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          <line key={`v${i}`} x1={30 + i * 70} y1="20" x2={30 + i * 70} y2="180" />
+        ))}
+        <rect x="30" y="84" width="420" height="32" strokeDasharray="3 3" />
+        {[20, 52, 116, 148].map((y, i) => (
+          <path key={i} d={`M408 ${y + 10} l8 8 l14 -14`} />
+        ))}
+        <path d="M408 92 l14 14 M422 92 l-14 14" />
+      </g>
+    </svg>
+  );
+}
+
+function IllustrationSystem() {
+  return (
+    <svg viewBox="0 0 480 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.5">
+        <rect x="200" y="14" width="80" height="28" rx="6" />
+        <line x1="240" y1="42" x2="240" y2="64" />
+        <line x1="120" y1="64" x2="360" y2="64" />
+        <rect x="80" y="64" width="80" height="28" rx="6" />
+        <rect x="320" y="64" width="80" height="28" rx="6" />
+        <line x1="120" y1="92" x2="120" y2="114" />
+        <line x1="360" y1="92" x2="360" y2="114" />
+        <rect x="40" y="114" width="60" height="26" rx="5" />
+        <rect x="110" y="114" width="60" height="26" rx="5" />
+        <rect x="330" y="114" width="60" height="26" rx="5" />
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          <circle key={i} cx={50 + i * 64} cy="185" r="15" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+const illustrations: Record<string, React.FC> = {
+  "reducing-support-friction": IllustrationSupport,
+  "batch-transfer": IllustrationBatch,
+  "design-system": IllustrationSystem,
+};
+
 function Reveal({
   children,
   delay = 0,
@@ -331,6 +401,7 @@ function BlockView({ block }: { block: Block }) {
 }
 
 export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
+  const Illustration = illustrations[cs.slug] ?? IllustrationSupport;
   return (
     <main className="px-6 pb-24">
       {/* Hero */}
@@ -392,6 +463,32 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
           ))}
         </motion.dl>
       </header>
+
+      {/* Ghost illustration banner — gives each case study a visual identity */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease }}
+        className="max-w-4xl mx-auto mt-12 md:mt-16"
+      >
+        <div
+          className="relative overflow-hidden rounded-3xl border"
+          style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+        >
+          <div className="grid-bg absolute inset-0 opacity-40" aria-hidden />
+          <div
+            className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[36rem] opacity-50"
+            style={{ background: "radial-gradient(closest-side, var(--accent-soft), transparent)" }}
+            aria-hidden
+          />
+          <div
+            className="relative px-8 pt-10 pb-0 h-56 md:h-64 flex items-end"
+            style={{ color: "var(--accent-color)" }}
+          >
+            <Illustration />
+          </div>
+        </div>
+      </motion.div>
 
       {/* Body — wider than the hero so cards and tables can breathe */}
       <div className="max-w-4xl mx-auto mt-20 md:mt-28 space-y-20 md:space-y-28">
