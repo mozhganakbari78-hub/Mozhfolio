@@ -3,83 +3,61 @@
 import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
-const skillGroups = [
+const capabilities = [
   {
-    category: "Design",
-    skills: [
-      { name: "Product Design", level: 95 },
-      { name: "Design Systems", level: 92 },
-      { name: "UX Research", level: 85 },
-      { name: "Interaction Design", level: 88 },
-      { name: "Information Architecture", level: 87 },
-      { name: "Prototyping", level: 90 },
+    title: "Product Thinking",
+    tags: [
+      "Problem framing",
+      "User research",
+      "Decision mapping",
+      "Product reasoning",
+      "Support signals",
+      "Data informed decisions",
     ],
+    body:
+      "I do not jump from brief to screen. I first understand what the product is asking the user to decide, where confusion happens, and what the team needs to learn before designing.",
   },
   {
-    category: "Tools",
-    skills: [
-      { name: "Figma", level: 97 },
-      { name: "FigJam", level: 90 },
-      { name: "Material Design", level: 86 },
-      { name: "Ant Design", level: 84 },
-      { name: "Jira / ClickUp", level: 82 },
+    title: "Workflow Design",
+    tags: [
+      "Complex flows",
+      "Information architecture",
+      "Error states",
+      "Edge cases",
+      "Operational tools",
+      "Interaction design",
     ],
+    body:
+      "I design the parts of the product where users need clarity, recovery, and confidence. The goal is not only a cleaner interface, but a workflow that helps people move forward without costly mistakes.",
   },
   {
-    category: "Domain",
-    skills: [
-      { name: "Banking / Fintech", level: 92 },
-      { name: "Enterprise B2B", level: 90 },
-      { name: "Crypto Exchange", level: 84 },
-      { name: "IoT Dashboards", level: 80 },
-      { name: "Accessibility", level: 85 },
+    title: "Design Systems",
+    tags: [
+      "Reusable components",
+      "Token based foundations",
+      "Pattern libraries",
+      "UX writing patterns",
+      "Documentation",
+      "Adoption with teams",
     ],
+    body:
+      "I build design systems as product infrastructure. Not just UI kits, but reusable foundations that help teams move faster while keeping the experience consistent.",
   },
   {
-    category: "Process",
-    skills: [
-      { name: "User Research", level: 90 },
-      { name: "Journey Mapping", level: 87 },
-      { name: "UX Writing", level: 88 },
-      { name: "Cross-functional Collab", level: 92 },
-      { name: "Agile / Mentorship", level: 84 },
+    title: "Delivery Partnership",
+    tags: [
+      "Figma",
+      "FigJam",
+      "Ant Design",
+      "Material Design",
+      "Jira",
+      "ClickUp",
+      "Engineering handoff",
     ],
+    body:
+      "I stay close to product, engineering, and implementation. I care about what ships, what scales, and what the next team member can understand after I am no longer in the room.",
   },
 ];
-
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const { ref, inView } = useInView(0.1);
-
-  return (
-    <div ref={ref} className="mb-4">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
-          {name}
-        </span>
-        <span className="text-xs" style={{ color: "var(--text-tertiary)" }}>
-          {level}%
-        </span>
-      </div>
-      <div
-        className="h-1 rounded-full overflow-hidden"
-        style={{ background: "var(--bg-secondary)" }}
-        role="meter"
-        aria-valuenow={level}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`${name}: ${level}%`}
-      >
-        <motion.div
-          className="h-full rounded-full"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${level}%` } : {}}
-          transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
-          style={{ background: "var(--accent-color)" }}
-        />
-      </div>
-    </div>
-  );
-}
 
 export default function Skills() {
   const { ref, inView } = useInView();
@@ -92,44 +70,63 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-20"
+          className="mb-16 md:mb-20 max-w-2xl"
         >
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
             [ 03 ] — Capabilities
           </div>
           <h2
             id="skills-heading"
-            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
+            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02] mb-6"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
           >
-            What I bring to the table.
+            How I help product teams move through complexity.
           </h2>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+            I bring the mix of product thinking, systems thinking, and delivery discipline needed
+            for complex B2B products.
+          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {skillGroups.map((group, gi) => (
+        <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
+          {capabilities.map((cap, ci) => (
             <motion.div
-              key={group.category}
+              key={cap.title}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: gi * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="relative rounded-2xl border p-7 md:p-9 flex flex-col"
+              style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
             >
-              <div
-                className="mono-label mb-6 pb-3 border-b flex items-center justify-between"
-                style={{ color: "var(--text-tertiary)", borderColor: "var(--border-strong)" }}
-              >
-                <span>{group.category}</span>
-                <span style={{ color: "var(--accent-color)" }}>{String(gi + 1).padStart(2, "0")}</span>
+              <div className="flex items-baseline justify-between mb-5">
+                <span className="font-mono text-sm" style={{ color: "var(--accent-color)" }}>
+                  {String(ci + 1).padStart(2, "0")}
+                </span>
               </div>
-              {group.skills.map((skill, si) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={0.1 + si * 0.06}
-                />
-              ))}
+              <h3
+                className="text-xl md:text-2xl font-semibold tracking-tight mb-5"
+                style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+              >
+                {cap.title}
+              </h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {cap.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="mono-label px-2.5 py-1 rounded-full border"
+                    style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p
+                className="text-sm md:text-base leading-relaxed mt-auto"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {cap.body}
+              </p>
             </motion.div>
           ))}
         </div>
