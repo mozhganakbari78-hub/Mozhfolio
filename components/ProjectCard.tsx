@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
@@ -17,6 +18,8 @@ export default function ProjectCard({
   total: number;
 }) {
   const flip = index % 2 === 1;
+  const [imgOk, setImgOk] = useState(true);
+  const showCover = Boolean(project.cover) && imgOk;
 
   return (
     <motion.div
@@ -41,39 +44,77 @@ export default function ProjectCard({
             className="relative aspect-[16/11] md:aspect-auto md:min-h-[400px] overflow-hidden [direction:ltr]"
             style={{ background: "var(--bg-secondary)" }}
           >
-            {/* hairline grid */}
-            <div className="absolute inset-0 grid-bg opacity-70" aria-hidden />
-
-            {/* giant index watermark */}
-            <span
-              className="absolute -bottom-10 -right-4 font-semibold leading-none select-none transition-colors duration-500 group-hover:opacity-0"
-              style={{
-                fontSize: "16rem",
-                color: "var(--border-strong)",
-                letterSpacing: "-0.05em",
-              }}
-              aria-hidden
-            >
-              {project.index}
-            </span>
-
-            {/* default content */}
-            <div className="absolute inset-0 p-7 md:p-9 flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-              <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                {project.index} / {String(total).padStart(2, "0")}
-              </div>
-              <div>
+            {showCover ? (
+              <>
+                {/* real cover image */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.cover}
+                  alt={`${project.title} cover`}
+                  loading="lazy"
+                  onError={() => setImgOk(false)}
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[700ms] ease-out group-hover:scale-[1.04]"
+                />
+                {/* readability gradient */}
                 <div
-                  className="text-5xl md:text-6xl font-semibold tracking-tight mb-2"
-                  style={{ color: "var(--accent-color)", letterSpacing: "-0.04em" }}
+                  className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.05) 55%)" }}
+                  aria-hidden
+                />
+                <div className="absolute inset-0 p-7 md:p-9 flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="mono-label" style={{ color: "rgba(255,255,255,0.8)" }}>
+                    {project.index} / {String(total).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <div
+                      className="text-4xl md:text-5xl font-semibold tracking-tight mb-1"
+                      style={{ color: "#fff", letterSpacing: "-0.04em" }}
+                    >
+                      {project.heroStat.value}
+                    </div>
+                    <div className="mono-label" style={{ color: "rgba(255,255,255,0.7)" }}>
+                      {project.heroStat.label}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* hairline grid */}
+                <div className="absolute inset-0 grid-bg opacity-70" aria-hidden />
+
+                {/* giant index watermark */}
+                <span
+                  className="absolute -bottom-10 -right-4 font-semibold leading-none select-none transition-colors duration-500 group-hover:opacity-0"
+                  style={{
+                    fontSize: "16rem",
+                    color: "var(--border-strong)",
+                    letterSpacing: "-0.05em",
+                  }}
+                  aria-hidden
                 >
-                  {project.heroStat.value}
+                  {project.index}
+                </span>
+
+                {/* default content */}
+                <div className="absolute inset-0 p-7 md:p-9 flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                    {project.index} / {String(total).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <div
+                      className="text-5xl md:text-6xl font-semibold tracking-tight mb-2"
+                      style={{ color: "var(--accent-color)", letterSpacing: "-0.04em" }}
+                    >
+                      {project.heroStat.value}
+                    </div>
+                    <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                      {project.heroStat.label}
+                    </div>
+                  </div>
                 </div>
-                <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                  {project.heroStat.label}
-                </div>
-              </div>
-            </div>
+              </>
+            )}
 
             {/* HOVER OVERLAY — blue sweep from bottom */}
             <div

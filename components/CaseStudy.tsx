@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { projects, type Project, type CaseStudyBlock } from "@/data/projects";
@@ -9,6 +10,45 @@ import { Sun, Moon } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+function CaseImage({ src, caption, color }: { src: string; caption?: string; color: string }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) return null;
+  return (
+    <motion.figure
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease }}
+      className="my-4"
+    >
+      <div
+        className="relative overflow-hidden rounded-lg border"
+        style={{ borderColor: "var(--border)", background: "var(--bg-secondary)" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={caption ?? "Case study visual"}
+          loading="lazy"
+          onError={() => setOk(false)}
+          className="w-full h-auto block"
+        />
+      </div>
+      {caption && (
+        <figcaption className="mt-4 flex items-start gap-3 text-sm" style={{ color: "var(--text-tertiary)" }}>
+          <span
+            className="mt-0.5 inline-flex w-6 h-6 flex-shrink-0 items-center justify-center rounded-sm"
+            style={{ background: `${color}1a`, color }}
+          >
+            <ArrowUpRight size={13} />
+          </span>
+          <span className="leading-relaxed max-w-xl">{caption}</span>
+        </figcaption>
+      )}
+    </motion.figure>
+  );
+}
+
 function Block({ block, color }: { block: CaseStudyBlock; color: string }) {
   const reveal = {
     initial: { opacity: 0, y: 28 },
@@ -16,6 +56,10 @@ function Block({ block, color }: { block: CaseStudyBlock; color: string }) {
     viewport: { once: true, margin: "-60px" },
     transition: { duration: 0.7, ease },
   };
+
+  if (block.type === "image") {
+    return <CaseImage src={block.src} caption={block.caption} color={color} />;
+  }
 
   if (block.type === "metrics") {
     return (

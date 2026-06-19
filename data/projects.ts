@@ -3,7 +3,8 @@ export type CaseStudyBlock =
   | { type: "highlight"; label: string; heading: string; body: string[] }
   | { type: "quote"; body: string }
   | { type: "list"; label: string; heading: string; items: { title: string; body: string }[] }
-  | { type: "metrics"; items: { value: string; label: string }[] };
+  | { type: "metrics"; items: { value: string; label: string }[] }
+  | { type: "image"; src: string; caption?: string };
 
 export type Project = {
   id: string;
@@ -19,6 +20,7 @@ export type Project = {
   problem: string;
   outcome: string;
   color: string;
+  cover?: string;
   heroStat: { value: string; label: string };
   caseStudy: CaseStudyBlock[];
 };
@@ -41,8 +43,14 @@ export const projects: Project[] = [
     outcome:
       "Unified FAQ and ticket form on one page with real-time FAQ filtering beside the ticket input.",
     color: "#0039ff",
+    cover: "/projects/support-friction.png",
     heroStat: { value: "734", label: "tickets read by hand" },
     caseStudy: [
+      {
+        type: "image",
+        src: "/projects/support-friction.png",
+        caption: "Unified support experience — combining intelligent FAQ and ticketing in one seamless flow.",
+      },
       {
         type: "section",
         label: "Context",
@@ -57,8 +65,17 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A pattern showed up fast.",
         body: [
-          "I pulled two years of feedback from the back-office admin panel and read all 734 entries — about 30 a month.",
-          "A large share of tickets had static, knowable answers. No account lookup, no agent needed. People just didn't know where to look. The old FAQ wasn't catching any of it — organized by feature name instead of user problem, no search, and on a separate page from the ticket form.",
+          "I pulled two years of feedback from the back-office admin panel and read all 734 entries — about 30 a month. A large share of tickets had static, knowable answers. No account lookup, no agent needed. People just didn't know where to look.",
+          "The old FAQ wasn't catching any of it. It was organized by feature name instead of user problem, had no search, and lived on a separate page from the ticket form. The question I started with: how much of this volume is actually self-serviceable — and what would the content need to look like to work?",
+        ],
+      },
+      {
+        type: "highlight",
+        label: "Feedback Analysis",
+        heading: "One rule, every entry.",
+        body: [
+          "I classified every entry by one rule: can the user solve this alone with a static answer, or does it need an agent? ~45% were FAQ-addressable. ~55% needed real support. That split is the spine of the whole project.",
+          "Three high-volume categories were mixed; I split those by reading the actual entries, so the 45% is an informed estimate, not a clean cut.",
         ],
       },
       {
@@ -70,12 +87,22 @@ export const projects: Project[] = [
         ],
       },
       {
-        type: "highlight",
-        label: "Feedback Analysis",
-        heading: "One rule, every entry.",
+        type: "section",
+        label: "My Role",
+        heading: "Two-person project. The analysis and content architecture were mine.",
         body: [
-          "I classified every entry by a single question: can the user solve this alone with a static answer, or does it need an agent? That split is the spine of the whole project.",
-          "Three high-volume categories were mixed; I split those by reading the actual entries, so the 45% is an informed estimate, not a clean cut.",
+          "I read the ~734 entries manually and logged each one on a FigJam sticky note, grouped by topic. Manual, because the call — is this within the user's control, or does it need account access? — depended on context a keyword filter would miss.",
+          "The recurring clusters became the category structure directly. And I wrote the FAQ questions in the user's words from the ticket text, not the product team's feature names.",
+        ],
+      },
+      {
+        type: "list",
+        label: "Constraints",
+        heading: "Three limits I designed around.",
+        items: [
+          { title: "Locked taxonomy", body: "The old categories were tied to ticket history in the database. Renaming them would silently break filtering for users tracking active cases — a real regression at this scale." },
+          { title: "Search at 150 questions", body: "Browsing alone breaks down. Plain string-matching wasn't enough either — user language and product language rarely match." },
+          { title: "Pre-launch", body: "The redesign sits in a test environment. No live data yet — which shaped how I framed every success metric." },
         ],
       },
       {
@@ -85,13 +112,42 @@ export const projects: Project[] = [
         items: [
           { title: "Merge FAQ and ticket into one page", body: "Two surfaces forced a choice users couldn't yet make. I put both on one page, ticket CTA always visible — not buried under the FAQ." },
           { title: "Keyword search with per-question tagging", body: "Someone searching 'how to add a user' won't type the product's exact term. Tags bridge user language and product language." },
-          { title: "Preserve legacy categories, migrate where possible", body: "A full rebuild would break filtering for 400k users. I migrated where the mapping was clean and added an 'Other' catch-all — trading taxonomic purity for stability." },
-          { title: "Real-time FAQ filtering beside the ticket field", body: "As users type their ticket message, matching FAQ answers surface live on the same page — no extra step, no decision." },
+          { title: "Preserve legacy categories, migrate where possible", body: "A full rebuild would break filtering for 400k users. I migrated questions where the mapping was clean and added an 'Other' catch-all for the rest — knowingly trading taxonomic purity for stability." },
+          { title: "Real-time FAQ filtering beside the ticket field", body: "Users filing a ticket are mid-task and under pressure. As they type their ticket message, matching FAQ answers surface live on the same page — no extra step, no decision." },
+        ],
+      },
+      {
+        type: "list",
+        label: "Process",
+        heading: "How the work actually ran.",
+        items: [
+          { title: "Manual review", body: "734 entries read individually, mapped on FigJam stickies for spatial pattern-finding." },
+          { title: "Frequency clustering", body: "Recurring themes grouped by volume; clusters drove the categories, not the other way around." },
+          { title: "Wireframe-first", body: "Structure locked with stakeholders before any visual polish, so objections surfaced early instead of as rework." },
+          { title: "Annotated handoff", body: "Interaction states, edge cases, and tagging logic documented so a developer wouldn't need to ask." },
+        ],
+      },
+      {
+        type: "section",
+        label: "Outcome",
+        heading: "In test, not launched — so these are targets, not wins.",
+        body: [
+          "These are pre-launch targets tied to the analysis, not measured results. Ticket volume — baseline is ~30 addressable tickets/month (the 45% the analysis flagged); the first 60 days set a real conversion rate. Zero-result searches — search is new; the first 30 days set the baseline. FAQ-to-ticket conversion — wasn't trackable before; now it is.",
+          "I'm calling these out as targets, not wins. There's no live data yet, and pretending otherwise wouldn't be honest.",
         ],
       },
       {
         type: "quote",
-        body: "Support content is part of the product, not adjacent to it. Unclear guidance on a working feature produces the same behavior as a broken one — both end in a ticket. Reading 734 entries by hand was the only way to tell a content gap from an access issue from an actual bug.",
+        body: "Support content is part of the product, not adjacent to it. Unclear guidance on a working feature produces the same behavior as a broken one — both end in a ticket. Reading 734 entries by hand was the only way to tell a content gap from an access issue from an actual bug — three problems that look identical in a dashboard and need completely different fixes.",
+      },
+      {
+        type: "section",
+        label: "Reflection",
+        heading: "What I'd do differently.",
+        body: [
+          "The taxonomy I inherited wasn't a bad decision. It was a reasonable one made before scale made its cost visible. Worth remembering the next time I make a structural call that someone inherits later.",
+          "The keyword tagging shipped without an owner for upkeep — who updates tags when a feature is renamed? I flagged it but didn't resolve it before handoff. Next time that gets decided up front, not left as an operational afterthought.",
+        ],
       },
     ],
   },
