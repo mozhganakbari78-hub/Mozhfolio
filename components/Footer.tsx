@@ -9,7 +9,7 @@ export default function Footer() {
       style={{ borderColor: "var(--border)" }}
       role="contentinfo"
     >
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="text-sm" style={{ color: "var(--text-tertiary)" }}>
           © {year} Mozhgan Akbari
         </span>

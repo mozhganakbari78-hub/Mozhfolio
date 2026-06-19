@@ -20,8 +20,8 @@ export default function About() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="about" className="py-32 px-6" aria-labelledby="about-heading">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-28 md:py-40 px-6" aria-labelledby="about-heading">
+      <div className="max-w-5xl mx-auto">
         <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <motion.div
@@ -29,18 +29,13 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mb-4">
-              <span
-                className="text-xs font-medium tracking-widest uppercase"
-                style={{ color: "var(--accent-color)" }}
-              >
-                About
-              </span>
+            <div className="mono-label mb-6" style={{ color: "var(--accent-color)" }}>
+              [ 01 ] — About
             </div>
             <h2
               id="about-heading"
-              className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight"
-              style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+              className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
               I design for the moments when things go wrong.
             </h2>
@@ -79,13 +74,8 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mb-8">
-              <span
-                className="text-xs font-medium tracking-widest uppercase"
-                style={{ color: "var(--text-tertiary)" }}
-              >
-                Experience
-              </span>
+            <div className="mono-label mb-8" style={{ color: "var(--text-tertiary)" }}>
+              Experience
             </div>
 
             <div className="relative">

@@ -85,25 +85,22 @@ export default function Skills() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="skills" className="py-32 px-6" aria-labelledby="skills-heading">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="py-28 md:py-40 px-6" aria-labelledby="skills-heading">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16"
+          className="mb-16 md:mb-20"
         >
-          <span
-            className="text-xs font-medium tracking-widest uppercase mb-4 block"
-            style={{ color: "var(--accent-color)" }}
-          >
-            Skills
-          </span>
+          <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+            [ 03 ] — Capabilities
+          </div>
           <h2
             id="skills-heading"
-            className="text-3xl md:text-4xl font-semibold tracking-tight"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
+            style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
           >
             What I bring to the table.
           </h2>
@@ -119,10 +116,11 @@ export default function Skills() {
               transition={{ duration: 0.6, delay: gi * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div
-                className="text-xs font-semibold tracking-widest uppercase mb-6 pb-3 border-b"
-                style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
+                className="mono-label mb-6 pb-3 border-b flex items-center justify-between"
+                style={{ color: "var(--text-tertiary)", borderColor: "var(--border-strong)" }}
               >
-                {group.category}
+                <span>{group.category}</span>
+                <span style={{ color: "var(--accent-color)" }}>{String(gi + 1).padStart(2, "0")}</span>
               </div>
               {group.skills.map((skill, si) => (
                 <SkillBar

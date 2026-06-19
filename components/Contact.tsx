@@ -40,8 +40,8 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-32 px-6" aria-labelledby="contact-heading">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-28 md:py-40 px-6" aria-labelledby="contact-heading">
+      <div className="max-w-5xl mx-auto">
         <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <motion.div
@@ -49,18 +49,15 @@ export default function Contact() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span
-              className="text-xs font-medium tracking-widest uppercase mb-4 block"
-              style={{ color: "var(--accent-color)" }}
-            >
-              Contact
-            </span>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+              [ 04 ] — Contact
+            </div>
             <h2
               id="contact-heading"
-              className="text-3xl md:text-4xl font-semibold tracking-tight mb-6"
-              style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+              className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.02]"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Let&apos;s work on something worth building.
+              Let&apos;s build something worth the detail.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
               I&apos;m open to senior product design roles, especially in B2B, enterprise, or fintech. If you&apos;re building something complex and want a designer who will read the tickets, I&apos;d like to hear about it.
