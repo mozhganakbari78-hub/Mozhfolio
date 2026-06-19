@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import CountUp from "./CountUp";
 import ParticleField from "./ParticleField";
+import HeroIllustration from "./HeroIllustration";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 overflow-hidden text-center"
+      className="relative min-h-screen flex items-center px-6 pt-28 pb-20 overflow-hidden"
       aria-label="Introduction"
     >
       {/* Layered background */}
@@ -30,14 +30,15 @@ export default function Hero() {
         <ParticleField />
       </div>
       <div
-        className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none accent-glow"
+        className="absolute right-0 top-1/3 translate-x-1/4 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none accent-glow"
         aria-hidden="true"
       />
 
-      <div className="relative max-w-4xl mx-auto w-full">
-        <motion.div variants={stagger} initial="initial" animate="animate">
+      <div className="relative max-w-6xl mx-auto w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        {/* Left — copy */}
+        <motion.div variants={stagger} initial="initial" animate="animate" className="text-center lg:text-left">
           {/* Eyebrow disciplines */}
-          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+          <motion.div variants={fadeUp} className="flex justify-center lg:justify-start mb-8">
             <span
               className="mono-label inline-flex items-center gap-2 px-4 py-2 rounded-full border"
               style={{ color: "var(--accent-color)", borderColor: "var(--border-strong)", background: "var(--surface)" }}
@@ -50,7 +51,7 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={fadeUp}
-            className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tight leading-[0.95] mb-8"
+            className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[0.98] mb-7"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.04em" }}
           >
             Senior Product Designer
@@ -63,7 +64,7 @@ export default function Hero() {
           {/* Subtext */}
           <motion.p
             variants={fadeUp}
-            className="text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
+            className="text-base md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-9"
             style={{ color: "var(--text-secondary)" }}
           >
             I help teams turn complex workflows, scattered decisions, and operational friction
@@ -71,7 +72,7 @@ export default function Hero() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-3 mb-16">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-12">
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -94,7 +95,7 @@ export default function Hero() {
           {/* Value pillars */}
           <motion.div
             variants={fadeUp}
-            className="grid grid-cols-1 sm:grid-cols-3 max-w-2xl mx-auto gap-3 mb-6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0"
           >
             {[
               { title: "Systems over screens", sub: "Product thinking" },
@@ -103,7 +104,7 @@ export default function Hero() {
             ].map((p) => (
               <div
                 key={p.title}
-                className="flex flex-col items-center gap-1 px-4 py-4 rounded-2xl border"
+                className="flex flex-col items-center lg:items-start gap-1 px-4 py-4 rounded-2xl border"
                 style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
                 <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
@@ -115,6 +116,16 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
+        </motion.div>
+
+        {/* Right — illustration */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease }}
+          className="hidden lg:block"
+        >
+          <HeroIllustration />
         </motion.div>
       </div>
 
