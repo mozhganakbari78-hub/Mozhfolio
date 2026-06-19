@@ -45,11 +45,13 @@ export const projects: Project[] = [
       "Unified FAQ and ticket form on one page with real-time FAQ filtering beside the ticket input.",
     color: "#0039ff",
     cover: "/projects/support-friction.png",
+    coverLight: "/projects/Cover-light.png",
     heroStat: { value: "734", label: "tickets read by hand" },
     caseStudy: [
       {
         type: "image",
         src: "/projects/support-friction.png",
+        srcLight: "/projects/Cover-light.png",
         caption: "Unified support experience — combining intelligent FAQ and ticketing in one seamless flow.",
       },
       {
@@ -96,7 +98,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/sticky-notes.png",
-        srcLight: "/projects/sticky-notes-light.png",
+        srcLight: "/projects/StickyNote-light.png",
         caption: "Affinity mapping in FigJam — every one of the 734 entries hand-sorted into clusters. The recurring groups became the category structure directly.",
       },
       {
@@ -132,7 +134,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/wireframe.png",
-        srcLight: "/projects/wireframe-light.png",
+        srcLight: "/projects/WireFrame-light.png",
         caption: "Low-fidelity wireframe of the unified FAQ + ticketing surface — structure locked with stakeholders before any visual polish.",
       },
       {
@@ -149,7 +151,6 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/mockup-1.png",
-        srcLight: "/projects/mockup-1-light.png",
         caption: "The final high-fidelity design — FAQ browsing and ticket submission unified on a single screen.",
       },
       {

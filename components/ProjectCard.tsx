@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { useTheme } from "./ThemeProvider";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -20,6 +21,9 @@ export default function ProjectCard({
   const flip = index % 2 === 1;
   const [imgOk, setImgOk] = useState(true);
   const showCover = Boolean(project.cover) && imgOk;
+  const { theme } = useTheme();
+  const coverSrc =
+    theme === "light" && project.coverLight ? project.coverLight : project.cover;
 
   return (
     <motion.div
@@ -49,7 +53,7 @@ export default function ProjectCard({
                 {/* real cover image */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={project.cover}
+                  src={coverSrc}
                   alt={`${project.title} cover`}
                   loading="lazy"
                   onError={() => setImgOk(false)}
