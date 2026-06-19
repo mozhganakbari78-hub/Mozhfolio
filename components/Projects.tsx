@@ -3,118 +3,237 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { caseStudies } from "@/data/caseStudies";
+import { caseStudies, type CaseStudy } from "@/data/caseStudies";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+/* ── Ghost SVG illustrations — outline only, same colour family as surface ── */
+
+function IllustrationSupport() {
+  return (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.18">
+        {/* Ticket rows */}
+        {[0,1,2,3,4].map(i => (
+          <g key={i} transform={`translate(0, ${i * 36})`}>
+            <rect x="20" y="8" width="280" height="24" rx="6" />
+            <rect x="32" y="15" width="60" height="10" rx="3" />
+            <rect x="104" y="15" width="140" height="10" rx="3" />
+            <circle cx="280" cy="20" r="6" />
+          </g>
+        ))}
+        {/* Funnel shape */}
+        <path d="M20 195 L100 120 L220 120 L300 195" strokeDasharray="4 4" />
+        <line x1="100" y1="120" x2="220" y2="120" />
+        <rect x="130" y="135" width="60" height="18" rx="4" />
+      </g>
+    </svg>
+  );
+}
+
+function IllustrationBatch() {
+  return (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.18">
+        {/* Spreadsheet grid */}
+        {[0,1,2,3,4,5].map(i => (
+          <line key={`h${i}`} x1="20" y1={20 + i * 30} x2="300" y2={20 + i * 30} />
+        ))}
+        {[0,1,2,3,4].map(i => (
+          <line key={`v${i}`} x1={20 + i * 70} y1="20" x2={20 + i * 70} y2="170" />
+        ))}
+        {/* Error row highlight */}
+        <rect x="20" y="80" width="280" height="30" rx="0" strokeDasharray="3 3" />
+        {/* Check marks on valid rows */}
+        {[20,50,110,140].map((y,i) => (
+          <path key={i} d={`M258 ${y+10} l7 7 l12-12`} />
+        ))}
+        {/* X on error row */}
+        <path d="M258 87 l12 12 M270 87 l-12 12" />
+        {/* Arrow showing before→after */}
+        <path d="M160 180 L160 195" strokeWidth="2" />
+        <path d="M154 190 L160 198 L166 190" />
+      </g>
+    </svg>
+  );
+}
+
+function IllustrationSystem() {
+  return (
+    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <g stroke="currentColor" strokeWidth="1.2" opacity="0.18">
+        {/* Component tree */}
+        {/* Root */}
+        <rect x="120" y="10" width="80" height="28" rx="6" />
+        <line x1="160" y1="38" x2="160" y2="58" />
+        {/* Second level */}
+        <line x1="80" y1="58" x2="240" y2="58" />
+        <rect x="40" y="58" width="80" height="28" rx="6" />
+        <rect x="200" y="58" width="80" height="28" rx="6" />
+        <line x1="80" y1="86" x2="80" y2="106" />
+        <line x1="240" y1="86" x2="240" y2="106" />
+        {/* Third level */}
+        <rect x="20" y="106" width="50" height="24" rx="5" />
+        <rect x="80" y="106" width="50" height="24" rx="5" />
+        <rect x="215" y="106" width="50" height="24" rx="5" />
+        {/* Token swatches */}
+        {[0,1,2,3,4,5].map(i => (
+          <circle key={i} cx={30 + i * 44} cy="165" r="14" />
+        ))}
+        {/* Connector lines */}
+        <line x1="80" y1="130" x2="80" y2="151" strokeDasharray="3 3" />
+        <line x1="80" y1="151" x2="30" y2="151" strokeDasharray="3 3" />
+        <line x1="30" y1="151" x2="30" y2="151" strokeDasharray="3 3" />
+      </g>
+    </svg>
+  );
+}
+
+const illustrations: Record<string, React.FC> = {
+  "reducing-support-friction": IllustrationSupport,
+  "batch-transfer": IllustrationBatch,
+  "design-system": IllustrationSystem,
+};
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
+  const Illustration = illustrations[cs.slug] ?? IllustrationSupport;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, delay: index * 0.1, ease }}
+    >
+      <Link
+        href={`/work/${cs.slug}`}
+        data-hand
+        aria-label={`Read case study: ${cs.title}`}
+        className="group relative flex flex-col overflow-hidden rounded-3xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+        style={{
+          borderColor: "var(--border-strong)",
+          background: "var(--surface)",
+          minHeight: 380,
+        }}
+      >
+        {/* Ambient glow on hover */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 rounded-3xl"
+          style={{ boxShadow: "inset 0 0 80px var(--accent-soft)" }}
+          aria-hidden
+        />
+
+        {/* Top content area */}
+        <div className="relative flex-1 p-7 md:p-8">
+          {/* Icon badge + meta */}
+          <div className="flex items-center gap-3 mb-5">
+            <div
+              className="flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold"
+              style={{ background: "var(--accent-soft)", color: "var(--accent-color)" }}
+            >
+              {cs.index}
+            </div>
+            <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+              {cs.meta}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3
+            className="text-xl md:text-2xl font-semibold tracking-tight leading-snug mb-3 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
+            style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+          >
+            {cs.title}
+          </h3>
+
+          {/* Description */}
+          <p
+            className="text-sm leading-relaxed mb-5"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {cs.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5">
+            {cs.tags.map((tag) => (
+              <span
+                key={tag}
+                className="mono-label px-2 py-0.5 rounded-full border"
+                style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Ghost illustration area */}
+        <div
+          className="relative h-44 overflow-hidden"
+          style={{ color: "var(--accent-color)", background: "var(--bg-secondary)" }}
+        >
+          {/* Subtle top fade */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-12 z-10"
+            style={{ background: "linear-gradient(to bottom, var(--surface), transparent)" }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 flex items-end">
+            <Illustration />
+          </div>
+          {/* CTA */}
+          <div className="absolute right-6 bottom-6 z-20">
+            <span
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-medium transition-all duration-300 group-hover:gap-2.5"
+              style={{ background: "var(--accent-color)", color: "#fff" }}
+            >
+              Read case study
+              <ArrowUpRight size={13} />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
 
 export default function Projects() {
   return (
     <section id="projects" className="py-28 md:py-40 px-6" aria-labelledby="projects-heading">
       <div className="max-w-5xl mx-auto">
-        {/* Section header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease }}
-          className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+          className="mb-14 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div>
-            <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+            <div className="mono-label mb-4" style={{ color: "var(--accent-color)" }}>
               [ 02 ] — Selected Work
             </div>
             <h2
               id="projects-heading"
-              className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl leading-[1.02]"
+              className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
               Case studies, in full.
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            Each opens the full case study — context, decisions, and the trade-offs behind them.
+            Context, decisions, and the trade-offs behind each one.
           </p>
         </motion.div>
 
-        {/* Case study cards */}
-        <div className="grid gap-5 md:gap-6">
+        {/* Card grid — 3 columns on large screens */}
+        <div className="grid gap-5 md:gap-6 md:grid-cols-3">
           {caseStudies.map((cs, i) => (
-            <motion.div
-              key={cs.index}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease }}
-            >
-            <Link
-              href={`/work/${cs.slug}`}
-              data-hand
-              aria-label={`Read case study: ${cs.title}`}
-              className="group relative block overflow-hidden rounded-2xl border p-7 md:p-10 transition-colors duration-300"
-              style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
-            >
-              {/* hover glow */}
-              <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  background:
-                    "radial-gradient(500px circle at var(--mx,50%) var(--my,0%), var(--accent-soft), transparent 60%)",
-                }}
-                aria-hidden
-              />
-
-              <div className="relative grid md:grid-cols-[auto_1fr_auto] items-start gap-6 md:gap-10">
-                {/* index */}
-                <div
-                  className="font-mono text-sm pt-1"
-                  style={{ color: "var(--accent-color)" }}
-                >
-                  {cs.index} / {String(caseStudies.length).padStart(2, "0")}
-                </div>
-
-                {/* body */}
-                <div>
-                  <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
-                    {cs.meta}
-                  </div>
-                  <h3
-                    className="text-2xl md:text-4xl font-semibold tracking-tight mb-4 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
-                    style={{ color: "var(--text-primary)", letterSpacing: "-0.025em" }}
-                  >
-                    {cs.title}
-                  </h3>
-                  <p
-                    className="text-sm md:text-base leading-relaxed max-w-2xl mb-6"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    {cs.description}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {cs.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="mono-label px-2.5 py-1 rounded-full border"
-                        style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <div className="flex md:flex-col items-center md:items-end gap-3 md:text-right">
-                  <span
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 group-hover:gap-3"
-                    style={{ background: "var(--accent-soft)", color: "var(--accent-color)" }}
-                  >
-                    Read Case Study
-                    <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </div>
-              </div>
-            </Link>
-            </motion.div>
+            <CaseCard key={cs.slug} cs={cs} index={i} />
           ))}
         </div>
       </div>

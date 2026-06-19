@@ -2,21 +2,21 @@
 
 /* ── Dark-only palette ───────────────────────────────────────────────── */
 :root {
-  --bg: #14161c;
-  --bg-secondary: #1b1e26;
-  --text-primary: #f4f5f7;
-  --text-secondary: #b2b6c0;
-  --text-tertiary: #7d828d;
-  --accent: #f4f5f7;
-  --accent-color: #6d86ff;
-  --accent-soft: rgba(109, 134, 255, 0.16);
+  --bg: #0d0f18;
+  --bg-secondary: #131621;
+  --text-primary: #eeeef2;
+  --text-secondary: #9496a8;
+  --text-tertiary: #5e6070;
+  --accent: #eeeef2;
+  --accent-color: #7b8fff;
+  --accent-soft: rgba(123, 143, 255, 0.15);
   --accent-contrast: #ffffff;
-  --border: #2a2e38;
-  --border-strong: #3a3f4c;
-  --border-subtle: #222630;
-  --surface: #1c1f28;
-  --surface-elevated: rgba(33, 37, 47, 0.82);
-  --grid-line: rgba(244, 245, 247, 0.04);
+  --border: #1e2030;
+  --border-strong: #282c42;
+  --border-subtle: #181a28;
+  --surface: #13151f;
+  --surface-elevated: rgba(20, 22, 34, 0.85);
+  --grid-line: rgba(238, 238, 242, 0.035);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.6);

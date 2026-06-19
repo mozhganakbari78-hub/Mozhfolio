@@ -62,21 +62,25 @@ function BlockView({ block }: { block: Block }) {
       );
 
     case "stats":
+      // Bento grid: first card spans 2 cols on md, rest fill naturally
       return (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {block.items.map((s, i) => (
-            <Reveal key={i} delay={i * 0.08}>
+            <Reveal key={i} delay={i * 0.07}>
               <div
-                className="h-full rounded-2xl border p-6 transition-colors duration-300 hover:border-[var(--accent-color)]"
-                style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+                className={`h-full rounded-2xl border p-6 md:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 ${i === 0 ? "md:col-span-2" : ""}`}
+                style={{
+                  borderColor: "var(--border-strong)",
+                  background: i === 0 ? "var(--accent-soft)" : "var(--surface)",
+                }}
               >
                 <div
-                  className="text-3xl md:text-4xl font-semibold tracking-tight mb-2"
+                  className={`font-semibold tracking-tight mb-2 ${i === 0 ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"}`}
                   style={{ color: "var(--accent-color)", letterSpacing: "-0.03em" }}
                 >
                   {s.value}
                 </div>
-                <div className="text-sm leading-snug" style={{ color: "var(--text-secondary)" }}>
+                <div className="text-xs md:text-sm leading-snug mt-2" style={{ color: "var(--text-secondary)" }}>
                   {s.label}
                 </div>
               </div>
