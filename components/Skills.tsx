@@ -74,7 +74,7 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
           initial={{ width: 0 }}
           animate={inView ? { width: `${level}%` } : {}}
           transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
-          style={{ background: "var(--text-primary)" }}
+          style={{ background: "var(--accent-color)" }}
         />
       </div>
     </div>

@@ -39,7 +39,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Project list */}
-        <div>
+        <div className="flex flex-col gap-6 md:gap-8">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
@@ -48,7 +48,6 @@ export default function Projects() {
               total={projects.length}
             />
           ))}
-          <div className="border-t" style={{ borderColor: "var(--border-strong)" }} />
         </div>
       </div>
     </section>

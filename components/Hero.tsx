@@ -84,7 +84,7 @@ export default function Hero() {
                 <button
                   onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-                  style={{ background: "var(--text-primary)", color: "var(--bg)" }}
+                  style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
                 >
                   View work
                   <ArrowUpRight size={14} />

@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "~45% of support tickets had static, knowable answers. The old FAQ was organized by feature name instead of user problem, had no search, and lived on a separate page from the ticket form.",
     outcome:
       "Unified FAQ and ticket form on one page with real-time FAQ filtering beside the ticket input.",
-    color: "#d5471f",
+    color: "#0039ff",
     heroStat: { value: "734", label: "tickets read by hand" },
     caseStudy: [
       {
@@ -111,7 +111,7 @@ export const projects: Project[] = [
       "The legacy system processed an uploaded payment file as one block. A single bad row in a batch of 200 failed the entire file — no validation upfront, no partial success.",
     outcome:
       "Per-row validation with errors surfaced before submission. If one row fails, only that row fails. Launched to a single branch first.",
-    color: "#2f6fed",
+    color: "#0039ff",
     heroStat: { value: "1 of 200", label: "rows could no longer kill a batch" },
     caseStudy: [
       {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
       "Different spacing values, mismatched component states, drifting color usage. The frontend team was raising it 8–9 times a day: 'why does this look different here?'",
     outcome:
       "Frontend interruptions dropped from 8–9 per day to 3–4 and kept falling. The PO saw visible consistency improvement across screens.",
-    color: "#7c4ddb",
+    color: "#0039ff",
     heroStat: { value: "8–9 → 3–4", label: "daily frontend interruptions" },
     caseStudy: [
       {

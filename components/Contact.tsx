@@ -178,7 +178,7 @@ export default function Contact() {
                   type="submit"
                   disabled={status === "sending"}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-50"
-                  style={{ background: "var(--text-primary)", color: "var(--bg)" }}
+                  style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
                 >
                   {status === "sending" ? (
                     "Sending..."

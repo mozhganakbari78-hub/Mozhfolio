@@ -16,63 +16,114 @@ export default function ProjectCard({
   index: number;
   total: number;
 }) {
+  const flip = index % 2 === 1;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay: index * 0.08, ease }}
+      transition={{ duration: 0.8, delay: index * 0.06, ease }}
     >
       <Link
         href={`/work/${project.id}`}
-        className="group block relative"
+        className="group block focus-visible:outline-none"
         aria-label={`Open case study: ${project.title}`}
       >
-        <article
-          className="relative overflow-hidden transition-colors duration-300"
-          style={{
-            background: "var(--surface)",
-            borderTop: "1px solid var(--border-strong)",
-          }}
+        <div
+          className={`grid md:grid-cols-2 items-stretch border ${
+            flip ? "md:[direction:rtl]" : ""
+          }`}
+          style={{ borderColor: "var(--border-strong)" }}
         >
-          {/* hover accent line */}
-          <span
-            className="absolute top-0 left-0 h-px w-0 transition-all duration-500 group-hover:w-full"
-            style={{ background: project.color }}
-            aria-hidden
-          />
+          {/* COVER PANEL */}
+          <div
+            className="relative aspect-[16/11] md:aspect-auto md:min-h-[400px] overflow-hidden [direction:ltr]"
+            style={{ background: "var(--bg-secondary)" }}
+          >
+            {/* hairline grid */}
+            <div className="absolute inset-0 grid-bg opacity-70" aria-hidden />
 
-          <div className="grid md:grid-cols-12 gap-6 md:gap-8 py-8 md:py-10 px-1">
-            {/* Index */}
-            <div className="md:col-span-2 flex items-start">
-              <span
-                className="font-mono text-sm transition-colors duration-300"
-                style={{ color: "var(--text-tertiary)" }}
-              >
-                {project.index} <span style={{ color: "var(--text-tertiary)" }}>/ {String(total).padStart(2, "0")}</span>
-              </span>
+            {/* giant index watermark */}
+            <span
+              className="absolute -bottom-10 -right-4 font-semibold leading-none select-none transition-colors duration-500 group-hover:opacity-0"
+              style={{
+                fontSize: "16rem",
+                color: "var(--border-strong)",
+                letterSpacing: "-0.05em",
+              }}
+              aria-hidden
+            >
+              {project.index}
+            </span>
+
+            {/* default content */}
+            <div className="absolute inset-0 p-7 md:p-9 flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+              <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                {project.index} / {String(total).padStart(2, "0")}
+              </div>
+              <div>
+                <div
+                  className="text-5xl md:text-6xl font-semibold tracking-tight mb-2"
+                  style={{ color: "var(--accent-color)", letterSpacing: "-0.04em" }}
+                >
+                  {project.heroStat.value}
+                </div>
+                <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                  {project.heroStat.label}
+                </div>
+              </div>
             </div>
 
-            {/* Main */}
-            <div className="md:col-span-7">
-              <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
+            {/* HOVER OVERLAY — blue sweep from bottom */}
+            <div
+              className="absolute inset-0 flex flex-col justify-between p-7 md:p-9 translate-y-full group-hover:translate-y-0 transition-transform duration-[600ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+              style={{ background: "var(--accent-color)" }}
+            >
+              <div className="flex items-start justify-between">
+                <span className="mono-label" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  Case study {project.index}
+                </span>
+                <ArrowUpRight size={26} color="#fff" />
+              </div>
+              <div>
+                <div
+                  className="text-4xl md:text-5xl font-semibold tracking-tight"
+                  style={{ color: "#fff", letterSpacing: "-0.035em" }}
+                >
+                  View
+                  <br />
+                  case study
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* META PANEL */}
+          <div
+            className="p-7 md:p-9 flex flex-col justify-between gap-8 [direction:ltr] border-t md:border-t-0"
+            style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+          >
+            <div>
+              <div className="mono-label mb-5" style={{ color: "var(--text-tertiary)" }}>
                 {project.category} — {project.year}
               </div>
               <h3
-                className="text-2xl md:text-4xl font-semibold tracking-tight mb-4 transition-transform duration-500 group-hover:translate-x-1"
+                className="text-3xl md:text-4xl font-semibold tracking-tight mb-5 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
                 style={{ color: "var(--text-primary)", letterSpacing: "-0.025em" }}
               >
                 {project.title}
               </h3>
               <p
-                className="text-sm md:text-base leading-relaxed max-w-xl"
+                className="text-sm md:text-base leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
                 {project.description}
               </p>
+            </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
@@ -83,36 +134,19 @@ export default function ProjectCard({
                   </span>
                 ))}
               </div>
-            </div>
-
-            {/* Stat + arrow */}
-            <div className="md:col-span-3 flex md:flex-col md:items-end justify-between gap-4">
-              <div className="md:text-right">
-                <div
-                  className="text-3xl md:text-4xl font-semibold tracking-tight mb-1"
-                  style={{ color: project.color, letterSpacing: "-0.03em" }}
-                >
-                  {project.heroStat.value}
-                </div>
-                <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                  {project.heroStat.label}
-                </div>
-              </div>
-              <div
-                className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-300 group-hover:scale-110"
-                style={{
-                  borderColor: "var(--border-strong)",
-                  color: "var(--text-primary)",
-                }}
+              <span
+                className="mono-label inline-flex items-center gap-1.5 whitespace-nowrap transition-colors duration-300 group-hover:text-[var(--accent-color)]"
+                style={{ color: "var(--text-primary)" }}
               >
+                Read
                 <ArrowUpRight
-                  size={18}
-                  className="transition-transform duration-300 group-hover:rotate-45"
+                  size={13}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
-              </div>
+              </span>
             </div>
           </div>
-        </article>
+        </div>
       </Link>
     </motion.div>
   );
