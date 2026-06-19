@@ -80,10 +80,13 @@ export default function About() {
             </div>
 
             <div className="relative">
-              {/* Timeline line */}
-              <div
-                className="absolute left-0 top-2 bottom-2 w-px"
+              {/* Timeline line — draws downward on reveal */}
+              <motion.div
+                className="absolute left-0 top-2 bottom-2 w-px origin-top"
                 style={{ background: "var(--border)" }}
+                initial={{ scaleY: 0 }}
+                animate={inView ? { scaleY: 1 } : {}}
+                transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 aria-hidden="true"
               />
 

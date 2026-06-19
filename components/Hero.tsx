@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import CountUp from "./CountUp";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -111,8 +112,10 @@ export default function Hero() {
               { value: "400K+", label: "Users impacted" },
               { value: "2,000+", label: "UX cases improved" },
             ].map((stat) => (
-              <div
+              <motion.div
                 key={stat.label}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="p-5 md:p-6 border-r border-b"
                 style={{ borderColor: "var(--border)", background: "var(--bg)" }}
               >
@@ -120,12 +123,12 @@ export default function Hero() {
                   className="text-2xl md:text-4xl font-semibold mb-2 tracking-tight"
                   style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
                 >
-                  {stat.value}
+                  <CountUp value={stat.value} />
                 </dt>
                 <dd className="mono-label" style={{ color: "var(--text-tertiary)" }}>
                   {stat.label}
                 </dd>
-              </div>
+              </motion.div>
             ))}
           </motion.dl>
         </motion.div>

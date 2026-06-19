@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { projects, type Project, type CaseStudyBlock } from "@/data/projects";
 import { useTheme } from "./ThemeProvider";
 import { Sun, Moon } from "lucide-react";
+import CountUp from "./CountUp";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -80,7 +81,7 @@ function Block({ block, color }: { block: CaseStudyBlock; color: string }) {
               className="text-4xl md:text-5xl font-semibold tracking-tight mb-2"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              {m.value}
+              <CountUp value={m.value} />
             </div>
             <div className="mono-label" style={{ color: "var(--text-tertiary)" }}>
               {m.label}
