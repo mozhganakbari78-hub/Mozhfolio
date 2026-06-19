@@ -2,95 +2,281 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Block, CaseStudy } from "@/data/caseStudies";
 import BackToTop from "@/components/BackToTop";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+function Reveal({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.65, delay, ease }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Kicker({ children }: { children?: string }) {
+  if (!children) return null;
+  return (
+    <div className="mono-label mb-4" style={{ color: "var(--accent-color)" }}>
+      {children}
+    </div>
+  );
+}
+
+function Heading({ children }: { children: string }) {
+  return (
+    <h2
+      className="text-2xl md:text-4xl font-semibold tracking-tight"
+      style={{ color: "var(--text-primary)", letterSpacing: "-0.025em" }}
+    >
+      {children}
+    </h2>
+  );
+}
+
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
-    case "section":
+    case "lead":
       return (
-        <div>
-          <h2
-            className="text-2xl md:text-3xl font-semibold tracking-tight mb-5"
+        <Reveal>
+          <p
+            className="text-2xl md:text-4xl font-medium leading-[1.25] tracking-tight"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
           >
-            {block.heading}
-          </h2>
-          <div className="space-y-4">
-            {block.body.map((p, i) => (
-              <p
-                key={i}
-                className="text-base md:text-lg leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
+            {block.text}
+          </p>
+        </Reveal>
+      );
+
+    case "stats":
+      return (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {block.items.map((s, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <div
+                className="h-full rounded-2xl border p-6 transition-colors duration-300 hover:border-[var(--accent-color)]"
+                style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
+                <div
+                  className="text-3xl md:text-4xl font-semibold tracking-tight mb-2"
+                  style={{ color: "var(--accent-color)", letterSpacing: "-0.03em" }}
+                >
+                  {s.value}
+                </div>
+                <div className="text-sm leading-snug" style={{ color: "var(--text-secondary)" }}>
+                  {s.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      );
+
+    case "section":
+      return (
+        <Reveal>
+          <Kicker>{block.kicker}</Kicker>
+          <Heading>{block.heading}</Heading>
+          <div className="space-y-4 mt-6 max-w-2xl">
+            {block.body.map((p, i) => (
+              <p key={i} className="text-base md:text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                 {p}
               </p>
             ))}
+          </div>
+        </Reveal>
+      );
+
+    case "split":
+      return (
+        <Reveal>
+          <div className="grid md:grid-cols-[0.8fr_1.4fr] gap-8 md:gap-12">
+            <div>
+              <Kicker>{block.kicker}</Kicker>
+              <Heading>{block.heading}</Heading>
+            </div>
+            <div className="space-y-4 md:pt-1">
+              {block.body.map((p, i) => (
+                <p key={i} className="text-base md:text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      );
+
+    case "cards":
+      return (
+        <div>
+          <Reveal>
+            <Kicker>{block.kicker}</Kicker>
+            {block.heading && <Heading>{block.heading}</Heading>}
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            {block.items.map((c, i) => (
+              <Reveal key={i} delay={i * 0.07}>
+                <div
+                  className="group h-full rounded-2xl border p-6 md:p-7 transition-all duration-300 hover:-translate-y-1"
+                  style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+                >
+                  <div
+                    className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold"
+                    style={{ background: "var(--accent-soft)", color: "var(--accent-color)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--text-primary)" }}>
+                    {c.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    {c.text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      );
+
+    case "steps":
+      return (
+        <div>
+          <Reveal>
+            <Kicker>{block.kicker}</Kicker>
+            <Heading>{block.heading}</Heading>
+          </Reveal>
+          <div className="mt-8 space-y-3">
+            {block.items.map((s, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <div
+                  className="flex gap-5 rounded-2xl border p-5 md:p-6"
+                  style={{ borderColor: "var(--border)", background: "var(--surface)" }}
+                >
+                  <div
+                    className="shrink-0 font-mono text-sm pt-0.5"
+                    style={{ color: "var(--accent-color)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1" style={{ color: "var(--text-primary)" }}>
+                      {s.title}
+                    </h3>
+                    <p className="text-sm md:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                      {s.text}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      );
+
+    case "compare":
+      return (
+        <div>
+          <Reveal>
+            <Kicker>{block.kicker}</Kicker>
+            <Heading>{block.heading}</Heading>
+          </Reveal>
+          <div className="grid md:grid-cols-2 gap-4 mt-8 items-stretch">
+            <Reveal>
+              <div
+                className="h-full rounded-2xl border p-6 md:p-8"
+                style={{ borderColor: "var(--border)", background: "var(--bg-secondary)" }}
+              >
+                <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
+                  Before
+                </div>
+                <h3 className="text-lg font-semibold mb-3" style={{ color: "var(--text-secondary)" }}>
+                  {block.before.title}
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: "var(--text-tertiary)" }}>
+                  {block.before.text}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div
+                className="relative h-full rounded-2xl border p-6 md:p-8"
+                style={{ borderColor: "var(--accent-color)", background: "var(--surface)" }}
+              >
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-2xl"
+                  style={{ boxShadow: "inset 0 0 60px var(--accent-soft)" }}
+                  aria-hidden
+                />
+                <div className="relative">
+                  <div className="mono-label mb-3" style={{ color: "var(--accent-color)" }}>
+                    After
+                  </div>
+                  <h3 className="text-lg font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
+                    {block.after.title}
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    {block.after.text}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       );
 
     case "list":
       return (
-        <div>
-          <h2
-            className="text-2xl md:text-3xl font-semibold tracking-tight mb-5"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
-          >
-            {block.heading}
-          </h2>
+        <Reveal>
+          <Kicker>{block.kicker}</Kicker>
+          <Heading>{block.heading}</Heading>
           {block.intro && (
-            <p
-              className="text-base md:text-lg leading-relaxed mb-5"
-              style={{ color: "var(--text-secondary)" }}
-            >
+            <p className="text-base md:text-lg leading-relaxed mt-5 max-w-2xl" style={{ color: "var(--text-secondary)" }}>
               {block.intro}
             </p>
           )}
-          <ul className="space-y-3">
+          <ul className="mt-7 grid sm:grid-cols-2 gap-x-8 gap-y-4">
             {block.items.map((item, i) => (
               <li
                 key={i}
-                className="flex gap-3 text-base md:text-lg leading-relaxed"
+                className="flex gap-3 text-base leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
-                <span
-                  className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ background: "var(--accent-color)" }}
-                  aria-hidden
-                />
+                <ArrowRight size={16} className="mt-1 shrink-0" style={{ color: "var(--accent-color)" }} />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       );
 
     case "table":
       return (
-        <div>
-          <h2
-            className="text-2xl md:text-3xl font-semibold tracking-tight mb-5"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
-          >
-            {block.heading}
-          </h2>
+        <Reveal>
+          <Kicker>{block.kicker}</Kicker>
+          <Heading>{block.heading}</Heading>
           <div
-            className="overflow-x-auto rounded-2xl border"
+            className="overflow-x-auto rounded-2xl border mt-8"
             style={{ borderColor: "var(--border)", background: "var(--surface)" }}
           >
             <table className="w-full text-left text-sm md:text-base">
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
                   {block.columns.map((c) => (
-                    <th
-                      key={c}
-                      className="px-4 py-3 font-medium whitespace-nowrap"
-                      style={{ color: "var(--text-tertiary)" }}
-                    >
+                    <th key={c} className="px-4 py-3 font-medium whitespace-nowrap" style={{ color: "var(--text-tertiary)" }}>
                       {c}
                     </th>
                   ))}
@@ -98,14 +284,12 @@ function BlockView({ block }: { block: Block }) {
               </thead>
               <tbody>
                 {block.rows.map((row, i) => (
-                  <tr key={i} style={{ borderTop: "1px solid var(--border)" }}>
+                  <tr key={i} className="transition-colors hover:bg-[var(--bg-secondary)]" style={{ borderTop: "1px solid var(--border)" }}>
                     {row.map((cell, j) => (
                       <td
                         key={j}
                         className="px-4 py-3"
-                        style={{
-                          color: j === 0 ? "var(--accent-color)" : "var(--text-secondary)",
-                        }}
+                        style={{ color: j === 0 ? "var(--accent-color)" : j === 1 ? "var(--text-primary)" : "var(--text-secondary)" }}
                       >
                         {cell}
                       </td>
@@ -115,42 +299,51 @@ function BlockView({ block }: { block: Block }) {
               </tbody>
             </table>
           </div>
-        </div>
+        </Reveal>
       );
 
     case "quote":
       return (
-        <blockquote
-          className="border-l-2 pl-6 py-2 text-xl md:text-2xl font-medium leading-snug"
-          style={{ borderColor: "var(--accent-color)", color: "var(--text-primary)" }}
-        >
-          {block.text}
-        </blockquote>
+        <Reveal>
+          <figure className="max-w-3xl mx-auto text-center">
+            <div className="text-5xl leading-none mb-4" style={{ color: "var(--accent-color)" }} aria-hidden>
+              &ldquo;
+            </div>
+            <blockquote
+              className="text-2xl md:text-3xl font-medium leading-snug tracking-tight"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+            >
+              {block.text}
+            </blockquote>
+            {block.attribution && (
+              <figcaption className="mono-label mt-5" style={{ color: "var(--text-tertiary)" }}>
+                {block.attribution}
+              </figcaption>
+            )}
+          </figure>
+        </Reveal>
       );
   }
 }
 
 export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
   return (
-    <main className="px-6 py-20 md:py-28">
-      <article className="max-w-3xl mx-auto">
-        {/* Back link */}
+    <main className="px-6 pb-24">
+      {/* Hero */}
+      <header className="relative max-w-3xl mx-auto pt-20 md:pt-28">
+        <div className="accent-glow pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 h-72 w-72 opacity-60" aria-hidden />
+
         <Link
           href="/#projects"
           data-hand
-          className="inline-flex items-center gap-2 text-sm mb-12 transition-opacity hover:opacity-70"
+          className="relative inline-flex items-center gap-2 text-sm mb-12 transition-opacity hover:opacity-70"
           style={{ color: "var(--text-tertiary)" }}
         >
           <ArrowLeft size={15} />
           Back to work
         </Link>
 
-        {/* Header */}
-        <motion.header
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease }}
-        >
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease }}>
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
             [ {cs.index} ] — {cs.meta}
           </div>
@@ -160,13 +353,9 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
           >
             {cs.title}
           </h1>
-          <p
-            className="text-lg md:text-xl leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="text-lg md:text-xl leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             {cs.description}
           </p>
-
           <div className="flex flex-wrap gap-2 mt-7">
             {cs.tags.map((tag) => (
               <span
@@ -178,13 +367,12 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
               </span>
             ))}
           </div>
-        </motion.header>
+        </motion.div>
 
-        {/* Facts */}
         <motion.dl
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
+          transition={{ duration: 0.7, delay: 0.12, ease }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-px mt-12 rounded-2xl overflow-hidden border"
           style={{ borderColor: "var(--border)", background: "var(--border)" }}
         >
@@ -199,35 +387,27 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
             </div>
           ))}
         </motion.dl>
+      </header>
 
-        {/* Body blocks */}
-        <div className="mt-16 md:mt-20 space-y-14 md:space-y-16">
-          {cs.blocks.map((block, i) => (
-            <motion.section
-              key={i}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <BlockView block={block} />
-            </motion.section>
-          ))}
-        </div>
+      {/* Body — wider than the hero so cards and tables can breathe */}
+      <div className="max-w-4xl mx-auto mt-20 md:mt-28 space-y-20 md:space-y-28">
+        {cs.blocks.map((block, i) => (
+          <BlockView key={i} block={block} />
+        ))}
+      </div>
 
-        {/* Footer nav */}
-        <div className="mt-20 pt-10 border-t" style={{ borderColor: "var(--border)" }}>
-          <Link
-            href="/#projects"
-            data-hand
-            className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
-            style={{ color: "var(--accent-color)" }}
-          >
-            <ArrowLeft size={15} />
-            Back to all work
-          </Link>
-        </div>
-      </article>
+      {/* Footer nav */}
+      <div className="max-w-4xl mx-auto mt-24 pt-10 border-t" style={{ borderColor: "var(--border)" }}>
+        <Link
+          href="/#projects"
+          data-hand
+          className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
+          style={{ color: "var(--accent-color)" }}
+        >
+          <ArrowLeft size={15} />
+          Back to all work
+        </Link>
+      </div>
 
       <BackToTop />
     </main>

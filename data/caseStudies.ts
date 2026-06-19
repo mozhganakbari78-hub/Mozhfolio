@@ -1,11 +1,28 @@
-// Case studies are rendered as full pages inside the site (no PDF downloads).
-// The content below is lifted from the original case study documents.
+// Case studies render as full, editorial pages inside the site (no PDFs).
+// Content is lifted from the original case study documents, then arranged into
+// a varied block vocabulary so each page has rhythm and pulls the reader down.
 
 export type Block =
-  | { type: "section"; heading: string; body: string[] }
-  | { type: "list"; heading: string; intro?: string; items: string[] }
-  | { type: "table"; heading: string; columns: string[]; rows: string[][] }
-  | { type: "quote"; text: string };
+  // Oversized opening line — the hook.
+  | { type: "lead"; text: string }
+  // Big-number callout row.
+  | { type: "stats"; items: { value: string; label: string }[] }
+  // Standard prose section with a small kicker.
+  | { type: "section"; kicker?: string; heading: string; body: string[] }
+  // Label on the left, prose on the right (editorial split).
+  | { type: "split"; kicker?: string; heading: string; body: string[] }
+  // Grid of cards.
+  | { type: "cards"; kicker?: string; heading?: string; items: { title: string; text: string }[] }
+  // Numbered vertical steps.
+  | { type: "steps"; kicker?: string; heading: string; items: { title: string; text: string }[] }
+  // Before / after contrast.
+  | { type: "compare"; kicker?: string; heading: string; before: { title: string; text: string }; after: { title: string; text: string } }
+  // Simple bulleted list.
+  | { type: "list"; kicker?: string; heading: string; intro?: string; items: string[] }
+  // Data table.
+  | { type: "table"; kicker?: string; heading: string; columns: string[]; rows: string[][] }
+  // Pull quote.
+  | { type: "quote"; text: string; attribution?: string };
 
 export type CaseStudy = {
   index: string;
@@ -14,7 +31,6 @@ export type CaseStudy = {
   description: string;
   tags: string[];
   meta: string;
-  /** Short labelled facts shown at the top of the case study page. */
   facts: { label: string; value: string }[];
   blocks: Block[];
 };
@@ -25,44 +41,52 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "From Support Feedback to Self-Service Knowledge",
     description:
-      "A data-driven FAQ redesign for a corporate banking platform, built from 1,345 real user feedback entries. I separated preventable knowledge gaps from genuine support issues and restructured help around how users actually describe their problems.",
+      "A data-driven FAQ redesign for a corporate banking platform, built from 1,345 real user feedback entries.",
     tags: ["UX Research", "Information Architecture", "Enterprise Banking"],
     meta: "Product Design · Content Strategy",
     facts: [
       { label: "Role", value: "UX / Product Designer" },
       { label: "Product", value: "BAM Sazmani — corporate banking" },
-      { label: "Dataset", value: "1,345 feedback entries · 902 user IDs" },
+      { label: "Dataset", value: "1,345 entries · 902 user IDs" },
       { label: "Range", value: "Aug 2020 – Oct 2025" },
     ],
     blocks: [
       {
-        type: "section",
-        heading: "Summary",
-        body: [
-          "I analyzed 1,345 real user feedback entries from a corporate banking platform and found that many support requests were not caused by technical failure, but by preventable knowledge gaps.",
-          "By identifying high-volume recurring topics, separating FAQ-addressable questions from support-required issues, and restructuring the FAQ around user intent, we redesigned the help experience into a searchable self-service knowledge layer for enterprise banking users. The top 5 feedback categories alone covered 72.1% of all entries.",
+        type: "lead",
+        text: "Most support tickets weren't bugs. They were the same questions, asked over and over, by people who simply couldn't find the answer. So I stopped treating feedback as a backlog — and started reading it as research.",
+      },
+      {
+        type: "stats",
+        items: [
+          { value: "1,345", label: "feedback entries analyzed" },
+          { value: "902", label: "unique organization / user IDs" },
+          { value: "72.1%", label: "of all entries in the top 5 topics" },
+          { value: "14", label: "recurring feedback categories" },
         ],
       },
       {
         type: "section",
-        heading: "1. Context",
+        kicker: "01 · Context",
+        heading: "A platform that outgrew its FAQ",
         body: [
-          "BAM Sazmani is a web-based corporate banking platform used by organizational users to manage financial operations such as transfers, account access, checks, reports, user permissions, and organizational banking tasks.",
-          "After users migrated from the older corporate banking system to the newer platform, many were still learning how to complete common tasks or find the right information. As a result, the feedback/support channel became overloaded with repeated questions. The existing FAQ was limited, outdated, not searchable enough, and not organized around how users actually described their problems.",
+          "BAM Sazmani is a web-based corporate banking platform where organizational users manage transfers, account access, checks, reports, user permissions, and day-to-day banking tasks.",
+          "After users migrated from the older system to the new platform, many were still learning how to complete common tasks. The feedback channel quietly became overloaded with the same questions — while the existing FAQ stayed limited, outdated, and impossible to search the way people actually phrased their problems.",
         ],
       },
       {
-        type: "section",
-        heading: "2. Problem",
+        type: "split",
+        kicker: "02 · Problem",
+        heading: "Support was carrying two loads at once",
         body: [
-          "The support channel had accumulated 1,345 feedback entries between Aug 2020 and Oct 2025, submitted by 902 unique organization/user IDs. When we reviewed the feedback, we found that many requests were not purely technical issues — they were repeated questions around checks, transfers, account visibility, basic organizational information, user access, reports, petty cash cards, batch payments, and payroll.",
-          "The core problem was not only that the FAQ was old. The deeper problem was that users were dependent on support because knowledge was not discoverable, searchable, or structured around their real needs.",
+          "Between Aug 2020 and Oct 2025, the channel accumulated 1,345 entries from 902 organizations. When I read them, a pattern surfaced fast: most weren't technical failures. They were repeated questions about checks, transfers, account visibility, user access, reports, and payroll.",
+          "The deeper problem wasn't that the FAQ was old. It was that users depended on support because knowledge wasn't discoverable, searchable, or written in their language.",
         ],
       },
       {
         type: "table",
-        heading: "3. Data Snapshot — Feedback Categories",
-        columns: ["Rank", "Category", "Count", "Share"],
+        kicker: "03 · The data",
+        heading: "Where the volume actually lived",
+        columns: ["#", "Category", "Count", "Share"],
         rows: [
           ["1", "Checks / Sayad", "277", "20.6%"],
           ["2", "Other / General Guidance", "250", "18.6%"],
@@ -81,79 +105,58 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
-        type: "section",
-        heading: "4. Insight on Concentration",
-        body: [
-          "The top 5 categories account for 72.1% of all feedback entries, making them the highest-priority candidates for FAQ restructuring and content coverage. A small number of categories carried most of the support load.",
-        ],
-      },
-      {
-        type: "list",
-        heading: "5. Research Approach",
-        intro:
-          "I treated support feedback as a UX research source, not only as a support backlog. The analysis had three layers:",
-        items: [
-          "Frequency analysis — which topics appeared most often?",
-          "Intent analysis — what was the user actually trying to do?",
-          "Triage analysis — should this become FAQ content, a product improvement, or remain a support-required issue?",
-        ],
-      },
-      {
         type: "quote",
         text: "The support channel was carrying two different loads at the same time: real support issues and preventable knowledge gaps.",
       },
       {
-        type: "section",
-        heading: "6. Key Insight",
+        type: "cards",
+        kicker: "04 · Approach",
+        heading: "I read the feedback in three passes",
+        items: [
+          { title: "Frequency", text: "Which topics appeared most often? Five categories carried 72% of everything." },
+          { title: "Intent", text: "What was the user actually trying to do — not which module they happened to mention?" },
+          { title: "Triage", text: "Should this become FAQ content, a product fix, or stay a support-required issue?" },
+        ],
+      },
+      {
+        type: "split",
+        kicker: "05 · Insight",
+        heading: "More FAQ items wasn't the answer",
         body: [
-          "Users were not always blocked because the system was broken. Many were blocked because the answer was not easy to find, not searchable, or not written in the language they used.",
-          "So the opportunity was not simply to add more FAQ items. The real opportunity was to redesign FAQ as a self-service support layer.",
+          "Users weren't blocked because the system was broken. They were blocked because the answer wasn't easy to find, wasn't searchable, or wasn't written the way they spoke.",
+          "So the opportunity wasn't to add more entries. It was to redesign the FAQ into a self-service knowledge layer — structured around tasks, tolerant of different phrasings, and honest about when a human is actually needed.",
+        ],
+      },
+      {
+        type: "cards",
+        kicker: "06 · Decisions",
+        heading: "Three calls that shaped the build",
+        items: [
+          { title: "FAQ before chatbot", text: "Stable, repeated questions deserve a clean knowledge base first. Automation can come once the content is trustworthy." },
+          { title: "User language over taxonomy", text: "People say “my account isn't visible,” not the module name. Navigation followed their words." },
+          { title: "Search + browse", text: "Some users know exactly what they want; others need to explore. The design supported both." },
         ],
       },
       {
         type: "list",
-        heading: "7. Design Goal",
-        intro: "The redesigned FAQ needed to:",
+        kicker: "07 · Goal",
+        heading: "What the redesigned FAQ had to do",
         items: [
-          "organize content around user tasks",
-          "support search through keywords and alternative phrasings",
-          "cover high-frequency support topics first",
-          "separate guidance questions from technical issues",
-          "help users understand when they can solve something themselves and when they need support",
-          "create a measurable foundation for post-launch improvement",
+          "Organize content around user tasks, not internal modules",
+          "Support search across keywords and alternative phrasings",
+          "Cover the highest-frequency topics first",
+          "Separate guidance questions from technical issues",
+          "Help users know when they can self-serve and when to ask",
+          "Leave a measurable foundation for post-launch improvement",
         ],
       },
       {
         type: "section",
-        heading: "8. Solution",
+        kicker: "08 · Outcome",
+        heading: "From support noise to product knowledge",
         body: [
-          "We redesigned the FAQ from a static list of questions into a structured knowledge experience. Instead of organizing content only around internal product modules, we used real feedback patterns to define user-facing categories.",
-          "The new structure focused on high-volume topics such as checks and Sayad check operations, transfers, account visibility and statements, basic organization information, user access and permissions, reports, batch payments, and petty cash cards. Each FAQ item could include keywords based on the language users used in their feedback, making search more tolerant of different phrasings.",
-        ],
-      },
-      {
-        type: "list",
-        heading: "9. Design Decisions",
-        items: [
-          "FAQ before chatbot — the feedback showed many repeated questions with stable answers. A structured FAQ was lower-risk, easier to maintain, and created a clean knowledge base before investing in automation.",
-          "User language over internal taxonomy — users did not think in product module names. They described problems like “My account is not visible” or “I cannot register a Sayad check.”",
-          "Search plus categories — some users know exactly what they want; others need to browse. The experience needed both category navigation and keyword search.",
-          "Senior critique: the “Other / General Guidance” category had 250 entries — a signal the original taxonomy was not enough for decision-making, so I introduced a second layer of intent-based tagging.",
-        ],
-      },
-      {
-        type: "section",
-        heading: "10. Measurement Plan",
-        body: [
-          "Because the redesigned FAQ had not yet launched to production, I framed impact honestly as a measurement framework ready for post-launch validation: reduction in repeated FAQ-addressable feedback, FAQ search usage, search terms with no result, click-through rate on FAQ results, support tickets for top categories, and “Was this helpful?” responses.",
-        ],
-      },
-      {
-        type: "section",
-        heading: "11. Outcome",
-        body: [
-          "The project transformed scattered support feedback into a structured self-service knowledge layer. Instead of treating feedback only as support noise, we used it as a design input to understand where users repeatedly needed guidance.",
-          "The work created a clearer understanding of recurring user problems, a prioritized FAQ content backlog, a user-intent-based structure for help content, a keyword strategy for search, and a measurement plan for post-launch validation.",
+          "The project turned scattered feedback into a structured, prioritized knowledge layer: a clear picture of recurring problems, a content backlog ranked by real volume, an intent-based structure, a keyword strategy for search, and a measurement plan ready for launch.",
+          "Because it hadn't shipped to production yet, I framed impact honestly — as a validation framework, not a victory lap. The metrics were defined; the proof comes next.",
         ],
       },
     ],
@@ -163,47 +166,58 @@ export const caseStudies: CaseStudy[] = [
     slug: "batch-transfer",
     title: "Batch Transfer for Offline Corporate Clients",
     description:
-      "A forced-timeline redesign that shipped because the system underneath it had already been built for reuse. The legacy tool failed an entire 200-row payment batch if one row broke — I rebuilt it to validate each row independently.",
+      "A forced-timeline redesign that shipped because the system underneath it had already been built for reuse.",
     tags: ["Product Design", "Design System", "B2B Banking"],
     meta: "Product Design · Design System",
     facts: [
-      { label: "Role", value: "Product Design (flow, UI, prototype)" },
+      { label: "Role", value: "Product Design — flow, UI, prototype" },
       { label: "Domain", value: "B2B Banking · 2026" },
       { label: "Team", value: "Two designers" },
-      { label: "Constraint", value: "Fixed hard deadline" },
+      { label: "Constraint", value: "Fixed, non-negotiable deadline" },
     ],
     blocks: [
       {
-        type: "section",
-        heading: "Context",
-        body: [
-          "Some corporate clients would not transact online. For security policies, internal approval rules, or institutional caution, they continued to use an offline process: they brought physical cheques and an Excel payment file into a branch, and a bank employee processed the batch manually through an internal tool.",
-          "The bank already had a legacy tool for this workflow, but it created friction in exactly the moment where reliability mattered most. It was slow, error-prone, and unforgiving — one small mistake could turn a routine salary batch into hours of manual correction. We were asked to replace it on a fixed timeline.",
+        type: "lead",
+        text: "One wrong account number in a batch of 200 could blow up an employee's entire afternoon. The fix wasn't a prettier screen — it was changing what failure even means.",
+      },
+      {
+        type: "stats",
+        items: [
+          { value: "200", label: "rows in a single payment batch" },
+          { value: "1 typo", label: "could reject the whole file" },
+          { value: "Fixed", label: "hard deadline, no room to slip" },
+          { value: "Row-level", label: "validation in the redesign" },
         ],
       },
       {
         type: "section",
-        heading: "The Problem",
+        kicker: "01 · Context",
+        heading: "The clients who never came online",
         body: [
-          "The legacy system treated the uploaded payment file as one block. If a single transaction in a batch of 200 had a problem — a wrong account number, a bad IBAN, or a recipient that could not be verified — the entire file failed.",
-          "The employee only found out at the end. From there, they had to search through the Excel file, identify the broken row, fix it, and upload the full batch again. There was no meaningful validation upfront, no row-level feedback, and no clear way to verify recipients before submission.",
-          "For the employee, the problem was not simply that an error happened. It was that the system made the error expensive to find. One typo could block a full batch and waste an afternoon.",
+          "Some corporate clients simply wouldn't transact digitally — security policy, internal approval rules, institutional caution. They kept bringing physical cheques and an Excel payment file into a branch, where an employee processed the batch by hand through an internal tool.",
+          "The bank already had a legacy tool for this. But it created friction exactly where reliability mattered most: slow, error-prone, and unforgiving. We were asked to replace it — on a fixed timeline.",
         ],
       },
       {
-        type: "section",
-        heading: "My Role",
-        body: [
-          "I worked with one other designer. We did the research together, visiting branches in person and speaking directly with the employees who processed these files in real operational conditions.",
-          "After research, I owned the product design: the flow, wireframes, stakeholder prototype, and final UI. My teammate and I stayed aligned on direction, but the interaction and interface decisions for the batch transfer experience were mine.",
-        ],
+        type: "compare",
+        kicker: "02 · The problem",
+        heading: "All-or-nothing was the real bug",
+        before: {
+          title: "Legacy: one block",
+          text: "The file was treated as a single object. One bad row — wrong IBAN, unverifiable recipient — failed all 200. The employee only found out at the very end, then hunted through Excel, fixed it, and re-uploaded everything.",
+        },
+        after: {
+          title: "Redesign: one row",
+          text: "Each transaction is validated independently before submission, with recipient checks where possible and a clear review state. A mistake becomes one row to fix — not a reason to restart the afternoon.",
+        },
       },
       {
-        type: "section",
-        heading: "The Constraint That Shaped the Work",
+        type: "split",
+        kicker: "03 · My role",
+        heading: "Research together, design owned",
         body: [
-          "The timeline was fixed. The requirement came from the bank with a hard date, which meant the ideal process — research, design, full usability testing, iteration, then launch — was not realistic. The usual risk is that quality gets traded for speed. In this project, speed came from a different place: reuse.",
-          "Before this project, I had already built a design system for another banking product, designed beyond the immediate product need, with shared components, tokens, states, and patterns. Instead of designing every screen from zero, I could assemble the new flow from an existing foundation and focus my attention on the workflow logic, validation model, and edge cases. The speed did not come from skipping design work — it came from systems work that had already been done on purpose.",
+          "I worked with one other designer. We ran the research together — visiting branches in person, watching employees process real files under real time pressure.",
+          "After research, I owned the product design end to end: the flow, the wireframes, the stakeholder prototype, and the final UI. The interaction and interface decisions for the batch experience were mine.",
         ],
       },
       {
@@ -212,45 +226,50 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         type: "section",
-        heading: "Core Product Decision: Kill the All-or-Nothing Failure Model",
+        kicker: "04 · The constraint",
+        heading: "Speed came from reuse, not shortcuts",
         body: [
-          "The most important decision was to stop treating the batch as a single pass/fail object. In the redesigned flow, each transaction is checked independently. The system validates rows before final submission, verifies recipient account information where possible, and gives the employee a clear review state before the batch is finalized.",
-          "Instead of discovering a failure after the full batch was processed, the employee sees exactly which rows have problems and why. Valid rows are no longer made invisible by one invalid row. The broken row becomes something specific to correct, not a reason to restart the whole afternoon.",
+          "The deadline was hard, which ruled out the ideal path of research → design → full usability testing → iteration → launch. The usual risk is that quality gets traded for speed.",
+          "Here, speed came from somewhere else. I'd already built a design system for another banking product — intentionally beyond its immediate need, with shared components, tokens, and states. So instead of designing every screen from zero, I assembled this flow from an existing foundation and spent my attention on the workflow logic and edge cases. The speed was systems work that had already been done on purpose.",
         ],
       },
       {
-        type: "list",
-        heading: "Design Strategy",
-        intro: "I designed the flow around four principles:",
+        type: "cards",
+        kicker: "05 · Strategy",
+        heading: "Four principles behind the flow",
         items: [
-          "Surface problems before submission — employees should not wait until the end to learn that a file has failed.",
-          "Make errors row-level, not file-level — a problem should point to the exact transaction that needs attention.",
-          "Support verification, not guesswork — recipient and account checks should help employees trust the batch before they submit it.",
-          "Reuse existing system patterns wherever possible — under a forced timeline, consistency and speed had to come from shared components, not one-off UI decisions.",
+          { title: "Surface problems early", text: "Don't make employees wait until the end to learn a file failed." },
+          { title: "Errors are row-level", text: "A problem points to the exact transaction that needs attention." },
+          { title: "Verify, don't guess", text: "Recipient and account checks let employees trust a batch before submitting." },
+          { title: "Reuse the system", text: "Under pressure, consistency and speed come from shared components — not one-off UI." },
+        ],
+      },
+      {
+        type: "steps",
+        kicker: "06 · Process",
+        heading: "How it actually got built and shipped",
+        items: [
+          { title: "In-person branch research", text: "The pain was operational and only legible on site — real client files, real time pressure, real stakes." },
+          { title: "Wireframes + prototype", text: "I locked the structure of the flow early, so disagreements happened before engineering effort was spent." },
+          { title: "Controlled single-branch rollout", text: "With no time for a full usability cycle, we launched in one branch on live batches and iterated on real feedback before expanding." },
         ],
       },
       {
         type: "section",
-        heading: "Process",
+        kicker: "07 · Outcome",
+        heading: "Honest about what I can claim",
         body: [
-          "We started with in-person branch research. The pain was operational: employees were under time pressure, working with real client files, trying to avoid mistakes in a high-trust banking context. From there, I created wireframes and a prototype to get stakeholder alignment before UI production, locking the structure of the flow early.",
-          "Because the timeline did not allow a full usability testing cycle, we used a controlled rollout instead. The product launched first in a single branch, where real employees used it on real batches and gave feedback. We iterated before expanding the rollout. It was the most realistic substitute available under the constraint, and it gave us feedback from actual usage rather than simulated tasks.",
+          "The tool launched through that controlled rollout, was used on live payment batches, and was adjusted before broader expansion.",
+          "I don't have instrumented before/after metrics — the bank didn't share that data, and I won't turn observation into fake precision. What I can say plainly: the core failure mode of the old system, one invalid row rejecting the whole batch with no useful feedback, was removed from the workflow. With operational data, I'd measure failed-batch rate, re-uploads per batch, and time to fix a bad row.",
         ],
       },
       {
-        type: "section",
-        heading: "Outcome",
+        type: "split",
+        kicker: "08 · Reflection",
+        heading: "Systems work is invisible until it saves you",
         body: [
-          "The redesigned batch transfer tool launched through a controlled branch rollout. The branch used it on live payment batches, gave feedback, and we made adjustments before broader expansion.",
-          "I do not have instrumented post-launch metrics — the bank did not share before/after data, and I do not want to turn observation into fake precision. What I can say honestly is that the core failure mode of the old system — one invalid row rejecting the entire batch without useful feedback — was removed from the workflow. If I had operational data, I would measure failed-batch rate, re-uploads per batch, time to identify a bad row, time to complete a corrected batch, and branch support requests.",
-        ],
-      },
-      {
-        type: "section",
-        heading: "Reflection",
-        body: [
-          "The lesson is not only about batch transfer — it is about the value of design systems as operational infrastructure. A forced timeline is usually where product quality gets fragile. This project held together because the design system had been built for reuse before the pressure arrived. Systems work is often invisible until the moment it saves time. This was that moment.",
-          "What I would do differently: I would push for at least one structured usability session before launch, even on a compressed timeline. The controlled rollout caught issues, but it caught them in production — and some would have been cheaper to find earlier.",
+          "A forced timeline is usually where quality gets fragile. This project held together because the design system had been built for reuse before the pressure arrived.",
+          "What I'd do differently: push for at least one structured usability session before launch, even compressed. The rollout caught issues — but it caught them in production, where they're more expensive to find.",
         ],
       },
     ],
@@ -260,7 +279,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "Design System on a Live Enterprise Banking Platform",
     description:
-      "A pragmatic, scalable design system built inside a live, Ant Design-based corporate banking product — 90+ screens, permission-heavy, with no pause to rebuild. Adoption and reuse mattered more than theoretical purity. Frontend interruptions dropped from 8–9 per day to 3–4.",
+      "A pragmatic, scalable design system built inside a live, Ant Design-based corporate banking product — where adoption beat purity.",
     tags: ["Design Systems", "Tokens", "Ant Design"],
     meta: "Design System · Enterprise Banking",
     facts: [
@@ -271,85 +290,95 @@ export const caseStudies: CaseStudy[] = [
     ],
     blocks: [
       {
-        type: "section",
-        heading: "Context",
-        body: [
-          "I joined an enterprise corporate banking platform after it was already in production — more than 90 screens, permission-heavy workflows, and institutional users who depended on predictable, low-friction interfaces for operational banking tasks.",
-          "The frontend was built on Ant Design before I joined. That decision was already made, business-approved, and not negotiable. The frontend team had also created a custom theme in code from the beginning, with their own token-like naming structure already in place. The design team was small — two designers total. I owned the design system while also contributing to product design work, with no dedicated DS engineer, no greenfield rebuild, and no pause in delivery.",
-          "From the beginning, I treated the system as infrastructure for a family of internal banking tools, not just a cleanup layer for one product.",
+        type: "lead",
+        text: "A perfectly semantic token system that no one adopts is worth nothing. On a live banking platform, I chose the messier name that both teams would actually use — and documented the trade-off as a debt, not an accident.",
+      },
+      {
+        type: "stats",
+        items: [
+          { value: "90+", label: "screens already in production" },
+          { value: "8–9 → 3–4", label: "design questions per day, from frontend" },
+          { value: "2", label: "designers on the whole team" },
+          { value: "0", label: "dedicated design-system engineers" },
         ],
       },
       {
         type: "section",
-        heading: "The Problem",
+        kicker: "01 · Context",
+        heading: "I joined a product already in flight",
         body: [
-          "The inconsistency was not caused by one bad pattern. It was the cumulative effect of several months of product decisions made without a shared system: spacing values drifted, component states varied across pages, and color usage changed from screen to screen.",
-          "The most important signal came from frontend: developers were stopping repeatedly to ask design questions — roughly 8 to 9 a day. “Why does this component look different here? Which spacing value should we use? Should this be Ant Design default or custom?” That changed how I framed the work. Inconsistency was not only a design quality issue — it was slowing product delivery.",
+          "An enterprise corporate banking platform — 90+ screens, permission-heavy workflows, institutional users who depend on predictable, low-friction interfaces. The frontend was built on Ant Design before I arrived: business-approved, not negotiable, with a custom code theme and its own token-like naming already in place.",
+          "The design team was two people. I owned the design system while also doing product work — no DS engineer, no greenfield rebuild, no pause in delivery. From day one I treated it as infrastructure for a family of internal banking tools, not a cleanup layer for one product.",
+        ],
+      },
+      {
+        type: "split",
+        kicker: "02 · Problem",
+        heading: "Inconsistency was slowing delivery",
+        body: [
+          "It wasn't one bad pattern — it was months of decisions made without a shared system. Spacing drifted, component states varied page to page, color usage shifted from screen to screen.",
+          "The loudest signal came from engineering: developers stopped to ask design questions roughly 8–9 times a day. “Why does this look different here? Which spacing? Ant default or custom?” That reframed the work for me — inconsistency wasn't a quality nitpick, it was a tax on product velocity.",
         ],
       },
       {
         type: "list",
-        heading: "Constraints",
+        kicker: "03 · Constraints",
+        heading: "The reality I had to design inside",
         items: [
-          "Ant Design was inherited, not chosen — its component API and theming structure shaped what could be customized quickly.",
-          "The frontend theme already existed — replacing it mid-project would have created refactor cost without immediate product gain.",
-          "The product was live — the system could not require a reset or redesign of existing screens.",
-          "Capacity was limited — every customization had to justify its cost against delivery goals.",
-          "The domain required reliability — enterprise banking workflows depend on clarity, predictable states, and permission-aware interactions.",
-          "The system needed to scale across adjacent operational tools without becoming so abstract that it slowed current delivery.",
+          "Ant Design was inherited — its API and theming shaped what was cheap vs. expensive to customize",
+          "A frontend theme already existed in code; replacing it mid-flight meant refactor cost with no product gain",
+          "The product was live — no resets, only incremental improvement",
+          "Capacity was tight — every customization had to justify its cost against delivery",
+          "The domain demanded reliability — predictable states and permission-aware interactions",
+          "It had to scale to adjacent tools without becoming so abstract it slowed today's work",
         ],
       },
       {
-        type: "section",
-        heading: "Key Decision: Adoption Over Semantic Purity",
-        body: [
-          "My first instinct was to build a fully semantic token structure: role-based, intent-driven, clean. In principle, that was the correct model. The problem appeared quickly — the frontend team already had a different naming structure in their custom theme. Design and engineering were talking about the same values with different names, so every handoff required translation.",
-          "Option A was to protect semantic naming and ask frontend to realign — theoretically cleaner, but it would have required an already-stretched team to refactor working code during active delivery. Option B was to align to the existing frontend structure — less semantically pure, but a shared language both teams could use immediately.",
-          "I chose Option B. A design system only creates value if it gets adopted. A perfectly semantic model that creates daily friction is not a working system. I documented the reduced portability as intentional debt, not an accident.",
-        ],
+        type: "compare",
+        kicker: "04 · The decision",
+        heading: "Adoption over semantic purity",
+        before: {
+          title: "Option A — protect the model",
+          text: "Keep a clean, role-based, intent-driven token structure and ask frontend to realign their theme. Theoretically correct — but it forces an already-stretched team to refactor working code mid-delivery.",
+        },
+        after: {
+          title: "Option B — align to reality ✓",
+          text: "Accept a less semantically pure naming model that matches the existing frontend theme, so both teams share one language with zero translation. I chose this — and logged the reduced portability as intentional debt.",
+        },
       },
       {
-        type: "list",
-        heading: "Governance Model",
-        intro:
-          "Because there was no dedicated DS engineer, I treated governance as part of the design work — lightweight enough to survive sprint pressure, consistent enough that everyone understood how decisions were made:",
+        type: "steps",
+        kicker: "05 · Governance",
+        heading: "Lightweight rules that survived sprint pressure",
         items: [
-          "Identify the product need or inconsistency.",
-          "Check whether Ant Design default behavior could support it.",
-          "If customization was required, review it with the frontend tech lead.",
-          "Estimate effort and risk.",
-          "Decide whether it belonged in the sprint or moved to backlog / technical debt.",
-          "Document the decision so future screens followed the same logic.",
-        ],
-      },
-      {
-        type: "section",
-        heading: "Scalability and Reuse",
-        body: [
-          "I did not design the system only to normalize existing screens. I designed it to scale across recurring banking workflows: dense tables, form-heavy flows, validation feedback, permission-aware states, confirmation steps, and operational screens where employees needed to move quickly without guessing.",
-          "This mattered later. When a forced-timeline batch transfer project arrived, the team could build from the existing system instead of designing every screen, state, spacing rule, and component behavior from scratch. That was the clearest scalability proof: the system did not only improve consistency inside the original product — it created reusable infrastructure that helped the bank move faster on a separate operational workflow under pressure.",
+          { title: "Identify", text: "Name the product need or the inconsistency." },
+          { title: "Check defaults", text: "Could Ant Design's default behavior already support it?" },
+          { title: "Review with the tech lead", text: "Anything beyond defaults got estimated for effort and risk together." },
+          { title: "Decide & document", text: "Sprint, backlog, or technical debt — then write down the decision so future screens followed the same logic." },
         ],
       },
       {
         type: "quote",
-        text: "Before: “Why does this look different here?”  After: “We need a new component or variant for this case.”",
+        text: "Before: “Why does this look different here?”   After: “We need a new component or variant for this case.”",
       },
       {
         type: "section",
-        heading: "Outcome",
+        kicker: "06 · Outcome",
+        heading: "The conversation changed",
         body: [
-          "The clearest outcome was a change in frontend communication. Daily design-related interruptions dropped from roughly 8–9 per day to 3–4, and continued decreasing as component coverage grew. This was not a formal audit, so I would not present it as a precise metric — it was an observed operational signal, but the change was visible in the nature of the conversations.",
-          "The team moved from debating repeated visual inconsistencies to discussing reusable system extensions. Frontend adopted the system without pushback, and the product owner saw visible consistency improvements across screens. A later outcome was reuse: the same foundation supported the separate batch transfer redesign under a forced timeline.",
+          "The clearest signal was communication. Daily design-related interruptions dropped from roughly 8–9 to 3–4, and kept falling as coverage grew. It wasn't a formal audit, so I won't dress it up as a precise metric — but the nature of the questions changed, from debating inconsistencies to discussing reusable extensions.",
+          "Frontend adopted the system without pushback, the product owner saw visible consistency gains, and the foundation later powered a separate, forced-timeline batch transfer redesign — the clearest proof that it was real infrastructure, not a coat of paint.",
         ],
       },
       {
-        type: "list",
-        heading: "What I Would Do Differently",
+        type: "cards",
+        kicker: "07 · Hindsight",
+        heading: "What I'd do differently",
         items: [
-          "Map the frontend theme before designing the token structure — I went too deep into design-side semantics before understanding the naming reality in code.",
-          "Track the baseline from day one — a simple log of DS-related frontend questions would have made the impact more legible to stakeholders.",
-          "Make the governance model explicit earlier — naming and documenting it sooner would have helped the team see it as operating infrastructure.",
-          "Document scalability more deliberately — component coverage and reuse across flows would be stronger evidence if tracked from the start.",
+          { title: "Map the theme first", text: "I went deep on design-side semantics before understanding the naming reality in code." },
+          { title: "Track the baseline", text: "A simple log of DS-related questions from day one would have made the impact legible to stakeholders." },
+          { title: "Name the governance early", text: "Documenting the process sooner would have framed it as operating infrastructure, not ad-hoc coordination." },
+          { title: "Document scalability", text: "Reuse across flows is stronger evidence when it's tracked, not just remembered." },
         ],
       },
     ],
