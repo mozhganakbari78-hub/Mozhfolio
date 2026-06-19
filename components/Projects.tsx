@@ -1,14 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, FileText } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/data/caseStudies";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-// Raw asset links aren't rewritten by Next's basePath, so prefix them manually
-// (empty string on root-served hosts like Cloudflare Pages / Netlify).
-const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Projects() {
   return (
@@ -35,24 +32,24 @@ export default function Projects() {
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            Each opens the complete PDF case study — context, decisions, and the trade-offs behind them.
+            Each opens the full case study — context, decisions, and the trade-offs behind them.
           </p>
         </motion.div>
 
         {/* Case study cards */}
         <div className="grid gap-5 md:gap-6">
           {caseStudies.map((cs, i) => (
-            <motion.a
+            <motion.div
               key={cs.index}
-              href={`${base}${cs.pdf}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-hand
-              aria-label={`Open case study: ${cs.title} (PDF, opens in new tab)`}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.08, ease }}
+            >
+            <Link
+              href={`/work/${cs.slug}`}
+              data-hand
+              aria-label={`Read case study: ${cs.title}`}
               className="group relative block overflow-hidden rounded-2xl border p-7 md:p-10 transition-colors duration-300"
               style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
             >
@@ -111,16 +108,13 @@ export default function Projects() {
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 group-hover:gap-3"
                     style={{ background: "var(--accent-soft)", color: "var(--accent-color)" }}
                   >
-                    <FileText size={14} />
-                    View Case Study
+                    Read Case Study
                     <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                  <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                    PDF · New tab
                   </span>
                 </div>
               </div>
-            </motion.a>
+            </Link>
+            </motion.div>
           ))}
         </div>
       </div>
