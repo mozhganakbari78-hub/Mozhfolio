@@ -10,8 +10,10 @@ import { Sun, Moon } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-function CaseImage({ src, caption, color }: { src: string; caption?: string; color: string }) {
+function CaseImage({ src, srcLight, caption, color }: { src: string; srcLight?: string; caption?: string; color: string }) {
   const [ok, setOk] = useState(true);
+  const { theme } = useTheme();
+  const activeSrc = theme === "light" && srcLight ? srcLight : src;
   if (!ok) return null;
   return (
     <motion.figure
@@ -27,7 +29,7 @@ function CaseImage({ src, caption, color }: { src: string; caption?: string; col
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={src}
+          src={activeSrc}
           alt={caption ?? "Case study visual"}
           loading="lazy"
           onError={() => setOk(false)}
@@ -58,7 +60,7 @@ function Block({ block, color }: { block: CaseStudyBlock; color: string }) {
   };
 
   if (block.type === "image") {
-    return <CaseImage src={block.src} caption={block.caption} color={color} />;
+    return <CaseImage src={block.src} srcLight={block.srcLight} caption={block.caption} color={color} />;
   }
 
   if (block.type === "metrics") {

@@ -4,7 +4,7 @@ export type CaseStudyBlock =
   | { type: "quote"; body: string }
   | { type: "list"; label: string; heading: string; items: { title: string; body: string }[] }
   | { type: "metrics"; items: { value: string; label: string }[] }
-  | { type: "image"; src: string; caption?: string };
+  | { type: "image"; src: string; srcLight?: string; caption?: string };
 
 export type Project = {
   id: string;
@@ -21,6 +21,7 @@ export type Project = {
   outcome: string;
   color: string;
   cover?: string;
+  coverLight?: string;
   heroStat: { value: string; label: string };
   caseStudy: CaseStudyBlock[];
 };
@@ -72,6 +73,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/journey-map.png",
+        srcLight: "/projects/journey-map-light.png",
         caption: "User flow for support — three kinds of people land here: answer seekers, guidance seekers, and support-first users. Not all want self-service.",
       },
       {
@@ -94,6 +96,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/sticky-notes.png",
+        srcLight: "/projects/sticky-notes-light.png",
         caption: "Affinity mapping in FigJam — every one of the 734 entries hand-sorted into clusters. The recurring groups became the category structure directly.",
       },
       {
@@ -129,6 +132,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/wireframe.png",
+        srcLight: "/projects/wireframe-light.png",
         caption: "Low-fidelity wireframe of the unified FAQ + ticketing surface — structure locked with stakeholders before any visual polish.",
       },
       {
@@ -145,6 +149,7 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/mockup-1.png",
+        srcLight: "/projects/mockup-1-light.png",
         caption: "The final high-fidelity design — FAQ browsing and ticket submission unified on a single screen.",
       },
       {
