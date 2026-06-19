@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "2024 — Now", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Banking software — design system, support redesign, batch transfer, 2,000+ UX writing cases" },
-  { year: "2023 — 24", role: "UX Designer", company: "IRO Team", note: "IoT greenhouse monitoring — turning sensor data into actionable dashboards" },
-  { year: "2021 — 23", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Crypto exchange — fintech interfaces, scalable components, 95% on-time delivery" },
+  { year: "2024 — Now", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Enterprise products, internal tools, and design system foundations for complex financial workflows — reducing operational friction and creating reusable patterns across product teams." },
+  { year: "2023 — 24", role: "UX Designer", company: "IRO Team", note: "IoT monitoring experiences that turned greenhouse sensor data into clear, actionable dashboards for operational users." },
+  { year: "2021 — 23", role: "UI & UX Specialist", company: "Wallex Exchange", note: "Fintech and crypto exchange interfaces, reusable components, and delivery-ready product flows for a fast-moving product team." },
   { year: "2017 — 21", role: "B.Sc Computer Engineering", company: "Islamic Azad University, Tehran", note: "Central Tehran Branch" },
 ];
 
 const traits = [
   "I read data before I sketch.",
-  "I document trade-offs, not just decisions.",
-  "I treat support tickets as design feedback.",
-  "I build systems that survive my absence.",
+  "I turn support signals into product insight.",
+  "I design workflows, not isolated screens.",
+  "I build systems that can scale beyond me.",
 ];
 
 export default function About() {
@@ -38,13 +38,13 @@ export default function About() {
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              I design for the moments when things go wrong.
+              I design where clarity becomes critical.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m a product designer with nearly 4 years across the tech and finance sectors — banking platforms, crypto exchanges, IoT systems. My work lives in enterprise B2B, where the users aren&apos;t browsing. They&apos;re under pressure, on deadline, and one unclear interface away from a support ticket.
+              I&apos;m a product designer working across complex B2B products, fintech platforms, crypto exchanges, and IoT systems. My work sits in places where users are not casually browsing — they&apos;re making decisions, handling exceptions, following procedures, and trying to move fast without making costly mistakes.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              I lead end-to-end design — from problem discovery and user research to execution and production. I combine product thinking with systems thinking, leverage user data to drive decisions, and document trade-offs honestly — because the next designer who inherits my work deserves to know what I was working around.
+              I lead product design from problem discovery and user research to execution, delivery, and iteration. I combine product thinking with systems thinking, use data and support signals to shape decisions, and document the reasoning behind the work so teams can build on it with confidence.
             </p>
 
             {/* Traits */}
