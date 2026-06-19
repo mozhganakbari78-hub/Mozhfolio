@@ -36,7 +36,7 @@ export default function Contact() {
   const socials = [
     { icon: GithubIcon, label: "GitHub", href: "https://github.com/mozhganakbari78-hub" },
     { icon: LinkedinIcon, label: "LinkedIn", href: "#" },
-    { icon: Mail, label: "Email", href: "mailto:mozhganakbari78@gmail.com" },
+    { icon: Mail, label: "Email", href: "mailto:akbarimozhgan99@gmail.com" },
   ];
 
   return (
@@ -60,17 +60,17 @@ export default function Contact() {
               Let&apos;s build something worth the detail.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m open to senior product design roles, especially in B2B, enterprise, or fintech. If you&apos;re building something complex and want a designer who will read the tickets, I&apos;d like to hear about it.
+              I&apos;m open to product design roles, especially in B2B, enterprise, or fintech. If you&apos;re building something complex and want a designer who will read the tickets, I&apos;d like to hear about it.
             </p>
 
             <div className="space-y-3 mb-10">
               <a
-                href="mailto:mozhganakbari78@gmail.com"
+                href="mailto:akbarimozhgan99@gmail.com"
                 className="flex items-center gap-3 text-sm transition-opacity hover:opacity-70"
                 style={{ color: "var(--text-secondary)" }}
               >
                 <Mail size={15} />
-                mozhganakbari78@gmail.com
+                akbarimozhgan99@gmail.com
               </a>
             </div>
 

@@ -47,7 +47,7 @@ export default function Hero() {
               Available — 2026
             </span>
             <span className="mono-label hidden sm:block" style={{ color: "var(--text-tertiary)" }}>
-              Tehran / Remote
+              Tehran, Iran / Remote
             </span>
           </motion.div>
 
@@ -107,9 +107,9 @@ export default function Hero() {
             style={{ borderColor: "var(--border)", background: "var(--border)" }}
           >
             {[
+              { value: "~4 yrs", label: "Tech & finance" },
               { value: "400K+", label: "Users impacted" },
-              { value: "90+", label: "Screens designed" },
-              { value: "03", label: "Enterprise products" },
+              { value: "2,000+", label: "UX cases improved" },
             ].map((stat) => (
               <div
                 key={stat.label}

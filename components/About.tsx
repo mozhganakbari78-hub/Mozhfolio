@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "2026", role: "Senior Product Designer", company: "Enterprise Banking Platform", note: "Led support redesign + batch transfer product" },
-  { year: "2025", role: "Product Designer", company: "Corporate Banking Platform", note: "Built design system from 0 on a live product" },
-  { year: "2024", role: "UX Designer", company: "Fintech Startup", note: "0-to-1 mobile banking product" },
+  { year: "2024 — Now", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Banking software — design system, support redesign, batch transfer, 2,000+ UX writing cases" },
+  { year: "2023 — 24", role: "UX Designer", company: "IRO Team", note: "IoT greenhouse monitoring — turning sensor data into actionable dashboards" },
+  { year: "2021 — 23", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Crypto exchange — fintech interfaces, scalable components, 95% on-time delivery" },
+  { year: "2017 — 21", role: "B.Sc Computer Engineering", company: "Islamic Azad University, Tehran", note: "Central Tehran Branch" },
 ];
 
 const traits = [
@@ -40,10 +41,10 @@ export default function About() {
               I design for the moments when things go wrong.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              My work lives in enterprise B2B — banking platforms, design systems, complex workflows. The users I design for aren't browsing. They're under pressure, on deadline, and one unclear interface away from a support ticket.
+              I&apos;m a product designer with nearly 4 years across the tech and finance sectors — banking platforms, crypto exchanges, IoT systems. My work lives in enterprise B2B, where the users aren&apos;t browsing. They&apos;re under pressure, on deadline, and one unclear interface away from a support ticket.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              I combine product thinking with systems thinking. I care as much about why a decision was made as what it looks like. And I document trade-offs honestly — because the next designer who inherits my work deserves to know what I was working around.
+              I lead end-to-end design — from problem discovery and user research to execution and production. I combine product thinking with systems thinking, leverage user data to drive decisions, and document trade-offs honestly — because the next designer who inherits my work deserves to know what I was working around.
             </p>
 
             {/* Traits */}
