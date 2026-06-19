@@ -6,6 +6,10 @@ import { caseStudies } from "@/data/caseStudies";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+// Raw asset links aren't rewritten by Next's basePath, so prefix them manually
+// (empty string on root-served hosts like Cloudflare Pages / Netlify).
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Projects() {
   return (
     <section id="projects" className="py-28 md:py-40 px-6" aria-labelledby="projects-heading">
@@ -40,7 +44,7 @@ export default function Projects() {
           {caseStudies.map((cs, i) => (
             <motion.a
               key={cs.index}
-              href={cs.pdf}
+              href={`${base}${cs.pdf}`}
               target="_blank"
               rel="noopener noreferrer"
               data-hand
