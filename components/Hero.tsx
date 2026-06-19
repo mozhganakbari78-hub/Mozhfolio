@@ -36,14 +36,14 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto w-full">
         <motion.div variants={stagger} initial="initial" animate="animate">
-          {/* Availability pill */}
+          {/* Eyebrow disciplines */}
           <motion.div variants={fadeUp} className="flex justify-center mb-8">
             <span
               className="mono-label inline-flex items-center gap-2 px-4 py-2 rounded-full border"
-              style={{ color: "var(--text-secondary)", borderColor: "var(--border-strong)", background: "var(--surface)" }}
+              style={{ color: "var(--accent-color)", borderColor: "var(--border-strong)", background: "var(--surface)" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-color)" }} />
-              Available for work — 2026
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-color)" }} />
+              Product Thinking · Enterprise UX · Design Systems
             </span>
           </motion.div>
 
@@ -53,10 +53,10 @@ export default function Hero() {
             className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tight leading-[0.95] mb-8"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.04em" }}
           >
-            Product designer
+            Senior Product Designer
             <br />
             <span style={{ color: "var(--text-tertiary)", fontWeight: 300 }}>
-              for complex products.
+              for products that cannot afford confusion.
             </span>
           </motion.h1>
 
@@ -66,12 +66,12 @@ export default function Hero() {
             className="text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
             style={{ color: "var(--text-secondary)" }}
           >
-            I&apos;m Mozhgan Akbari. I turn messy, high-stakes B2B products into tools people
-            actually trust — enterprise UX, design systems, and friction reduction.
+            I help teams turn complex workflows, scattered decisions, and operational friction
+            into clear product experiences people can trust.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-3 mb-20">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-3 mb-16">
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -87,38 +87,34 @@ export default function Hero() {
               className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-80 border"
               style={{ color: "var(--text-primary)", borderColor: "var(--border-strong)" }}
             >
-              Get in touch
+              Contact me
             </button>
           </motion.div>
 
-          {/* Stats strip */}
-          <motion.dl
+          {/* Value pillars */}
+          <motion.div
             variants={fadeUp}
-            className="grid grid-cols-3 max-w-2xl mx-auto gap-px border rounded-2xl overflow-hidden"
-            style={{ borderColor: "var(--border)", background: "var(--border)" }}
+            className="grid grid-cols-1 sm:grid-cols-3 max-w-2xl mx-auto gap-3 mb-6"
           >
             {[
-              { value: "~4 yrs", label: "Tech & finance" },
-              { value: "400K+", label: "Users impacted" },
-              { value: "2,000+", label: "UX cases improved" },
-            ].map((stat) => (
+              { title: "Systems over screens", sub: "Product thinking" },
+              { title: "Friction into flow", sub: "Workflow design" },
+              { title: "Scale by design", sub: "Design systems" },
+            ].map((p) => (
               <div
-                key={stat.label}
-                className="p-5 md:p-6"
-                style={{ background: "var(--surface)" }}
+                key={p.title}
+                className="flex flex-col items-center gap-1 px-4 py-4 rounded-2xl border"
+                style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
-                <dt
-                  className="text-2xl md:text-4xl font-semibold mb-2 tracking-tight"
-                  style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-                >
-                  <CountUp value={stat.value} />
-                </dt>
-                <dd className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                  {stat.label}
-                </dd>
+                <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
+                  {p.title}
+                </span>
+                <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                  {p.sub}
+                </span>
               </div>
             ))}
-          </motion.dl>
+          </motion.div>
         </motion.div>
       </div>
 
