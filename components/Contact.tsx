@@ -31,8 +31,51 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-28 md:py-40 px-6" aria-labelledby="contact-heading">
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="relative py-28 md:py-40 px-6 overflow-hidden" aria-labelledby="contact-heading">
+      {/* Hexagon outline motif */}
+      <svg
+        className="absolute left-1/2 top-0 -translate-x-1/2 w-[1100px] max-w-none pointer-events-none"
+        viewBox="0 0 1100 400"
+        fill="none"
+        aria-hidden="true"
+        style={{ color: "var(--accent-color)", opacity: 0.12 }}
+      >
+        {Array.from({ length: 7 }).map((_, row) =>
+          Array.from({ length: 11 }).map((__, col) => {
+            const w = 84;
+            const h = 96;
+            const x = col * (w * 0.86) + (row % 2 ? w * 0.43 : 0);
+            const y = row * (h * 0.5);
+            const pts = [
+              [x + w / 2, y],
+              [x + w, y + h / 4],
+              [x + w, y + (h * 3) / 4],
+              [x + w / 2, y + h],
+              [x, y + (h * 3) / 4],
+              [x, y + h / 4],
+            ]
+              .map((p) => p.join(","))
+              .join(" ");
+            return (
+              <polygon
+                key={`${row}-${col}`}
+                points={pts}
+                stroke="currentColor"
+                strokeWidth="1"
+                fill="none"
+              />
+            );
+          })
+        )}
+      </svg>
+      {/* fade the motif into the background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{ background: "linear-gradient(to bottom, transparent, var(--bg) 70%)" }}
+      />
+
+      <div className="relative max-w-5xl mx-auto">
         <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <motion.div

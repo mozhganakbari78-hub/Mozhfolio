@@ -3,6 +3,45 @@
 import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
+/* Per-capability line illustrations — same outline language as the hero. */
+const illustrations: Record<string, React.ReactNode> = {
+  "Product Thinking": (
+    <>
+      <circle cx="14" cy="20" r="4" />
+      <circle cx="34" cy="12" r="4" />
+      <circle cx="40" cy="32" r="4" />
+      <path d="M18 19 31 13M35 16 39 28M17 23 37 32" strokeDasharray="3 4" />
+    </>
+  ),
+  "Workflow Design": (
+    <>
+      <rect x="6" y="10" width="12" height="9" rx="2" />
+      <rect x="32" y="10" width="12" height="9" rx="2" />
+      <rect x="19" y="27" width="12" height="9" rx="2" />
+      <path d="M18 14h14M12 19v8h13M38 19v8H25" strokeDasharray="3 4" />
+    </>
+  ),
+  "Design Systems": (
+    <>
+      <rect x="8" y="10" width="10" height="10" rx="2" />
+      <rect x="22" y="10" width="10" height="10" rx="2" />
+      <rect x="36" y="10" width="6" height="10" rx="2" />
+      <rect x="8" y="26" width="6" height="10" rx="2" />
+      <rect x="18" y="26" width="10" height="10" rx="2" />
+      <rect x="32" y="26" width="10" height="10" rx="2" />
+    </>
+  ),
+  "Delivery Partnership": (
+    <>
+      <path d="M10 30c0-6 4-10 10-10s10 4 10 10" />
+      <circle cx="20" cy="14" r="5" />
+      <path d="M30 24l8-2M30 30l8 2" strokeDasharray="3 4" />
+      <circle cx="40" cy="22" r="2.5" />
+      <circle cx="40" cy="32" r="2.5" />
+    </>
+  ),
+};
+
 const capabilities = [
   {
     title: "Product Thinking",
@@ -99,7 +138,24 @@ export default function Skills() {
               className="relative rounded-2xl border p-7 md:p-9 flex flex-col"
               style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
             >
-              <div className="flex items-baseline justify-between mb-5">
+              <div className="flex items-center justify-between mb-5">
+                <span
+                  className="flex items-center justify-center w-14 h-14 rounded-xl border"
+                  style={{ borderColor: "var(--border-strong)", background: "var(--bg-secondary)" }}
+                >
+                  <svg
+                    width="50"
+                    height="46"
+                    viewBox="0 0 50 46"
+                    fill="none"
+                    stroke="var(--accent-color)"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {illustrations[cap.title]}
+                  </svg>
+                </span>
                 <span className="font-mono text-sm" style={{ color: "var(--accent-color)" }}>
                   {String(ci + 1).padStart(2, "0")}
                 </span>
