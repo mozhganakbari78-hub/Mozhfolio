@@ -70,6 +70,11 @@ export const projects: Project[] = [
         ],
       },
       {
+        type: "image",
+        src: "/projects/journey-map.png",
+        caption: "User flow for support — three kinds of people land here: answer seekers, guidance seekers, and support-first users. Not all want self-service.",
+      },
+      {
         type: "highlight",
         label: "Feedback Analysis",
         heading: "One rule, every entry.",
@@ -85,6 +90,11 @@ export const projects: Project[] = [
           { value: "~55%", label: "needed real support" },
           { value: "150+", label: "questions to organize" },
         ],
+      },
+      {
+        type: "image",
+        src: "/projects/sticky-notes.png",
+        caption: "Affinity mapping in FigJam — every one of the 734 entries hand-sorted into clusters. The recurring groups became the category structure directly.",
       },
       {
         type: "section",
@@ -117,6 +127,11 @@ export const projects: Project[] = [
         ],
       },
       {
+        type: "image",
+        src: "/projects/wireframe.png",
+        caption: "Low-fidelity wireframe of the unified FAQ + ticketing surface — structure locked with stakeholders before any visual polish.",
+      },
+      {
         type: "list",
         label: "Process",
         heading: "How the work actually ran.",
@@ -126,6 +141,16 @@ export const projects: Project[] = [
           { title: "Wireframe-first", body: "Structure locked with stakeholders before any visual polish, so objections surfaced early instead of as rework." },
           { title: "Annotated handoff", body: "Interaction states, edge cases, and tagging logic documented so a developer wouldn't need to ask." },
         ],
+      },
+      {
+        type: "image",
+        src: "/projects/mockup-1.png",
+        caption: "The final high-fidelity design — FAQ browsing and ticket submission unified on a single screen.",
+      },
+      {
+        type: "image",
+        src: "/projects/mockup-2.png",
+        caption: "Searching, filtering, and the ticket form side by side — the support surface as shipped to the test environment.",
       },
       {
         type: "section",
