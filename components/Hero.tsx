@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import CountUp from "./CountUp";
+import ParticleField from "./ParticleField";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -25,6 +26,11 @@ export default function Hero() {
     >
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
+
+      {/* Interactive particle constellation */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <ParticleField />
+      </div>
 
       {/* top hairline + corner labels */}
       <div
