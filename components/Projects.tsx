@@ -28,11 +28,11 @@ export default function Projects() {
               className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl leading-[1.02]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Case studies, in full.
+              Case studies with the messy parts included.
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            Each opens the full case study — context, decisions, and the trade-offs behind them.
+            Not just final screens. Each case opens the context, constraints, decisions, and product reasoning behind the work.
           </p>
         </motion.div>
 

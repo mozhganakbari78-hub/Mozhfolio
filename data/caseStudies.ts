@@ -41,8 +41,8 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "Reducing Support Friction at Scale",
     description:
-      "One of Iran's largest enterprise banking platforms — 400,000 users across 180,000 organizations. I read two years of support tickets by hand to separate content gaps from access issues, then rebuilt the help experience around what was actually self-serviceable.",
-    tags: ["UX Research", "Content Architecture", "Enterprise Banking"],
+      "I redesigned the support experience of a large enterprise product by turning two years of tickets into product insight. The work separated content gaps from access issues, made repeated problems easier to solve, and moved more help into the product itself.",
+    tags: ["UX Research", "Content Architecture", "Support Experience", "Enterprise Product"],
     meta: "Product Design · Content Strategy",
     facts: [
       { label: "Role", value: "UX / Product Designer — content architecture" },
@@ -166,9 +166,9 @@ export const caseStudies: CaseStudy[] = [
     slug: "batch-transfer",
     title: "Batch Transfer for Offline Corporate Clients",
     description:
-      "A forced-timeline redesign that shipped because the system underneath it had already been built for reuse.",
-    tags: ["Product Design", "Design System", "B2B Banking"],
-    meta: "Product Design · Design System",
+      "A forced timeline redesign for a branch operated payment workflow. Instead of treating a batch as one fragile upload, the experience helped employees review, isolate, and recover from transaction errors with more confidence.",
+    tags: ["Product Design", "Workflow Design", "Error Recovery", "B2B Finance"],
+    meta: "Product Design · Workflow Design",
     facts: [
       { label: "Role", value: "Product Design — flow, UI, prototype" },
       { label: "Domain", value: "B2B Banking · 2026" },
@@ -277,11 +277,11 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "03",
     slug: "design-system",
-    title: "Design System on a Live Enterprise Banking Platform",
+    title: "Design System for a Live Enterprise Platform",
     description:
-      "A pragmatic, scalable design system built inside a live, Ant Design-based corporate banking product — where adoption beat purity.",
-    tags: ["Design Systems", "Tokens", "Ant Design"],
-    meta: "Design System · Enterprise Banking",
+      "A pragmatic design system built inside a live enterprise product. I focused on usable foundations, scalable components, and adoption friendly patterns that helped teams move faster without breaking consistency.",
+    tags: ["Design Systems", "Component Strategy", "Product Scale", "Enterprise UX"],
+    meta: "Design System · Product Scale",
     facts: [
       { label: "Role", value: "Design system owner, end to end" },
       { label: "Scale", value: "90+ screens, permission-heavy" },
