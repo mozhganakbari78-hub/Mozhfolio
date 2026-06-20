@@ -6,7 +6,7 @@
 .cs-root {
   --ink: #eeeef2;
   --ink-soft: #b9bbc9;
-  --ink-faint: #7e8095;
+  --ink-faint: #9496a8;
   --paper: #121314;
   --paper-warm: #1C1D1F;
   --paper-cool: #1C1D1F;
@@ -44,7 +44,7 @@
 .cs-bar {
   position: sticky; top: 0; z-index: 20;
   backdrop-filter: blur(10px);
-  background: rgba(13,15,24,.78);
+  background: rgba(18,19,20,.88);
   border-bottom: 1px solid var(--line-soft);
 }
 .cs-bar .cs-wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
@@ -79,7 +79,7 @@
 }
 .cs-meta div { flex: 1 1 150px; padding: 18px 20px 18px 0; }
 .cs-meta dt {
-  font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em;
+  font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .09em;
   text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px;
 }
 .cs-meta dd { font-size: 15px; color: var(--ink); margin: 0; }
@@ -146,12 +146,12 @@
   box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden;
 }
 .cs-decision .dhead { padding: 22px 28px 18px; border-bottom: 1px solid var(--line-soft); background: var(--paper-warm); }
-.cs-decision .dnum { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--accent); letter-spacing: .08em; }
+.cs-decision .dnum { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--accent); letter-spacing: .07em; }
 .cs-decision .dtitle { font-weight: 700; font-size: 21px; margin-top: 6px; letter-spacing: -0.01em; color: var(--ink); }
 .cs-decision .dbody { padding: 24px 28px; }
 .cs-dline { margin-bottom: 18px; }
 .cs-dline:last-child { margin-bottom: 0; }
-.cs-dline .k { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 5px; }
+.cs-dline .k { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 5px; }
 .cs-dline .v { color: var(--ink-soft); font-size: 16px; }
 .cs-dline.chose .v { color: var(--ink); }
 .cs-dline.chose .k { color: var(--resolve); }
@@ -172,7 +172,7 @@
 .cs-compare .col { border-radius: 14px; padding: 24px; box-shadow: var(--shadow); }
 .cs-compare .legacy { background: rgba(232,131,110,.07); border: 1px solid var(--fail-soft); }
 .cs-compare .new { background: rgba(95,202,166,.07); border: 1px solid var(--pass-soft); }
-.cs-compare .tag { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+.cs-compare .tag { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; display: block; }
 .cs-compare .legacy .tag { color: var(--fail); }
 .cs-compare .new .tag { color: var(--pass); }
 .cs-compare ul { list-style: none; margin: 0; padding: 0; }
@@ -187,12 +187,12 @@
 .cs-vt .vthead .t { font-weight: 700; font-size: 16px; color: var(--ink); }
 .cs-vt .vthead .s { font-size: 13px; color: var(--ink-faint); margin-top: 4px; }
 .cs-vt table { width: 100%; font-size: 14px; border-collapse: collapse; }
-.cs-vt th { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line-soft); font-weight: 500; }
+.cs-vt th { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line-soft); font-weight: 500; }
 .cs-vt td { padding: 13px 14px; border-bottom: 1px solid var(--line-soft); color: var(--ink-soft); }
 .cs-vt tr:last-child td { border-bottom: 0; }
 .cs-vt .vtname { color: var(--ink); font-weight: 600; }
 .cs-vt .match { font-family: var(--font-mono), monospace; font-weight: 500; }
-.cs-chip { display: inline-block; font-family: var(--font-mono), monospace; font-size: 11px; padding: 3px 9px; border-radius: 100px; letter-spacing: .04em; white-space: nowrap; }
+.cs-chip { display: inline-block; font-family: var(--font-mono), monospace; font-size: 12px; padding: 3px 9px; border-radius: 100px; letter-spacing: .04em; white-space: nowrap; }
 .cs-chip.ok { background: var(--pass-soft); color: var(--pass); }
 .cs-chip.lo { background: var(--warn-soft); color: var(--warn); }
 .cs-chip.x { background: var(--fail-soft); color: var(--fail); }
@@ -202,7 +202,7 @@
 /* phased timeline */
 .cs-phase { display: grid; grid-template-columns: 92px 1fr; gap: 20px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--line-soft); }
 .cs-phase:last-child { border-bottom: 0; }
-.cs-phase .phtag { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); padding-top: 3px; }
+.cs-phase .phtag { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); padding-top: 3px; }
 .cs-phase h3 { margin-bottom: 6px; }
 .cs-phase p { margin-bottom: 0; font-size: 16px; }
 
