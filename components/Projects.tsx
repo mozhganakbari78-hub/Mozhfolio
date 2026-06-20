@@ -63,27 +63,24 @@ export default function Projects() {
                 aria-hidden
               />
 
-              <div className="relative grid md:grid-cols-[auto_1fr_auto] items-start gap-6 md:gap-10">
-                {/* index */}
-                <div
-                  className="font-mono text-sm pt-1"
-                  style={{ color: "var(--accent-color)" }}
-                >
-                  {cs.index} / {String(caseStudies.length).padStart(2, "0")}
-                </div>
-
-                {/* body */}
+              <div className="relative grid md:grid-cols-[1fr_auto] items-center gap-6 md:gap-10 min-h-[180px]">
                 <div>
                   <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
                     {cs.meta}
                   </div>
                   <h3
-                    className="text-2xl md:text-4xl font-semibold tracking-tight mb-4 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
-                    style={{ color: "var(--text-primary)", letterSpacing: "-0.025em" }}
+                    className="text-xl md:text-2xl font-semibold tracking-tight mb-2 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
+                    style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
                   >
                     {cs.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 mt-4">
+                  <p
+                    className="text-sm leading-relaxed mb-4 line-clamp-1 max-w-2xl"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    {cs.description}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
                     {cs.tags.map((tag, ti) => {
                       const colors = ["purple", "pink", "yellow", "teal", "blue"];
                       const c = colors[(i * 2 + ti) % colors.length];
@@ -96,7 +93,6 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* CTA */}
                 <div className="flex md:flex-col items-center md:items-end gap-3 md:text-right">
                   <span
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 group-hover:gap-3"
