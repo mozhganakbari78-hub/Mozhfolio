@@ -221,9 +221,9 @@ export default function DesignSystemCase() {
       {/* SHOT — design system overview */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/design-system.png"
-          alt="Design system components and tokens, layered on Ant Design"
-          caption="Fig. 01: Component coverage shipped on top of the existing Ant Design foundation"
+          src="/projects/DesignSystem-Button.png"
+          alt="Button component variants from the design system"
+          caption="Fig. 01: Button component, one of 29 in the system, layered on the Ant Design foundation"
         />
       </section>
 

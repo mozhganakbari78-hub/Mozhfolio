@@ -57,7 +57,8 @@
   transition: color .2s ease;
 }
 .cs-back:hover { color: var(--accent); }
-.cs-sig { font-weight: 700; font-size: 16px; color: var(--ink); }
+.cs-sig { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; color: var(--ink); }
+.cs-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--accent); background: var(--paper-warm); display: block; }
 
 .cs-eyebrow {
   font-family: var(--font-mono), monospace; font-size: 12px;
