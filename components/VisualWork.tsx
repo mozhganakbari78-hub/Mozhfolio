@@ -17,13 +17,16 @@ const track = [...images, ...images];
 
 export default function VisualWork() {
   const railRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(0);
   const rafRef = useRef<number>(0);
   const pausedRef = useRef(false);
+  const dragRef = useRef({ active: false, startX: 0, startPos: 0 });
 
   useEffect(() => {
     const rail = railRef.current;
-    if (!rail) return;
+    const wrap = wrapRef.current;
+    if (!rail || !wrap) return;
 
     const SPEED = 0.55; // px per frame
 
@@ -38,7 +41,41 @@ export default function VisualWork() {
     };
 
     rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+
+    const onPointerDown = (e: PointerEvent) => {
+      dragRef.current = { active: true, startX: e.clientX, startPos: posRef.current };
+      pausedRef.current = true;
+      wrap.style.cursor = "grabbing";
+      wrap.setPointerCapture(e.pointerId);
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragRef.current.active) return;
+      const delta = dragRef.current.startX - e.clientX;
+      const half = rail.scrollWidth / 2;
+      let next = dragRef.current.startPos + delta;
+      // wrap within [0, half)
+      next = ((next % half) + half) % half;
+      posRef.current = next;
+      rail.style.transform = `translateX(-${posRef.current}px)`;
+    };
+    const onPointerUp = () => {
+      dragRef.current.active = false;
+      pausedRef.current = false;
+      wrap.style.cursor = "grab";
+    };
+
+    wrap.addEventListener("pointerdown", onPointerDown);
+    wrap.addEventListener("pointermove", onPointerMove);
+    wrap.addEventListener("pointerup", onPointerUp);
+    wrap.addEventListener("pointercancel", onPointerUp);
+
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      wrap.removeEventListener("pointerdown", onPointerDown);
+      wrap.removeEventListener("pointermove", onPointerMove);
+      wrap.removeEventListener("pointerup", onPointerUp);
+      wrap.removeEventListener("pointercancel", onPointerUp);
+    };
   }, []);
 
   return (
@@ -72,13 +109,13 @@ export default function VisualWork() {
 
       {/* Marquee */}
       <motion.div
+        ref={wrapRef}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="overflow-hidden"
-        onMouseEnter={() => { pausedRef.current = true; }}
-        onMouseLeave={() => { pausedRef.current = false; }}
+        className="overflow-hidden select-none"
+        style={{ cursor: "grab" }}
       >
         <div
           ref={railRef}

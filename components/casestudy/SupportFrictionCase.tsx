@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
-import { AffinityMap, UnifiedFlow } from "./CsInlineArt";
+import { UnifiedFlow } from "./CsInlineArt";
 
 export default function SupportFrictionCase() {
   return (
@@ -58,7 +58,7 @@ export default function SupportFrictionCase() {
         </p>
         <p>
           When something was unclear, there was one obvious move: open a ticket. So people did, for
-          almost everything. The desk absorbed the volume, response times stretched, and the user
+          almost everything. The support team absorbed the volume, response times stretched, and the user
           still waited to get unblocked on something that often had a known answer.
         </p>
       </section>
@@ -109,9 +109,6 @@ export default function SupportFrictionCase() {
           </strong>
         </p>
       </section>
-
-      {/* 03 inline art */}
-      <AffinityMap />
 
       {/* 03b EVIDENCE — chart */}
       <section className="cs-reveal">

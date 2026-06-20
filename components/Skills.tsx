@@ -4,31 +4,31 @@ import { motion } from "framer-motion";
 import {
   MagnifyingGlassIcon,
   Square3Stack3DIcon,
-  ArrowTrendingUpIcon,
-  PuzzlePieceIcon,
+  DocumentCheckIcon,
+  CpuChipIcon,
 } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 
 const capabilities = [
   {
     icon: MagnifyingGlassIcon,
-    title: "Research-led",
-    body: "I read the raw data myself, interviews, tickets, sessions, before touching a single screen.",
+    title: "Frame first, design second",
+    body: "I start with the question behind the brief, not the wireframe. What is actually broken, who owns it, and what does success mean for the business -- before a single screen is opened.",
   },
   {
     icon: Square3Stack3DIcon,
-    title: "Systems thinker",
-    body: "From information architecture to design tokens, I build things that scale and stay maintainable.",
+    title: "Systems over screens",
+    body: "My output is component logic, token architecture, and governance frameworks that hold up at scale. A screen is just the visible surface of a decision.",
   },
   {
-    icon: ArrowTrendingUpIcon,
-    title: "Impact-focused",
-    body: "I connect every decision to a user need and a business metric. Design that ships and moves numbers.",
+    icon: DocumentCheckIcon,
+    title: "Decisions, not just deliverables",
+    body: "I document the trade-offs that shaped every call. When the product changes, the reasoning travels with it -- and the next designer does not have to reverse-engineer intent.",
   },
   {
-    icon: PuzzlePieceIcon,
-    title: "Delivery partner",
-    body: "Close to engineering and product. I care about what ships, what scales, and what the next teammate can read.",
+    icon: CpuChipIcon,
+    title: "Engineering-fluent",
+    body: "I work inside the constraint space of real products: API limits, token pipelines, handoff quality. Design that ships without a translation layer.",
   },
 ];
 

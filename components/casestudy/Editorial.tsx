@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-type Panel = { el: HTMLElement; label: string };
+type Panel = { el: HTMLElement; label: string; inTimeline: boolean };
 
 /**
  * Horizontal, timeline-driven case-study shell (konpo-style). Each top-level
@@ -14,6 +15,7 @@ type Panel = { el: HTMLElement; label: string };
  * section labels and a progress fill, and clicking a label jumps to it.
  */
 export default function Editorial({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const rootRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [panels, setPanels] = useState<Panel[]>([]);
@@ -32,16 +34,24 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     );
     const built: Panel[] = kids.map((el, i) => {
       el.classList.add("cs-panel");
-      let label = `0${i + 1}`;
+      let label = `${i + 1}`;
+      let inTimeline = true;
       if (el.classList.contains("cs-hero")) label = "Overview";
       else if (el.classList.contains("cs-next")) label = "Next";
-      else if (el.classList.contains("cs-foot")) label = "End";
+      else if (el.classList.contains("cs-foot")) { label = "End"; }
       else {
         const num = el.querySelector(".cs-num")?.textContent ?? "";
         const after = num.split("/")[1]?.trim();
-        if (after) label = after;
+        if (after) {
+          // shorten long labels
+          const short = after.length > 18 ? after.slice(0, 16).trimEnd() + "..." : after;
+          label = short;
+        } else {
+          // inline art or shot panels — scrollable but not shown in timeline
+          inTimeline = false;
+        }
       }
-      return { el, label };
+      return { el, label, inTimeline };
     });
     setPanels(built);
   }, []);
@@ -88,8 +98,44 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
       kick();
     };
 
+    // Drag-to-scroll
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+    let dragging = false;
+    let dragDelta = 0;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest("a, button")) return;
+      dragging = true;
+      dragDelta = 0;
+      dragStartX = e.clientX;
+      dragStartScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.style.cursor = "grabbing";
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragDelta = dragStartX - e.clientX;
+      track.scrollLeft = dragStartScroll + dragDelta;
+      targetX.current = track.scrollLeft;
+    };
+    const onPointerUp = () => {
+      dragging = false;
+      track.style.cursor = "";
+    };
+
     track.addEventListener("wheel", onWheel, { passive: false });
-    return () => track.removeEventListener("wheel", onWheel);
+    track.addEventListener("pointerdown", onPointerDown);
+    track.addEventListener("pointermove", onPointerMove);
+    track.addEventListener("pointerup", onPointerUp);
+    track.addEventListener("pointercancel", onPointerUp);
+    return () => {
+      track.removeEventListener("wheel", onWheel);
+      track.removeEventListener("pointerdown", onPointerDown);
+      track.removeEventListener("pointermove", onPointerMove);
+      track.removeEventListener("pointerup", onPointerUp);
+      track.removeEventListener("pointercancel", onPointerUp);
+    };
   }, [panels]);
 
   // Track scroll → progress + active section + scroll-linked mockup scale.
@@ -170,8 +216,8 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     kickRef.current?.();
   };
 
-  // Timeline labels: skip the trailing End/footer panel for a cleaner bar.
-  const tlPanels = panels.filter((p) => p.label !== "End");
+  // Timeline: only show panels with meaningful labels, skip End/footer.
+  const tlPanels = panels.filter((p) => p.inTimeline && p.label !== "End");
 
   return (
     <div className="cs-root cs-horizontal" ref={rootRef}>
