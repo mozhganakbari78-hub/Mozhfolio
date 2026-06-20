@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import Mockup from "./Mockup";
-import { TokenBridge, GovernanceFlow } from "./CsInlineArt";
+import { TokenBridge, GovernanceFlow, SystemAnatomy } from "./CsInlineArt";
 
 const components = [
   "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
@@ -201,6 +201,7 @@ export default function DesignSystemCase() {
           component behavior, documented states, and clear rules for what stayed default versus what
           earned product-specific customization.
         </p>
+        <SystemAnatomy />
         <div className="cs-inv">
           <div className="ih">
             <span className="t">Components shipped</span>

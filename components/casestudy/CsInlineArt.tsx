@@ -324,3 +324,138 @@ export function GovernanceFlow() {
     </Strip>
   );
 }
+
+/* ─── SYSTEM ANATOMY: layered visual showing tokens → patterns ─── */
+export function SystemAnatomy() {
+  const tokens = [
+    { c: "#0174DC", n: "primary" },
+    { c: "#1C1D1F", n: "surface" },
+    { c: "#34d399", n: "success" },
+    { c: "#fbbf24", n: "warn" },
+    { c: "#ef4444", n: "danger" },
+    { c: "#a78bfa", n: "info" },
+  ];
+
+  const layers = [
+    { label: "Tokens", note: "color, spacing, type", count: "foundation" },
+    { label: "Primitives", note: "atoms reused everywhere", count: "core" },
+    { label: "Components", note: "documented variants & states", count: "system" },
+    { label: "Patterns", note: "compositions, flows", count: "applied" },
+  ];
+
+  return (
+    <div
+      className="my-10 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
+          SYSTEM ANATOMY
+        </span>
+        <div className="flex items-center gap-2">
+          {tokens.map((t, i) => (
+            <motion.div
+              key={t.n}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, type: "spring", stiffness: 280 }}
+              className="w-3.5 h-3.5 rounded-full"
+              style={{ background: t.c, boxShadow: `0 0 0 1.5px var(--bg-secondary), 0 0 0 2.5px ${BD}` }}
+              title={t.n}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-3">
+        {layers.map((layer, i) => (
+          <motion.div
+            key={layer.label}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative rounded-xl p-4"
+            style={{
+              background: i === 2 ? "var(--accent-soft)" : "var(--bg-secondary)",
+              border: `1px solid ${i === 2 ? A : BD}`,
+            }}
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span
+                style={{
+                  ...Mono,
+                  fontSize: 9,
+                  color: i === 2 ? A : SUB,
+                  letterSpacing: 0.8,
+                }}
+              >
+                0{i + 1} · {layer.count}
+              </span>
+              <motion.span
+                initial={{ width: 0 }}
+                whileInView={{ width: 16 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 + i * 0.1, duration: 0.5 }}
+                className="h-px"
+                style={{ background: i === 2 ? A : BD }}
+              />
+            </div>
+            <div
+              style={{
+                color: FG,
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: -0.2,
+                marginBottom: 4,
+              }}
+            >
+              {layer.label}
+            </div>
+            <div style={{ ...Mono, fontSize: 9.5, color: SUB, lineHeight: 1.5 }}>
+              {layer.note}
+            </div>
+
+            {i < layers.length - 1 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.1 }}
+                className="hidden md:block absolute -right-2 top-1/2 -translate-y-1/2 z-10"
+                style={{ color: BD, fontSize: 16 }}
+              >
+                &rsaquo;
+              </motion.div>
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      <div
+        className="px-5 py-3 flex items-center justify-between"
+        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
+          Each layer documents the trade-offs, not just the output.
+        </span>
+        <span
+          className="rounded px-2 py-0.5"
+          style={{
+            ...Mono,
+            fontSize: 9,
+            color: A,
+            background: "var(--accent-soft)",
+            border: `1px solid ${A}`,
+          }}
+        >
+          shipped
+        </span>
+      </div>
+    </div>
+  );
+}
