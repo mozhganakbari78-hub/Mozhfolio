@@ -114,7 +114,7 @@ export default function SupportFrictionCase() {
         <span className="cs-num">03 / The shape of the data</span>
         <h2>What the tickets actually showed</h2>
         <div className="cs-chart">
-          <div className="ct">Tickets by area — answerable vs. needs-support</div>
+          <div className="ct">Tickets by area · answerable vs. needs support</div>
           <div className="cnote">
             Relative split within each subject area. Illustrative of the pattern found in the manual
             review; exact per-area percentages are part of the underlying analysis.
@@ -129,39 +129,43 @@ export default function SupportFrictionCase() {
           </div>
 
           {[
-            { name: "Bill management", split: "mostly self-serviceable", resolve: 74, delay: "0.1s" },
-            { name: "Cards", split: "mixed", resolve: 58, delay: "0.22s" },
-            { name: "Cheque management", split: "mixed", resolve: 52, delay: "0.34s" },
-            { name: "Accounts", split: "leans to support", resolve: 40, delay: "0.46s" },
+            { name: "Bill management", split: "mostly self-serviceable", resolve: 74, delay: "0.05s" },
+            { name: "Cards", split: "mixed", resolve: 58, delay: "0.17s" },
+            { name: "Cheque management", split: "mixed", resolve: 52, delay: "0.29s" },
+            { name: "Accounts", split: "leans to support", resolve: 40, delay: "0.41s" },
           ].map((b) => (
-            <div className="cs-bar" key={b.name}>
+            <div className="cs-bar" key={b.name} style={{ ["--bar-delay" as string]: b.delay }}>
               <div className="blabel">
                 <span className="name">{b.name}</span>
                 <span className="split">{b.split}</span>
               </div>
               <div className="cs-track">
-                <div className="seg-resolve" style={{ width: `${b.resolve}%`, ["--resolve-pct" as string]: `${b.resolve}%`, ["--bar-delay" as string]: b.delay }} />
-                <div className="seg-signal" style={{ width: `${100 - b.resolve}%`, ["--signal-pct" as string]: `${100 - b.resolve}%`, ["--bar-delay" as string]: b.delay }} />
+                <div className="seg-resolve" style={{ ["--resolve-pct" as string]: `${b.resolve}%` }} />
+                <div className="seg-signal" style={{ ["--signal-pct" as string]: `${100 - b.resolve}%` }} />
               </div>
               <div className="bpcts">
-                <span className="pr">{b.resolve}% self-service</span>
-                <span className="ps">{100 - b.resolve}% needs support</span>
+                <span className="pr"><b>{b.resolve}%</b><small>self-service</small></span>
+                <span className="ps"><b>{100 - b.resolve}%</b><small>needs support</small></span>
               </div>
             </div>
           ))}
 
-          <div className="ccap">
-            The takeaway wasn&apos;t a single number. It was the <strong>shape</strong>: a meaningful
-            share of ticket volume came from questions that already had answers — the user just had
-            no way to reach them at the moment they were stuck.
-          </div>
         </div>
+      </section>
 
+      {/* 03c TAKEAWAY */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The takeaway</span>
+        <h2>It was the shape, not a single number</h2>
+        <div className="cs-pull">
+          A meaningful share of ticket volume came from questions that already had answers. The user
+          just had no way to reach them at the moment they were stuck.
+        </div>
         <p>
-          The pattern that mattered most wasn&apos;t about careless users. Many of these questions
-          came up precisely <em>because</em> the stakes were high — someone about to move a large
-          amount, double-checking, hesitating, and reaching for the only reassurance channel they
-          knew. The problem was never the intelligence of the question. It was the{" "}
+          And it wasn&apos;t about careless users. Many of these questions came up precisely{" "}
+          <em>because</em> the stakes were high: someone about to move a large amount,
+          double-checking, hesitating, reaching for the only reassurance channel they knew. The
+          problem was never the intelligence of the question. It was the{" "}
           <strong>location and timing of the answer.</strong>
         </p>
       </section>
