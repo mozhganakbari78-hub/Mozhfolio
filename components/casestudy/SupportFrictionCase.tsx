@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Mockup from "./Mockup";
+import CsArt from "./CsArt";
 
 export default function SupportFrictionCase() {
   return (
@@ -45,36 +47,34 @@ export default function SupportFrictionCase() {
 
       {/* 01 CONTEXT */}
       <section className="cs-reveal">
+        <CsArt name="tickets" />
         <span className="cs-num">01 / Context</span>
         <h2>A platform where a wrong move costs real money</h2>
         <p>
-          The product is a corporate banking platform used by business clients to move money,
-          manage cards, pay bills, and handle cheques. The people using it aren&apos;t browsing.
-          They&apos;re often mid-task, dealing with high transaction amounts, and working under the
-          kind of pressure that makes a person act fast and ask questions later.
+          A corporate banking platform: business clients move money, manage cards, pay bills, handle
+          cheques. These people aren&apos;t browsing. They&apos;re mid-task, dealing with high
+          amounts, working under pressure that makes you act fast and ask later.
         </p>
         <p>
-          When something was unclear, there was one obvious place to go: open a support ticket. So
-          that&apos;s what people did — for almost everything. The service desk absorbed the volume,
-          response times stretched, and the user still had to wait to get unblocked on something
-          that, in many cases, had a known answer.
+          When something was unclear, there was one obvious move: open a ticket. So people did, for
+          almost everything. The desk absorbed the volume, response times stretched, and the user
+          still waited to get unblocked on something that often had a known answer.
         </p>
       </section>
 
       {/* 02 BRIEF */}
       <section className="cs-reveal">
+        <CsArt name="fork" />
         <span className="cs-num">02 / The brief, and what was wrong with it</span>
         <h2>&quot;Improve the FAQ&quot; was the wrong problem to solve</h2>
         <p>
-          The request that came to us was narrow: the FAQ page was underused and outdated, make it
-          better. I could have redesigned the FAQ and called it done. But the FAQ being weak
-          wasn&apos;t the actual problem — it was a symptom.
+          The request was narrow: the FAQ was underused and outdated, make it better. I could have
+          redesigned it and called it done. But a weak FAQ wasn&apos;t the problem. It was a symptom.
         </p>
         <p>
-          The real issue was structural. The FAQ and the support ticket flow lived in two separate
-          places. A user with a question had to <strong>guess</strong> whether their answer existed
-          before deciding where to go. Under pressure, nobody guesses. They take the path they
-          trust, which was always the ticket.
+          The real issue was structural. FAQ and ticketing lived in two separate places. A user with
+          a question had to <strong>guess</strong> whether their answer existed before choosing where
+          to go. Under pressure, nobody guesses. They take the path they trust: the ticket.
         </p>
         <div className="cs-pull">
           If the answer and the escalation live in different rooms, the user will always walk into
@@ -84,19 +84,19 @@ export default function SupportFrictionCase() {
 
       {/* 03 EVIDENCE */}
       <section className="cs-reveal">
+        <CsArt name="read" />
         <span className="cs-num">03 / Reading the actual tickets</span>
         <h2>I read ~1,000 support tickets by hand</h2>
         <p>
-          Before proposing anything, I needed to know what people were actually asking. I went
-          through roughly <strong>1,000 support ticket entries</strong> from the back-office admin
-          panel, spanning about two years of activity, and read them manually.
+          Before proposing anything, I needed to know what people were actually asking. I read
+          roughly <strong>1,000 ticket entries</strong> from the back-office admin panel, spanning
+          about two years, by hand.
         </p>
         <p>
-          This was a deliberate choice, not a lack of tooling. The thing I was classifying — &quot;could
-          this person have self-served, given the right answer at the right moment?&quot; — is a
-          judgment call. It depends on tone, context, and what the user was actually trying to do,
-          not just keywords. Automated clustering would have grouped by surface words and missed
-          exactly the distinction the whole project hinged on.
+          A deliberate choice, not a lack of tooling. What I was classifying — &quot;could this
+          person have self-served, given the right answer at the right moment?&quot; — is a judgment
+          call. It rides on tone and context, not keywords. Automated clustering groups by surface
+          words and would have missed the exact distinction the project hinged on.
         </p>
         <p>
           I clustered the findings in FigJam using affinity mapping. Two layers came out of it.
@@ -168,18 +168,20 @@ export default function SupportFrictionCase() {
 
       {/* 04 DIRECTION */}
       <section className="cs-reveal">
+        <CsArt name="merge" />
         <span className="cs-num">04 / The direction</span>
         <h2>Merge the two surfaces into one</h2>
         <p>
-          The core move — and the part I owned — was deciding that the FAQ and ticket submission
-          shouldn&apos;t be two destinations. They should be <strong>one support surface</strong>,
-          where finding an answer and asking for help are the same flow, not a fork the user has to
-          navigate before they&apos;ve even started.
+          The core move, and the part I owned: FAQ and ticket submission shouldn&apos;t be two
+          destinations. They should be <strong>one support surface</strong>, where finding an answer
+          and asking for help are the same flow, not a fork the user navigates before they&apos;ve
+          even started.
         </p>
-        <div className="cs-mockup">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/support-faq.png`} alt="Unified support surface — FAQ and ticket in one flow" />
-        </div>
+        <Mockup
+          src="/projects/support-faq.png"
+          alt="Unified support surface, FAQ and ticket in one flow"
+          caption="Fig. 01 — One surface: search the answer, escalate only if needed"
+        />
         <p>
           We&apos;d discussed the problem space together as a team. But collapsing these two things
           into a single entry point, so the answer surfaces <em>before</em> the user commits to
@@ -192,10 +194,11 @@ export default function SupportFrictionCase() {
         <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
         <h2>The two decisions that shaped the build</h2>
 
-        <div className="cs-mockup">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/support-faq-filter.png`} alt="Real-time FAQ filtering as user types their issue" />
-        </div>
+        <Mockup
+          src="/projects/support-faq-filter.png"
+          alt="Real-time FAQ filtering as the user types their issue"
+          caption="Fig. 02 — Answers filter in live as the user describes the problem"
+        />
 
         <div className="cs-decision">
           <div className="dhead">

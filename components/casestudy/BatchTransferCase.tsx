@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Mockup from "./Mockup";
+import CsArt from "./CsArt";
 
 export default function BatchTransferCase() {
   return (
@@ -119,10 +121,11 @@ export default function BatchTransferCase() {
         <span className="cs-num">04 / Core decisions</span>
         <h2>Make risk visible before the money moves</h2>
 
-        <div className="cs-mockup">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/batch-upload.png`} alt="Batch upload screen — file submission and row preview" />
-        </div>
+        <Mockup
+          src="/projects/batch-upload.png"
+          alt="Batch upload screen, file submission and row preview"
+          caption="Fig. 01 — Upload and per-row preview before anything is committed"
+        />
 
         <div className="cs-decision">
           <div className="dhead">
@@ -162,6 +165,7 @@ export default function BatchTransferCase() {
 
       {/* 04b DECISION 02 */}
       <section className="cs-reveal">
+        <CsArt name="rows" />
         <span className="cs-num">04 / Core decisions</span>
         <h2>One broken row should stay one broken row</h2>
 
@@ -196,10 +200,11 @@ export default function BatchTransferCase() {
         <span className="cs-num">04 / What the approver sees</span>
         <h2>Verification at the moment of approval</h2>
 
-        <div className="cs-mockup">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/batch-validation.png`} alt="Pre-submission recipient verification — match percentage review" />
-        </div>
+        <Mockup
+          src="/projects/batch-validation.png"
+          alt="Pre-submission recipient verification, match percentage review"
+          caption="Fig. 02 — Name-match percentages surfaced at the approval step"
+        />
         <p>
           These two decisions sit inside a two-step authority model: a branch employee{" "}
           <strong>registers</strong> the request — no money moves yet, the verification result is

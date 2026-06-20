@@ -103,6 +103,15 @@
 
 .cs-divider { height: 1px; background: var(--line-soft); border: 0; margin: 0; }
 
+/* spot illustration — breaks up text panels */
+.cs-art {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 14px;
+  border: 1px solid var(--line-soft); background: var(--paper-warm);
+  color: var(--accent); margin-bottom: 20px;
+}
+.cs-horizontal .cs-art { width: 56px; height: 56px; margin-bottom: 16px; }
+
 /* pull statement */
 .cs-pull {
   font-weight: 600;
@@ -287,7 +296,40 @@
   box-shadow: 17px 0 0 #f4be4f, 34px 0 0 #61c554;
 }
 .cs-mockup img { display: block; width: 100%; height: auto; }
-.cs-mockup-caption { font-size: 12.5px; color: var(--ink-faint); margin: -14px 0 16px; font-family: var(--font-mono), monospace; letter-spacing: .04em; }
+.cs-mockup-caption { font-size: 12.5px; color: var(--ink-faint); margin: 8px 0 16px; font-family: var(--font-mono), monospace; letter-spacing: .04em; }
+
+/* "hover to enlarge" affordance */
+.cs-mockup { cursor: zoom-in; }
+.cs-mockup-zoom {
+  position: absolute; bottom: 10px; right: 10px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono), monospace; font-size: 10.5px;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink); background: rgba(18,19,20,.72);
+  border: 1px solid var(--line); backdrop-filter: blur(6px);
+  padding: 5px 10px; border-radius: 100px;
+  opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+.cs-mockup:hover .cs-mockup-zoom { opacity: 1; transform: none; }
+
+/* full-screen enlarged preview */
+.cs-lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4vh 4vw;
+  background: rgba(10,11,12,.86); backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none; transition: opacity .28s ease;
+  cursor: zoom-out;
+}
+.cs-lightbox.open { opacity: 1; pointer-events: auto; }
+.cs-lightbox img {
+  max-width: 100%; max-height: 100%;
+  border-radius: 12px; border: 1px solid var(--line);
+  box-shadow: 0 40px 120px rgba(0,0,0,.7);
+  transform: scale(.97); transition: transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.cs-lightbox.open img { transform: scale(1); }
 
 @media (prefers-reduced-motion: reduce) {
   .cs-mockup { opacity: 1; transform: none; transition: none; }
@@ -378,7 +420,8 @@
 .cs-horizontal .cs-reflect { margin-bottom: 16px; }
 .cs-horizontal .cs-card { padding: 22px 24px; margin-bottom: 14px; }
 .cs-horizontal .cs-chart { padding: 22px 24px 18px; }
-.cs-horizontal .cs-mockup { margin: 4px 0 16px; }
+.cs-horizontal .cs-mockup { margin: 4px 0 14px; max-height: 230px; }
+.cs-horizontal .cs-mockup img { max-height: 198px; object-fit: cover; object-position: top; }
 .cs-horizontal .cs-status { padding: 24px 26px; }
 
 /* divider between hero and first section isn't needed horizontally */
