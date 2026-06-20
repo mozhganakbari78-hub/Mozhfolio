@@ -80,13 +80,6 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
 
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return; // real horizontal intent
-      const el = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-      const panel = el?.closest(".cs-panel") as HTMLElement | null;
-      if (panel) {
-        const canDown = e.deltaY > 0 && panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1;
-        const canUp = e.deltaY < 0 && panel.scrollTop > 0;
-        if (canDown || canUp) return; // let the panel scroll vertically
-      }
       e.preventDefault();
       const max = track.scrollWidth - track.clientWidth;
       // re-sync target if the user interrupted with a jump or drag

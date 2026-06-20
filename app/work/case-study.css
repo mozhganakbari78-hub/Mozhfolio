@@ -12,8 +12,8 @@
   --paper-cool: #14161f;
   --line: #20222f;
   --line-soft: #1a1c28;
-  --accent: #7b8fff;
-  --accent-soft: rgba(123, 143, 255, 0.14);
+  --accent: #0174DC;
+  --accent-soft: rgba(1, 116, 220, 0.14);
   --signal: #e8836e;
   --signal-soft: rgba(232, 131, 110, 0.22);
   --resolve: #5fcaa6;
@@ -269,7 +269,7 @@
   flex: 0 0 auto;
   width: min(820px, 92vw);
   height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   padding: 46px 52px 60px;
   border-right: 1px solid var(--line-soft);
