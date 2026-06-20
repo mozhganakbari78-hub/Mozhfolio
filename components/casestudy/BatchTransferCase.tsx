@@ -235,7 +235,6 @@ export default function BatchTransferCase() {
           something fragile to hit a date. I handled it by sequencing, not by cutting corners on the
           part that had to be safe.
         </p>
-
         <div className="cs-card">
           <div className="cs-phase">
             <div className="phtag">Phase 1</div>
@@ -243,9 +242,8 @@ export default function BatchTransferCase() {
               <h3>Ship the safe core first</h3>
               <p>
                 The new system with independent row handling launched first to a limited set of
-                branches. Real employees ran real batches and gave feedback. Verification was
-                deliberately <strong>not</strong> in this release. It was the most complex,
-                error-prone piece, and I didn&apos;t want it on the critical path to the deadline.
+                branches. Verification was deliberately <strong>not</strong> in this release,
+                it was the most complex piece and I didn&apos;t want it on the critical path.
               </p>
             </div>
           </div>
@@ -254,22 +252,27 @@ export default function BatchTransferCase() {
             <div>
               <h3>Add the trust layer on real usage</h3>
               <p>
-                In the window after launch, we built recipient verification, the match percentage,
-                and the 96% threshold, and shaped them against how branches were actually using the
-                tool, not against assumptions.
+                After launch, we built recipient verification, the match percentage, and the 96%
+                threshold, shaped against how branches actually used the tool.
               </p>
             </div>
           </div>
         </div>
+      </section>
 
+      {/* 05b TRADE-OFF cont */}
+      <section className="cs-reveal">
+        <span className="cs-num">05 / Optional by design</span>
+        <h2>Verification is opt-in, per batch</h2>
         <p>
-          I also made verification <strong>optional</strong> per batch. It adds a lookup pass and
-          time, and not every file needs it. Leaving the choice with the branch, rather than forcing
-          it on every run, kept the tool fast for routine cases while making the check available the
-          moment trust mattered. That was a deliberate call, with a real trade-off: it means a
-          hurried approver can skip the check, so the design leans on making the verified state the
-          obviously safer-looking path.
+          It adds a lookup pass and time, and not every file needs it. Leaving the choice with the
+          branch, rather than forcing it on every run, kept the tool fast for routine cases while
+          making the check available the moment trust mattered.
         </p>
+        <div className="cs-pull">
+          A hurried approver can skip the check, so the design leans on making the verified state
+          the obviously safer-looking path.
+        </div>
       </section>
 
       {/* 06 SYSTEM LEVERAGE */}
