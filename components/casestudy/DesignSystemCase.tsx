@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import Mockup from "./Mockup";
 import { TokenBridge, GovernanceFlow } from "./CsInlineArt";
 
 const components = [
@@ -215,6 +216,15 @@ export default function DesignSystemCase() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* SHOT — design system overview */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/design-system.png"
+          alt="Design system components and tokens, layered on Ant Design"
+          caption="Fig. 01: Component coverage shipped on top of the existing Ant Design foundation"
+        />
       </section>
 
       {/* 05 GOVERNANCE */}

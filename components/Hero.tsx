@@ -71,17 +71,27 @@ export default function Hero() {
           {/* Tagline */}
           <motion.p
             variants={fadeUp}
-            className="max-w-2xl leading-snug mb-12"
+            className="max-w-4xl leading-snug mb-4"
             style={{
-              fontSize: "clamp(20px, 3vw, 32px)",
+              fontSize: "clamp(18px, 2vw, 24px)",
               fontWeight: 300,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               color: "var(--text-secondary)",
             }}
           >
-            I design products that cannot afford confusion --
-            <br className="hidden md:block" />
-            complex workflows, enterprise tools, systems at scale.
+            I design products that cannot afford confusion.
+          </motion.p>
+          <motion.p
+            variants={fadeUp}
+            className="max-w-4xl leading-snug mb-12"
+            style={{
+              fontSize: "clamp(16px, 1.6vw, 20px)",
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+              color: "var(--text-tertiary)",
+            }}
+          >
+            Complex workflows, enterprise tools, systems at scale.
           </motion.p>
 
           {/* CTAs */}

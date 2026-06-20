@@ -32,6 +32,35 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-28 md:py-40 px-6 overflow-hidden" aria-labelledby="contact-heading">
+      {/* Pulsing aurora glow */}
+      <motion.div
+        className="absolute pointer-events-none rounded-full blur-3xl"
+        aria-hidden="true"
+        style={{
+          background: "var(--accent-color)",
+          width: 720,
+          height: 720,
+          top: "-10%",
+          left: "10%",
+          opacity: 0.18,
+        }}
+        animate={{ opacity: [0.1, 0.22, 0.1], scale: [0.95, 1.05, 0.95] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute pointer-events-none rounded-full blur-3xl"
+        aria-hidden="true"
+        style={{
+          background: "var(--accent-color)",
+          width: 540,
+          height: 540,
+          bottom: "-10%",
+          right: "5%",
+          opacity: 0.12,
+        }}
+        animate={{ opacity: [0.06, 0.16, 0.06], scale: [1.05, 0.95, 1.05] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+      />
       {/* Hexagon outline motif */}
       <svg
         className="absolute left-1/2 top-0 -translate-x-1/2 w-[1100px] max-w-none pointer-events-none"
@@ -91,10 +120,12 @@ export default function Contact() {
               className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 leading-[1.02]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Let&apos;s build something worth the detail.
+              The next problem worth solving.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m open to product design roles, especially in B2B, enterprise, or fintech. If you&apos;re building something complex and want a designer who will read the tickets, I&apos;d like to hear about it.
+              I&apos;m considering senior product design roles where the work involves real complexity:
+              regulated domains, enterprise tooling, fintech, multi-stakeholder systems. If you&apos;re
+              building something where every decision compounds, let&apos;s talk.
             </p>
 
             <div className="space-y-3 mb-10">
