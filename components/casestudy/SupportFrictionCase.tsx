@@ -107,7 +107,12 @@ export default function SupportFrictionCase() {
             human.
           </strong>
         </p>
+      </section>
 
+      {/* 03b EVIDENCE — chart */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The shape of the data</span>
+        <h2>What the tickets actually showed</h2>
         <div className="cs-chart">
           <div className="ct">Tickets by area — answerable vs. needs-support</div>
           <div className="cnote">
