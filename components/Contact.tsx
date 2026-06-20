@@ -123,9 +123,9 @@ export default function Contact() {
               The next problem worth solving.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-              I love working on products with a bit of mess in them — edge cases, real users,
-              real constraints. Fintech, enterprise tools, anything where the details actually
-              matter. If that sounds like your world, I&apos;d love to chat.
+              I love working on products with a bit of mess in them, the kind where details
+              actually matter and small decisions add up. If that sounds like your world,
+              I&apos;d love to chat.
             </p>
 
             <div className="space-y-3 mb-10">
