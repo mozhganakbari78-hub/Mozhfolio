@@ -536,16 +536,76 @@
   .cs-horizontal article > .cs-hero { padding-top: 40px; }
 }
 
-@media (max-width: 600px) {
+/* ── Mobile: switch horizontal layout to vertical ───────────────────────── */
+@media (max-width: 680px) {
+  /* reset horizontal shell to normal vertical flow */
+  .cs-horizontal {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    display: block;
+  }
+  .cs-horizontal .cs-bar { position: sticky; top: 0; }
+
+  /* track becomes a normal block */
+  .cs-htrack {
+    flex: none;
+    overflow: visible;
+    height: auto;
+  }
+
+  /* article stacks vertically */
+  .cs-horizontal article {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* every panel becomes a normal block */
+  .cs-horizontal article > * {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 36px 22px !important;
+    border-right: 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .cs-horizontal article > .cs-hero { padding-top: 44px !important; }
+  .cs-horizontal article > .cs-next { display: block; border-top: 1px solid var(--line); }
+  .cs-horizontal article > .cs-foot { display: block; }
+  .cs-horizontal article > .cs-shot { padding: 16px 16px !important; }
+
+  /* undo panel-compact overrides so sections breathe again */
+  .cs-horizontal article > section { padding: 36px 22px !important; }
+  .cs-horizontal article > section > h2 { margin-bottom: 20px; }
+  .cs-horizontal article > section > p { margin-bottom: 16px; }
+  .cs-horizontal .cs-decision { margin-bottom: 18px; }
+  .cs-horizontal .cs-step { padding: 18px 0; }
+  .cs-horizontal .cs-reflect { margin-bottom: 20px; }
+  .cs-horizontal .cs-card { padding: 20px 18px; margin-bottom: 16px; }
+
+  /* mockup: disable the scale/opacity scroll-link effect on mobile */
+  .cs-mockup {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cs-shot .cs-mockup img { max-height: 70vw; }
+
+  /* hide timeline on mobile — replaced by normal scroll */
+  .cs-timeline { display: none; }
+
+  /* other mobile fixes */
   .cs-root { font-size: 16px; }
-  .cs-wrap { padding: 0 20px; }
-  .cs-hero { padding: 48px 0; }
   .cs-meta div { flex: 1 1 50%; }
   .cs-compare { grid-template-columns: 1fr; }
-  .cs-decision .dbody, .cs-decision .dhead { padding-left: 22px; padding-right: 22px; }
-  .cs-card { padding: 24px 22px; }
-  .cs-chart { padding: 22px 20px; }
-  .cs-vt table { font-size: 12.5px; }
+  .cs-decision .dbody, .cs-decision .dhead { padding-left: 18px; padding-right: 18px; }
+  .cs-card { padding: 20px 18px; }
+  .cs-chart { padding: 20px 18px; }
+  .cs-vt table { font-size: 13px; }
   .cs-vt th, .cs-vt td { padding: 10px 10px; }
   .cs-phase { grid-template-columns: 1fr; gap: 6px; }
+  .cs-tkcols { grid-template-columns: 1fr; }
+  .cs-tkcol.mine { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+  .cs-signal { grid-template-columns: 1fr; }
+  .cs-signal .arrow { transform: rotate(90deg); justify-self: center; }
 }

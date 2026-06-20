@@ -64,6 +64,8 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    // On mobile (≤680px) the layout is vertical — skip horizontal scroll setup.
+    if (window.innerWidth <= 680) return;
 
     targetX.current = track.scrollLeft;
     const SPEED = 1.5; // wheel-to-horizontal gain
@@ -142,6 +144,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    if (window.innerWidth <= 680) return;
     const mockups = Array.from(track.querySelectorAll<HTMLElement>(".cs-mockup"));
 
     // Konpo-style reveal: each image grows from a smaller card to full size as
