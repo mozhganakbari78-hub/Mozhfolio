@@ -115,7 +115,7 @@ export default function Projects() {
               {/* Left: content */}
               <div className="p-7 md:p-10 flex flex-col">
                 <div className="mono-label mb-4" style={{ color: "var(--text-tertiary)" }}>
-                  In progress · 2025
+                  In progress
                 </div>
                 <h3
                   className="text-2xl md:text-3xl font-semibold tracking-tight mb-3"

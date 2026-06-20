@@ -318,7 +318,7 @@
   background: #ec6a5e;
   box-shadow: 17px 0 0 #f4be4f, 34px 0 0 #61c554;
 }
-.cs-mockup img { display: block; width: 100%; height: auto; }
+.cs-mockup img { display: block; width: 100%; height: auto; image-rendering: -webkit-optimize-contrast; backface-visibility: hidden; transform: translateZ(0); }
 .cs-mockup-caption { font-size: 12.5px; color: var(--ink-faint); margin: 12px 0 0; font-family: var(--font-mono), monospace; letter-spacing: .04em; }
 
 @media (prefers-reduced-motion: reduce) {

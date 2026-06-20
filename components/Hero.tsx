@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import ParticleField from "./ParticleField";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -24,6 +25,9 @@ export default function Hero() {
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <ParticleField />
+      </div>
 
       {/* Radial fade from bottom */}
       <div
