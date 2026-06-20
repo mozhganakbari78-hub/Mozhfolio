@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
+import { AffinityMap, UnifiedFlow } from "./CsInlineArt";
 
 export default function SupportFrictionCase() {
   return (
@@ -109,6 +110,9 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
+      {/* 03 inline art */}
+      <AffinityMap />
+
       {/* 03b EVIDENCE — chart */}
       <section className="cs-reveal">
         <span className="cs-num">03 / The shape of the data</span>
@@ -187,6 +191,9 @@ export default function SupportFrictionCase() {
           waiting on a ticket. That was the call I pushed for.
         </p>
       </section>
+
+      {/* 04 inline art */}
+      <UnifiedFlow />
 
       {/* SHOT — unified surface */}
       <section className="cs-shot cs-reveal">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
+import { MatchThreshold, RowIsolation, DsSpeed } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
   return (
@@ -157,6 +158,9 @@ export default function BatchTransferCase() {
         </div>
       </section>
 
+      {/* 04a inline art */}
+      <MatchThreshold />
+
       {/* SHOT — batch upload */}
       <section className="cs-shot cs-reveal">
         <Mockup
@@ -197,6 +201,9 @@ export default function BatchTransferCase() {
           </div>
         </div>
       </section>
+
+      {/* 04b inline art */}
+      <RowIsolation />
 
       {/* SHOT — validation */}
       <section className="cs-shot cs-reveal">
@@ -301,6 +308,9 @@ export default function BatchTransferCase() {
           pressure arrived.
         </p>
       </section>
+
+      {/* 06 inline art */}
+      <DsSpeed />
 
       {/* 07 OUTCOME */}
       <section className="cs-reveal">

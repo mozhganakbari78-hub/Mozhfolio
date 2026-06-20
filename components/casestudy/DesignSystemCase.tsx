@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import { TokenBridge, GovernanceFlow } from "./CsInlineArt";
 
 const components = [
   "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
@@ -150,6 +151,9 @@ export default function DesignSystemCase() {
         </div>
       </section>
 
+      {/* 03 inline art */}
+      <TokenBridge />
+
       {/* 03b DECISION */}
       <section className="cs-reveal">
         <span className="cs-num">03 / The decision</span>
@@ -236,6 +240,9 @@ export default function DesignSystemCase() {
           </div>
         </div>
       </section>
+
+      {/* 05 inline art */}
+      <GovernanceFlow />
 
       {/* 06 OUTCOME */}
       <section className="cs-reveal">
