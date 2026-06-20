@@ -54,18 +54,9 @@ export default function Projects() {
               >
                 {/* Left: content */}
                 <div className="p-7 md:p-10 flex flex-col">
-                  <div className="flex flex-wrap items-center gap-2 mb-6">
-                    {cs.tags.slice(0, 4).map((tag, ti) => {
-                      const colors = ["purple", "pink", "yellow", "teal", "blue"];
-                      const c = colors[(i * 2 + ti) % colors.length];
-                      return (
-                        <span key={tag} className={`tag-pill tag-pill--${c}`}>
-                          {tag}
-                        </span>
-                      );
-                    })}
+                  <div className="mono-label mb-4" style={{ color: "var(--text-tertiary)" }}>
+                    {cs.meta}
                   </div>
-
                   <h3
                     className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
                     style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
@@ -73,30 +64,11 @@ export default function Projects() {
                     {cs.title}
                   </h3>
                   <p
-                    className="text-sm md:text-base leading-relaxed mb-8"
-                    style={{ color: "var(--text-secondary)" }}
+                    className="text-sm md:text-base leading-relaxed line-clamp-2 mb-8"
+                    style={{ color: "var(--text-tertiary)" }}
                   >
                     {cs.short}
                   </p>
-
-                  <div className="grid grid-cols-3 gap-4 mb-8 max-w-md">
-                    {cs.stats.map((s) => (
-                      <div key={s.label}>
-                        <div
-                          className="text-2xl md:text-3xl font-semibold tracking-tight"
-                          style={{ color: "var(--accent-color)", letterSpacing: "-0.02em" }}
-                        >
-                          {s.value}
-                        </div>
-                        <div
-                          className="mono-label mt-1"
-                          style={{ color: "var(--text-tertiary)" }}
-                        >
-                          {s.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
 
                   <div className="mt-auto">
                     <span
