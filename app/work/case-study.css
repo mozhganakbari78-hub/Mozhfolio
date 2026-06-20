@@ -256,7 +256,7 @@
 .cs-htrack {
   flex: 1 1 auto; min-height: 0;
   overflow-x: auto; overflow-y: hidden;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 .cs-htrack::-webkit-scrollbar { height: 8px; }
 .cs-htrack::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }

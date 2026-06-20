@@ -46,22 +46,53 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     setPanels(built);
   }, []);
 
-  // Wheel: vertical → horizontal, boundary-aware so tall panels scroll first.
+  // Wheel: vertical → horizontal with inertial rAF lerp (smooth + fast).
+  const targetX = useRef(0);
+  const animating = useRef(false);
+  const kickRef = useRef<(() => void) | null>(null);
+
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
+    targetX.current = track.scrollLeft;
+    const SPEED = 1.5; // wheel-to-horizontal gain
+    const EASE = 0.16; // higher = snappier
+
+    const animate = () => {
+      const cur = track.scrollLeft;
+      const diff = targetX.current - cur;
+      if (Math.abs(diff) < 0.5) {
+        track.scrollLeft = targetX.current;
+        animating.current = false;
+        return;
+      }
+      track.scrollLeft = cur + diff * EASE;
+      requestAnimationFrame(animate);
+    };
+    const kick = () => {
+      if (!animating.current) {
+        animating.current = true;
+        requestAnimationFrame(animate);
+      }
+    };
+    kickRef.current = kick;
+
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return; // real horizontal intent
-      const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-      const panel = target?.closest(".cs-panel") as HTMLElement | null;
+      const el = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      const panel = el?.closest(".cs-panel") as HTMLElement | null;
       if (panel) {
         const canDown = e.deltaY > 0 && panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1;
         const canUp = e.deltaY < 0 && panel.scrollTop > 0;
         if (canDown || canUp) return; // let the panel scroll vertically
       }
       e.preventDefault();
-      track.scrollLeft += e.deltaY;
+      const max = track.scrollWidth - track.clientWidth;
+      // re-sync target if the user interrupted with a jump or drag
+      if (!animating.current) targetX.current = track.scrollLeft;
+      targetX.current = Math.max(0, Math.min(max, targetX.current + e.deltaY * SPEED));
+      kick();
     };
 
     track.addEventListener("wheel", onWheel, { passive: false });
@@ -120,7 +151,10 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
   const jumpTo = (i: number) => {
     const track = trackRef.current;
     const p = panels[i];
-    if (track && p) track.scrollTo({ left: p.el.offsetLeft, behavior: "smooth" });
+    if (!track || !p) return;
+    const max = track.scrollWidth - track.clientWidth;
+    targetX.current = Math.max(0, Math.min(max, p.el.offsetLeft));
+    kickRef.current?.();
   };
 
   // Timeline labels: skip the trailing End/footer panel for a cleaner bar.
