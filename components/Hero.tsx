@@ -122,10 +122,10 @@ export default function Hero() {
             style={{ borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
           >
             {[
-              { label: "Banking & fintech", note: "primary domain" },
-              { label: "5+ years", note: "experience" },
-              { label: "29 components", note: "design system shipped" },
-              { label: "Enterprise UX", note: "focus area" },
+              { label: "4 years", note: "shipping live products" },
+              { label: "Banking · Crypto · IoT", note: "domains designed for" },
+              { label: "29 components", note: "design system, owned solo" },
+              { label: "CS background", note: "engineering-fluent by training" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col gap-0.5">
                 <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
