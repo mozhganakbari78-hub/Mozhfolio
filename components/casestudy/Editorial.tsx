@@ -229,7 +229,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
           </Link>
           <span className="cs-sig">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/Profile.png`} alt="" className="cs-avatar" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/Profile.JPG`} alt="" className="cs-avatar" />
             Mozhgan Akbari
           </span>
         </div>
