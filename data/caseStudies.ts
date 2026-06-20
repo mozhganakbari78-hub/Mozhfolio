@@ -3,7 +3,7 @@
 // a varied block vocabulary so each page has rhythm and pulls the reader down.
 
 export type Block =
-  // Oversized opening line — the hook.
+  // Oversized opening line the hook.
   | { type: "lead"; text: string }
   // Big-number callout row.
   | { type: "stats"; items: { value: string; label: string }[] }
@@ -45,7 +45,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["UX Research", "Content Architecture", "Support Experience", "Enterprise Product"],
     meta: "Product Design · Content Strategy",
     facts: [
-      { label: "Role", value: "UX / Product Designer — content architecture" },
+      { label: "Role", value: "Product Designer, content architecture" },
       { label: "Platform", value: "Enterprise banking · 400K users" },
       { label: "Dataset", value: "734 entries · 2 years, read by hand" },
       { label: "Status", value: "Pre-launch (test environment)" },
@@ -65,7 +65,7 @@ export const caseStudies: CaseStudy[] = [
         kicker: "01 · Context",
         heading: "Nobody comes here to browse.",
         body: [
-          "One of Iran's largest enterprise banking platforms — 400,000 users across 180,000 organizations. They come to move money, issue cheques, run batch payments.",
+          "One of Iran's largest enterprise banking platforms 400,000 users across 180,000 organizations. They come to move money, issue cheques, run batch payments.",
           "When something is unclear, it doesn't cause minor friction. It blocks a workflow and turns into a support ticket. The support system split help into two pages: an FAQ, and a ticket form. To use it, you had to know which one you needed before you understood your own problem well enough to choose. Most people gave up and filed a ticket.",
         ],
       },
@@ -74,9 +74,9 @@ export const caseStudies: CaseStudy[] = [
         kicker: "02 · Problem",
         heading: "A pattern showed up fast.",
         body: [
-          "I pulled two years of feedback from the back-office admin panel and read all 734 entries — about 30 a month. A large share of tickets had static, knowable answers. No account lookup, no agent needed. People just didn't know where to look.",
+          "I pulled two years of feedback from the back-office admin panel and read all 734 entries about 30 a month. A large share of tickets had static, knowable answers. No account lookup, no agent needed. People just didn't know where to look.",
           "The old FAQ wasn't catching any of it. It was organized by feature name instead of user problem, had no search, and lived on a separate page from the ticket form.",
-          "The question I started with: how much of this volume is actually self-serviceable — and what would the content need to look like to work?",
+          "The question I started with: how much of this volume is actually self-serviceable and what would the content need to look like to work?",
         ],
       },
       {
@@ -91,8 +91,8 @@ export const caseStudies: CaseStudy[] = [
       {
         type: "stats",
         items: [
-          { value: "~45%", label: "FAQ-addressable — static answer, no agent" },
-          { value: "~55%", label: "needs real support — account-specific" },
+          { value: "~45%", label: "FAQ-addressable static answer, no agent" },
+          { value: "~55%", label: "needs real support account-specific" },
         ],
       },
       {
@@ -100,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
         kicker: "04 · My Role",
         heading: "Two-person project. The analysis and content architecture were mine.",
         body: [
-          "I read the ~734 entries manually and logged each one on a FigJam sticky note, grouped by topic. Manual, because the call — is this within the user's control, or does it need account access? — depended on context a keyword filter would miss.",
+          "I read the ~734 entries manually and logged each one on a FigJam sticky note, grouped by topic. Manual, because the call is this within the user's control, or does it need account access? depended on context a keyword filter would miss.",
           "The recurring clusters became the category structure directly. And I wrote the FAQ questions in the user's words from the ticket text, not the product team's feature names.",
         ],
       },
@@ -109,9 +109,9 @@ export const caseStudies: CaseStudy[] = [
         kicker: "05 · Constraints",
         heading: "Three limits I designed around.",
         items: [
-          { title: "Locked taxonomy", text: "The old categories were tied to ticket history in the database. Renaming them would silently break filtering for users tracking active cases — a real regression at this scale." },
-          { title: "Search at 150 questions", text: "Browsing alone breaks down. Plain string-matching wasn't enough either — user language and product language rarely match." },
-          { title: "Pre-launch", text: "The redesign sits in a test environment. No live data yet — which shaped how I framed every success metric." },
+          { title: "Locked taxonomy", text: "The old categories were tied to ticket history in the database. Renaming them would silently break filtering for users tracking active cases a real regression at this scale." },
+          { title: "Search at 150 questions", text: "Browsing alone breaks down. Plain string-matching wasn't enough either user language and product language rarely match." },
+          { title: "Pre-launch", text: "The redesign sits in a test environment. No live data yet which shaped how I framed every success metric." },
         ],
       },
       {
@@ -119,10 +119,10 @@ export const caseStudies: CaseStudy[] = [
         kicker: "06 · Key Decisions",
         heading: "Four calls that shaped the redesign.",
         items: [
-          { title: "Merge FAQ and ticket into one page", text: "Two surfaces forced a choice users couldn't yet make. I put both on one page, ticket CTA always visible — not buried under the FAQ." },
+          { title: "Merge FAQ and ticket into one page", text: "Two surfaces forced a choice users couldn't yet make. I put both on one page, ticket CTA always visible not buried under the FAQ." },
           { title: "Keyword search with per-question tagging", text: "Someone searching “how to add a user” won't type the product's exact term. Tags bridge user language and product language." },
-          { title: "Preserve legacy categories, migrate where possible", text: "A full rebuild would break filtering for 400k users. I migrated questions where the mapping was clean and added an “Other” catch-all for the rest — knowingly trading taxonomic purity for stability." },
-          { title: "Real-time FAQ filtering beside the ticket field", text: "Users filing a ticket are mid-task and under pressure. As they type their message, matching FAQ answers surface live on the same page — no extra step, no decision." },
+          { title: "Preserve legacy categories, migrate where possible", text: "A full rebuild would break filtering for 400k users. I migrated questions where the mapping was clean and added an “Other” catch-all for the rest knowingly trading taxonomic purity for stability." },
+          { title: "Real-time FAQ filtering beside the ticket field", text: "Users filing a ticket are mid-task and under pressure. As they type their message, matching FAQ answers surface live on the same page no extra step, no decision." },
         ],
       },
       {
@@ -139,23 +139,23 @@ export const caseStudies: CaseStudy[] = [
       {
         type: "section",
         kicker: "08 · Outcome",
-        heading: "In test, not launched — so these are targets, not wins.",
+        heading: "In test, not launched so these are targets, not wins.",
         body: [
-          "These are pre-launch targets tied to the analysis, not measured results. Ticket volume — baseline is ~14 addressable tickets/month (the 45% the analysis flagged, out of the ~30 total monthly tickets); the first 60 days set a real conversion rate. Zero-result searches — search is new; the first 30 days set the baseline. FAQ-to-ticket conversion — wasn't trackable before; now it is.",
+          "These are pre-launch targets tied to the analysis, not measured results. Ticket volume baseline is ~14 addressable tickets/month (the 45% the analysis flagged, out of the ~30 total monthly tickets); the first 60 days set a real conversion rate. Zero-result searches search is new; the first 30 days set the baseline. FAQ-to-ticket conversion wasn't trackable before; now it is.",
           "I'm calling these out as targets, not wins. There's no live data yet, and pretending otherwise wouldn't be honest.",
         ],
       },
       {
         type: "quote",
-        text: "Support content is part of the product, not adjacent to it. Unclear guidance on a working feature produces the same behavior as a broken one — both end in a ticket.",
+        text: "Support content is part of the product, not adjacent to it. Unclear guidance on a working feature produces the same behavior as a broken one both end in a ticket.",
       },
       {
         type: "split",
         kicker: "09 · Reflection",
         heading: "What I'd do differently.",
         body: [
-          "Reading 734 entries by hand was the only way to tell a content gap from an access issue from an actual bug — three problems that look identical in a dashboard and need completely different fixes.",
-          "The taxonomy I inherited wasn't a bad decision. It was a reasonable one made before scale made its cost visible — worth remembering the next time I make a structural call that someone inherits later.",
+          "Reading 734 entries by hand was the only way to tell a content gap from an access issue from an actual bug three problems that look identical in a dashboard and need completely different fixes.",
+          "The taxonomy I inherited wasn't a bad decision. It was a reasonable one made before scale made its cost visible worth remembering the next time I make a structural call that someone inherits later.",
           "The keyword tagging shipped without an owner for upkeep: who updates tags when a feature is renamed? I flagged it but didn't resolve it before handoff. Next time that gets decided up front, not left as an operational afterthought.",
         ],
       },
@@ -170,7 +170,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Product Design", "Workflow Design", "Error Recovery", "B2B Finance"],
     meta: "Product Design · Workflow Design",
     facts: [
-      { label: "Role", value: "Product Design — flow, UI, prototype" },
+      { label: "Role", value: "Product Designer, flow UI and prototype" },
       { label: "Domain", value: "B2B Banking · 2026" },
       { label: "Team", value: "Two designers" },
       { label: "Constraint", value: "Fixed, non-negotiable deadline" },
@@ -178,7 +178,7 @@ export const caseStudies: CaseStudy[] = [
     blocks: [
       {
         type: "lead",
-        text: "One wrong account number in a batch of 200 could blow up an employee's entire afternoon. The fix wasn't a prettier screen — it was changing what failure even means.",
+        text: "One wrong account number in a batch of 200 could blow up an employee's entire afternoon. The fix wasn't a prettier screen it was changing what failure even means.",
       },
       {
         type: "stats",
@@ -194,8 +194,8 @@ export const caseStudies: CaseStudy[] = [
         kicker: "01 · Context",
         heading: "The clients who never came online",
         body: [
-          "Some corporate clients simply wouldn't transact digitally — security policy, internal approval rules, institutional caution. They kept bringing physical cheques and an Excel payment file into a branch, where an employee processed the batch by hand through an internal tool.",
-          "The bank already had a legacy tool for this. But it created friction exactly where reliability mattered most: slow, error-prone, and unforgiving. We were asked to replace it — on a fixed timeline.",
+          "Some corporate clients simply wouldn't transact digitally security policy, internal approval rules, institutional caution. They kept bringing physical cheques and an Excel payment file into a branch, where an employee processed the batch by hand through an internal tool.",
+          "The bank already had a legacy tool for this. But it created friction exactly where reliability mattered most: slow, error-prone, and unforgiving. We were asked to replace it on a fixed timeline.",
         ],
       },
       {
@@ -204,11 +204,11 @@ export const caseStudies: CaseStudy[] = [
         heading: "All-or-nothing was the real bug",
         before: {
           title: "Legacy: one block",
-          text: "The file was treated as a single object. One bad row — wrong IBAN, unverifiable recipient — failed all 200. The employee only found out at the very end, then hunted through Excel, fixed it, and re-uploaded everything.",
+          text: "The file was treated as a single object. One bad row wrong IBAN, unverifiable recipient failed all 200. The employee only found out at the very end, then hunted through Excel, fixed it, and re-uploaded everything.",
         },
         after: {
           title: "Redesign: one row",
-          text: "Each transaction is validated independently before submission, with recipient checks where possible and a clear review state. A mistake becomes one row to fix — not a reason to restart the afternoon.",
+          text: "Each transaction is validated independently before submission, with recipient checks where possible and a clear review state. A mistake becomes one row to fix not a reason to restart the afternoon.",
         },
       },
       {
@@ -216,7 +216,7 @@ export const caseStudies: CaseStudy[] = [
         kicker: "03 · My role",
         heading: "Research together, design owned",
         body: [
-          "I worked with one other designer. We ran the research together — visiting branches in person, watching employees process real files under real time pressure.",
+          "I worked with one other designer. We ran the research together visiting branches in person, watching employees process real files under real time pressure.",
           "After research, I owned the product design end to end: the flow, the wireframes, the stakeholder prototype, and the final UI. The interaction and interface decisions for the batch experience were mine.",
         ],
       },
@@ -230,7 +230,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "Speed came from reuse, not shortcuts",
         body: [
           "The deadline was hard, which ruled out the ideal path of research → design → full usability testing → iteration → launch. The usual risk is that quality gets traded for speed.",
-          "Here, speed came from somewhere else. I'd already built a design system for another banking product — intentionally beyond its immediate need, with shared components, tokens, and states. So instead of designing every screen from zero, I assembled this flow from an existing foundation and spent my attention on the workflow logic and edge cases. The speed was systems work that had already been done on purpose.",
+          "Here, speed came from somewhere else. I'd already built a design system for another banking product intentionally beyond its immediate need, with shared components, tokens, and states. So instead of designing every screen from zero, I assembled this flow from an existing foundation and spent my attention on the workflow logic and edge cases. The speed was systems work that had already been done on purpose.",
         ],
       },
       {
@@ -241,7 +241,7 @@ export const caseStudies: CaseStudy[] = [
           { title: "Surface problems early", text: "Don't make employees wait until the end to learn a file failed." },
           { title: "Errors are row-level", text: "A problem points to the exact transaction that needs attention." },
           { title: "Verify, don't guess", text: "Recipient and account checks let employees trust a batch before submitting." },
-          { title: "Reuse the system", text: "Under pressure, consistency and speed come from shared components — not one-off UI." },
+          { title: "Reuse the system", text: "Under pressure, consistency and speed come from shared components not one-off UI." },
         ],
       },
       {
@@ -249,7 +249,7 @@ export const caseStudies: CaseStudy[] = [
         kicker: "06 · Process",
         heading: "How it actually got built and shipped",
         items: [
-          { title: "In-person branch research", text: "The pain was operational and only legible on site — real client files, real time pressure, real stakes." },
+          { title: "In-person branch research", text: "The pain was operational and only legible on site real client files, real time pressure, real stakes." },
           { title: "Wireframes + prototype", text: "I locked the structure of the flow early, so disagreements happened before engineering effort was spent." },
           { title: "Controlled single-branch rollout", text: "With no time for a full usability cycle, we launched in one branch on live batches and iterated on real feedback before expanding." },
         ],
@@ -260,7 +260,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "Honest about what I can claim",
         body: [
           "The tool launched through that controlled rollout, was used on live payment batches, and was adjusted before broader expansion.",
-          "I don't have instrumented before/after metrics — the bank didn't share that data, and I won't turn observation into fake precision. What I can say plainly: the core failure mode of the old system, one invalid row rejecting the whole batch with no useful feedback, was removed from the workflow. With operational data, I'd measure failed-batch rate, re-uploads per batch, and time to fix a bad row.",
+          "I don't have instrumented before/after metrics the bank didn't share that data, and I won't turn observation into fake precision. What I can say plainly: the core failure mode of the old system, one invalid row rejecting the whole batch with no useful feedback, was removed from the workflow. With operational data, I'd measure failed-batch rate, re-uploads per batch, and time to fix a bad row.",
         ],
       },
       {
@@ -269,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "Systems work is invisible until it saves you",
         body: [
           "A forced timeline is usually where quality gets fragile. This project held together because the design system had been built for reuse before the pressure arrived.",
-          "What I'd do differently: push for at least one structured usability session before launch, even compressed. The rollout caught issues — but it caught them in production, where they're more expensive to find.",
+          "What I'd do differently: push for at least one structured usability session before launch, even compressed. The rollout caught issues but it caught them in production, where they're more expensive to find.",
         ],
       },
     ],
@@ -291,7 +291,7 @@ export const caseStudies: CaseStudy[] = [
     blocks: [
       {
         type: "lead",
-        text: "A perfectly semantic token system that no one adopts is worth nothing. On a live banking platform, I chose the messier name that both teams would actually use — and documented the trade-off as a debt, not an accident.",
+        text: "A perfectly semantic token system that no one adopts is worth nothing. On a live banking platform, I chose the messier name that both teams would actually use and documented the trade-off as a debt, not an accident.",
       },
       {
         type: "stats",
@@ -307,8 +307,8 @@ export const caseStudies: CaseStudy[] = [
         kicker: "01 · Context",
         heading: "I joined a product already in flight",
         body: [
-          "An enterprise corporate banking platform — 90+ screens, permission-heavy workflows, institutional users who depend on predictable, low-friction interfaces. The frontend was built on Ant Design before I arrived: business-approved, not negotiable, with a custom code theme and its own token-like naming already in place.",
-          "The design team was two people. I owned the design system while also doing product work — no DS engineer, no greenfield rebuild, no pause in delivery. From day one I treated it as infrastructure for a family of internal banking tools, not a cleanup layer for one product.",
+          "An enterprise corporate banking platform 90+ screens, permission-heavy workflows, institutional users who depend on predictable, low-friction interfaces. The frontend was built on Ant Design before I arrived: business-approved, not negotiable, with a custom code theme and its own token-like naming already in place.",
+          "The design team was two people. I owned the design system while also doing product work no DS engineer, no greenfield rebuild, no pause in delivery. From day one I treated it as infrastructure for a family of internal banking tools, not a cleanup layer for one product.",
         ],
       },
       {
@@ -316,8 +316,8 @@ export const caseStudies: CaseStudy[] = [
         kicker: "02 · Problem",
         heading: "Inconsistency was slowing delivery",
         body: [
-          "It wasn't one bad pattern — it was months of decisions made without a shared system. Spacing drifted, component states varied page to page, color usage shifted from screen to screen.",
-          "The loudest signal came from engineering: developers stopped to ask design questions roughly 8–9 times a day. “Why does this look different here? Which spacing? Ant default or custom?” That reframed the work for me — inconsistency wasn't a quality nitpick, it was a tax on product velocity.",
+          "It wasn't one bad pattern it was months of decisions made without a shared system. Spacing drifted, component states varied page to page, color usage shifted from screen to screen.",
+          "The loudest signal came from engineering: developers stopped to ask design questions roughly 8–9 times a day. “Why does this look different here? Which spacing? Ant default or custom?” That reframed the work for me inconsistency wasn't a quality nitpick, it was a tax on product velocity.",
         ],
       },
       {
@@ -325,11 +325,11 @@ export const caseStudies: CaseStudy[] = [
         kicker: "03 · Constraints",
         heading: "The reality I had to design inside",
         items: [
-          "Ant Design was inherited — its API and theming shaped what was cheap vs. expensive to customize",
+          "Ant Design was inherited its API and theming shaped what was cheap vs. expensive to customize",
           "A frontend theme already existed in code; replacing it mid-flight meant refactor cost with no product gain",
-          "The product was live — no resets, only incremental improvement",
-          "Capacity was tight — every customization had to justify its cost against delivery",
-          "The domain demanded reliability — predictable states and permission-aware interactions",
+          "The product was live no resets, only incremental improvement",
+          "Capacity was tight every customization had to justify its cost against delivery",
+          "The domain demanded reliability predictable states and permission-aware interactions",
           "It had to scale to adjacent tools without becoming so abstract it slowed today's work",
         ],
       },
@@ -338,12 +338,12 @@ export const caseStudies: CaseStudy[] = [
         kicker: "04 · The decision",
         heading: "Adoption over semantic purity",
         before: {
-          title: "Option A — protect the model",
-          text: "Keep a clean, role-based, intent-driven token structure and ask frontend to realign their theme. Theoretically correct — but it forces an already-stretched team to refactor working code mid-delivery.",
+          title: "Option A protect the model",
+          text: "Keep a clean, role-based, intent-driven token structure and ask frontend to realign their theme. Theoretically correct but it forces an already-stretched team to refactor working code mid-delivery.",
         },
         after: {
-          title: "Option B — align to reality ✓",
-          text: "Accept a less semantically pure naming model that matches the existing frontend theme, so both teams share one language with zero translation. I chose this — and logged the reduced portability as intentional debt.",
+          title: "Option B align to reality ✓",
+          text: "Accept a less semantically pure naming model that matches the existing frontend theme, so both teams share one language with zero translation. I chose this and logged the reduced portability as intentional debt.",
         },
       },
       {
@@ -354,7 +354,7 @@ export const caseStudies: CaseStudy[] = [
           { title: "Identify", text: "Name the product need or the inconsistency." },
           { title: "Check defaults", text: "Could Ant Design's default behavior already support it?" },
           { title: "Review with the tech lead", text: "Anything beyond defaults got estimated for effort and risk together." },
-          { title: "Decide & document", text: "Sprint, backlog, or technical debt — then write down the decision so future screens followed the same logic." },
+          { title: "Decide & document", text: "Sprint, backlog, or technical debt then write down the decision so future screens followed the same logic." },
         ],
       },
       {
@@ -366,8 +366,8 @@ export const caseStudies: CaseStudy[] = [
         kicker: "06 · Outcome",
         heading: "The conversation changed",
         body: [
-          "The clearest signal was communication. Daily design-related interruptions dropped from roughly 8–9 to 3–4, and kept falling as coverage grew. It wasn't a formal audit, so I won't dress it up as a precise metric — but the nature of the questions changed, from debating inconsistencies to discussing reusable extensions.",
-          "Frontend adopted the system without pushback, the product owner saw visible consistency gains, and the foundation later powered a separate, forced-timeline batch transfer redesign — the clearest proof that it was real infrastructure, not a coat of paint.",
+          "The clearest signal was communication. Daily design-related interruptions dropped from roughly 8–9 to 3–4, and kept falling as coverage grew. It wasn't a formal audit, so I won't dress it up as a precise metric but the nature of the questions changed, from debating inconsistencies to discussing reusable extensions.",
+          "Frontend adopted the system without pushback, the product owner saw visible consistency gains, and the foundation later powered a separate, forced-timeline batch transfer redesign the clearest proof that it was real infrastructure, not a coat of paint.",
         ],
       },
       {

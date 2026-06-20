@@ -47,7 +47,7 @@ export default function Navigation() {
             href="#"
             className="text-sm font-medium tracking-tight"
             style={{ color: "var(--text-primary)" }}
-            aria-label="Mozhgan Akbari — home"
+            aria-label="Mozhgan Akbari home"
           >
             M.Akbari
           </a>

@@ -18,7 +18,7 @@ export default function Reviews() {
           className="mb-16 md:mb-20"
         >
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-            [ 04 ] — Reviews
+            [ 04 ] Reviews
           </div>
           <h2
             id="reviews-heading"

@@ -420,7 +420,7 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
 
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease }}>
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-            [ {cs.index} ] — {cs.meta}
+            [ {cs.index} ] {cs.meta}
           </div>
           <h1
             className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.04] mb-6"

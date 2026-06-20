@@ -112,7 +112,7 @@ export default function Skills() {
           className="mb-16 md:mb-20 max-w-2xl"
         >
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-            [ 03 ] — Capabilities
+            [ 03 ] Capabilities
           </div>
           <h2
             id="skills-heading"
@@ -166,7 +166,7 @@ export default function Skills() {
               >
                 {cap.title}
               </h3>
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2">
                 {cap.tags.map((tag, ti) => {
                   const colors = ["blue", "purple", "pink", "yellow", "teal"];
                   const c = colors[(ci * 3 + ti) % colors.length];
@@ -177,12 +177,6 @@ export default function Skills() {
                   );
                 })}
               </div>
-              <p
-                className="text-sm md:text-base leading-relaxed mt-auto"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {cap.body}
-              </p>
             </motion.div>
           ))}
         </div>

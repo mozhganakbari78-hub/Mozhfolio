@@ -15,7 +15,7 @@ export default function BatchTransferCase() {
           It just goes to the wrong person.
         </h1>
         <p className="cs-lede">
-          Corporate clients who refused to bank online still moved payroll through a branch —
+          Corporate clients who refused to bank online still moved payroll through a branch,
           handing a USB file to an employee who keyed it into a legacy tool. The old system had two
           failure modes that mattered: <em>one bad row killed the whole batch</em>, and there was no
           way to confirm a recipient before the money left. This is how we redesigned both, under a
@@ -25,7 +25,7 @@ export default function BatchTransferCase() {
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer — owned flow, UI &amp; validation logic after joint research</dd>
+            <dd>Product Designer, owned flow, UI &amp; validation logic after joint research</dd>
           </div>
           <div>
             <dt>Team</dt>
@@ -50,7 +50,7 @@ export default function BatchTransferCase() {
         <h2>The clients who wouldn&apos;t go online</h2>
         <p>
           Some corporate clients wouldn&apos;t transact through the online platform. Security policy,
-          internal approval rules, institutional caution — whatever the reason, they kept using an
+          internal approval rules, institutional caution. Whatever the reason, they kept using an
           offline process. They brought a payment file on a USB drive into a branch, and a bank
           employee processed the batch manually through an internal tool.
         </p>
@@ -71,7 +71,7 @@ export default function BatchTransferCase() {
             <span className="tag">Legacy tool</span>
             <ul>
               <li>One bad row failed the entire batch of 400</li>
-              <li>Money already pulled from the source was returned to the bank&apos;s account — the whole run reset</li>
+              <li>Money already pulled from the source was returned to the bank&apos;s account, the whole run reset</li>
               <li>Only account / IBAN numbers, no recipient name</li>
               <li>A wrong number sent money to the wrong person, with no way to catch it</li>
               <li>Errors were invisible until the very end</li>
@@ -90,7 +90,7 @@ export default function BatchTransferCase() {
 
         <p>
           The second failure was the dangerous one. In a domestic transfer keyed by IBAN, if a digit
-          is wrong, the money doesn&apos;t bounce — it lands in a real, wrong account. The legacy
+          is wrong, the money doesn&apos;t bounce. It lands in a real, wrong account. The legacy
           tool gave the employee no way to know who they were actually paying until it was too late
           to undo.
         </p>
@@ -103,14 +103,14 @@ export default function BatchTransferCase() {
         <span className="cs-num">03 / Role &amp; research</span>
         <h2>We watched this happen in branches</h2>
         <p>
-          I worked with one other designer. We did the research together — visiting branches in
+          I worked with one other designer. We did the research together: visiting branches in
           person and talking to the employees who actually process these files, under time pressure,
           with live client money. This wasn&apos;t a workflow we could understand from a requirements
           doc.
         </p>
         <p>
           After research, I owned the product design: the flow, wireframes, the stakeholder
-          prototype, and the final UI — including the validation and verification logic that became
+          prototype, and the final UI, including the validation and verification logic that became
           the core of the redesign. My teammate and I stayed aligned on direction; the interaction
           decisions for the batch experience were mine.
         </p>
@@ -124,7 +124,7 @@ export default function BatchTransferCase() {
         <div className="cs-decision">
           <div className="dhead">
             <span className="dnum">DECISION 01</span>
-            <div className="dtitle">Add a recipient verification step — and a 96% threshold</div>
+            <div className="dtitle">Add a recipient verification step, with a 96% threshold</div>
           </div>
           <div className="dbody">
             <div className="cs-dline">
@@ -138,7 +138,7 @@ export default function BatchTransferCase() {
               <div className="k">What I designed</div>
               <div className="v">
                 We asked clients to add the <strong>account-holder name</strong> to their file. At
-                submission, the branch could opt to have the system verify each row — pulling the
+                submission, the branch could opt to have the system verify each row, pulling the
                 real registered name for each account and matching it against the name in the file,
                 returning a <strong>match percentage</strong>.
               </div>
@@ -147,9 +147,9 @@ export default function BatchTransferCase() {
               <div className="k">The threshold</div>
               <div className="v">
                 Anything below <strong>96% match</strong> was flagged red. The point wasn&apos;t to
-                auto-reject — it was to make the senior branch approver see, before confirming, that
+                auto-reject. It was to make the senior branch approver see, before confirming, that
                 the file said &quot;Mohammad&quot; while the account belonged to &quot;Amir,&quot;
-                and chase it down <em>then</em> — not after the money was gone and someone had to
+                and chase it down then, not after the money was gone and someone had to
                 reconstruct what happened.
               </div>
             </div>
@@ -159,15 +159,10 @@ export default function BatchTransferCase() {
 
       {/* SHOT — batch upload */}
       <section className="cs-shot cs-reveal">
-        <div className="cs-shot-head">
-          <span className="cs-num">04 / Upload</span>
-          <h2>File submission and row preview</h2>
-          <p>Every row is previewed before anything is committed.</p>
-        </div>
         <Mockup
           src="/projects/batch-upload.png"
           alt="Batch upload screen, file submission and row preview"
-          caption="Fig. 01 — Upload and per-row preview before anything is committed"
+          caption="Fig. 01: Upload and per-row preview before anything is committed"
         />
       </section>
 
@@ -193,8 +188,8 @@ export default function BatchTransferCase() {
             <div className="cs-dline chose">
               <div className="k">The new model</div>
               <div className="v">
-                Each transaction is handled independently. If a row genuinely can&apos;t complete — a
-                closed account, for instance — that single row fails and is settled separately
+                Each transaction is handled independently. If a row genuinely can&apos;t complete, a
+                closed account for instance, that single row fails and is settled separately
                 afterward. The other 399 go through. One broken row is now one row to resolve, not a
                 reason to start the afternoon over.
               </div>
@@ -205,15 +200,10 @@ export default function BatchTransferCase() {
 
       {/* SHOT — validation */}
       <section className="cs-shot cs-reveal">
-        <div className="cs-shot-head">
-          <span className="cs-num">04 / What the approver sees</span>
-          <h2>Verification at the moment of approval</h2>
-          <p>Name-match percentages surfaced right where the approver confirms.</p>
-        </div>
         <Mockup
           src="/projects/batch-validation.png"
           alt="Pre-submission recipient verification, match percentage review"
-          caption="Fig. 02 — Name-match percentages surfaced at the approval step"
+          caption="Fig. 02: Name-match percentages surfaced at the approval step"
         />
       </section>
 
@@ -224,12 +214,12 @@ export default function BatchTransferCase() {
 
         <p>
           These two decisions sit inside a two-step authority model: a branch employee{" "}
-          <strong>registers</strong> the request — no money moves yet, the verification result is
-          visible — and a <strong>senior branch approver</strong> reviews and confirms. Only then
+          <strong>registers</strong> the request (no money moves yet, the verification result is
+          visible) and a <strong>senior branch approver</strong> reviews and confirms. Only then
           does the transfer execute.
         </p>
         <p>
-          A row below the 96% threshold isn&apos;t auto-stopped — the approver{" "}
+          A row below the 96% threshold isn&apos;t auto-stopped. The approver{" "}
           <strong>sees the mismatch before confirming</strong>. A closed account fails on its own and
           is settled separately; the other rows proceed. Nothing is hidden, and no single bad row
           resets the run.
@@ -242,7 +232,7 @@ export default function BatchTransferCase() {
         <h2>What I deliberately left for phase two</h2>
         <p>
           The deadline was hard and non-negotiable. The honest risk in that situation is shipping
-          something fragile to hit a date. I handled it by sequencing — not by cutting corners on the
+          something fragile to hit a date. I handled it by sequencing, not by cutting corners on the
           part that had to be safe.
         </p>
 
@@ -254,7 +244,7 @@ export default function BatchTransferCase() {
               <p>
                 The new system with independent row handling launched first to a limited set of
                 branches. Real employees ran real batches and gave feedback. Verification was
-                deliberately <strong>not</strong> in this release — it was the most complex,
+                deliberately <strong>not</strong> in this release. It was the most complex,
                 error-prone piece, and I didn&apos;t want it on the critical path to the deadline.
               </p>
             </div>
@@ -265,7 +255,7 @@ export default function BatchTransferCase() {
               <h3>Add the trust layer on real usage</h3>
               <p>
                 In the window after launch, we built recipient verification, the match percentage,
-                and the 96% threshold — and shaped them against how branches were actually using the
+                and the 96% threshold, and shaped them against how branches were actually using the
                 tool, not against assumptions.
               </p>
             </div>
@@ -274,8 +264,8 @@ export default function BatchTransferCase() {
 
         <p>
           I also made verification <strong>optional</strong> per batch. It adds a lookup pass and
-          time, and not every file needs it. Leaving the choice with the branch — rather than forcing
-          it on every run — kept the tool fast for routine cases while making the check available the
+          time, and not every file needs it. Leaving the choice with the branch, rather than forcing
+          it on every run, kept the tool fast for routine cases while making the check available the
           moment trust mattered. That was a deliberate call, with a real trade-off: it means a
           hurried approver can skip the check, so the design leans on making the verified state the
           obviously safer-looking path.
@@ -288,13 +278,13 @@ export default function BatchTransferCase() {
         <h2>The deadline was survivable because the system already existed</h2>
         <p>
           Speed didn&apos;t come from skipping design. It came from systems work done earlier, on
-          purpose. Before this project, I&apos;d built a design system for another banking product —
-          and I&apos;d built it beyond that one product&apos;s needs, with shared components, tokens,
+          purpose. Before this project, I&apos;d built a design system for another banking product
+          and built it beyond that one product&apos;s needs, with shared components, tokens,
           and states meant to support other internal tools.
         </p>
         <p>
           That decision paid off here. Instead of drawing every screen from zero, I assembled the
-          flow from an existing foundation and spent my actual time on the workflow logic — the
+          flow from an existing foundation and spent my actual time on the workflow logic: the
           validation model, the verification states, the edge cases. The reused pieces:
         </p>
         <div className="cs-dslist">
@@ -314,13 +304,13 @@ export default function BatchTransferCase() {
         <span className="cs-num">07 / Outcome</span>
         <h2>Where this honestly stands</h2>
         <div className="cs-status">
-          <span className="cs-eyebrow">Status — launched, limited rollout</span>
+          <span className="cs-eyebrow">Status: launched, limited rollout</span>
           <h3>Live in branches. No instrumented before/after data.</h3>
           <p>
             The tool launched through a controlled rollout and is in real use. The bank didn&apos;t
             share operational data with us, and I won&apos;t turn observation into fake precision.
-            What I can say plainly: the old system&apos;s worst failure — one invalid row resetting
-            an entire batch and returning the money — no longer exists in the workflow. And a wrong
+            What I can say plainly: the old system&apos;s worst failure, one invalid row resetting
+            an entire batch and returning the money, no longer exists in the workflow. And a wrong
             recipient is now visible before a transfer is confirmed, not discovered after.
           </p>
           <div className="metrics">
@@ -336,7 +326,7 @@ export default function BatchTransferCase() {
         <span className="cs-num">08 / Reflection</span>
         <h2>What I&apos;d carry forward</h2>
         <div className="cs-reflect">
-          <h3>The real risk wasn&apos;t the broken batch — it was the silent wrong transfer</h3>
+          <h3>The real risk wasn&apos;t the broken batch, it was the silent wrong transfer</h3>
           <p>
             Killing the all-or-nothing model removed wasted afternoons. But the verification layer
             addressed something worse: money quietly going to the wrong account with no one noticing.
@@ -361,7 +351,7 @@ export default function BatchTransferCase() {
         <div className="cs-reflect">
           <h3>I&apos;d still push for one structured test before launch</h3>
           <p>
-            The controlled rollout caught issues — but it caught them in production. On a banking
+            The controlled rollout caught issues, but it caught them in production. On a banking
             workflow, some of those would have been cheaper to find a week earlier. Next time I&apos;d
             protect at least one structured session even inside a compressed schedule.
           </p>
@@ -369,7 +359,7 @@ export default function BatchTransferCase() {
       </section>
 
       <Link href="/work/design-system" className="cs-next">
-        <span className="l">Next case →</span>
+        <span className="l">Next case &rarr;</span>
         <div className="t">
           Design System for a Live Enterprise Platform{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />

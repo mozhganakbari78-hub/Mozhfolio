@@ -17,7 +17,7 @@ export default function SupportFrictionCase() {
           People just couldn&apos;t reach them in time.
         </h1>
         <p className="cs-lede">
-          A corporate banking platform was routing routine questions into the support queue — not
+          A corporate banking platform was routing routine questions into the support queue. Not
           because users were careless, but because <em>the answer wasn&apos;t where the panic
           was</em>. This is how I reframed a &quot;fix the FAQ&quot; brief into a single support
           surface, and the constraints I had to design around to get there.
@@ -26,7 +26,7 @@ export default function SupportFrictionCase() {
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer — led feedback analysis &amp; content architecture</dd>
+            <dd>Product Designer, feedback analysis &amp; content architecture</dd>
           </div>
           <div>
             <dt>Team</dt>
@@ -93,15 +93,15 @@ export default function SupportFrictionCase() {
           about two years, by hand.
         </p>
         <p>
-          A deliberate choice, not a lack of tooling. What I was classifying — &quot;could this
-          person have self-served, given the right answer at the right moment?&quot; — is a judgment
+          A deliberate choice, not a lack of tooling. What I was classifying: &quot;could this
+          person have self-served, given the right answer at the right moment?&quot; That is a judgment
           call. It rides on tone and context, not keywords. Automated clustering groups by surface
           words and would have missed the exact distinction the project hinged on.
         </p>
         <p>
           I clustered the findings in FigJam using affinity mapping. Two layers came out of it.
           First, the <strong>subject</strong>: accounts, cards, bill management, cheque management.
-          Then a second, more important cut across all of them —{" "}
+          Then a second, more important cut across all of them:{" "}
           <strong>
             which questions had answers that already existed somewhere, and which genuinely needed a
             human.
@@ -184,35 +184,25 @@ export default function SupportFrictionCase() {
         <p>
           We&apos;d discussed the problem space together as a team. But collapsing these two things
           into a single entry point, so the answer surfaces <em>before</em> the user commits to
-          waiting on a ticket — that was the call I pushed for.
+          waiting on a ticket. That was the call I pushed for.
         </p>
       </section>
 
       {/* SHOT — unified surface */}
       <section className="cs-shot cs-reveal">
-        <div className="cs-shot-head">
-          <span className="cs-num">04 / The direction</span>
-          <h2>One support surface</h2>
-          <p>Search the answer and escalate from the same place — no fork up front.</p>
-        </div>
         <Mockup
           src="/projects/support-faq.png"
           alt="Unified support surface, FAQ and ticket in one flow"
-          caption="Fig. 01 — Finding an answer and asking for help are the same flow"
+          caption="Fig. 01: Finding an answer and asking for help are the same flow"
         />
       </section>
 
       {/* SHOT — live filtering */}
       <section className="cs-shot cs-reveal">
-        <div className="cs-shot-head">
-          <span className="cs-num">05 / Real-time answers</span>
-          <h2>Answers filter in as you type</h2>
-          <p>Relevant FAQ entries surface live against what the user is describing.</p>
-        </div>
         <Mockup
           src="/projects/support-faq-filter.png"
           alt="Real-time FAQ filtering as the user types their issue"
-          caption="Fig. 02 — Answers filter in live as the user describes the problem"
+          caption="Fig. 02: Answers filter in live as the user describes the problem"
         />
       </section>
 
@@ -231,7 +221,7 @@ export default function SupportFrictionCase() {
               <div className="k">The insight</div>
               <div className="v">
                 In a financial product, the questions that drive tickets cluster around high-stakes,
-                time-sensitive moments — moving funds, hesitating over an amount. The answer is only
+                time-sensitive moments: moving funds, hesitating over an amount. The answer is only
                 useful if it appears <em>in that window</em>, not after a ticket round-trip.
               </div>
             </div>
@@ -239,15 +229,15 @@ export default function SupportFrictionCase() {
               <div className="k">What we did</div>
               <div className="v">
                 As a user begins describing their issue, relevant FAQ answers filter in live against
-                what they&apos;re writing — tied to the behavior and context of someone under
+                what they&apos;re writing, tied to the behavior and context of someone under
                 pressure, surfacing the most likely answer before they finish escalating.
               </div>
             </div>
             <div className="cs-dline">
               <div className="k">Ownership</div>
               <div className="v">
-                This emerged from team discussion, but the specific direction — real-time filtering
-                keyed to the user&apos;s in-the-moment behavior — was the product insight I
+                This emerged from team discussion, but the specific direction: real-time filtering
+                keyed to the user&apos;s in-the-moment behavior. That was the product insight I
                 contributed and argued for.
               </div>
             </div>
@@ -277,7 +267,7 @@ export default function SupportFrictionCase() {
             <div className="cs-dline">
               <div className="k">Option rejected</div>
               <div className="v">
-                A clean re-taxonomy that matched the new merged surface — better on paper, but it
+                A clean re-taxonomy that matched the new merged surface, better on paper, but it
                 would have meant a disruptive migration and broken everything the support team
                 relied on day to day.
               </div>
@@ -287,7 +277,7 @@ export default function SupportFrictionCase() {
               <div className="v">
                 A layered migration: keep the legacy taxonomy intact underneath, map the new surface
                 onto it, and add a catch-all &quot;Other&quot; category to absorb anything that
-                didn&apos;t fit cleanly — so nothing fell through and existing filters kept working.
+                didn&apos;t fit cleanly, so nothing fell through and existing filters kept working.
                 Stakeholders approved this approach.
               </div>
             </div>
@@ -310,7 +300,7 @@ export default function SupportFrictionCase() {
           {[
             {
               h: "Manual review & first-pass clustering",
-              p: "Read the full ticket set from the admin panel and grouped by subject area — accounts, cards, bills, cheques.",
+              p: "Read the full ticket set from the admin panel and grouped by subject area: accounts, cards, bills, cheques.",
             },
             {
               h: "The second cut that mattered",
@@ -361,12 +351,12 @@ export default function SupportFrictionCase() {
         <span className="cs-num">07 / Outcome</span>
         <h2>Where this honestly stands</h2>
         <div className="cs-status">
-          <span className="cs-eyebrow">Status — pre-launch</span>
+          <span className="cs-eyebrow">Status: pre-launch</span>
           <h3>Built and validated in test, not yet live.</h3>
           <p>
             The unified support surface was designed, built, and tested in a staging environment. It
             has not shipped to production, so there are no live metrics on ticket deflection or
-            resolution time yet — and I&apos;d rather say that plainly than attach numbers I
+            resolution time yet. I&apos;d rather say that plainly than attach numbers I
             can&apos;t stand behind.
           </p>
           <span className="pill">Goal: reduce support load · get users to answers faster</span>
@@ -394,7 +384,7 @@ export default function SupportFrictionCase() {
         <div className="cs-reflect">
           <h3>Reading the data by hand was the right call</h3>
           <p>
-            The central distinction — answerable vs. genuinely needs support — was a judgment, not a
+            The central distinction (answerable vs. genuinely needs support) was a judgment, not a
             keyword match. Doing it manually is why the classification held up. I&apos;d make the
             same trade of time-for-accuracy again on a judgment-heavy dataset.
           </p>
@@ -416,7 +406,7 @@ export default function SupportFrictionCase() {
       </section>
 
       <Link href="/work/batch-transfer" className="cs-next">
-        <span className="l">Next case →</span>
+        <span className="l">Next case &rarr;</span>
         <div className="t">
           Batch Transfer for Offline Corporate Clients <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>

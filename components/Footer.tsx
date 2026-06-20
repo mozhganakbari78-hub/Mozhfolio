@@ -41,7 +41,7 @@ export default function Footer() {
               Mozhgan Akbari
             </div>
             <p className="text-sm mt-1" style={{ color: "var(--text-tertiary)" }}>
-              Product Designer — enterprise UX &amp; design systems.
+              Product Designer, enterprise UX and design systems.
             </p>
           </div>
 

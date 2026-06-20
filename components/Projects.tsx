@@ -21,7 +21,7 @@ export default function Projects() {
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-              [ 02 ] — Selected Work
+              [ 02 ] Selected Work
             </div>
             <h2
               id="projects-heading"
@@ -50,7 +50,7 @@ export default function Projects() {
               href={`/work/${cs.slug}`}
               data-hand
               aria-label={`Read case study: ${cs.title}`}
-              className="group relative block overflow-hidden rounded-2xl border p-7 md:p-10 transition-colors duration-300"
+              className="group relative block overflow-hidden rounded-2xl border p-7 md:p-10 transition-all duration-300 hover:border-[var(--accent-color)]"
               style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
             >
               {/* hover glow */}
@@ -83,13 +83,7 @@ export default function Projects() {
                   >
                     {cs.title}
                   </h3>
-                  <p
-                    className="text-sm md:text-base leading-relaxed max-w-2xl mb-6"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    {cs.description}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2 mt-4">
                     {cs.tags.map((tag, ti) => {
                       const colors = ["purple", "pink", "yellow", "teal", "blue"];
                       const c = colors[(i * 2 + ti) % colors.length];

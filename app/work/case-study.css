@@ -474,18 +474,30 @@
 .cs-horizontal .cs-bar .bpcts b { font-size: 17px; }
 .cs-horizontal .cs-mockup { margin: 4px 0 14px; }
 
-/* dedicated full-image panel: wide, image centered and fully visible */
+/* dedicated full-image panel: fills the whole viewport height, no padding */
 .cs-horizontal article > .cs-shot {
-  width: min(1100px, 94vw);
+  width: min(1160px, 96vw);
   display: flex; flex-direction: column; justify-content: center;
-  padding: 44px 52px;
+  padding: 16px 24px;
 }
-.cs-shot .cs-mockup { margin: 0; width: 100%; }
-.cs-shot .cs-mockup img { width: 100%; height: auto; max-height: 72vh; object-fit: contain; background: var(--paper-warm); }
-.cs-shot .cs-shot-head { margin-bottom: 18px; }
-.cs-shot .cs-shot-head .cs-num { margin-bottom: 10px; }
-.cs-shot .cs-shot-head h2 { margin-bottom: 8px; }
-.cs-shot .cs-shot-head p { margin-bottom: 0; font-size: 15px; color: var(--ink-soft); }
+.cs-shot .cs-mockup {
+  margin: 0;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cs-shot .cs-mockup::before,
+.cs-shot .cs-mockup::after { display: none; }
+.cs-shot .cs-mockup { border: none; box-shadow: none; border-radius: 12px; overflow: hidden; }
+.cs-shot .cs-mockup img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: calc(100vh - 160px);
+  background: transparent;
+}
+.cs-shot .cs-mockup-caption { font-size: 11.5px; margin-top: 10px; }
 .cs-horizontal .cs-status { padding: 24px 26px; }
 
 /* divider between hero and first section isn't needed horizontally */

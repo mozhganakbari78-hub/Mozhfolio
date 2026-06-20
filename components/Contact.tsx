@@ -84,7 +84,7 @@ export default function Contact() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-              [ 05 ] — Contact
+              [ 05 ] Contact
             </div>
             <h2
               id="contact-heading"
