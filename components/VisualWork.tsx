@@ -7,15 +7,21 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const images: { src: string }[] = [
   { src: `${base}/projects/mockup-1.png` },
+  { src: `${base}/projects/Cover Page.png` },
   { src: `${base}/projects/mockup-2.png` },
+  { src: `${base}/projects/27.png` },
   { src: `${base}/projects/journey-map.png` },
+  { src: `${base}/projects/08.png` },
   { src: `${base}/projects/sticky-notes.png` },
+  { src: `${base}/projects/Page 26.png` },
   { src: `${base}/projects/wireframe.png` },
+  { src: `${base}/projects/29.png` },
   { src: `${base}/projects/support-friction.png` },
+  { src: `${base}/projects/37.png` },
 ];
 
 // Duplicate for seamless loop
-const track = [...images, ...images, ...images];
+const track = [...images, ...images];
 
 export default function VisualWork() {
   const railRef = useRef<HTMLDivElement>(null);
