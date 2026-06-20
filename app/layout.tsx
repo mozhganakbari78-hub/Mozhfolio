@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +10,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+// Labels previously used a monospace face; the site is now fully Inter, so the
+// mono variable points to Inter too (labels keep their tracking/uppercase styling).
+const mono = Inter({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
@@ -33,9 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <SmoothScroll />
+        <CustomCursor />
+        {children}
       </body>
     </html>
   );

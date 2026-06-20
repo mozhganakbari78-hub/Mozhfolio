@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Menu, X } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -13,7 +12,6 @@ const navLinks = [
 ];
 
 export default function Navigation() {
-  const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,7 +47,7 @@ export default function Navigation() {
             href="#"
             className="text-sm font-medium tracking-tight"
             style={{ color: "var(--text-primary)" }}
-            aria-label="Mozhgan Akbari — home"
+            aria-label="Mozhgan Akbari home"
           >
             M.Akbari
           </a>
@@ -71,22 +69,12 @@ export default function Navigation() {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={toggle}
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-80"
-              style={{ color: "var(--text-secondary)", background: "var(--bg-secondary)" }}
+              onClick={() => handleLink("#contact")}
+              data-hand
+              className="hidden md:inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90"
+              style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
             >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={theme}
-                  initial={{ rotate: -30, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 30, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {theme === "light" ? <Moon size={15} /> : <Sun size={15} />}
-                </motion.span>
-              </AnimatePresence>
+              Let&apos;s talk
             </button>
 
             {/* Mobile menu button */}
@@ -97,7 +85,7 @@ export default function Navigation() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={15} /> : <Menu size={15} />}
+              {menuOpen ? <XMarkIcon style={{ width: 15, height: 15 }} /> : <Bars3Icon style={{ width: 15, height: 15 }} />}
             </button>
           </div>
         </nav>

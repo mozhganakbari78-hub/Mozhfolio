@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "2024 — Now", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Banking software — design system, support redesign, batch transfer, 2,000+ UX writing cases" },
-  { year: "2023 — 24", role: "UX Designer", company: "IRO Team", note: "IoT greenhouse monitoring — turning sensor data into actionable dashboards" },
-  { year: "2021 — 23", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Crypto exchange — fintech interfaces, scalable components, 95% on-time delivery" },
-  { year: "2017 — 21", role: "B.Sc Computer Engineering", company: "Islamic Azad University, Tehran", note: "Central Tehran Branch" },
+  { year: "2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Enterprise corporate banking platform. Owned the design system end to end, led design on workflow-heavy banking tools, and shipped a batch payments redesign and support experience under real deadlines." },
+  { year: "2023 – 2024", role: "Product Designer", company: "IRO Team", note: "Mobile app for remote IoT greenhouse monitoring. Designed sensor controls, notifications, and conditional automation rules for non-technical operators." },
+  { year: "2021 – 2023", role: "UI/UX Designer", company: "Wallex Exchange", note: "Consumer cryptocurrency exchange across web and mobile. Built reusable UI components and shipped iteratively with developers over two years." },
+  { year: "2017 – 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
 const traits = [
   "I read data before I sketch.",
-  "I document trade-offs, not just decisions.",
-  "I treat support tickets as design feedback.",
-  "I build systems that survive my absence.",
+  "I turn support signals into product insight.",
+  "I design workflows, not isolated screens.",
+  "I build systems that can scale beyond me.",
 ];
 
 export default function About() {
@@ -31,20 +31,20 @@ export default function About() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mono-label mb-6" style={{ color: "var(--accent-color)" }}>
-              [ 01 ] — About
+              [ 01 ] About
             </div>
             <h2
               id="about-heading"
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              I design for the moments when things go wrong.
+              I design where clarity becomes critical.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m a product designer with nearly 4 years across the tech and finance sectors — banking platforms, crypto exchanges, IoT systems. My work lives in enterprise B2B, where the users aren&apos;t browsing. They&apos;re under pressure, on deadline, and one unclear interface away from a support ticket.
+              Product designer with around four years in fintech and enterprise software. I work close to engineering, design within real product and technical constraints, and care more about decisions that ship and get adopted than about polish.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              I lead end-to-end design — from problem discovery and user research to execution and production. I combine product thinking with systems thinking, leverage user data to drive decisions, and document trade-offs honestly — because the next designer who inherits my work deserves to know what I was working around.
+              Most of my recent work is on a live corporate banking platform, where I owned a design system and led design on workflow-heavy banking tools.
             </p>
 
             {/* Traits */}
@@ -80,10 +80,12 @@ export default function About() {
             </div>
 
             <div className="relative">
-              {/* Timeline line */}
-              <div
-                className="absolute left-0 top-2 bottom-2 w-px"
+              <motion.div
+                className="absolute left-0 top-2 bottom-2 w-px origin-top"
                 style={{ background: "var(--border)" }}
+                initial={{ scaleY: 0 }}
+                animate={inView ? { scaleY: 1 } : {}}
+                transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 aria-hidden="true"
               />
 
@@ -96,7 +98,6 @@ export default function About() {
                     transition={{ duration: 0.6, delay: 0.25 + i * 0.12 }}
                     className="relative"
                   >
-                    {/* Dot */}
                     <div
                       className="absolute -left-8 top-1.5 w-2 h-2 rounded-full border-2 translate-x-[-3px]"
                       style={{
@@ -117,9 +118,11 @@ export default function About() {
                     <div className="text-sm mb-2" style={{ color: "var(--text-secondary)" }}>
                       {item.company}
                     </div>
-                    <div className="text-xs" style={{ color: "var(--text-tertiary)" }}>
-                      {item.note}
-                    </div>
+                    {item.note && (
+                      <div className="text-xs" style={{ color: "var(--text-tertiary)" }}>
+                        {item.note}
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </div>

@@ -2,150 +2,159 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import ParticleField from "./ParticleField";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const stagger: Variants = {
-  animate: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } },
+  animate: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 };
 
 const fadeUp: Variants = {
-  initial: { y: 28, opacity: 0 },
-  animate: { y: 0, opacity: 1, transition: { duration: 0.8, ease } },
+  initial: { y: 32, opacity: 0 },
+  animate: { y: 0, opacity: 1, transition: { duration: 0.9, ease } },
 };
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden"
+      className="relative min-h-screen flex items-center px-6 pt-28 pb-24 overflow-hidden"
       aria-label="Introduction"
     >
-      {/* Grid background */}
+      {/* Subtle grid */}
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <ParticleField />
+      </div>
 
-      {/* top hairline + corner labels */}
+      {/* Radial fade from bottom */}
       <div
-        className="absolute top-20 inset-x-6 h-px hidden md:block"
-        style={{ background: "var(--border)" }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 120%, var(--accent-color) 0%, transparent 60%)",
+          opacity: 0.07,
+        }}
         aria-hidden="true"
       />
 
-      <div className="relative max-w-5xl mx-auto w-full">
+      <div className="relative max-w-6xl mx-auto w-full">
         <motion.div variants={stagger} initial="initial" animate="animate">
-          {/* status row */}
-          <motion.div
-            variants={fadeUp}
-            className="flex items-center justify-between mb-12 md:mb-16"
-          >
-            <span className="mono-label flex items-center gap-2" style={{ color: "var(--text-secondary)" }}>
-              <span
-                className="w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: "var(--accent-color)" }}
-              />
-              Available — 2026
-            </span>
-            <span className="mono-label hidden sm:block" style={{ color: "var(--text-tertiary)" }}>
-              Tehran, Iran / Remote
+
+          {/* Eyebrow */}
+          <motion.div variants={fadeUp} className="mb-10">
+            <span
+              className="mono-label"
+              style={{ color: "var(--accent-color)" }}
+            >
+              Product Designer · Enterprise UX · Design Systems
             </span>
           </motion.div>
 
-          {/* Name / headline */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-semibold tracking-tight leading-[0.92] mb-8"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.04em" }}
-          >
-            Product
-            <br />
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 300 }}>designer.</span>
-          </motion.h1>
-
-          <motion.div
-            variants={fadeUp}
-            className="grid md:grid-cols-12 gap-8 items-end border-t pt-8"
-            style={{ borderColor: "var(--border)" }}
-          >
-            <div className="md:col-span-5">
-              <div className="mono-label mb-3" style={{ color: "var(--text-tertiary)" }}>
-                Mozhgan Akbari
-              </div>
-              <p className="text-base md:text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                I turn messy, high-stakes B2B products into tools people actually trust — enterprise UX, design systems, and friction reduction.
-              </p>
-            </div>
-
-            <div className="md:col-span-4 md:col-start-9">
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-tertiary)" }}>
-                I read 734 support tickets to understand one system. The detail is the work.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-                  style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
-                >
-                  View work
-                  <ArrowUpRight size={14} />
-                </button>
-                <button
-                  onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-70 border"
-                  style={{ color: "var(--text-primary)", borderColor: "var(--border-strong)" }}
-                >
-                  Contact
-                </button>
-              </div>
-            </div>
+          {/* Name */}
+          <motion.div variants={fadeUp}>
+            <h1
+              className="font-semibold leading-[0.96] mb-8"
+              style={{
+                fontSize: "clamp(52px, 10vw, 112px)",
+                letterSpacing: "-0.04em",
+                color: "var(--text-primary)",
+              }}
+            >
+              Mozhgan
+              <br />
+              <span style={{ color: "var(--text-secondary)" }}>Akbari.</span>
+            </h1>
           </motion.div>
 
-          {/* Stats strip */}
-          <motion.dl
+          {/* Tagline */}
+          <motion.p
             variants={fadeUp}
-            className="grid grid-cols-3 gap-px mt-16 border-t border-l"
-            style={{ borderColor: "var(--border)", background: "var(--border)" }}
+            className="max-w-4xl leading-snug mb-4"
+            style={{
+              fontSize: "clamp(18px, 2vw, 24px)",
+              fontWeight: 300,
+              letterSpacing: "-0.015em",
+              color: "var(--text-secondary)",
+            }}
+          >
+            I design products that cannot afford confusion.
+          </motion.p>
+          <motion.p
+            variants={fadeUp}
+            className="max-w-4xl leading-snug mb-12"
+            style={{
+              fontSize: "clamp(16px, 1.6vw, 20px)",
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+              color: "var(--text-tertiary)",
+            }}
+          >
+            Complex workflows, enterprise tools, systems at scale.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-20">
+            <button
+              data-hand
+              onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+              style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
+            >
+              View case studies
+              <ArrowUpRightIcon style={{ width: 15, height: 15 }} />
+            </button>
+            <button
+              data-hand
+              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-80 border"
+              style={{ color: "var(--text-primary)", borderColor: "var(--border-strong)" }}
+            >
+              Contact me
+            </button>
+          </motion.div>
+
+          {/* Discipline strip */}
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap items-center gap-x-8 gap-y-3"
+            style={{ borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
           >
             {[
-              { value: "~4 yrs", label: "Tech & finance" },
-              { value: "400K+", label: "Users impacted" },
-              { value: "2,000+", label: "UX cases improved" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="p-5 md:p-6 border-r border-b"
-                style={{ borderColor: "var(--border)", background: "var(--bg)" }}
-              >
-                <dt
-                  className="text-2xl md:text-4xl font-semibold mb-2 tracking-tight"
-                  style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-                >
-                  {stat.value}
-                </dt>
-                <dd className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-                  {stat.label}
-                </dd>
+              { label: "4 years", note: "shipping live products" },
+              { label: "Banking · Crypto · IoT", note: "domains designed for" },
+              { label: "CS background", note: "engineering-fluent by training" },
+            ].map((item) => (
+              <div key={item.label} className="flex flex-col gap-0.5">
+                <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
+                  {item.label}
+                </span>
+                <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                  {item.note}
+                </span>
               </div>
             ))}
-          </motion.dl>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          className="hidden md:flex absolute -bottom-4 right-0 items-center gap-2"
-          aria-hidden="true"
-        >
-          <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-            Scroll
-          </span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-            <ArrowDown size={14} style={{ color: "var(--text-tertiary)" }} />
           </motion.div>
+
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 items-center gap-2"
+        aria-hidden="true"
+      >
+        <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+          Scroll
+        </span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
+          <ArrowDownIcon style={{ width: 14, height: 14, color: "var(--text-tertiary)" }} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

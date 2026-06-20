@@ -1,85 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  MagnifyingGlassIcon,
+  Square3Stack3DIcon,
+  DocumentCheckIcon,
+  CpuChipIcon,
+} from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 
-const skillGroups = [
+const capabilities = [
   {
-    category: "Design",
-    skills: [
-      { name: "Product Design", level: 95 },
-      { name: "Design Systems", level: 92 },
-      { name: "UX Research", level: 85 },
-      { name: "Interaction Design", level: 88 },
-      { name: "Information Architecture", level: 87 },
-      { name: "Prototyping", level: 90 },
-    ],
+    icon: MagnifyingGlassIcon,
+    title: "Frame first, design second",
+    body: "I start with the question behind the brief, not the wireframe. What is actually broken, who owns it, and what does success mean for the business -- before a single screen is opened.",
   },
   {
-    category: "Tools",
-    skills: [
-      { name: "Figma", level: 97 },
-      { name: "FigJam", level: 90 },
-      { name: "Material Design", level: 86 },
-      { name: "Ant Design", level: 84 },
-      { name: "Jira / ClickUp", level: 82 },
-    ],
+    icon: Square3Stack3DIcon,
+    title: "Systems over screens",
+    body: "My output is component logic, token architecture, and governance frameworks that hold up at scale. A screen is just the visible surface of a decision.",
   },
   {
-    category: "Domain",
-    skills: [
-      { name: "Banking / Fintech", level: 92 },
-      { name: "Enterprise B2B", level: 90 },
-      { name: "Crypto Exchange", level: 84 },
-      { name: "IoT Dashboards", level: 80 },
-      { name: "Accessibility", level: 85 },
-    ],
+    icon: DocumentCheckIcon,
+    title: "Decisions, not just deliverables",
+    body: "I document the trade-offs that shaped every call. When the product changes, the reasoning travels with it -- and the next designer does not have to reverse-engineer intent.",
   },
   {
-    category: "Process",
-    skills: [
-      { name: "User Research", level: 90 },
-      { name: "Journey Mapping", level: 87 },
-      { name: "UX Writing", level: 88 },
-      { name: "Cross-functional Collab", level: 92 },
-      { name: "Agile / Mentorship", level: 84 },
-    ],
+    icon: CpuChipIcon,
+    title: "Engineering-fluent",
+    body: "I work inside the constraint space of real products: API limits, token pipelines, handoff quality. Design that ships without a translation layer.",
   },
 ];
-
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const { ref, inView } = useInView(0.1);
-
-  return (
-    <div ref={ref} className="mb-4">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
-          {name}
-        </span>
-        <span className="text-xs" style={{ color: "var(--text-tertiary)" }}>
-          {level}%
-        </span>
-      </div>
-      <div
-        className="h-1 rounded-full overflow-hidden"
-        style={{ background: "var(--bg-secondary)" }}
-        role="meter"
-        aria-valuenow={level}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`${name}: ${level}%`}
-      >
-        <motion.div
-          className="h-full rounded-full"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${level}%` } : {}}
-          transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
-          style={{ background: "var(--accent-color)" }}
-        />
-      </div>
-    </div>
-  );
-}
 
 export default function Skills() {
   const { ref, inView } = useInView();
@@ -92,46 +43,54 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-20"
+          className="mb-16 md:mb-20 max-w-2xl"
         >
           <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
-            [ 03 ] — Capabilities
+            [ 03 ] Capabilities
           </div>
           <h2
             id="skills-heading"
             className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
           >
-            What I bring to the table.
+            How I work.
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {skillGroups.map((group, gi) => (
-            <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: gi * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div
-                className="mono-label mb-6 pb-3 border-b flex items-center justify-between"
-                style={{ color: "var(--text-tertiary)", borderColor: "var(--border-strong)" }}
+        <div className="grid sm:grid-cols-2 gap-5">
+          {capabilities.map((cap, ci) => {
+            const Icon = cap.icon;
+            return (
+              <motion.div
+                key={cap.title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="relative rounded-2xl border p-7 transition-all duration-300 hover:border-[var(--accent-color)]"
+                style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
-                <span>{group.category}</span>
-                <span style={{ color: "var(--accent-color)" }}>{String(gi + 1).padStart(2, "0")}</span>
-              </div>
-              {group.skills.map((skill, si) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={0.1 + si * 0.06}
-                />
-              ))}
-            </motion.div>
-          ))}
+                <span
+                  className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-8 border"
+                  style={{ borderColor: "var(--border-strong)", background: "var(--bg-secondary)" }}
+                >
+                  <Icon style={{ width: 20, height: 20, color: "var(--text-primary)" }} />
+                </span>
+                <h3
+                  className="text-lg font-semibold tracking-tight mb-3"
+                  style={{ color: "var(--text-primary)", letterSpacing: "-0.015em" }}
+                >
+                  {cap.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--text-tertiary)" }}
+                >
+                  {cap.body}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
