@@ -28,9 +28,12 @@ export type CaseStudy = {
   index: string;
   slug: string;
   title: string;
+  short: string;
   description: string;
   tags: string[];
   meta: string;
+  illustration: "support" | "batch" | "designsystem";
+  stats: { value: string; label: string }[];
   facts: { label: string; value: string }[];
   blocks: Block[];
 };
@@ -40,10 +43,18 @@ export const caseStudies: CaseStudy[] = [
     index: "01",
     slug: "reducing-support-friction",
     title: "Reducing Support Friction at Scale",
+    short:
+      "A corporate banking platform was sending answerable questions to the support queue. I read 1,000 tickets by hand and merged FAQ and ticketing into one surface.",
     description:
       "I redesigned the support experience of a large enterprise product by turning two years of tickets into product insight. The work separated content gaps from access issues, made repeated problems easier to solve, and moved more help into the product itself.",
     tags: ["UX Research", "Content Architecture", "Support Experience", "Enterprise Product"],
     meta: "Product Design · Content Strategy",
+    illustration: "support",
+    stats: [
+      { value: "~1,000", label: "tickets read" },
+      { value: "2 yrs", label: "of data" },
+      { value: "1", label: "unified surface" },
+    ],
     facts: [
       { label: "Role", value: "Product Designer, content architecture" },
       { label: "Platform", value: "Enterprise banking · 400K users" },
@@ -165,10 +176,18 @@ export const caseStudies: CaseStudy[] = [
     index: "02",
     slug: "batch-transfer",
     title: "Batch Transfer for Offline Corporate Clients",
+    short:
+      "A 400-row payment batch could be killed by one bad line, and money landed in real wrong accounts. We added row-level recovery and a recipient name match step.",
     description:
       "A forced timeline redesign for a branch operated payment workflow. Instead of treating a batch as one fragile upload, the experience helped employees review, isolate, and recover from transaction errors with more confidence.",
     tags: ["Product Design", "Workflow Design", "Error Recovery", "B2B Finance"],
     meta: "Product Design · Workflow Design",
+    illustration: "batch",
+    stats: [
+      { value: "400", label: "rows per batch" },
+      { value: "96%", label: "match threshold" },
+      { value: "1", label: "bad row, not 400" },
+    ],
     facts: [
       { label: "Role", value: "Product Designer, flow UI and prototype" },
       { label: "Domain", value: "B2B Banking · 2026" },
@@ -278,10 +297,18 @@ export const caseStudies: CaseStudy[] = [
     index: "03",
     slug: "design-system",
     title: "Design System for a Live Enterprise Platform",
+    short:
+      "29 components on top of Ant Design, in a live banking product with no DS engineer. I dropped my semantic tokens for the frontend team's existing names so adoption was instant.",
     description:
       "A pragmatic design system built inside a live enterprise product. I focused on usable foundations, scalable components, and adoption friendly patterns that helped teams move faster without breaking consistency.",
     tags: ["Design Systems", "Component Strategy", "Product Scale", "Enterprise UX"],
     meta: "Design System · Product Scale",
+    illustration: "designsystem",
+    stats: [
+      { value: "29", label: "components" },
+      { value: "90+", label: "live screens" },
+      { value: "8→3", label: "questions / day" },
+    ],
     facts: [
       { label: "Role", value: "Design system owner, end to end" },
       { label: "Scale", value: "90+ screens, permission-heavy" },
