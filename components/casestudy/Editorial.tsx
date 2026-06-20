@@ -124,7 +124,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
       { root: track, threshold: 0.15 }
     );
-    track.querySelectorAll(".cs-reveal").forEach((el) => obs.observe(el));
+    track.querySelectorAll(".cs-reveal, .cs-mockup").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [panels]);
 

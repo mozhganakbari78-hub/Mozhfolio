@@ -119,7 +119,7 @@ export default function BatchTransferCase() {
         <span className="cs-num">04 / Core decisions</span>
         <h2>Make risk visible before the money moves</h2>
 
-        <div className="cs-mockup cs-reveal">
+        <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/projects/batch-upload.png" alt="Batch upload screen — file submission and row preview" />
         </div>
@@ -196,7 +196,7 @@ export default function BatchTransferCase() {
         <span className="cs-num">04 / What the approver sees</span>
         <h2>Verification at the moment of approval</h2>
 
-        <div className="cs-mockup cs-reveal">
+        <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/projects/batch-validation.png" alt="Pre-submission recipient verification — match percentage review" />
         </div>

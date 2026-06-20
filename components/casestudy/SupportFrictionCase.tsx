@@ -172,7 +172,7 @@ export default function SupportFrictionCase() {
           where finding an answer and asking for help are the same flow, not a fork the user has to
           navigate before they&apos;ve even started.
         </p>
-        <div className="cs-mockup cs-reveal">
+        <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/projects/support-faq.png" alt="Unified support surface — FAQ and ticket in one flow" />
         </div>
@@ -188,7 +188,7 @@ export default function SupportFrictionCase() {
         <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
         <h2>The two decisions that shaped the build</h2>
 
-        <div className="cs-mockup cs-reveal">
+        <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/projects/support-faq-filter.png" alt="Real-time FAQ filtering as user types their issue" />
         </div>
