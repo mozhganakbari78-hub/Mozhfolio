@@ -10,6 +10,13 @@ const images: { src: string }[] = [
   { src: `${base}/projects/Screen3.png` },
   { src: `${base}/projects/Screen5.png` },
   { src: `${base}/projects/Screen6.png` },
+  { src: `${base}/projects/Screen7.png` },
+  { src: `${base}/projects/Screen8.png` },
+  { src: `${base}/projects/Screen9.png` },
+  { src: `${base}/projects/Screen10.png` },
+  { src: `${base}/projects/Screen11.png` },
+  { src: `${base}/projects/Screen12.png` },
+  { src: `${base}/projects/Screen13.png` },
 ];
 
 // Duplicate for seamless loop
