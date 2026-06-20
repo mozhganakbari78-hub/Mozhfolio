@@ -179,7 +179,7 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
-      {/* 05 DECISIONS */}
+      {/* 05a DECISION 01 */}
       <section className="cs-reveal">
         <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
         <h2>The two decisions that shaped the build</h2>
@@ -216,6 +216,12 @@ export default function SupportFrictionCase() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 05b DECISION 02 */}
+      <section className="cs-reveal">
+        <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
+        <h2>Working around the constraint I couldn&apos;t remove</h2>
 
         <div className="cs-decision">
           <div className="dhead">
@@ -318,7 +324,7 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
-      {/* 08 REFLECTION */}
+      {/* 08a REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">08 / Reflection</span>
         <h2>What I&apos;d carry forward</h2>
@@ -339,7 +345,12 @@ export default function SupportFrictionCase() {
             same trade of time-for-accuracy again on a judgment-heavy dataset.
           </p>
         </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
+      </section>
+
+      {/* 08b REFLECTION cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / Reflection</span>
+        <h2>The constraint that shaped the right answer</h2>
         <div className="cs-reflect">
           <h3>Live systems set the real edges of a design</h3>
           <p>

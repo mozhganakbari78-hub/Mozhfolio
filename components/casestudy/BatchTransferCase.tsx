@@ -114,7 +114,7 @@ export default function BatchTransferCase() {
         </p>
       </section>
 
-      {/* 04 CORE DECISIONS */}
+      {/* 04a CORE DECISIONS */}
       <section className="cs-reveal">
         <span className="cs-num">04 / Core decisions</span>
         <h2>Two changes, one principle: make risk visible before the money moves</h2>
@@ -178,13 +178,17 @@ export default function BatchTransferCase() {
             </div>
           </div>
         </div>
+      </section>
 
+      {/* 04b VALIDATION TABLE */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / What the approver sees</span>
+        <h2>Verification at the moment of approval</h2>
         <p>
-          These two decisions also sit inside a two-step authority model that the workflow already
-          required: a branch employee <strong>registers</strong> the request — no money moves yet,
-          but the verification result is visible — and a <strong>senior branch approver</strong>{" "}
-          reviews the same detail and confirms. Only then does the transfer execute. Verification
-          gives that approver something real to approve against.
+          These two decisions sit inside a two-step authority model: a branch employee{" "}
+          <strong>registers</strong> the request — no money moves yet, the verification result is
+          visible — and a <strong>senior branch approver</strong> reviews and confirms. Only then
+          does the transfer execute.
         </p>
 
         {/* validation table artifact */}
@@ -347,7 +351,7 @@ export default function BatchTransferCase() {
         </div>
       </section>
 
-      {/* 08 REFLECTION */}
+      {/* 08a REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">08 / Reflection</span>
         <h2>What I&apos;d carry forward</h2>
@@ -368,7 +372,12 @@ export default function BatchTransferCase() {
             two is the choice I&apos;m most confident was right.
           </p>
         </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
+      </section>
+
+      {/* 08b REFLECTION cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / Reflection</span>
+        <h2>One thing I&apos;d do differently</h2>
         <div className="cs-reflect">
           <h3>I&apos;d still push for one structured test before launch</h3>
           <p>

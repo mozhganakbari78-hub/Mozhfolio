@@ -79,7 +79,7 @@ export default function DesignSystemCase() {
         </div>
       </section>
 
-      {/* 03 CONSTRAINTS */}
+      {/* 03a CONSTRAINTS */}
       <section className="cs-reveal">
         <span className="cs-num">03 / Constraints</span>
         <h2>The reality I had to design inside</h2>
@@ -89,6 +89,24 @@ export default function DesignSystemCase() {
               "Ant Design was inherited — its API and theming shaped what was cheap vs. expensive to customize",
               "A frontend theme already existed in code; replacing it mid-flight meant refactor cost with no product gain",
               "The product was live — no resets, only incremental improvement",
+            ].map((c) => (
+              <div className="cs-step" key={c}>
+                <div>
+                  <p>{c}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 03b CONSTRAINTS cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / Constraints</span>
+        <h2>The edges the system had to respect</h2>
+        <div className="cs-card">
+          <div className="cs-steps">
+            {[
               "Capacity was tight — every customization had to justify its cost against delivery",
               "The domain demanded reliability — predictable states and permission-aware interactions",
               "It had to scale to adjacent tools without becoming so abstract it slowed today's work",
@@ -178,7 +196,7 @@ export default function DesignSystemCase() {
         </p>
       </section>
 
-      {/* 07 REFLECTION */}
+      {/* 07a REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">07 / Reflection</span>
         <h2>What I&apos;d do differently</h2>
@@ -198,7 +216,12 @@ export default function DesignSystemCase() {
             stakeholders as a real number, not a remembered impression.
           </p>
         </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
+      </section>
+
+      {/* 07b REFLECTION cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">07 / Reflection</span>
+        <h2>Structure the governance early</h2>
         <div className="cs-reflect">
           <h3>Name the governance early</h3>
           <p>
