@@ -5,15 +5,17 @@ import { motion } from "framer-motion";
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-const images: { src: string; alt: string }[] = [
-  { src: `${base}/projects/support-faq.png`, alt: "Unified support surface" },
-  { src: `${base}/projects/batch-upload.png`, alt: "Batch upload, per-row preview" },
-  { src: `${base}/projects/support-faq-filter.png`, alt: "Live FAQ filtering" },
-  { src: `${base}/projects/batch-validation.png`, alt: "Recipient verification at approval" },
+const images: { src: string }[] = [
+  { src: `${base}/projects/mockup-1.png` },
+  { src: `${base}/projects/mockup-2.png` },
+  { src: `${base}/projects/journey-map.png` },
+  { src: `${base}/projects/sticky-notes.png` },
+  { src: `${base}/projects/wireframe.png` },
+  { src: `${base}/projects/support-friction.png` },
 ];
 
 // Duplicate for seamless loop
-const track = [...images, ...images];
+const track = [...images, ...images, ...images];
 
 export default function VisualWork() {
   const railRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ export default function VisualWork() {
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            A look at the surface, not the story. Visit a case study for the reasoning behind it.
+            UI design and 3D work. A look at the surface.
           </p>
         </motion.div>
       </div>
@@ -99,25 +101,11 @@ export default function VisualWork() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img.src}
-                alt={img.alt}
+                alt=""
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 loading="lazy"
                 draggable={false}
               />
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent 55%)" }}
-                aria-hidden
-              />
-              <figcaption
-                className="absolute bottom-0 left-0 right-0 px-5 pb-4 pt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium"
-                style={{
-                  color: "#fff",
-                  background: "linear-gradient(to top, rgba(0,0,0,0.55), transparent)",
-                }}
-              >
-                {img.alt}
-              </figcaption>
             </figure>
           ))}
         </div>
