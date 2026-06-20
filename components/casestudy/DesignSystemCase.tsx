@@ -219,12 +219,42 @@ export default function DesignSystemCase() {
         </div>
       </section>
 
-      {/* SHOT — design system overview */}
+      {/* SHOT — button component */}
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/DesignSystem-Button.png"
           alt="Button component variants from the design system"
           caption="Fig. 01: Button component, layered on the Ant Design foundation"
+        />
+      </section>
+
+      {/* SHOT — button properties panel */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-ButtonProperties.png"
+          alt="Button component properties: state, type, size, loading, icon variants"
+          caption="Fig. 02: Properties documented inline, so devs ship the variant they need without asking"
+        />
+      </section>
+
+      {/* MULTI-BRAND section */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / Multi-brand support</span>
+        <h2>One system, three brand pipelines</h2>
+        <p>
+          The same component layer drives three separate brand products. Each brand keeps its own
+          full token ramp (50 → 950), so a button stays identical in structure but reads as
+          three different products at the surface. The token names stay constant across
+          projects, only the values swap.
+        </p>
+      </section>
+
+      {/* SHOT — multi-brand tokens */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-MultiBrand.png"
+          alt="Brand color ramps across three product projects, mapped to shared token names"
+          caption="Fig. 03: Shared token names, swappable brand values across three live products"
         />
       </section>
 
