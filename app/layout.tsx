@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Nunito, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 
-const inter = Inter({
+// Site-wide font. Keeps the --font-inter variable name so existing references
+// keep working, but the family is now Nunito.
+const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
@@ -33,8 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={`${nunito.variable} ${mono.variable}`}>
       <body>
+        <SmoothScroll />
         <CustomCursor />
         {children}
       </body>
