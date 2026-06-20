@@ -43,19 +43,7 @@ export default function Hero() {
         <motion.div variants={stagger} initial="initial" animate="animate">
 
           {/* Eyebrow */}
-          <motion.div variants={fadeUp} className="mb-10 flex items-center gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/Profile.JPG`}
-              alt="Mozhgan Akbari"
-              className="rounded-full object-cover"
-              style={{
-                width: 44,
-                height: 44,
-                border: "1.5px solid var(--accent-color)",
-                boxShadow: "0 0 0 4px rgba(1,116,220,0.08)",
-              }}
-            />
+          <motion.div variants={fadeUp} className="mb-10">
             <span
               className="mono-label"
               style={{ color: "var(--accent-color)" }}

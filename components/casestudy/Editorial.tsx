@@ -227,11 +227,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
             <ArrowLeftIcon style={{ width: 14, height: 14 }} />
             All work
           </Link>
-          <span className="cs-sig">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/Profile.JPG`} alt="" className="cs-avatar" />
-            Mozhgan Akbari
-          </span>
+          <span className="cs-sig">Mozhgan Akbari</span>
         </div>
       </div>
 
