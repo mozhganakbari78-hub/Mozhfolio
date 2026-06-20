@@ -57,7 +57,7 @@ export default function Skills() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {capabilities.map((cap, ci) => {
             const Icon = cap.icon;
             return (

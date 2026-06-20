@@ -127,7 +127,7 @@ export default function Projects() {
                   className="text-sm md:text-base leading-relaxed line-clamp-2 mb-8"
                   style={{ color: "var(--text-tertiary)" }}
                 >
-                  Something I&apos;m currently designing. The messy parts included, as usual.
+                  Another project I&apos;ll be adding here soon. The messy parts included, as usual.
                 </p>
                 <div className="mt-auto">
                   <span
