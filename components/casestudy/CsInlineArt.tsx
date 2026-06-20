@@ -464,7 +464,7 @@ export function SystemAnatomy() {
 export function MultiBrandTokens() {
   const ramps = [
     { name: "Project 1", colors: ["#EAEEF5", "#AABAD8", "#5575B1", "#2A539E", "#1C2E4F", "#0F192B"] },
-    { name: "Project 2", colors: ["#FEF8EC", "#FDE2B3", "#FAC567", "#F9B741", "#935100", "#2D0000"] },
+    { name: "Project 2", colors: ["#FEF8EC", "#FDE2B3", "#FAC567", "#F9B741", "#935100", "#130000"] },
     { name: "Project 3", colors: ["#E5F2F2", "#99CACC", "#339599", "#007A7F", "#00393D", "#001617"] },
   ];
   const steps = [50, 200, 400, 500, 700, 950];
