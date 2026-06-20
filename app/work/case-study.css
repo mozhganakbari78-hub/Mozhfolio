@@ -241,6 +241,89 @@
   .cs-reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   HORIZONTAL, TIMELINE-DRIVEN LAYOUT (konpo-style)
+   ────────────────────────────────────────────────────────────────────────── */
+.cs-horizontal { height: 100dvh; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+
+.cs-horizontal .cs-bar { position: static; }
+.cs-bar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 28px; max-width: none;
+}
+
+/* horizontal scroller */
+.cs-htrack {
+  flex: 1 1 auto; min-height: 0;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+.cs-htrack::-webkit-scrollbar { height: 8px; }
+.cs-htrack::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+.cs-htrack::-webkit-scrollbar-track { background: transparent; }
+
+.cs-horizontal article { display: flex; flex-direction: row; align-items: stretch; height: 100%; width: max-content; }
+
+/* every top-level block becomes a panel */
+.cs-horizontal article > * {
+  flex: 0 0 auto;
+  width: min(820px, 92vw);
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 46px 52px 60px;
+  border-right: 1px solid var(--line-soft);
+}
+.cs-horizontal article > *::-webkit-scrollbar { width: 6px; }
+.cs-horizontal article > *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.cs-horizontal article > .cs-hero { width: min(1020px, 94vw); padding-top: 64px; }
+.cs-horizontal article > .cs-next {
+  width: min(640px, 90vw);
+  display: flex; flex-direction: column; justify-content: center;
+  border-top: 0;
+}
+.cs-horizontal article > .cs-foot {
+  width: min(540px, 88vw);
+  display: flex; flex-direction: column; justify-content: center;
+  border-top: 0;
+}
+/* panels manage their own padding; neutralize the vertical-mode section rhythm */
+.cs-horizontal article > section { padding: 46px 52px 60px; }
+.cs-horizontal .cs-hero { padding-bottom: 60px; }
+
+/* divider between hero and first section isn't needed horizontally */
+.cs-horizontal .cs-divider { display: none; }
+
+/* timeline */
+.cs-timeline {
+  flex: 0 0 auto; height: 80px;
+  border-top: 1px solid var(--line);
+  padding: 16px 28px 0; position: relative;
+  background: var(--paper);
+}
+.cs-tl-line { position: absolute; left: 34px; right: 34px; top: 22px; height: 2px; background: var(--line); border-radius: 2px; }
+.cs-tl-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .12s linear; }
+.cs-tl-labels { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; gap: 8px; }
+.cs-tl-item {
+  background: none; border: 0; cursor: pointer; padding: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink-faint); transition: color .2s ease;
+}
+.cs-tl-item .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); box-shadow: 0 0 0 4px var(--paper); transition: background .2s ease, transform .2s ease; }
+.cs-tl-item .txt { white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+.cs-tl-item:hover { color: var(--ink); }
+.cs-tl-item.active { color: var(--accent); }
+.cs-tl-item.active .dot { background: var(--accent); transform: scale(1.25); }
+
+@media (max-width: 760px) {
+  .cs-tl-item .txt { display: none; }
+  .cs-tl-item.active .txt { display: block; }
+  .cs-horizontal article > * { padding: 32px 26px 48px; }
+  .cs-horizontal article > .cs-hero { padding-top: 40px; }
+}
+
 @media (max-width: 600px) {
   .cs-root { font-size: 16px; }
   .cs-wrap { padding: 0 20px; }
