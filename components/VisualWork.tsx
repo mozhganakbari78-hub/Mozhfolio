@@ -134,8 +134,8 @@ export default function VisualWork() {
               key={`${img.src}-${i}`}
               className="group relative flex-none overflow-hidden rounded-2xl border"
               style={{
-                width: "clamp(280px, 32vw, 520px)",
-                height: "clamp(180px, 22vw, 340px)",
+                width: "clamp(360px, 42vw, 720px)",
+                height: "clamp(240px, 28vw, 460px)",
                 borderColor: "var(--border-strong)",
                 background: "var(--bg-secondary)",
               }}
