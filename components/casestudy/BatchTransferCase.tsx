@@ -114,10 +114,10 @@ export default function BatchTransferCase() {
         </p>
       </section>
 
-      {/* 04a CORE DECISIONS */}
+      {/* 04a DECISION 01 */}
       <section className="cs-reveal">
         <span className="cs-num">04 / Core decisions</span>
-        <h2>Two changes, one principle: make risk visible before the money moves</h2>
+        <h2>Make risk visible before the money moves</h2>
 
         <div className="cs-decision">
           <div className="dhead">
@@ -153,6 +153,12 @@ export default function BatchTransferCase() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 04b DECISION 02 */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / Core decisions</span>
+        <h2>One broken row should stay one broken row</h2>
 
         <div className="cs-decision">
           <div className="dhead">

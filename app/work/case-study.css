@@ -8,8 +8,8 @@
   --ink-soft: #b9bbc9;
   --ink-faint: #7e8095;
   --paper: #121314;
-  --paper-warm: #16181f;
-  --paper-cool: #16181f;
+  --paper-warm: #1C1D1F;
+  --paper-cool: #1C1D1F;
   --line: #20222f;
   --line-soft: #1a1c28;
   --accent: #0174DC;
@@ -24,7 +24,7 @@
   --pass-soft: rgba(95, 202, 166, 0.22);
   --warn: #e0b455;
   --warn-soft: rgba(224, 180, 85, 0.2);
-  --card: #13151f;
+  --card: #1C1D1F;
   --shadow: 0 1px 3px rgba(0,0,0,.4), 0 12px 36px rgba(0,0,0,.4);
 
   background: var(--paper);
