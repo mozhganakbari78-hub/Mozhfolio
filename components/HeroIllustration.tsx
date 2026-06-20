@@ -1,128 +1,176 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 
 /**
- * Custom hero illustration — an abstract "complexity into clarity" composition:
- * a clean product surface (interface frame) with floating workflow chips, nodes,
- * and connecting lines drifting around it. Replaces the generic look with
- * something crafted and on-brand. Gentle, reduced-motion-aware float.
+ * Hero illustration — a friendly flat-design skeleton that idles with a gentle
+ * breathing bob, a soft blink, and a small hand sway. Synced to the site theme:
+ * cream bones on a dark surface disc with a blue accent glow. Reduced-motion
+ * users get a static pose (framer-motion respects prefers-reduced-motion via the
+ * MotionConfig defaults / the OS setting on transitions we keep subtle).
  */
 
-const float = (delay: number, dist = 10): Variants => ({
-  animate: {
-    y: [0, -dist, 0],
-    transition: { duration: 6 + delay, repeat: Infinity, ease: "easeInOut", delay },
-  },
-});
-
-function Chip({
-  label,
-  className,
-  delay,
-  accent,
-}: {
-  label: string;
-  className?: string;
-  delay: number;
-  accent?: boolean;
-}) {
-  return (
-    <motion.div
-      className={`absolute rounded-xl border px-3 py-2 text-[11px] font-medium backdrop-blur-sm ${className ?? ""}`}
-      style={{
-        borderColor: accent ? "var(--accent-color)" : "var(--border-strong)",
-        background: "var(--surface-elevated)",
-        color: accent ? "var(--accent-color)" : "var(--text-secondary)",
-        boxShadow: "var(--shadow-md)",
-      }}
-      variants={float(delay)}
-      animate="animate"
-    >
-      {label}
-    </motion.div>
-  );
-}
+const BONE = "#ece7d6";
+const BONE_SHADE = "#cfc9b6";
+const SOCKET = "#15161a";
 
 export default function HeroIllustration() {
   return (
     <div className="relative w-full max-w-md mx-auto aspect-square select-none" aria-hidden="true">
-      {/* Connecting line layer */}
-      <svg
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 400 400"
-        fill="none"
-        style={{ color: "var(--accent-color)" }}
-      >
-        <motion.path
-          d="M70 90 C 140 70, 180 140, 200 200 S 300 320, 330 300"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeOpacity="0.35"
-          strokeDasharray="4 6"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-        />
-        <motion.path
-          d="M90 320 C 150 300, 170 230, 210 190 S 300 110, 340 110"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeOpacity="0.2"
-          strokeDasharray="2 8"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2.4, ease: "easeInOut", delay: 0.3 }}
-        />
-        {[
-          [70, 90],
-          [330, 300],
-          [90, 320],
-          [340, 110],
-        ].map(([cx, cy], i) => (
-          <circle key={i} cx={cx} cy={cy} r="3" fill="currentColor" fillOpacity="0.5" />
-        ))}
-      </svg>
+      {/* Accent glow behind */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[78%] h-[78%] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, var(--accent-soft), transparent 68%)" }}
+      />
 
-      {/* Central product surface */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-44 rounded-2xl border overflow-hidden"
-        style={{
-          borderColor: "var(--border-strong)",
-          background: "var(--surface)",
-          boxShadow: "var(--shadow-lg)",
-        }}
-        variants={float(0.5, 6)}
-        animate="animate"
-      >
-        {/* window bar */}
-        <div
-          className="flex items-center gap-1.5 px-3 py-2.5 border-b"
-          style={{ borderColor: "var(--border)" }}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" fill="none">
+        {/* Surface disc */}
+        <ellipse cx="200" cy="332" rx="120" ry="30" fill="var(--surface)" />
+        <ellipse cx="200" cy="332" rx="120" ry="30" stroke="var(--border-strong)" strokeWidth="1" />
+
+        {/* Ground shadow — scales inversely to the bob */}
+        <motion.ellipse
+          cx="200"
+          cy="338"
+          rx="58"
+          ry="11"
+          fill="#000"
+          fillOpacity="0.35"
+          animate={{ rx: [58, 50, 58], opacity: [0.35, 0.28, 0.35] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Whole skeleton bobs gently */}
+        <motion.g
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="w-2 h-2 rounded-full" style={{ background: "var(--border-strong)" }} />
-          <span className="w-2 h-2 rounded-full" style={{ background: "var(--border-strong)" }} />
-          <span className="w-2 h-2 rounded-full" style={{ background: "var(--accent-color)" }} />
-        </div>
-        {/* content rows */}
-        <div className="p-3.5 space-y-2.5">
-          <div className="h-2 rounded-full w-3/4" style={{ background: "var(--accent-soft)" }} />
-          <div className="h-2 rounded-full w-full" style={{ background: "var(--border-strong)" }} />
-          <div className="h-2 rounded-full w-5/6" style={{ background: "var(--border-strong)" }} />
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            <div className="h-10 rounded-lg" style={{ background: "var(--accent-soft)" }} />
-            <div className="h-10 rounded-lg border" style={{ borderColor: "var(--border-strong)" }} />
-          </div>
-          <div className="h-2 rounded-full w-2/3" style={{ background: "var(--border-strong)" }} />
-        </div>
-      </motion.div>
+          {/* ── Legs ── */}
+          <g stroke={BONE} strokeWidth="13" strokeLinecap="round" fill="none">
+            <path d="M188 286 L184 330" />
+            <path d="M212 286 L216 330" />
+          </g>
+          {/* knee + ankle joints */}
+          <g fill={BONE}>
+            <circle cx="186" cy="308" r="8" />
+            <circle cx="214" cy="308" r="8" />
+          </g>
+          {/* feet */}
+          <g stroke={BONE} strokeWidth="9" strokeLinecap="round" fill="none">
+            <path d="M184 330 L170 334" />
+            <path d="M216 330 L230 334" />
+          </g>
 
-      {/* Floating workflow chips */}
-      <Chip label="Problem framing" className="left-0 top-[14%]" delay={0.2} accent />
-      <Chip label="Error states" className="right-0 top-[28%]" delay={0.9} />
-      <Chip label="Design tokens" className="left-[4%] bottom-[20%]" delay={1.4} />
-      <Chip label="Handoff" className="right-[2%] bottom-[12%]" delay={0.6} accent />
+          {/* ── Pelvis ── */}
+          <path
+            d="M173 278 Q200 296 227 278 Q224 262 200 264 Q176 262 173 278 Z"
+            fill={BONE}
+          />
+
+          {/* ── Spine ── */}
+          <g stroke={BONE} strokeWidth="10" strokeLinecap="round">
+            <path d="M200 196 L200 268" />
+          </g>
+
+          {/* ── Ribcage ── */}
+          <g stroke={BONE_SHADE} strokeWidth="6" strokeLinecap="round" fill="none">
+            <path d="M200 214 Q170 210 165 226" />
+            <path d="M200 214 Q230 210 235 226" />
+            <path d="M200 234 Q168 232 162 250" />
+            <path d="M200 234 Q232 232 238 250" />
+            <path d="M200 254 Q172 254 170 270" />
+            <path d="M200 254 Q228 254 230 270" />
+          </g>
+
+          {/* ── Arms (left sways) ── */}
+          <motion.g
+            style={{ originX: "158px", originY: "200px" }}
+            animate={{ rotate: [0, -7, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <g stroke={BONE} strokeWidth="11" strokeLinecap="round" fill="none">
+              <path d="M158 200 L146 244" />
+              <path d="M146 244 L150 286" />
+            </g>
+            <circle cx="148" cy="245" r="7" fill={BONE} />
+            {/* hand */}
+            <g stroke={BONE} strokeWidth="5" strokeLinecap="round" fill="none">
+              <path d="M150 286 L144 298" />
+              <path d="M150 286 L151 300" />
+              <path d="M150 286 L157 297" />
+            </g>
+          </motion.g>
+
+          {/* right arm */}
+          <motion.g
+            style={{ originX: "242px", originY: "200px" }}
+            animate={{ rotate: [0, 6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+          >
+            <g stroke={BONE} strokeWidth="11" strokeLinecap="round" fill="none">
+              <path d="M242 200 L254 244" />
+              <path d="M254 244 L250 286" />
+            </g>
+            <circle cx="252" cy="245" r="7" fill={BONE} />
+            <g stroke={BONE} strokeWidth="5" strokeLinecap="round" fill="none">
+              <path d="M250 286 L244 297" />
+              <path d="M250 286 L249 300" />
+              <path d="M250 286 L256 298" />
+            </g>
+          </motion.g>
+
+          {/* shoulders */}
+          <g fill={BONE}>
+            <circle cx="160" cy="200" r="9" />
+            <circle cx="240" cy="200" r="9" />
+          </g>
+
+          {/* ── Skull ── */}
+          <path
+            d="M200 58
+               C156 58 134 92 134 128
+               C134 156 152 168 166 174
+               L166 188
+               C166 197 178 202 200 202
+               C222 202 234 197 234 188
+               L234 174
+               C248 168 266 156 266 128
+               C266 92 244 58 200 58 Z"
+            fill={BONE}
+          />
+          {/* jaw seam */}
+          <path d="M170 176 Q200 188 230 176" stroke={BONE_SHADE} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          {/* teeth */}
+          <g stroke={BONE_SHADE} strokeWidth="2" strokeLinecap="round">
+            <path d="M186 184 L186 196" />
+            <path d="M200 185 L200 197" />
+            <path d="M214 184 L214 196" />
+          </g>
+
+          {/* eye sockets — blink */}
+          <motion.g
+            fill={SOCKET}
+            animate={{ scaleY: [1, 1, 0.12, 1, 1] }}
+            transition={{
+              duration: 4,
+              times: [0, 0.45, 0.5, 0.55, 1],
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ originY: "130px" }}
+          >
+            <ellipse cx="176" cy="130" rx="18" ry="20" />
+            <ellipse cx="224" cy="130" rx="18" ry="20" />
+          </motion.g>
+          {/* eye glints */}
+          <g fill="var(--accent-color)">
+            <circle cx="182" cy="124" r="3.4" />
+            <circle cx="230" cy="124" r="3.4" />
+          </g>
+          {/* nose */}
+          <path d="M200 146 L193 162 L207 162 Z" fill={SOCKET} />
+        </motion.g>
+      </svg>
     </div>
   );
 }
