@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { caseStudies } from "@/data/caseStudies";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
@@ -109,7 +109,7 @@ export default function Projects() {
                     style={{ background: "var(--accent-soft)", color: "var(--accent-color)" }}
                   >
                     Read Case Study
-                    <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRightIcon style={{ width: 15, height: 15 }} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                 </div>
               </div>

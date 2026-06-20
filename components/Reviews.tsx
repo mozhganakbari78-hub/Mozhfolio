@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote, ArrowUpRight } from "lucide-react";
+import { ChatBubbleLeftEllipsisIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { reviews } from "@/data/reviews";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
@@ -46,7 +46,7 @@ export default function Reviews() {
                 aria-hidden
               />
               <div className="relative">
-                <Quote size={22} style={{ color: "var(--accent-color)" }} className="mb-5" />
+                <ChatBubbleLeftEllipsisIcon style={{ width: 22, height: 22, color: "var(--accent-color)" }} className="mb-5" />
                 <blockquote
                   className="text-base leading-relaxed"
                   style={{ color: "var(--text-secondary)" }}
@@ -70,7 +70,7 @@ export default function Reviews() {
                     style={{ color: "var(--accent-color)" }}
                   >
                     {r.source}
-                    <ArrowUpRight size={11} />
+                    <ArrowUpRightIcon style={{ width: 11, height: 11 }} />
                   </a>
                 )}
               </figcaption>

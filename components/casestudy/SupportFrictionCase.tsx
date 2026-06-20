@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
 
@@ -418,7 +418,7 @@ export default function SupportFrictionCase() {
       <Link href="/work/batch-transfer" className="cs-next">
         <span className="l">Next case →</span>
         <div className="t">
-          Batch Transfer for Offline Corporate Clients <ArrowRight size={22} style={{ display: "inline", verticalAlign: "middle" }} />
+          Batch Transfer for Offline Corporate Clients <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </Link>
 

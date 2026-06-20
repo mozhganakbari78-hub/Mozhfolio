@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -85,7 +85,7 @@ export default function Navigation() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={15} /> : <Menu size={15} />}
+              {menuOpen ? <XMarkIcon style={{ width: 15, height: 15 }} /> : <Bars3Icon style={{ width: 15, height: 15 }} />}
             </button>
           </div>
         </nav>

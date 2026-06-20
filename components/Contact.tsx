@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail } from "lucide-react";
+import { PaperAirplaneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 
 function LinkedinIcon({ size = 15 }: { size?: number }) {
@@ -27,7 +27,7 @@ export default function Contact() {
 
   const socials = [
     { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/mozhgan-akbari/" },
-    { icon: Mail, label: "Email", href: "mailto:akbarimozhgan99@gmail.com" },
+    { icon: EnvelopeIcon, label: "Email", href: "mailto:akbarimozhgan99@gmail.com" },
   ];
 
   return (
@@ -103,7 +103,7 @@ export default function Contact() {
                 className="flex items-center gap-3 text-sm transition-opacity hover:opacity-70"
                 style={{ color: "var(--text-secondary)" }}
               >
-                <Mail size={15} />
+                <EnvelopeIcon style={{ width: 15, height: 15 }} />
                 akbarimozhgan99@gmail.com
               </a>
               <a
@@ -133,7 +133,7 @@ export default function Contact() {
                     background: "var(--surface)",
                   }}
                 >
-                  <Icon size={15} />
+                  <Icon style={{ width: 15, height: 15 }} />
                 </a>
               ))}
             </div>
@@ -230,7 +230,7 @@ export default function Contact() {
                   ) : (
                     <>
                       Send message
-                      <Send size={13} />
+                      <PaperAirplaneIcon style={{ width: 13, height: 13 }} />
                     </>
                   )}
                 </button>

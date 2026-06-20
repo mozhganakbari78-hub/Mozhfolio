@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 
 const components = [
@@ -321,7 +321,7 @@ export default function DesignSystemCase() {
         <span className="l">Next case &rarr;</span>
         <div className="t">
           Reducing Support Friction at Scale{" "}
-          <ArrowRight size={22} style={{ display: "inline", verticalAlign: "middle" }} />
+          <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </Link>
 

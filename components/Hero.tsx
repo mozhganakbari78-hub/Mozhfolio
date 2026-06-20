@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import ParticleField from "./ParticleField";
 import HeroIllustration from "./HeroIllustration";
 
@@ -83,7 +83,7 @@ export default function Hero() {
               style={{ background: "var(--accent-color)", color: "var(--accent-contrast)" }}
             >
               View case studies
-              <ArrowUpRight size={15} />
+              <ArrowUpRightIcon style={{ width: 15, height: 15 }} />
             </button>
             <button
               data-hand
@@ -144,7 +144,7 @@ export default function Hero() {
           Scroll
         </span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-          <ArrowDown size={14} style={{ color: "var(--text-tertiary)" }} />
+          <ArrowDownIcon style={{ width: 14, height: 14, color: "var(--text-tertiary)" }} />
         </motion.div>
       </motion.div>
     </section>

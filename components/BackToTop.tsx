@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp } from "lucide-react";
+import { ArrowUpIcon } from "@heroicons/react/24/outline";
 
 /** Floating button that fades in after scrolling and smooth-scrolls to top. */
 export default function BackToTop() {
@@ -38,7 +38,7 @@ export default function BackToTop() {
             boxShadow: "0 10px 30px rgba(0,0,0,0.45)",
           }}
         >
-          <ArrowUp size={18} />
+          <ArrowUpIcon style={{ width: 18, height: 18 }} />
         </motion.button>
       )}
     </AnimatePresence>

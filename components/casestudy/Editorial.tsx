@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 type Panel = { el: HTMLElement; label: string };
 
@@ -158,7 +158,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
       <div className="cs-bar">
         <div className="cs-bar-inner">
           <Link href="/#projects" className="cs-back">
-            <ArrowLeft size={14} />
+            <ArrowLeftIcon style={{ width: 14, height: 14 }} />
             All work
           </Link>
           <span className="cs-sig">Mozhgan Akbari</span>

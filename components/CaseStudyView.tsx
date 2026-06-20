@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import type { Block, CaseStudy } from "@/data/caseStudies";
 import BackToTop from "@/components/BackToTop";
 
@@ -329,7 +329,7 @@ function BlockView({ block }: { block: Block }) {
                 className="flex gap-3 text-base leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
-                <ArrowRight size={16} className="mt-1 shrink-0" style={{ color: "var(--accent-color)" }} />
+                <ArrowRightIcon style={{ width: 16, height: 16, color: "var(--accent-color)" }} className="mt-1 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -414,7 +414,7 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
           className="relative inline-flex items-center gap-2 text-sm mb-12 transition-opacity hover:opacity-70"
           style={{ color: "var(--text-tertiary)" }}
         >
-          <ArrowLeft size={15} />
+          <ArrowLeftIcon style={{ width: 15, height: 15 }} />
           Back to work
         </Link>
 
@@ -505,7 +505,7 @@ export default function CaseStudyView({ cs }: { cs: CaseStudy }) {
           className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
           style={{ color: "var(--accent-color)" }}
         >
-          <ArrowLeft size={15} />
+          <ArrowLeftIcon style={{ width: 15, height: 15 }} />
           Back to all work
         </Link>
       </div>

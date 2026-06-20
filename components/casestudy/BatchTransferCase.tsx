@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
 
@@ -372,7 +372,7 @@ export default function BatchTransferCase() {
         <span className="l">Next case →</span>
         <div className="t">
           Design System for a Live Enterprise Platform{" "}
-          <ArrowRight size={22} style={{ display: "inline", verticalAlign: "middle" }} />
+          <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </Link>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { EnvelopeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 
 function LinkedinIcon({ size = 15 }: { size?: number }) {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   const links = [
-    { label: "Email", href: "mailto:akbarimozhgan99@gmail.com", icon: Mail, external: false },
+    { label: "Email", href: "mailto:akbarimozhgan99@gmail.com", icon: EnvelopeIcon, external: false },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/mozhgan-akbari/",
@@ -55,9 +55,9 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm transition-all duration-200 hover:border-[var(--accent-color)] hover:text-[var(--text-primary)]"
                 style={{ color: "var(--text-secondary)", borderColor: "var(--border-strong)" }}
               >
-                <Icon size={14} />
+                <Icon style={{ width: 14, height: 14 }} />
                 {label}
-                <ArrowUpRight size={13} />
+                <ArrowUpRightIcon style={{ width: 13, height: 13 }} />
               </a>
             ))}
           </div>
