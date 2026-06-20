@@ -130,9 +130,9 @@ export default function SupportFrictionCase() {
 
           {[
             { name: "Bill management", split: "mostly self-serviceable", resolve: 74, delay: "0.1s" },
-            { name: "Cards", split: "split", resolve: 58, delay: "0.25s" },
-            { name: "Cheque management", split: "split", resolve: 52, delay: "0.4s" },
-            { name: "Accounts", split: "leans to support", resolve: 40, delay: "0.55s" },
+            { name: "Cards", split: "mixed", resolve: 58, delay: "0.22s" },
+            { name: "Cheque management", split: "mixed", resolve: 52, delay: "0.34s" },
+            { name: "Accounts", split: "leans to support", resolve: 40, delay: "0.46s" },
           ].map((b) => (
             <div className="cs-bar" key={b.name}>
               <div className="blabel">
@@ -142,6 +142,10 @@ export default function SupportFrictionCase() {
               <div className="cs-track">
                 <div className="seg-resolve" style={{ width: `${b.resolve}%`, ["--resolve-pct" as string]: `${b.resolve}%`, ["--bar-delay" as string]: b.delay }} />
                 <div className="seg-signal" style={{ width: `${100 - b.resolve}%`, ["--signal-pct" as string]: `${100 - b.resolve}%`, ["--bar-delay" as string]: b.delay }} />
+              </div>
+              <div className="bpcts">
+                <span className="pr">{b.resolve}% self-service</span>
+                <span className="ps">{100 - b.resolve}% needs support</span>
               </div>
             </div>
           ))}

@@ -167,11 +167,15 @@ export default function Skills() {
                 {cap.title}
               </h3>
               <div className="flex flex-wrap gap-2 mb-6">
-                {cap.tags.map((tag) => (
-                  <span key={tag} className="tag-pill">
-                    {tag}
-                  </span>
-                ))}
+                {cap.tags.map((tag, ti) => {
+                  const colors = ["blue", "purple", "pink", "yellow", "teal"];
+                  const c = colors[(ci * 3 + ti) % colors.length];
+                  return (
+                    <span key={tag} className={`tag-pill tag-pill--${c}`}>
+                      {tag}
+                    </span>
+                  );
+                })}
               </div>
               <p
                 className="text-sm md:text-base leading-relaxed mt-auto"

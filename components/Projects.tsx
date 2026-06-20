@@ -90,11 +90,15 @@ export default function Projects() {
                     {cs.description}
                   </p>
                   <div className="flex flex-wrap items-center gap-2">
-                    {cs.tags.map((tag) => (
-                      <span key={tag} className="tag-pill">
-                        {tag}
-                      </span>
-                    ))}
+                    {cs.tags.map((tag, ti) => {
+                      const colors = ["purple", "pink", "yellow", "teal", "blue"];
+                      const c = colors[(i * 2 + ti) % colors.length];
+                      return (
+                        <span key={tag} className={`tag-pill tag-pill--${c}`}>
+                          {tag}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
