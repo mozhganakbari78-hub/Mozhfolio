@@ -297,13 +297,12 @@
   border: 1px solid var(--line-soft);
   box-shadow: 0 1px 3px rgba(0,0,0,.4), 0 24px 60px rgba(0,0,0,.5);
   margin: 6px 0 20px;
-  opacity: 0;
-  transform: translateY(34px) scale(0.94);
-  transition: transform .85s cubic-bezier(.2,.8,.2,1), opacity .7s ease, box-shadow .3s ease;
+  transform-origin: center center;
+  opacity: var(--mk-op, 0.4);
+  transform: scale(var(--mk-scale, 0.86));
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s ease, box-shadow .3s ease;
   will-change: transform, opacity;
 }
-.cs-mockup.in { opacity: 1; transform: none; }
-.cs-mockup:hover { box-shadow: 0 1px 3px rgba(0,0,0,.4), 0 28px 70px rgba(0,0,0,.6); }
 /* window chrome bar */
 .cs-mockup::before {
   content: "";
@@ -323,7 +322,7 @@
 .cs-mockup-caption { font-size: 12.5px; color: var(--ink-faint); margin: 12px 0 0; font-family: var(--font-mono), monospace; letter-spacing: .04em; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-mockup { opacity: 1; transform: none; transition: none; }
+  .cs-mockup { opacity: 1 !important; transform: none !important; transition: none; }
 }
 
 /* questions card (DS case) */

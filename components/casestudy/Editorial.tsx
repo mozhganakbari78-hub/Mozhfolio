@@ -92,10 +92,29 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     return () => track.removeEventListener("wheel", onWheel);
   }, [panels]);
 
-  // Track scroll → progress + active section.
+  // Track scroll → progress + active section + scroll-linked mockup scale.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    const mockups = Array.from(track.querySelectorAll<HTMLElement>(".cs-mockup"));
+
+    // Konpo-style reveal: each image grows from a smaller card to full size as
+    // its panel slides into the centre of the viewport.
+    const updateMockups = () => {
+      const tr = track.getBoundingClientRect();
+      const trackCenter = tr.left + tr.width / 2;
+      for (const el of mockups) {
+        const r = el.getBoundingClientRect();
+        const c = r.left + r.width / 2;
+        const dist = Math.min(1, Math.abs(c - trackCenter) / (tr.width * 0.9));
+        const p = 1 - dist; // 1 at centre, 0 far away
+        const scale = 0.86 + 0.14 * p;
+        const op = 0.35 + 0.65 * p;
+        el.style.setProperty("--mk-scale", scale.toFixed(3));
+        el.style.setProperty("--mk-op", op.toFixed(3));
+      }
+    };
+
     const onScroll = () => {
       const max = track.scrollWidth - track.clientWidth;
       const ratio = max > 0 ? track.scrollLeft / max : 0;
@@ -106,6 +125,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
         if (p.el.offsetLeft <= center) idx = i;
       });
       setActive(idx);
+      updateMockups();
     };
     onScroll();
     track.addEventListener("scroll", onScroll, { passive: true });
@@ -116,7 +136,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     };
   }, [panels]);
 
-  // Reveal panels on horizontal entry.
+  // Reveal text blocks on horizontal entry.
   useEffect(() => {
     const track = trackRef.current;
     if (!track || !panels.length) return;
@@ -124,7 +144,7 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
       { root: track, threshold: 0.15 }
     );
-    track.querySelectorAll(".cs-reveal, .cs-mockup").forEach((el) => obs.observe(el));
+    track.querySelectorAll(".cs-reveal").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [panels]);
 
