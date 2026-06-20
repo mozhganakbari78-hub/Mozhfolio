@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Enterprise corporate banking platform. Owned the design system end to end, led design on workflow-heavy banking tools, and shipped a batch payments redesign and support experience under real deadlines." },
+  { year: "2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Enterprise corporate banking platform. Contributed to the design system, designed workflow-heavy banking tools, and shipped a batch payments redesign and support experience under real deadlines." },
   { year: "2023 – 2024", role: "Product Designer", company: "IRO Team", note: "Mobile app for remote IoT greenhouse monitoring. Designed sensor controls, notifications, and conditional automation rules for non-technical operators." },
   { year: "2021 – 2023", role: "UI/UX Designer", company: "Wallex Exchange", note: "Consumer cryptocurrency exchange across web and mobile. Built reusable UI components and shipped iteratively with developers over two years." },
   { year: "2017 – 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
@@ -44,7 +44,7 @@ export default function About() {
               Product designer with around four years in fintech and enterprise software. I work close to engineering, design within real product and technical constraints, and care more about decisions that ship and get adopted than about polish.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              Most of my recent work is on a live corporate banking platform, where I owned a design system and led design on workflow-heavy banking tools.
+              Most of my recent work is on a live corporate banking platform, where I helped build the design system and designed workflow-heavy banking tools alongside engineering.
             </p>
 
             {/* Traits */}

@@ -66,8 +66,8 @@ export default function DesignSystemCase() {
         </p>
         <p>
           No greenfield, no DS engineer, no slack in the schedule. Whatever I built had to layer onto
-          a live product without breaking what was shipping. I owned the system end to end:
-          structure, tokens, component scope, documentation, maintenance, while also doing product
+          a live product without breaking what was shipping. I worked across the system —
+          structure, tokens, component scope, documentation, maintenance — alongside product
           work.
         </p>
       </section>
