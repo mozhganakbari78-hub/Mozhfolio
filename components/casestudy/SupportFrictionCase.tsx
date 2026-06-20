@@ -177,11 +177,6 @@ export default function SupportFrictionCase() {
           and asking for help are the same flow, not a fork the user navigates before they&apos;ve
           even started.
         </p>
-        <Mockup
-          src="/projects/support-faq.png"
-          alt="Unified support surface, FAQ and ticket in one flow"
-          caption="Fig. 01 — One surface: search the answer, escalate only if needed"
-        />
         <p>
           We&apos;d discussed the problem space together as a team. But collapsing these two things
           into a single entry point, so the answer surfaces <em>before</em> the user commits to
@@ -189,16 +184,38 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
-      {/* 05a DECISION 01 */}
-      <section className="cs-reveal">
-        <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
-        <h2>The two decisions that shaped the build</h2>
+      {/* SHOT — unified surface */}
+      <section className="cs-shot cs-reveal">
+        <div className="cs-shot-head">
+          <span className="cs-num">04 / The direction</span>
+          <h2>One support surface</h2>
+          <p>Search the answer and escalate from the same place — no fork up front.</p>
+        </div>
+        <Mockup
+          src="/projects/support-faq.png"
+          alt="Unified support surface, FAQ and ticket in one flow"
+          caption="Fig. 01 — Finding an answer and asking for help are the same flow"
+        />
+      </section>
 
+      {/* SHOT — live filtering */}
+      <section className="cs-shot cs-reveal">
+        <div className="cs-shot-head">
+          <span className="cs-num">05 / Real-time answers</span>
+          <h2>Answers filter in as you type</h2>
+          <p>Relevant FAQ entries surface live against what the user is describing.</p>
+        </div>
         <Mockup
           src="/projects/support-faq-filter.png"
           alt="Real-time FAQ filtering as the user types their issue"
           caption="Fig. 02 — Answers filter in live as the user describes the problem"
         />
+      </section>
+
+      {/* 05a DECISION 01 */}
+      <section className="cs-reveal">
+        <span className="cs-num">05 / Key decisions &amp; trade-offs</span>
+        <h2>The two decisions that shaped the build</h2>
 
         <div className="cs-decision">
           <div className="dhead">

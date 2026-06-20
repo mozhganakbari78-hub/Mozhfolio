@@ -121,12 +121,6 @@ export default function BatchTransferCase() {
         <span className="cs-num">04 / Core decisions</span>
         <h2>Make risk visible before the money moves</h2>
 
-        <Mockup
-          src="/projects/batch-upload.png"
-          alt="Batch upload screen, file submission and row preview"
-          caption="Fig. 01 — Upload and per-row preview before anything is committed"
-        />
-
         <div className="cs-decision">
           <div className="dhead">
             <span className="dnum">DECISION 01</span>
@@ -163,6 +157,20 @@ export default function BatchTransferCase() {
         </div>
       </section>
 
+      {/* SHOT — batch upload */}
+      <section className="cs-shot cs-reveal">
+        <div className="cs-shot-head">
+          <span className="cs-num">04 / Upload</span>
+          <h2>File submission and row preview</h2>
+          <p>Every row is previewed before anything is committed.</p>
+        </div>
+        <Mockup
+          src="/projects/batch-upload.png"
+          alt="Batch upload screen, file submission and row preview"
+          caption="Fig. 01 — Upload and per-row preview before anything is committed"
+        />
+      </section>
+
       {/* 04b DECISION 02 */}
       <section className="cs-reveal">
         <CsArt name="rows" />
@@ -195,16 +203,25 @@ export default function BatchTransferCase() {
         </div>
       </section>
 
-      {/* 04b VALIDATION TABLE */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / What the approver sees</span>
-        <h2>Verification at the moment of approval</h2>
-
+      {/* SHOT — validation */}
+      <section className="cs-shot cs-reveal">
+        <div className="cs-shot-head">
+          <span className="cs-num">04 / What the approver sees</span>
+          <h2>Verification at the moment of approval</h2>
+          <p>Name-match percentages surfaced right where the approver confirms.</p>
+        </div>
         <Mockup
           src="/projects/batch-validation.png"
           alt="Pre-submission recipient verification, match percentage review"
           caption="Fig. 02 — Name-match percentages surfaced at the approval step"
         />
+      </section>
+
+      {/* 04b VALIDATION context */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / Two-step authority</span>
+        <h2>Register, then approve</h2>
+
         <p>
           These two decisions sit inside a two-step authority model: a branch employee{" "}
           <strong>registers</strong> the request — no money moves yet, the verification result is
