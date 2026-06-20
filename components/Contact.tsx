@@ -123,9 +123,9 @@ export default function Contact() {
               The next problem worth solving.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m considering senior product design roles where the work involves real complexity:
-              regulated domains, enterprise tooling, fintech, multi-stakeholder systems. If you&apos;re
-              building something where every decision compounds, let&apos;s talk.
+              If your product is a beautiful mess of edge cases, regulations, and angry spreadsheets —
+              we&apos;ll probably get along. I like the hard stuff: fintech, enterprise tools,
+              workflows where one wrong pixel ruins someone&apos;s Tuesday. Send a message.
             </p>
 
             <div className="space-y-3 mb-10">
