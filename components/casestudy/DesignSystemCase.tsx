@@ -1,5 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import CsArt from "./CsArt";
+
+const components = [
+  "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
+  "Switch / Toggle", "Switch Tabs", "Segment", "Dialog", "Bottom Sheet",
+  "Alert", "Badge", "List Item", "Table", "Collapse", "Key-Value",
+  "Progress Bar", "Slider", "Stepper", "Sidebar", "Header", "Breadcrumb",
+  "Card", "Upload Box", "Tooltip", "Pagination", "Date Picker", "Bottom Nav",
+];
 
 export default function DesignSystemCase() {
   return (
@@ -8,33 +17,33 @@ export default function DesignSystemCase() {
       <header className="cs-hero">
         <span className="cs-eyebrow">Case Study · Enterprise Banking · Design System</span>
         <h1>
-          A token system nobody adopts is worth nothing.
+          I built the semantically correct token names.
           <br />
-          So I optimized for adoption, not purity.
+          Then I threw them out.
         </h1>
         <p className="cs-lede">
-          On a live, Ant Design-based corporate banking platform, I chose the{" "}
-          <em>messier name both teams would actually use</em> over the semantically pure one — and
-          logged the trade-off as deliberate debt, not an accident. This is how a pragmatic system
-          became real product infrastructure.
+          A design system layered onto a live, Ant Design-based corporate banking platform: 90+
+          screens, two designers, no DS engineer, no pause in delivery. The hardest call wasn&apos;t
+          what to build. It was <em>accepting the frontend team&apos;s naming over my own</em>,
+          because the cleaner model was quietly making things worse.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Design system owner, end to end</dd>
-          </div>
-          <div>
-            <dt>Scale</dt>
-            <dd>90+ screens, permission-heavy</dd>
-          </div>
-          <div>
-            <dt>Stack</dt>
-            <dd>Ant Design + custom code theme</dd>
+            <dd>Sole owner of the design system, also shipping product work</dd>
           </div>
           <div>
             <dt>Team</dt>
-            <dd>Two designers, no DS engineer</dd>
+            <dd>2 designers, no dedicated DS engineer</dd>
+          </div>
+          <div>
+            <dt>Foundation</dt>
+            <dd>Ant Design (inherited)</dd>
+          </div>
+          <div>
+            <dt>Scope</dt>
+            <dd>29 components, live product</dd>
           </div>
         </dl>
       </header>
@@ -43,134 +52,188 @@ export default function DesignSystemCase() {
 
       {/* 01 CONTEXT */}
       <section className="cs-reveal">
+        <CsArt name="merge" />
         <span className="cs-num">01 / Context</span>
-        <h2>I joined a product already in flight</h2>
+        <h2>A system installed without stopping the engine</h2>
         <p>
-          An enterprise corporate banking platform — 90+ screens, permission-heavy workflows,
-          institutional users who depend on predictable, low-friction interfaces. The frontend was
-          built on Ant Design before I arrived: business-approved, not negotiable, with a custom code
-          theme and its own token-like naming already in place.
+          I joined an enterprise corporate banking platform already in production: 90+ screens,
+          permission-heavy workflows, institutional users who depend on predictable interfaces. The
+          frontend was built on <strong>Ant Design</strong> before I arrived. Business-approved, not
+          up for debate. Engineering had also built a custom code theme, with their own token-like
+          naming already in place.
         </p>
         <p>
-          The design team was two people. I owned the design system while also doing product work —
-          no DS engineer, no greenfield rebuild, no pause in delivery. From day one I treated it as
-          infrastructure for a family of internal banking tools, not a cleanup layer for one product.
+          No greenfield, no DS engineer, no slack in the schedule. Whatever I built had to layer onto
+          a live product without breaking what was shipping. I owned the system end to end:
+          structure, tokens, component scope, documentation, maintenance, while also doing product
+          work.
         </p>
       </section>
 
       {/* 02 PROBLEM */}
       <section className="cs-reveal">
-        <span className="cs-num">02 / Problem</span>
-        <h2>Inconsistency was slowing delivery</h2>
+        <CsArt name="tickets" />
+        <span className="cs-num">02 / The problem</span>
+        <h2>The real signal came from engineering, not design</h2>
         <p>
-          It wasn&apos;t one bad pattern — it was months of decisions made without a shared system.
-          Spacing drifted, component states varied page to page, color usage shifted from screen to
-          screen.
+          The inconsistency wasn&apos;t one bad pattern. It was months of decisions made without a
+          shared system: spacing drifted, states varied page to page, color usage shifted between
+          screens. Designers saw it. The product owner saw it. But the signal that reframed the work
+          came from the frontend team, who were stopping <strong>8 to 9 times a day</strong> to ask
+          design questions.
         </p>
+        <div className="cs-qcard">
+          <div className="qh">A normal day, before the system</div>
+          <div className="cs-qlist">
+            <div className="q">Why does this component look different here?</div>
+            <div className="q">Which spacing value should we use?</div>
+            <div className="q">What&apos;s the correct state for this interaction?</div>
+            <div className="q">Should this be Ant Design default, or custom?</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 02b PROBLEM reframe */}
+      <section className="cs-reveal">
+        <span className="cs-num">02 / The problem</span>
+        <h2>Inconsistency was a delivery-speed problem</h2>
         <p>
-          The loudest signal came from engineering: developers stopped to ask design questions
-          roughly <strong>8–9 times a day</strong>. &quot;Why does this look different here? Which
-          spacing? Ant default or custom?&quot; That reframed the work for me — inconsistency
-          wasn&apos;t a quality nitpick, it was a tax on product velocity.
+          That changed how I framed it. Inconsistency wasn&apos;t a design-quality problem, it was a{" "}
+          <strong>delivery-speed problem</strong>. Every interruption meant the team didn&apos;t
+          share an operating language. The system&apos;s job wasn&apos;t to make screens prettier. It
+          was to turn repeated one-off questions into reusable decisions.
         </p>
         <div className="cs-pull">
-          The clearest measure of a design system isn&apos;t how clean it looks. It&apos;s how many
-          questions stop reaching your desk.
+          The system&apos;s success metric was never visual. It was how often engineering had to stop
+          and ask.
         </div>
       </section>
 
-      {/* 03a CONSTRAINTS */}
+      {/* 03 TOKEN COMPARISON */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / Constraints</span>
-        <h2>The reality I had to design inside</h2>
-        <div className="cs-card">
-          <div className="cs-steps">
-            {[
-              "Ant Design was inherited — its API and theming shaped what was cheap vs. expensive to customize",
-              "A frontend theme already existed in code; replacing it mid-flight meant refactor cost with no product gain",
-              "The product was live — no resets, only incremental improvement",
-            ].map((c) => (
-              <div className="cs-step" key={c}>
-                <div>
-                  <p>{c}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 03b CONSTRAINTS cont. */}
-      <section className="cs-reveal">
-        <span className="cs-num">03 / Constraints</span>
-        <h2>The edges the system had to respect</h2>
-        <div className="cs-card">
-          <div className="cs-steps">
-            {[
-              "Capacity was tight — every customization had to justify its cost against delivery",
-              "The domain demanded reliability — predictable states and permission-aware interactions",
-              "It had to scale to adjacent tools without becoming so abstract it slowed today's work",
-            ].map((c) => (
-              <div className="cs-step" key={c}>
-                <div>
-                  <p>{c}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 04 DECISION */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / The decision</span>
-        <h2>Adoption over semantic purity</h2>
-        <div className="cs-compare">
-          <div className="col legacy">
-            <span className="tag">Option A — protect the model</span>
-            <ul>
-              <li>Keep a clean, role-based, intent-driven token structure</li>
-              <li>Ask frontend to realign their theme to match</li>
-              <li>Theoretically correct on paper</li>
-              <li>Forces an already-stretched team to refactor working code mid-delivery</li>
-            </ul>
-          </div>
-          <div className="col new">
-            <span className="tag">Option B — align to reality ✓</span>
-            <ul>
-              <li>Accept a less semantically pure naming model</li>
-              <li>Match the existing frontend theme exactly</li>
-              <li>Both teams share one language, zero translation</li>
-              <li>Log the reduced portability as intentional, documented debt</li>
-            </ul>
-          </div>
-        </div>
+        <CsArt name="read" />
+        <span className="cs-num">03 / The decision that defined the system</span>
+        <h2>Adoption beat semantic purity, and I have the failed test to prove it</h2>
         <p>
-          I chose Option B. A perfectly semantic system that frontend silently works around is not a
-          system — it&apos;s a second source of truth. Matching the code reality meant the tokens
-          were used, not bypassed. The cost — reduced portability to a different stack later — I wrote
-          down as a known compromise rather than pretending it away.
+          My instinct was a clean, role-based, semantic token structure. In theory, the right model.
+          So I built it, then tested it against the people who&apos;d actually use it. It backfired.
         </p>
+        <div className="cs-tokens">
+          <div className="tkhead">
+            <div className="t">The same values, two languages</div>
+            <div className="s">
+              My structural token names vs. the frontend team&apos;s existing component-scoped names
+              in code.
+            </div>
+          </div>
+          <div className="cs-tkcols">
+            <div className="cs-tkcol mine">
+              <div className="label">My naming, structural</div>
+              <div className="sub">Describes what the token is in the system</div>
+              <div className="cs-tok">Color-Base-Solid-bg</div>
+              <div className="cs-tok">Color-Base-Tonal-bg</div>
+            </div>
+            <div className="cs-tkcol theirs">
+              <div className="label">Frontend naming, in their code</div>
+              <div className="sub">Describes where the value is used</div>
+              <div className="cs-tok">cardColor</div>
+              <div className="cs-tok">cardSecondaryColor</div>
+              <div className="cs-tok">textSecondary</div>
+            </div>
+          </div>
+          <div className="tkverdict">
+            When I tested my naming, everyone got confused. Developers kept asking{" "}
+            <strong>&quot;which one in our code does this map to?&quot;</strong> The semantic layer
+            was recreating the exact friction the system existed to remove, and there was no room to
+            refactor their working theme mid-delivery.
+          </div>
+        </div>
+      </section>
+
+      {/* 03b DECISION */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The decision</span>
+        <h2>Adopt the frontend team&apos;s naming as the shared language</h2>
+        <div className="cs-decision">
+          <div className="dhead">
+            <span className="dnum">DECISION</span>
+            <div className="dtitle">Build the system on their names, not mine</div>
+          </div>
+          <div className="dbody">
+            <div className="cs-dline">
+              <div className="k">Option A, protect my model</div>
+              <div className="v">
+                Ask frontend to realign their theme to my semantic tokens. Cleaner on paper, but it
+                meant an already-stretched team refactoring working code during active delivery.
+              </div>
+            </div>
+            <div className="cs-dline chose">
+              <div className="k">Option B, adopt theirs (chosen)</div>
+              <div className="v">
+                Drop my naming and build on the frontend&apos;s existing names. Less portable, but a
+                language both teams could use immediately with zero translation.
+              </div>
+            </div>
+            <div className="cs-dline">
+              <div className="k">The trade-off, named honestly</div>
+              <div className="v">
+                The structure isn&apos;t as portable as a fully semantic one. If the platform ever
+                needs to support multiple brands, this will cost something. I documented it as{" "}
+                <strong>intentional debt</strong>, not an accident.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 04 INVENTORY */}
+      <section className="cs-reveal">
+        <CsArt name="rows" />
+        <span className="cs-num">04 / What I actually built</span>
+        <h2>A product-specific layer on top of Ant Design</h2>
+        <p>
+          The system didn&apos;t try to replace Ant Design, it sat on top: shared tokens, agreed
+          component behavior, documented states, and clear rules for what stayed default versus what
+          earned product-specific customization.
+        </p>
+        <div className="cs-inv">
+          <div className="ih">
+            <span className="t">Component coverage</span>
+            <span className="c">29 components</span>
+          </div>
+          <div className="isub">
+            Each documented with variants and states in a standalone documentation set, not just
+            dropped into Figma.
+          </div>
+          <div className="cs-chips">
+            {components.map((c) => (
+              <span key={c}>{c}</span>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* 05 GOVERNANCE */}
       <section className="cs-reveal">
+        <CsArt name="shield" />
         <span className="cs-num">05 / Governance</span>
-        <h2>Lightweight rules that survived sprint pressure</h2>
-        <div className="cs-steps">
-          {[
-            { h: "Identify", p: "Name the product need or the inconsistency precisely." },
-            { h: "Check defaults", p: "Could Ant Design's default behavior already support it before we customize?" },
-            { h: "Review with the tech lead", p: "Anything beyond defaults got estimated for effort and risk together." },
-            { h: "Decide & document", p: "Sprint, backlog, or technical debt — then write down the decision so future screens followed the same logic." },
-          ].map((s) => (
-            <div className="cs-step" key={s.h}>
-              <div>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </div>
-            </div>
-          ))}
+        <h2>With no DS engineer, governance was part of the design job</h2>
+        <div className="cs-gov">
+          <div className="cs-govstep"><span className="n">01</span><span className="gx">Identify the product need or the inconsistency.</span></div>
+          <div className="cs-govstep"><span className="n">02</span><span className="gx">Check whether <b>Ant Design&apos;s default</b> already supports it.</span></div>
+          <div className="cs-govstep"><span className="n">03</span><span className="gx">If customization is needed, review it with the <b>frontend tech lead</b>.</span></div>
+          <div className="cs-govstep"><span className="n">04</span><span className="gx">Estimate effort and risk together.</span></div>
+          <div className="cs-govstep"><span className="n">05</span><span className="gx">Decide: this sprint, or <b>backlog / tech debt</b>.</span></div>
+          <div className="cs-govstep"><span className="n">06</span><span className="gx">Document the decision so future screens follow the same logic.</span></div>
+          <div className="cs-callout">
+            <div className="ct">Governance in practice</div>
+            <p>
+              <strong>The Card component.</strong> We wanted a custom version beyond the Ant default.
+              Reviewed it with the tech lead, weighed the effort against the sprint, and consciously
+              sent it to the backlog rather than force it in. Nothing in the component layer changed
+              without that conversation.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -178,42 +241,64 @@ export default function DesignSystemCase() {
       <section className="cs-reveal">
         <span className="cs-num">06 / Outcome</span>
         <h2>The conversation changed</h2>
-        <div className="cs-status">
-          <span className="cs-eyebrow">Status — adopted, in production</span>
-          <h3>Daily design interruptions dropped from ~8–9 to 3–4.</h3>
-          <p>
-            The clearest signal was communication. It wasn&apos;t a formal audit, so I won&apos;t
-            dress it up as a precise metric — but the nature of the questions changed, from debating
-            inconsistencies to discussing reusable extensions. Frontend adopted the system without
-            pushback, and the product owner saw visible consistency gains.
-          </p>
-          <span className="pill">Before: “Why does this look different here?” → After: “We need a variant for this case.”</span>
-        </div>
         <p>
-          The strongest proof came later: this foundation powered a separate, forced-timeline batch
-          transfer redesign — assembled from existing components under deadline. That&apos;s the test
-          of whether a design system is real infrastructure or just a coat of paint. This one held.
+          The daily design-related interruptions dropped from roughly 8-9 to 3-4, and kept falling as
+          coverage grew. It wasn&apos;t instrumented or formally audited, it was an observed
+          operational signal. But the <em>nature</em> of the questions changed, and that&apos;s the
+          part that mattered.
         </p>
+        <div className="cs-signal">
+          <div className="box">
+            <div className="lab">Before</div>
+            <div className="quote">&quot;Why does this look different here?&quot;</div>
+          </div>
+          <div className="arrow">&rarr;</div>
+          <div className="box">
+            <div className="lab">After</div>
+            <div className="quote">&quot;We need a new component or variant for this case.&quot;</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 06b OUTCOME — honesty */}
+      <section className="cs-reveal">
+        <span className="cs-num">06 / Outcome</span>
+        <h2>I had the signal. I didn&apos;t have the baseline.</h2>
+        <p>
+          The team stopped re-litigating visual inconsistencies and started discussing reusable
+          extensions to the system. Frontend adopted it without pushback, and the product owner could
+          see consistency improving across screens.
+        </p>
+        <div className="cs-status">
+          <span className="cs-eyebrow">On measurement, honest</span>
+          <h3>The shift was real. It lived in observation, not data.</h3>
+          <p>
+            The biggest thing I&apos;d fix: I never logged the question count from day one. The 8-9
+            to 3-4 shift is real, but anecdotal. A simple running tally would have made the
+            system&apos;s impact legible to stakeholders instead of remembered.
+          </p>
+        </div>
       </section>
 
       {/* 07a REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">07 / Reflection</span>
-        <h2>What I&apos;d do differently</h2>
+        <h2>What I&apos;d carry forward</h2>
         <div className="cs-reflect">
-          <h3>Map the theme first</h3>
+          <h3>Map the code before designing the tokens</h3>
           <p>
-            I went deep on design-side semantics before fully understanding the naming reality in
-            code. Reading the implemented theme first would have gotten me to the adoption-first call
-            faster.
+            I went deep on design-side semantics before fully understanding the naming reality in the
+            codebase. The final call was right, but I arrived by testing and failing first. Mapping
+            the frontend theme up front would have saved a full round of confusion.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
-          <h3>Track the baseline from day one</h3>
+          <h3>Being right doesn&apos;t matter if nobody adopts it</h3>
           <p>
-            A simple log of DS-related questions from the start would have made the impact legible to
-            stakeholders as a real number, not a remembered impression.
+            The semantic token model was correct by the book and wrong in practice. In a live
+            product, the model people use without thinking beats the model that&apos;s defensible in a
+            design review.
           </p>
         </div>
       </section>
@@ -221,19 +306,19 @@ export default function DesignSystemCase() {
       {/* 07b REFLECTION cont. */}
       <section className="cs-reveal">
         <span className="cs-num">07 / Reflection</span>
-        <h2>Structure the governance early</h2>
+        <h2>Name the governance sooner</h2>
         <div className="cs-reflect">
-          <h3>Name the governance early</h3>
+          <h3>Treat the process as infrastructure</h3>
           <p>
-            Documenting the decision process sooner would have framed the work as operating
-            infrastructure from the outset, rather than ad-hoc coordination that earned its structure
-            later.
+            The process with the tech lead became reliable, but I treated it as informal coordination
+            for too long. Naming it as operating infrastructure earlier would have helped the team
+            trust it as a system, not just repeated check-ins.
           </p>
         </div>
       </section>
 
       <Link href="/work/reducing-support-friction" className="cs-next">
-        <span className="l">Next case →</span>
+        <span className="l">Next case &rarr;</span>
         <div className="t">
           Reducing Support Friction at Scale{" "}
           <ArrowRight size={22} style={{ display: "inline", verticalAlign: "middle" }} />
@@ -242,7 +327,7 @@ export default function DesignSystemCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Design system · Adopted in production</p>
+        <p>Enterprise banking · Design system on a live product · Ant Design foundation</p>
       </footer>
     </article>
   );

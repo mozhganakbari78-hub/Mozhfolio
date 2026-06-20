@@ -26,7 +26,7 @@ export async function generateMetadata({
   const cs = getCaseStudy(slug);
   if (!cs) return {};
   return {
-    title: `${cs.title} — Mozhgan Akbari`,
+    title: `${cs.title} · Mozhgan Akbari`,
     description: cs.description,
   };
 }

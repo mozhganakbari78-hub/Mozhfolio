@@ -24,6 +24,8 @@
   --pass-soft: rgba(95, 202, 166, 0.22);
   --warn: #e0b455;
   --warn-soft: rgba(224, 180, 85, 0.2);
+  --mine: #b58bff;
+  --mine-soft: rgba(181, 139, 255, 0.16);
   --card: #1C1D1F;
   --shadow: 0 1px 3px rgba(0,0,0,.4), 0 12px 36px rgba(0,0,0,.4);
 
@@ -300,6 +302,65 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cs-mockup { opacity: 1; transform: none; transition: none; }
+}
+
+/* questions card (DS case) */
+.cs-qcard { background: var(--card); border: 1px solid var(--line-soft); border-radius: 14px; padding: 24px 26px; box-shadow: var(--shadow); margin: 8px 0 18px; }
+.cs-qcard .qh { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; }
+.cs-qlist { display: grid; gap: 11px; }
+.cs-qlist .q { display: grid; grid-template-columns: 20px 1fr; gap: 12px; font-size: 15px; color: var(--ink-soft); align-items: start; }
+.cs-qlist .q::before { content: "?"; color: var(--accent); font-size: 18px; font-weight: 700; line-height: 1.25; }
+
+/* token comparison (mine vs theirs) */
+.cs-tokens { background: var(--card); border: 1px solid var(--line-soft); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; margin: 8px 0 18px; }
+.cs-tokens .tkhead { padding: 20px 24px 14px; border-bottom: 1px solid var(--line-soft); }
+.cs-tokens .tkhead .t { font-weight: 700; font-size: 15px; color: var(--ink); }
+.cs-tokens .tkhead .s { font-size: 12.5px; color: var(--ink-faint); margin-top: 4px; }
+.cs-tkcols { display: grid; grid-template-columns: 1fr 1fr; }
+.cs-tkcol { padding: 20px 24px; }
+.cs-tkcol.mine { border-right: 1px solid var(--line-soft); }
+.cs-tkcol .label { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+.cs-tkcol.mine .label { color: var(--mine); }
+.cs-tkcol.theirs .label { color: var(--resolve); }
+.cs-tkcol .sub { font-size: 12px; color: var(--ink-faint); margin-bottom: 14px; }
+.cs-tok { font-family: var(--font-mono), monospace; font-size: 12.5px; padding: 7px 10px; border-radius: 7px; margin-bottom: 7px; }
+.cs-tkcol.mine .cs-tok { background: var(--mine-soft); color: #cdb6ff; }
+.cs-tkcol.theirs .cs-tok { background: var(--resolve-soft); color: #8fe4c8; }
+.cs-tokens .tkverdict { padding: 15px 24px; background: var(--paper-warm); font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+.cs-tokens .tkverdict strong { color: var(--ink); }
+
+/* component inventory */
+.cs-inv { background: var(--card); border: 1px solid var(--line-soft); border-radius: 14px; box-shadow: var(--shadow); padding: 24px 26px; margin: 8px 0 14px; }
+.cs-inv .ih { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.cs-inv .ih .t { font-weight: 700; font-size: 15px; color: var(--ink); }
+.cs-inv .ih .c { font-family: var(--font-mono), monospace; font-size: 13px; color: var(--accent); }
+.cs-inv .isub { font-size: 12.5px; color: var(--ink-faint); margin: 4px 0 18px; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.cs-chips span { font-family: var(--font-mono), monospace; font-size: 12px; background: var(--paper-warm); border: 1px solid var(--line-soft); padding: 5px 10px; border-radius: 7px; color: var(--ink-soft); }
+
+/* governance flow */
+.cs-gov { background: var(--card); border: 1px solid var(--line-soft); border-radius: 14px; box-shadow: var(--shadow); padding: 22px 26px; margin: 8px 0 18px; }
+.cs-govstep { display: grid; grid-template-columns: 28px 1fr; gap: 13px; padding: 11px 0; border-bottom: 1px solid var(--line-soft); align-items: start; }
+.cs-govstep:last-child { border-bottom: 0; }
+.cs-govstep .n { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--accent); padding-top: 2px; }
+.cs-govstep .gx { font-size: 14.5px; color: var(--ink-soft); }
+.cs-govstep .gx b { color: var(--ink); font-weight: 600; }
+.cs-callout { margin-top: 18px; padding: 16px 18px; background: var(--warn-soft); border: 1px solid rgba(224,180,85,.35); border-radius: 11px; }
+.cs-callout .ct { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
+.cs-callout p { font-size: 14.5px; color: var(--ink-soft); margin: 0; }
+.cs-callout p strong { color: var(--ink); }
+
+/* before / after signal */
+.cs-signal { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin: 8px 0; }
+.cs-signal .box { background: var(--card); border: 1px solid var(--line-soft); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
+.cs-signal .box .lab { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+.cs-signal .box .quote { font-size: 14.5px; color: var(--ink); font-style: italic; line-height: 1.45; }
+.cs-signal .arrow { font-family: var(--font-mono), monospace; color: var(--accent); font-size: 22px; }
+@media (max-width: 600px) {
+  .cs-tkcols { grid-template-columns: 1fr; }
+  .cs-tkcol.mine { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+  .cs-signal { grid-template-columns: 1fr; }
+  .cs-signal .arrow { transform: rotate(90deg); justify-self: center; }
 }
 
 /* reflection */
