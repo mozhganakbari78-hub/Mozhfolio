@@ -45,7 +45,7 @@ export default function DesignSystemCase() {
           </div>
           <div>
             <dt>Scope</dt>
-            <dd>29 components, live product</dd>
+            <dd>Full component coverage, live product</dd>
           </div>
         </dl>
       </header>
@@ -203,8 +203,8 @@ export default function DesignSystemCase() {
         </p>
         <div className="cs-inv">
           <div className="ih">
-            <span className="t">Component coverage</span>
-            <span className="c">29 components</span>
+            <span className="t">Components shipped</span>
+            <span className="c">Full coverage of the live surface</span>
           </div>
           <div className="isub">
             Each documented with variants and states in a standalone documentation set, not just
@@ -223,7 +223,7 @@ export default function DesignSystemCase() {
         <Mockup
           src="/projects/DesignSystem-Button.png"
           alt="Button component variants from the design system"
-          caption="Fig. 01: Button component, one of 29 in the system, layered on the Ant Design foundation"
+          caption="Fig. 01: Button component, layered on the Ant Design foundation"
         />
       </section>
 

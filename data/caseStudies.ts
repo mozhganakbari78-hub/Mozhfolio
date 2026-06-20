@@ -298,7 +298,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "Design System for a Live Enterprise Platform",
     short:
-      "29 components on top of Ant Design, in a live banking product with no DS engineer. I dropped my semantic tokens for the frontend team's existing names so adoption was instant.",
+      "A full component layer on top of Ant Design, in a live banking product with no DS engineer. I dropped my semantic tokens for the frontend team's existing names so adoption was instant.",
     description:
       "A pragmatic design system built inside a live enterprise product. I focused on usable foundations, scalable components, and adoption friendly patterns that helped teams move faster without breaking consistency.",
     tags: ["Design Systems", "Component Strategy", "Product Scale", "Enterprise UX"],

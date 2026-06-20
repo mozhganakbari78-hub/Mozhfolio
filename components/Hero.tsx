@@ -136,7 +136,6 @@ export default function Hero() {
             {[
               { label: "4 years", note: "shipping live products" },
               { label: "Banking · Crypto · IoT", note: "domains designed for" },
-              { label: "29 components", note: "design system, owned solo" },
               { label: "CS background", note: "engineering-fluent by training" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col gap-0.5">
