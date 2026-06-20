@@ -166,10 +166,10 @@ export function UnifiedFlow() {
 /* ─── MATCH THRESHOLD: BatchTransfer §04a ─── */
 export function MatchThreshold() {
   const rows = [
-    { name: "Amir K.", pct: 100, ok: true },
-    { name: "Sara R.", pct: 98, ok: true },
-    { name: "M. Ahmadi", pct: 74, ok: false },
-    { name: "Niloo D.", pct: 99, ok: true },
+    { name: "David Chen", pct: 100, ok: true },
+    { name: "Sarah M.", pct: 98, ok: true },
+    { name: "M. Johnson", pct: 74, ok: false },
+    { name: "Laura Kim", pct: 99, ok: true },
   ];
 
   return (

@@ -157,11 +157,11 @@ function Support() {
 /* ─────────────────────────────  BATCH  ───────────────────────────── */
 function Batch() {
   const rows = [
-    { name: "Amir Karimi", pct: 100, state: "ok" as const },
-    { name: "Sara Rezaei", pct: 98, state: "ok" as const },
-    { name: "M. Reza Ahmadi", pct: 74, state: "warn" as const },
-    { name: "Niloo Daei", pct: 99, state: "ok" as const },
-    { name: "Hossein S.", pct: 100, state: "ok" as const },
+    { name: "David Chen", pct: 100, state: "ok" as const },
+    { name: "Sarah Miller", pct: 98, state: "ok" as const },
+    { name: "M. Johnson", pct: 74, state: "warn" as const },
+    { name: "Laura Kim", pct: 99, state: "ok" as const },
+    { name: "Robert T.", pct: 100, state: "ok" as const },
   ];
 
   return (
