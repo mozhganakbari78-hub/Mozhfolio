@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const images: { src: string }[] = [
-  { src: `${base}/projects/mockup-1.png` },
-  { src: `${base}/projects/mockup-2.png` },
-  { src: `${base}/projects/journey-map.png` },
-  { src: `${base}/projects/sticky-notes.png` },
-  { src: `${base}/projects/wireframe.png` },
-  { src: `${base}/projects/support-friction.png` },
+  { src: `${base}/projects/Screen1.png` },
+  { src: `${base}/projects/Screen2.png` },
+  { src: `${base}/projects/Screen3.png` },
+  { src: `${base}/projects/Screen4.png` },
+  { src: `${base}/projects/Screen5.png` },
+  { src: `${base}/projects/Screen6.png` },
 ];
 
 // Duplicate for seamless loop
