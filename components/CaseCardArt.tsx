@@ -351,7 +351,7 @@ function DesignSystem() {
             <div>
               <div style={{ ...Mono, color: SUB, fontSize: 9.5 }}>DESIGN SYSTEM</div>
               <div style={{ ...Mono, color: FG, fontSize: 13, fontWeight: 600, marginTop: 2 }}>
-                29 components
+                Full coverage
               </div>
             </div>
             <div
