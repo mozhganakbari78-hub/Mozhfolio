@@ -4,9 +4,9 @@
 :root {
   --bg: #121314;
   --bg-secondary: #161719;
-  --text-primary: #eeeef2;
-  --text-secondary: #9496a8;
-  --text-tertiary: #7e8095;
+  --text-primary: #FEFEFF;
+  --text-secondary: #c2c4d2;
+  --text-tertiary: #9698ab;
   --accent: #eeeef2;
   --accent-color: #0174DC;
   --accent-soft: rgba(1, 116, 220, 0.15);

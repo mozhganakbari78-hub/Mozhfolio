@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -10,7 +10,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+// Labels previously used a monospace face; the site is now fully Inter, so the
+// mono variable points to Inter too (labels keep their tracking/uppercase styling).
+const mono = Inter({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",

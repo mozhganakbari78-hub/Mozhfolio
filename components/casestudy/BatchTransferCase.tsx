@@ -206,70 +206,12 @@ export default function BatchTransferCase() {
           visible — and a <strong>senior branch approver</strong> reviews and confirms. Only then
           does the transfer execute.
         </p>
-
-        {/* validation table artifact */}
-        <div className="cs-vt">
-          <div className="vthead">
-            <div className="t">Pre-submission review — recipient verification</div>
-            <div className="s">
-              Anonymized recreation of the review state. Below 96% match flags red for the approver.
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Row</th>
-                <th>Name in file</th>
-                <th>Verified name</th>
-                <th>Match</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td className="vtname">Sara K.</td>
-                <td>Sara K.</td>
-                <td className="match" style={{ color: "var(--pass)" }}>100%</td>
-                <td><span className="cs-chip ok">Verified</span></td>
-              </tr>
-              <tr>
-                <td>002</td>
-                <td className="vtname">Reza M.</td>
-                <td>Reza M.</td>
-                <td className="match" style={{ color: "var(--pass)" }}>98%</td>
-                <td><span className="cs-chip ok">Verified</span></td>
-              </tr>
-              <tr>
-                <td>003</td>
-                <td className="vtname">Mohammad T.</td>
-                <td>Amir T.</td>
-                <td className="match" style={{ color: "var(--fail)" }}>61%</td>
-                <td><span className="cs-chip lo">Below 96% — review</span></td>
-              </tr>
-              <tr>
-                <td>004</td>
-                <td className="vtname">Niloofar A.</td>
-                <td>—</td>
-                <td className="match" style={{ color: "var(--fail)" }}>—</td>
-                <td><span className="cs-chip x">Account closed</span></td>
-              </tr>
-              <tr>
-                <td>005</td>
-                <td className="vtname">Hassan R.</td>
-                <td>Hassan R.</td>
-                <td className="match" style={{ color: "var(--pass)" }}>100%</td>
-                <td><span className="cs-chip ok">Verified</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="vtfoot">
-            Row 003 won&apos;t be auto-stopped — but the approver now{" "}
-            <strong>sees the mismatch before confirming</strong>. Row 004 will fail on its own and be
-            settled separately; the other rows proceed. Nothing is hidden, and no single bad row
-            resets the run.
-          </div>
-        </div>
+        <p>
+          A row below the 96% threshold isn&apos;t auto-stopped — the approver{" "}
+          <strong>sees the mismatch before confirming</strong>. A closed account fails on its own and
+          is settled separately; the other rows proceed. Nothing is hidden, and no single bad row
+          resets the run.
+        </p>
       </section>
 
       {/* 05 TRADE-OFF */}

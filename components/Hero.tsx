@@ -52,13 +52,13 @@ export default function Hero() {
           <motion.h1
             variants={fadeUp}
             className="text-4xl sm:text-5xl md:text-[56px] font-semibold tracking-tight leading-[1.04] mb-7"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
+            style={{ color: "#FFFFFF", letterSpacing: "-0.03em" }}
           >
             Senior Product Designer
             <br />
             <span
               className="block text-3xl sm:text-4xl md:text-[40px] leading-[1.1] mt-2"
-              style={{ color: "var(--text-tertiary)", fontWeight: 300 }}
+              style={{ color: "var(--text-secondary)", fontWeight: 300 }}
             >
               for products that cannot afford confusion.
             </span>

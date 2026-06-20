@@ -4,9 +4,9 @@
    ────────────────────────────────────────────────────────────────────────── */
 
 .cs-root {
-  --ink: #eeeef2;
-  --ink-soft: #b9bbc9;
-  --ink-faint: #9496a8;
+  --ink: #FEFEFF;
+  --ink-soft: #d2d4df;
+  --ink-faint: #9698ab;
   --paper: #121314;
   --paper-warm: #1C1D1F;
   --paper-cool: #1C1D1F;
@@ -66,9 +66,9 @@
 .cs-hero { padding: 80px 0 60px; }
 .cs-hero .cs-eyebrow { margin-bottom: 26px; display: block; }
 .cs-hero h1 {
-  font-weight: 800;
-  font-size: clamp(38px, 6.4vw, 60px); line-height: 1.04;
-  letter-spacing: -0.02em; margin: 0 0 28px;
+  font-weight: 800; color: #FFFFFF;
+  font-size: clamp(38px, 6.4vw, 56px); line-height: 1.05;
+  letter-spacing: -0.02em; margin: 0 0 26px;
 }
 .cs-lede { font-size: 21px; line-height: 1.55; color: var(--ink-soft); max-width: 640px; margin: 0; }
 .cs-lede em { font-style: normal; color: var(--ink); border-bottom: 2px solid var(--signal); }
@@ -91,11 +91,11 @@
   color: var(--accent); display: block; margin-bottom: 14px;
 }
 .cs-root h2 {
-  font-weight: 800;
-  font-size: clamp(26px, 4vw, 34px); line-height: 1.12;
-  letter-spacing: -0.015em; margin: 0 0 24px;
+  font-weight: 800; color: #FFFFFF;
+  font-size: clamp(25px, 3.6vw, 32px); line-height: 1.14;
+  letter-spacing: -0.015em; margin: 0 0 20px;
 }
-.cs-root h3 { font-weight: 700; font-size: 18px; margin: 0 0 10px; letter-spacing: -0.005em; color: var(--ink); }
+.cs-root h3 { font-weight: 700; font-size: 18px; margin: 0 0 10px; letter-spacing: -0.005em; color: #FFFFFF; }
 .cs-root p { margin: 0 0 18px; color: var(--ink-soft); }
 .cs-root p strong { color: var(--ink); font-weight: 700; }
 .cs-root p:last-child { margin-bottom: 0; }
@@ -315,8 +315,23 @@
   border-top: 0;
 }
 /* panels manage their own padding; neutralize the vertical-mode section rhythm */
-.cs-horizontal article > section { padding: 52px 52px 52px; }
-.cs-horizontal .cs-hero { padding-bottom: 52px; }
+.cs-horizontal article > section { padding: 44px 52px 44px; }
+.cs-horizontal .cs-hero { padding-bottom: 44px; }
+
+/* compact the vertical rhythm inside horizontal panels so tall sections
+   never run past the bottom edge */
+.cs-horizontal article > section > h2 { margin-bottom: 16px; }
+.cs-horizontal article > section > p { margin-bottom: 14px; }
+.cs-horizontal .cs-decision { margin-bottom: 14px; }
+.cs-horizontal .cs-decision .dhead { padding: 16px 24px 13px; }
+.cs-horizontal .cs-decision .dbody { padding: 18px 24px; }
+.cs-horizontal .cs-dline { margin-bottom: 13px; }
+.cs-horizontal .cs-step { padding: 15px 0; }
+.cs-horizontal .cs-reflect { margin-bottom: 16px; }
+.cs-horizontal .cs-card { padding: 22px 24px; margin-bottom: 14px; }
+.cs-horizontal .cs-chart { padding: 22px 24px 18px; }
+.cs-horizontal .cs-mockup { margin: 4px 0 16px; }
+.cs-horizontal .cs-status { padding: 24px 26px; }
 
 /* divider between hero and first section isn't needed horizontally */
 .cs-horizontal .cs-divider { display: none; }

@@ -274,7 +274,7 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      {/* 06 EXECUTION */}
+      {/* 06a EXECUTION */}
       <section className="cs-reveal">
         <span className="cs-num">06 / Execution</span>
         <h2>From ~1,000 raw entries to a working surface</h2>
@@ -292,6 +292,23 @@ export default function SupportFrictionCase() {
               h: "Reframed the brief with the team",
               p: "Took the evidence back and made the case for one merged surface instead of a polished-but-separate FAQ.",
             },
+          ].map((s) => (
+            <div className="cs-step" key={s.h}>
+              <div>
+                <h3>{s.h}</h3>
+                <p>{s.p}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 06b EXECUTION cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">06 / Execution</span>
+        <h2>Building and shipping the surface</h2>
+        <div className="cs-steps" style={{ counterReset: "s 3" }}>
+          {[
             {
               h: "Designed the unified flow",
               p: "Built the surface where real-time answers filter in as the user describes their issue, with ticket submission as the fallback rather than the default.",
