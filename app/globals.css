@@ -85,9 +85,9 @@ body {
   text-transform: uppercase;
   padding: 5px 11px 5px 9px;
   border-radius: 100px;
-  color: var(--text-secondary);
-  background: color-mix(in srgb, var(--accent-color) 7%, var(--surface));
-  border: 1px solid var(--border-strong);
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 38%, transparent);
   transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
 }
 .tag-pill::before {
@@ -96,18 +96,19 @@ body {
   height: 5px;
   border-radius: 50%;
   background: var(--accent-color);
-  opacity: 0.65;
-  transition: opacity .2s ease, box-shadow .2s ease;
+  opacity: 1;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent-color) 70%, transparent);
+  transition: box-shadow .2s ease;
 }
 .tag-pill:hover {
-  color: var(--text-primary);
-  background: var(--accent-soft);
+  color: #fff;
+  background: var(--accent-color);
   border-color: var(--accent-color);
   transform: translateY(-1px);
 }
 .tag-pill:hover::before {
-  opacity: 1;
-  box-shadow: 0 0 8px var(--accent-color);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
 /* Hairline grid background */

@@ -121,7 +121,7 @@ export default function BatchTransferCase() {
 
         <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/projects/batch-upload.png" alt="Batch upload screen — file submission and row preview" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/batch-upload.png`} alt="Batch upload screen — file submission and row preview" />
         </div>
 
         <div className="cs-decision">
@@ -198,7 +198,7 @@ export default function BatchTransferCase() {
 
         <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/projects/batch-validation.png" alt="Pre-submission recipient verification — match percentage review" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/batch-validation.png`} alt="Pre-submission recipient verification — match percentage review" />
         </div>
         <p>
           These two decisions sit inside a two-step authority model: a branch employee{" "}

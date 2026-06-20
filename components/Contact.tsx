@@ -148,7 +148,7 @@ export default function Contact() {
             {status === "sent" ? (
               <div
                 className="rounded-2xl p-8 border text-center"
-                style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+                style={{ background: "#1C1D1F", borderColor: "var(--border)" }}
               >
                 <div className="text-2xl mb-2">✓</div>
                 <p className="font-medium mb-1" style={{ color: "var(--text-primary)" }}>
@@ -162,7 +162,7 @@ export default function Contact() {
               <form
                 onSubmit={handleSubmit}
                 className="rounded-2xl p-8 border space-y-5"
-                style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+                style={{ background: "#1C1D1F", borderColor: "var(--border)" }}
                 noValidate
               >
                 {[

@@ -174,7 +174,7 @@ export default function SupportFrictionCase() {
         </p>
         <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/projects/support-faq.png" alt="Unified support surface — FAQ and ticket in one flow" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/support-faq.png`} alt="Unified support surface — FAQ and ticket in one flow" />
         </div>
         <p>
           We&apos;d discussed the problem space together as a team. But collapsing these two things
@@ -190,7 +190,7 @@ export default function SupportFrictionCase() {
 
         <div className="cs-mockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/projects/support-faq-filter.png" alt="Real-time FAQ filtering as user types their issue" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/projects/support-faq-filter.png`} alt="Real-time FAQ filtering as user types their issue" />
         </div>
 
         <div className="cs-decision">
