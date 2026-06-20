@@ -168,11 +168,7 @@ export default function Skills() {
               </h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {cap.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="mono-label px-2.5 py-1 rounded-full border"
-                    style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
-                  >
+                  <span key={tag} className="tag-pill">
                     {tag}
                   </span>
                 ))}

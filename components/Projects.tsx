@@ -91,11 +91,7 @@ export default function Projects() {
                   </p>
                   <div className="flex flex-wrap items-center gap-2">
                     {cs.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="mono-label px-2.5 py-1 rounded-full border"
-                        style={{ color: "var(--text-tertiary)", borderColor: "var(--border)" }}
-                      >
+                      <span key={tag} className="tag-pill">
                         {tag}
                       </span>
                     ))}

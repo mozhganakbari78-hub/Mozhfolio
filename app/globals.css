@@ -74,6 +74,42 @@ body {
   text-transform: uppercase;
 }
 
+/* Tag / badge pill — soft accent fill, accent dot, lively hover */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px 5px 9px;
+  border-radius: 100px;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--accent-color) 7%, var(--surface));
+  border: 1px solid var(--border-strong);
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.tag-pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  opacity: 0.65;
+  transition: opacity .2s ease, box-shadow .2s ease;
+}
+.tag-pill:hover {
+  color: var(--text-primary);
+  background: var(--accent-soft);
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+.tag-pill:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
 /* Hairline grid background */
 .grid-bg {
   background-image:
