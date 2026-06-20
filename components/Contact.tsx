@@ -38,28 +38,28 @@ export default function Contact() {
         aria-hidden="true"
         style={{
           background: "var(--accent-color)",
-          width: 720,
-          height: 720,
-          top: "-10%",
-          left: "10%",
-          opacity: 0.18,
+          width: 900,
+          height: 900,
+          top: "-25%",
+          left: "5%",
+          opacity: 0.08,
         }}
-        animate={{ opacity: [0.1, 0.22, 0.1], scale: [0.95, 1.05, 0.95] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.04, 0.09, 0.04], scale: [0.95, 1.05, 0.95] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute pointer-events-none rounded-full blur-3xl"
         aria-hidden="true"
         style={{
           background: "var(--accent-color)",
-          width: 540,
-          height: 540,
-          bottom: "-10%",
-          right: "5%",
-          opacity: 0.12,
+          width: 700,
+          height: 700,
+          bottom: "-25%",
+          right: "0%",
+          opacity: 0.05,
         }}
-        animate={{ opacity: [0.06, 0.16, 0.06], scale: [1.05, 0.95, 1.05] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        animate={{ opacity: [0.02, 0.07, 0.02], scale: [1.05, 0.95, 1.05] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       {/* Hexagon outline motif */}
       <svg
