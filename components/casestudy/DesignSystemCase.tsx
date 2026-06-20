@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import Mockup from "./Mockup";
-import { TokenBridge, GovernanceFlow, SystemAnatomy } from "./CsInlineArt";
+import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ButtonProperties } from "./CsInlineArt";
 
 const components = [
   "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
@@ -228,13 +228,9 @@ export default function DesignSystemCase() {
         />
       </section>
 
-      {/* SHOT — button properties panel */}
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/DesignSystem-ButtonProperties.png"
-          alt="Button component properties: state, type, size, loading, icon variants"
-          caption="Fig. 02: Properties documented inline, so devs ship the variant they need without asking"
-        />
+      {/* Button properties inline visual */}
+      <section className="cs-reveal">
+        <ButtonProperties />
       </section>
 
       {/* MULTI-BRAND section */}
@@ -243,19 +239,11 @@ export default function DesignSystemCase() {
         <h2>One system, three brand pipelines</h2>
         <p>
           The same component layer drives three separate brand products. Each brand keeps its own
-          full token ramp (50 → 950), so a button stays identical in structure but reads as
-          three different products at the surface. The token names stay constant across
-          projects, only the values swap.
+          full token ramp (50 → 950), so a button stays identical in structure but reads as three
+          different products at the surface. The token names stay constant across projects, only
+          the values swap.
         </p>
-      </section>
-
-      {/* SHOT — multi-brand tokens */}
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/DesignSystem-MultiBrand.png"
-          alt="Brand color ramps across three product projects, mapped to shared token names"
-          caption="Fig. 03: Shared token names, swappable brand values across three live products"
-        />
+        <MultiBrandTokens />
       </section>
 
       {/* 05 GOVERNANCE */}

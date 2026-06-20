@@ -459,3 +459,188 @@ export function SystemAnatomy() {
     </div>
   );
 }
+
+/* ─── MULTI-BRAND TOKENS: visual color ramp across 3 projects ─── */
+export function MultiBrandTokens() {
+  const ramps = [
+    { name: "Project 1", colors: ["#EAEEF5", "#AABAD8", "#5575B1", "#2A539E", "#1C2E4F", "#0F192B"] },
+    { name: "Project 2", colors: ["#FEF8EC", "#FDE2B3", "#FAC567", "#F9B741", "#935100", "#2D0000"] },
+    { name: "Project 3", colors: ["#E5F2F2", "#99CACC", "#339599", "#007A7F", "#00393D", "#001617"] },
+  ];
+  const steps = [50, 200, 400, 500, 700, 950];
+
+  return (
+    <div
+      className="my-10 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
+          MULTI-BRAND · ONE SYSTEM
+        </span>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>3 product pipelines</span>
+      </div>
+
+      <div className="p-5 md:p-6">
+        {/* Step headers */}
+        <div
+          className="grid items-center mb-3"
+          style={{ gridTemplateColumns: `120px repeat(${steps.length}, 1fr)`, gap: 8 }}
+        >
+          <span style={{ ...Mono, fontSize: 9, color: SUB }}>token</span>
+          {steps.map((s) => (
+            <span key={s} style={{ ...Mono, fontSize: 9, color: SUB, textAlign: "center" }}>
+              Brand-{s}
+            </span>
+          ))}
+        </div>
+
+        {/* Ramps */}
+        <div className="flex flex-col gap-2">
+          {ramps.map((r, ri) => (
+            <motion.div
+              key={r.name}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: ri * 0.1, duration: 0.5 }}
+              className="grid items-center"
+              style={{ gridTemplateColumns: `120px repeat(${steps.length}, 1fr)`, gap: 8 }}
+            >
+              <span style={{ ...Mono, fontSize: 10, color: FG, fontWeight: 600 }}>
+                {r.name}
+              </span>
+              {r.colors.map((c, ci) => (
+                <motion.div
+                  key={ci}
+                  initial={{ scale: 0.7, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + ri * 0.1 + ci * 0.04, type: "spring", stiffness: 240 }}
+                  className="rounded-md"
+                  style={{
+                    background: c,
+                    height: 28,
+                    boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04)`,
+                  }}
+                  title={`${r.name} Brand-${steps[ci]} · ${c}`}
+                />
+              ))}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className="px-5 py-3 flex items-center justify-between"
+        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
+          Same token names, swappable values. The component layer never changes.
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── BUTTON PROPERTIES: visual showing variant matrix ─── */
+export function ButtonProperties() {
+  const props = [
+    { name: "State", values: ["Enabled", "Disabled", "Hover", "Pressed"] },
+    { name: "Type", values: ["Primary", "Secondary", "Dashed", "Ghost"] },
+    { name: "Size", values: ["XL", "Large", "Small", "Default"] },
+    { name: "Loading", values: ["True", "False"] },
+    { name: "Icon", values: ["Left", "Right", "Only", "None"] },
+  ];
+
+  return (
+    <div
+      className="my-10 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <div className="flex items-center gap-2">
+          <span
+            className="rounded px-2 py-0.5"
+            style={{
+              ...Mono,
+              fontSize: 9,
+              color: FG,
+              background: "var(--bg)",
+              border: `1px solid ${BD}`,
+            }}
+          >
+            btn
+          </span>
+          <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1 }}>
+            COMPONENT PROPERTIES
+          </span>
+        </div>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>documented inline</span>
+      </div>
+
+      <div className="p-5 md:p-6 flex flex-col gap-2.5">
+        {props.map((p, pi) => (
+          <motion.div
+            key={p.name}
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: pi * 0.08, duration: 0.4 }}
+            className="rounded-lg flex items-center gap-3 px-3.5 py-2.5"
+            style={{ background: "var(--bg-secondary)", border: `1px solid ${BD}` }}
+          >
+            <span
+              className="flex items-center justify-center"
+              style={{ width: 18, height: 18, color: A }}
+              aria-hidden
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1 L13 7 L7 13 L1 7 Z" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </span>
+            <span style={{ ...Mono, fontSize: 11, color: FG, fontWeight: 600, minWidth: 70 }}>
+              {p.name}
+            </span>
+            <div className="flex gap-1.5 flex-wrap flex-1">
+              {p.values.map((v, vi) => (
+                <motion.span
+                  key={v}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + pi * 0.08 + vi * 0.04 }}
+                  className="rounded px-2 py-0.5"
+                  style={{
+                    ...Mono,
+                    fontSize: 9,
+                    color: vi === 0 ? A : SUB,
+                    background: vi === 0 ? "var(--accent-soft)" : "var(--bg)",
+                    border: `1px solid ${vi === 0 ? A : BD}`,
+                  }}
+                >
+                  {v}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div
+        className="px-5 py-3 flex items-center justify-between"
+        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
+          Devs ship the right variant without asking. The spec is the source.
+        </span>
+      </div>
+    </div>
+  );
+}
