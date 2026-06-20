@@ -3,7 +3,7 @@
 /* ── Dark-only palette ───────────────────────────────────────────────── */
 :root {
   --bg: #121314;
-  --bg-secondary: #161719;
+  --bg-secondary: #1a1b1d;
   --text-primary: #FEFEFF;
   --text-secondary: #c2c4d2;
   --text-tertiary: #9698ab;
@@ -11,11 +11,11 @@
   --accent-color: #0174DC;
   --accent-soft: rgba(1, 116, 220, 0.15);
   --accent-contrast: #ffffff;
-  --border: #1e2030;
-  --border-strong: #282c42;
-  --border-subtle: #181a28;
-  --surface: #13151f;
-  --surface-elevated: rgba(20, 22, 34, 0.85);
+  --border: #2a2b2e;
+  --border-strong: #34353a;
+  --border-subtle: #202123;
+  --surface: #1C1D1F;
+  --surface-elevated: rgba(28, 29, 31, 0.85);
   --grid-line: rgba(238, 238, 242, 0.035);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.45);
