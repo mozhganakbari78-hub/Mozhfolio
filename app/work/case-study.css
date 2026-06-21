@@ -445,6 +445,9 @@
 }
 
 /* horizontal scroller */
+.cs-horizontal { height: 100dvh; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+.cs-horizontal .cs-bar { position: static; }
+
 .cs-htrack {
   flex: 1 1 auto; min-height: 0;
   overflow-x: auto; overflow-y: hidden;
