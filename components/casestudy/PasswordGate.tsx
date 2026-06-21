@@ -71,7 +71,7 @@ export default function PasswordGate({
             borderRadius: 8,
             padding: "10px 12px",
             color: "#fff",
-            fontSize: 14,
+            fontSize: 16,
             outline: "none",
           }}
         />
