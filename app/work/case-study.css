@@ -579,7 +579,7 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  padding: 24px 56px 24px 20px;
+  padding: 24px 64px 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -632,4 +632,10 @@
 .cs-vtl-item.active .dot {
   background: var(--accent);
   transform: scale(1.6);
+}
+
+/* In vertical (mobile) mode, mockups are static and full-opacity. */
+.cs-vertical .cs-mockup {
+  opacity: 1;
+  transform: none;
 }
