@@ -553,13 +553,13 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overscroll-behavior-y: contain;
 }
 .cs-vtrack article { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
 .cs-vpanel {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   /* each panel should fill the visible track area (bar height offset via JS var) */
   min-height: calc(100dvh - var(--bar-h, 53px));
   width: 100%;
