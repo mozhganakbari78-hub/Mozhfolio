@@ -11,6 +11,7 @@ export default function EditorialVertical({ children }: { children: React.ReactN
   const trackRef = useRef<HTMLDivElement>(null);
   const [panels, setPanels] = useState<Panel[]>([]);
   const [active, setActive] = useState(0);
+  const [tlVisible, setTlVisible] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -71,6 +72,27 @@ export default function EditorialVertical({ children }: { children: React.ReactN
     return () => io.disconnect();
   }, [panels]);
 
+  // Show timeline only while scrolling / touching; auto-hide after pause.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let hideTimer: ReturnType<typeof setTimeout> | null = null;
+    const show = () => {
+      setTlVisible(true);
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => setTlVisible(false), 1400);
+    };
+    track.addEventListener("scroll", show, { passive: true });
+    track.addEventListener("touchstart", show, { passive: true });
+    track.addEventListener("pointerdown", show);
+    return () => {
+      track.removeEventListener("scroll", show);
+      track.removeEventListener("touchstart", show);
+      track.removeEventListener("pointerdown", show);
+      if (hideTimer) clearTimeout(hideTimer);
+    };
+  }, [panels]);
+
   const jumpTo = (i: number) => {
     const p = panels[i];
     if (!p) return;
@@ -95,7 +117,7 @@ export default function EditorialVertical({ children }: { children: React.ReactN
         {children}
       </div>
 
-      <div className="cs-vtimeline" aria-hidden={tlPanels.length === 0}>
+      <div className={`cs-vtimeline${tlVisible ? " visible" : ""}`} aria-hidden={tlPanels.length === 0}>
         {tlPanels.map((p) => {
           const idx = panels.indexOf(p);
           return (
