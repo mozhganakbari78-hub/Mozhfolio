@@ -557,7 +557,7 @@
   overscroll-behavior-y: contain;
 }
 .cs-vtrack article { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
-.cs-vpanel {
+.cs-vertical .cs-vpanel {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   /* each panel should fill the visible track area (bar height offset via JS var) */
@@ -671,7 +671,7 @@
     line-height: 1.2;
     margin: 0 0 12px;
   }
-  .cs-root section { padding: 28px 0; }
+  .cs-root section { padding: 24px 0; }
 
   /* ── Pull quote ── */
   .cs-pull {
