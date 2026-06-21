@@ -50,38 +50,38 @@ export default function VisualWork() {
     rafRef.current = requestAnimationFrame(tick);
 
     const onPointerDown = (e: PointerEvent) => {
+      e.preventDefault();
       dragRef.current = { active: true, startX: e.clientX, startPos: posRef.current };
       pausedRef.current = true;
       wrap.style.cursor = "grabbing";
-      wrap.setPointerCapture(e.pointerId);
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!dragRef.current.active) return;
       const delta = dragRef.current.startX - e.clientX;
       const half = rail.scrollWidth / 2;
       let next = dragRef.current.startPos + delta;
-      // wrap within [0, half)
       next = ((next % half) + half) % half;
       posRef.current = next;
       rail.style.transform = `translateX(-${posRef.current}px)`;
     };
     const onPointerUp = () => {
+      if (!dragRef.current.active) return;
       dragRef.current.active = false;
       pausedRef.current = false;
       wrap.style.cursor = "grab";
     };
 
-    wrap.addEventListener("pointerdown", onPointerDown);
-    wrap.addEventListener("pointermove", onPointerMove);
-    wrap.addEventListener("pointerup", onPointerUp);
-    wrap.addEventListener("pointercancel", onPointerUp);
+    wrap.addEventListener("pointerdown", onPointerDown, { passive: false });
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerUp);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       wrap.removeEventListener("pointerdown", onPointerDown);
-      wrap.removeEventListener("pointermove", onPointerMove);
-      wrap.removeEventListener("pointerup", onPointerUp);
-      wrap.removeEventListener("pointercancel", onPointerUp);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
     };
   }, []);
 
@@ -122,7 +122,7 @@ export default function VisualWork() {
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="overflow-hidden select-none"
-        style={{ cursor: "grab" }}
+        style={{ cursor: "grab", touchAction: "pan-y" }}
       >
         <div
           ref={railRef}
