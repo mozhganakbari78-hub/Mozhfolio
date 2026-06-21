@@ -536,20 +536,6 @@
   .cs-horizontal article > .cs-hero { padding-top: 40px; }
 }
 
-@media (max-width: 600px) {
-  .cs-root { font-size: 16px; }
-  .cs-wrap { padding: 0 20px; }
-  .cs-hero { padding: 48px 0; }
-  .cs-meta div { flex: 1 1 50%; }
-  .cs-compare { grid-template-columns: 1fr; }
-  .cs-decision .dbody, .cs-decision .dhead { padding-left: 22px; padding-right: 22px; }
-  .cs-card { padding: 24px 22px; }
-  .cs-chart { padding: 22px 20px; }
-  .cs-vt table { font-size: 12.5px; }
-  .cs-vt th, .cs-vt td { padding: 10px 10px; }
-  .cs-phase { grid-template-columns: 1fr; gap: 6px; }
-}
-
 /* ──────────────────────────────────────────────────────────────────────────
    Vertical mode (mobile) — snap-scroll panels with right-side timeline.
    ────────────────────────────────────────────────────────────────────────── */
@@ -643,51 +629,89 @@
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Mobile typography — scale down and strengthen contrast.
+   Mobile — responsive typography, layout, and overflow fixes.
    ────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .cs-root { font-size: 15.5px; line-height: 1.6; }
-  .cs-root p { color: #dfe1ec; }
+  /* ── Base ── */
+  .cs-root { font-size: 15px; line-height: 1.6; }
+  .cs-root p { color: #dde0ed; }
   .cs-root p strong { color: #ffffff; }
-  .cs-root h3 { font-size: 16px; }
-  .cs-eyebrow { font-size: 11px; letter-spacing: .12em; }
-  .cs-num { font-size: 11px; margin-bottom: 10px; }
+  .cs-root h3 { font-size: 15.5px; }
+  .cs-eyebrow { font-size: 10.5px; letter-spacing: .12em; }
+  .cs-num { font-size: 10.5px; margin-bottom: 10px; }
 
-  .cs-hero { padding: 24px 0 24px; }
-  .cs-hero .cs-eyebrow { margin-bottom: 14px; }
+  /* ── Hero ── */
+  .cs-hero { padding: 20px 0 20px; }
+  .cs-hero .cs-eyebrow { margin-bottom: 12px; }
   .cs-hero h1 {
-    font-size: clamp(26px, 7.5vw, 34px);
+    font-size: clamp(24px, 6.5vw, 30px);
     line-height: 1.12;
     letter-spacing: -0.015em;
-    margin: 0 0 16px;
-  }
-  .cs-lede { font-size: 16px; line-height: 1.55; color: #e7e8f0; }
-
-  .cs-root h2 {
-    font-size: clamp(22px, 6vw, 28px);
-    line-height: 1.18;
     margin: 0 0 14px;
   }
+  .cs-lede { font-size: 15px; line-height: 1.55; color: #e4e6f0; max-width: 100%; }
+  .cs-meta { margin-top: 20px; }
+  .cs-meta div { flex: 1 1 50%; padding: 10px 10px 10px 0; }
+  .cs-meta dt { font-size: 10px; margin-bottom: 3px; }
+  .cs-meta dd { font-size: 13px; }
+
+  /* ── Section headings ── */
+  .cs-root h2 {
+    font-size: clamp(20px, 5.5vw, 26px);
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+  .cs-root section { padding: 28px 0; }
+
+  /* ── Pull quote ── */
   .cs-pull {
-    font-size: 18px;
-    line-height: 1.4;
-    padding: 6px 0 6px 16px;
+    font-size: 16.5px;
+    line-height: 1.45;
+    padding: 6px 0 6px 14px;
     border-left-width: 2px;
   }
 
-  .cs-meta { margin-top: 24px; }
-  .cs-meta div { flex: 1 1 50%; padding: 12px 12px 12px 0; }
-  .cs-meta dt { font-size: 10.5px; margin-bottom: 4px; }
-  .cs-meta dd { font-size: 13.5px; }
+  /* ── Cards and boxes ── */
+  .cs-card { padding: 16px 16px; border-radius: 10px; }
+  .cs-chart { padding: 18px 16px; }
+  .cs-status { padding: 22px 18px; }
+  .cs-status h3 { font-size: 18px; }
+  .cs-qcard { padding: 16px 16px; }
+  .cs-inv { padding: 16px 16px; }
+  .cs-gov { padding: 16px 16px; }
 
-  .cs-card { padding: 18px 18px; border-radius: 12px; }
-  .cs-art { width: 44px; height: 44px; margin-bottom: 12px; border-radius: 10px; }
-  .cs-art svg { width: 22px; height: 22px; }
+  /* ── Art icon ── */
+  .cs-art { width: 40px; height: 40px; margin-bottom: 10px; border-radius: 9px; }
+  .cs-art svg { width: 20px; height: 20px; }
 
-  .cs-mockup-caption { font-size: 11.5px; margin-top: 8px; }
+  /* ── Grids → single column ── */
+  .cs-compare { grid-template-columns: 1fr; gap: 10px; }
+  .cs-compare .col { padding: 16px; }
+  .cs-phase { grid-template-columns: 1fr; gap: 4px; }
+  .cs-phase .phtag { padding-top: 0; }
+  .cs-govstep { grid-template-columns: 22px 1fr; gap: 10px; }
+  .cs-step { grid-template-columns: 30px 1fr; gap: 12px; padding: 16px 0; }
 
-  /* sticky bar — tighter */
-  .cs-bar .cs-wrap { padding-top: 12px; padding-bottom: 12px; }
-  .cs-back { font-size: 11px; }
-  .cs-sig { font-size: 14px; }
+  /* ── Tables: scroll horizontally inside a bounded box ── */
+  .cs-vt { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cs-vt table { font-size: 12.5px; min-width: 340px; }
+  .cs-vt th, .cs-vt td { padding: 9px 10px; }
+  .cs-vt .vthead { padding: 14px 16px 10px; }
+  .cs-vt .vtfoot { padding: 12px 16px; font-size: 12px; }
+
+  /* ── Tokens grid ── */
+  .cs-tokens { grid-template-columns: 1fr; }
+  .cs-tkcol { padding: 14px 16px; }
+  .cs-tokens .tkhead { padding: 14px 16px 10px; }
+
+  /* ── Decision block ── */
+  .cs-decision .dbody, .cs-decision .dhead { padding-left: 16px; padding-right: 16px; }
+
+  /* ── Mockup caption ── */
+  .cs-mockup-caption { font-size: 11px; margin-top: 6px; }
+
+  /* ── Top bar ── */
+  .cs-bar .cs-wrap { padding-top: 11px; padding-bottom: 11px; }
+  .cs-back { font-size: 10.5px; gap: 6px; }
+  .cs-sig { font-size: 13.5px; }
 }
