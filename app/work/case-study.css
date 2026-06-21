@@ -572,7 +572,7 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
   min-height: 100dvh;
-  padding: 28px 22px 80px;
+  padding: 32px 44px 80px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -580,6 +580,8 @@
   transform: translateY(14px);
   transition: opacity .5s ease, transform .5s ease;
 }
+.cs-vpanel > * { max-width: 100%; }
+.cs-vpanel .cs-wrap { padding: 0; max-width: 100%; }
 .cs-vpanel.in { opacity: 1; transform: none; }
 .cs-vpanel.cs-hero { justify-content: flex-end; padding-bottom: 96px; }
 
