@@ -624,8 +624,9 @@
 
 /* In vertical (mobile) mode, mockups are static and full-opacity. */
 .cs-vertical .cs-mockup {
-  opacity: 1;
-  transform: none;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
