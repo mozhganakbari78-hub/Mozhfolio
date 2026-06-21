@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { caseStudies, getCaseStudy } from "@/data/caseStudies";
 import Editorial from "@/components/casestudy/Editorial";
+import PasswordGate from "@/components/casestudy/PasswordGate";
 import SupportFrictionCase from "@/components/casestudy/SupportFrictionCase";
 import BatchTransferCase from "@/components/casestudy/BatchTransferCase";
 import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
@@ -11,6 +12,10 @@ const cases: Record<string, React.ComponentType> = {
   "reducing-support-friction": SupportFrictionCase,
   "batch-transfer": BatchTransferCase,
   "design-system": DesignSystemCase,
+};
+
+const protectedSlugs: Record<string, string> = {
+  "reducing-support-friction": "000",
 };
 
 export function generateStaticParams() {
@@ -40,9 +45,17 @@ export default async function CaseStudyPage({
   const Case = cases[slug];
   if (!Case) notFound();
 
-  return (
+  const password = protectedSlugs[slug];
+
+  const content = (
     <Editorial>
       <Case />
     </Editorial>
   );
+
+  if (password) {
+    return <PasswordGate password={password}>{content}</PasswordGate>;
+  }
+
+  return content;
 }
