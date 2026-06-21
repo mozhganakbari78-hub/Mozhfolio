@@ -13,8 +13,16 @@ export default function EditorialVertical({ children }: { children: React.ReactN
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    const root = rootRef.current;
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || !root) return;
+
+    // measure bar so panels can be exactly viewport-minus-bar tall
+    const bar = root.querySelector<HTMLElement>(".cs-bar");
+    if (bar) {
+      root.style.setProperty("--bar-h", `${bar.offsetHeight}px`);
+    }
+
     const article = track.querySelector("article");
     if (!article) return;
 

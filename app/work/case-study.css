@@ -562,17 +562,18 @@
 .cs-vertical .cs-bar { position: static; flex-shrink: 0; }
 .cs-vtrack {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   overscroll-behavior-y: contain;
-  scroll-behavior: smooth;
 }
 .cs-vtrack article { display: flex; flex-direction: column; }
 .cs-vpanel {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100dvh;
-  padding: 32px 44px 80px 24px;
+  /* each panel should fill the visible track area (bar height offset via JS var) */
+  min-height: calc(100dvh - var(--bar-h, 53px));
+  padding: 24px 52px 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -583,21 +584,22 @@
 .cs-vpanel > * { max-width: 100%; }
 .cs-vpanel .cs-wrap { padding: 0; max-width: 100%; }
 .cs-vpanel.in { opacity: 1; transform: none; }
-.cs-vpanel.cs-hero { justify-content: flex-end; padding-bottom: 96px; }
+.cs-vpanel.cs-hero { justify-content: flex-end; padding-bottom: 80px; }
 
 .cs-vtimeline {
   position: fixed;
-  right: 10px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   z-index: 30;
-  padding: 12px 8px;
-  background: rgba(18,19,20,.55);
+  padding: 10px 6px;
+  background: rgba(18,19,20,.72);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--line-soft);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: 999px;
 }
 .cs-vtl-item {
@@ -605,22 +607,22 @@
   background: none;
   border: 0;
   padding: 0;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 .cs-vtl-item .dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--line);
+  background: rgba(255,255,255,.35);
   transition: background .2s ease, transform .2s ease;
 }
 .cs-vtl-item .txt { display: none; }
 .cs-vtl-item.active .dot {
   background: var(--accent);
-  transform: scale(1.5);
+  transform: scale(1.6);
 }
