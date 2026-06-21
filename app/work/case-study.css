@@ -555,6 +555,8 @@
    ────────────────────────────────────────────────────────────────────────── */
 .cs-vertical {
   height: 100dvh;
+  width: 100vw;
+  max-width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -573,7 +575,10 @@
   scroll-snap-stop: always;
   /* each panel should fill the visible track area (bar height offset via JS var) */
   min-height: calc(100dvh - var(--bar-h, 53px));
-  padding: 24px 52px 24px 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 24px 56px 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
