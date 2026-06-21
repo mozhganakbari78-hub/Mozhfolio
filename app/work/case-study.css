@@ -554,9 +554,10 @@
    Vertical mode (mobile) — snap-scroll panels with right-side timeline.
    ────────────────────────────────────────────────────────────────────────── */
 .cs-vertical {
+  position: fixed;
+  inset: 0;
   height: 100dvh;
-  width: 100vw;
-  max-width: 100%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;

@@ -10,6 +10,8 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Don't intercept scroll on case study pages — they manage their own scroll.
+    if (window.location.pathname.startsWith("/work/")) return;
 
     const lenis = new Lenis({
       duration: 1.15,
