@@ -570,7 +570,7 @@
   scroll-snap-type: y mandatory;
   overscroll-behavior-y: contain;
 }
-.cs-vtrack article { display: flex; flex-direction: column; }
+.cs-vtrack article { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
 .cs-vpanel {
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -579,7 +579,7 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  padding: 24px 64px 24px 20px;
+  padding: 24px 60px 24px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -587,8 +587,10 @@
   transform: translateY(14px);
   transition: opacity .5s ease, transform .5s ease;
 }
-.cs-vpanel > * { max-width: 100%; }
+.cs-vpanel > * { max-width: 100%; min-width: 0; }
 .cs-vpanel .cs-wrap { padding: 0; max-width: 100%; }
+.cs-vpanel * { overflow-wrap: anywhere; word-wrap: break-word; }
+.cs-vpanel img, .cs-vpanel video, .cs-vpanel svg { max-width: 100%; height: auto; }
 .cs-vpanel.in { opacity: 1; transform: none; }
 .cs-vpanel.cs-hero { justify-content: flex-end; padding-bottom: 80px; }
 
