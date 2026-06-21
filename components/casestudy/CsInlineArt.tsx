@@ -23,7 +23,7 @@ function Strip({ children, label }: { children: React.ReactNode; label?: string 
         </span>
       )}
       <div
-        className="flex-1 flex items-center gap-2 rounded-xl px-4 py-3 overflow-hidden"
+        className="flex-1 flex items-center gap-2 flex-wrap rounded-xl px-4 py-3 overflow-hidden"
         style={{ background: BG, border: `1px solid ${BD}` }}
       >
         {children}
@@ -104,7 +104,7 @@ export function UnifiedFlow() {
         One surface
       </motion.span>
 
-      <span style={{ ...Mono, fontSize: 8.5, color: SUB, flex: 1, textAlign: "right" }}>
+      <span className="cs-art-trail" style={{ ...Mono, fontSize: 8.5, color: SUB, flex: 1, textAlign: "right" }}>
         answers + escalation in a single flow
       </span>
     </Strip>
@@ -207,7 +207,7 @@ export function RowIsolation() {
           </motion.span>
         ))}
       </div>
-      <span style={{ ...Mono, fontSize: 8.5, color: SUB, flex: 1, textAlign: "right" }}>
+      <span className="cs-art-trail" style={{ ...Mono, fontSize: 8.5, color: SUB, flex: 1, textAlign: "right" }}>
         one bad row, not the whole batch
       </span>
     </Strip>
@@ -235,7 +235,7 @@ export function DsSpeed() {
         ))}
       </div>
       <span
-        className="flex-shrink-0 rounded px-2 py-1"
+        className="cs-art-trail flex-shrink-0 rounded px-2 py-1"
         style={{ ...Mono, fontSize: 8.5, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
       >
         assembled, not drawn
@@ -280,7 +280,7 @@ export function TokenBridge() {
           )}
         </motion.div>
       ))}
-      <span style={{ ...Mono, fontSize: 8.5, color: "#ef4444", flex: 1, textAlign: "right" }}>
+      <span className="cs-art-trail" style={{ ...Mono, fontSize: 8.5, color: "#ef4444", flex: 1, textAlign: "right" }}>
         nobody could map them
       </span>
     </Strip>
@@ -487,8 +487,8 @@ export function MultiBrandTokens() {
       <div className="p-5 md:p-6">
         {/* Step headers */}
         <div
-          className="grid items-center mb-3"
-          style={{ gridTemplateColumns: `120px repeat(${steps.length}, 1fr)`, gap: 8 }}
+          className="cs-brand-grid grid items-center mb-3"
+          style={{ gridTemplateColumns: `80px repeat(${steps.length}, 1fr)`, gap: 8 }}
         >
           <span style={{ ...Mono, fontSize: 9, color: SUB }}>token</span>
           {steps.map((s) => (
@@ -507,8 +507,8 @@ export function MultiBrandTokens() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: ri * 0.1, duration: 0.5 }}
-              className="grid items-center"
-              style={{ gridTemplateColumns: `120px repeat(${steps.length}, 1fr)`, gap: 8 }}
+              className="cs-brand-grid grid items-center"
+              style={{ gridTemplateColumns: `80px repeat(${steps.length}, 1fr)`, gap: 8 }}
             >
               <span style={{ ...Mono, fontSize: 10, color: FG, fontWeight: 600 }}>
                 {r.name}

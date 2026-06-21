@@ -435,6 +435,13 @@
   .cs-vtrack article { padding: 0 22px 64px; }
   .cs-vertical .cs-hero { padding: 56px 0 40px; }
   .cs-vertical article > section { padding: 40px 0; }
+
+  /* hide decorative trailing labels in inline art strips on mobile */
+  .cs-art-trail { display: none; }
+
+  /* multi-brand token grid: shrink label column */
+  .cs-brand-grid { grid-template-columns: 56px repeat(6, 1fr) !important; gap: 4px !important; }
+  .cs-brand-grid span:first-child { font-size: 8px !important; }
 }
 
 /* horizontal scroller */
