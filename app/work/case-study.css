@@ -435,9 +435,9 @@
   flex: 0 0 auto;
   width: min(820px, 92vw);
   height: 100%;
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
-  padding: 52px 52px 52px;
+  padding: 52px 52px 100px;
   border-right: 1px solid var(--line-soft);
 }
 .cs-horizontal article > *::-webkit-scrollbar { width: 6px; }
