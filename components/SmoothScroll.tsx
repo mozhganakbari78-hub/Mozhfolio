@@ -12,6 +12,8 @@ export default function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Don't intercept scroll on case study pages — they manage their own scroll.
     if (window.location.pathname.startsWith("/work/")) return;
+    // Disable on touch/mobile — native scroll is smoother and Lenis causes jumps.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.15,
