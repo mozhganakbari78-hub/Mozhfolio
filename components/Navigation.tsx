@@ -58,8 +58,10 @@ export default function Navigation() {
               <li key={link.href}>
                 <button
                   onClick={() => handleLink(link.href)}
-                  className="text-sm transition-colors duration-200 hover:opacity-100"
+                  className="text-sm transition-colors duration-200"
                   style={{ color: "var(--text-secondary)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
                 >
                   {link.label}
                 </button>

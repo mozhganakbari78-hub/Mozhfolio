@@ -73,8 +73,8 @@ export default function CustomCursor() {
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="fixed left-0 top-0 z-[9999] pointer-events-none will-change-transform"
-        style={{ opacity: 1, transition: "opacity 0.2s ease" }}
+        className="fixed left-0 top-0 pointer-events-none will-change-transform"
+        style={{ opacity: 1, transition: "opacity 0.2s ease", zIndex: 2147483647 }}
       >
         <div
           className="relative"
