@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PasswordGate({
   password,
@@ -12,6 +12,14 @@ export default function PasswordGate({
   const [unlocked, setUnlocked] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+
+  // Auto-unlock via a share link, e.g. ?k=000 — lets you put one clickable
+  // link in your resume so recruiters never have to type the password.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("k") ?? params.get("key");
+    if (key && key === password) setUnlocked(true);
+  }, [password]);
 
   if (unlocked) return <>{children}</>;
 
