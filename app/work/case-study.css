@@ -564,12 +564,13 @@
 .cs-vertical .cs-vpanel {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
-  /* each panel should fill the visible track area (bar height offset via JS var) */
-  min-height: calc(100dvh - var(--bar-h, 53px));
+  /* natural height — short sections no longer leave a full-screen void.
+     Hero stays full-height (rule below) for impact. */
+  min-height: auto;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  padding: 24px 40px 24px 22px;
+  padding: 36px 40px 36px 22px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -582,7 +583,7 @@
 .cs-vpanel * { overflow-wrap: anywhere; word-wrap: break-word; }
 .cs-vpanel img, .cs-vpanel video, .cs-vpanel svg { max-width: 100%; height: auto; }
 .cs-vpanel.in { opacity: 1; transform: none; }
-.cs-vpanel.cs-hero { justify-content: center; }
+.cs-vpanel.cs-hero { justify-content: center; min-height: calc(100dvh - var(--bar-h, 53px)); }
 
 .cs-vtimeline {
   position: fixed;
