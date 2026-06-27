@@ -454,9 +454,11 @@
   display: flex; flex-direction: column; justify-content: center;
   border-top: 0;
 }
-/* panels manage their own padding; neutralize the vertical-mode section rhythm */
-.cs-horizontal article > section { padding: 44px 52px 44px; }
+/* panels manage their own padding; neutralize the vertical-mode section rhythm.
+   Extra bottom padding keeps the last block clear of the fixed timeline. */
+.cs-horizontal article > section { padding: 44px 52px 100px; }
 .cs-horizontal .cs-hero { padding-bottom: 44px; }
+.cs-horizontal .cs-pull { font-size: clamp(20px, 2.4vw, 25px); line-height: 1.28; padding-left: 20px; }
 
 /* compact the vertical rhythm inside horizontal panels so tall sections
    never run past the bottom edge */
