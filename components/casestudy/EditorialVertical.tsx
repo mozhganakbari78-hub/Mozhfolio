@@ -54,22 +54,34 @@ export default function EditorialVertical({ children }: { children: React.ReactN
     setPanels(built);
   }, []);
 
+  // Reveal-on-enter animation (panels are natural height now).
   useEffect(() => {
     if (!panels.length) return;
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            const idx = panels.findIndex((p) => p.el === e.target);
-            if (idx >= 0 && e.intersectionRatio > 0.5) setActive(idx);
-          }
-        });
-      },
-      { threshold: [0.15, 0.5, 0.75] }
+      (entries) =>
+        entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+      { threshold: 0.15 }
     );
     panels.forEach((p) => io.observe(p.el));
     return () => io.disconnect();
+  }, [panels]);
+
+  // Active dot = the panel whose top has crossed a line ~1/3 down the viewport.
+  // Scroll-based so it stays correct when several short sections are visible.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || !panels.length) return;
+    const onScroll = () => {
+      const line = track.getBoundingClientRect().top + track.clientHeight * 0.33;
+      let idx = 0;
+      panels.forEach((p, i) => {
+        if (p.el.getBoundingClientRect().top <= line) idx = i;
+      });
+      setActive(idx);
+    };
+    onScroll();
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
   }, [panels]);
 
   // Show timeline only while scrolling / touching; auto-hide after pause.
