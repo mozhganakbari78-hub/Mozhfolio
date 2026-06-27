@@ -567,10 +567,10 @@
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  padding: 24px 60px 24px 28px;
+  padding: 40px 60px 40px 28px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity .5s ease, transform .5s ease;
@@ -580,7 +580,7 @@
 .cs-vpanel * { overflow-wrap: anywhere; word-wrap: break-word; }
 .cs-vpanel img, .cs-vpanel video, .cs-vpanel svg { max-width: 100%; height: auto; }
 .cs-vpanel.in { opacity: 1; transform: none; }
-.cs-vpanel.cs-hero { justify-content: center; padding-top: 12px; padding-bottom: 40px; }
+.cs-vpanel.cs-hero { justify-content: center; }
 
 .cs-vtimeline {
   position: fixed;
