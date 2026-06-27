@@ -222,7 +222,7 @@ export default function DesignSystemCase() {
       {/* SHOT — button component */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/DesignSystem-Button.png"
+          src="/projects/DesignSystem-Button.webp"
           alt="Button component variants from the design system"
           caption="Fig. 01: Button component, layered on the Ant Design foundation"
         />

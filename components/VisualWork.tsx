@@ -6,17 +6,17 @@ import { motion } from "framer-motion";
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const images: { src: string }[] = [
-  { src: `${base}/projects/Screen2.png` },
-  { src: `${base}/projects/Screen3.png` },
-  { src: `${base}/projects/Screen5.png` },
-  { src: `${base}/projects/Screen6.png` },
-  { src: `${base}/projects/Screen7.png` },
-  { src: `${base}/projects/Screen8.png` },
-  { src: `${base}/projects/Screen9.png` },
-  { src: `${base}/projects/Screen10.png` },
-  { src: `${base}/projects/Screen11.png` },
-  { src: `${base}/projects/Screen12.png` },
-  { src: `${base}/projects/Screen13.png` },
+  { src: `${base}/projects/Screen2.webp` },
+  { src: `${base}/projects/Screen3.webp` },
+  { src: `${base}/projects/Screen5.webp` },
+  { src: `${base}/projects/Screen6.webp` },
+  { src: `${base}/projects/Screen7.webp` },
+  { src: `${base}/projects/Screen8.webp` },
+  { src: `${base}/projects/Screen9.webp` },
+  { src: `${base}/projects/Screen10.webp` },
+  { src: `${base}/projects/Screen11.webp` },
+  { src: `${base}/projects/Screen12.webp` },
+  { src: `${base}/projects/Screen13.webp` },
 ];
 
 // Duplicate for seamless loop
@@ -145,7 +145,8 @@ export default function VisualWork() {
                 src={img.src}
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                loading="eager"
+                loading={i < 4 ? "eager" : "lazy"}
+                decoding="async"
                 draggable={false}
                 style={{ imageRendering: "-webkit-optimize-contrast", backfaceVisibility: "hidden", transform: "translateZ(0)" }}
               />

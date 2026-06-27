@@ -161,7 +161,7 @@ export default function BatchTransferCase() {
       {/* SHOT — batch upload */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/batch-upload.png"
+          src="/projects/batch-upload.webp"
           alt="Batch upload screen, file submission and row preview"
           caption="Fig. 01: Upload and per-row preview before anything is committed"
         />
@@ -205,7 +205,7 @@ export default function BatchTransferCase() {
       {/* SHOT — validation */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/batch-validation.png"
+          src="/projects/batch-validation.webp"
           alt="Pre-submission recipient verification, match percentage review"
           caption="Fig. 02: Name-match percentages surfaced at the approval step"
         />

@@ -195,7 +195,7 @@ export default function SupportFrictionCase() {
       {/* SHOT — unified surface */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/support-faq.png"
+          src="/projects/support-faq.webp"
           alt="Unified support surface, FAQ and ticket in one flow"
           caption="Fig. 01: Finding an answer and asking for help are the same flow"
         />
@@ -204,7 +204,7 @@ export default function SupportFrictionCase() {
       {/* SHOT — live filtering */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/support-faq-filter.png"
+          src="/projects/support-faq-filter.webp"
           alt="Real-time FAQ filtering as the user types their issue"
           caption="Fig. 02: Answers filter in live as the user describes the problem"
         />
