@@ -11,6 +11,7 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [down, setDown] = useState(false);
+  const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
@@ -37,6 +38,11 @@ export default function CustomCursor() {
     const onMove = (e: MouseEvent) => {
       target.x = e.clientX;
       target.y = e.clientY;
+      const el = e.target as HTMLElement | null;
+      const clickable = !!el?.closest(
+        'a, button, [role="button"], input, textarea, select, label, [data-hand], summary'
+      );
+      setHovering(clickable);
     };
     const onDown = () => setDown(true);
     const onUp = () => setDown(false);
@@ -79,8 +85,12 @@ export default function CustomCursor() {
         <div
           className="relative"
           style={{
-            transform: down ? "scale(0.85)" : "scale(1)",
-            transition: "transform 0.12s ease",
+            transform: down
+              ? "scale(0.85)"
+              : hovering
+              ? "scale(1.5)"
+              : "scale(1)",
+            transition: "transform 0.15s ease",
           }}
         >
           <svg
@@ -104,6 +114,8 @@ export default function CustomCursor() {
               background: "var(--accent-color)",
               color: "#fff",
               boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
+              opacity: hovering ? 0 : 1,
+              transition: "opacity 0.15s ease",
             }}
           >
             Mozhgan Akbari

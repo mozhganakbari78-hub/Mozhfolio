@@ -119,6 +119,21 @@ body {
   }
 }
 
+/* Interactive elements always read as clickable (fallback when the custom
+   cursor is off, e.g. reduced-motion or coarse pointer). */
+a,
+button,
+[role="button"],
+label,
+summary,
+[data-hand] {
+  cursor: pointer;
+}
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
