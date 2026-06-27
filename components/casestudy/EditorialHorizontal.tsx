@@ -208,7 +208,7 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
             <ArrowLeftIcon style={{ width: 14, height: 14 }} />
             All work
           </Link>
-          <span className="cs-sig">Mozhgan Akbari</span>
+          <Link href="/" className="cs-sig">Mozhgan Akbari</Link>
         </div>
       </div>
 

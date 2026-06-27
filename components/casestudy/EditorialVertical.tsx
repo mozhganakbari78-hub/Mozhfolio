@@ -121,7 +121,7 @@ export default function EditorialVertical({ children }: { children: React.ReactN
             <ArrowLeftIcon style={{ width: 14, height: 14 }} />
             All work
           </Link>
-          <span className="cs-sig">Mozhgan Akbari</span>
+          <Link href="/" className="cs-sig">Mozhgan Akbari</Link>
         </div>
       </div>
 
