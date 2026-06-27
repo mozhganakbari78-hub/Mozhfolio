@@ -580,7 +580,7 @@
 .cs-vpanel * { overflow-wrap: anywhere; word-wrap: break-word; }
 .cs-vpanel img, .cs-vpanel video, .cs-vpanel svg { max-width: 100%; height: auto; }
 .cs-vpanel.in { opacity: 1; transform: none; }
-.cs-vpanel.cs-hero { justify-content: flex-end; padding-bottom: 80px; }
+.cs-vpanel.cs-hero { justify-content: center; padding-top: 12px; padding-bottom: 40px; }
 
 .cs-vtimeline {
   position: fixed;
