@@ -11,7 +11,6 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
   const trackRef = useRef<HTMLDivElement>(null);
   const [panels, setPanels] = useState<Panel[]>([]);
   const [active, setActive] = useState(0);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -142,9 +141,6 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
     };
 
     const onScroll = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      const ratio = max > 0 ? track.scrollLeft / max : 0;
-      setProgress(ratio);
       const center = track.scrollLeft + track.clientWidth / 2;
       let idx = 0;
       panels.forEach((p, i) => {
@@ -194,6 +190,16 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
 
   const tlPanels = panels.filter((p) => p.inTimeline && p.label !== "End");
 
+  // Align the fill line with the active dot: dots are evenly spaced, so the
+  // fill should reach the active timeline item's fractional position — not the
+  // raw scroll ratio (panels have unequal widths, so the two diverge).
+  let activeTlIndex = 0;
+  tlPanels.forEach((p, i) => {
+    if (panels.indexOf(p) <= active) activeTlIndex = i;
+  });
+  const fillPct =
+    tlPanels.length > 1 ? (activeTlIndex / (tlPanels.length - 1)) * 100 : 0;
+
   return (
     <div className="cs-root cs-horizontal" ref={rootRef}>
       <div className="cs-bar">
@@ -212,7 +218,7 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
 
       <div className="cs-timeline">
         <div className="cs-tl-line">
-          <div className="cs-tl-fill" style={{ width: `${progress * 100}%` }} />
+          <div className="cs-tl-fill" style={{ width: `${fillPct}%` }} />
         </div>
         <div className="cs-tl-labels">
           {tlPanels.map((p) => {
