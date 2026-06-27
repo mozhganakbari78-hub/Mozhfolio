@@ -663,7 +663,8 @@
   }
   .cs-lede { font-size: 15px; line-height: 1.55; color: #e4e6f0; max-width: 100%; }
   .cs-meta { margin-top: 20px; }
-  .cs-meta div { flex: 1 1 50%; padding: 10px 10px 10px 0; }
+  .cs-meta div { flex: 1 1 100%; padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+  .cs-meta div:last-child { border-bottom: 0; }
   .cs-meta dt { font-size: 10px; margin-bottom: 3px; }
   .cs-meta dd { font-size: 13px; }
 
