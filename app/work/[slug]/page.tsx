@@ -15,7 +15,7 @@ const cases: Record<string, React.ComponentType> = {
 };
 
 const protectedSlugs: Record<string, string> = {
-  "reducing-support-friction": "000",
+  // Password temporarily removed — case study is open to everyone.
 };
 
 export function generateStaticParams() {
