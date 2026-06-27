@@ -60,7 +60,7 @@ export default function Navigation() {
                   onClick={() => handleLink(link.href)}
                   className="text-sm transition-colors duration-200"
                   style={{ color: "var(--text-secondary)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-color)")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
                 >
                   {link.label}
