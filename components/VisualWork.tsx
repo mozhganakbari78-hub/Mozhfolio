@@ -7,6 +7,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const images: { src: string }[] = [
   { src: `${base}/projects/Bitoment.webp` },
+  { src: `${base}/projects/Page25.webp` },
   { src: `${base}/projects/Screen2.webp` },
   { src: `${base}/projects/Screen3.webp` },
   { src: `${base}/projects/Screen5.webp` },
