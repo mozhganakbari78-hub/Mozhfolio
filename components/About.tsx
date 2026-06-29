@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Enterprise corporate banking platform. Owned the design system end to end, led design on workflow-heavy banking tools, and shipped a batch payments redesign and support experience under real deadlines." },
-  { year: "2023 – 2024", role: "Product Designer", company: "IRO Team", note: "Mobile app for remote IoT greenhouse monitoring. Designed sensor controls, notifications, and conditional automation rules for non-technical operators." },
-  { year: "2021 – 2023", role: "UI/UX Designer", company: "Wallex Exchange", note: "Consumer cryptocurrency exchange across web and mobile. Built reusable UI components and shipped iteratively with developers over two years." },
-  { year: "2017 – 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
+  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Live corporate banking platform. Owned a ~29-component design system on Ant Design, analyzed ~1,000 support tickets by hand to redesign the FAQ and ticket flow, and rewrote ~2,000 error messages into clear, actionable copy." },
+  { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile app for remotely monitoring and controlling IoT greenhouse systems, on a team of five to six. Translated sensor data into clear screens for non-technical users." },
+  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Consumer cryptocurrency exchange across web and mobile over two years. Worked within the existing design system, adapted reusable components, and mentored junior designers and interns on Figma." },
+  { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
 const traits = [
