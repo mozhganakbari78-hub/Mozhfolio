@@ -3,7 +3,7 @@ import Script from "next/script";
 // Paste your GA4 Measurement ID here (looks like "G-XXXXXXXXXX").
 // Get it from analytics.google.com → Admin → Data Streams → your web stream.
 // Leave empty to disable analytics entirely.
-const GA_MEASUREMENT_ID = "";
+const GA_MEASUREMENT_ID = "G-8CCZP9PFQ5";
 
 export default function Analytics() {
   if (!GA_MEASUREMENT_ID) return null;
