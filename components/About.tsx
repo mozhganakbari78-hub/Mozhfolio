@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Live corporate banking platform. Owned a ~29-component design system on Ant Design, analyzed ~1,000 support tickets by hand to redesign the FAQ and ticket flow, and rewrote ~2,000 error messages into clear, actionable copy." },
+  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Live corporate banking platform. Built and maintain the design system on Ant Design (two-person team, no dedicated DS engineer). Identified and led the FAQ/ticket redesign from a ~1,000-ticket audit, and turned ~2,000 error messages into a clear rewrite framework." },
   { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile app for remotely monitoring and controlling IoT greenhouse systems, on a team of five to six. Translated sensor data into clear screens for non-technical users." },
-  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Consumer cryptocurrency exchange across web and mobile over two years. Worked within the existing design system, adapted reusable components, and mentored junior designers and interns on Figma." },
+  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Designed for the Algo team — trading bot interfaces and Wallex-funded adjacent projects — adapting reusable components to stay consistent with the broader design system. Mentored an incoming intern on Figma and the team's workflow." },
   { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
