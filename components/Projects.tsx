@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { caseStudies } from "@/data/caseStudies";
 import CaseCardArt from "./CaseCardArt";
+import { trackEvent } from "@/lib/gtag";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -48,6 +49,12 @@ export default function Projects() {
               <Link
                 href={`/work/${cs.slug}`}
                 data-hand
+                onClick={() =>
+                  trackEvent("case_study_click", {
+                    case_study: cs.slug,
+                    title: cs.title,
+                  })
+                }
                 aria-label={`Read case study: ${cs.title}`}
                 className="group relative grid md:grid-cols-2 overflow-hidden rounded-2xl border transition-all duration-300 hover:border-[var(--accent-color)]"
                 style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PaperAirplaneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
+import { trackEvent } from "@/lib/gtag";
 
 function LinkedinIcon({ size = 15 }: { size?: number }) {
   return (
@@ -21,6 +22,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    trackEvent("contact_form_submit");
     await new Promise((r) => setTimeout(r, 1200));
     setStatus("sent");
   };
@@ -131,6 +133,7 @@ export default function Contact() {
             <div className="space-y-3 mb-10">
               <a
                 href="mailto:akbarimozhgan99@gmail.com"
+                onClick={() => trackEvent("email_click")}
                 className="flex items-center gap-3 text-sm transition-opacity hover:opacity-70"
                 style={{ color: "var(--text-secondary)" }}
               >
@@ -141,6 +144,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/mozhgan-akbari/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("linkedin_click")}
                 className="flex items-center gap-3 text-sm transition-opacity hover:opacity-70"
                 style={{ color: "var(--text-secondary)" }}
               >
@@ -156,6 +160,7 @@ export default function Contact() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("social_click", { network: label })}
                   aria-label={label}
                   className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-70 border"
                   style={{
