@@ -20,17 +20,25 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; message?: string }>({});
 
-  const validate = () => {
-    const errors: typeof fieldErrors = {};
-    if (!form.name.trim()) errors.name = "Please enter your name.";
-    if (!form.email.trim()) {
-      errors.email = "Please enter your email.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) {
-      errors.email = "Please enter a valid email address.";
+  const validateField = (id: "name" | "email" | "message", value: string): string | undefined => {
+    if (id === "name" && !value.trim()) return "Please enter your name.";
+    if (id === "email") {
+      if (!value.trim()) return "Please enter your email.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim()))
+        return "Please enter a valid email address.";
     }
-    if (!form.message.trim()) errors.message = "Please write a message.";
+    if (id === "message" && !value.trim()) return "Please write a message.";
+    return undefined;
+  };
+
+  const validate = () => {
+    const errors: typeof fieldErrors = {
+      name: validateField("name", form.name),
+      email: validateField("email", form.email),
+      message: validateField("message", form.message),
+    };
     setFieldErrors(errors);
-    return Object.keys(errors).length === 0;
+    return !errors.name && !errors.email && !errors.message;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -309,10 +317,12 @@ export default function Contact() {
                       placeholder={field.placeholder}
                       value={form[field.id as keyof typeof form]}
                       onChange={(e) => {
-                        setForm({ ...form, [field.id]: e.target.value });
-                        if (fieldErrors[field.id as keyof typeof fieldErrors]) {
-                          setFieldErrors({ ...fieldErrors, [field.id]: undefined });
-                        }
+                        const id = field.id as "name" | "email";
+                        setForm({ ...form, [id]: e.target.value });
+                        setFieldErrors({
+                          ...fieldErrors,
+                          [id]: e.target.value ? validateField(id, e.target.value) : undefined,
+                        });
                       }}
                       aria-invalid={!!fieldErrors[field.id as keyof typeof fieldErrors]}
                       className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border"
@@ -348,7 +358,10 @@ export default function Contact() {
                     value={form.message}
                     onChange={(e) => {
                       setForm({ ...form, message: e.target.value });
-                      if (fieldErrors.message) setFieldErrors({ ...fieldErrors, message: undefined });
+                      setFieldErrors({
+                        ...fieldErrors,
+                        message: e.target.value ? validateField("message", e.target.value) : undefined,
+                      });
                     }}
                     aria-invalid={!!fieldErrors.message}
                     className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border resize-none"
