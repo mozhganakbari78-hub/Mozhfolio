@@ -23,8 +23,23 @@ export default function Contact() {
     e.preventDefault();
     setStatus("sending");
     trackEvent("contact_form_submit");
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/akbarimozhgan99@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `Mozhfolio contact from ${form.name}`,
+          _template: "table",
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const socials = [
@@ -253,6 +268,13 @@ export default function Contact() {
                     }}
                   />
                 </div>
+
+                {status === "error" && (
+                  <p className="text-xs" style={{ color: "#e8836e" }}>
+                    Something went wrong sending your message. Please try again, or
+                    email me directly.
+                  </p>
+                )}
 
                 <button
                   type="submit"
