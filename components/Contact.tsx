@@ -18,9 +18,24 @@ export default function Contact() {
   const { ref, inView } = useInView();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+
+  const validate = () => {
+    const errors: typeof fieldErrors = {};
+    if (!form.name.trim()) errors.name = "Please enter your name.";
+    if (!form.email.trim()) {
+      errors.email = "Please enter your email.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) {
+      errors.email = "Please enter a valid email address.";
+    }
+    if (!form.message.trim()) errors.message = "Please write a message.";
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
     setStatus("sending");
     trackEvent("contact_form_submit");
     try {
@@ -293,14 +308,27 @@ export default function Contact() {
                       required
                       placeholder={field.placeholder}
                       value={form[field.id as keyof typeof form]}
-                      onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
+                      onChange={(e) => {
+                        setForm({ ...form, [field.id]: e.target.value });
+                        if (fieldErrors[field.id as keyof typeof fieldErrors]) {
+                          setFieldErrors({ ...fieldErrors, [field.id]: undefined });
+                        }
+                      }}
+                      aria-invalid={!!fieldErrors[field.id as keyof typeof fieldErrors]}
                       className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border"
                       style={{
                         background: "var(--bg-secondary)",
                         color: "var(--text-primary)",
-                        borderColor: "var(--border)",
+                        borderColor: fieldErrors[field.id as keyof typeof fieldErrors]
+                          ? "#e8836e"
+                          : "var(--border)",
                       }}
                     />
+                    {fieldErrors[field.id as keyof typeof fieldErrors] && (
+                      <p className="text-xs mt-1.5" style={{ color: "#e8836e" }}>
+                        {fieldErrors[field.id as keyof typeof fieldErrors]}
+                      </p>
+                    )}
                   </div>
                 ))}
 
@@ -318,14 +346,23 @@ export default function Contact() {
                     rows={5}
                     placeholder="Tell me what you're building..."
                     value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    onChange={(e) => {
+                      setForm({ ...form, message: e.target.value });
+                      if (fieldErrors.message) setFieldErrors({ ...fieldErrors, message: undefined });
+                    }}
+                    aria-invalid={!!fieldErrors.message}
                     className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border resize-none"
                     style={{
                       background: "var(--bg-secondary)",
                       color: "var(--text-primary)",
-                      borderColor: "var(--border)",
+                      borderColor: fieldErrors.message ? "#e8836e" : "var(--border)",
                     }}
                   />
+                  {fieldErrors.message && (
+                    <p className="text-xs mt-1.5" style={{ color: "#e8836e" }}>
+                      {fieldErrors.message}
+                    </p>
+                  )}
                 </div>
 
                 {status === "error" && (
