@@ -5,10 +5,9 @@ import Script from "next/script";
 // Leave empty to disable.
 const GA_MEASUREMENT_ID = "G-8CCZP9PFQ5";
 
-// Hotjar Site ID (a number, e.g. "3812345").
-// From insights.hotjar.com → Settings → Sites & Organizations.
+// Hotjar / Contentsquare tag URL (from your Hotjar installation page).
 // Leave empty to disable.
-const HOTJAR_SITE_ID = "";
+const HOTJAR_SRC = "https://t.contentsquare.net/uxa/12357a2135940.js";
 
 export default function Analytics() {
   return (
@@ -30,20 +29,7 @@ export default function Analytics() {
         </>
       )}
 
-      {HOTJAR_SITE_ID && (
-        <Script id="hotjar-init" strategy="afterInteractive">
-          {`
-            (function(h,o,t,j,a,r){
-              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-              h._hjSettings={hjid:${HOTJAR_SITE_ID},hjsv:6};
-              a=o.getElementsByTagName('head')[0];
-              r=o.createElement('script');r.async=1;
-              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-              a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-          `}
-        </Script>
-      )}
+      {HOTJAR_SRC && <Script src={HOTJAR_SRC} strategy="afterInteractive" />}
     </>
   );
 }
