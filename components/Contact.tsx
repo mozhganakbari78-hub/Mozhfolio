@@ -197,18 +197,77 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             {status === "sent" ? (
-              <div
-                className="rounded-2xl p-8 border text-center"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="relative overflow-hidden rounded-2xl p-10 border text-center"
                 style={{ background: "#1C1D1F", borderColor: "var(--border)" }}
               >
-                <div className="text-2xl mb-2">✓</div>
-                <p className="font-medium mb-1" style={{ color: "var(--text-primary)" }}>
+                {/* soft glow behind the check */}
+                <motion.div
+                  aria-hidden="true"
+                  className="absolute left-1/2 top-10 -translate-x-1/2 rounded-full blur-3xl pointer-events-none"
+                  style={{ width: 220, height: 220, background: "var(--accent-color)" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.22, 0.12] }}
+                  transition={{ duration: 1.4, times: [0, 0.5, 1], ease: "easeOut" }}
+                />
+
+                {/* animated check — circle + tick draw themselves */}
+                <motion.svg
+                  width="72"
+                  height="72"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  className="relative mx-auto mb-5"
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.1 }}
+                >
+                  <motion.circle
+                    cx="36"
+                    cy="36"
+                    r="32"
+                    stroke="var(--accent-color)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, rotate: -90 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1], delay: 0.15 }}
+                    style={{ transformOrigin: "center" }}
+                  />
+                  <motion.path
+                    d="M23 37.5 L32 46.5 L49 27.5"
+                    stroke="var(--accent-color)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1], delay: 0.75 }}
+                  />
+                </motion.svg>
+
+                <motion.p
+                  className="relative font-semibold text-lg mb-1"
+                  style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                >
                   Message sent
-                </p>
-                <p className="text-sm" style={{ color: "var(--text-tertiary)" }}>
-                  I&apos;ll get back to you soon.
-                </p>
-              </div>
+                </motion.p>
+                <motion.p
+                  className="relative text-sm"
+                  style={{ color: "var(--text-tertiary)" }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Thanks for reaching out — I&apos;ll get back to you soon.
+                </motion.p>
+              </motion.div>
             ) : (
               <form
                 onSubmit={handleSubmit}
