@@ -122,7 +122,7 @@ export default function Hero() {
             style={{ borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
           >
             {[
-              { label: "4 years", note: "shipping live products" },
+              { label: "5 years", note: "shipping live products" },
               { label: "Banking · Crypto · IoT", note: "domains designed for" },
               { label: "CS background", note: "engineering-fluent by training" },
             ].map((item) => (

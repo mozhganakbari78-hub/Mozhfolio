@@ -41,7 +41,7 @@ export default function About() {
               I design where clarity becomes critical.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Product designer with around four years in fintech and enterprise software. I work close to engineering, design within real product and technical constraints, and care more about decisions that ship and get adopted than about polish.
+              Product designer with around five years in fintech and enterprise software. I work close to engineering, design within real product and technical constraints, and care more about decisions that ship and get adopted than about polish.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
               Most of my recent work is on a live corporate banking platform, where I owned a design system and led design on workflow-heavy banking tools.
