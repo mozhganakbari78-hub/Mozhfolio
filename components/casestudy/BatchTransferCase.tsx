@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
@@ -368,13 +368,17 @@ export default function BatchTransferCase() {
         </div>
       </section>
 
-      <Link href="/work/design-system" className="cs-next">
+      <NextCaseLink
+        href="/work/design-system"
+        caseStudyName="Design System for a Live Enterprise Platform"
+        className="cs-next"
+      >
         <span className="l">Next case &rarr;</span>
         <div className="t">
           Design System for a Live Enterprise Platform{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
-      </Link>
+      </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>

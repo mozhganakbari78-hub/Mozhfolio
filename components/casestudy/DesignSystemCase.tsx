@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import Mockup from "./Mockup";
@@ -353,13 +353,17 @@ export default function DesignSystemCase() {
         </div>
       </section>
 
-      <Link href="/work/reducing-support-friction" className="cs-next">
+      <NextCaseLink
+        href="/work/reducing-support-friction"
+        caseStudyName="Reducing Support Friction at Scale"
+        className="cs-next"
+      >
         <span className="l">Next case &rarr;</span>
         <div className="t">
           Reducing Support Friction at Scale{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
-      </Link>
+      </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>

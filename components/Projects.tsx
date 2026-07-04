@@ -50,10 +50,7 @@ export default function Projects() {
                 href={`/work/${cs.slug}`}
                 data-hand
                 onClick={() =>
-                  trackEvent("case_study_click", {
-                    case_study: cs.slug,
-                    title: cs.title,
-                  })
+                  trackEvent("case_study_click", { case_study_name: cs.title })
                 }
                 aria-label={`Read case study: ${cs.title}`}
                 className="group relative grid md:grid-cols-2 overflow-hidden rounded-2xl border transition-all duration-300 hover:border-[var(--accent-color)]"

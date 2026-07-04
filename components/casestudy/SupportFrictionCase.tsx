@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
@@ -409,12 +409,16 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      <Link href="/work/batch-transfer" className="cs-next">
+      <NextCaseLink
+        href="/work/batch-transfer"
+        caseStudyName="Batch Transfer for Offline Corporate Clients"
+        className="cs-next"
+      >
         <span className="l">Next case &rarr;</span>
         <div className="t">
           Batch Transfer for Offline Corporate Clients <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
-      </Link>
+      </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
