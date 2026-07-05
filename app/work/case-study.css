@@ -476,6 +476,13 @@
   flex-direction: column;
   justify-content: center;
 }
+/* decision panels carry dense cards — widen + tighten so they fit one screen */
+.cs-horizontal article > section:has(.cs-decision) {
+  width: min(1100px, 96vw);
+}
+.cs-horizontal .cs-dline .v { font-size: 14.5px; line-height: 1.55; }
+.cs-horizontal .cs-dline .k { font-size: 11px; margin-bottom: 3px; }
+.cs-horizontal .cs-decision .dtitle { font-size: 18px; margin-top: 4px; }
 /* …and their extras render compact in horizontal mode */
 .cs-horizontal .cs-scene { margin: 14px 0 8px; }
 .cs-horizontal .cs-statrow { margin: 14px 0 6px; gap: 10px; }
