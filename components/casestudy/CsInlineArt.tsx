@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";\nimport CountUp from "../CountUp";
+import { motion } from "framer-motion";
+import CountUp from "../CountUp";
 
 const A = "var(--accent-color)";
 const FG = "var(--text-primary)";
@@ -907,7 +908,8 @@ export function ButtonProperties() {
       </div>
     </div>
   );
-}\n
+}
+
 /* ─── BIG STATS: cinematic full-panel numbers with ambient motion ───
    Flat-illustration style: one bold ring, drifting particles, and huge
    counting numbers. Used on dedicated "stakes" panels. */
