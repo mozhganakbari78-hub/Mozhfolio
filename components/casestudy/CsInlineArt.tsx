@@ -999,3 +999,29 @@ export function BigStats({
     </div>
   );
 }
+
+/* ─── CHIP DROP: component chips fall in one by one with a springy bounce ───
+   Newtonian feel — each chip drops from above and settles with overshoot. */
+export function ChipDrop({ items }: { items: string[] }) {
+  return (
+    <div className="cs-chips">
+      {items.map((c, i) => (
+        <motion.span
+          key={c}
+          initial={{ opacity: 0, y: -46, rotate: -4 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{
+            delay: i * 0.045,
+            type: "spring",
+            stiffness: 520,
+            damping: 14,
+            mass: 0.8,
+          }}
+        >
+          {c}
+        </motion.span>
+      ))}
+    </div>
+  );
+}

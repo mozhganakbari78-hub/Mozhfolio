@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import CsStats from "./CsStats";
 import Mockup from "./Mockup";
-import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ButtonProperties } from "./CsInlineArt";
+import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ButtonProperties, ChipDrop } from "./CsInlineArt";
 
 const components = [
   "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
@@ -224,11 +224,7 @@ export default function DesignSystemCase() {
             Each documented with variants and states in a standalone documentation set, not just
             dropped into Figma.
           </div>
-          <div className="cs-chips">
-            {components.map((c) => (
-              <span key={c}>{c}</span>
-            ))}
-          </div>
+          <ChipDrop items={components} />
         </div>
       </section>
 
