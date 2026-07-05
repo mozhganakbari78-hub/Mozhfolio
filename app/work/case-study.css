@@ -476,10 +476,17 @@
   flex-direction: column;
   justify-content: center;
 }
-/* decision panels carry dense cards — widen + tighten so they fit one screen */
+/* decision panels carry dense cards — widen and lay the entries out in two
+   columns so the card is half as tall and always fits one screen */
 .cs-horizontal article > section:has(.cs-decision) {
-  width: min(1100px, 96vw);
+  width: min(1120px, 96vw);
 }
+.cs-horizontal .cs-decision .dbody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 32px;
+}
+.cs-horizontal .cs-dline { margin-bottom: 0; }
 .cs-horizontal .cs-dline .v { font-size: 14.5px; line-height: 1.55; }
 .cs-horizontal .cs-dline .k { font-size: 11px; margin-bottom: 3px; }
 .cs-horizontal .cs-decision .dtitle { font-size: 18px; margin-top: 4px; }
