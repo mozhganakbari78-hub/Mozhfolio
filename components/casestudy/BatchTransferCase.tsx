@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import CsArt from "./CsArt";
-import { RowIsolation, DsSpeed } from "./CsInlineArt";
+import { RowIsolation, DsSpeed, BatchFlow } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
   return (
@@ -124,11 +124,7 @@ export default function BatchTransferCase() {
           the core of the redesign. My teammate and I stayed aligned on direction; the interaction
           decisions for the batch experience were mine.
         </p>
-        <Mockup
-          src="/projects/wireframe.webp"
-          alt="Early wireframes exploring the batch transfer flow"
-          caption="Early wireframes — working out the upload, validation, and verification steps"
-        />
+        <BatchFlow />
       </section>
 
       {/* 04a DECISION 01 */}

@@ -546,6 +546,199 @@ export function MultiBrandTokens() {
   );
 }
 
+/* ─── TICKET BOARD: SupportFriction §03 — 1,000 tickets clustering ─── */
+export function TicketBoard() {
+  // deterministic pseudo-random layout (no Math.random → stable SSR)
+  const cats = [
+    { c: A, n: "answerable", count: 34 },
+    { c: "#a78bfa", n: "answerable", count: 14 },
+    { c: "#fbbf24", n: "needs human", count: 10 },
+    { c: "#ef4444", n: "needs human", count: 6 },
+  ];
+  const dots: { c: string; k: string }[] = [];
+  cats.forEach((cat, ci) => {
+    for (let i = 0; i < cat.count; i++) dots.push({ c: cat.c, k: `${ci}-${i}` });
+  });
+
+  return (
+    <div
+      className="my-10 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
+          ~1,000 TICKETS · READ BY HAND
+        </span>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>each dot ≈ 16 tickets</span>
+      </div>
+
+      <div className="p-5 md:p-6">
+        <div className="flex flex-wrap gap-1.5">
+          {dots.map((d, i) => (
+            <motion.span
+              key={d.k}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.015, type: "spring", stiffness: 320, damping: 20 }}
+              className="rounded-full"
+              style={{ width: 10, height: 10, background: d.c }}
+            />
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-x-5 gap-y-1 mt-5">
+          {[
+            { c: A, l: "bill management · answerable" },
+            { c: "#a78bfa", l: "cards & accounts · answerable" },
+            { c: "#fbbf24", l: "cheques · mixed" },
+            { c: "#ef4444", l: "genuinely needs a human" },
+          ].map((leg) => (
+            <span key={leg.l} className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full" style={{ background: leg.c }} />
+              <span style={{ ...Mono, fontSize: 9, color: SUB }}>{leg.l}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className="px-5 py-3 flex items-center justify-between"
+        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
+          Most tickets already had an answer, somewhere the user couldn&apos;t reach in time.
+        </span>
+        <span
+          className="rounded px-2 py-0.5 flex-shrink-0"
+          style={{ ...Mono, fontSize: 9, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
+        >
+          the insight
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── PANIC JOURNEY: SupportFriction §02 — where the ticket happens ─── */
+export function PanicJourney() {
+  const steps = [
+    { l: "mid-task", danger: false },
+    { l: "something unclear", danger: false },
+    { l: "guess: FAQ or ticket?", danger: true },
+    { l: "open a ticket", danger: false },
+  ];
+  return (
+    <Strip label="the journey">
+      <div className="flex items-center gap-1.5 flex-1 flex-wrap">
+        {steps.map((s, i) => (
+          <motion.div
+            key={s.l}
+            initial={{ opacity: 0, y: 4 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.12, duration: 0.35 }}
+            className="flex items-center gap-1.5"
+          >
+            <span
+              className="rounded px-2 py-1"
+              style={{
+                ...Mono,
+                fontSize: 9,
+                color: s.danger ? "#ef4444" : SUB,
+                background: s.danger ? "rgba(239,68,68,0.08)" : "var(--bg-secondary)",
+                border: `1px solid ${s.danger ? "rgba(239,68,68,0.45)" : BD}`,
+              }}
+            >
+              {s.danger ? "⚠ " : ""}{s.l}
+            </span>
+            {i < steps.length - 1 && (
+              <span style={{ color: BD, fontSize: 10, flexShrink: 0 }}>&rsaquo;</span>
+            )}
+          </motion.div>
+        ))}
+      </div>
+      <span style={{ ...Mono, fontSize: 8.5, color: SUB, flexShrink: 0 }}>
+        the guess is the failure point
+      </span>
+    </Strip>
+  );
+}
+
+/* ─── BATCH FLOW: BatchTransfer §03 — the redesigned pipeline ─── */
+export function BatchFlow() {
+  const stages = [
+    { l: "Upload", note: "one file, up to 400 rows", state: "done" },
+    { l: "Validate", note: "every row checked, bad rows isolated", state: "done" },
+    { l: "Verify", note: "recipient names confirmed pre-send", state: "active" },
+    { l: "Submit", note: "risk already surfaced", state: "next" },
+  ];
+  return (
+    <div
+      className="my-10 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
+          THE FLOW I DESIGNED
+        </span>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>errors surface before money moves</span>
+      </div>
+
+      <div className="p-5 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-2.5">
+        {stages.map((s, i) => (
+          <motion.div
+            key={s.l}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.12, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="relative rounded-xl p-3.5"
+            style={{
+              background: s.state === "active" ? "var(--accent-soft)" : "var(--bg-secondary)",
+              border: `1px solid ${s.state === "active" ? A : BD}`,
+            }}
+          >
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span
+                className="flex items-center justify-center rounded-full"
+                style={{
+                  width: 16,
+                  height: 16,
+                  ...Mono,
+                  fontSize: 8,
+                  color: s.state === "active" ? "#fff" : SUB,
+                  background: s.state === "active" ? A : "var(--bg)",
+                  border: `1px solid ${s.state === "active" ? A : BD}`,
+                }}
+              >
+                {i + 1}
+              </span>
+              <span style={{ color: FG, fontSize: 13, fontWeight: 600 }}>{s.l}</span>
+            </div>
+            <div style={{ ...Mono, fontSize: 8.5, color: SUB, lineHeight: 1.5 }}>{s.note}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div
+        className="px-5 py-3"
+        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+      >
+        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
+          One bad row no longer takes 399 good ones down with it.
+        </span>
+      </div>
+    </div>
+  );
+}
+
 /* ─── BUTTON PROPERTIES: visual showing variant matrix ─── */
 export function ButtonProperties() {
   const props = [
