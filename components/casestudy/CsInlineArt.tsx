@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion";\nimport CountUp from "../CountUp";
 
 const A = "var(--accent-color)";
 const FG = "var(--text-primary)";
@@ -904,6 +904,106 @@ export function ButtonProperties() {
         <span style={{ ...Mono, fontSize: 9, color: SUB }}>
           Devs ship the right variant without asking. The spec is the source.
         </span>
+      </div>
+    </div>
+  );
+}\n
+/* ─── BIG STATS: cinematic full-panel numbers with ambient motion ───
+   Flat-illustration style: one bold ring, drifting particles, and huge
+   counting numbers. Used on dedicated "stakes" panels. */
+export function BigStats({ items }: { items: { value: string; label: string }[] }) {
+  const dots = [
+    [8, 18], [16, 74], [26, 34], [40, 82], [52, 12],
+    [64, 68], [77, 24], [88, 76], [33, 58], [71, 44], [94, 40], [5, 52],
+  ];
+  return (
+    <div className="cs-bigstats relative w-full" style={{ padding: "56px 0" }}>
+      {/* rotating dashed ring */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          left: "50%", top: "50%", transform: "translate(-50%, -50%)",
+          width: "min(460px, 88vw)", height: "min(460px, 88vw)",
+        }}
+        aria-hidden
+      >
+        <motion.svg
+          viewBox="0 0 100 100"
+          width="100%"
+          height="100%"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <circle
+            cx="50" cy="50" r="48"
+            fill="none" stroke={A} strokeWidth="0.5"
+            strokeDasharray="0.5 3" strokeLinecap="round" opacity="0.5"
+          />
+        </motion.svg>
+        {/* breathing inner ring */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          style={{ border: `1px solid ${A}`, opacity: 0.12 }}
+          animate={{ scale: [0.86, 1, 0.86] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* drifting particles */}
+      {dots.map(([x, y], i) => (
+        <motion.span
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: `${x}%`, top: `${y}%`,
+            width: i % 3 === 0 ? 4 : 2.5,
+            height: i % 3 === 0 ? 4 : 2.5,
+            background: i % 4 === 0 ? A : "rgba(255,255,255,0.6)",
+          }}
+          animate={{ y: [0, -10, 0], opacity: [0.12, 0.65, 0.12] }}
+          transition={{
+            duration: 4 + (i % 4),
+            delay: i * 0.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          aria-hidden
+        />
+      ))}
+
+      {/* the numbers */}
+      <div
+        className="relative flex flex-wrap justify-center items-start"
+        style={{ gap: "clamp(28px, 7vw, 84px)" }}
+      >
+        {items.map((s, i) => (
+          <motion.div
+            key={s.label}
+            className="text-center"
+            style={{ maxWidth: 220 }}
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 + i * 0.18, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <CountUp
+              value={s.value}
+              style={{
+                display: "block",
+                fontWeight: 800,
+                fontSize: "clamp(52px, 8vw, 96px)",
+                lineHeight: 1,
+                letterSpacing: "-0.03em",
+                color: "#fff",
+              }}
+            />
+            <div
+              className="mx-auto my-3"
+              style={{ width: 30, height: 2, borderRadius: 2, background: A }}
+            />
+            <div style={{ ...Mono, fontSize: 11.5, color: SUB, lineHeight: 1.5 }}>{s.label}</div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

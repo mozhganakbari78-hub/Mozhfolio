@@ -469,6 +469,13 @@
 .cs-horizontal article > section:has(.cs-scene) {
   width: min(1000px, 95vw);
 }
+/* cinematic big-stats panel: wide and vertically centered */
+.cs-horizontal article > section:has(.cs-bigstats) {
+  width: min(1160px, 96vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* …and their extras render compact in horizontal mode */
 .cs-horizontal .cs-scene { margin: 14px 0 8px; }
 .cs-horizontal .cs-statrow { margin: 14px 0 6px; gap: 10px; }

@@ -1,9 +1,8 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
-import CsStats from "./CsStats";
 import CsArt from "./CsArt";
-import { RowIsolation, DsSpeed } from "./CsInlineArt";
+import { RowIsolation, DsSpeed, BigStats } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
   return (
@@ -99,17 +98,16 @@ export default function BatchTransferCase() {
 
       </section>
 
-      {/* 02b — the numbers, on their own panel */}
+      {/* 02b — the numbers, cinematic full panel */}
       <section className="cs-reveal">
         <span className="cs-num">02 / The stakes</span>
-        <CsStats
+        <BigStats
           items={[
             { value: "400", label: "rows in a single payroll batch" },
             { value: "1", label: "wrong digit sends money to a stranger" },
             { value: "0", label: "ways to catch it before submission" },
           ]}
         />
-        <div className="cs-pull">The old system made an error cheap to commit and expensive to discover.</div>
       </section>
 
       {/* 03 ROLE */}
