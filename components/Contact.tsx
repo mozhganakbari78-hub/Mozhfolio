@@ -163,7 +163,7 @@ export default function Contact() {
               The next problem worth solving.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m considering senior product design roles where the work involves real complexity:
+              I&apos;m considering product design roles where the work involves real complexity:
               regulated domains, enterprise tooling, fintech, multi-stakeholder systems. If you&apos;re
               building something where every decision compounds, let&apos;s talk.
             </p>
