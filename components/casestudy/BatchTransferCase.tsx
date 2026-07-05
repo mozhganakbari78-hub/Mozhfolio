@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import CsArt from "./CsArt";
-import { RowIsolation, DsSpeed, BatchFlow } from "./CsInlineArt";
+import { RowIsolation, DsSpeed } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
   return (
@@ -97,6 +97,11 @@ export default function BatchTransferCase() {
           to undo.
         </p>
 
+      </section>
+
+      {/* 02b — the numbers, on their own panel */}
+      <section className="cs-reveal">
+        <span className="cs-num">02 / The stakes</span>
         <CsStats
           items={[
             { value: "400", label: "rows in a single payroll batch" },
@@ -104,7 +109,6 @@ export default function BatchTransferCase() {
             { value: "0", label: "ways to catch it before submission" },
           ]}
         />
-
         <div className="cs-pull">The old system made an error cheap to commit and expensive to discover.</div>
       </section>
 
@@ -124,11 +128,6 @@ export default function BatchTransferCase() {
           the core of the redesign. My teammate and I stayed aligned on direction; the interaction
           decisions for the batch experience were mine.
         </p>
-      </section>
-
-      {/* SCENE — the pipeline */}
-      <section className="cs-shot cs-reveal">
-        <BatchFlow />
       </section>
 
       {/* 04a DECISION 01 */}
