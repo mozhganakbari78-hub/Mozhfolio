@@ -102,11 +102,13 @@ export default function BatchTransferCase() {
       <section className="cs-reveal">
         <span className="cs-num">02 / The stakes</span>
         <BigStats
+          headline="How one routine batch turns into a bad afternoon"
           items={[
-            { value: "400", label: "rows in a single payroll batch" },
-            { value: "1", label: "wrong digit sends money to a stranger" },
-            { value: "0", label: "ways to catch it before submission" },
+            { value: "400", label: "rows in a single payroll run" },
+            { value: "1", label: "wrong digit is all it takes" },
+            { value: "0", label: "ways to catch it before it's gone" },
           ]}
+          takeaway="The old system made an error cheap to commit and expensive to discover."
         />
       </section>
 

@@ -910,103 +910,92 @@ export function ButtonProperties() {
   );
 }
 
-/* ─── BIG STATS: cinematic full-panel numbers with ambient motion ───
-   Flat-illustration style: one bold ring, drifting particles, and huge
-   counting numbers. Used on dedicated "stakes" panels. */
-export function BigStats({ items }: { items: { value: string; label: string }[] }) {
-  const dots = [
-    [8, 18], [16, 74], [26, 34], [40, 82], [52, 12],
-    [64, 68], [77, 24], [88, 76], [33, 58], [71, 44], [94, 40], [5, 52],
-  ];
+/* ─── BIG STATS: a cause→effect chain the reader can follow ───
+   Numbers connected by arrows so they read as one sentence:
+   "400 rows → 1 wrong digit → 0 ways to catch it". Optional headline
+   above and takeaway line below tie the story together. */
+export function BigStats({
+  items,
+  headline,
+  takeaway,
+}: {
+  items: { value: string; label: string }[];
+  headline?: string;
+  takeaway?: string;
+}) {
   return (
-    <div className="cs-bigstats relative w-full" style={{ padding: "56px 0" }}>
-      {/* rotating dashed ring */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          left: "50%", top: "50%", transform: "translate(-50%, -50%)",
-          width: "min(460px, 88vw)", height: "min(460px, 88vw)",
-        }}
-        aria-hidden
-      >
-        <motion.svg
-          viewBox="0 0 100 100"
-          width="100%"
-          height="100%"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+    <div className="cs-bigstats relative w-full" style={{ padding: "20px 0" }}>
+      {headline && (
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-10"
+          style={{ ...Mono, fontSize: 12, letterSpacing: 1.5, color: SUB, textTransform: "uppercase" }}
         >
-          <circle
-            cx="50" cy="50" r="48"
-            fill="none" stroke={A} strokeWidth="0.5"
-            strokeDasharray="0.5 3" strokeLinecap="round" opacity="0.5"
-          />
-        </motion.svg>
-        {/* breathing inner ring */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          style={{ border: `1px solid ${A}`, opacity: 0.12 }}
-          animate={{ scale: [0.86, 1, 0.86] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+          {headline}
+        </motion.p>
+      )}
 
-      {/* drifting particles */}
-      {dots.map(([x, y], i) => (
-        <motion.span
-          key={i}
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            left: `${x}%`, top: `${y}%`,
-            width: i % 3 === 0 ? 4 : 2.5,
-            height: i % 3 === 0 ? 4 : 2.5,
-            background: i % 4 === 0 ? A : "rgba(255,255,255,0.6)",
-          }}
-          animate={{ y: [0, -10, 0], opacity: [0.12, 0.65, 0.12] }}
-          transition={{
-            duration: 4 + (i % 4),
-            delay: i * 0.4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          aria-hidden
-        />
-      ))}
-
-      {/* the numbers */}
-      <div
-        className="relative flex flex-wrap justify-center items-start"
-        style={{ gap: "clamp(28px, 7vw, 84px)" }}
-      >
+      <div className="relative flex flex-wrap justify-center items-center" style={{ gap: "clamp(16px, 3vw, 40px)" }}>
         {items.map((s, i) => (
-          <motion.div
-            key={s.label}
-            className="text-center"
-            style={{ maxWidth: 220 }}
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 + i * 0.18, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <CountUp
-              value={s.value}
-              style={{
-                display: "block",
-                fontWeight: 800,
-                fontSize: "clamp(52px, 8vw, 96px)",
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
-                color: "#fff",
-              }}
-            />
-            <div
-              className="mx-auto my-3"
-              style={{ width: 30, height: 2, borderRadius: 2, background: A }}
-            />
-            <div style={{ ...Mono, fontSize: 11.5, color: SUB, lineHeight: 1.5 }}>{s.label}</div>
-          </motion.div>
+          <div key={s.label} className="flex items-center" style={{ gap: "clamp(16px, 3vw, 40px)" }}>
+            <motion.div
+              className="text-center"
+              style={{ maxWidth: 240 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 + i * 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <CountUp
+                value={s.value}
+                style={{
+                  display: "block",
+                  fontWeight: 800,
+                  fontSize: "clamp(56px, 8.5vw, 108px)",
+                  lineHeight: 1,
+                  letterSpacing: "-0.03em",
+                  color: "#fff",
+                }}
+              />
+              <div
+                className="mx-auto my-3"
+                style={{ width: 30, height: 2, borderRadius: 2, background: A }}
+              />
+              <div style={{ ...Mono, fontSize: 12, color: SUB, lineHeight: 1.5 }}>{s.label}</div>
+            </motion.div>
+
+            {/* connective arrow between numbers */}
+            {i < items.length - 1 && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 + i * 0.25 + 0.18, duration: 0.4 }}
+                aria-hidden
+                style={{ color: A, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, lineHeight: 1, transform: "translateY(-16px)" }}
+              >
+                &rarr;
+              </motion.span>
+            )}
+          </div>
         ))}
       </div>
+
+      {takeaway && (
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 + items.length * 0.25, duration: 0.6 }}
+          className="text-center mx-auto mt-12"
+          style={{ maxWidth: 620, fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 600, color: FG, letterSpacing: "-0.01em", lineHeight: 1.4 }}
+        >
+          {takeaway}
+        </motion.p>
+      )}
     </div>
   );
 }
