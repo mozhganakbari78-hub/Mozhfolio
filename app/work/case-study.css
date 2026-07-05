@@ -476,20 +476,20 @@
   flex-direction: column;
   justify-content: center;
 }
-/* decision panels carry dense cards — widen and lay the entries out in two
-   columns so the card is half as tall and always fits one screen */
+/* decision panels: keep entries stacked (one column), but widen the panel and
+   center it so a tall card still reads as one screen */
 .cs-horizontal article > section:has(.cs-decision) {
-  width: min(1120px, 96vw);
+  width: min(920px, 94vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.cs-horizontal .cs-decision .dbody {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 32px;
-}
-.cs-horizontal .cs-dline { margin-bottom: 0; }
-.cs-horizontal .cs-dline .v { font-size: 14.5px; line-height: 1.55; }
+.cs-horizontal .cs-dline { margin-bottom: 12px; }
+.cs-horizontal .cs-dline .v { font-size: 14px; line-height: 1.5; }
 .cs-horizontal .cs-dline .k { font-size: 11px; margin-bottom: 3px; }
 .cs-horizontal .cs-decision .dtitle { font-size: 18px; margin-top: 4px; }
+.cs-horizontal .cs-decision .dhead { padding: 14px 22px 11px; }
+.cs-horizontal .cs-decision .dbody { padding: 16px 22px; }
 /* …and their extras render compact in horizontal mode */
 .cs-horizontal .cs-scene { margin: 14px 0 8px; }
 .cs-horizontal .cs-statrow { margin: 14px 0 6px; gap: 10px; }
