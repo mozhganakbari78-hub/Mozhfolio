@@ -511,6 +511,8 @@
 }
 .cs-shot .cs-mockup::before,
 .cs-shot .cs-mockup::after { display: none; }
+/* animated scene inside a dedicated panel: fill the width, keep centered */
+.cs-shot .cs-scene { width: 100%; margin: 0; }
 .cs-shot .cs-mockup { border: none; box-shadow: none; border-radius: 12px; overflow: hidden; }
 .cs-shot .cs-mockup img {
   width: 100%;

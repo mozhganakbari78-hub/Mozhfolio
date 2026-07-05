@@ -124,6 +124,10 @@ export default function BatchTransferCase() {
           the core of the redesign. My teammate and I stayed aligned on direction; the interaction
           decisions for the batch experience were mine.
         </p>
+      </section>
+
+      {/* SCENE — the pipeline */}
+      <section className="cs-shot cs-reveal">
         <BatchFlow />
       </section>
 

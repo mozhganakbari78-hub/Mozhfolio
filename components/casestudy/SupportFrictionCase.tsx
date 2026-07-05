@@ -82,6 +82,10 @@ export default function SupportFrictionCase() {
           If the answer and the escalation live in different rooms, the user will always walk into
           the one that feels safe.
         </div>
+      </section>
+
+      {/* SCENE — the fork users face */}
+      <section className="cs-shot cs-reveal">
         <PanicJourney />
       </section>
 
@@ -117,6 +121,10 @@ export default function SupportFrictionCase() {
             { value: "2", label: "layers: subject × answerability" },
           ]}
         />
+      </section>
+
+      {/* SCENE — sorting 1,000 tickets */}
+      <section className="cs-shot cs-reveal">
         <TicketBoard />
       </section>
 
