@@ -8,7 +8,9 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 900px)");
+    // Vertical layout for small screens AND all touch devices (tablets/iPads):
+    // the horizontal wheel-scroll layout is built for mouse input.
+    const mq = window.matchMedia("(max-width: 900px), (pointer: coarse)");
     const update = () => setIsMobile(mq.matches);
     update();
     mq.addEventListener("change", update);
