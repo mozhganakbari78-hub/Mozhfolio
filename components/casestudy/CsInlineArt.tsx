@@ -566,7 +566,7 @@ export function TicketBoard() {
 
   return (
     <div
-      className="my-8 rounded-2xl overflow-hidden"
+      className="cs-scene my-8 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
       aria-hidden
     >
@@ -641,7 +641,7 @@ export function TicketBoard() {
 export function PanicJourney() {
   return (
     <div
-      className="my-8 rounded-2xl overflow-hidden"
+      className="cs-scene my-8 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
       aria-hidden
     >
@@ -723,7 +723,7 @@ export function BatchFlow() {
 
   return (
     <div
-      className="my-8 rounded-2xl overflow-hidden"
+      className="cs-scene my-8 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
       aria-hidden
     >

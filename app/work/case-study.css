@@ -463,6 +463,19 @@
 .cs-horizontal .cs-hero { padding-bottom: 44px; }
 .cs-horizontal .cs-pull { font-size: clamp(20px, 2.4vw, 25px); line-height: 1.28; padding-left: 20px; }
 
+/* Sections carrying stats or an animated scene get a wider panel so their
+   text wraps into fewer lines and the whole section fits one screen. */
+.cs-horizontal article > section:has(.cs-statrow),
+.cs-horizontal article > section:has(.cs-scene) {
+  width: min(1000px, 95vw);
+}
+/* …and their extras render compact in horizontal mode */
+.cs-horizontal .cs-scene { margin: 14px 0 8px; }
+.cs-horizontal .cs-statrow { margin: 14px 0 6px; gap: 10px; }
+.cs-horizontal .cs-stat { padding: 12px 14px; }
+.cs-horizontal .cs-stat .v { font-size: 24px; }
+.cs-horizontal .cs-stat .l { font-size: 11px; margin-top: 4px; }
+
 /* compact the vertical rhythm inside horizontal panels so tall sections
    never run past the bottom edge */
 .cs-horizontal article > section > h2 { margin-bottom: 16px; }
