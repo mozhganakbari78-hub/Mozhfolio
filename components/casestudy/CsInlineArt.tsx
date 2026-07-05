@@ -346,7 +346,7 @@ export function SystemAnatomy() {
 
   return (
     <div
-      className="my-10 rounded-2xl overflow-hidden"
+      className="cs-scene my-10 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
     >
       <div
@@ -472,7 +472,7 @@ export function MultiBrandTokens() {
 
   return (
     <div
-      className="my-10 rounded-2xl overflow-hidden"
+      className="cs-scene my-10 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
     >
       <div
@@ -823,7 +823,7 @@ export function ButtonProperties() {
 
   return (
     <div
-      className="my-10 rounded-2xl overflow-hidden"
+      className="cs-scene my-10 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
     >
       <div

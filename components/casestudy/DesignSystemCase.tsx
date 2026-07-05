@@ -210,6 +210,11 @@ export default function DesignSystemCase() {
           earned product-specific customization.
         </p>
         <SystemAnatomy />
+      </section>
+
+      {/* 04b — component inventory, own panel */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / What I actually built</span>
         <div className="cs-inv">
           <div className="ih">
             <span className="t">Components shipped</span>
