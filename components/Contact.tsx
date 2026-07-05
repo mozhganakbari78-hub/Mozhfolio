@@ -364,7 +364,7 @@ export default function Contact() {
                       });
                     }}
                     aria-invalid={!!fieldErrors.message}
-                    className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border resize-none"
+                    className="block w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none border resize-none"
                     style={{
                       background: "var(--bg-secondary)",
                       color: "var(--text-primary)",
