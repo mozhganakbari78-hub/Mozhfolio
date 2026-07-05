@@ -2,7 +2,7 @@ import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsArt from "./CsArt";
-import { RowIsolation, DsSpeed, BigStats } from "./CsInlineArt";
+import { RowIsolation, DsSpeed } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
   return (
@@ -96,20 +96,7 @@ export default function BatchTransferCase() {
           to undo.
         </p>
 
-      </section>
-
-      {/* 02b — the numbers, cinematic full panel */}
-      <section className="cs-reveal">
-        <span className="cs-num">02 / The stakes</span>
-        <BigStats
-          headline="How one routine batch turns into a bad afternoon"
-          items={[
-            { value: "400", label: "rows in a single payroll run" },
-            { value: "1", label: "wrong digit is all it takes" },
-            { value: "0", label: "ways to catch it before it's gone" },
-          ]}
-          takeaway="The old system made an error cheap to commit and expensive to discover."
-        />
+        <div className="cs-pull">The old system made an error cheap to commit and expensive to discover.</div>
       </section>
 
       {/* 03 ROLE */}
