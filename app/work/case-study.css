@@ -637,6 +637,55 @@
   transform: scale(1.6);
 }
 
+/* ── big stat callouts ─────────────────────────────────────────────────── */
+.cs-statrow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 22px 0 10px;
+}
+.cs-stat {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(130% 100% at 0% 0%, rgba(1,116,220,.12), transparent 55%),
+    var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 20px 20px 18px;
+  opacity: 0;
+  transform: translateY(14px) scale(.97);
+  transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+}
+.cs-stat::after {
+  content: "";
+  position: absolute; left: 20px; bottom: 0;
+  width: 34px; height: 2px; border-radius: 2px;
+  background: var(--accent);
+  opacity: .8;
+}
+.cs-reveal.in .cs-stat,
+.cs-vpanel.in .cs-stat { opacity: 1; transform: none; }
+.cs-stat .v {
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+.cs-stat .l {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-faint);
+  margin-top: 8px;
+}
+@media (max-width: 900px) {
+  .cs-statrow { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .cs-stat { padding: 14px 14px 14px; }
+  .cs-stat .v { font-size: 24px; }
+  .cs-stat .l { font-size: 11px; margin-top: 5px; }
+}
+
 /* In vertical (mobile) mode, mockups are static and full-opacity. */
 .cs-vertical .cs-mockup {
   opacity: 1 !important;

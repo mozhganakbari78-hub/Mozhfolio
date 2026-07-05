@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
+import CsStats from "./CsStats";
 import CsArt from "./CsArt";
 import { UnifiedFlow } from "./CsInlineArt";
 
@@ -81,6 +82,11 @@ export default function SupportFrictionCase() {
           If the answer and the escalation live in different rooms, the user will always walk into
           the one that feels safe.
         </div>
+        <Mockup
+          src="/projects/journey-map.webp"
+          alt="Journey map showing where users hit friction before opening a ticket"
+          caption="Mapping the journey — where the panic actually happens before a ticket gets opened"
+        />
       </section>
 
       {/* 03 EVIDENCE */}
@@ -108,6 +114,18 @@ export default function SupportFrictionCase() {
             human.
           </strong>
         </p>
+        <CsStats
+          items={[
+            { value: "~1,000", label: "tickets read by hand" },
+            { value: "2 yrs", label: "of support history covered" },
+            { value: "2", label: "layers: subject × answerability" },
+          ]}
+        />
+        <Mockup
+          src="/projects/sticky-notes.webp"
+          alt="Affinity mapping board in FigJam with clustered support ticket themes"
+          caption="Affinity mapping in FigJam — clustering ~1,000 tickets into subjects and answerability"
+        />
       </section>
 
       {/* 03b EVIDENCE — chart */}

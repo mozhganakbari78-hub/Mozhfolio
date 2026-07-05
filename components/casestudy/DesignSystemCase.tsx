@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import CsStats from "./CsStats";
 import Mockup from "./Mockup";
 import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ButtonProperties } from "./CsInlineArt";
 
@@ -70,6 +71,13 @@ export default function DesignSystemCase() {
           structure, tokens, component scope, documentation, maintenance, while also doing product
           work.
         </p>
+        <CsStats
+          items={[
+            { value: "90+", label: "screens already live in production" },
+            { value: "29", label: "components documented with states" },
+            { value: "3", label: "brand pipelines on one token layer" },
+          ]}
+        />
       </section>
 
       {/* 02 PROBLEM */}

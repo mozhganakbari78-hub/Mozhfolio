@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
+import CsStats from "./CsStats";
 import CsArt from "./CsArt";
 import { RowIsolation, DsSpeed } from "./CsInlineArt";
 
@@ -96,6 +97,14 @@ export default function BatchTransferCase() {
           to undo.
         </p>
 
+        <CsStats
+          items={[
+            { value: "400", label: "rows in a single payroll batch" },
+            { value: "1", label: "wrong digit sends money to a stranger" },
+            { value: "0", label: "ways to catch it before submission" },
+          ]}
+        />
+
         <div className="cs-pull">The old system made an error cheap to commit and expensive to discover.</div>
       </section>
 
@@ -115,6 +124,11 @@ export default function BatchTransferCase() {
           the core of the redesign. My teammate and I stayed aligned on direction; the interaction
           decisions for the batch experience were mine.
         </p>
+        <Mockup
+          src="/projects/wireframe.webp"
+          alt="Early wireframes exploring the batch transfer flow"
+          caption="Early wireframes — working out the upload, validation, and verification steps"
+        />
       </section>
 
       {/* 04a DECISION 01 */}
