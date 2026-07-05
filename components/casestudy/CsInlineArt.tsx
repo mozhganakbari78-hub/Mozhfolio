@@ -546,195 +546,266 @@ export function MultiBrandTokens() {
   );
 }
 
-/* ─── TICKET BOARD: SupportFriction §03 — 1,000 tickets clustering ─── */
+/* ─── TICKET BOARD: SupportFriction §03 — live sorting animation ───
+   Tickets stream out of an inbox and get sorted into "answerable" vs
+   "needs a human". Loops forever; compact so panels never scroll. */
 export function TicketBoard() {
-  // deterministic pseudo-random layout (no Math.random → stable SSR)
-  const cats = [
-    { c: A, n: "answerable", count: 34 },
-    { c: "#a78bfa", n: "answerable", count: 14 },
-    { c: "#fbbf24", n: "needs human", count: 10 },
-    { c: "#ef4444", n: "needs human", count: 6 },
-  ];
-  const dots: { c: string; k: string }[] = [];
-  cats.forEach((cat, ci) => {
-    for (let i = 0; i < cat.count; i++) dots.push({ c: cat.c, k: `${ci}-${i}` });
+  // deterministic layout — no Math.random, stable between SSR and client
+  const dots = Array.from({ length: 14 }, (_, i) => {
+    const answerable = i % 3 !== 2; // ~2/3 answerable
+    const lane = i % 4;
+    return {
+      k: i,
+      answerable,
+      delay: i * 0.55,
+      targetY: (answerable ? 34 : 118) + lane * 7,
+      targetX: 452 + (i % 5) * 22,
+      color: answerable ? A : "#ef4444",
+    };
   });
 
   return (
     <div
-      className="my-10 rounded-2xl overflow-hidden"
+      className="my-8 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
+      aria-hidden
     >
       <div
-        className="flex items-center justify-between px-5 py-3"
+        className="flex items-center justify-between px-5 py-2.5"
         style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
       >
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
-          ~1,000 TICKETS · READ BY HAND
+          ~1,000 TICKETS · SORTED BY HAND
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>each dot ≈ 16 tickets</span>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>could they have self-served?</span>
       </div>
 
-      <div className="p-5 md:p-6">
-        <div className="flex flex-wrap gap-1.5">
-          {dots.map((d, i) => (
-            <motion.span
-              key={d.k}
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.015, type: "spring", stiffness: 320, damping: 20 }}
-              className="rounded-full"
-              style={{ width: 10, height: 10, background: d.c }}
-            />
-          ))}
-        </div>
+      <svg viewBox="0 0 600 170" width="100%" style={{ display: "block" }}>
+        {/* inbox */}
+        <rect x="18" y="62" width="64" height="46" rx="9" fill="var(--bg-secondary)" stroke={BD} />
+        <text x="50" y="89" textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 9 }}>
+          inbox
+        </text>
 
-        <div className="flex flex-wrap gap-x-5 gap-y-1 mt-5">
-          {[
-            { c: A, l: "bill management · answerable" },
-            { c: "#a78bfa", l: "cards & accounts · answerable" },
-            { c: "#fbbf24", l: "cheques · mixed" },
-            { c: "#ef4444", l: "genuinely needs a human" },
-          ].map((leg) => (
-            <span key={leg.l} className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: leg.c }} />
-              <span style={{ ...Mono, fontSize: 9, color: SUB }}>{leg.l}</span>
-            </span>
-          ))}
-        </div>
-      </div>
+        {/* guide lines */}
+        <path d="M 90 85 C 200 85 260 52 420 52" stroke={BD} strokeDasharray="3 5" fill="none" />
+        <path d="M 90 85 C 200 85 260 132 420 132" stroke={BD} strokeDasharray="3 5" fill="none" />
 
-      <div
-        className="px-5 py-3 flex items-center justify-between"
-        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
-      >
-        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
-          Most tickets already had an answer, somewhere the user couldn&apos;t reach in time.
-        </span>
-        <span
-          className="rounded px-2 py-0.5 flex-shrink-0"
-          style={{ ...Mono, fontSize: 9, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
-        >
-          the insight
-        </span>
-      </div>
+        {/* destination bins */}
+        <rect x="440" y="24" width="142" height="52" rx="9" fill="var(--accent-soft)" stroke={A} />
+        <text x="511" y="45" textAnchor="middle" fill={A} style={{ ...Mono, fontSize: 9 }}>
+          answer already exists
+        </text>
+        <text x="511" y="60" textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 8 }}>
+          → self-serve, if reachable
+        </text>
+        <rect x="440" y="98" width="142" height="52" rx="9" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
+        <text x="511" y="119" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+          genuinely needs a human
+        </text>
+        <text x="511" y="134" textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 8 }}>
+          → route to support
+        </text>
+
+        {/* moving tickets */}
+        {dots.map((d) => (
+          <motion.circle
+            key={d.k}
+            r={4.5}
+            fill={d.color}
+            initial={{ cx: 60, cy: 85, opacity: 0 }}
+            animate={{
+              cx: [60, 250, d.targetX],
+              cy: [85, 85, d.targetY],
+              opacity: [0, 1, 1, 0],
+            }}
+            transition={{
+              duration: 3.2,
+              times: [0, 0.45, 1],
+              opacity: { times: [0, 0.1, 0.85, 1], duration: 3.2 },
+              delay: d.delay,
+              repeat: Infinity,
+              repeatDelay: dots.length * 0.55 - 3.2,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </svg>
     </div>
   );
 }
 
-/* ─── PANIC JOURNEY: SupportFriction §02 — where the ticket happens ─── */
+/* ─── PANIC JOURNEY: SupportFriction §02 — the fork users face ───
+   A user-dot travels the task path, hits the fork, hesitates on a red
+   pulse, then falls into "ticket" every time. Loops forever. */
 export function PanicJourney() {
-  const steps = [
-    { l: "mid-task", danger: false },
-    { l: "something unclear", danger: false },
-    { l: "guess: FAQ or ticket?", danger: true },
-    { l: "open a ticket", danger: false },
-  ];
-  return (
-    <Strip label="the journey">
-      <div className="flex items-center gap-1.5 flex-1 flex-wrap">
-        {steps.map((s, i) => (
-          <motion.div
-            key={s.l}
-            initial={{ opacity: 0, y: 4 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.12, duration: 0.35 }}
-            className="flex items-center gap-1.5"
-          >
-            <span
-              className="rounded px-2 py-1"
-              style={{
-                ...Mono,
-                fontSize: 9,
-                color: s.danger ? "#ef4444" : SUB,
-                background: s.danger ? "rgba(239,68,68,0.08)" : "var(--bg-secondary)",
-                border: `1px solid ${s.danger ? "rgba(239,68,68,0.45)" : BD}`,
-              }}
-            >
-              {s.danger ? "⚠ " : ""}{s.l}
-            </span>
-            {i < steps.length - 1 && (
-              <span style={{ color: BD, fontSize: 10, flexShrink: 0 }}>&rsaquo;</span>
-            )}
-          </motion.div>
-        ))}
-      </div>
-      <span style={{ ...Mono, fontSize: 8.5, color: SUB, flexShrink: 0 }}>
-        the guess is the failure point
-      </span>
-    </Strip>
-  );
-}
-
-/* ─── BATCH FLOW: BatchTransfer §03 — the redesigned pipeline ─── */
-export function BatchFlow() {
-  const stages = [
-    { l: "Upload", note: "one file, up to 400 rows", state: "done" },
-    { l: "Validate", note: "every row checked, bad rows isolated", state: "done" },
-    { l: "Verify", note: "recipient names confirmed pre-send", state: "active" },
-    { l: "Submit", note: "risk already surfaced", state: "next" },
-  ];
   return (
     <div
-      className="my-10 rounded-2xl overflow-hidden"
+      className="my-8 rounded-2xl overflow-hidden"
       style={{ background: BG, border: `1px solid ${BD}` }}
+      aria-hidden
     >
       <div
-        className="flex items-center justify-between px-5 py-3"
+        className="flex items-center justify-between px-5 py-2.5"
         style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
       >
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
-          THE FLOW I DESIGNED
+          WHERE THE TICKET ACTUALLY HAPPENS
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>errors surface before money moves</span>
+        <span style={{ ...Mono, fontSize: 9, color: "#ef4444" }}>the guess is the failure</span>
       </div>
 
-      <div className="p-5 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-2.5">
-        {stages.map((s, i) => (
-          <motion.div
-            key={s.l}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.12, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="relative rounded-xl p-3.5"
-            style={{
-              background: s.state === "active" ? "var(--accent-soft)" : "var(--bg-secondary)",
-              border: `1px solid ${s.state === "active" ? A : BD}`,
-            }}
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <span
-                className="flex items-center justify-center rounded-full"
-                style={{
-                  width: 16,
-                  height: 16,
-                  ...Mono,
-                  fontSize: 8,
-                  color: s.state === "active" ? "#fff" : SUB,
-                  background: s.state === "active" ? A : "var(--bg)",
-                  border: `1px solid ${s.state === "active" ? A : BD}`,
-                }}
-              >
-                {i + 1}
-              </span>
-              <span style={{ color: FG, fontSize: 13, fontWeight: 600 }}>{s.l}</span>
-            </div>
-            <div style={{ ...Mono, fontSize: 8.5, color: SUB, lineHeight: 1.5 }}>{s.note}</div>
-          </motion.div>
-        ))}
-      </div>
+      <svg viewBox="0 0 600 150" width="100%" style={{ display: "block" }}>
+        {/* main path to the fork */}
+        <path d="M 30 75 H 300" stroke={BD} strokeWidth="1.5" fill="none" />
+        {/* branches */}
+        <path d="M 300 75 C 340 75 350 38 395 38" stroke={BD} strokeDasharray="3 5" fill="none" />
+        <path d="M 300 75 C 340 75 350 112 395 112" stroke={BD} strokeWidth="1.5" fill="none" />
 
+        <text x="30" y="60" fill={SUB} style={{ ...Mono, fontSize: 9 }}>mid-task, money on the line</text>
+
+        {/* fork pulse */}
+        <motion.circle
+          cx="300" cy="75" r="8" fill="none" stroke="#ef4444" strokeWidth="1.5"
+          animate={{ scale: [0.6, 1.7], opacity: [0.9, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
+          style={{ transformOrigin: "300px 75px" }}
+        />
+        <text x="300" y="100" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+          guess?
+        </text>
+
+        {/* FAQ branch (the road not taken) */}
+        <rect x="400" y="22" width="120" height="32" rx="8" fill="var(--bg-secondary)" stroke={BD} />
+        <text x="460" y="42" textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 9 }}>
+          FAQ · maybe it&apos;s there?
+        </text>
+
+        {/* Ticket branch (the safe path) */}
+        <rect x="400" y="96" width="120" height="32" rx="8" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
+        <text x="460" y="116" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+          ticket · feels safe
+        </text>
+
+        {/* travelling user dot — always ends in ticket */}
+        <motion.circle
+          r="5.5"
+          fill={A}
+          animate={{
+            cx: [30, 300, 300, 460],
+            cy: [75, 75, 75, 112],
+            opacity: [0, 1, 1, 1, 0],
+          }}
+          transition={{
+            duration: 4,
+            times: [0, 0.45, 0.62, 1],
+            opacity: { times: [0, 0.08, 0.5, 0.9, 1], duration: 4 },
+            repeat: Infinity,
+            repeatDelay: 0.6,
+            ease: "easeInOut",
+          }}
+        />
+      </svg>
+    </div>
+  );
+}
+
+/* ─── BATCH FLOW: BatchTransfer §03 — rows flowing through validation ───
+   Green rows stream through the pipeline; the bad row gets caught at the
+   validation gate and ejected while the rest keep flowing. Loops forever. */
+export function BatchFlow() {
+  const rows = Array.from({ length: 8 }, (_, i) => ({
+    k: i,
+    bad: i === 4,
+    delay: i * 0.7,
+    lane: 62 + (i % 3) * 14,
+  }));
+
+  return (
+    <div
+      className="my-8 rounded-2xl overflow-hidden"
+      style={{ background: BG, border: `1px solid ${BD}` }}
+      aria-hidden
+    >
       <div
-        className="px-5 py-3"
-        style={{ borderTop: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
+        className="flex items-center justify-between px-5 py-2.5"
+        style={{ borderBottom: `1px solid ${BD}`, background: "var(--bg-secondary)" }}
       >
-        <span style={{ ...Mono, fontSize: 9, color: SUB }}>
-          One bad row no longer takes 399 good ones down with it.
+        <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
+          ONE BAD ROW FAILS ALONE
         </span>
+        <span style={{ ...Mono, fontSize: 9, color: A }}>399 others keep moving</span>
       </div>
+
+      <svg viewBox="0 0 600 165" width="100%" style={{ display: "block" }}>
+        {/* pipeline */}
+        <path d="M 20 82 H 580" stroke={BD} strokeDasharray="3 5" fill="none" />
+
+        {/* validation gate */}
+        <rect x="268" y="34" width="4" height="96" rx="2" fill={A} opacity="0.85" />
+        <motion.rect
+          x="266" y="34" width="8" height="96" rx="4" fill={A}
+          animate={{ opacity: [0.05, 0.3, 0.05] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <text x="270" y="24" textAnchor="middle" fill={A} style={{ ...Mono, fontSize: 9 }}>
+          validate
+        </text>
+
+        {/* submit zone */}
+        <rect x="500" y="52" width="80" height="60" rx="9" fill="var(--accent-soft)" stroke={A} />
+        <text x="540" y="86" textAnchor="middle" fill={A} style={{ ...Mono, fontSize: 9 }}>
+          submit
+        </text>
+
+        {/* rejected tray */}
+        <rect x="230" y="138" width="82" height="22" rx="6" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
+        <text x="271" y="152" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 8 }}>
+          row 212 · fix &amp; retry
+        </text>
+
+        {/* flowing rows */}
+        {rows.map((r) =>
+          r.bad ? (
+            <motion.rect
+              key={r.k}
+              width="16" height="8" rx="2.5"
+              fill="#ef4444"
+              initial={{ x: 12, y: r.lane, opacity: 0 }}
+              animate={{
+                x: [12, 252, 252, 262],
+                y: [r.lane, r.lane, r.lane, 142],
+                opacity: [0, 1, 1, 1, 0],
+              }}
+              transition={{
+                duration: 4.2,
+                times: [0, 0.5, 0.62, 1],
+                opacity: { times: [0, 0.08, 0.6, 0.92, 1], duration: 4.2 },
+                delay: r.delay,
+                repeat: Infinity,
+                repeatDelay: rows.length * 0.7 - 4.2,
+                ease: "easeInOut",
+              }}
+            />
+          ) : (
+            <motion.rect
+              key={r.k}
+              width="16" height="8" rx="2.5"
+              fill={A}
+              initial={{ x: 12, y: r.lane, opacity: 0 }}
+              animate={{ x: [12, 530], opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 3.6,
+                opacity: { times: [0, 0.08, 0.88, 1], duration: 3.6 },
+                delay: r.delay,
+                repeat: Infinity,
+                repeatDelay: rows.length * 0.7 - 3.6,
+                ease: "easeInOut",
+              }}
+            />
+          )
+        )}
+      </svg>
     </div>
   );
 }
