@@ -51,3 +51,9 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        # GitHub Pages sometimes returns a transient "Deployment failed, try
+        # again later." Retry a couple of times before giving up.
+        continue-on-error: true
+      - if: steps.deployment.outcome == 'failure'
+        id: deployment-retry
+        uses: actions/deploy-pages@v4
