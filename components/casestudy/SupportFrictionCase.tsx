@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import CsArt from "./CsArt";
-import { UnifiedFlow, TicketBoard, PanicJourney } from "./CsInlineArt";
+import { UnifiedFlow, PanicJourney } from "./CsInlineArt";
 
 export default function SupportFrictionCase() {
   return (
@@ -121,11 +121,6 @@ export default function SupportFrictionCase() {
             { value: "2", label: "layers: subject × answerability" },
           ]}
         />
-      </section>
-
-      {/* SCENE — sorting 1,000 tickets */}
-      <section className="cs-shot cs-reveal">
-        <TicketBoard />
       </section>
 
       {/* 03b EVIDENCE — chart */}
