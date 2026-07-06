@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-type Panel = { el: HTMLElement; label: string; inTimeline: boolean };
+type Panel = { el: HTMLElement; label: string; inTimeline: boolean; stage: string };
 
 export default function EditorialHorizontal({ children }: { children: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -25,20 +25,24 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       el.classList.add("cs-panel");
       let label = `${i + 1}`;
       let inTimeline = true;
-      if (el.classList.contains("cs-hero")) label = "Overview";
-      else if (el.classList.contains("cs-next")) label = "Next";
-      else if (el.classList.contains("cs-foot")) { label = "End"; }
+      let stage = `${i + 1}`;
+      if (el.classList.contains("cs-hero")) { label = "Overview"; stage = "hero"; }
+      else if (el.classList.contains("cs-next")) { label = "Next"; stage = "next"; }
+      else if (el.classList.contains("cs-foot")) { label = "End"; stage = "foot"; }
       else {
         const num = el.querySelector(".cs-num")?.textContent ?? "";
+        const before = num.split("/")[0]?.trim();
         const after = num.split("/")[1]?.trim();
         if (after) {
           const short = after.length > 18 ? after.slice(0, 16).trimEnd() + "..." : after;
           label = short;
+          // group timeline dots by the leading stage number (e.g. "03")
+          stage = before || after;
         } else {
           inTimeline = false;
         }
       }
-      return { el, label, inTimeline };
+      return { el, label, inTimeline, stage };
     });
     setPanels(built);
   }, []);
@@ -193,15 +197,16 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
   // jumps to the first panel of that stage and which stays active across all of
   // them.
   const eligible = panels.filter((p) => p.inTimeline && p.label !== "End");
-  type Stage = { label: string; firstIdx: number; panelIdxs: number[] };
+  type Stage = { label: string; firstIdx: number; panelIdxs: number[]; stageKey: string };
   const stages: Stage[] = [];
   eligible.forEach((p) => {
     const idx = panels.indexOf(p);
     const last = stages[stages.length - 1];
-    if (last && last.label === p.label) {
+    // one dot per stage number: merge sections that share a leading number
+    if (last && last.stageKey === p.stage) {
       last.panelIdxs.push(idx);
     } else {
-      stages.push({ label: p.label, firstIdx: idx, panelIdxs: [idx] });
+      stages.push({ label: p.label, firstIdx: idx, panelIdxs: [idx], stageKey: p.stage });
     }
   });
 
