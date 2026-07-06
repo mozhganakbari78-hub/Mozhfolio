@@ -16,9 +16,12 @@ export default function SmoothScroll() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
-      duration: 1.15,
+      // shorter duration + a touch more wheel travel = responsive but still
+      // smooth (was sluggish at 1.15)
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: 1.1,
       touchMultiplier: 1.6,
     });
 

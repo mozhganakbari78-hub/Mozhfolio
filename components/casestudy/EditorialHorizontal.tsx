@@ -188,17 +188,30 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, panels]);
 
-  const tlPanels = panels.filter((p) => p.inTimeline && p.label !== "End");
+  // One timeline dot per stage. Collapse consecutive sections that share the
+  // same label (e.g. two "Key decisions" panels) into a single dot whose click
+  // jumps to the first panel of that stage and which stays active across all of
+  // them.
+  const eligible = panels.filter((p) => p.inTimeline && p.label !== "End");
+  type Stage = { label: string; firstIdx: number; panelIdxs: number[] };
+  const stages: Stage[] = [];
+  eligible.forEach((p) => {
+    const idx = panels.indexOf(p);
+    const last = stages[stages.length - 1];
+    if (last && last.label === p.label) {
+      last.panelIdxs.push(idx);
+    } else {
+      stages.push({ label: p.label, firstIdx: idx, panelIdxs: [idx] });
+    }
+  });
 
-  // Align the fill line with the active dot: dots are evenly spaced, so the
-  // fill should reach the active timeline item's fractional position — not the
-  // raw scroll ratio (panels have unequal widths, so the two diverge).
+  // Which stage is active = the last stage whose first panel we've reached.
   let activeTlIndex = 0;
-  tlPanels.forEach((p, i) => {
-    if (panels.indexOf(p) <= active) activeTlIndex = i;
+  stages.forEach((s, i) => {
+    if (s.firstIdx <= active) activeTlIndex = i;
   });
   const fillPct =
-    tlPanels.length > 1 ? (activeTlIndex / (tlPanels.length - 1)) * 100 : 0;
+    stages.length > 1 ? (activeTlIndex / (stages.length - 1)) * 100 : 0;
 
   return (
     <div className="cs-root cs-horizontal" ref={rootRef}>
@@ -221,19 +234,16 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
           <div className="cs-tl-fill" style={{ width: `${fillPct}%` }} />
         </div>
         <div className="cs-tl-labels">
-          {tlPanels.map((p) => {
-            const idx = panels.indexOf(p);
-            return (
-              <button
-                key={idx}
-                className={`cs-tl-item${idx === active ? " active" : ""}`}
-                onClick={() => jumpTo(idx)}
-              >
-                <span className="dot" />
-                <span className="txt">{p.label}</span>
-              </button>
-            );
-          })}
+          {stages.map((s, i) => (
+            <button
+              key={s.firstIdx}
+              className={`cs-tl-item${i === activeTlIndex ? " active" : ""}`}
+              onClick={() => jumpTo(s.firstIdx)}
+            >
+              <span className="dot" />
+              <span className="txt">{s.label}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>
