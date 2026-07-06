@@ -1,16 +1,33 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 type Panel = { el: HTMLElement; label: string; inTimeline: boolean; stage: string };
+type Stage = { label: string; firstIdx: number; stageKey: string };
 
 export default function EditorialHorizontal({ children }: { children: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [panels, setPanels] = useState<Panel[]>([]);
-  const [active, setActive] = useState(0);
+  const [activeStage, setActiveStage] = useState(0);
+
+  // One dot per stage number: sections sharing a leading number ("03 / …")
+  // collapse into a single timeline stop.
+  const stages = useMemo<Stage[]>(() => {
+    const out: Stage[] = [];
+    panels.forEach((p, idx) => {
+      if (!p.inTimeline || p.label === "End") return;
+      const last = out[out.length - 1];
+      if (last && last.stageKey === p.stage) return;
+      out.push({ label: p.label, firstIdx: idx, stageKey: p.stage });
+    });
+    return out;
+  }, [panels]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -144,13 +161,42 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       }
     };
 
+    // Continuous timeline sync: find the current stage from the viewport
+    // center, then interpolate the fill to the exact measured position
+    // between that stage's dot and the next one. Fill and dots can never
+    // drift apart because the fill is derived from the dots themselves.
     const onScroll = () => {
-      const center = track.scrollLeft + track.clientWidth / 2;
-      let idx = 0;
-      panels.forEach((p, i) => {
-        if (p.el.offsetLeft <= center) idx = i;
-      });
-      setActive(idx);
+      if (stages.length) {
+        const anchors = stages.map((s) => panels[s.firstIdx].el.offsetLeft);
+        const center = track.scrollLeft + track.clientWidth / 2;
+
+        let k = 0;
+        anchors.forEach((a, i) => {
+          if (a <= center) k = i;
+        });
+        let frac = 0;
+        if (k < anchors.length - 1) {
+          frac = (center - anchors[k]) / (anchors[k + 1] - anchors[k]);
+          frac = Math.max(0, Math.min(1, frac));
+        } else {
+          frac = 1;
+        }
+
+        setActiveStage(k);
+
+        const line = lineRef.current;
+        const fill = fillRef.current;
+        const dA = dotRefs.current[k];
+        const dB = dotRefs.current[k + 1] ?? dA;
+        if (line && fill && dA && dB) {
+          const lr = line.getBoundingClientRect();
+          const ra = dA.getBoundingClientRect();
+          const rb = dB.getBoundingClientRect();
+          const xa = ra.left + ra.width / 2 - lr.left;
+          const xb = rb.left + rb.width / 2 - lr.left;
+          fill.style.width = `${Math.max(0, xa + (xb - xa) * frac)}px`;
+        }
+      }
       updateMockups();
     };
     onScroll();
@@ -160,7 +206,7 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       track.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [panels]);
+  }, [panels, stages]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -173,50 +219,24 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
     return () => obs.disconnect();
   }, [panels]);
 
-  const jumpTo = (i: number) => {
+  const jumpToStage = (i: number) => {
     const track = trackRef.current;
-    const p = panels[i];
-    if (!track || !p) return;
+    const s = stages[i];
+    if (!track || !s) return;
     const max = track.scrollWidth - track.clientWidth;
-    targetX.current = Math.max(0, Math.min(max, p.el.offsetLeft));
+    targetX.current = Math.max(0, Math.min(max, panels[s.firstIdx].el.offsetLeft));
     kickRef.current?.();
   };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") jumpTo(Math.min(active + 1, panels.length - 1));
-      else if (e.key === "ArrowLeft") jumpTo(Math.max(active - 1, 0));
+      if (e.key === "ArrowRight") jumpToStage(Math.min(activeStage + 1, stages.length - 1));
+      else if (e.key === "ArrowLeft") jumpToStage(Math.max(activeStage - 1, 0));
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, panels]);
-
-  // One timeline dot per stage. Collapse consecutive sections that share the
-  // same label (e.g. two "Key decisions" panels) into a single dot whose click
-  // jumps to the first panel of that stage and which stays active across all of
-  // them.
-  const eligible = panels.filter((p) => p.inTimeline && p.label !== "End");
-  type Stage = { label: string; firstIdx: number; panelIdxs: number[]; stageKey: string };
-  const stages: Stage[] = [];
-  eligible.forEach((p) => {
-    const idx = panels.indexOf(p);
-    const last = stages[stages.length - 1];
-    // one dot per stage number: merge sections that share a leading number
-    if (last && last.stageKey === p.stage) {
-      last.panelIdxs.push(idx);
-    } else {
-      stages.push({ label: p.label, firstIdx: idx, panelIdxs: [idx], stageKey: p.stage });
-    }
-  });
-
-  // Which stage is active = the last stage whose first panel we've reached.
-  let activeTlIndex = 0;
-  stages.forEach((s, i) => {
-    if (s.firstIdx <= active) activeTlIndex = i;
-  });
-  const fillPct =
-    stages.length > 1 ? (activeTlIndex / (stages.length - 1)) * 100 : 0;
+  }, [activeStage, stages]);
 
   return (
     <div className="cs-root cs-horizontal" ref={rootRef}>
@@ -235,17 +255,22 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       </div>
 
       <div className="cs-timeline">
-        <div className="cs-tl-line">
-          <div className="cs-tl-fill" style={{ width: `${fillPct}%` }} />
+        <div className="cs-tl-line" ref={lineRef}>
+          <div className="cs-tl-fill" ref={fillRef} />
         </div>
         <div className="cs-tl-labels">
           {stages.map((s, i) => (
             <button
               key={s.firstIdx}
-              className={`cs-tl-item${i === activeTlIndex ? " active" : ""}`}
-              onClick={() => jumpTo(s.firstIdx)}
+              className={`cs-tl-item${i === activeStage ? " active" : ""}`}
+              onClick={() => jumpToStage(i)}
             >
-              <span className="dot" />
+              <span
+                className="dot"
+                ref={(el) => {
+                  dotRefs.current[i] = el;
+                }}
+              />
               <span className="txt">{s.label}</span>
             </button>
           ))}
