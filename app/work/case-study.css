@@ -594,13 +594,13 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  scroll-snap-type: y proximity;
+  /* no scroll-snap: sections are natural height, snapping mid-read caused
+     jumpy scrolling on touch devices */
   overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .cs-vtrack article { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
 .cs-vertical .cs-vpanel {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
   /* natural height — short sections no longer leave a full-screen void.
      Hero stays full-height (rule below) for impact. */
   min-height: auto;
@@ -611,9 +611,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* fade-only reveal: translateY here shifted content under the finger and
+     read as scroll jank on touch devices */
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .5s ease, transform .5s ease;
+  transition: opacity .45s ease;
 }
 .cs-vpanel > * { max-width: 100%; min-width: 0; }
 .cs-vpanel .cs-wrap { padding: 0; max-width: 100%; }
