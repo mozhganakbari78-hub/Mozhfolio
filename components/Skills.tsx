@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   MagnifyingGlassIcon,
@@ -35,11 +35,11 @@ const capabilities = [
 
 export default function Skills() {
   const { ref, inView } = useInView();
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
+  // Resolve on the client's first render so touch devices never flash the
+  // scroll-reveal animation.
+  const [isTouch] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
+  );
 
   return (
     <section id="skills" className="py-28 md:py-40 px-6" aria-labelledby="skills-heading">
@@ -69,15 +69,11 @@ export default function Skills() {
             return (
               <motion.div
                 key={cap.title}
-                initial={isTouch ? { opacity: 0 } : { opacity: 0, y: 28 }}
-                whileInView={isTouch ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                initial={isTouch ? false : { opacity: 0, y: 28 }}
+                whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
-                transition={
-                  isTouch
-                    ? { duration: 0.4, ease: "easeOut" }
-                    : { duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }
-                }
-                className="relative rounded-2xl border p-7 transition-all duration-300 hover:border-[var(--accent-color)]"
+                transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="relative rounded-2xl border p-7 transition-colors duration-300 hover:border-[var(--accent-color)]"
                 style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
                 <span
