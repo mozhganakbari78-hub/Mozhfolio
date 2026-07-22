@@ -70,6 +70,7 @@ export default function Skills() {
               <motion.div
                 key={cap.title}
                 initial={isTouch ? false : { opacity: 0, y: 28 }}
+                animate={isTouch ? { opacity: 1, y: 0 } : undefined}
                 whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
