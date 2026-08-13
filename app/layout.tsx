@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
-import SmoothScroll from "@/components/SmoothScroll";
 import Analytics from "@/components/Analytics";
 
 const inter = Inter({
@@ -47,7 +46,6 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
         <Analytics />
-        <SmoothScroll />
         <CustomCursor />
         {children}
       </body>

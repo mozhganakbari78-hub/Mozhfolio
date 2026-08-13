@@ -39,6 +39,8 @@ export default function VisualWork() {
 
     const SPEED = 0.55; // px per frame
 
+    let onScreen = true;
+
     const tick = () => {
       if (!pausedRef.current) {
         posRef.current += SPEED;
@@ -46,10 +48,25 @@ export default function VisualWork() {
         if (posRef.current >= half) posRef.current -= half;
         rail.style.transform = `translateX(-${posRef.current}px)`;
       }
-      rafRef.current = requestAnimationFrame(tick);
+      if (onScreen) rafRef.current = requestAnimationFrame(tick);
     };
 
     rafRef.current = requestAnimationFrame(tick);
+
+    // Don't animate the marquee while it's off screen.
+    const vis = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !onScreen) {
+          onScreen = true;
+          rafRef.current = requestAnimationFrame(tick);
+        } else if (!entry.isIntersecting) {
+          onScreen = false;
+          cancelAnimationFrame(rafRef.current);
+        }
+      },
+      { threshold: 0 }
+    );
+    vis.observe(wrap);
 
     const onPointerDown = (e: PointerEvent) => {
       e.preventDefault();
@@ -80,6 +97,7 @@ export default function VisualWork() {
 
     return () => {
       cancelAnimationFrame(rafRef.current);
+      vis.disconnect();
       wrap.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
