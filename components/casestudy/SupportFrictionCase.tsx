@@ -19,20 +19,20 @@ export default function SupportFrictionCase() {
           People just couldn&apos;t reach them in time.
         </h1>
         <p className="cs-lede">
-          A corporate banking platform was routing routine questions into the support queue. Not
-          because users were careless, but because <em>the answer wasn&apos;t where the panic
-          was</em>. This is how I reframed a &quot;fix the FAQ&quot; brief into a single support
-          surface, and the constraints I had to design around to get there.
+          The brief was &quot;improve the FAQ.&quot; I went back to leadership with two years of
+          ticket history and a different proposal, and got the mandate to rebuild how support
+          worked instead. This is <em>the reframe, the evidence behind it, and the calls I made</em>{" "}
+          to get it built inside a live banking platform.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer, feedback analysis &amp; content architecture</dd>
+            <dd>Product Designer &mdash; identified the problem, proposed it, led it end to end</dd>
           </div>
           <div>
-            <dt>Team</dt>
-            <dd>2 designers</dd>
+            <dt>Worked with</dt>
+            <dd>1 designer · frontend tech lead · support &amp; product stakeholders</dd>
           </div>
           <div>
             <dt>Domain</dt>
@@ -40,7 +40,7 @@ export default function SupportFrictionCase() {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Built &amp; tested · pre-launch</dd>
+            <dd>Built &amp; validated · pre-launch</dd>
           </div>
         </dl>
       </header>
@@ -59,24 +59,31 @@ export default function SupportFrictionCase() {
         </p>
         <p>
           When something was unclear, there was one obvious move: open a ticket. So people did, for
-          almost everything. The support team absorbed the volume, response times stretched, and the user
-          still waited to get unblocked on something that often had a known answer.
+          almost everything. The support team absorbed the volume, response times stretched, and the
+          user still waited to get unblocked on something that often had a known answer.
         </p>
       </section>
 
-      {/* 02 BRIEF */}
+      {/* 02 THE RE-BRIEF */}
       <section className="cs-reveal">
         <CsArt name="fork" />
-        <span className="cs-num">02 / The brief, and what was wrong with it</span>
+        <span className="cs-num">02 / Taking a different brief back</span>
         <h2>&quot;Improve the FAQ&quot; was the wrong problem to solve</h2>
         <p>
-          The request was narrow: the FAQ was underused and outdated, make it better. I could have
-          redesigned it and called it done. But a weak FAQ wasn&apos;t the problem. It was a symptom.
+          The request that came to me was narrow: the FAQ was underused and outdated, make it
+          better. I could have redesigned the page and closed the ticket. But a weak FAQ
+          wasn&apos;t the problem. It was a symptom.
         </p>
         <p>
           The real issue was structural. FAQ and ticketing lived in two separate places. A user with
-          a question had to <strong>guess</strong> whether their answer existed before choosing where
-          to go. Under pressure, nobody guesses. They take the path they trust: the ticket.
+          a question had to <strong>guess</strong> whether their answer existed before choosing
+          where to go. Under pressure, nobody guesses. They take the path they trust: the ticket.
+        </p>
+        <p>
+          Nobody had asked for that problem to be solved. So I didn&apos;t argue it in a meeting.{" "}
+          <strong>
+            I went and got the evidence first, then took a bigger proposal back to leadership.
+          </strong>
         </p>
         <div className="cs-pull">
           If the answer and the escalation live in different rooms, the user will always walk into
@@ -92,18 +99,19 @@ export default function SupportFrictionCase() {
       {/* 03 EVIDENCE */}
       <section className="cs-reveal">
         <CsArt name="read" />
-        <span className="cs-num">03 / Reading the actual tickets</span>
+        <span className="cs-num">03 / Earning the mandate</span>
         <h2>I read ~1,000 support tickets by hand</h2>
         <p>
-          Before proposing anything, I needed to know what people were actually asking. I read
-          roughly <strong>1,000 ticket entries</strong> from the back-office admin panel, spanning
-          about two years, by hand.
+          You don&apos;t get to expand a brief on instinct. To ask for a larger mandate, I needed
+          proof the narrow one wouldn&apos;t work. I read roughly{" "}
+          <strong>1,000 ticket entries</strong> from the back-office admin panel, spanning about two
+          years, by hand.
         </p>
         <p>
           A deliberate choice, not a lack of tooling. What I was classifying: &quot;could this
-          person have self-served, given the right answer at the right moment?&quot; That is a judgment
-          call. It rides on tone and context, not keywords. Automated clustering groups by surface
-          words and would have missed the exact distinction the project hinged on.
+          person have self-served, given the right answer at the right moment?&quot; That is a
+          judgment call. It rides on tone and context, not keywords. Automated clustering groups by
+          surface words and would have missed the exact distinction the project hinged on.
         </p>
         <p>
           I clustered the findings in FigJam using affinity mapping. Two layers came out of it.
@@ -182,23 +190,27 @@ export default function SupportFrictionCase() {
           problem was never the intelligence of the question. It was the{" "}
           <strong>location and timing of the answer.</strong>
         </p>
+        <p>
+          That was the argument I took to leadership: not &quot;the FAQ is bad,&quot; but{" "}
+          <strong>&quot;the structure sends people to the wrong door, and here is two years of
+          evidence.&quot;</strong> The wider redesign was approved on that basis.
+        </p>
       </section>
 
       {/* 04 DIRECTION */}
       <section className="cs-reveal">
         <CsArt name="merge" />
-        <span className="cs-num">04 / The direction</span>
+        <span className="cs-num">04 / The call I made</span>
         <h2>Merge the two surfaces into one</h2>
         <p>
-          The core move, and the part I owned: FAQ and ticket submission shouldn&apos;t be two
-          destinations. They should be <strong>one support surface</strong>, where finding an answer
-          and asking for help are the same flow, not a fork the user navigates before they&apos;ve
-          even started.
+          FAQ and ticket submission shouldn&apos;t be two destinations. They should be{" "}
+          <strong>one support surface</strong>, where finding an answer and asking for help are the
+          same flow, not a fork the user navigates before they&apos;ve even started.
         </p>
         <p>
-          We&apos;d discussed the problem space together as a team. But collapsing these two things
-          into a single entry point, so the answer surfaces <em>before</em> the user commits to
-          waiting on a ticket. That was the call I pushed for.
+          We explored the problem space as a team. Collapsing the two destinations into a single
+          entry point, so the answer surfaces <em>before</em> the user commits to waiting on a
+          ticket, was the call I made and defended, and the direction the build followed.
         </p>
       </section>
 
@@ -243,7 +255,7 @@ export default function SupportFrictionCase() {
               </div>
             </div>
             <div className="cs-dline chose">
-              <div className="k">What we did</div>
+              <div className="k">What shipped</div>
               <div className="v">
                 As a user begins describing their issue, relevant FAQ answers filter in live against
                 what they&apos;re writing, tied to the behavior and context of someone under
@@ -251,11 +263,11 @@ export default function SupportFrictionCase() {
               </div>
             </div>
             <div className="cs-dline">
-              <div className="k">Ownership</div>
+              <div className="k">My call</div>
               <div className="v">
-                This emerged from team discussion, but the specific direction: real-time filtering
-                keyed to the user&apos;s in-the-moment behavior. That was the product insight I
-                contributed and argued for.
+                The team shaped the problem space together. The real-time model, answers keyed to
+                what the user is typing in the moment rather than a browsable list, was the
+                direction I argued for and carried through to spec.
               </div>
             </div>
           </div>
@@ -295,37 +307,38 @@ export default function SupportFrictionCase() {
                 A layered migration: keep the legacy taxonomy intact underneath, map the new surface
                 onto it, and add a catch-all &quot;Other&quot; category to absorb anything that
                 didn&apos;t fit cleanly, so nothing fell through and existing filters kept working.
-                Stakeholders approved this approach.
+                I took it to stakeholders and got sign-off.
               </div>
             </div>
             <div className="cs-dline">
-              <div className="k">The trade-off</div>
+              <div className="k">The trade-off I owned</div>
               <div className="v">
-                I accepted a less-than-ideal category structure in exchange for not destabilizing a
-                live support operation. Documented as a known compromise, not pretended away.
+                A less-than-ideal category structure in exchange for not destabilizing a live
+                support operation. I documented it as known, deliberate debt with the reasoning
+                attached, so whoever picks it up next inherits the decision instead of the mess.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 06a EXECUTION */}
+      {/* 06a HOW I RAN IT */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Execution</span>
-        <h2>From ~1,000 raw entries to a working surface</h2>
+        <span className="cs-num">06 / How I ran it</span>
+        <h2>From ~1,000 raw entries to an approved direction</h2>
         <div className="cs-steps">
           {[
             {
-              h: "Manual review & first-pass clustering",
+              h: "Built the evidence before the argument",
               p: "Read the full ticket set from the admin panel and grouped by subject area: accounts, cards, bills, cheques.",
             },
             {
-              h: "The second cut that mattered",
+              h: "Found the cut that mattered",
               p: "Re-clustered across subjects by whether the answer already existed, separating “needs a human” from “needs to be findable.”",
             },
             {
-              h: "Reframed the brief with the team",
-              p: "Took the evidence back and made the case for one merged surface instead of a polished-but-separate FAQ.",
+              h: "Re-briefed leadership and won the mandate",
+              p: "Took the evidence up and made the case for one merged surface instead of a polished-but-separate FAQ. The wider scope was approved on the strength of the data.",
             },
           ].map((s) => (
             <div className="cs-step" key={s.h}>
@@ -338,10 +351,10 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      {/* 06b EXECUTION cont. */}
+      {/* 06b HOW I RAN IT cont. */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Execution</span>
-        <h2>Building and shipping the surface</h2>
+        <span className="cs-num">06 / How I ran it</span>
+        <h2>Driving it through a live system</h2>
         <div className="cs-steps" style={{ counterReset: "s 3" }}>
           {[
             {
@@ -349,8 +362,47 @@ export default function SupportFrictionCase() {
               p: "Built the surface where real-time answers filter in as the user describes their issue, with ticket submission as the fallback rather than the default.",
             },
             {
-              h: "Solved the taxonomy mapping",
-              p: "Designed the layered structure and “Other” catch-all, took it to stakeholders, got sign-off without breaking the back office.",
+              h: "Negotiated the taxonomy compromise",
+              p: "Designed the layered structure and “Other” catch-all, walked stakeholders through the trade-off, and got sign-off without breaking the back office.",
+            },
+            {
+              h: "Set the bar for handoff",
+              p: "Aligned the surface to the platform design system so engineering built from existing components, and documented the deliberate debt rather than leaving it to be discovered.",
+            },
+          ].map((s) => (
+            <div className="cs-step" key={s.h}>
+              <div>
+                <h3>{s.h}</h3>
+                <p>{s.p}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 06c VALIDATION */}
+      <section className="cs-reveal">
+        <CsArt name="shield" />
+        <span className="cs-num">06 / Validation</span>
+        <h2>No user testing was possible, so I designed a way around it</h2>
+        <p>
+          In this B2B context I couldn&apos;t put the flow in front of real corporate clients before
+          launch. Rather than treat that as a reason to skip validation, I defined a{" "}
+          <strong>multi-stage process</strong> the team could actually run inside the constraint.
+        </p>
+        <div className="cs-steps">
+          {[
+            {
+              h: "Internal reviews",
+              p: "Structured walkthroughs with product and design to pressure-test the flow against the ticket patterns the analysis surfaced.",
+            },
+            {
+              h: "Cross-functional edge-case walkthroughs",
+              p: "Sessions with engineering and support to break the design on permissions, empty states, and the cases the happy path hides.",
+            },
+            {
+              h: "Phased rollout to a small group of organizations",
+              p: "Limited exposure first, so real behavior could inform the design before it reached the full client base.",
             },
           ].map((s) => (
             <div className="cs-step" key={s.h}>
@@ -379,9 +431,10 @@ export default function SupportFrictionCase() {
           <span className="pill">Goal: reduce support load · get users to answers faster</span>
         </div>
         <p>
-          What I can speak to is the intent the design was built against: cut the share of tickets
-          that never needed to be tickets, and shorten the path to an answer for the user. The
-          analysis points to real room for both. The proof is the next phase.
+          What did change before launch was the conversation. The project stopped being a content
+          cleanup and became a structural question about where answers live, with a documented
+          rationale, an agreed migration path, and a validation plan behind it. The user-facing proof
+          is the next phase.
         </p>
       </section>
 
@@ -394,16 +447,18 @@ export default function SupportFrictionCase() {
           <p>
             &quot;Fix the FAQ&quot; was a request to improve a page. The actual problem was that
             answers and escalation were structurally separated. Most of the value here came from
-            refusing to take the brief at face value.
+            refusing to take the brief at face value, and from doing the work to earn the right to
+            say so.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
-          <h3>Reading the data by hand was the right call</h3>
+          <h3>Evidence is how you get scope, not seniority</h3>
           <p>
-            The central distinction (answerable vs. genuinely needs support) was a judgment, not a
-            keyword match. Doing it manually is why the classification held up. I&apos;d make the
-            same trade of time-for-accuracy again on a judgment-heavy dataset.
+            I didn&apos;t have the authority to expand this project. Two years of ticket history did
+            the arguing for me. Reading it by hand was slow, but the central distinction (answerable
+            vs. genuinely needs support) was a judgment, not a keyword match, and that&apos;s exactly
+            why the classification held up in the room.
           </p>
         </div>
       </section>
@@ -417,7 +472,8 @@ export default function SupportFrictionCase() {
           <p>
             The cleanest taxonomy on paper was the wrong answer because real filters and real
             history depended on the messy one. Designing the layered migration around that
-            constraint, rather than against it, is the decision I&apos;m most sure was correct.
+            constraint, rather than against it, is the decision I&apos;m most sure was correct, and
+            writing the compromise down is what made it a decision instead of a shortcut.
           </p>
         </div>
       </section>
