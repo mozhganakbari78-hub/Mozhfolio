@@ -72,8 +72,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-28 md:py-40 px-6 overflow-hidden" aria-labelledby="contact-heading">
-      {/* Pulsing aurora glow */}
-      <motion.div
+      {/* Aurora glow. Static on purpose: animating scale/opacity on a blurred
+          surface this large forces a full re-rasterisation every frame, which
+          drops the whole page to a lower raster quality while scrolling. */}
+      <div
         className="absolute pointer-events-none rounded-full blur-3xl"
         aria-hidden="true"
         style={{
@@ -82,12 +84,10 @@ export default function Contact() {
           height: 900,
           top: "-25%",
           left: "5%",
-          opacity: 0.08,
+          opacity: 0.07,
         }}
-        animate={{ opacity: [0.04, 0.09, 0.04], scale: [0.95, 1.05, 0.95] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="absolute pointer-events-none rounded-full blur-3xl"
         aria-hidden="true"
         style={{
@@ -98,8 +98,6 @@ export default function Contact() {
           right: "0%",
           opacity: 0.05,
         }}
-        animate={{ opacity: [0.02, 0.07, 0.02], scale: [1.05, 0.95, 1.05] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       {/* Hexagon outline motif */}
       <svg

@@ -30,9 +30,9 @@ export default function BackToTop() {
           exit={{ opacity: 0, y: 16, scale: 0.9 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -3 }}
-          className="fixed bottom-6 right-6 z-[60] flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-md"
+          className="fixed bottom-6 right-6 z-[60] flex h-12 w-12 items-center justify-center rounded-full border"
           style={{
-            background: "var(--surface-elevated)",
+            background: "var(--surface)",
             borderColor: "var(--border-strong)",
             color: "var(--text-primary)",
             boxShadow: "0 10px 30px rgba(0,0,0,0.45)",

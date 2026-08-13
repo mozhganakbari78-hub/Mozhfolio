@@ -34,8 +34,10 @@ export default function Navigation() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          backgroundColor: scrolled ? "var(--surface-elevated)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
+          // Solid rather than backdrop-filter: a blurred backdrop on a fixed
+          // bar makes the browser re-composite (and soften) the whole page on
+          // every scroll frame.
+          backgroundColor: scrolled ? "var(--bg)" : "transparent",
           borderBottom: scrolled ? "1px solid var(--border-subtle)" : "none",
         }}
       >

@@ -42,11 +42,12 @@
 
 .cs-wrap { max-width: 780px; margin: 0 auto; padding: 0 28px; }
 
-/* top bar */
+/* top bar. Solid, not backdrop-filtered: blurring the backdrop of a sticky
+   bar forces the page to re-composite every scroll frame, which softens all
+   the text while moving. */
 .cs-bar {
   position: sticky; top: 0; z-index: 20;
-  backdrop-filter: blur(10px);
-  background: rgba(18,19,20,.88);
+  background: var(--paper);
   border-bottom: 1px solid var(--line-soft);
 }
 .cs-bar .cs-wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
