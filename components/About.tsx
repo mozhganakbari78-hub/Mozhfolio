@@ -11,10 +11,10 @@ const timeline = [
 ];
 
 const traits = [
-  "I read data before I sketch.",
-  "I turn support signals into product insight.",
+  "I build the evidence before I ask for scope.",
   "I design workflows, not isolated screens.",
-  "I build systems that can scale beyond me.",
+  "I document the trade-off instead of hiding it.",
+  "I optimise for what a team will actually adopt.",
 ];
 
 export default function About() {

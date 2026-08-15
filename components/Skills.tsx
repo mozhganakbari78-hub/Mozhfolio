@@ -13,23 +13,23 @@ import { useInView } from "@/lib/useInView";
 const capabilities = [
   {
     icon: MagnifyingGlassIcon,
-    title: "Frame first, design second",
-    body: "I start with the question behind the brief, not the wireframe. What is actually broken, who owns it, and what does success mean for the business -- before a single screen is opened.",
+    title: "Evidence earns scope",
+    body: "I don't challenge a brief because I disagree with it. I go get the data that gives the team a reason to reconsider it, then bring back a problem worth solving instead of an opinion.",
   },
   {
     icon: Square3Stack3DIcon,
     title: "Systems over screens",
-    body: "My output is component logic, token architecture, and governance frameworks that hold up at scale. A screen is just the visible surface of a decision.",
+    body: "Component logic, token architecture, and a governance model the team actually uses. A design system is organisational memory — previously solved problems staying solved.",
   },
   {
     icon: DocumentCheckIcon,
-    title: "Decisions, not just deliverables",
-    body: "I document the trade-offs that shaped every call. When the product changes, the reasoning travels with it -- and the next designer does not have to reverse-engineer intent.",
+    title: "Trade-offs, documented",
+    body: "Live products force compromises. I make them deliberately, write down what they cost, and leave the reasoning behind — so the next person inherits a decision, not a mess.",
   },
   {
     icon: CpuChipIcon,
-    title: "Engineering-fluent",
-    body: "I work inside the constraint space of real products: API limits, token pipelines, handoff quality. Design that ships without a translation layer.",
+    title: "Designed to be adopted",
+    body: "The cleanest model is worthless if the team needs a meeting to use it. I design inside the real constraint space — existing code, live operations, fixed deadlines — and optimise for what ships.",
   },
 ];
 
