@@ -29,11 +29,12 @@ export default function Projects() {
               className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl leading-[1.02]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Case studies with the messy parts included.
+              The decisions, not just the screens.
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            Not just final screens. Each case opens the context, constraints, decisions, and product reasoning behind the work.
+            Each case opens the reframe, the evidence behind it, the trade-offs I owned, and what I
+            would do differently.
           </p>
         </motion.div>
 
@@ -58,17 +59,36 @@ export default function Projects() {
               >
                 {/* Left: content */}
                 <div className="p-7 md:p-10 flex flex-col">
-                  <div className="mono-label mb-4" style={{ color: "var(--text-tertiary)" }}>
-                    {cs.meta}
+                  {/* index + focus area */}
+                  <div className="flex items-baseline gap-3 mb-5">
+                    <span
+                      className="mono-label"
+                      style={{ color: "var(--accent-color)", opacity: 0.9 }}
+                    >
+                      {cs.index}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="h-px flex-shrink-0"
+                      style={{ width: 22, background: "var(--border-strong)" }}
+                    />
+                    <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
+                      {cs.meta}
+                    </span>
                   </div>
+
                   <h3
-                    className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
-                    style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+                    className="text-xl md:text-[26px] font-semibold tracking-tight mb-4 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
+                    style={{
+                      color: "var(--text-primary)",
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.22,
+                    }}
                   >
                     {cs.title}
                   </h3>
                   <p
-                    className="text-sm md:text-base leading-relaxed line-clamp-2 mb-8"
+                    className="text-sm md:text-[15px] leading-relaxed mb-8"
                     style={{ color: "var(--text-tertiary)" }}
                   >
                     {cs.short}
