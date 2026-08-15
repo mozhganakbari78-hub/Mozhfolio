@@ -110,6 +110,18 @@
 
 .cs-divider { height: 1px; background: var(--line-soft); border: 0; margin: 0; }
 
+/* inline code (token names, identifiers) */
+.cs-root p code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.88em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--line-soft);
+  padding: 1px 6px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
 /* spot illustration — breaks up text panels */
 .cs-art {
   display: inline-flex; align-items: center; justify-content: center;
