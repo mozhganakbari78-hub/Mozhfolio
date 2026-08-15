@@ -675,6 +675,85 @@
   transform: scale(1.6);
 }
 
+/* ── routing shift: before / after who decides ─────────────────────────── */
+.cs-routing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 10px 0 6px;
+}
+.cs-routing-col {
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.cs-routing-col.is-after {
+  border-color: var(--accent-soft);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(1,116,220,.08), transparent 60%),
+    var(--card);
+}
+.cs-routing-head { margin-bottom: 16px; }
+.cs-routing-head .tag {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.cs-routing-head .who { font-size: 13.5px; color: var(--ink); font-weight: 600; }
+.cs-routing-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cs-routing-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.cs-routing-split .branch { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.cs-routing-split .edge {
+  height: 12px;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-bottom-left-radius: 6px;
+  margin-left: 14px;
+}
+.cs-routing-note {
+  font-size: 12.5px; color: var(--ink-faint); margin: 14px 0 0; line-height: 1.5;
+}
+.cs-routing-note em { color: var(--ink-soft); font-style: normal; font-weight: 600; }
+
+/* ── measurement grid ──────────────────────────────────────────────────── */
+.cs-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 9px;
+  margin: 14px 0 4px;
+}
+.cs-metric {
+  border: 1px solid var(--line-soft);
+  border-radius: 11px;
+  background: var(--card);
+  padding: 13px 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+.cs-metric .i {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0; margin-top: 7px;
+}
+.cs-metric .t { font-size: 13.5px; color: var(--ink); line-height: 1.45; }
+
+@media (max-width: 900px) {
+  .cs-routing { grid-template-columns: 1fr; gap: 10px; }
+  .cs-routing-col { padding: 16px 15px 14px; }
+  .cs-routing-split { grid-template-columns: 1fr; }
+  .cs-metrics { grid-template-columns: 1fr; gap: 7px; }
+  .cs-metric { padding: 11px 13px; }
+  .cs-metric .t { font-size: 12.5px; }
+}
+
 /* ── big stat callouts ─────────────────────────────────────────────────── */
 .cs-statrow {
   display: grid;
