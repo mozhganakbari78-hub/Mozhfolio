@@ -38,13 +38,18 @@ export default function About() {
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              I design where clarity becomes critical.
+              I design inside systems that are already running.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Product designer with around five years in fintech and enterprise software. I work close to engineering, design within real product and technical constraints, and care more about decisions that ship and get adopted than about polish.
+              Product designer with around five years in fintech and enterprise software. No
+              greenfield, no pause in delivery &mdash; existing code, live operations, fixed
+              deadlines. That constraint is where I do my best work, because it forces the real
+              question: not what the ideal design would be, but what this team can actually adopt.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              Most of my recent work is on a live corporate banking platform, where I owned a design system and led design on workflow-heavy banking tools.
+              Most of my recent work is on a live corporate banking platform, where I owned a design
+              system, led design on workflow-heavy banking tools, and reframed more than one brief
+              once the evidence pointed somewhere else.
             </p>
 
             {/* Traits */}
