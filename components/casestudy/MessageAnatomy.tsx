@@ -41,8 +41,17 @@ export default function MessageAnatomy() {
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: i * 0.14, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
+          {/* the rule's colour bar draws down as the row lands */}
+          <motion.span
+            className="bar"
+            aria-hidden
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: i * 0.14 + 0.12, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          />
           <div className="k">
             <span className="n">{p.k}</span>
             <span className="r">{p.rule}</span>
