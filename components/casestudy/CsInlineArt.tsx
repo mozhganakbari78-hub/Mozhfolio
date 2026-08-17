@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import CountUp from "../CountUp";
 
 const A = "var(--accent-color)";
+/* Lightened accent for accent-coloured TEXT — the raw blue is unreadable at
+   these sizes on the dark background. */
+const AT = "var(--accent-ink)";
 const FG = "var(--text-primary)";
 const SUB = "var(--text-tertiary)";
 const BD = "var(--border-strong)";
@@ -36,7 +39,7 @@ function Strip({ children, label }: { children: React.ReactNode; label?: string 
 /* ─── AFFINITY MAP: SupportFriction §03 ─── */
 export function AffinityMap() {
   const bars = [
-    { label: "Bill mgmt", pct: 74, color: A },
+    { label: "Bill mgmt", pct: 74, color: AT },
     { label: "Cards", pct: 58, color: "#a78bfa" },
     { label: "Cheques", pct: 52, color: "#34d399" },
     { label: "Accounts", pct: 40, color: "#fbbf24" },
@@ -88,7 +91,7 @@ export function UnifiedFlow() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        style={{ color: A, fontSize: 14, flexShrink: 0 }}
+        style={{ color: AT, fontSize: 14, flexShrink: 0 }}
       >
         &rarr;
       </motion.span>
@@ -152,7 +155,7 @@ export function MatchThreshold() {
       </div>
       <span
         className="rounded px-2 py-1 flex-shrink-0"
-        style={{ ...Mono, fontSize: 8.5, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
+        style={{ ...Mono, fontSize: 8.5, color: AT, background: "var(--accent-soft)", border: `1px solid ${A}` }}
       >
         threshold 96%
       </span>
@@ -184,10 +187,10 @@ export function RowIsolation() {
         ))}
       </div>
 
-      <span style={{ color: A, fontSize: 14, flexShrink: 0 }}>&rarr;</span>
+      <span style={{ color: AT, fontSize: 14, flexShrink: 0 }}>&rarr;</span>
 
       <div className="flex items-center gap-1">
-        <span style={{ ...Mono, fontSize: 8.5, color: A }}>now</span>
+        <span style={{ ...Mono, fontSize: 8.5, color: AT }}>now</span>
         {states.map((ok, i) => (
           <motion.span
             key={i}
@@ -237,7 +240,7 @@ export function DsSpeed() {
       </div>
       <span
         className="flex-shrink-0 rounded px-2 py-1"
-        style={{ ...Mono, fontSize: 8.5, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
+        style={{ ...Mono, fontSize: 8.5, color: AT, background: "var(--accent-soft)", border: `1px solid ${A}` }}
       >
         assembled, not drawn
       </span>
@@ -272,7 +275,7 @@ export function TokenBridge() {
           <span style={{ color: "#ef4444", fontSize: 11 }}>&#8800;</span>
           <span
             className="rounded px-2 py-1"
-            style={{ ...Mono, fontSize: 8.5, color: A, background: "var(--accent-soft)", border: `1px solid ${A}` }}
+            style={{ ...Mono, fontSize: 8.5, color: AT, background: "var(--accent-soft)", border: `1px solid ${A}` }}
           >
             {p.theirs}
           </span>
@@ -449,7 +452,7 @@ export function SystemAnatomy() {
           style={{
             ...Mono,
             fontSize: 9,
-            color: A,
+            color: AT,
             background: "var(--accent-soft)",
             border: `1px solid ${A}`,
           }}
@@ -482,7 +485,7 @@ export function MultiBrandTokens() {
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
           MULTI-BRAND · ONE SYSTEM
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>3 product pipelines</span>
+        <span style={{ ...Mono, fontSize: 9, color: AT }}>3 product pipelines</span>
       </div>
 
       <div className="p-5 md:p-6">
@@ -578,7 +581,7 @@ export function TicketBoard() {
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
           ~1,000 TICKETS · SORTED BY HAND
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>could they have self-served?</span>
+        <span style={{ ...Mono, fontSize: 9, color: AT }}>could they have self-served?</span>
       </div>
 
       <svg viewBox="0 0 600 170" width="100%" style={{ display: "block" }}>
@@ -735,7 +738,7 @@ export function BatchFlow() {
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
           ONE BAD ROW FAILS ALONE
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>399 others keep moving</span>
+        <span style={{ ...Mono, fontSize: 9, color: AT }}>399 others keep moving</span>
       </div>
 
       <svg viewBox="0 0 600 165" width="100%" style={{ display: "block" }}>
@@ -847,7 +850,7 @@ export function ButtonProperties() {
             COMPONENT PROPERTIES
           </span>
         </div>
-        <span style={{ ...Mono, fontSize: 9, color: A }}>documented inline</span>
+        <span style={{ ...Mono, fontSize: 9, color: AT }}>documented inline</span>
       </div>
 
       <div className="p-5 md:p-6 flex flex-col gap-2.5">
@@ -863,7 +866,7 @@ export function ButtonProperties() {
           >
             <span
               className="flex items-center justify-center"
-              style={{ width: 18, height: 18, color: A }}
+              style={{ width: 18, height: 18, color: AT }}
               aria-hidden
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -975,7 +978,7 @@ export function BigStats({
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 + i * 0.25 + 0.18, duration: 0.4 }}
                 aria-hidden
-                style={{ color: A, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, lineHeight: 1, transform: "translateY(-16px)" }}
+                style={{ color: AT, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, lineHeight: 1, transform: "translateY(-16px)" }}
               >
                 &rarr;
               </motion.span>

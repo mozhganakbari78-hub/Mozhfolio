@@ -9,7 +9,10 @@
   --text-tertiary: #9698ab;
   --accent: #eeeef2;
   --accent-color: #0174DC;
-  --accent-soft: rgba(1, 116, 220, 0.15);
+  --accent-soft: rgba(1, 116, 220, 0.18);
+  /* Accent blue is too dark to read as small text on the near-black bg.
+     Use this lightened tint whenever the accent is TEXT, not a fill. */
+  --accent-ink: #7cb8f5;
   --accent-contrast: #ffffff;
   --border: #2a2b2e;
   --border-strong: #34353a;

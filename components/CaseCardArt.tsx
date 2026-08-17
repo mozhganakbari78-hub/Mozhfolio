@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy";
 
 const A = "var(--accent-color)";
+/* Lightened accent for accent-coloured TEXT — the raw blue is unreadable at
+   these sizes on the dark background. */
+const AT = "var(--accent-ink)";
 const FG = "var(--text-primary)";
 const SUB = "var(--text-tertiary)";
 const SURF = "var(--bg-secondary)";
@@ -147,7 +150,7 @@ function Support() {
           style={{ borderTop: `1px solid ${BD}`, ...Mono, color: SUB, fontSize: 9.5 }}
         >
           <span>1,000+ tickets analyzed</span>
-          <span style={{ color: A }}>~45% self-served</span>
+          <span style={{ color: AT }}>~45% self-served</span>
         </div>
       </motion.div>
     </Frame>
@@ -191,7 +194,7 @@ function Batch() {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
             className="px-2.5 py-1 rounded-md flex items-center gap-1.5"
-            style={{ background: "var(--accent-soft)", color: A, ...Mono, fontSize: 10 }}
+            style={{ background: "var(--accent-soft)", color: AT, ...Mono, fontSize: 10 }}
           >
             <motion.span
               animate={{ opacity: [1, 0.4, 1] }}
@@ -279,7 +282,7 @@ function Batch() {
           style={{ borderTop: `1px solid ${BD}`, ...Mono, color: SUB, fontSize: 9.5 }}
         >
           <span>match threshold</span>
-          <span style={{ color: A, fontWeight: 600 }}>96%</span>
+          <span style={{ color: AT, fontWeight: 600 }}>96%</span>
         </div>
       </motion.div>
     </Frame>
@@ -335,7 +338,7 @@ function DesignSystem() {
           }}
         >
           <div style={{ color: SUB }}>token</div>
-          <div style={{ color: A, fontWeight: 600, marginTop: 2 }}>cardColor → #1C1D1F</div>
+          <div style={{ color: AT, fontWeight: 600, marginTop: 2 }}>cardColor → #1C1D1F</div>
         </motion.div>
 
         {/* Main panel */}
@@ -356,7 +359,7 @@ function DesignSystem() {
             </div>
             <div
               className="px-2 py-0.5 rounded"
-              style={{ background: "var(--accent-soft)", color: A, ...Mono, fontSize: 9 }}
+              style={{ background: "var(--accent-soft)", color: AT, ...Mono, fontSize: 9 }}
             >
               v1.0
             </div>
@@ -483,7 +486,7 @@ function ErrorCopy() {
               style={{
                 ...Mono,
                 fontSize: 8,
-                color: A,
+                color: AT,
                 background: "var(--accent-soft)",
                 border: `1px solid ${BD}`,
               }}
@@ -502,7 +505,7 @@ function ErrorCopy() {
           className="rounded-lg px-3.5 py-3"
           style={{ background: "var(--accent-soft)", border: `1px solid ${A}` }}
         >
-          <div style={{ ...Mono, color: A, fontSize: 8.5, marginBottom: 5 }}>AFTER</div>
+          <div style={{ ...Mono, color: AT, fontSize: 8.5, marginBottom: 5 }}>AFTER</div>
           <div style={{ color: FG, fontSize: 11.5, lineHeight: 1.5 }}>
             Only the person who created this request can cancel it. Please contact support.
           </div>

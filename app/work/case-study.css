@@ -13,7 +13,8 @@
   --line: #20222f;
   --line-soft: #1a1c28;
   --accent: #0174DC;
-  --accent-soft: rgba(1, 116, 220, 0.14);
+  --accent-soft: rgba(1, 116, 220, 0.18);
+  --accent-ink: #7cb8f5;
   --signal: #e8836e;
   --signal-soft: rgba(232, 131, 110, 0.22);
   --resolve: #5fcaa6;
@@ -882,9 +883,9 @@
 .cs-msg-changes span {
   font-family: var(--font-mono), monospace;
   font-size: 10.5px;
-  color: var(--accent);
+  color: var(--accent-ink);
   background: var(--accent-soft);
-  border: 1px solid var(--line-soft);
+  border: 1px solid rgba(124, 184, 245, 0.28);
   padding: 3px 9px;
   border-radius: 100px;
 }
