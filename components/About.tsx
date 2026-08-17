@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Live corporate banking platform. Built and maintain the design system on Ant Design (two-person team, no dedicated DS engineer). Identified and led the FAQ/ticket redesign from a ~1,000-ticket audit, and turned ~2,000 error messages into a clear rewrite framework." },
-  { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile app for remotely monitoring and controlling IoT greenhouse systems, on a team of five to six. Translated sensor data into clear screens for non-technical users." },
-  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange", note: "Designed for the Algo team: trading bot interfaces and Wallex-funded adjacent projects, adapting reusable components to stay consistent with the broader design system. Mentored an incoming intern on Figma and the team's workflow." },
+  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Share design ownership of Bank Melli Iran's corporate banking platform, serving 58,000 organizations, with primary ownership of its standalone back-office domain. Co-own the design system spanning both — 90+ live screens, three brand configurations — and govern it with the frontend tech lead." },
+  { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile monitoring and control for sensor-heavy IoT greenhouse systems. Converted programming-style conditional logic into visual rule building, so non-technical operators could define automation without understanding if/else — surfacing conflicting rules before confirmation." },
+  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange — Algo Team", note: "Customer-facing trading and fintech experiences, translating crypto concepts and system behavior into structured workflows. Validated MVPs with in-house traders, and mentored an incoming design intern through the team's workflow." },
   { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
@@ -41,15 +41,17 @@ export default function About() {
               I design inside systems that are already running.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Product designer with around five years in fintech and enterprise software. No
-              greenfield, no pause in delivery &mdash; existing code, live operations, fixed
-              deadlines. That constraint is where I do my best work, because it forces the real
-              question: not what the ideal design would be, but what this team can actually adopt.
+              Product designer with around five years across enterprise banking, fintech, and
+              crypto. No greenfield, no pause in delivery &mdash; existing code, live operations,
+              fixed deadlines. That constraint is where I do my best work, because it forces the
+              real question: not what the ideal design would be, but what this team can actually
+              adopt.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              Most of my recent work is on a live corporate banking platform, where I owned a design
-              system, led design on workflow-heavy banking tools, and reframed more than one brief
-              once the evidence pointed somewhere else.
+              I work closely with product, engineering, and support to challenge assumptions,
+              navigate technical trade-offs, and carry decisions through implementation and release.
+              Most of my recent work is a live corporate banking platform serving 58,000
+              organizations.
             </p>
 
             {/* Traits */}
