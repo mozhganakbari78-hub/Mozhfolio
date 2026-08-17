@@ -741,6 +741,17 @@
 }
 .cs-routing-note em { color: var(--ink-soft); font-style: normal; font-weight: 600; }
 
+/* Yekan, self-hosted, used only for the Persian production strings.
+   font-display: swap so it never blocks the panel from painting. */
+@font-face {
+  font-family: "Yekan";
+  src: url("/fonts/Yekan.woff2") format("woff2"),
+       url("/fonts/Yekan.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── message anatomy: the three rules as a shape ───────────────────────── */
 .cs-anat { display: grid; gap: 10px; margin: 16px 0 6px; }
 .cs-anat-row {
@@ -818,11 +829,11 @@
 .cs-msg-row.is-before .tag { color: var(--fail); }
 .cs-msg-row.is-after .tag { color: var(--accent); }
 .cs-msg-row .fa {
-  font-family: Vazirmatn, Tahoma, system-ui, sans-serif;
-  font-size: 14.5px;
-  line-height: 1.75;
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
   color: var(--ink);
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   text-align: right;
 }
 .cs-msg-row .en {
