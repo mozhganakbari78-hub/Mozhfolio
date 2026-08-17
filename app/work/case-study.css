@@ -488,6 +488,11 @@
   width: min(1120px, 96vw);
 }
 
+/* dead-end illustration needs room for the questions around the dialog */
+.cs-horizontal article > section:has(.cs-deadend) {
+  width: min(880px, 94vw);
+}
+
 /* cinematic big-stats panel: wide and vertically centered */
 .cs-horizontal article > section:has(.cs-bigstats) {
   width: min(1160px, 96vw);
@@ -1117,4 +1122,95 @@
   .cs-bar .cs-wrap { padding-top: 11px; padding-bottom: 11px; }
   .cs-back { font-size: 10.5px; gap: 6px; }
   .cs-sig { font-size: 13.5px; }
+}
+
+/* ── Dead-end message illustration (error case, section 02) ─────────────── */
+.cs-deadend {
+  position: relative;
+  margin: 18px auto 4px;
+  width: 100%;
+  max-width: 620px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+/* the unanswered questions floating around the dialog */
+.cs-deadend .q {
+  position: absolute;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  opacity: 0.85;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.cs-deadend .dlg {
+  width: min(340px, 72%);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg-elevated, rgba(255, 255, 255, 0.03));
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+.cs-deadend .bar {
+  display: flex;
+  gap: 5px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-strong);
+}
+.cs-deadend .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.cs-deadend .body {
+  padding: 18px 16px 16px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.cs-deadend .ico {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: #e05a5a;
+}
+.cs-deadend .msg {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+/* where the next step should have been, and wasn't */
+.cs-deadend .gap {
+  width: 100%;
+  border: 1px dashed var(--border-strong);
+  border-radius: 7px;
+  padding: 12px 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  opacity: 0.7;
+}
+.cs-deadend .cap {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+@media (max-width: 900px) {
+  .cs-deadend { min-height: 230px; max-width: 100%; }
+  .cs-deadend .q { font-size: 10px; }
+  .cs-deadend .dlg { width: min(300px, 78%); }
 }

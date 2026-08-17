@@ -4,6 +4,7 @@ import CsArt from "./CsArt";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import MessageAnatomy from "./MessageAnatomy";
+import DeadEndMessage from "./DeadEndMessage";
 
 const rewrites: Rewrite[] = [
   {
@@ -39,8 +40,8 @@ const rewrites: Rewrite[] = [
   {
     label: "Cancellation blocked by permission",
     before: {
-      fa: "شما ایجادکننده درخواست نیستید، دسترسی انجام لغو درخواست وجود ندارد",
-      en: "“You are not the creator of the request, there is no access to cancel the request.”",
+      fa: "شما ایجادکننده درخواست نیستید",
+      en: "“You are not the creator of the request.”",
     },
     after: {
       fa: "شما ایجادکننده درخواست نیستید و دسترسی به لغو آن برای شما وجود ندارد؛ لطفاً با پشتیبانی تماس بگیرید.",
@@ -126,9 +127,7 @@ export default function ErrorMessagesCase() {
           state without offering a route out of it. And some were written as accusations, telling
           users they lacked permission for something they had no way of knowing was restricted.
         </p>
-        <div className="cs-pull">
-          A user who knows only that something failed has been informed, not helped.
-        </div>
+        <DeadEndMessage />
       </section>
 
       {/* 03 THE AUDIT */}
@@ -188,8 +187,8 @@ export default function ErrorMessagesCase() {
         <h2>Most of the work was deciding who owns the failure</h2>
         <p>
           The third example is the one I think about most. &quot;You are not the creator of the
-          request, there is no access to cancel the request&quot; reads like a reprimand for
-          something the user could not have known. The rewrite changes almost nothing factually. It
+          request&quot; reads like a reprimand for something the user could not have known, and then
+          stops. The rewrite changes almost nothing factually. It
           simply stops treating a permission rule as the user&apos;s error, and then tells them
           where to go.
         </p>

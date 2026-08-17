@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [down, setDown] = useState(false);
   const [hovering, setHovering] = useState(false);
@@ -26,11 +27,17 @@ export default function CustomCursor() {
     let raf = 0;
 
     const render = () => {
-      const ease = reduce ? 1 : 0.2;
+      // The arrow sits exactly on the pointer — any lag here reads as the
+      // cursor being sluggish. Only the name label trails, which is what
+      // gives the multiplayer feel.
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
+      }
+      const ease = reduce ? 1 : 0.35;
       pos.x += (target.x - pos.x) * ease;
       pos.y += (target.y - pos.y) * ease;
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+      if (labelRef.current) {
+        labelRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
       }
       raf = requestAnimationFrame(render);
     };
@@ -46,12 +53,12 @@ export default function CustomCursor() {
     };
     const onDown = () => setDown(true);
     const onUp = () => setDown(false);
-    const onLeave = () => {
-      if (dotRef.current) dotRef.current.style.opacity = "0";
+    const setVisible = (v: string) => {
+      if (dotRef.current) dotRef.current.style.opacity = v;
+      if (labelRef.current) labelRef.current.style.opacity = v;
     };
-    const onEnter = () => {
-      if (dotRef.current) dotRef.current.style.opacity = "1";
-    };
+    const onLeave = () => setVisible("0");
+    const onEnter = () => setVisible("1");
 
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mousedown", onDown);
@@ -75,7 +82,28 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Trailing Figma-style cursor */}
+      {/* Name label: trails slightly behind, drawn under the arrow */}
+      <div
+        ref={labelRef}
+        aria-hidden="true"
+        className="fixed left-0 top-0 pointer-events-none will-change-transform"
+        style={{ opacity: 1, transition: "opacity 0.2s ease", zIndex: 2147483646 }}
+      >
+        <span
+          className="absolute left-4 top-3.5 whitespace-nowrap rounded px-1.5 py-0.5 text-[9px] font-medium tracking-tight"
+          style={{
+            background: "var(--accent-color)",
+            color: "#fff",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
+            opacity: hovering ? 0 : 1,
+            transition: "opacity 0.15s ease",
+          }}
+        >
+          Mozhgan Akbari
+        </span>
+      </div>
+
+      {/* Arrow: pinned exactly to the pointer */}
       <div
         ref={dotRef}
         aria-hidden="true"
@@ -108,18 +136,6 @@ export default function CustomCursor() {
               strokeLinejoin="round"
             />
           </svg>
-          <span
-            className="absolute left-5 top-4 whitespace-nowrap rounded-md px-2 py-1 text-[11px] font-medium tracking-tight"
-            style={{
-              background: "var(--accent-color)",
-              color: "#fff",
-              boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
-              opacity: hovering ? 0 : 1,
-              transition: "opacity 0.15s ease",
-            }}
-          >
-            Mozhgan Akbari
-          </span>
         </div>
       </div>
     </>
