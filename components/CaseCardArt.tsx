@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export type CaseIllustration = "support" | "batch" | "designsystem";
+export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy";
 
 const A = "var(--accent-color)";
 const FG = "var(--text-primary)";
@@ -425,10 +425,98 @@ function DesignSystem() {
   );
 }
 
+/** Error copy: the same message, before and after the rewrite. */
+function ErrorCopy() {
+  return (
+    <Frame>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-[84%] max-w-[400px] rounded-2xl p-5 shadow-2xl"
+        style={{
+          background: SURF,
+          border: `1px solid ${BD}`,
+          boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+        }}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex gap-1.5">
+            <span className="w-2 h-2 rounded-full" style={{ background: "#3a3b3f" }} />
+            <span className="w-2 h-2 rounded-full" style={{ background: "#3a3b3f" }} />
+            <span className="w-2 h-2 rounded-full" style={{ background: "#3a3b3f" }} />
+          </div>
+          <span style={{ ...Mono, color: SUB, fontSize: 9 }}>ERROR COPY</span>
+        </div>
+
+        {/* Before: states the failure, then stops */}
+        <motion.div
+          initial={{ opacity: 0, x: -8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="rounded-lg px-3.5 py-3 mb-2"
+          style={{
+            background: "rgba(232,131,110,0.07)",
+            border: "1px solid rgba(232,131,110,0.4)",
+          }}
+        >
+          <div style={{ ...Mono, color: "#e8836e", fontSize: 8.5, marginBottom: 5 }}>BEFORE</div>
+          <div style={{ color: SUB, fontSize: 11.5, lineHeight: 1.5 }}>
+            You are not the creator of the request, there is no access to cancel.
+          </div>
+        </motion.div>
+
+        {/* the three rules being applied */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+          className="flex flex-wrap gap-1 mb-2 px-0.5"
+        >
+          {["state it", "next action", "no blame"].map((r) => (
+            <span
+              key={r}
+              className="rounded-full px-2 py-0.5"
+              style={{
+                ...Mono,
+                fontSize: 8,
+                color: A,
+                background: "var(--accent-soft)",
+                border: `1px solid ${BD}`,
+              }}
+            >
+              {r}
+            </span>
+          ))}
+        </motion.div>
+
+        {/* After: names the rule, then routes the user */}
+        <motion.div
+          initial={{ opacity: 0, x: 8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.68, duration: 0.5 }}
+          className="rounded-lg px-3.5 py-3"
+          style={{ background: "var(--accent-soft)", border: `1px solid ${A}` }}
+        >
+          <div style={{ ...Mono, color: A, fontSize: 8.5, marginBottom: 5 }}>AFTER</div>
+          <div style={{ color: FG, fontSize: 11.5, lineHeight: 1.5 }}>
+            Only the person who created this request can cancel it. Please contact support.
+          </div>
+        </motion.div>
+      </motion.div>
+    </Frame>
+  );
+}
+
 const map: Record<CaseIllustration, () => React.JSX.Element> = {
   support: Support,
   batch: Batch,
   designsystem: DesignSystem,
+  errorcopy: ErrorCopy,
 };
 
 export default function CaseCardArt({ name }: { name: CaseIllustration }) {

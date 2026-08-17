@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
+import MessageAnatomy from "./MessageAnatomy";
 
 const rewrites: Rewrite[] = [
   {
@@ -156,29 +157,11 @@ export default function ErrorMessagesCase() {
         <CsArt name="shield" />
         <span className="cs-num">04 / The framework</span>
         <h2>Three rules every message had to pass</h2>
-        <div className="cs-steps">
-          {[
-            {
-              h: "State the problem in the user's terms",
-              p: "Describe what happened using language the person reading it actually experiences, not the term the system uses internally.",
-            },
-            {
-              h: "Give the next action",
-              p: "If the user can fix it, say what to check. If they can't, say who to contact. Never end on the failure itself.",
-            },
-            {
-              h: "Remove blame",
-              p: "Describe the rule or the state, not the user's supposed mistake. Nobody should be told off by a banking platform for a permission they were never shown.",
-            },
-          ].map((s) => (
-            <div className="cs-step" key={s.h}>
-              <div>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p>
+          Not a style guide. A shape you can hold any message against and see immediately what it is
+          missing.
+        </p>
+        <MessageAnatomy />
       </section>
 
       {/* 05 THE REWRITES */}
@@ -189,7 +172,14 @@ export default function ErrorMessagesCase() {
           Real strings from the platform. The Persian is the shipped copy; the English underneath is
           a translation for reference.
         </p>
-        <MessageRewrite items={rewrites} />
+        <MessageRewrite items={rewrites.slice(0, 2)} />
+      </section>
+
+      {/* 05b THE REWRITES cont. */}
+      <section className="cs-reveal">
+        <span className="cs-num">05 / The rewrites</span>
+        <h2>The one that was written as an accusation</h2>
+        <MessageRewrite items={rewrites.slice(2)} />
       </section>
 
       {/* 06 THE HARDEST ONE */}

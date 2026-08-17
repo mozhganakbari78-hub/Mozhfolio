@@ -33,26 +33,28 @@ export default function MessageRewrite({ items }: { items: Rewrite[] }) {
             <span className="l">{m.label}</span>
           </div>
 
-          <div className="cs-msg-row is-before">
-            <span className="tag">Before</span>
-            <p className="fa" dir="rtl" lang="fa">
-              {m.before.fa}
-            </p>
-            <p className="en">{m.before.en}</p>
+          <div className="cs-msg-pair">
+            <div className="cs-msg-row is-before">
+              <span className="tag">Before</span>
+              <p className="fa" dir="rtl" lang="fa">
+                {m.before.fa}
+              </p>
+              <p className="en">{m.before.en}</p>
+            </div>
+
+            <div className="cs-msg-row is-after">
+              <span className="tag">After</span>
+              <p className="fa" dir="rtl" lang="fa">
+                {m.after.fa}
+              </p>
+              <p className="en">{m.after.en}</p>
+            </div>
           </div>
 
           <div className="cs-msg-changes">
             {m.changes.map((c) => (
               <span key={c}>{c}</span>
             ))}
-          </div>
-
-          <div className="cs-msg-row is-after">
-            <span className="tag">After</span>
-            <p className="fa" dir="rtl" lang="fa">
-              {m.after.fa}
-            </p>
-            <p className="en">{m.after.en}</p>
           </div>
         </motion.div>
       ))}

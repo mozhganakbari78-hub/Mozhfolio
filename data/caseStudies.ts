@@ -12,7 +12,7 @@ export type CaseStudy = {
   description: string;
   /** Small label above the card title. */
   meta: string;
-  illustration: "support" | "batch" | "designsystem";
+  illustration: "support" | "batch" | "designsystem" | "errorcopy";
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
-    illustration: "support",
+    illustration: "errorcopy",
   },
 ];
 
