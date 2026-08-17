@@ -49,6 +49,17 @@ export const caseStudies: CaseStudy[] = [
     meta: "Design Systems · Governance",
     illustration: "designsystem",
   },
+  {
+    index: "04",
+    slug: "error-messages",
+    title: "Users knew something had failed. They didn't know what to do next.",
+    short:
+      "~2,000 error messages told people a transaction had failed, then stopped. Some blamed them for rules they were never shown. I audited the set, defined three rules, and the framework became the platform standard.",
+    description:
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "support",
+  },
 ];
 
 export function getCaseStudy(slug: string) {

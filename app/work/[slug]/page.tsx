@@ -6,12 +6,14 @@ import PasswordGate from "@/components/casestudy/PasswordGate";
 import SupportFrictionCase from "@/components/casestudy/SupportFrictionCase";
 import BatchTransferCase from "@/components/casestudy/BatchTransferCase";
 import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
+import ErrorMessagesCase from "@/components/casestudy/ErrorMessagesCase";
 import "../case-study.css";
 
 const cases: Record<string, React.ComponentType> = {
   "reducing-support-friction": SupportFrictionCase,
   "batch-transfer": BatchTransferCase,
   "design-system": DesignSystemCase,
+  "error-messages": ErrorMessagesCase,
 };
 
 const protectedSlugs: Record<string, string> = {

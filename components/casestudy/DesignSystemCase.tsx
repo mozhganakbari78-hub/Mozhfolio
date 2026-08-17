@@ -475,13 +475,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/reducing-support-friction"
-        caseStudyName="Reducing Support Friction at Scale"
+        href="/work/error-messages"
+        caseStudyName="Users knew something had failed. They didn't know what to do next."
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Reducing Support Friction at Scale{" "}
+          Users knew something had failed{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

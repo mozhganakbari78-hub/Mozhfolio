@@ -735,6 +735,82 @@
 }
 .cs-routing-note em { color: var(--ink-soft); font-style: normal; font-weight: 600; }
 
+/* ── error message rewrites (before / after) ───────────────────────────── */
+.cs-msg-set { display: grid; gap: 14px; margin: 14px 0 6px; }
+.cs-msg {
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.cs-msg-head {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--paper-warm);
+}
+.cs-msg-head .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px; letter-spacing: .1em; color: var(--accent);
+}
+.cs-msg-head .l { font-size: 13px; color: var(--ink); font-weight: 600; }
+
+.cs-msg-row { padding: 14px 18px; position: relative; }
+.cs-msg-row.is-before { background: rgba(232,131,110,.05); }
+.cs-msg-row.is-after {
+  background: rgba(1,116,220,.06);
+  border-top: 1px solid var(--line-soft);
+}
+.cs-msg-row .tag {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.cs-msg-row.is-before .tag { color: var(--fail); }
+.cs-msg-row.is-after .tag { color: var(--accent); }
+.cs-msg-row .fa {
+  font-family: Vazirmatn, Tahoma, system-ui, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin: 0 0 6px;
+  text-align: right;
+}
+.cs-msg-row .en {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin: 0;
+}
+
+.cs-msg-changes {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--paper);
+}
+.cs-msg-changes span {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--line-soft);
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+
+@media (max-width: 900px) {
+  .cs-msg-set { gap: 10px; }
+  .cs-msg-head { padding: 10px 14px; }
+  .cs-msg-row { padding: 12px 14px; }
+  .cs-msg-row .fa { font-size: 13.5px; }
+  .cs-msg-row .en { font-size: 11.5px; }
+  .cs-msg-changes { padding: 9px 14px; }
+}
+
 /* ── unit-of-failure grids ─────────────────────────────────────────────── */
 .cs-fu {
   display: grid;
