@@ -23,7 +23,7 @@ export const caseStudies: CaseStudy[] = [
     short:
       "The brief was “improve the FAQ.” I reviewed two years of support tickets, found the real problem was structural, and used the evidence to expand the project into a unified support experience.",
     description:
-      "How I reframed an FAQ redesign into a structural change to how users reach support inside a live corporate banking platform — built on an analysis of ~1,000 tickets across two years.",
+      "How I reframed an FAQ redesign into a structural change to how users reach support inside a live corporate banking platform, built on an analysis of ~1,000 tickets across two years.",
     meta: "Problem Framing · Content Architecture",
     illustration: "support",
   },
@@ -43,7 +43,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "The design system worked when the team stopped asking what to use.",
     short:
-      "90+ live screens, an inherited Ant Design theme, and no system engineer. My cleaner token model made collaboration harder — so I replaced it with the frontend team’s language instead of defending it.",
+      "90+ live screens, an inherited Ant Design theme, and no system engineer. My cleaner token model made collaboration harder, so I replaced it with the frontend team’s language instead of defending it.",
     description:
       "Building a design system inside a moving enterprise banking product: choosing adoption over theoretical purity, and turning consistency into operating infrastructure.",
     meta: "Design Systems · Governance",

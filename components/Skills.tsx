@@ -19,17 +19,17 @@ const capabilities = [
   {
     icon: Square3Stack3DIcon,
     title: "Systems over screens",
-    body: "Component logic, token architecture, and a governance model the team actually uses. A design system is organisational memory — previously solved problems staying solved.",
+    body: "Component logic, token architecture, and a governance model the team actually uses. A design system is organisational memory: previously solved problems staying solved.",
   },
   {
     icon: DocumentCheckIcon,
     title: "Trade-offs, documented",
-    body: "Live products force compromises. I make them deliberately, write down what they cost, and leave the reasoning behind — so the next person inherits a decision, not a mess.",
+    body: "Live products force compromises. I make them deliberately, write down what they cost, and leave the reasoning behind, so the next person inherits a decision, not a mess.",
   },
   {
     icon: CpuChipIcon,
     title: "Designed to be adopted",
-    body: "The cleanest model is worthless if the team needs a meeting to use it. I design inside the real constraint space — existing code, live operations, fixed deadlines — and optimise for what ships.",
+    body: "The cleanest model is worthless if the team needs a meeting to use it. I design inside the real constraint space (existing code, live operations, fixed deadlines) and optimise for what ships.",
   },
 ];
 

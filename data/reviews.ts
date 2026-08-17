@@ -18,14 +18,14 @@ export type Review = {
  */
 export const reviews: Review[] = [
   {
-    text: "Add a short, specific quote here about what it was like to work with you — focus on a concrete outcome or moment.",
+    text: "Add a short, specific quote here about what it was like to work with you. Focus on a concrete outcome or moment.",
     name: "Reviewer name",
     role: "Role, Company",
     source: "LinkedIn",
     href: "https://www.linkedin.com/in/mozhgan-akbari/",
   },
   {
-    text: "A second testimonial goes here. Two to four sentences reads best — enough to feel real, short enough to scan.",
+    text: "A second testimonial goes here. Two to four sentences reads best: enough to feel real, short enough to scan.",
     name: "Reviewer name",
     role: "Role, Company",
   },

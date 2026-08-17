@@ -51,7 +51,7 @@ export default function BatchTransferCase() {
           A wrong transfer should be caught before the money moves.
         </h1>
         <p className="cs-lede">
-          Some corporate clients could not &mdash; or would not &mdash; move payroll through the
+          Some corporate clients could not, or would not, move payroll through the
           online platform. They brought payment files to a branch, where employees processed them
           through a legacy internal tool. The workflow had two very different failure modes:{" "}
           <em>
@@ -66,7 +66,7 @@ export default function BatchTransferCase() {
           <div>
             <dt>Role</dt>
             <dd>
-              Product Designer &mdash; co-led field research, then owned the flow, interaction
+              Product Designer. Co-led field research, then owned the flow, interaction
               model, verification logic, UI, and handoff
             </dd>
           </div>
@@ -100,7 +100,7 @@ export default function BatchTransferCase() {
         </p>
         <p>
           These were not small or low-risk operations. A single batch could contain a large number
-          of individual transfers &mdash; often payroll or other business-critical payments moving
+          of individual transfers, often payroll or other business-critical payments moving
           real money to real accounts.
         </p>
         <div className="cs-pull">
@@ -153,7 +153,7 @@ export default function BatchTransferCase() {
             <ul>
               <li>The file carried account/IBAN data, no human-readable confirmation</li>
               <li>A mistyped identifier does not always fail</li>
-              <li>If it resolves to a valid account, the transfer succeeds &mdash; to the wrong person</li>
+              <li>If it resolves to a valid account, the transfer succeeds, to the wrong person</li>
             </ul>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function BatchTransferCase() {
               <div className="k">The threshold</div>
               <div className="v">
                 Matches below <strong>96%</strong> were visually flagged for attention. It did not
-                auto-reject &mdash; it created a signal. If the file identified one recipient while
+                auto-reject. It created a signal: if the file identified one recipient while
                 the registered account strongly suggested another, the approver could investigate
                 before confirming.
               </div>
@@ -388,7 +388,7 @@ export default function BatchTransferCase() {
             <h3>Add the trust layer</h3>
             <p>
               Once the core workflow was in real use: recipient verification, account-holder
-              comparison, match percentage, mismatch states, and the 96% attention threshold &mdash;
+              comparison, match percentage, mismatch states, and the 96% attention threshold,
               built on top of a workflow already functioning in branches.
             </p>
           </div>
@@ -435,7 +435,7 @@ export default function BatchTransferCase() {
         </p>
         <div className="cs-pull">
           The value of the design system here was not visual consistency. It was decision leverage
-          &mdash; previously solved problems stayed solved, leaving capacity for the risky ones.
+          . Previously solved problems stayed solved, leaving capacity for the risky ones.
         </div>
       </section>
 
@@ -492,7 +492,7 @@ export default function BatchTransferCase() {
         <span className="cs-num">12 / Cross-functional execution</span>
         <h2>The interaction model depended on more than design</h2>
         <p>
-          The core decisions affected processing logic, banking operations, and authority &mdash;
+          The core decisions affected processing logic, banking operations, and authority,
           not just screens. I worked across product and engineering to keep the interaction model
           connected to the behavior of the underlying system.
         </p>

@@ -286,7 +286,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  Thanks for reaching out — I&apos;ll get back to you soon.
+                  Thanks for reaching out. I&apos;ll get back to you soon.
                 </motion.p>
               </motion.div>
             ) : (

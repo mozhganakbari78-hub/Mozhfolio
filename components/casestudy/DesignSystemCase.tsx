@@ -39,7 +39,7 @@ export default function DesignSystemCase() {
           I inherited a live corporate banking platform: 90+ screens, an existing Ant Design
           foundation, and a frontend theme that had evolved independently. No dedicated design
           system engineer, no pause in delivery. I approached it as a system-design challenge until
-          engineering showed me the real one &mdash;{" "}
+          engineering showed me the real one:{" "}
           <em>
             the team kept stopping delivery to re-ask decisions that should already have been
             shared
@@ -52,7 +52,7 @@ export default function DesignSystemCase() {
           <div>
             <dt>Role</dt>
             <dd>
-              Product Designer &amp; design system owner &mdash; architecture, tokens, coverage,
+              Product Designer &amp; design system owner. Architecture, tokens, coverage,
               documentation, governance, maintenance
             </dd>
           </div>
@@ -164,7 +164,7 @@ export default function DesignSystemCase() {
         <h2>My cleaner token model created another translation layer</h2>
         <p>
           My structure and engineering&apos;s existing theme often described the same value in
-          different language. Every implementation now required translation &mdash; and developers
+          different language. Every implementation now required translation, and developers
           immediately started asking which name mapped to the value in their code.
         </p>
         <TokenBridge />
@@ -199,7 +199,7 @@ export default function DesignSystemCase() {
         </div>
         <p>
           <strong>I chose Option B.</strong> Not because the frontend naming was theoretically
-          better &mdash; because the system existed to serve the team, not the other way around. I
+          better. Because the system existed to serve the team, not the other way around. I
           documented the tighter coupling as an intentional trade-off rather than hiding it as an
           architectural accident.
         </p>
@@ -243,7 +243,7 @@ export default function DesignSystemCase() {
             <span className="c">Behavior, not just a visual example</span>
           </div>
           <div className="isub">
-            Each specification described variants, states, sizes, behaviors, and properties &mdash;
+            Each specification described variants, states, sizes, behaviors, and properties,
             so engineering could select the correct variant instead of asking design to reconstruct
             the decision.
           </div>
@@ -278,7 +278,7 @@ export default function DesignSystemCase() {
         <p>
           The platform eventually needed the same structural component layer to support three
           product identities. The component contract stayed shared; what changed between brands were
-          the values. Same component, same token contract, different values &mdash; different brand
+          the values. Same component, same token contract, different values, different brand
           expression.
         </p>
         <MultiBrandTokens />
@@ -338,7 +338,7 @@ export default function DesignSystemCase() {
               <div className="v">
                 Instead of silently adding a new Figma variant, I reviewed it with the frontend tech
                 lead. We compared product value, implementation effort, current sprint pressure, and
-                whether the existing component was sufficient for now &mdash; then consciously moved
+                whether the existing component was sufficient for now, then consciously moved
                 it to the backlog.
               </div>
             </div>
@@ -417,7 +417,7 @@ export default function DesignSystemCase() {
           The biggest weakness in how I ran this work was measurement. I noticed the repeated
           engineering interruptions before the system and saw them decrease as coverage grew, but I
           never established formal tracking from day one. I can describe the improvement credibly as
-          an observed pattern &mdash; not as a rigorously measured before-and-after result.
+          an observed pattern, not as a rigorously measured before-and-after result.
         </p>
         <div className="cs-metrics">
           {measures.map((m) => (

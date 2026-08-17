@@ -42,7 +42,7 @@ export default function SupportFrictionCase() {
         </h1>
         <p className="cs-lede">
           The brief was simple: improve an outdated, underused FAQ. But after looking at how
-          support actually worked, I found a different problem &mdash;{" "}
+          support actually worked, I found a different problem:{" "}
           <em>
             users had to choose between finding an answer and asking for help before they knew
             which path could solve their issue
@@ -56,7 +56,7 @@ export default function SupportFrictionCase() {
           <div>
             <dt>Role</dt>
             <dd>
-              Product Designer &mdash; problem framing, evidence synthesis, interaction direction,
+              Product Designer. Problem framing, evidence synthesis, interaction direction,
               stakeholder alignment, design through handoff
             </dd>
           </div>
@@ -112,7 +112,7 @@ export default function SupportFrictionCase() {
           But the existing experience exposed something more fundamental. FAQ content and ticket
           submission lived in two separate destinations. Before getting help, users had to decide:{" "}
           <strong>does my answer already exist, or do I need a person?</strong> That is a hard
-          question when you are already uncertain &mdash; and in a high-stakes banking workflow,
+          question when you are already uncertain, and in a high-stakes banking workflow,
           people choose the path they trust most. The ticket.
         </p>
         <div className="cs-pull">
@@ -265,7 +265,7 @@ export default function SupportFrictionCase() {
               <div className="v">
                 Give the user a chance to resolve the issue before they commit to waiting for
                 support. The ticket analysis showed these questions cluster around time-sensitive,
-                high-stakes moments &mdash; moving funds, checking transaction behavior, verifying
+                high-stakes moments: moving funds, checking transaction behavior, verifying
                 operational rules. An answer delivered after a support round-trip is already late.
               </div>
             </div>
@@ -505,7 +505,7 @@ export default function SupportFrictionCase() {
       {/* 10 OUTCOME */}
       <section className="cs-reveal">
         <span className="cs-num">10 / Outcome</span>
-        <h2>Built and validated &mdash; but not yet live</h2>
+        <h2>Built and validated, but not yet live</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Status: pre-launch</span>
           <h3>No live metrics yet, and I won&apos;t claim any.</h3>
