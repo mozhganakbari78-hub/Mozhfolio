@@ -827,8 +827,13 @@
 }
 .cs-msg-head .l { font-size: 13px; color: var(--ink); font-weight: 600; }
 
-/* before | after side by side: half the height of a stacked pair */
+/* before | after side by side: half the height of a stacked pair.
+   min-width: 0 on the columns is load-bearing — grid items default to
+   min-width: auto, so a long unbroken string pushes the card wider than the
+   panel that contains it and the card gets clipped. */
 .cs-msg-pair { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+.cs-msg-pair > * { min-width: 0; }
+.cs-msg-row .fa, .cs-msg-row .en { overflow-wrap: anywhere; }
 /* transformation marker sitting on the seam between the two columns */
 .cs-msg-arrow {
   position: absolute;
@@ -844,7 +849,7 @@
   border: 1px solid var(--accent);
   box-shadow: 0 0 0 4px var(--card);
 }
-.cs-msg-row { padding: 14px 18px; position: relative; }
+.cs-msg-row { padding: 14px 18px; position: relative; min-width: 0; }
 .cs-msg-row.is-before { background: rgba(232,131,110,.05); }
 .cs-msg-row.is-after {
   background: rgba(1,116,220,.06);
@@ -889,6 +894,13 @@
   padding: 3px 9px;
   border-radius: 100px;
 }
+
+/* The vertical layout is chosen by max-width 900px OR a coarse pointer, so a
+   1024px tablet gets vertical panels while the width media query below never
+   fires. Stack the pair for the whole vertical layout, not just narrow screens. */
+.cs-vertical .cs-msg-pair { grid-template-columns: 1fr; }
+.cs-vertical .cs-msg-row.is-after { border-left: 0; border-top: 1px solid var(--line-soft); }
+.cs-vertical .cs-msg-arrow { transform: translate(-50%, -50%) rotate(90deg); }
 
 @media (max-width: 900px) {
   .cs-msg-set { gap: 10px; }
