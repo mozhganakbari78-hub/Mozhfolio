@@ -489,6 +489,11 @@
   width: min(1120px, 96vw);
 }
 
+/* two-column step lists need the extra width */
+.cs-horizontal article > section:has(.cs-steps) {
+  width: min(1060px, 95vw);
+}
+
 /* dead-end illustration needs room for the questions around the dialog */
 .cs-horizontal article > section:has(.cs-deadend) {
   width: min(880px, 94vw);
@@ -530,7 +535,16 @@
 .cs-horizontal .cs-decision .dhead { padding: 16px 24px 13px; }
 .cs-horizontal .cs-decision .dbody { padding: 18px 24px; }
 .cs-horizontal .cs-dline { margin-bottom: 13px; }
-.cs-horizontal .cs-step { padding: 15px 0; }
+/* A four-item step list is taller than one panel. In the horizontal layout,
+   run the steps as two columns so the section still fits a single screen. */
+.cs-horizontal .cs-step { padding: 13px 0; }
+.cs-horizontal .cs-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 34px;
+}
+.cs-horizontal .cs-steps .cs-step { border-bottom: 0; }
+.cs-horizontal .cs-step p { font-size: 14px; line-height: 1.5; }
 .cs-horizontal .cs-reflect { margin-bottom: 16px; }
 .cs-horizontal .cs-card { padding: 16px 22px; margin-bottom: 14px; }
 .cs-horizontal .cs-phase { padding: 14px 0; gap: 16px; }
@@ -727,21 +741,74 @@
   margin-bottom: 5px;
 }
 .cs-routing-head .who { font-size: 13.5px; color: var(--ink); font-weight: 600; }
-.cs-routing-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.cs-routing-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 10px;
+
+/* Stepped rail. One continuous vertical line with a dot per step, instead of
+   the arrows and elbow connectors this used to draw — those wrapped at panel
+   width and left lines pointing at nothing. */
+.cs-routing-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  position: relative;
 }
-.cs-routing-split .branch { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
-.cs-routing-split .edge {
-  height: 12px;
-  border-left: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  border-bottom-left-radius: 6px;
-  margin-left: 14px;
+.cs-routing-steps::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 7px; bottom: 14px;
+  width: 1px;
+  background: var(--line);
 }
+.cs-routing-steps .step {
+  position: relative;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  padding-bottom: 14px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.cs-routing-steps .step:last-child { padding-bottom: 0; }
+.cs-routing-steps .step::before {
+  content: "";
+  position: absolute;
+  left: -20px; top: 5px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.cs-routing-steps .step.is-accent { color: var(--ink); }
+.cs-routing-steps .step.is-accent::before { border-color: var(--accent-ink); background: var(--accent-ink); }
+.cs-routing-steps .step.is-danger { color: #f0a08e; font-weight: 600; }
+.cs-routing-steps .step.is-danger::before { border-color: var(--fail); background: var(--fail); }
+
+/* the fork: the two places the user can end up */
+.cs-routing-steps .step.is-fork::before { background: var(--card); border-style: dashed; }
+.cs-routing-steps .forklabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+.cs-routing-steps .outcomes { display: grid; gap: 7px; }
+.cs-routing-steps .outcome {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.cs-routing-steps .outcome.is-accent {
+  color: var(--ink);
+  background: var(--accent-soft);
+  border-color: rgba(124, 184, 245, 0.32);
+}
+
 .cs-routing-note {
   font-size: 12.5px; color: var(--ink-faint); margin: 14px 0 0; line-height: 1.5;
 }
