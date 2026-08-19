@@ -772,17 +772,23 @@
   padding: 16px 18px;
   overflow: hidden;
 }
-/* animated rule bar, replaces a static left border so it can draw in */
+/* Rule bar. Drawn as a full-height absolute strip rather than an animated
+   hairline: a 3px element is small enough that the intersection observer
+   driving a scroll-in animation can miss it, which left some rows with a bar
+   and some without. */
 .cs-anat-row .bar {
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 3px;
   transform-origin: top;
   display: block;
+  border-radius: 12px 0 0 12px;
 }
 .cs-anat-row.is-state .bar { background: var(--accent); }
 .cs-anat-row.is-action .bar { background: var(--resolve); }
 .cs-anat-row.is-blame .bar { background: var(--fail); }
+.cs-anat-row > .k, .cs-anat-row > .v { min-width: 0; }
+.cs-anat-row .v .t, .cs-anat-row .v .note, .cs-anat-row .k .r { overflow-wrap: anywhere; }
 .cs-anat-row .k { display: flex; flex-direction: column; gap: 3px; }
 .cs-anat-row .k .n {
   font-family: var(--font-mono), monospace;
@@ -797,6 +803,10 @@
   font-family: var(--font-mono), monospace;
   font-size: 11px; color: var(--ink-faint); margin: 0; line-height: 1.45;
 }
+
+/* vertical layout is also used on coarse-pointer tablets wider than 900px,
+   where the width query below never fires */
+.cs-vertical .cs-anat-row { grid-template-columns: 1fr; gap: 8px; }
 
 @media (max-width: 900px) {
   .cs-anat { gap: 8px; }

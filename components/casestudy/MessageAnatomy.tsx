@@ -43,15 +43,10 @@ export default function MessageAnatomy() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: i * 0.14, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* the rule's colour bar draws down as the row lands */}
-          <motion.span
-            className="bar"
-            aria-hidden
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: i * 0.14 + 0.12, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          />
+          {/* The rule's colour bar rides the row's own reveal. It used to
+              animate independently, but a 3px strip is an unreliable
+              intersection-observer target and rows ended up inconsistent. */}
+          <span className="bar" aria-hidden />
           <div className="k">
             <span className="n">{p.k}</span>
             <span className="r">{p.rule}</span>
