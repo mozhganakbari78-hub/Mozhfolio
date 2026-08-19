@@ -69,10 +69,11 @@ export default function ErrorMessagesCase() {
           They didn&apos;t know what to do next.
         </h1>
         <p className="cs-lede">
-          Across a live corporate banking platform, error messages announced a failure and then
-          stopped. Some blamed the user for a rule they had no way to know. I audited roughly{" "}
-          <strong>2,000 messages</strong>, found the recurring failure shapes, and defined a rewrite
-          framework that is now the standard for error copy across the platform.
+          I noticed users were filing support tickets that were just screenshots of error messages.
+          The messages announced a failure and then stopped, and some blamed the user for a rule
+          they had no way to know. I pulled every error string in the platform, audited roughly{" "}
+          <strong>2,000 of them</strong>, separated what users should never see from what needed
+          rewriting, and defined a framework that is now the standard for error copy platform-wide.
         </p>
 
         <dl className="cs-meta">
@@ -104,16 +105,18 @@ export default function ErrorMessagesCase() {
       <section className="cs-reveal">
         <CsArt name="tickets" />
         <span className="cs-num">01 / Context</span>
-        <h2>In banking, an error is not an edge case</h2>
+        <h2>It started as a habit, not a project</h2>
         <p>
-          On a platform where people move payroll, manage cards, and approve transfers, hitting an
-          error is not a rare detour. It happens mid-task, with money involved, often under time
-          pressure. At that moment the interface has exactly one job: tell the user where they stand
-          and what to do about it.
+          I set aside time every day to read the support tickets users had filed in the platform.
+          Nobody assigned that; I wanted to see the product through the complaints rather than
+          through the backlog. After a few weeks a pattern surfaced that I had not gone looking
+          for: <strong>a lot of the tickets were just screenshots of error messages</strong>.
         </p>
         <p>
-          Ours mostly did the first half. A message would confirm that something had failed, and
-          then leave the user holding it.
+          The people filing them were not reporting a bug. They were asking the three questions
+          the message had left unanswered. What actually happened? What do I do now? Did I do
+          something wrong? On a platform where people move payroll and approve transfers, those
+          are not small questions to leave hanging.
         </p>
       </section>
 
@@ -122,10 +125,10 @@ export default function ErrorMessagesCase() {
         <span className="cs-num">02 / The problem</span>
         <h2>The message ended exactly where the user&apos;s question started</h2>
         <p>
-          Reading through them, the same shapes kept appearing. Messages used internal vocabulary
-          that meant something to the system and nothing to the person reading it. They described a
-          state without offering a route out of it. And some were written as accusations, telling
-          users they lacked permission for something they had no way of knowing was restricted.
+          Every one of those screenshots had the same shape. The message confirmed that something
+          had failed and then stopped, in vocabulary that meant something to the system and nothing
+          to the person reading it. Some went further and read as accusations, telling users they
+          lacked a permission they had no way of knowing was restricted.
         </p>
         <DeadEndMessage />
       </section>
@@ -134,13 +137,14 @@ export default function ErrorMessagesCase() {
       <section className="cs-reveal">
         <CsArt name="read" />
         <span className="cs-num">03 / The audit</span>
-        <h2>~2,000 messages, sorted by how they failed</h2>
+        <h2>I asked whether all of them were like this, then went and checked</h2>
         <p>
-          Fixing messages one at a time as they were reported would have produced 2,000 individual
-          decisions and no shared logic. So I went through the full set and classified them by{" "}
-          <strong>failure shape</strong> rather than by feature: which ones used internal language,
-          which offered no next step, which assigned blame, and which were simply
-          ungrammatical after years of incremental edits.
+          A handful of screenshots is an anecdote. So I asked the backend team to export every
+          error string the platform could produce, and got back a spreadsheet of roughly{" "}
+          <strong>2,000 messages</strong>. Fixing them as they were reported would have produced
+          2,000 separate decisions and no shared logic, so I read the full set and classified it
+          by <strong>failure shape</strong> rather than by feature: internal language, no next
+          step, blame assigned to the user.
         </p>
         <CsStats
           items={[
@@ -151,14 +155,32 @@ export default function ErrorMessagesCase() {
         />
       </section>
 
+      {/* 03b THE TRIAGE — what should never have reached a user */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The audit</span>
+        <h2>The first question was not how to rewrite. It was whether to show it at all.</h2>
+        <p>
+          A large share of the set was purely technical. <code>FTP transfer failed</code> refers to
+          a file format we convert behind the scenes. It is real, it matters to the team on call,
+          and it means nothing to a treasurer trying to release payroll. Handing that string to a
+          user is not transparency. It is noise dressed as an explanation.
+        </p>
+        <p>
+          So the audit split in two before any writing started. Technical failures belonged in
+          logs and monitoring, surfaced to the user only as the one thing they can act on. What
+          was left after that filter was the set that genuinely needed rewriting.
+        </p>
+      </section>
+
       {/* 04 THE FRAMEWORK */}
       <section className="cs-reveal">
         <CsArt name="shield" />
         <span className="cs-num">04 / The framework</span>
         <h2>Three rules every message had to pass</h2>
         <p>
-          Not a style guide. A shape you can hold any message against and see immediately what it is
-          missing.
+          Every user-facing message had to be clear, in plain language, free of a commanding or
+          accusing tone, and had to leave the user with somewhere to go. Not a style guide. A shape
+          you can hold any message against and see immediately what it is missing.
         </p>
         <MessageAnatomy />
       </section>

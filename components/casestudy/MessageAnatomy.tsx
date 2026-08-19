@@ -7,7 +7,7 @@ const PARTS = [
     k: "01",
     rule: "State the problem",
     text: "Your access is not registered in the offline batch deposit system.",
-    note: "In the user's words, not the system's",
+    note: "Plain language, in the user's words, not the system's",
     tone: "state" as const,
   },
   {
@@ -19,9 +19,9 @@ const PARTS = [
   },
   {
     k: "03",
-    rule: "Remove the blame",
+    rule: "Drop the blame and the orders",
     text: "…not “you are not registered”, “you don't have permission”",
-    note: "Describe the rule, not the user's supposed mistake",
+    note: "No commanding tone, no implied fault",
     tone: "blame" as const,
   },
 ];
