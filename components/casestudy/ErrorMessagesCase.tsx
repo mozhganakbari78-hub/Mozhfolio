@@ -271,17 +271,28 @@ export default function ErrorMessagesCase() {
           <p>
             Error messages get written one at a time, by whoever is building the feature, under
             deadline. No single message is worth a meeting. Two thousand of them, written that way,
-            become a systemic quality problem that no one is responsible for. Finding it required
-            looking at the set rather than the instance.
+            become a quality problem with no owner. The lesson I kept is that some problems are
+            only visible at the level of the set, and the only way to see them is to go looking
+            at the set on purpose.
+          </p>
+        </div>
+        <div className="cs-divider" style={{ margin: "22px 0" }} />
+        <div className="cs-reflect">
+          <h3>Reading tickets is now part of how I work</h3>
+          <p>
+            This started as a habit with no deliverable attached, and it produced the clearest
+            problem statement I had that year. I have kept the habit since. Support tickets are
+            the one place where users describe the product in their own words, without being
+            asked and without a researcher in the room.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
           <h3>What I&apos;d do differently</h3>
           <p>
-            I&apos;d instrument it. Support contacts tied to specific error states would have turned
-            an obvious quality improvement into a measurable one, and would have told me which
-            messages were still failing after the rewrite.
+            I&apos;d instrument it from the start. Support contacts tied to specific error states
+            would have turned an obvious quality improvement into a measurable one, and would have
+            shown me which messages were still failing after the rewrite.
           </p>
         </div>
       </section>
