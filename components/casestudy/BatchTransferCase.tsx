@@ -517,9 +517,9 @@ export default function BatchTransferCase() {
           <span className="cs-eyebrow">Shipped · limited rollout</span>
           <h3>Structural change, without a percentage attached.</h3>
           <p>
-            The redesigned workflow reached real branches. I don&apos;t have instrumented
-            before/after operational metrics from the bank, so I won&apos;t claim a quantified
-            improvement I can&apos;t support. What I can state is what the shipped behavior changed.
+            The redesigned workflow reached real branches. The bank&apos;s operational metrics are
+            internal and not mine to publish, so rather than quote figures I can&apos;t share, I
+            will describe what the shipped behavior changed.
           </p>
         </div>
         <div className="cs-compare">
