@@ -38,20 +38,22 @@ export default function About() {
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              I design inside systems that are already running.
+              Nothing I&apos;ve shipped began on a blank page.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Product designer with around five years across enterprise banking, fintech, and
-              crypto. No greenfield, no pause in delivery: existing code, live operations,
-              fixed deadlines. That constraint is where I do my best work, because it forces the
-              real question: not what the ideal design would be, but what this team can actually
-              adopt.
+              Five years across enterprise banking, fintech, and crypto. Every project arrived the
+              same way: code already written, operations already live, users already mid-task, and
+              a deadline nobody was going to move. I&apos;ve come to think that is the interesting
+              version of this job. A blank page lets you design the ideal thing. A running system
+              makes you answer the harder question, which is what this team will actually adopt
+              and what happens on Monday to the people already using it.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              I work closely with product, engineering, and support to challenge assumptions,
-              navigate technical trade-offs, and carry decisions through implementation and release.
-              Most of my recent work is a live corporate banking platform serving 58,000
-              organizations.
+              So I spend as much time with engineering and support as with product. I read the
+              tickets. I surface the trade-off early and write down the one we accepted. And I stay
+              on it through implementation, because a decision that doesn&apos;t survive the build
+              was never really a decision. Most of my recent work is a corporate banking platform
+              serving 58,000 organizations.
             </p>
 
             {/* Traits */}
