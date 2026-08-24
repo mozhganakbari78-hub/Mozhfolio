@@ -38,22 +38,21 @@ export default function About() {
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Nothing I&apos;ve shipped began on a blank page.
+              Most of my work starts after launch.
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Five years across enterprise banking, fintech, and crypto. Every project arrived the
-              same way: code already written, operations already live, users already mid-task, and
-              a deadline nobody was going to move. I&apos;ve come to think that is the interesting
-              version of this job. A blank page lets you design the ideal thing. A running system
-              makes you answer the harder question, which is what this team will actually adopt
-              and what happens on Monday to the people already using it.
+              Five years in enterprise banking, fintech, and crypto. Every product I&apos;ve worked
+              on was already live when I got there: existing code, real users in the middle of
+              real tasks, deadlines set before I arrived. I like it more than I expected to. You
+              don&apos;t get to design the ideal version of anything, you get to work out what the
+              team can actually ship and what that means for the people already using it.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              So I spend as much time with engineering and support as with product. I read the
-              tickets. I surface the trade-off early and write down the one we accepted. And I stay
-              on it through implementation, because a decision that doesn&apos;t survive the build
-              was never really a decision. Most of my recent work is a corporate banking platform
-              serving 58,000 organizations.
+              In practice that means talking to engineering and support about as much as to
+              product. I read support tickets. I try to say the trade-offs out loud early rather
+              than find them later. And I stick around through implementation, since that is
+              usually where the design quietly changes. At the moment it&apos;s a corporate banking
+              platform used by 58,000 organizations.
             </p>
 
             {/* Traits */}
