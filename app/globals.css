@@ -140,3 +140,20 @@ button:disabled,
     scroll-behavior: auto !important;
   }
 }
+
+/* Live marker on the current timeline entry. Compositor-only properties so an
+   infinite loop here does not cost anything during scroll. */
+/* Only scale here: the element's -3px offset comes from Tailwind's `translate`
+   property, which composes with `transform` instead of being replaced by it. */
+@keyframes now-ping {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  70%  { transform: scale(2.8); opacity: 0; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+.now-pulse {
+  animation: now-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .now-pulse { animation: none; opacity: 0.3; }
+}

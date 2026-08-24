@@ -106,6 +106,16 @@ export default function About() {
                     transition={{ duration: 0.6, delay: 0.25 + i * 0.12 }}
                     className="relative"
                   >
+                    {/* current role: a slow ring so the timeline reads as live.
+                        Only transform and opacity animate, so it stays on the
+                        compositor and costs nothing while scrolling. */}
+                    {i === 0 && (
+                      <span
+                        className="now-pulse absolute -left-8 top-1.5 w-2 h-2 rounded-full translate-x-[-3px]"
+                        style={{ background: "var(--accent-color)" }}
+                        aria-hidden="true"
+                      />
+                    )}
                     <div
                       className="absolute -left-8 top-1.5 w-2 h-2 rounded-full border-2 translate-x-[-3px]"
                       style={{
