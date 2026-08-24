@@ -8,6 +8,7 @@ import BatchTransferCase from "@/components/casestudy/BatchTransferCase";
 import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
 import ErrorMessagesCase from "@/components/casestudy/ErrorMessagesCase";
 import "../case-study.css";
+import "../ticket-ratio.css";
 
 const cases: Record<string, React.ComponentType> = {
   "reducing-support-friction": SupportFrictionCase,
