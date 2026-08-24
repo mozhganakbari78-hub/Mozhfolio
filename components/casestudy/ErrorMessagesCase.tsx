@@ -5,6 +5,7 @@ import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import MessageAnatomy from "./MessageAnatomy";
 import DeadEndMessage from "./DeadEndMessage";
+import TicketRatio from "./TicketRatio";
 
 const rewrites: Rewrite[] = [
   {
@@ -94,7 +95,10 @@ export default function ErrorMessagesCase() {
           </div>
           <div>
             <dt>Outcome</dt>
-            <dd>Adopted as the platform standard for error copy</dd>
+            <dd>
+              Adopted as the platform standard for error copy. Error screenshot tickets roughly
+              halved
+            </dd>
           </div>
         </dl>
       </header>
@@ -255,11 +259,18 @@ export default function ErrorMessagesCase() {
             error doesn&apos;t have to rediscover what a good one looks like.
           </p>
         </div>
+      </section>
+
+      {/* 08b OUTCOME — what the ticket queue looked like afterwards */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / Outcome</span>
+        <h2>The tickets that started this got quieter</h2>
         <p>
-          I don&apos;t have instrumented before/after data on support contacts for error states, so
-          I won&apos;t claim a number. What changed measurably is that the decision only had to be
-          made once.
+          The clearest signal came from where the project began. Reading the queue afterwards, the
+          error screenshots asking what to do next were noticeably rarer. Roughly six in ten
+          error-related tickets used to be that question. Afterwards it was closer to three.
         </p>
+        <TicketRatio />
       </section>
 
       {/* 09 REFLECTION */}
