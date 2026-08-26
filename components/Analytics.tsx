@@ -12,7 +12,7 @@ const HOTJAR_SRC = "https://t.contentsquare.net/uxa/12357a2135940.js";
 // Microsoft Clarity project ID (a short string like "abcd1234ef").
 // From clarity.microsoft.com → your project → Settings → Setup → install manually.
 // Paste only the ID, not the whole snippet. Leave empty to disable.
-const CLARITY_PROJECT_ID = "";
+const CLARITY_PROJECT_ID = "y89v4kdh1n";
 
 export default function Analytics() {
   return (
