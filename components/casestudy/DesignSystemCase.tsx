@@ -431,6 +431,11 @@ export default function DesignSystemCase() {
           That would let the team evaluate the design system as operational infrastructure, not only
           visually.
         </p>
+        <p>
+          I am carrying this forward directly in current work, defining the adoption and
+          clarification-rate metrics before a system ships rather than after informal signal has
+          already told the story.
+        </p>
       </section>
 
       {/* 12 REFLECTION */}

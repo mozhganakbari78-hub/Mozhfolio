@@ -75,6 +75,19 @@ export default function About() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.p
+              className="text-sm leading-relaxed mt-8 pt-6"
+              style={{ color: "var(--text-tertiary)", borderTop: "1px solid var(--border-subtle)" }}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              A pattern across this work: I consistently build strong evidence before a decision and
+              strong reflection after it, but under-invest in defining success metrics before
+              launch. I am addressing that directly, and current work includes defining
+              instrumentation and baselines at the design stage rather than the retrospective one.
+            </motion.p>
           </motion.div>
 
           {/* Right — Timeline */}
