@@ -5,10 +5,6 @@ import Script from "next/script";
 // Leave empty to disable.
 const GA_MEASUREMENT_ID = "G-8CCZP9PFQ5";
 
-// Hotjar / Contentsquare tag URL (from your Hotjar installation page).
-// Leave empty to disable.
-const HOTJAR_SRC = "https://t.contentsquare.net/uxa/12357a2135940.js";
-
 // Microsoft Clarity project ID (a short string like "abcd1234ef").
 // From clarity.microsoft.com → your project → Settings → Setup → install manually.
 // Paste only the ID, not the whole snippet. Leave empty to disable.
@@ -33,8 +29,6 @@ export default function Analytics() {
           </Script>
         </>
       )}
-
-      {HOTJAR_SRC && <Script src={HOTJAR_SRC} strategy="afterInteractive" />}
 
       {CLARITY_PROJECT_ID && (
         <Script id="clarity-init" strategy="afterInteractive">
