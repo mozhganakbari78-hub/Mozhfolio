@@ -8,15 +8,32 @@ import { motion } from "framer-motion";
  * the set: almost nothing here reports a broken feature. People are asking
  * where something is, or what state it is in.
  */
-type Note = { fa: string; en: string; tag: "where" | "state" | "how" };
+type Note = { fa: string; en: string; tag: "how" | "state" };
 
 const NOTES: Note[] = [
-  { fa: "از کجا باید امضا کنم؟", en: "Where am I supposed to sign?", tag: "where" },
-  { fa: "تغییر امضادار؟", en: "How do I change a signatory?", tag: "how" },
-  { fa: "راجع به سقف برداشت؟", en: "About the withdrawal limit?", tag: "where" },
+  {
+    fa: "چطور برای حسابم امضادار تعریف کنم؟",
+    en: "How do I add a signatory to my account?",
+    tag: "how",
+  },
+  {
+    fa: "نحوه تغییر شرایط برداشت به چه شکل هست؟",
+    en: "How do I change the withdrawal terms?",
+    tag: "how",
+  },
+  {
+    fa: "چطور شماره امضادار برای دریافت پیامک‌ها را می‌توان تغییر داد؟",
+    en: "How can a signatory's number for receiving SMS be changed?",
+    tag: "how",
+  },
+  {
+    fa: "علت خالی بودن شماره حساب‌های سازمان چیه؟",
+    en: "Why is the organization's account number list empty?",
+    tag: "state",
+  },
   {
     fa: "عدم نمایش درخواست در کارتابل بعد از ثبت؟",
-    en: "My request isn't in the cartable after submitting it.",
+    en: "My request doesn't appear in the cartable after I submit it.",
     tag: "state",
   },
   {
@@ -24,17 +41,11 @@ const NOTES: Note[] = [
     en: "I'm a signatory on the account, but I don't get deposit and withdrawal SMS.",
     tag: "state",
   },
-  {
-    fa: "شرایط برداشت بعد از طی تمام مراحل تایید نشده، چقدر زمان می‌برد؟",
-    en: "Withdrawal terms still not approved after every step. How long does this take?",
-    tag: "state",
-  },
 ];
 
 const TAGS: Record<Note["tag"], string> = {
-  where: "Where is it?",
-  how: "How do I do it?",
-  state: "What state is it in?",
+  how: "How do I do this?",
+  state: "What is going on with mine?",
 };
 
 export default function TicketWall() {
@@ -65,7 +76,7 @@ export default function TicketWall() {
         ))}
       </div>
       <p className="cs-tw-note">
-        Six from the queue, translated for reference. Almost none of them report a broken feature.
+        Six from the queue, translated for reference. Not one of them reports a broken feature.
       </p>
     </div>
   );
