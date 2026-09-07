@@ -21,9 +21,9 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "The answers already existed. People couldn't reach them in time.",
     short:
-      "In B2B you rarely get direct user access, so I read support tickets instead. Two years of them turned an FAQ request into a discoverability problem.",
+      "In B2B you rarely get direct user access, so I read support tickets instead. ~1,000 of them turned an FAQ request into a guidance problem. Now live.",
     description:
-      "Reframing an FAQ redesign into a discoverability and guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
     illustration: "support",
   },

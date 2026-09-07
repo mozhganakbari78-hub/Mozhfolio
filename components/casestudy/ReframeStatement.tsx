@@ -22,7 +22,7 @@ export default function ReframeStatement() {
       >
         <span className="lab">The brief</span>
         <p className="q">
-          &ldquo;Improve the FAQ section.&rdquo;
+          &ldquo;How can we improve the FAQ section?&rdquo;
           <motion.span
             className="strike"
             aria-hidden
@@ -52,10 +52,10 @@ export default function ReframeStatement() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ delay: 1.2, duration: 0.55, ease: EASE }}
       >
-        <span className="lab">What two years of tickets described</span>
+        <span className="lab">What the tickets described</span>
         <p className="q">
-          &ldquo;Help users find the right information{" "}
-          <em>at the moment they need it</em>.&rdquo;
+          &ldquo;How can we reduce unnecessary support dependency by helping users find answers{" "}
+          <em>closer to the moment of friction</em>?&rdquo;
         </p>
       </motion.div>
     </div>

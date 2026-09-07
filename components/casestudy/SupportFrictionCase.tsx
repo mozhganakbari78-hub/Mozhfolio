@@ -11,9 +11,9 @@ import { PanicJourney } from "./CsInlineArt";
 
 const ticketLens = [
   "What the user was trying to accomplish",
-  "Where they got blocked",
-  "What information they were looking for",
-  "Whether the answer already existed in the product",
+  "Which questions appeared again and again",
+  "Whether the answer was missing or already available somewhere",
+  "Which moments in the workflow created uncertainty",
 ];
 
 const goals = [
@@ -36,10 +36,10 @@ export default function SupportFrictionCase() {
           People just couldn&apos;t reach them in time.
         </h1>
         <p className="cs-lede">
-          In B2B you rarely get continuous access to end users, so I used support tickets as my
-          closest source of real feedback. The brief was to improve the FAQ.{" "}
-          <strong>Two years of tickets</strong> said information wasn&apos;t missing: people were
-          blocked mid-workflow and couldn&apos;t find or understand it at the moment they needed it.
+          In B2B you rarely get continuous access to end users, so I made reading support tickets
+          part of my design routine. The brief was to improve the FAQ.{" "}
+          <strong>~1,000 tickets</strong> said information wasn&apos;t missing: people were stuck
+          mid-task and needed guidance at the point of friction, not more documentation.
         </p>
 
         <dl className="cs-meta">
@@ -53,7 +53,7 @@ export default function SupportFrictionCase() {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Built and validated in staging · Pre-launch</dd>
+            <dd>Live. Questions of this shape dropped noticeably after launch</dd>
           </div>
         </dl>
       </header>
@@ -66,10 +66,15 @@ export default function SupportFrictionCase() {
         <span className="cs-num">01 / The research constraint</span>
         <h2>In B2B, you don&apos;t get to talk to users whenever you want</h2>
         <p>
-          Users here are organizations, with multiple roles, internal approval chains, and their own
-          constraints. Continuous research the way a consumer product runs it is not realistic. So I
-          made reading support tickets part of my routine, not because it replaces research, but
-          because it was the closest thing to a live channel into real problems.
+          Users here are organizations, with different roles, workflows, and internal constraints,
+          which makes continuous user research much harder than in a consumer product. To stay
+          connected to real problems, I made reviewing support tickets part of my regular design
+          routine.
+        </p>
+        <p>
+          Over time I kept seeing questions that didn&apos;t really need support intervention.
+          People were looking for information that would let them move forward, while the support
+          team was already carrying a high volume of requests.
         </p>
         <div className="cs-pull">
           Support tickets are not only a list of complaints. They are a record of where people got
@@ -86,16 +91,13 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <CsArt name="fork" />
         <span className="cs-num">02 / Discovering the pattern</span>
-        <h2>Some tickets didn&apos;t need a human at all</h2>
+        <h2>Before redesigning the FAQ, I wanted to know what people were stuck on</h2>
         <p>
-          A share of requests weren&apos;t about missing functionality or a product limitation.
-          People were blocked during a workflow and needed guidance, and the information often
-          already existed somewhere in the product. Meanwhile support was carrying a high volume,
-          so nobody was getting an immediate answer either.
+          The request that reached me was to improve the FAQ section. Adding content is the obvious
+          response, and it is only the right one if information is the thing that&apos;s missing.
         </p>
         <div className="cs-pull">
-          Are we solving the right problem by adding more support content, or is this a
-          discoverability problem?
+          Are we solving the right problem, or are we only adding more support content?
         </div>
       </section>
 
@@ -103,12 +105,11 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <CsArt name="read" />
         <span className="cs-num">03 / Investigation</span>
-        <h2>Two years of tickets, chosen deliberately</h2>
+        <h2>~1,000 tickets, read against the same four questions</h2>
         <p>
-          I reviewed roughly two years of support history. I picked that window because the platform
-          had gone through significant changes in the same period, which made the behaviour in it
-          representative of the product people were actually using. Every ticket was read against
-          the same four questions.
+          I reviewed around a thousand historical tickets, covering the period in which the platform
+          had gone through its significant changes, so the behaviour in the data reflected the
+          product people were actually using.
         </p>
         <div className="cs-metrics">
           {ticketLens.map((q) => (
@@ -150,11 +151,11 @@ export default function SupportFrictionCase() {
       {/* 05 THE MOMENT */}
       <section className="cs-reveal">
         <span className="cs-num">05 / The moment itself</span>
-        <h2>Nobody reads help content casually in a banking product</h2>
+        <h2>Nobody reads help content calmly in a banking product</h2>
         <p>
-          People hit these moments while handling payments, transfers, and organizational
-          operations. They are not struggling because an answer is unavailable. They are struggling
-          while already carrying uncertainty, urgency, and concern about the outcome.
+          The information usually existed. People reached out because they were already stuck while
+          trying to complete something that mattered. In that state they are not calmly searching
+          documentation.
         </p>
         <UserMindset />
       </section>
@@ -253,19 +254,18 @@ export default function SupportFrictionCase() {
       {/* 09 OUTCOME */}
       <section className="cs-reveal">
         <span className="cs-num">09 / Outcome</span>
-        <h2>The direction changed before the design did</h2>
+        <h2>Live, and the questions changed shape</h2>
         <div className="cs-status">
-          <span className="cs-eyebrow">Status: pre-launch</span>
-          <h3>From &quot;add more FAQ content&quot; to discoverability and guidance.</h3>
+          <span className="cs-eyebrow">Shipped</span>
+          <h3>Support stopped answering questions the product should have answered.</h3>
           <p>
-            The analysis moved the team off a content problem and onto where and when the product
-            gives guidance. It also left behind a way of evaluating support-driven requests:
-            understand the root cause behind the volume instead of treating each ticket as an
-            isolated content gap. The experience was designed, built, and validated in staging; it
-            hasn&apos;t shipped, so I won&apos;t claim reduced ticket volume or faster resolution.
+            Since the experience went live, questions of this shape have dropped noticeably, and the
+            support team spends more of its time on real functional problems instead of pointing
+            people to information that already existed. I don&apos;t have instrumented before and
+            after figures to publish, so I&apos;ll describe the change rather than quote a number.
           </p>
           <span className="pill">
-            What shipped first was a better way to read the next support request
+            The analysis also outlived the project: root cause first, not the first visible symptom
           </span>
         </div>
       </section>
@@ -275,12 +275,12 @@ export default function SupportFrictionCase() {
         <span className="cs-num">10 / Reflection</span>
         <h2>When research is hard, operational signal is research</h2>
         <div className="cs-reflect">
-          <h3>The data was already there and nobody was reading it as data</h3>
+          <h3>A ticket is a signal, not just a request to answer</h3>
           <p>
-            Support tickets get handled one at a time, closed, and forgotten. Read as a set across
-            two years, the same records describe where people struggle, what they expect, and where
-            the product fails to support them. In B2B, where continuous access to users is genuinely
-            limited, that is not a consolation prize. It is the channel.
+            Support tickets get handled one at a time, closed, and forgotten. Read as a set, the
+            same records describe user behaviour, expectations, and exactly where the journey
+            creates confusion. In B2B, where direct research access is genuinely limited, that is
+            not a consolation prize. It is the channel.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
@@ -308,7 +308,7 @@ export default function SupportFrictionCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Support experience · Pre-launch</p>
+        <p>Corporate banking · Support experience · Shipped</p>
       </footer>
     </article>
   );
