@@ -8,6 +8,19 @@ import ReframeStatement from "./ReframeStatement";
 import UserMindset from "./UserMindset";
 import { PanicJourney } from "./CsInlineArt";
 
+const ticketLens = [
+  "What the user was trying to accomplish",
+  "Where they got blocked",
+  "What information they were looking for",
+  "Whether the answer already existed in the product",
+];
+
+const goals = [
+  "Help users recover faster when they hit uncertainty",
+  "Reduce unnecessary dependency on support",
+  "Put guidance closer to where the friction happens",
+];
+
 export default function SupportFrictionCase() {
   return (
     <article>
@@ -22,11 +35,10 @@ export default function SupportFrictionCase() {
           People just couldn&apos;t reach them in time.
         </h1>
         <p className="cs-lede">
-          The request was straightforward: improve the FAQ so users find answers faster. Before
-          adding more content, I wanted to know whether information was actually missing.{" "}
-          <strong>~1,000 support tickets</strong> said it wasn&apos;t. People were blocked in the
-          middle of a task and couldn&apos;t find or understand the right information at that
-          moment.
+          In B2B you rarely get continuous access to end users, so I used support tickets as my
+          closest source of real feedback. The brief was to improve the FAQ.{" "}
+          <strong>Two years of tickets</strong> said information wasn&apos;t missing: people were
+          blocked mid-workflow and couldn&apos;t find or understand it at the moment they needed it.
         </p>
 
         <dl className="cs-meta">
@@ -47,17 +59,21 @@ export default function SupportFrictionCase() {
 
       <hr className="cs-divider" />
 
-      {/* 01 CONTEXT */}
+      {/* 01 THE B2B CONSTRAINT */}
       <section className="cs-reveal">
-        <CsArt name="fork" />
-        <span className="cs-num">01 / Context</span>
-        <h2>I didn&apos;t start by writing content</h2>
+        <CsArt name="tickets" />
+        <span className="cs-num">01 / The research constraint</span>
+        <h2>In B2B, you don&apos;t get to talk to users whenever you want</h2>
         <p>
-          Support requests on the platform clustered around questions and uncertainty during
-          workflows, and the brief that came out of that was to improve the FAQ. Adding content is
-          the obvious response, and it is only correct if information is the thing that&apos;s
-          missing. That was the assumption I wanted to test first.
+          Users here are organizations, with multiple roles, internal approval chains, and their own
+          constraints. Continuous research the way a consumer product runs it is not realistic. So I
+          made reading support tickets part of my routine, not because it replaces research, but
+          because it was the closest thing to a live channel into real problems.
         </p>
+        <div className="cs-pull">
+          Support tickets are not only a list of complaints. They are a record of where people got
+          stuck, in their own words, without anyone asking them a question.
+        </div>
       </section>
 
       {/* SHOT — panic journey */}
@@ -65,59 +81,86 @@ export default function SupportFrictionCase() {
         <PanicJourney />
       </section>
 
-      {/* 02 EVIDENCE */}
+      {/* 02 THE PATTERN */}
+      <section className="cs-reveal">
+        <CsArt name="fork" />
+        <span className="cs-num">02 / Discovering the pattern</span>
+        <h2>Some tickets didn&apos;t need a human at all</h2>
+        <p>
+          A share of requests weren&apos;t about missing functionality or a product limitation.
+          People were blocked during a workflow and needed guidance, and the information often
+          already existed somewhere in the product. Meanwhile support was carrying a high volume,
+          so nobody was getting an immediate answer either.
+        </p>
+        <div className="cs-pull">
+          Are we solving the right problem by adding more support content, or is this a
+          discoverability problem?
+        </div>
+      </section>
+
+      {/* 03 INVESTIGATION */}
       <section className="cs-reveal">
         <CsArt name="read" />
-        <span className="cs-num">02 / Looking beyond the request</span>
-        <h2>~1,000 tickets, read for pattern rather than topic</h2>
+        <span className="cs-num">03 / Investigation</span>
+        <h2>Two years of tickets, chosen deliberately</h2>
         <p>
-          I reviewed around a thousand historical support tickets against three questions: what
-          the user was trying to accomplish when they contacted support, which part of the product
-          created the confusion, and whether the information they needed already existed somewhere
-          else.
+          I reviewed roughly two years of support history. I picked that window because the platform
+          had gone through significant changes in the same period, which made the behaviour in it
+          representative of the product people were actually using. Every ticket was read against
+          the same four questions.
         </p>
+        <div className="cs-metrics">
+          {ticketLens.map((q) => (
+            <div className="cs-metric" key={q}>
+              <span className="i" aria-hidden />
+              <span className="t">{q}</span>
+            </div>
+          ))}
+        </div>
         <CsStats
           items={[
             { value: "~1,000", label: "tickets reviewed" },
             { value: "2 yrs", label: "of support history" },
-            { value: "3", label: "questions asked of every ticket" },
+            { value: "4", label: "questions asked of every ticket" },
           ]}
         />
-        <div className="cs-pull">
-          Most people were not contacting support because the answer did not exist. They were
-          contacting support because they were already blocked and could not reach it.
-        </div>
       </section>
 
-      {/* 03 REFRAME */}
+      {/* 04 REFRAME */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / Reframing the problem</span>
-        <h2>The evidence described a different problem than the brief</h2>
+        <span className="cs-num">04 / Reframing the problem</span>
+        <h2>The analysis described a different opportunity</h2>
         <ReframeStatement />
       </section>
 
-      {/* 04 DESIGN CONSIDERATIONS */}
+      {/* 05 THE MOMENT */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / Design considerations</span>
+        <span className="cs-num">05 / The moment itself</span>
         <h2>Nobody reads help content casually in a banking product</h2>
         <p>
           People hit these moments while handling payments, transfers, and organizational
-          operations. That is a different mindset from someone browsing documentation, and it
-          changes what a solution has to do.
+          operations. They are not struggling because an answer is unavailable. They are struggling
+          while already carrying uncertainty, urgency, and concern about the outcome.
         </p>
         <UserMindset />
       </section>
 
-      {/* 05 DIRECTION */}
+      {/* 06 DIRECTION */}
       <section className="cs-reveal">
         <CsArt name="merge" />
-        <span className="cs-num">05 / The direction</span>
+        <span className="cs-num">06 / Design direction</span>
         <h2>Move the answer to the point of friction</h2>
+        <div className="cs-metrics">
+          {goals.map((g) => (
+            <div className="cs-metric" key={g}>
+              <span className="i" aria-hidden />
+              <span className="t">{g}</span>
+            </div>
+          ))}
+        </div>
         <p>
-          If the problem is when and where information appears, more documentation cannot fix it.
-          The two paths, finding an answer and asking for help, became one flow, so support content
-          stops being a destination and becomes something the product surfaces at the moment of
-          uncertainty.
+          Finding an answer and asking for help became one flow, so support content stops being a
+          destination the user has to think to visit.
         </p>
         <RoutingShift />
       </section>
@@ -131,9 +174,9 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 06 DECISION 01 */}
+      {/* 07 DECISION 01 */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Key decision 01</span>
+        <span className="cs-num">07 / Key decision 01</span>
         <h2>Surface answers while the user describes the issue</h2>
         <div className="cs-decision">
           <div className="dhead">
@@ -160,7 +203,7 @@ export default function SupportFrictionCase() {
               <div className="k">The trade-off I accepted</div>
               <div className="v">
                 More interaction and implementation complexity than a static FAQ. Worth it, because
-                it addressed the behavior in the evidence rather than the presentation of content.
+                it addressed the behaviour in the evidence rather than the presentation of content.
               </div>
             </div>
           </div>
@@ -176,35 +219,36 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 07 DECISION 02 */}
+      {/* 08 DECISION 02 */}
       <section className="cs-reveal">
         <CsArt name="shield" />
-        <span className="cs-num">07 / Key decision 02</span>
+        <span className="cs-num">08 / Key decision 02</span>
         <h2>I kept a taxonomy I didn&apos;t like</h2>
         <p>
           The support database ran on a fixed category taxonomy that back-office filters and two
           years of historical tickets depended on. Rebuilding it would have been cleaner and would
           have put a live support operation at risk. I mapped the new experience onto the existing
-          structure instead, used a controlled &quot;Other&quot; fallback for what wouldn&apos;t map,
-          and documented the compromise as deliberate design debt so the reasoning stays visible.
+          structure, used a controlled &quot;Other&quot; fallback for what wouldn&apos;t map, and
+          documented the compromise as deliberate design debt so the reasoning stays visible.
         </p>
         <div className="cs-pull">
           A cleaner design was not worth destabilizing the operation supporting it.
         </div>
       </section>
 
-      {/* 08 OUTCOME */}
+      {/* 09 OUTCOME */}
       <section className="cs-reveal">
-        <span className="cs-num">08 / Outcome</span>
-        <h2>The conversation changed before the design did</h2>
+        <span className="cs-num">09 / Outcome</span>
+        <h2>The direction changed before the design did</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Status: pre-launch</span>
           <h3>From &quot;add more FAQ content&quot; to discoverability and guidance.</h3>
           <p>
             The analysis moved the team off a content problem and onto where and when the product
-            gives guidance. The unified experience was designed, built, and validated in staging;
-            it hasn&apos;t shipped, so I won&apos;t claim reduced ticket volume or faster
-            resolution.
+            gives guidance. It also left behind a way of evaluating support-driven requests:
+            understand the root cause behind the volume instead of treating each ticket as an
+            isolated content gap. The experience was designed, built, and validated in staging; it
+            hasn&apos;t shipped, so I won&apos;t claim reduced ticket volume or faster resolution.
           </p>
           <span className="pill">
             What shipped first was a better way to read the next support request
@@ -212,26 +256,27 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      {/* 09 REFLECTION */}
+      {/* 10 REFLECTION */}
       <section className="cs-reveal">
-        <span className="cs-num">09 / Reflection</span>
-        <h2>Tickets are a symptom. The question is what they are a symptom of.</h2>
+        <span className="cs-num">10 / Reflection</span>
+        <h2>When research is hard, operational signal is research</h2>
         <div className="cs-reflect">
-          <h3>Evidence earns scope</h3>
+          <h3>The data was already there and nobody was reading it as data</h3>
           <p>
-            I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
-            ticket history turned a design intuition into an argument the team could evaluate.
-            Don&apos;t challenge a brief because you disagree with it. Build the evidence that gives
-            people a reason to reconsider.
+            Support tickets get handled one at a time, closed, and forgotten. Read as a set across
+            two years, the same records describe where people struggle, what they expect, and where
+            the product fails to support them. In B2B, where continuous access to users is genuinely
+            limited, that is not a consolation prize. It is the channel.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
-          <h3>What I carry into the next support request</h3>
+          <h3>Evidence earns scope</h3>
           <p>
-            Treating each incoming request as an isolated content problem produces a bigger FAQ and
-            the same tickets. The useful move is asking what the volume is telling you about the
-            product, before agreeing to write anything.
+            I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
+            ticket history turned an intuition into an argument the team could evaluate. Don&apos;t
+            challenge a brief because you disagree with it. Build the evidence that gives people a
+            reason to reconsider.
           </p>
         </div>
       </section>
