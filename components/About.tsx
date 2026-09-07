@@ -11,11 +11,10 @@ const timeline = [
 ];
 
 const traits = [
-  "I build the evidence before I ask for scope.",
-  "I read support tickets. That is where the real brief usually is.",
-  "I document the trade-off instead of hiding it.",
-  "I optimise for what a team will actually adopt, not what defends well.",
-  "I stay through implementation, where the design quietly changes.",
+  "I investigate the problem before designing the solution.",
+  "I design workflows and systems, not isolated screens.",
+  "I make trade-offs visible instead of hiding them.",
+  "I optimize for solutions teams can build and users can successfully adopt.",
 ];
 
 export default function About() {
@@ -39,20 +38,34 @@ export default function About() {
               className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Most of my work starts after launch.
+              Designing products that already have users, constraints, and history.
             </h2>
-            <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Five years in enterprise banking, fintech, and crypto. Every product I&apos;ve worked
-              on was already live when I got there: existing code, real users mid-task, deadlines
-              set before I arrived. I like it more than I expected to. You don&apos;t get to design
-              the ideal version of anything, you work out what the team can actually ship and what
-              that means for the people already using it.
+            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+              Five years of designing enterprise banking, fintech, and operational products. Most of
+              my work has been inside existing systems: products with real users, established
+              workflows, technical limitations, and business constraints.
+            </p>
+            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+              I enjoy working in those environments because the challenge is rarely creating the
+              perfect solution from scratch. It is understanding what already exists, finding the
+              real problem behind the request, and designing something the team can actually build
+              and users can actually adopt.
+            </p>
+            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+              In practice, that means working closely with Product, Engineering, and Support. I look
+              for evidence before proposing solutions, read support patterns to understand where
+              users struggle, and stay involved through implementation because that is often where
+              design decisions meet reality.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              Right now that&apos;s a corporate banking platform used by 58,000 organizations.
+              Currently, I work on a corporate banking platform used by 58,000 organizations,
+              designing complex financial workflows and internal operational tools.
             </p>
 
-            {/* Traits */}
+            {/* How I work */}
+            <div className="mono-label mb-5" style={{ color: "var(--text-tertiary)" }}>
+              How I work
+            </div>
             <div className="space-y-3">
               {traits.map((trait, i) => (
                 <motion.div
