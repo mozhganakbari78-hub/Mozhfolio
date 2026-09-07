@@ -6,6 +6,7 @@ import CsStats from "./CsStats";
 import RoutingShift from "./RoutingShift";
 import ReframeStatement from "./ReframeStatement";
 import UserMindset from "./UserMindset";
+import TicketWall from "./TicketWall";
 import { PanicJourney } from "./CsInlineArt";
 
 const ticketLens = [
@@ -124,6 +125,19 @@ export default function SupportFrictionCase() {
             { value: "4", label: "questions asked of every ticket" },
           ]}
         />
+      </section>
+
+      {/* 03b WHAT THE TICKETS SAID */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / What the tickets said</span>
+        <h2>Read together, they were asking the same kind of question</h2>
+        <TicketWall />
+        <p>
+          Individually these look like unrelated requests. As a set they cluster hard around the
+          same few areas, and almost none of them describe a broken feature. People were asking
+          where something lives, how to perform an action the product already supports, or what
+          state their own request is in.
+        </p>
       </section>
 
       {/* 04 REFRAME */}

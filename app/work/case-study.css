@@ -489,6 +489,9 @@
   width: min(1120px, 96vw);
 }
 
+/* the ticket wall needs three readable columns */
+.cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
+
 /* the reframe and mindset figures want a wider panel */
 .cs-horizontal article > section:has(.cs-mindset) { width: min(1000px, 95vw); }
 .cs-horizontal article > section:has(.cs-reframe) { width: min(880px, 94vw); }
@@ -1423,4 +1426,68 @@
   .cs-reframe .rf .q { font-size: 14px; }
   .cs-mindset { grid-template-columns: 1fr; gap: 9px; }
   .cs-mindset .ms { padding: 13px 14px; }
+}
+
+/* ── ticket wall: real support questions ───────────────────────────────── */
+.cs-tw { margin: 16px 0 6px; }
+.cs-tw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.cs-tw .note {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 15px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--paper-warm);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+}
+.cs-tw .note .fa {
+  margin: 0;
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.cs-tw .note .en {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+.cs-tw .note .tag {
+  justify-self: start;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  border: 1px solid rgba(124, 184, 245, .3);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.cs-tw .note.is-state .tag {
+  border-color: rgba(224, 180, 85, .35);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.cs-tw-note {
+  margin: 12px 0 0;
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 900px) {
+  .cs-tw-grid { grid-template-columns: 1fr; gap: 9px; }
+  .cs-tw .note { padding: 12px 13px 11px; }
+  .cs-tw .note .fa { font-size: 13px; }
 }
