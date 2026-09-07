@@ -38,9 +38,11 @@ export default function SupportFrictionCase() {
           People couldn&apos;t reach them.
         </h1>
         <p className="cs-lede">
-          The brief was to improve the FAQ. Reviewing <strong>~1,000 support tickets</strong>{" "}
-          revealed a different problem: users weren&apos;t missing information, they were missing
-          guidance at the moment they needed it.
+          Support was spending real effort on questions that didn&apos;t need a person, which is
+          operational cost. The brief was to improve the FAQ. Reviewing{" "}
+          <strong>~1,000 support tickets</strong> showed why more content wouldn&apos;t fix it:
+          people weren&apos;t missing information, they were missing guidance at the point of
+          friction.
         </p>
 
         <dl className="cs-meta">
@@ -96,6 +98,13 @@ export default function SupportFrictionCase() {
         <p>
           The request that reached me was to improve the FAQ section. Adding content is the obvious
           response, and it is only the right one if information is the thing that&apos;s missing.
+        </p>
+        <p>
+          Meanwhile support was absorbing significant effort on questions that didn&apos;t need a
+          person at all. Some had an answer already sitting in the product; others had an answer
+          nobody had ever told the user, such as a task that can only be done at a branch. Either
+          way the ticket was avoidable, and every avoidable ticket is operational cost and a slower
+          queue for the people who genuinely need help.
         </p>
         <div className="cs-pull">
           Are we solving the right problem, or are we only adding more support content?
