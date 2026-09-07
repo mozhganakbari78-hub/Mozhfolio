@@ -17,7 +17,7 @@ export default function ReframeStatement() {
         className="rf rf-before"
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.5, ease: EASE }}
       >
         <span className="lab">The brief</span>
@@ -28,8 +28,8 @@ export default function ReframeStatement() {
             aria-hidden
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.75, duration: 0.45, ease: EASE }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ delay: 0.3, duration: 0.35, ease: EASE }}
           />
         </p>
       </motion.div>
@@ -39,8 +39,8 @@ export default function ReframeStatement() {
         aria-hidden
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ delay: 1.05, type: "spring", stiffness: 460, damping: 18 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ delay: 0.55, type: "spring", stiffness: 460, damping: 18 }}
       >
         &darr;
       </motion.span>
@@ -49,8 +49,8 @@ export default function ReframeStatement() {
         className="rf rf-after"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ delay: 1.2, duration: 0.55, ease: EASE }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ delay: 0.68, duration: 0.45, ease: EASE }}
       >
         <span className="lab">What the tickets described</span>
         <p className="q">

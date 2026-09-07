@@ -139,13 +139,21 @@ export default function SupportFrictionCase() {
           to do something, half ask what is happening with something already done. Nobody is
           reporting a broken feature.
         </p>
+      </section>
+
+      {/* 03c THE FINDING */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The finding</span>
+        <h2>The answers didn&apos;t all live in the same place</h2>
         <p>
-          The more useful finding was that the answers didn&apos;t all live in the same place. Some
-          were in the product. Others weren&apos;t ours to give: adding a signatory, for example,
+          Some were in the product. Others weren&apos;t ours to give at all: adding a signatory
           requires a branch visit and paperwork under the bank&apos;s own policy, and no amount of
-          interface design changes that. <strong>Users had no way to tell the two apart</strong>,
-          and the product never told them which situation they were in.
+          interface design changes that.
         </p>
+        <div className="cs-pull">
+          Users had no way to tell those two situations apart, and the product never told them
+          which one they were in.
+        </div>
       </section>
 
       {/* 04 REFRAME */}
@@ -174,9 +182,9 @@ export default function SupportFrictionCase() {
         <span className="cs-num">06 / Design direction</span>
         <h2>Move the answer to the point of friction</h2>
         <p>
-          Guidance here does not only mean showing an answer. Sometimes the honest answer is that
-          the task cannot be completed online at all, and saying so immediately is worth more than
-          a help article that lets someone keep looking for a button that was never going to exist.
+          Guidance does not only mean showing an answer. Sometimes the honest answer is that the
+          task cannot be done online at all, and saying so immediately beats a help article that
+          lets someone keep hunting for a button that was never going to exist.
         </p>
         <div className="cs-metrics">
           {goals.map((g) => (
@@ -186,9 +194,14 @@ export default function SupportFrictionCase() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* 06b THE SHIFT */}
+      <section className="cs-reveal">
+        <span className="cs-num">06 / The shift</span>
+        <h2>Two destinations became one flow</h2>
         <p>
-          Finding an answer and asking for help became part of the same flow, so support content
-          stops being a destination the user has to think to visit.
+          Finding an answer and asking for help stopped being a choice the user makes first.
         </p>
         <RoutingShift />
       </section>
@@ -238,12 +251,22 @@ export default function SupportFrictionCase() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 07b THE VOCABULARY GAP */}
+      <section className="cs-reveal">
+        <span className="cs-num">07 / Why search alone fails</span>
+        <h2>The user and the system don&apos;t call it the same thing</h2>
+        <p>
+          Search only works if both sides use the same word for the same event. Here they
+          don&apos;t. Someone asks why their money hasn&apos;t arrived; the product files that
+          event under the name of a settlement network they have never heard of. Nothing the user
+          would think to type appears anywhere in the answer they need.
+        </p>
         <VocabularyGap />
         <p>
-          Search only works if both sides use the same word for the same event. A person asks why
-          the money hasn&apos;t arrived; the system files it under a settlement network they have
-          never heard of. No amount of FAQ content closes that gap if the user has to name the
-          problem first.
+          This is why the matching had to run on what people actually write, not on what the
+          product calls things.
         </p>
       </section>
 
