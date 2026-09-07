@@ -37,14 +37,15 @@ export default function SupportFrictionCase() {
           People couldn&apos;t reach them.
         </h1>
         <p className="cs-lede">
-          The brief was to improve the FAQ. <strong>~1,000 support tickets</strong>{" "}
-          said information was never the missing piece.
+          The brief was to improve the FAQ. Reviewing <strong>~1,000 support tickets</strong>{" "}
+          revealed a different problem: users weren&apos;t missing information, they were missing
+          guidance at the moment they needed it.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Reframed the problem, built the evidence, and worked with Product and Engineering on the direction</dd>
+            <dd>Product Designer. Identified the pattern, built the evidence, reframed the problem, and collaborated with Product and Engineering on the solution direction</dd>
           </div>
           <div>
             <dt>Worked with</dt>
@@ -63,7 +64,7 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <CsArt name="tickets" />
         <span className="cs-num">01 / The research constraint</span>
-        <h2>In B2B, you don&apos;t get to talk to users whenever you want</h2>
+        <h2>In B2B products, continuous access to end users is limited</h2>
         <p>
           Users here are organizations, with different roles, workflows, and internal constraints,
           which makes continuous user research much harder than in a consumer product. To stay
@@ -77,7 +78,7 @@ export default function SupportFrictionCase() {
         </p>
         <div className="cs-pull">
           Support tickets are not only a list of complaints. They are a record of where people got
-          stuck, in their own words, without anyone asking them a question.
+          stuck, in their own words, without being prompted by a researcher.
         </div>
       </section>
 
@@ -106,9 +107,9 @@ export default function SupportFrictionCase() {
         <span className="cs-num">03 / Investigation</span>
         <h2>~1,000 tickets, read against the same four questions</h2>
         <p>
-          I reviewed around a thousand historical tickets, covering the period in which the platform
-          had gone through its significant changes, so the behaviour in the data reflected the
-          product people were actually using.
+          I reviewed around a thousand historical tickets, covering the period when the platform
+          had gone through significant changes, making the data more representative of the current
+          product experience.
         </p>
         <div className="cs-metrics">
           {ticketLens.map((q) => (
@@ -150,7 +151,7 @@ export default function SupportFrictionCase() {
       {/* 05 THE MOMENT */}
       <section className="cs-reveal">
         <span className="cs-num">05 / The moment itself</span>
-        <h2>Nobody reads help content calmly in a banking product</h2>
+        <h2>Users rarely approach help content calmly in a banking product</h2>
         <p>
           The information usually existed. People reached out because they were already stuck while
           trying to complete something that mattered. In that state they are not calmly searching
@@ -173,8 +174,8 @@ export default function SupportFrictionCase() {
           ))}
         </div>
         <p>
-          Finding an answer and asking for help became one flow, so support content stops being a
-          destination the user has to think to visit.
+          Finding an answer and asking for help became part of the same flow, so support content
+          stops being a destination the user has to think to visit.
         </p>
         <RoutingShift />
       </section>
@@ -202,8 +203,8 @@ export default function SupportFrictionCase() {
               <div className="k">Why not search</div>
               <div className="v">
                 A searchable FAQ still depends on the user knowing what to search for, which is
-                exactly what they don&apos;t have at that moment. It also assumes they share the
-                product&apos;s vocabulary, and in banking they often don&apos;t.
+                exactly what they don&apos;t have at that moment. It also assumes users understand
+                the product&apos;s terminology, which is often not true in banking workflows.
               </div>
             </div>
             <div className="cs-dline chose">
@@ -218,7 +219,8 @@ export default function SupportFrictionCase() {
               <div className="k">The trade-off I accepted</div>
               <div className="v">
                 More interaction and implementation complexity than a static FAQ. Worth it, because
-                it addressed the behaviour in the evidence rather than the presentation of content.
+                it addressed the behavior revealed by the evidence rather than only changing how
+                content was presented.
               </div>
             </div>
           </div>
@@ -268,11 +270,11 @@ export default function SupportFrictionCase() {
             From &quot;where do I find this?&quot; toward genuinely functional issues.
           </h3>
           <p>
-            After launch the team observed a noticeable reduction in repetitive questions of this
-            type. We did not have instrumented before-and-after measurement, so I avoid attaching a
-            percentage to it. The change I can describe is the one support felt: less time pointing
-            people at information that already existed, more time on problems that actually needed
-            them.
+            After launch, support feedback indicated fewer repetitive questions of this type.
+            Since we did not have instrumented before-and-after measurement, I avoid attributing a
+            specific percentage to the change. The qualitative shift was that support spent less
+            time directing users to existing information and more time resolving issues that
+            required human assistance.
           </p>
           <span className="pill">
             The analysis also outlived the project: root cause first, not the first visible symptom
@@ -285,22 +287,10 @@ export default function SupportFrictionCase() {
         <span className="cs-num">10 / Reflection</span>
         <h2>A ticket is a signal, not just a request to answer</h2>
         <div className="cs-reflect">
-          <h3>The data was already there</h3>
-          <p>
-            Support tickets get handled one at a time, closed, and forgotten. Read as a set, the
-            same records describe user behaviour, expectations, and exactly where the journey
-            creates confusion. In B2B, where direct research access is genuinely limited, that is
-            not a consolation prize. It is the channel.
-          </p>
-        </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
-        <div className="cs-reflect">
           <h3>Evidence earns scope</h3>
           <p>
             I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
-            ticket history turned an intuition into an argument the team could evaluate. Don&apos;t
-            challenge a brief because you disagree with it. Build the evidence that gives people a
-            reason to reconsider.
+            ticket history turned an intuition into evidence the team could evaluate.
           </p>
         </div>
       </section>
