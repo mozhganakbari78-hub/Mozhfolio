@@ -71,16 +71,14 @@ export default function ErrorMessagesCase() {
           They didn&apos;t know what to do next.
         </h1>
         <p className="cs-lede">
-          Users were filing support tickets that were just screenshots of error messages. I pulled
-          every error string in the platform, audited roughly <strong>2,000 of them</strong>,
-          separated what users should never see from what needed rewriting, and defined a framework
-          that is now the platform standard for error copy.
+          People were filing support tickets that were just screenshots of errors. I audited{" "}
+          <strong>~2,000 messages</strong> and wrote three rules that became the platform standard.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Found the problem, ran the audit, defined the framework, reviewed every rewritten message</dd>
+            <dd>Product Designer. Found the problem, ran the audit, defined the framework, reviewed every message</dd>
           </div>
           <div>
             <dt>Scope</dt>
@@ -88,7 +86,7 @@ export default function ErrorMessagesCase() {
           </div>
           <div>
             <dt>Outcome</dt>
-            <dd>Adopted as the platform standard. Error screenshot tickets roughly halved</dd>
+            <dd>Platform standard. Error screenshot tickets roughly halved</dd>
           </div>
         </dl>
       </header>

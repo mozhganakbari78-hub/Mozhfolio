@@ -33,19 +33,17 @@ export default function SupportFrictionCase() {
         <h1>
           The answers already existed.
           <br />
-          People just couldn&apos;t reach them in time.
+          People couldn&apos;t reach them.
         </h1>
         <p className="cs-lede">
-          In B2B you rarely get continuous access to end users, so I made reading support tickets
-          part of my design routine. The brief was to improve the FAQ.{" "}
-          <strong>~1,000 tickets</strong> said information wasn&apos;t missing: people were stuck
-          mid-task and needed guidance at the point of friction, not more documentation.
+          The brief was to improve the FAQ. <strong>~1,000 support tickets</strong>{" "}
+          said information was never the missing piece.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Reframed the problem, built the evidence, set the direction, carried it through handoff</dd>
+            <dd>Product Designer. Reframed the problem, built the evidence, set the direction</dd>
           </div>
           <div>
             <dt>Worked with</dt>
@@ -53,7 +51,7 @@ export default function SupportFrictionCase() {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Live. Questions of this shape dropped noticeably after launch</dd>
+            <dd>Live. Questions of this shape dropped noticeably</dd>
           </div>
         </dl>
       </header>

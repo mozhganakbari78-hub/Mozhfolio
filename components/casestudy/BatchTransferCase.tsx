@@ -25,20 +25,18 @@ export default function BatchTransferCase() {
         <h1>
           A bad row should fail alone.
           <br />
-          A wrong transfer should be caught before the money moves.
+          A wrong transfer should never leave.
         </h1>
         <p className="cs-lede">
-          Corporate clients who couldn&apos;t use online banking brought payroll files to a branch,
-          where employees processed them through a legacy tool. One invalid row could reset an
-          entire batch, and a mistyped account number could pay the wrong person without failing.
-          Under a fixed deadline, I changed the unit of failure and made recipient risk visible
-          before approval.
+          One invalid row could reset an entire payroll batch. A mistyped account number could pay
+          the wrong person <strong>without ever failing</strong>. I changed both, under a fixed
+          deadline.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Co-led field research, then owned the flow, verification model, UI, and handoff</dd>
+            <dd>Product Designer. Owned the flow, verification model, UI, and handoff</dd>
           </div>
           <div>
             <dt>Team</dt>
@@ -46,7 +44,7 @@ export default function BatchTransferCase() {
           </div>
           <div>
             <dt>Constraint</dt>
-            <dd>Fixed, non-negotiable launch deadline</dd>
+            <dd>A launch date nobody could move</dd>
           </div>
         </dl>
       </header>

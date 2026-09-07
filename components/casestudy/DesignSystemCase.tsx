@@ -25,15 +25,15 @@ export default function DesignSystemCase() {
           stopped asking what to use.
         </h1>
         <p className="cs-lede">
-          90+ live screens, an inherited Ant Design foundation, no system engineer, and no pause in
-          delivery. I built a cleaner token model first, watched it make collaboration harder, and
-          replaced it with the frontend team&apos;s existing vocabulary instead of defending mine.
+          90+ live screens, no system engineer, no pause in delivery. My cleaner token model made
+          collaboration <strong>harder</strong>, so I threw it out and adopted the vocabulary
+          engineering already used.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer &amp; system owner. Architecture, tokens, coverage, documentation, governance</dd>
+            <dd>Product Designer &amp; system owner. Architecture, tokens, coverage, governance</dd>
           </div>
           <div>
             <dt>Team</dt>
