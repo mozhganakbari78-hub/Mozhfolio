@@ -1491,3 +1491,53 @@
   .cs-tw .note { padding: 12px 13px 11px; }
   .cs-tw .note .fa { font-size: 13px; }
 }
+
+/* ── vocabulary gap: the user's words vs the system's ──────────────────── */
+.cs-vocab {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 4px;
+}
+.cs-vocab .vg {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--paper-warm);
+  padding: 14px 16px;
+}
+.cs-vocab .vg .lab {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-vocab .vg .fa {
+  margin: 0;
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 15px; line-height: 1.85;
+  color: var(--ink);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.cs-vocab .vg .en {
+  margin: 0;
+  font-size: 12px; line-height: 1.45; font-style: italic;
+  color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+.cs-vocab .is-system { border-color: rgba(232, 131, 110, .3); }
+.cs-vocab .vg-gap {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--fail);
+}
+
+@media (max-width: 900px) {
+  .cs-vocab { grid-template-columns: 1fr; gap: 8px; justify-items: stretch; }
+  .cs-vocab .vg-gap { justify-self: center; font-size: 17px; }
+  .cs-vocab .vg { padding: 12px 14px; }
+  .cs-vocab .vg .fa { font-size: 13.5px; }
+}

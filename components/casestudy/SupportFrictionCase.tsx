@@ -7,6 +7,7 @@ import RoutingShift from "./RoutingShift";
 import ReframeStatement from "./ReframeStatement";
 import UserMindset from "./UserMindset";
 import TicketWall from "./TicketWall";
+import VocabularyGap from "./VocabularyGap";
 import { PanicJourney } from "./CsInlineArt";
 
 const ticketLens = [
@@ -43,7 +44,7 @@ export default function SupportFrictionCase() {
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Reframed the problem, built the evidence, set the direction</dd>
+            <dd>Product Designer. Reframed the problem, built the evidence, and worked with Product and Engineering on the direction</dd>
           </div>
           <div>
             <dt>Worked with</dt>
@@ -51,7 +52,7 @@ export default function SupportFrictionCase() {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Live. Questions of this shape dropped noticeably</dd>
+            <dd>Live. Early feedback showed fewer repetitive questions of this type</dd>
           </div>
         </dl>
       </header>
@@ -201,7 +202,8 @@ export default function SupportFrictionCase() {
               <div className="k">Why not search</div>
               <div className="v">
                 A searchable FAQ still depends on the user knowing what to search for, which is
-                exactly what they don&apos;t have at that moment.
+                exactly what they don&apos;t have at that moment. It also assumes they share the
+                product&apos;s vocabulary, and in banking they often don&apos;t.
               </div>
             </div>
             <div className="cs-dline chose">
@@ -221,6 +223,13 @@ export default function SupportFrictionCase() {
             </div>
           </div>
         </div>
+        <VocabularyGap />
+        <p>
+          Search only works if both sides use the same word for the same event. A person asks why
+          the money hasn&apos;t arrived; the system files it under a settlement network they have
+          never heard of. No amount of FAQ content closes that gap if the user has to name the
+          problem first.
+        </p>
       </section>
 
       {/* SHOT — live filtering */}
@@ -252,15 +261,18 @@ export default function SupportFrictionCase() {
       {/* 09 OUTCOME */}
       <section className="cs-reveal">
         <span className="cs-num">09 / Outcome</span>
-        <h2>Live, and the questions changed shape</h2>
+        <h2>Support conversations changed subject</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Shipped</span>
-          <h3>Support stopped answering questions the product should have answered.</h3>
+          <h3>
+            From &quot;where do I find this?&quot; toward genuinely functional issues.
+          </h3>
           <p>
-            Since the experience went live, questions of this shape have dropped noticeably, and the
-            support team spends more of its time on real functional problems instead of pointing
-            people to information that already existed. I don&apos;t have instrumented before and
-            after figures to publish, so I&apos;ll describe the change rather than quote a number.
+            After launch the team observed a noticeable reduction in repetitive questions of this
+            type. We did not have instrumented before-and-after measurement, so I avoid attaching a
+            percentage to it. The change I can describe is the one support felt: less time pointing
+            people at information that already existed, more time on problems that actually needed
+            them.
           </p>
           <span className="pill">
             The analysis also outlived the project: root cause first, not the first visible symptom
@@ -271,9 +283,9 @@ export default function SupportFrictionCase() {
       {/* 10 REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">10 / Reflection</span>
-        <h2>When research is hard, operational signal is research</h2>
+        <h2>A ticket is a signal, not just a request to answer</h2>
         <div className="cs-reflect">
-          <h3>A ticket is a signal, not just a request to answer</h3>
+          <h3>The data was already there</h3>
           <p>
             Support tickets get handled one at a time, closed, and forgotten. Read as a set, the
             same records describe user behaviour, expectations, and exactly where the journey
