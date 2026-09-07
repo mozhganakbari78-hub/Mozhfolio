@@ -8,6 +8,7 @@ import ReframeStatement from "./ReframeStatement";
 import UserMindset from "./UserMindset";
 import TicketWall from "./TicketWall";
 import VocabularyGap from "./VocabularyGap";
+import SearchWeights from "./SearchWeights";
 import { PanicJourney } from "./CsInlineArt";
 
 const ticketLens = [
@@ -154,8 +155,9 @@ export default function SupportFrictionCase() {
         <h2>Users rarely approach help content calmly in a banking product</h2>
         <p>
           The information usually existed. People reached out because they were already stuck while
-          trying to complete something that mattered. In that state they are not calmly searching
-          documentation.
+          trying to complete something that mattered. You can hear it in the tickets themselves:
+          &ldquo;why hasn&apos;t the money gone through?&rdquo; is not a documentation question. It
+          is someone checking whether something has gone wrong.
         </p>
         <UserMindset />
       </section>
@@ -243,10 +245,56 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 08 DECISION 02 */}
+      {/* 08 DECISION 02 — the engineering constraint */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / Key decision 02</span>
+        <h2>Engineering said keyword search was too expensive to build</h2>
+        <p>
+          The direction depended on matching what a user typed against existing content, and backend
+          pushed back: open-ended keyword search was hard to implement on their data structure. I
+          didn&apos;t argue the point and I didn&apos;t drop the idea. I asked to understand the
+          actual constraint first, including how their database was structured, then went looking
+          for a version that fit inside it.
+        </p>
+        <div className="cs-pull">
+          &quot;Too hard to build&quot; is rarely about the whole idea. It is usually about one part
+          of it, and that part is often negotiable once you can name it.
+        </div>
+      </section>
+
+      {/* 08b THE WEIGHTED MODEL */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / The simplification</span>
+        <h2>Two weighted passes instead of open-ended search</h2>
+        <p>
+          Rather than general search, I proposed ranked matching. The first pass is literal: the
+          words the user has already typed. The second pass handles the mismatch people actually hit,
+          where they use one word and the content uses another, driven by a synonym list I wrote
+          rather than by anything the system had to infer.
+        </p>
+        <SearchWeights />
+      </section>
+
+      {/* 08c SCOPE */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / Scoping phase one</span>
+        <h2>I kept the first synonym list deliberately small</h2>
+        <p>
+          The list only covers pairs that are unambiguous, because a wrong synonym match is worse
+          than no match: it hands a confident answer to the wrong question. Keeping phase one narrow
+          made it cheap enough for engineering to ship, and the list is designed to grow as real
+          usage shows which words people actually reach for.
+        </p>
+        <div className="cs-pull">
+          The feature shipped because I shrank it to the part that was both valuable and buildable,
+          not because I convinced anyone to build the hard version.
+        </div>
+      </section>
+
+      {/* 09 DECISION 03 */}
       <section className="cs-reveal">
         <CsArt name="shield" />
-        <span className="cs-num">08 / Key decision 02</span>
+        <span className="cs-num">09 / Key decision 03</span>
         <h2>I kept a taxonomy I didn&apos;t like</h2>
         <p>
           The support database ran on a fixed category taxonomy that back-office filters and two
@@ -260,9 +308,9 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      {/* 09 OUTCOME */}
+      {/* 10 OUTCOME */}
       <section className="cs-reveal">
-        <span className="cs-num">09 / Outcome</span>
+        <span className="cs-num">10 / Outcome</span>
         <h2>Support conversations changed subject</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Shipped</span>
@@ -282,15 +330,24 @@ export default function SupportFrictionCase() {
         </div>
       </section>
 
-      {/* 10 REFLECTION */}
+      {/* 11 REFLECTION */}
       <section className="cs-reveal">
-        <span className="cs-num">10 / Reflection</span>
+        <span className="cs-num">11 / Reflection</span>
         <h2>A ticket is a signal, not just a request to answer</h2>
         <div className="cs-reflect">
           <h3>Evidence earns scope</h3>
           <p>
             I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
             ticket history turned an intuition into evidence the team could evaluate.
+          </p>
+        </div>
+        <div className="cs-divider" style={{ margin: "22px 0" }} />
+        <div className="cs-reflect">
+          <h3>A technical objection is information, not a verdict</h3>
+          <p>
+            When engineering said search was too expensive, the useful move was understanding their
+            data structure well enough to propose something narrower. The design survived because I
+            changed its shape, not because I defended its first version.
           </p>
         </div>
       </section>

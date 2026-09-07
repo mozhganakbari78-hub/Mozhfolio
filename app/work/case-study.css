@@ -491,6 +491,9 @@
 
 /* the ticket wall needs three readable columns */
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
+/* the vocabulary gap and the weighted-match figure need both sides on one line */
+.cs-horizontal article > section:has(.cs-vocab) { width: min(1000px, 95vw); }
+.cs-horizontal article > section:has(.cs-sw) { width: min(1000px, 95vw); }
 
 /* the reframe and mindset figures want a wider panel */
 .cs-horizontal article > section:has(.cs-mindset) { width: min(1000px, 95vw); }
@@ -1540,4 +1543,60 @@
   .cs-vocab .vg-gap { justify-self: center; font-size: 17px; }
   .cs-vocab .vg { padding: 12px 14px; }
   .cs-vocab .vg .fa { font-size: 13.5px; }
+}
+
+/* ── weighted matching: how search became shippable ────────────────────── */
+.cs-sw { display: grid; gap: 12px; margin: 16px 0 6px; }
+.cs-sw .tier {
+  border: 1px solid var(--line-soft);
+  border-radius: 13px;
+  background: var(--card);
+  padding: 14px 16px 15px;
+  box-shadow: var(--shadow);
+}
+.cs-sw .head {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.cs-sw .head .w {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-ink);
+  padding: 3px 8px;
+  border-radius: 100px;
+  border: 1px solid rgba(124, 184, 245, .3);
+  background: var(--accent-soft);
+}
+.cs-sw .head .rule { font-size: 13.5px; color: var(--ink); font-weight: 600; }
+.cs-sw .row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.cs-sw .chip {
+  display: grid; gap: 3px; min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-warm);
+  padding: 10px 12px;
+}
+.cs-sw .chip.hit { border-color: rgba(124, 184, 245, .3); background: var(--accent-soft); }
+.cs-sw .chip .fa {
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 15px; line-height: 1.8; color: var(--ink);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.cs-sw .chip .gloss {
+  font-size: 11px; line-height: 1.4; font-style: italic; color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+.cs-sw .arw { color: var(--ink-faint); font-size: 15px; line-height: 1; }
+
+@media (max-width: 900px) {
+  .cs-sw .tier { padding: 12px 13px 13px; }
+  .cs-sw .row { grid-template-columns: 1fr; gap: 7px; justify-items: stretch; }
+  .cs-sw .arw { justify-self: center; transform: rotate(90deg); }
+  .cs-sw .chip .fa { font-size: 13.5px; }
 }
