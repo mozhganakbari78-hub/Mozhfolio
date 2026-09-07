@@ -4,17 +4,18 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Share design ownership of Bank Melli Iran's corporate banking platform, serving 58,000 organizations, with primary ownership of its standalone back-office domain. Co-own the design system spanning both (90+ live screens, three brand configurations) and govern it with the frontend tech lead." },
-  { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile monitoring and control for sensor-heavy IoT greenhouse systems. Converted programming-style conditional logic into visual rule building, so non-technical operators could define automation without understanding if/else, surfacing conflicting rules before confirmation." },
-  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange · Algo Team", note: "Customer-facing trading and fintech experiences, translating crypto concepts and system behavior into structured workflows. Validated MVPs with in-house traders, and mentored an incoming design intern through the team's workflow." },
+  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Share design ownership of Bank Melli Iran's corporate banking platform (58,000 organizations), with primary ownership of its back-office domain. Co-own the design system across both: 90+ screens, three brand configurations, governed with the frontend tech lead." },
+  { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile monitoring for IoT greenhouse systems. Turned programming-style conditional logic into visual rule building, so non-technical operators could automate without understanding if/else, and saw conflicting rules before confirming." },
+  { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange · Algo Team", note: "Customer-facing trading experiences, translating crypto concepts into structured workflows. Validated MVPs with in-house traders and mentored an incoming design intern." },
   { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
 const traits = [
   "I build the evidence before I ask for scope.",
-  "I design workflows, not isolated screens.",
+  "I read support tickets. That is where the real brief usually is.",
   "I document the trade-off instead of hiding it.",
-  "I optimise for what a team will actually adopt.",
+  "I optimise for what a team will actually adopt, not what defends well.",
+  "I stay through implementation, where the design quietly changes.",
 ];
 
 export default function About() {
@@ -42,17 +43,13 @@ export default function About() {
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
               Five years in enterprise banking, fintech, and crypto. Every product I&apos;ve worked
-              on was already live when I got there: existing code, real users in the middle of
-              real tasks, deadlines set before I arrived. I like it more than I expected to. You
-              don&apos;t get to design the ideal version of anything, you get to work out what the
-              team can actually ship and what that means for the people already using it.
+              on was already live when I got there: existing code, real users mid-task, deadlines
+              set before I arrived. I like it more than I expected to. You don&apos;t get to design
+              the ideal version of anything, you work out what the team can actually ship and what
+              that means for the people already using it.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-              In practice that means talking to engineering and support about as much as to
-              product. I read support tickets. I try to say the trade-offs out loud early rather
-              than find them later. And I stick around through implementation, since that is
-              usually where the design quietly changes. At the moment it&apos;s a corporate banking
-              platform used by 58,000 organizations.
+              Right now that&apos;s a corporate banking platform used by 58,000 organizations.
             </p>
 
             {/* Traits */}
@@ -83,10 +80,9 @@ export default function About() {
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              A pattern across this work: I consistently build strong evidence before a decision and
-              strong reflection after it, but under-invest in defining success metrics before
-              launch. I am addressing that directly, and current work includes defining
-              instrumentation and baselines at the design stage rather than the retrospective one.
+              One pattern I&apos;ve noticed in my own work: strong evidence before a decision,
+              strong reflection after it, and not enough measurement defined before launch.
+              I&apos;m fixing that at the design stage rather than the retrospective.
             </motion.p>
           </motion.div>
 
