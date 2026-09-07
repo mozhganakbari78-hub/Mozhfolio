@@ -135,10 +135,16 @@ export default function SupportFrictionCase() {
         <h2>Read together, they were asking the same kind of question</h2>
         <TicketWall />
         <p>
-          Individually these look like unrelated requests. As a set they split cleanly in two.
-          Half ask how to do something the product already supports. The other half ask what is
-          happening with something the user has already done. Nobody is reporting a broken feature,
-          and nobody is asking for information that doesn&apos;t exist.
+          Individually these look like unrelated requests. As a set they split in two: half ask how
+          to do something, half ask what is happening with something already done. Nobody is
+          reporting a broken feature.
+        </p>
+        <p>
+          The more useful finding was that the answers didn&apos;t all live in the same place. Some
+          were in the product. Others weren&apos;t ours to give: adding a signatory, for example,
+          requires a branch visit and paperwork under the bank&apos;s own policy, and no amount of
+          interface design changes that. <strong>Users had no way to tell the two apart</strong>,
+          and the product never told them which situation they were in.
         </p>
       </section>
 
@@ -154,8 +160,8 @@ export default function SupportFrictionCase() {
         <span className="cs-num">05 / The moment itself</span>
         <h2>Users rarely approach help content calmly in a banking product</h2>
         <p>
-          The information usually existed. People reached out because they were already stuck while
-          trying to complete something that mattered. You can hear it in the tickets themselves:
+          Whether the answer was in the product or at a branch counter, people reached out because
+          they were already stuck while trying to complete something that mattered. You can hear it in the tickets themselves:
           &ldquo;why hasn&apos;t the money gone through?&rdquo; is not a documentation question. It
           is someone checking whether something has gone wrong.
         </p>
@@ -167,6 +173,11 @@ export default function SupportFrictionCase() {
         <CsArt name="merge" />
         <span className="cs-num">06 / Design direction</span>
         <h2>Move the answer to the point of friction</h2>
+        <p>
+          Guidance here does not only mean showing an answer. Sometimes the honest answer is that
+          the task cannot be completed online at all, and saying so immediately is worth more than
+          a help article that lets someone keep looking for a button that was never going to exist.
+        </p>
         <div className="cs-metrics">
           {goals.map((g) => (
             <div className="cs-metric" key={g}>

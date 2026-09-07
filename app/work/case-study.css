@@ -167,7 +167,7 @@
 .cs-chart .cnote { font-size: 12.5px; color: var(--ink-faint); margin: 3px 0 20px; line-height: 1.5; }
 
 /* one row per area */
-.cs-bar {
+.cs-chart .cs-bar {
   padding: 14px 16px; margin-bottom: 10px; border-radius: 13px;
   background: rgba(255,255,255,.018);
   border: 1px solid var(--line-soft);
@@ -175,58 +175,58 @@
   animation-delay: var(--bar-delay, .1s);
   transition: background .25s ease, border-color .25s ease, transform .25s ease;
 }
-.cs-bar:last-of-type { margin-bottom: 0; }
-.cs-bar:hover { background: rgba(255,255,255,.04); border-color: var(--line); transform: translateY(-1px); }
-.cs-bar .blabel {
+.cs-chart .cs-bar:last-of-type { margin-bottom: 0; }
+.cs-chart .cs-bar:hover { background: rgba(255,255,255,.04); border-color: var(--line); transform: translateY(-1px); }
+.cs-chart .cs-bar .blabel {
   display: flex; justify-content: space-between; align-items: baseline;
   font-size: 14.5px; margin-bottom: 12px;
 }
-.cs-bar .blabel .name { color: var(--ink); font-weight: 700; letter-spacing: -.01em; }
-.cs-bar .blabel .split {
+.cs-chart .cs-bar .blabel .name { color: var(--ink); font-weight: 700; letter-spacing: -.01em; }
+.cs-chart .cs-bar .blabel .split {
   font-family: var(--font-mono), monospace; font-size: 10.5px;
   letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint);
   border: 1px solid var(--line-soft); padding: 3px 9px; border-radius: 100px;
 }
 
 /* gapped, fully-rounded two-segment meter */
-.cs-track { display: flex; gap: 4px; height: 9px; margin-bottom: 11px; }
-.cs-track .seg-resolve,
-.cs-track .seg-signal {
+.cs-chart .cs-track { display: flex; gap: 4px; height: 9px; margin-bottom: 11px; }
+.cs-chart .cs-track .seg-resolve,
+.cs-chart .cs-track .seg-signal {
   height: 100%; border-radius: 100px; min-width: 4px;
   animation: bar-grow 1s cubic-bezier(.22,1,.36,1) both;
   animation-delay: calc(var(--bar-delay, .1s) + .1s);
 }
-.cs-track .seg-resolve {
+.cs-chart .cs-track .seg-resolve {
   --bar-w: var(--resolve-pct);
   background: linear-gradient(90deg, #4fb893, var(--resolve));
   box-shadow: 0 0 12px rgba(95,202,166,.35);
 }
-.cs-track .seg-signal {
+.cs-chart .cs-track .seg-signal {
   --bar-w: var(--signal-pct);
   background: linear-gradient(90deg, var(--signal), #f0a08c);
   box-shadow: 0 0 12px rgba(232,131,110,.3);
 }
 
 /* big paired percentages */
-.cs-bar .bpcts { display: flex; align-items: baseline; gap: 18px; }
-.cs-bar .bpcts span { display: inline-flex; align-items: baseline; gap: 6px; }
-.cs-bar .bpcts b { font-size: 19px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.cs-bar .bpcts small { font-size: 11px; color: var(--ink-faint); }
-.cs-bar .bpcts .pr b { color: var(--resolve); }
-.cs-bar .bpcts .ps b { color: var(--signal); }
+.cs-chart .cs-bar .bpcts { display: flex; align-items: baseline; gap: 18px; }
+.cs-chart .cs-bar .bpcts span { display: inline-flex; align-items: baseline; gap: 6px; }
+.cs-chart .cs-bar .bpcts b { font-size: 19px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.cs-chart .cs-bar .bpcts small { font-size: 11px; color: var(--ink-faint); }
+.cs-chart .cs-bar .bpcts .pr b { color: var(--resolve); }
+.cs-chart .cs-bar .bpcts .ps b { color: var(--signal); }
 
 /* legend */
-.cs-legend { display: flex; gap: 16px; margin-bottom: 18px; font-size: 12.5px; color: var(--ink-soft); flex-wrap: wrap; }
-.cs-legend span { display: inline-flex; align-items: center; gap: 7px; }
-.cs-sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-.cs-sw.resolve { background: var(--resolve); box-shadow: 0 0 8px rgba(95,202,166,.5); }
-.cs-sw.signal { background: var(--signal); box-shadow: 0 0 8px rgba(232,131,110,.5); }
+.cs-chart .cs-legend { display: flex; gap: 16px; margin-bottom: 18px; font-size: 12.5px; color: var(--ink-soft); flex-wrap: wrap; }
+.cs-chart .cs-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.cs-chart .cs-sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.cs-chart .cs-sw.resolve { background: var(--resolve); box-shadow: 0 0 8px rgba(95,202,166,.5); }
+.cs-chart .cs-sw.signal { background: var(--signal); box-shadow: 0 0 8px rgba(232,131,110,.5); }
 
 .cs-chart .ccap { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
 .cs-chart .ccap strong { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-bar, .cs-track .seg-resolve, .cs-track .seg-signal { animation: none; opacity: 1; }
+  .cs-chart .cs-bar, .cs-chart .cs-track .seg-resolve, .cs-chart .cs-track .seg-signal { animation: none; opacity: 1; }
 }
 
 /* decision blocks */
@@ -493,7 +493,7 @@
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
 /* the vocabulary gap and the weighted-match figure need both sides on one line */
 .cs-horizontal article > section:has(.cs-vocab) { width: min(1000px, 95vw); }
-.cs-horizontal article > section:has(.cs-sw) { width: min(1000px, 95vw); }
+.cs-horizontal article > section:has(.cs-weights) { width: min(1000px, 95vw); }
 
 /* the reframe and mindset figures want a wider panel */
 .cs-horizontal article > section:has(.cs-mindset) { width: min(1000px, 95vw); }
@@ -1546,19 +1546,19 @@
 }
 
 /* ── weighted matching: how search became shippable ────────────────────── */
-.cs-sw { display: grid; gap: 12px; margin: 16px 0 6px; }
-.cs-sw .tier {
+.cs-weights { display: grid; gap: 12px; margin: 16px 0 6px; }
+.cs-weights .tier {
   border: 1px solid var(--line-soft);
   border-radius: 13px;
   background: var(--card);
   padding: 14px 16px 15px;
   box-shadow: var(--shadow);
 }
-.cs-sw .head {
+.cs-weights .head {
   display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
   margin-bottom: 12px;
 }
-.cs-sw .head .w {
+.cs-weights .head .w {
   font-family: var(--font-mono), monospace;
   font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent-ink);
@@ -1567,36 +1567,36 @@
   border: 1px solid rgba(124, 184, 245, .3);
   background: var(--accent-soft);
 }
-.cs-sw .head .rule { font-size: 13.5px; color: var(--ink); font-weight: 600; }
-.cs-sw .row {
+.cs-weights .head .rule { font-size: 13.5px; color: var(--ink); font-weight: 600; }
+.cs-weights .row {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
 }
-.cs-sw .chip {
+.cs-weights .chip {
   display: grid; gap: 3px; min-width: 0;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--paper-warm);
   padding: 10px 12px;
 }
-.cs-sw .chip.hit { border-color: rgba(124, 184, 245, .3); background: var(--accent-soft); }
-.cs-sw .chip .fa {
+.cs-weights .chip.hit { border-color: rgba(124, 184, 245, .3); background: var(--accent-soft); }
+.cs-weights .chip .fa {
   font-family: "Yekan", Tahoma, system-ui, sans-serif;
   font-size: 15px; line-height: 1.8; color: var(--ink);
   text-align: right;
   overflow-wrap: anywhere;
 }
-.cs-sw .chip .gloss {
+.cs-weights .chip .gloss {
   font-size: 11px; line-height: 1.4; font-style: italic; color: var(--ink-faint);
   overflow-wrap: anywhere;
 }
-.cs-sw .arw { color: var(--ink-faint); font-size: 15px; line-height: 1; }
+.cs-weights .arw { color: var(--ink-faint); font-size: 15px; line-height: 1; }
 
 @media (max-width: 900px) {
-  .cs-sw .tier { padding: 12px 13px 13px; }
-  .cs-sw .row { grid-template-columns: 1fr; gap: 7px; justify-items: stretch; }
-  .cs-sw .arw { justify-self: center; transform: rotate(90deg); }
-  .cs-sw .chip .fa { font-size: 13.5px; }
+  .cs-weights .tier { padding: 12px 13px 13px; }
+  .cs-weights .row { grid-template-columns: 1fr; gap: 7px; justify-items: stretch; }
+  .cs-weights .arw { justify-self: center; transform: rotate(90deg); }
+  .cs-weights .chip .fa { font-size: 13.5px; }
 }

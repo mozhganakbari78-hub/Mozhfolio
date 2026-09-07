@@ -30,7 +30,7 @@ const TIERS = [
  */
 export default function SearchWeights() {
   return (
-    <div className="cs-sw">
+    <div className="cs-weights">
       {TIERS.map((t, i) => (
         <motion.div
           key={t.w}
