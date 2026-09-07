@@ -21,9 +21,9 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "The answers already existed. People couldn't reach them in time.",
     short:
-      "The brief was “improve the FAQ.” Two years of tickets showed the real problem, and the evidence expanded the project into a unified support experience.",
+      "The brief was “improve the FAQ.” ~1,000 tickets showed information wasn’t missing. People were blocked mid-task and couldn’t reach it.",
     description:
-      "How I reframed an FAQ redesign into a structural change to how users reach support inside a live corporate banking platform, built on an analysis of ~1,000 tickets across two years.",
+      "Reframing an FAQ redesign into a discoverability and guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
     illustration: "support",
   },

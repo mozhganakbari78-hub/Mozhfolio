@@ -4,19 +4,9 @@ import CsArt from "./CsArt";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import RoutingShift from "./RoutingShift";
+import ReframeStatement from "./ReframeStatement";
+import UserMindset from "./UserMindset";
 import { PanicJourney } from "./CsInlineArt";
-
-const edgeCases = [
-  "No relevant answers",
-  "Multiple possible answers",
-  "Weak matches",
-  "Missing content",
-  "Permissions",
-  "Empty states",
-  "Category fallback",
-  "System errors",
-  "Escalation after failed self-service",
-];
 
 export default function SupportFrictionCase() {
   return (
@@ -32,10 +22,11 @@ export default function SupportFrictionCase() {
           People just couldn&apos;t reach them in time.
         </h1>
         <p className="cs-lede">
-          The brief was to improve an outdated FAQ. Two years of support history showed a different
-          problem: users had to choose between finding an answer and asking for help before they
-          knew which path could solve their issue. I used the evidence to expand the project from
-          an FAQ redesign into a unified support experience.
+          The request was straightforward: improve the FAQ so users find answers faster. Before
+          adding more content, I wanted to know whether information was actually missing.{" "}
+          <strong>~1,000 support tickets</strong> said it wasn&apos;t. People were blocked in the
+          middle of a task and couldn&apos;t find or understand the right information at that
+          moment.
         </p>
 
         <dl className="cs-meta">
@@ -56,15 +47,16 @@ export default function SupportFrictionCase() {
 
       <hr className="cs-divider" />
 
-      {/* 01 REFRAME */}
+      {/* 01 CONTEXT */}
       <section className="cs-reveal">
         <CsArt name="fork" />
-        <span className="cs-num">01 / Reframing the brief</span>
-        <h2>&quot;Improve the FAQ&quot; was solving the symptom</h2>
+        <span className="cs-num">01 / Context</span>
+        <h2>I didn&apos;t start by writing content</h2>
         <p>
-          On a platform where people move payroll and approve transfers, uncertainty is expensive.
-          The FAQ and the ticket form were two separate destinations, and the product asked users
-          to pick one at the exact moment they understood their problem least.
+          Support requests on the platform clustered around questions and uncertainty during
+          workflows, and the brief that came out of that was to improve the FAQ. Adding content is
+          the obvious response, and it is only correct if information is the thing that&apos;s
+          missing. That was the assumption I wanted to test first.
         </p>
       </section>
 
@@ -76,37 +68,56 @@ export default function SupportFrictionCase() {
       {/* 02 EVIDENCE */}
       <section className="cs-reveal">
         <CsArt name="read" />
-        <span className="cs-num">02 / Building the evidence</span>
-        <h2>~1,000 tickets, cut by behavior instead of topic</h2>
+        <span className="cs-num">02 / Looking beyond the request</span>
+        <h2>~1,000 tickets, read for pattern rather than topic</h2>
         <p>
-          I needed more than an intuition to argue for a larger scope, so I reviewed roughly{" "}
-          <strong>1,000 tickets</strong> across two years. Grouping them by service area explained
-          nothing. The useful cut ran across all of them:{" "}
-          <strong>could an existing answer have resolved this?</strong> A meaningful share could
-          have. The failure was not missing content, it was the location and timing of the answer.
+          I reviewed around a thousand historical support tickets against three questions: what
+          the user was trying to accomplish when they contacted support, which part of the product
+          created the confusion, and whether the information they needed already existed somewhere
+          else.
         </p>
         <CsStats
           items={[
             { value: "~1,000", label: "tickets reviewed" },
             { value: "2 yrs", label: "of support history" },
-            { value: "1", label: "behavioral cut across 4 service areas" },
+            { value: "3", label: "questions asked of every ticket" },
           ]}
         />
         <div className="cs-pull">
-          A significant part of support demand was not a knowledge problem. It was an access
-          problem. That turned &quot;the FAQ is bad&quot; into an argument the team could act on.
+          Most people were not contacting support because the answer did not exist. They were
+          contacting support because they were already blocked and could not reach it.
         </div>
       </section>
 
-      {/* 03 DIRECTION */}
+      {/* 03 REFRAME */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / Reframing the problem</span>
+        <h2>The evidence described a different problem than the brief</h2>
+        <ReframeStatement />
+      </section>
+
+      {/* 04 DESIGN CONSIDERATIONS */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / Design considerations</span>
+        <h2>Nobody reads help content casually in a banking product</h2>
+        <p>
+          People hit these moments while handling payments, transfers, and organizational
+          operations. That is a different mindset from someone browsing documentation, and it
+          changes what a solution has to do.
+        </p>
+        <UserMindset />
+      </section>
+
+      {/* 05 DIRECTION */}
       <section className="cs-reveal">
         <CsArt name="merge" />
-        <span className="cs-num">03 / The product direction</span>
-        <h2>From two destinations to one support journey</h2>
+        <span className="cs-num">05 / The direction</span>
+        <h2>Move the answer to the point of friction</h2>
         <p>
-          Instead of making the user choose, the two paths became one flow. Support content stopped
-          being a place users had to visit and became something the product surfaces inside the
-          moment of uncertainty.
+          If the problem is when and where information appears, more documentation cannot fix it.
+          The two paths, finding an answer and asking for help, became one flow, so support content
+          stops being a destination and becomes something the product surfaces at the moment of
+          uncertainty.
         </p>
         <RoutingShift />
       </section>
@@ -120,9 +131,9 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 04 DECISION 01 */}
+      {/* 06 DECISION 01 */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / Key decision 01</span>
+        <span className="cs-num">06 / Key decision 01</span>
         <h2>Surface answers while the user describes the issue</h2>
         <div className="cs-decision">
           <div className="dhead">
@@ -133,8 +144,8 @@ export default function SupportFrictionCase() {
             <div className="cs-dline">
               <div className="k">Why not search</div>
               <div className="v">
-                A searchable FAQ still depends on the user knowing what to search for, which leaves
-                the journey split in two.
+                A searchable FAQ still depends on the user knowing what to search for, which is
+                exactly what they don&apos;t have at that moment.
               </div>
             </div>
             <div className="cs-dline chose">
@@ -165,117 +176,38 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 05 DECISION 02 */}
+      {/* 07 DECISION 02 */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / Key decision 02</span>
+        <CsArt name="shield" />
+        <span className="cs-num">07 / Key decision 02</span>
         <h2>I kept a taxonomy I didn&apos;t like</h2>
         <p>
           The support database ran on a fixed category taxonomy that back-office filters and two
           years of historical tickets depended on. Rebuilding it would have been cleaner and would
-          have put a live support operation at risk.
+          have put a live support operation at risk. I mapped the new experience onto the existing
+          structure instead, used a controlled &quot;Other&quot; fallback for what wouldn&apos;t map,
+          and documented the compromise as deliberate design debt so the reasoning stays visible.
         </p>
-        <div className="cs-decision">
-          <div className="dhead">
-            <span className="dnum">DECISION 02</span>
-            <div className="dtitle">Map the new experience onto the structure already in use</div>
-          </div>
-          <div className="dbody">
-            <div className="cs-dline chose">
-              <div className="k">What I proposed</div>
-              <div className="v">
-                Preserve the legacy taxonomy underneath, map the new experience onto it, and use a
-                controlled &quot;Other&quot; fallback for what wouldn&apos;t map cleanly. I walked
-                stakeholders through the compromise and got alignment on the migration path.
-              </div>
-            </div>
-            <div className="cs-dline">
-              <div className="k">What it cost</div>
-              <div className="v">
-                Not the cleanest architecture. I documented it as deliberate design debt so the
-                limitation and its reasoning stay visible to whoever picks it up next.
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="cs-pull">
           A cleaner design was not worth destabilizing the operation supporting it.
-        </div>
-      </section>
-
-      {/* 06 EDGE CASES */}
-      <section className="cs-reveal">
-        <span className="cs-num">06 / Beyond the happy path</span>
-        <h2>A support surface is only as good as its worst case</h2>
-        <div className="cs-inv">
-          <div className="ih">
-            <span className="t">Pressure-tested with engineering, support &amp; product</span>
-            <span className="c">9 scenario classes</span>
-          </div>
-          <div className="isub">
-            Walked through together before the design was considered done, then built from existing
-            platform components to keep implementation cost down.
-          </div>
-          <div className="cs-chips">
-            {edgeCases.map((c) => (
-              <span key={c}>{c}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 07 VALIDATION */}
-      <section className="cs-reveal">
-        <CsArt name="shield" />
-        <span className="cs-num">07 / Validation</span>
-        <h2>User testing wasn&apos;t available, so I changed its form</h2>
-        <p>
-          I couldn&apos;t put this in front of corporate clients during the design phase. That
-          removed a method, not the need for validation.
-        </p>
-        <div className="cs-steps">
-          {[
-            {
-              h: "Evidence-based scenario reviews",
-              p: "The flow was tested against the recurring patterns in the historical tickets.",
-            },
-            {
-              h: "Cross-functional walkthroughs",
-              p: "Engineering and support pressure-tested it against permissions, empty states, failures, and back-office dependencies.",
-            },
-            {
-              h: "Staging validation",
-              p: "The complete flow was built and exercised in test, so implementation issues surfaced before production.",
-            },
-            {
-              h: "Controlled rollout plan",
-              p: "Limited production exposure before wider release, so real behavior could inform the next iteration.",
-            },
-          ].map((s) => (
-            <div className="cs-step" key={s.h}>
-              <div>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
       {/* 08 OUTCOME */}
       <section className="cs-reveal">
         <span className="cs-num">08 / Outcome</span>
-        <h2>Built and validated, but not yet live</h2>
+        <h2>The conversation changed before the design did</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Status: pre-launch</span>
-          <h3>No live metrics yet, and I won&apos;t claim any.</h3>
+          <h3>From &quot;add more FAQ content&quot; to discoverability and guidance.</h3>
           <p>
-            It hasn&apos;t shipped to production, so I can&apos;t claim reduced ticket volume or
-            faster resolution. What changed before launch was the direction of the product: a
-            request to redesign a FAQ became an agreed structural change to how users reach support,
-            with a documented taxonomy trade-off and a staged rollout plan.
+            The analysis moved the team off a content problem and onto where and when the product
+            gives guidance. The unified experience was designed, built, and validated in staging;
+            it hasn&apos;t shipped, so I won&apos;t claim reduced ticket volume or faster
+            resolution.
           </p>
           <span className="pill">
-            The measure I would watch: human support used when it is actually needed
+            What shipped first was a better way to read the next support request
           </span>
         </div>
       </section>
@@ -283,23 +215,23 @@ export default function SupportFrictionCase() {
       {/* 09 REFLECTION */}
       <section className="cs-reveal">
         <span className="cs-num">09 / Reflection</span>
-        <h2>Evidence earns scope</h2>
+        <h2>Tickets are a symptom. The question is what they are a symptom of.</h2>
         <div className="cs-reflect">
-          <h3>The most important move happened before I designed anything</h3>
+          <h3>Evidence earns scope</h3>
           <p>
-            I didn&apos;t have the authority to redefine the project. The ticket history turned a
-            design intuition into a product argument strong enough for the team to change
-            direction. Don&apos;t challenge a brief because you disagree with it. Build the evidence
-            that gives the team a reason to reconsider.
+            I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
+            ticket history turned a design intuition into an argument the team could evaluate.
+            Don&apos;t challenge a brief because you disagree with it. Build the evidence that gives
+            people a reason to reconsider.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
-          <h3>The best solution still has to survive the system around it</h3>
+          <h3>What I carry into the next support request</h3>
           <p>
-            The cleanest taxonomy would have been easier to explain and would have added real risk
-            to a live operation. A constraint is not always something to remove. Sometimes it
-            defines the shape of the right answer.
+            Treating each incoming request as an isolated content problem produces a bigger FAQ and
+            the same tickets. The useful move is asking what the volume is telling you about the
+            product, before agreeing to write anything.
           </p>
         </div>
       </section>
