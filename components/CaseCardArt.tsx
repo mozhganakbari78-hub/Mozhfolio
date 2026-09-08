@@ -115,7 +115,7 @@ function DesignSystem() {
     <Frame>
       <div className="grid gap-2.5">
         <motion.div className="flex items-baseline justify-between" {...rise(0)}>
-          <span style={{ ...Mono, color: SUB }}>29 components</span>
+          <span style={{ ...Mono, color: SUB }}>one shared contract</span>
           <span style={{ ...Mono, color: AI }}>3 brands</span>
         </motion.div>
 
