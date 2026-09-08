@@ -22,13 +22,10 @@ const Mono: React.CSSProperties = {
 function Frame({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      {/* One soft glow, not three stacked layers. The mini-UI inside is already
+          detailed; anything more behind it reads as noise at card size. */}
       <div
-        className="absolute -right-32 -top-32 w-[420px] h-[420px] rounded-full opacity-25 blur-3xl pointer-events-none"
-        style={{ background: A }}
-        aria-hidden
-      />
-      <div
-        className="absolute -left-20 -bottom-20 w-[300px] h-[300px] rounded-full opacity-10 blur-3xl pointer-events-none"
+        className="absolute -right-32 -top-32 w-[420px] h-[420px] rounded-full opacity-[0.12] blur-3xl pointer-events-none"
         style={{ background: A }}
         aria-hidden
       />
@@ -36,9 +33,9 @@ function Frame({ children }: { children: React.ReactNode }) {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-          maskImage: "radial-gradient(ellipse at center, black 50%, transparent 85%)",
+            "linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          maskImage: "radial-gradient(ellipse at center, black 45%, transparent 80%)",
         }}
         aria-hidden
       />

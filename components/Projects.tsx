@@ -60,18 +60,10 @@ export default function Projects() {
                 {/* Left: content */}
                 <div className="p-7 md:p-10 flex flex-col">
                   {/* index + focus area */}
-                  <div className="flex items-baseline gap-3 mb-5">
-                    <span
-                      className="mono-label"
-                      style={{ color: "var(--accent-color)", opacity: 0.9 }}
-                    >
+                  <div className="flex items-baseline gap-2.5 mb-5">
+                    <span className="mono-label" style={{ color: "var(--accent-ink)" }}>
                       {cs.index}
                     </span>
-                    <span
-                      aria-hidden
-                      className="h-px flex-shrink-0"
-                      style={{ width: 22, background: "var(--border-strong)" }}
-                    />
                     <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
                       {cs.meta}
                     </span>
@@ -110,7 +102,7 @@ export default function Projects() {
 
                 {/* Right: illustration */}
                 <div
-                  className="hidden md:flex relative min-h-[360px] items-center justify-center"
+                  className="hidden md:flex relative min-h-[320px] items-center justify-center opacity-70 transition-opacity duration-300 group-hover:opacity-100"
                   style={{ background: "var(--bg-secondary)" }}
                 >
                   <CaseCardArt name={cs.illustration} />
