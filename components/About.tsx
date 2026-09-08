@@ -135,10 +135,12 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* How I work — sits under both columns so the two stay the same height */}
+        {/* Principles — sits under both columns so the two stay the same height.
+            Named 'Principles' because the Capabilities section already owns
+            the 'How I work.' headline. */}
         <div className="mt-16 md:mt-20 pt-10" style={{ borderTop: "1px solid var(--border-subtle)" }}>
           <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
-            How I work
+            Principles
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {traits.map((trait, i) => (
