@@ -56,7 +56,7 @@ export default function Skills() {
           </div>
           <h2
             id="skills-heading"
-            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
+            className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
           >
             How I work.

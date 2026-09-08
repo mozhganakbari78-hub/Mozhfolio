@@ -122,7 +122,7 @@ export default function VisualWork() {
             </div>
             <h2
               id="visual-heading"
-              className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl leading-[1.02]"
+              className="text-[28px] md:text-[42px] font-semibold tracking-tight max-w-2xl leading-[1.02]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
               Selected screens.

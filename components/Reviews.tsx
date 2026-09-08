@@ -22,7 +22,7 @@ export default function Reviews() {
           </div>
           <h2
             id="reviews-heading"
-            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]"
+            className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
             style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
           >
             What people say.

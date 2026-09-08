@@ -35,7 +35,7 @@ export default function About() {
             </div>
             <h2
               id="about-heading"
-              className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-[1.05]"
+              className="text-[28px] md:text-[42px] font-semibold mb-6 tracking-tight leading-[1.05]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
               Designing products that already have users, constraints, and history.
