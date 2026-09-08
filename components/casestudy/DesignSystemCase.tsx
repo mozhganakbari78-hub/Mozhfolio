@@ -169,6 +169,15 @@ export default function DesignSystemCase() {
         />
       </section>
 
+      {/* SHOT — the system in the product */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/ipad-mockup.webp"
+          alt="The corporate banking platform running on a tablet, built from the design system"
+          caption="Fig. 02: The same components in the live product"
+        />
+      </section>
+
       {/* 06 MULTI-BRAND */}
       <section className="cs-reveal">
         <span className="cs-num">06 / One system, three brands</span>
