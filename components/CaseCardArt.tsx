@@ -85,11 +85,10 @@ function Support() {
             style={{ borderColor: SUB, borderTopColor: "transparent" }}
           />
           <span style={{ ...Mono, color: FG, fontSize: 12 }}>can&apos;t log in</span>
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
+          <span
             className="inline-block w-[2px] h-3.5 ml-0.5"
-            style={{ background: A }}
+            style={{ background: A, opacity: 0.7 }}
+            aria-hidden
           />
         </div>
 
@@ -193,11 +192,10 @@ function Batch() {
             className="px-2.5 py-1 rounded-md flex items-center gap-1.5"
             style={{ background: "var(--accent-soft)", color: AT, ...Mono, fontSize: 10 }}
           >
-            <motion.span
-              animate={{ opacity: [1, 0.4, 1] }}
-              transition={{ duration: 1.4, repeat: Infinity }}
+            <span
               className="w-1.5 h-1.5 rounded-full"
               style={{ background: A }}
+              aria-hidden
             />
             verifying
           </motion.div>

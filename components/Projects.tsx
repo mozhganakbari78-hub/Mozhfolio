@@ -38,14 +38,14 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:gap-7">
+        <div className="grid gap-5">
           {caseStudies.map((cs, i) => (
             <motion.div
               key={cs.index}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease }}
+              transition={{ duration: 0.45, delay: i * 0.06, ease }}
             >
               <Link
                 href={`/work/${cs.slug}`}
@@ -54,13 +54,13 @@ export default function Projects() {
                   trackEvent("case_study_click", { case_study_name: cs.title })
                 }
                 aria-label={`Read case study: ${cs.title}`}
-                className="group relative grid md:grid-cols-2 overflow-hidden rounded-2xl border transition-all duration-300 hover:border-[var(--accent-color)]"
+                className="group relative grid md:grid-cols-2 overflow-hidden rounded-2xl border transition-all duration-300 hover:border-[var(--accent-ink)] hover:-translate-y-0.5"
                 style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
                 {/* Left: content */}
-                <div className="p-7 md:p-10 flex flex-col">
+                <div className="p-6 md:p-8 flex flex-col">
                   {/* index + focus area */}
-                  <div className="flex items-baseline gap-2.5 mb-5">
+                  <div className="flex items-baseline gap-2.5 mb-4">
                     <span className="mono-label" style={{ color: "var(--accent-ink)" }}>
                       {cs.index}
                     </span>
@@ -70,17 +70,17 @@ export default function Projects() {
                   </div>
 
                   <h3
-                    className="text-xl md:text-[26px] font-semibold tracking-tight mb-4 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
+                    className="text-[17px] md:text-[20px] font-semibold tracking-tight mb-2.5 transition-colors duration-300 group-hover:text-[var(--accent-ink)]"
                     style={{
                       color: "var(--text-primary)",
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1.22,
+                      letterSpacing: "-0.015em",
+                      lineHeight: 1.3,
                     }}
                   >
                     {cs.title}
                   </h3>
                   <p
-                    className="text-sm md:text-[15px] leading-relaxed mb-8"
+                    className="text-[13px] md:text-[13.5px] leading-relaxed mb-6 max-w-[34ch]"
                     style={{ color: "var(--text-tertiary)" }}
                   >
                     {cs.short}
@@ -88,21 +88,27 @@ export default function Projects() {
 
                   <div className="mt-auto">
                     <span
-                      className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-300 group-hover:gap-3"
-                      style={{ color: "var(--accent-color)" }}
+                      className="inline-flex items-center gap-2 text-[13px] font-medium"
+                      style={{ color: "var(--accent-ink)" }}
                     >
                       Read the case study
-                      <ArrowRightIcon
-                        style={{ width: 16, height: 16 }}
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      />
+                      <span
+                        className="inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
+                        style={{
+                          width: 22,
+                          height: 22,
+                          border: "1px solid var(--accent-ink)",
+                        }}
+                      >
+                        <ArrowRightIcon style={{ width: 12, height: 12 }} />
+                      </span>
                     </span>
                   </div>
                 </div>
 
                 {/* Right: illustration */}
                 <div
-                  className="hidden md:flex relative min-h-[320px] items-center justify-center opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                  className="hidden md:flex relative min-h-[260px] items-center justify-center opacity-70 transition-opacity duration-300 group-hover:opacity-100"
                   style={{ background: "var(--bg-secondary)" }}
                 >
                   <CaseCardArt name={cs.illustration} />

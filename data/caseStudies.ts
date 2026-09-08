@@ -21,7 +21,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "The answers already existed. People couldn't reach them in time.",
     short:
-      "In B2B you rarely get direct user access, so I read support tickets instead. ~1,000 of them turned an FAQ request into a guidance problem. Now live.",
+      "The brief was to improve the FAQ. ~1,000 tickets said that was never the problem.",
     description:
       "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
@@ -32,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "batch-transfer",
     title: "A bad row should fail alone. A wrong transfer should never leave.",
     short:
-      "One bad row could reset a whole payroll batch, and a mistyped account could pay the wrong person silently. I changed both, under a fixed deadline.",
+      "One bad row could reset a whole payroll batch. The other failure never looked like one.",
     description:
       "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
     meta: "Workflow Design · Risk & Validation",
@@ -43,7 +43,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "The design system worked when the team stopped asking what to use.",
     short:
-      "My cleaner token model made collaboration harder, so I replaced it with the frontend team’s language instead of defending it.",
+      "My cleaner token model made collaboration harder, so I threw it out.",
     description:
       "Building a design system inside a moving enterprise banking product: choosing adoption over theoretical purity, and turning consistency into operating infrastructure.",
     meta: "Design Systems · Governance",
@@ -54,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "error-messages",
     title: "Users knew something had failed. They didn't know what to do next.",
     short:
-      "~2,000 messages said a transaction had failed, then stopped. I audited the set and wrote three rules that became the platform standard.",
+      "~2,000 messages announced a failure and then stopped. Three rules fixed the pattern.",
     description:
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
