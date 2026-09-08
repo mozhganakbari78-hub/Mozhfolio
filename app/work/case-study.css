@@ -493,6 +493,12 @@
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
 .cs-horizontal article > section:has(.cs-fm) { width: min(1060px, 95vw); }
 .cs-horizontal article > section:has(.cs-sketch) { width: min(1160px, 96vw); }
+.cs-horizontal article > section:has(.cs-sketch) {
+  padding-bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .cs-horizontal article > section:has(.cs-ins) { width: min(1060px, 95vw); }
 .cs-horizontal article > section:has(.cs-assume) { width: min(1100px, 95vw); }
 /* the vocabulary gap and the weighted-match figure need both sides on one line */
@@ -1788,7 +1794,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(58vh, 560px);
+  max-height: min(44vh, 430px);
   object-fit: cover;
   object-position: top center;
 }
@@ -1828,6 +1834,6 @@
   .cs-ins .ins { padding: 14px 15px 13px; }
   .cs-ins .ins .t { font-size: 14px; }
   .cs-sketch { grid-template-columns: 1fr; gap: 18px; }
-  .cs-sketch .paper img { max-height: 52vh; }
+  .cs-sketch .paper img { max-height: 46vh; }
   .cs-sketch .note .t { font-size: 13.5px; }
 }
