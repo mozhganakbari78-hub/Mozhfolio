@@ -16,11 +16,11 @@ const PAIRS = [
   },
   {
     a: "A failed batch is an edge case worth handling gracefully.",
-    b: "It was routine enough to shape how people worked around the whole tool.",
+    b: "Batch failures were not edge cases. Employees had built manual workarounds around them.",
   },
   {
     a: "Employees can already tell which rows failed and why.",
-    b: "They could not. Finding the bad row was manual investigation every time.",
+    b: "They could not. Employees had to manually investigate large files to find which row caused the failure.",
   },
   {
     a: "A validated account number is enough to consider a transfer safe.",
