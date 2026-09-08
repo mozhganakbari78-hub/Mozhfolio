@@ -7,11 +7,12 @@ import { TokenBridge, GovernanceFlow, SystemAnatomy, ChipDrop } from "./CsInline
 import BrandVariants from "./BrandVariants";
 
 const components = [
+  "Button",
+  "Table",
+  "Form inputs",
+  "Feedback states",
   "Navigation",
-  "Forms",
-  "Feedback",
-  "Data display",
-  "Transaction workflows",
+  "+ 24 more",
 ];
 
 export default function DesignSystemCase() {
@@ -154,6 +155,7 @@ export default function DesignSystemCase() {
             <span className="t">Documented across the live product</span>
             <span className="c">Variants, states, sizes, behaviors</span>
           </div>
+          <div className="isub">A sample of the 29 documented components.</div>
           <ChipDrop items={components} />
         </div>
       </section>
