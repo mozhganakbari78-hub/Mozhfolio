@@ -6,11 +6,11 @@ import Mockup from "./Mockup";
 import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ChipDrop } from "./CsInlineArt";
 
 const components = [
-  "Button", "Tag", "Input", "Cascader", "RadioButton", "Checkbox",
-  "Switch / Toggle", "Switch Tabs", "Segment", "Dialog", "Bottom Sheet",
-  "Alert", "Badge", "List Item", "Table", "Collapse", "Key-Value",
-  "Progress Bar", "Slider", "Stepper", "Sidebar", "Header", "Breadcrumb",
-  "Card", "Upload Box", "Tooltip", "Pagination", "Date Picker", "Bottom Nav",
+  "Navigation",
+  "Forms",
+  "Feedback",
+  "Data display",
+  "Transaction workflows",
 ];
 
 export default function DesignSystemCase() {
@@ -25,15 +25,16 @@ export default function DesignSystemCase() {
           stopped asking what to use.
         </h1>
         <p className="cs-lede">
-          90+ live screens, no system engineer, no pause in delivery. My cleaner token model made
-          collaboration <strong>harder</strong>, so I threw it out and adopted the vocabulary
-          engineering already used.
+          90+ live screens, no dedicated system engineer, and no pause in delivery. My first token
+          model was cleaner from a design perspective, but it introduced a{" "}
+          <strong>translation layer</strong> between design and engineering. I replaced it with the
+          vocabulary already used in the codebase.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer &amp; system owner. Architecture, tokens, coverage, governance</dd>
+            <dd>Product Designer. Owned design system architecture, tokens, coverage, governance, and adoption</dd>
           </div>
           <div>
             <dt>Team</dt>
@@ -54,16 +55,16 @@ export default function DesignSystemCase() {
         <span className="cs-num">01 / The real problem</span>
         <h2>Visual inconsistency was only the symptom</h2>
         <p>
-          Design and product both noticed the drift, but the useful signal came from engineering:
-          developers were stopping roughly <strong>8&ndash;9 times a day</strong> to ask which
-          spacing value to use, which state was correct, or whether a component was an Ant Design
-          default or a custom version. Every one of those questions meant a decision had failed to
-          become reusable.
+          Design and product both noticed the drift, but the useful signal came from engineering.
+          We observed frontend developers repeatedly interrupting design with recurring questions:
+          which spacing value to use, which state was correct, or whether a component was an Ant
+          Design default or a custom version. Every one of those questions meant a decision had
+          failed to become reusable.
         </p>
         <CsStats
           items={[
             { value: "90+", label: "live screens, already shipping" },
-            { value: "8-9", label: "design questions per day, pre-system" },
+            { value: "8-9", label: "recurring clarification questions observed per day, pre-system" },
             { value: "0", label: "dedicated design system engineers" },
           ]}
         />
@@ -77,13 +78,14 @@ export default function DesignSystemCase() {
       <section className="cs-reveal">
         <CsArt name="fork" />
         <span className="cs-num">02 / The decision that defined the system</span>
-        <h2>My cleaner token model made things worse</h2>
+        <h2>The first abstraction was cleaner, but harder to adopt</h2>
         <p>
           The product already had a language: the one in working code, with names like{" "}
           <code>cardColor</code> and <code>textSecondary</code>. My instinct was to normalize it, so
-          I built a more structural model describing what each value represented. On paper it was
-          cleaner. In practice it meant every implementation needed translation, and developers
-          started asking which of my names mapped to the value in their code.
+          I built a more semantic token model that described the role each value represented. On
+          paper it was cleaner. In practice it created a translation layer between design
+          terminology and implementation terminology, and developers had to map my token names back
+          to values that already existed in the codebase.
         </p>
         <TokenBridge />
         <p>
@@ -110,6 +112,7 @@ export default function DesignSystemCase() {
               <li>Immediate shared language, no translation step</li>
               <li>No migration dependency</li>
               <li>More coupled to implementation naming than a greenfield ideal</li>
+              <li>In a live product, adoption mattered more than abstraction purity</li>
             </ul>
           </div>
         </div>
@@ -140,14 +143,15 @@ export default function DesignSystemCase() {
       <section className="cs-reveal">
         <span className="cs-num">05 / Coverage</span>
         <h2>29 components, specified by behavior rather than appearance</h2>
+        <p>
+          29 components covering navigation, forms, feedback, data display, and transaction
+          workflows. Each spec carried enough for engineering to pick the right variant without
+          asking design to reconstruct the decision.
+        </p>
         <div className="cs-inv">
           <div className="ih">
             <span className="t">Documented across the live product</span>
             <span className="c">Variants, states, sizes, behaviors</span>
-          </div>
-          <div className="isub">
-            Each spec carried enough for engineering to pick the right variant without asking design
-            to reconstruct the decision.
           </div>
           <ChipDrop items={components} />
         </div>
@@ -167,9 +171,10 @@ export default function DesignSystemCase() {
         <span className="cs-num">06 / One system, three brands</span>
         <h2>The compromise did not block theming at scale</h2>
         <p>
-          The platform eventually needed the same component layer to carry three product identities.
-          The contract stayed shared; only the values changed. Adopting engineering&apos;s naming
-          cost us abstraction purity, not capability.
+          The platform eventually needed the same component layer to carry three product
+          identities. Same token contract, different brand values: component behavior stays shared
+          while each product keeps its own visual identity. Adopting engineering&apos;s naming cost
+          us abstraction purity, not capability.
         </p>
         <MultiBrandTokens />
       </section>
@@ -185,6 +190,10 @@ export default function DesignSystemCase() {
           process with the frontend tech lead: once a decision is made, the next screen{" "}
           <strong>inherits</strong> it instead of restarting the conversation.
         </p>
+        <p>
+          The goal was not to prevent every customization. It was to make every customization a
+          conscious decision.
+        </p>
         <GovernanceFlow />
       </section>
 
@@ -195,7 +204,7 @@ export default function DesignSystemCase() {
         <div className="cs-decision">
           <div className="dhead">
             <span className="dnum">CASE IN POINT</span>
-            <div className="dtitle">A useful customization that lost to sprint reality</div>
+            <div className="dtitle">A valid customization that was not worth the current product trade-off</div>
           </div>
           <div className="dbody">
             <div className="cs-dline">
@@ -245,8 +254,7 @@ export default function DesignSystemCase() {
           <div className="box">
             <div className="lab">After</div>
             <div className="quote">
-              &quot;We have a case the system doesn&apos;t support yet. Should this become a new
-              variant?&quot;
+              &quot;Does this new case justify a system decision?&quot;
             </div>
           </div>
         </div>
@@ -264,9 +272,9 @@ export default function DesignSystemCase() {
         <div className="cs-reflect">
           <h3>The mistake was sequencing, not taste</h3>
           <p>
-            My token model wasn&apos;t wrong in isolation. It was wrong for a codebase that already
-            had a working language. In a live product, a design system is a negotiation with what
-            exists, and I should have mapped the implementation before designing the abstraction.
+            The abstraction itself was not the problem. The mistake was introducing it before
+            understanding the implementation constraints. In a live product, a design system is a
+            negotiation between ideal structure and existing reality.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />

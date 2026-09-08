@@ -341,10 +341,26 @@ export function SystemAnatomy() {
   ];
 
   const layers = [
-    { label: "Tokens", note: "color, spacing, type", count: "foundation" },
-    { label: "Primitives", note: "atoms reused everywhere", count: "core" },
-    { label: "Components", note: "documented variants & states", count: "system" },
-    { label: "Patterns", note: "compositions, flows", count: "applied" },
+    {
+      label: "Tokens",
+      note: "Shared values aligned with implementation language",
+      count: "foundation",
+    },
+    {
+      label: "Components",
+      note: "Variants, states and rules documented for engineering",
+      count: "reusable behaviors",
+    },
+    {
+      label: "Patterns",
+      note: "Common solutions for recurring product workflows",
+      count: "approved compositions",
+    },
+    {
+      label: "Governance",
+      note: "How new needs enter and evolve the system",
+      count: "decision process",
+    },
   ];
 
   return (
