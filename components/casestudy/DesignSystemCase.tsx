@@ -173,8 +173,8 @@ export default function DesignSystemCase() {
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/ipad-mockup.webp"
-          alt="The corporate banking platform running on a tablet, built from the design system"
-          caption="Fig. 02: The same components in the live product"
+          alt="Input component set: variants, states and sizes documented for engineering"
+          caption="Fig. 02: The Input set, specified the same way: every variant, state and size"
         />
       </section>
 

@@ -147,7 +147,7 @@ export function MatchThreshold() {
                 boxShadow: r.ok ? `0 0 4px ${A}` : "0 0 4px rgba(239,68,68,0.7)",
               }}
             />
-            <span style={{ ...Mono, fontSize: 9, color: r.ok ? SUB : "#ef4444" }}>
+            <span style={{ ...Mono, fontSize: 9, color: r.ok ? SUB : "var(--fail)" }}>
               {r.name} &nbsp;<b>{r.pct}%</b>
             </span>
           </motion.div>
@@ -169,7 +169,7 @@ export function RowIsolation() {
   return (
     <Strip label="row failure">
       <div className="flex items-center gap-1 flex-shrink-0">
-        <span style={{ ...Mono, fontSize: 8.5, color: "#ef4444" }}>before</span>
+        <span style={{ ...Mono, fontSize: 8.5, color: "var(--fail)" }}>before</span>
         {states.map((_, i) => (
           <span
             key={i}
@@ -179,7 +179,7 @@ export function RowIsolation() {
               border: "1px solid rgba(239,68,68,0.35)",
               ...Mono,
               fontSize: 7,
-              color: "#ef4444",
+              color: "var(--fail)",
             }}
           >
             {i === 2 ? "!" : "x"}
@@ -204,7 +204,7 @@ export function RowIsolation() {
               border: `1px solid ${ok ? BD : "rgba(239,68,68,0.4)"}`,
               ...Mono,
               fontSize: 7,
-              color: ok ? A : "#ef4444",
+              color: ok ? A : "var(--fail)",
             }}
           >
             {ok ? "✓" : "!"}
@@ -272,7 +272,7 @@ export function TokenBridge() {
           >
             {p.mine}
           </span>
-          <span style={{ color: "#ef4444", fontSize: 11 }}>&#8800;</span>
+          <span style={{ color: "var(--fail)", fontSize: 11 }}>&#8800;</span>
           <span
             className="rounded px-2 py-1"
             style={{ ...Mono, fontSize: 8.5, color: AT, background: "var(--accent-soft)", border: `1px solid ${A}` }}
@@ -284,7 +284,7 @@ export function TokenBridge() {
           )}
         </motion.div>
       ))}
-      <span style={{ ...Mono, fontSize: 8.5, color: "#ef4444", flex: 1, textAlign: "right" }}>
+      <span style={{ ...Mono, fontSize: 8.5, color: "var(--fail)", flex: 1, textAlign: "right" }}>
         two naming systems to translate between
       </span>
     </Strip>
@@ -580,7 +580,7 @@ export function TicketBoard() {
       delay: i * 0.55,
       targetY: (answerable ? 34 : 118) + lane * 7,
       targetX: 452 + (i % 5) * 22,
-      color: answerable ? A : "#ef4444",
+      color: answerable ? A : "var(--fail)",
     };
   });
 
@@ -620,7 +620,7 @@ export function TicketBoard() {
           → self-serve, if reachable
         </text>
         <rect x="440" y="98" width="142" height="52" rx="9" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
-        <text x="511" y="119" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+        <text x="511" y="119" textAnchor="middle" fill="var(--fail)" style={{ ...Mono, fontSize: 9 }}>
           genuinely needs a human
         </text>
         <text x="511" y="134" textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 8 }}>
@@ -672,7 +672,7 @@ export function PanicJourney() {
         <span style={{ ...Mono, fontSize: 10, color: SUB, letterSpacing: 1.2 }}>
           WHERE THE TICKET ACTUALLY HAPPENS
         </span>
-        <span style={{ ...Mono, fontSize: 9, color: "#ef4444" }}>the guess is the failure</span>
+        <span style={{ ...Mono, fontSize: 9, color: "var(--fail)" }}>the guess is the failure</span>
       </div>
 
       <svg viewBox="0 0 600 150" width="100%" style={{ display: "block" }}>
@@ -691,7 +691,7 @@ export function PanicJourney() {
           transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
           style={{ transformOrigin: "300px 75px" }}
         />
-        <text x="300" y="100" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+        <text x="300" y="100" textAnchor="middle" fill="var(--fail)" style={{ ...Mono, fontSize: 9 }}>
           guess?
         </text>
 
@@ -703,7 +703,7 @@ export function PanicJourney() {
 
         {/* Ticket branch (the safe path) */}
         <rect x="400" y="96" width="120" height="32" rx="8" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
-        <text x="460" y="116" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 9 }}>
+        <text x="460" y="116" textAnchor="middle" fill="var(--fail)" style={{ ...Mono, fontSize: 9 }}>
           ticket · feels safe
         </text>
 
@@ -780,7 +780,7 @@ export function BatchFlow() {
 
         {/* rejected tray */}
         <rect x="230" y="138" width="82" height="22" rx="6" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.45)" />
-        <text x="271" y="152" textAnchor="middle" fill="#ef4444" style={{ ...Mono, fontSize: 8 }}>
+        <text x="271" y="152" textAnchor="middle" fill="var(--fail)" style={{ ...Mono, fontSize: 8 }}>
           row 212 · fix &amp; retry
         </text>
 
