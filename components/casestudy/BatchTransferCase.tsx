@@ -107,6 +107,15 @@ export default function BatchTransferCase() {
         </p>
       </section>
 
+      {/* SHOT — the flow, sketched */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/batch-wireframe.webp"
+          alt="Hand-drawn three-step wireframe flow: upload file, review and validate, confirm"
+          caption="Fig. 01: The two rules, sketched into a three-step flow before any UI existed"
+        />
+      </section>
+
       {/* 03 DECISION 01 */}
       <section className="cs-reveal">
         <CsArt name="rows" />
@@ -126,7 +135,7 @@ export default function BatchTransferCase() {
         <Mockup
           src="/projects/batch-upload.webp"
           alt="Batch upload screen, file submission and row preview"
-          caption="Fig. 01: Upload and per-row preview before anything is committed"
+          caption="Fig. 02: Upload and per-row preview before anything is committed"
         />
       </section>
 
@@ -177,7 +186,7 @@ export default function BatchTransferCase() {
         <Mockup
           src="/projects/batch-validation.webp"
           alt="Row-level validation and recipient match review"
-          caption="Fig. 02: Row-level state and match confidence, before approval"
+          caption="Fig. 03: Row-level state and match confidence, before approval"
         />
       </section>
 
