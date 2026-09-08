@@ -30,7 +30,7 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mono-label mb-6" style={{ color: "var(--accent-color)" }}>
+            <div className="mono-label mb-6" style={{ color: "var(--accent-ink)" }}>
               [ 01 ] About
             </div>
             <h2
@@ -111,7 +111,7 @@ export default function About() {
                       }}
                       aria-hidden="true"
                     />
-                    <div className="text-xs mb-1" style={{ color: "var(--accent-color)" }}>
+                    <div className="text-xs mb-1" style={{ color: "var(--accent-ink)" }}>
                       {item.year}
                     </div>
                     <div

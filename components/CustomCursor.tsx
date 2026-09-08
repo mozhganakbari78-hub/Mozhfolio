@@ -25,6 +25,7 @@ export default function CustomCursor() {
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const pos = { ...target };
     let raf = 0;
+    let running = false;
 
     const render = () => {
       // The arrow sits exactly on the pointer — any lag here reads as the
@@ -39,12 +40,25 @@ export default function CustomCursor() {
       if (labelRef.current) {
         labelRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
       }
+      // Stop once the label has caught up. A rAF loop that never idles keeps
+      // the main thread busy on a page the visitor is only reading.
+      if (Math.abs(target.x - pos.x) < 0.15 && Math.abs(target.y - pos.y) < 0.15) {
+        running = false;
+        return;
+      }
+      raf = requestAnimationFrame(render);
+    };
+
+    const kick = () => {
+      if (running) return;
+      running = true;
       raf = requestAnimationFrame(render);
     };
 
     const onMove = (e: MouseEvent) => {
       target.x = e.clientX;
       target.y = e.clientY;
+      kick();
       const el = e.target as HTMLElement | null;
       const clickable = !!el?.closest(
         'a, button, [role="button"], input, textarea, select, label, [data-hand], summary'
@@ -65,7 +79,7 @@ export default function CustomCursor() {
     window.addEventListener("mouseup", onUp);
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
-    raf = requestAnimationFrame(render);
+    kick();
 
     return () => {
       cancelAnimationFrame(raf);

@@ -105,7 +105,7 @@ export default function Contact() {
         viewBox="0 0 1100 400"
         fill="none"
         aria-hidden="true"
-        style={{ color: "var(--accent-color)", opacity: 0.12 }}
+        style={{ color: "var(--accent-ink)", opacity: 0.12 }}
       >
         {Array.from({ length: 7 }).map((_, row) =>
           Array.from({ length: 11 }).map((__, col) => {
@@ -150,7 +150,7 @@ export default function Contact() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
               [ 05 ] Contact
             </div>
             <h2

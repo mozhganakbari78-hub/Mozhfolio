@@ -21,7 +21,7 @@ export default function Projects() {
           className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
         >
           <div>
-            <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
               [ 02 ] Selected Work
             </div>
             <h2

@@ -117,7 +117,7 @@ export default function VisualWork() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div>
-            <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
               [ 04 ] Visual Work
             </div>
             <h2

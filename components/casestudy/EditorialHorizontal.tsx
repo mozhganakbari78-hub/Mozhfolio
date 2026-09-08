@@ -165,9 +165,22 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
     // center, then interpolate the fill to the exact measured position
     // between that stage's dot and the next one. Fill and dots can never
     // drift apart because the fill is derived from the dots themselves.
-    const onScroll = () => {
+    // Panel offsets only move on resize, so measure them once instead of on
+    // every scroll event. Reading offsetLeft mid-scroll forces a synchronous
+    // layout, and the smooth-scroll rAF is writing scrollLeft on the same
+    // frame, which is what made scrolling feel heavy.
+    let anchors: number[] = [];
+    const measure = () => {
+      anchors = stages.map((s) => panels[s.firstIdx].el.offsetLeft);
+    };
+    measure();
+
+    let lastStage = -1;
+    let queued = false;
+
+    const sync = () => {
+      queued = false;
       if (stages.length) {
-        const anchors = stages.map((s) => panels[s.firstIdx].el.offsetLeft);
         const center = track.scrollLeft + track.clientWidth / 2;
 
         let k = 0;
@@ -182,7 +195,12 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
           frac = 1;
         }
 
-        setActiveStage(k);
+        // Only touch React state when the stage actually changes; this used to
+        // re-render the timeline on every scroll event.
+        if (k !== lastStage) {
+          lastStage = k;
+          setActiveStage(k);
+        }
 
         const line = lineRef.current;
         const fill = fillRef.current;
@@ -199,12 +217,23 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       }
       updateMockups();
     };
-    onScroll();
+
+    // Coalesce bursts of scroll events into one read/write per frame.
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(sync);
+    };
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+    sync();
     track.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       track.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, [panels, stages]);
 

@@ -46,7 +46,7 @@ export default function Hero() {
           <motion.div variants={fadeUp} className="mb-10">
             <span
               className="mono-label"
-              style={{ color: "var(--accent-color)" }}
+              style={{ color: "var(--accent-ink)" }}
             >
               Product Designer · Enterprise UX · Design Systems
             </span>

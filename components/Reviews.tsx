@@ -17,7 +17,7 @@ export default function Reviews() {
           transition={{ duration: 0.7, ease }}
           className="mb-16 md:mb-20"
         >
-          <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+          <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
             [ 04 ] Reviews
           </div>
           <h2
@@ -46,7 +46,7 @@ export default function Reviews() {
                 aria-hidden
               />
               <div className="relative">
-                <ChatBubbleLeftEllipsisIcon style={{ width: 22, height: 22, color: "var(--accent-color)" }} className="mb-5" />
+                <ChatBubbleLeftEllipsisIcon style={{ width: 22, height: 22, color: "var(--accent-ink)" }} className="mb-5" />
                 <blockquote
                   className="text-base leading-relaxed"
                   style={{ color: "var(--text-secondary)" }}
@@ -67,7 +67,7 @@ export default function Reviews() {
                     target={r.href ? "_blank" : undefined}
                     rel={r.href ? "noopener noreferrer" : undefined}
                     className="mono-label mt-3 inline-flex items-center gap-1 transition-opacity hover:opacity-70"
-                    style={{ color: "var(--accent-color)" }}
+                    style={{ color: "var(--accent-ink)" }}
                   >
                     {r.source}
                     <ArrowUpRightIcon style={{ width: 11, height: 11 }} />

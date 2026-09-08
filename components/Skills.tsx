@@ -57,7 +57,7 @@ export default function Skills() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-20 max-w-2xl"
         >
-          <div className="mono-label mb-5" style={{ color: "var(--accent-color)" }}>
+          <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
             [ 03 ] Capabilities
           </div>
           <h2
