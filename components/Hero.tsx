@@ -79,7 +79,7 @@ export default function Hero() {
               color: "var(--text-secondary)",
             }}
           >
-            I design products that cannot afford confusion.
+            Designing clarity in complex systems.
           </motion.p>
           <motion.p
             variants={fadeUp}
@@ -91,7 +91,7 @@ export default function Hero() {
               color: "var(--text-tertiary)",
             }}
           >
-            Complex workflows, enterprise tools, systems at scale.
+            Enterprise workflows, financial products, and design systems at scale.
           </motion.p>
 
           {/* CTAs */}
