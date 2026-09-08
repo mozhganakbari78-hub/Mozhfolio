@@ -21,14 +21,14 @@ export default function DesignSystemCase() {
       <header className="cs-hero">
         <span className="cs-eyebrow">Case Study · Enterprise Banking · Design System</span>
         <h1>
-          The design system worked when the team
+          The design system worked when decisions
           <br />
-          stopped asking what to use.
+          stopped living in people&apos;s heads.
         </h1>
         <p className="cs-lede">
           90+ live screens, no dedicated system engineer, and no pause in delivery. My first token
           model was cleaner from a design perspective, but it introduced a{" "}
-          <strong>translation layer</strong> between design and engineering. I replaced it with the
+          <strong>translation layer</strong> between design and engineering. I adapted the system to the
           vocabulary already used in the codebase.
         </p>
 
@@ -65,7 +65,7 @@ export default function DesignSystemCase() {
         <CsStats
           items={[
             { value: "90+", label: "live screens, already shipping" },
-            { value: "8-9", label: "recurring clarification questions observed per day, pre-system" },
+            { value: "~8", label: "recurring clarification questions observed per day before the system" },
             { value: "0", label: "dedicated design system engineers" },
           ]}
         />
@@ -112,12 +112,12 @@ export default function DesignSystemCase() {
             <ul>
               <li>Immediate shared language, no translation step</li>
               <li>No migration dependency</li>
-              <li>More coupled to implementation naming than a greenfield ideal</li>
-              <li>In a live product, adoption mattered more than abstraction purity</li>
+              <li>Less abstract than a greenfield model</li>
             </ul>
           </div>
         </div>
         <p>
+          In a live product, adoption mattered more than abstraction purity.{" "}
           <strong>I chose Option B</strong>, and documented the tighter coupling as an intentional
           trade-off rather than letting it look like an accident.
         </p>
@@ -145,8 +145,8 @@ export default function DesignSystemCase() {
         <span className="cs-num">05 / Coverage</span>
         <h2>29 components, specified by behavior rather than appearance</h2>
         <p>
-          29 components covering navigation, forms, feedback, data display, and transaction
-          workflows. Each spec carried enough for engineering to pick the right variant without
+          29 components covering the recurring patterns used across navigation, forms, feedback,
+          data display, and transaction workflows. Each spec carried enough for engineering to pick the right variant without
           asking design to reconstruct the decision.
         </p>
         <div className="cs-inv">
@@ -184,7 +184,7 @@ export default function DesignSystemCase() {
       <section className="cs-reveal">
         <CsArt name="shield" />
         <span className="cs-num">07 / Governance</span>
-        <h2>Without a system engineer, the contribution model became my job</h2>
+        <h2>Without a system engineer, governance became part of my role</h2>
         <p>
           Building components was half the problem. Without governance the system would drift again
           the first time a feature needed something unusual, so I set up a lightweight decision
@@ -211,7 +211,7 @@ export default function DesignSystemCase() {
             <div className="cs-dline">
               <div className="k">The request</div>
               <div className="v">
-                Design wanted Card behavior beyond what the Ant Design implementation supported.
+                Design requested additional Card behavior beyond what the Ant Design implementation supported.
               </div>
             </div>
             <div className="cs-dline chose">
@@ -239,8 +239,8 @@ export default function DesignSystemCase() {
         <span className="cs-num">08 / Outcome</span>
         <h2>The best signal wasn&apos;t prettier screens. It was better questions.</h2>
         <p>
-          As coverage grew, repeated design questions from frontend dropped from roughly 8&ndash;9 a
-          day to around 3&ndash;4. That was an <em>observed operational signal</em>, not an
+          Through observation, repeated clarification questions appeared to drop from roughly
+          8&ndash;9 a day to around 3&ndash;4 as coverage grew. That was an <em>observed operational signal</em>, not an
           instrumented metric with a formal baseline, and I won&apos;t present it as more than that.
         </p>
         <div className="cs-signal">
@@ -283,9 +283,8 @@ export default function DesignSystemCase() {
           <h3>I had the signal, not the baseline</h3>
           <p>
             I noticed the interruptions before the system and watched them fall as coverage grew,
-            but never set up formal tracking. I&apos;m carrying that forward in current work by
-            defining adoption and clarification-rate metrics before a system ships rather than after
-            informal signal has already told the story.
+            but never set up formal tracking. I now define adoption and clarification-rate metrics
+            before a system ships rather than relying on informal signals afterward.
           </p>
         </div>
       </section>

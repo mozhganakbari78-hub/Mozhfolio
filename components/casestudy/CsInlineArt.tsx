@@ -285,7 +285,7 @@ export function TokenBridge() {
         </motion.div>
       ))}
       <span style={{ ...Mono, fontSize: 8.5, color: "#ef4444", flex: 1, textAlign: "right" }}>
-        nobody could map them
+        two naming systems to translate between
       </span>
     </Strip>
   );
@@ -349,7 +349,7 @@ export function SystemAnatomy() {
     {
       label: "Components",
       note: "Variants, states and rules documented for engineering",
-      count: "reusable behaviors",
+      count: "core components",
     },
     {
       label: "Patterns",

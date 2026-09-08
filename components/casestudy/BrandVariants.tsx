@@ -103,7 +103,7 @@ export default function BrandVariants() {
       </div>
 
       <p className="foot">
-        The component behaviour never changes. Only the value behind a token name does.
+        The component behavior never changes. Only the value behind a token name does.
       </p>
     </div>
   );

@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "03",
     slug: "design-system",
-    title: "The design system worked when the team stopped asking what to use.",
+    title: "The design system worked when decisions stopped living in people’s heads.",
     short:
       "My cleaner token model made collaboration harder, so I threw it out.",
     description:
