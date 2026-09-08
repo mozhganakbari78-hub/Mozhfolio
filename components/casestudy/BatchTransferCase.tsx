@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import Mockup from "./Mockup";
 import FailureUnit from "./FailureUnit";
+import FailureModes from "./FailureModes";
 import { MatchThreshold } from "./CsInlineArt";
 
 const dsPatterns = [
@@ -28,9 +29,10 @@ export default function BatchTransferCase() {
           A wrong transfer should never leave.
         </h1>
         <p className="cs-lede">
-          One invalid row could reset an entire payroll batch. A mistyped account number could pay
-          the wrong person <strong>without ever failing</strong>. I changed both, under a fixed
-          deadline.
+          Payroll is a high-trust workflow: a failure doesn&apos;t only slow branch staff down, a
+          wrong transfer carries financial and operational consequences. One invalid row could reset
+          an entire batch, and a mistyped account could pay the wrong person{" "}
+          <strong>without ever failing</strong>. I changed both, under a fixed deadline.
         </p>
 
         <dl className="cs-meta">
@@ -57,9 +59,10 @@ export default function BatchTransferCase() {
         <span className="cs-num">01 / Problem framing</span>
         <h2>Errors were cheap to create and expensive to discover</h2>
         <p>
-          We researched this in branches rather than from the requirements doc, watching the people
-          who actually process these files. Two failure modes came out of it, and they were nothing
-          alike.
+          We researched this in branches rather than from the requirements doc. We observed branch
+          employees processing real payroll files and interviewed the operators who prepare the
+          batches and the approvers who release them. Two failure modes came out of it, and they
+          were nothing alike.
         </p>
         <div className="cs-compare">
           <div className="col legacy">
@@ -79,6 +82,13 @@ export default function BatchTransferCase() {
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* 01b THE TWO FAILURES, DRAWN */}
+      <section className="cs-reveal">
+        <span className="cs-num">01 / The two failures</span>
+        <h2>One stops the work. The other doesn&apos;t look like a failure at all.</h2>
+        <FailureModes />
       </section>
 
       {/* 02 THE REFRAME */}
@@ -105,8 +115,8 @@ export default function BatchTransferCase() {
         <p>
           Treating the batch as one unit made the interface simple and recovery disproportionately
           expensive, while ignoring that most rows in the file were perfectly valid. Now each
-          transaction succeeds or fails on its own, and a broken row gets its own state while the
-          rest continue.
+          transaction succeeds or fails on its own. Instead of restarting a 500-row file because of
+          one mistake, an employee fixes only the affected rows and the rest keep processing.
         </p>
         <FailureUnit />
       </section>
@@ -142,15 +152,17 @@ export default function BatchTransferCase() {
               <div className="v">
                 The system retrieves the registered account holder for each destination, compares it
                 with the name in the file, and shows the <strong>degree of match</strong> in the
-                review screen. Below <strong>96%</strong> is flagged for attention rather than
+                review screen. Lower-confidence matches are flagged for human review rather than
                 auto-rejected.
               </div>
             </div>
             <div className="cs-dline">
               <div className="k">Why not automate it</div>
               <div className="v">
-                I deliberately kept an imperfect matching mechanism out of the decision itself. The
-                system surfaces evidence. The authorized human still makes the call.
+                I deliberately kept an imperfect matching mechanism out of the decision itself. A
+                high-confidence match can still be wrong on a large transfer, and a lower one can be
+                obviously fine to someone who knows the client. The system surfaces evidence; the
+                authorized human still makes the call.
               </div>
             </div>
           </div>
@@ -173,7 +185,7 @@ export default function BatchTransferCase() {
       <section className="cs-reveal">
         <CsArt name="shield" />
         <span className="cs-num">05 / Authority &amp; trade-offs</span>
-        <h2>Register first. Approve second.</h2>
+        <h2>Separate preparation from commitment</h2>
         <p>
           A branch employee prepares the request with nothing executed yet; a senior approver
           confirms, and only then does money move. The separation matters because verification is
@@ -210,7 +222,7 @@ export default function BatchTransferCase() {
           <div>
             <h3>Add the trust layer</h3>
             <p>
-              Recipient verification, name comparison, match percentage, and the 96% threshold,
+              Recipient verification, name comparison, and match confidence in the review screen,
               built on top of a workflow already running in branches.
             </p>
           </div>
@@ -225,10 +237,9 @@ export default function BatchTransferCase() {
         <span className="cs-num">07 / Why the deadline was survivable</span>
         <h2>The design system was decision leverage, not decoration</h2>
         <p>
-          A system I had built earlier for another banking product already covered the patterns this
-          tool needed. That is the reason the deadline didn&apos;t force a choice between quality
-          and delivery: nobody was redesigning tables and empty states under pressure, so the design
-          time went to the decisions unique to this workflow.
+          Design system components I had built earlier already covered the patterns this tool
+          needed, so the team could spend the deadline on workflow decisions instead of rebuilding
+          common ones under pressure.
         </p>
         <div className="cs-inv">
           <div className="ih">
@@ -246,15 +257,16 @@ export default function BatchTransferCase() {
       {/* 08 OUTCOME */}
       <section className="cs-reveal">
         <span className="cs-num">08 / Rollout &amp; outcome</span>
-        <h2>Shipped through a controlled rollout</h2>
+        <h2>The failure model of batch payments changed</h2>
         <div className="cs-status">
-          <span className="cs-eyebrow">Shipped · limited rollout</span>
-          <h3>Structural change, without a percentage attached.</h3>
+          <span className="cs-eyebrow">Shipped · controlled rollout</span>
+          <h3>Recovery moved from the batch to the row.</h3>
           <p>
-            The workflow reached real branches. The bank&apos;s operational metrics are internal and
-            not mine to publish, so rather than quote figures I can&apos;t share: failures are now
-            handled at row level while valid transactions continue, and recipient mismatches surface
-            before final approval when verification is used.
+            The workflow reached real branches. Valid transactions now continue while a failed row
+            is isolated and resolved on its own, and recipient mismatches surface before final
+            approval when verification is used. The bank&apos;s operational metrics are internal, so
+            I describe what the shipped behavior changed rather than quoting figures I can&apos;t
+            share.
           </p>
         </div>
       </section>
@@ -269,7 +281,8 @@ export default function BatchTransferCase() {
             The failed batch interrupted work and frustrated people, so it got all the attention.
             Research surfaced a worse category: a transaction that completes perfectly, to the wrong
             recipient. Helping users recover from errors is not the whole job. Sometimes the job is
-            helping them recognize a risky action while it is still reversible.
+            helping them recognize a risky action while it is still reversible. Design in financial
+            products is often about controlling uncertainty, not only reducing friction.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />

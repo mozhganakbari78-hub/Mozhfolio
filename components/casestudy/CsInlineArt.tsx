@@ -157,7 +157,7 @@ export function MatchThreshold() {
         className="rounded px-2 py-1 flex-shrink-0"
         style={{ ...Mono, fontSize: 8.5, color: AT, background: "var(--accent-soft)", border: `1px solid ${A}` }}
       >
-        threshold 96%
+        flagged for review
       </span>
     </Strip>
   );
