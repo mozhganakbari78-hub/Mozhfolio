@@ -5,6 +5,7 @@ import Mockup from "./Mockup";
 import FailureUnit from "./FailureUnit";
 import FailureModes from "./FailureModes";
 import SketchFlow from "./SketchFlow";
+import Assumptions from "./Assumptions";
 import { MatchThreshold } from "./CsInlineArt";
 
 const dsPatterns = [
@@ -39,7 +40,7 @@ export default function BatchTransferCase() {
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Owned the flow, verification model, UI, and handoff</dd>
+            <dd>Product Designer. Co-led the research, owned the flow and verification model, built the UI with the other designer, carried it through handoff</dd>
           </div>
           <div>
             <dt>Team</dt>
@@ -69,6 +70,50 @@ export default function BatchTransferCase() {
           moment: <strong>too early</strong>, blocking valid work, or <strong>too late</strong>,
           after money had already moved.
         </p>
+      </section>
+
+      {/* 01a HOW WE WORKED */}
+      <section className="cs-reveal">
+        <span className="cs-num">01 / How the two of us worked</span>
+        <h2>We interviewed separately on purpose, then compared notes</h2>
+        <div className="cs-steps">
+          {[
+            {
+              h: "Separate branch conversations",
+              p: "We each spoke to branch employees on our own rather than together, so neither of us shaped what the other heard.",
+            },
+            {
+              h: "Assumptions on the table before conclusions",
+              p: "We wrote down what we each expected to find and compared it against what we actually heard, out loud, before agreeing on a problem.",
+            },
+            {
+              h: "Sketching together",
+              p: "The flow was drawn jointly on paper, which kept the argument about structure rather than screens.",
+            },
+            {
+              h: "Technical alignment before any UI",
+              p: "Recurring sessions with the developers to check that the interaction model matched what the system could actually do, while changing it was still cheap.",
+            },
+            {
+              h: "Then the interface, built together",
+              p: "UI work started only once the flow, the failure model, and the technical constraints were settled.",
+            },
+          ].map((st) => (
+            <div className="cs-step" key={st.h}>
+              <div>
+                <h3>{st.h}</h3>
+                <p>{st.p}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 01a2 THE ASSUMPTIONS */}
+      <section className="cs-reveal">
+        <span className="cs-num">01 / What we got wrong first</span>
+        <h2>The assumptions we wrote down, and what the branches did to them</h2>
+        <Assumptions />
       </section>
 
       {/* 01b THE TWO FAILURES */}
