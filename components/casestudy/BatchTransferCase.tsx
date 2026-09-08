@@ -29,10 +29,10 @@ export default function BatchTransferCase() {
           A wrong transfer should never leave.
         </h1>
         <p className="cs-lede">
-          Payroll is a high-trust workflow: a failure doesn&apos;t only slow branch staff down, a
-          wrong transfer carries financial and operational consequences. One invalid row could reset
-          an entire batch, and a mistyped account could pay the wrong person{" "}
-          <strong>without ever failing</strong>. I changed both, under a fixed deadline.
+          Payroll is a high-trust workflow. A failed batch slows branch operations, but a
+          successful wrong transfer is the bigger risk:{" "}
+          <strong>money moving to the wrong person</strong>. I changed both failure modes under a
+          fixed deadline.
         </p>
 
         <dl className="cs-meta">
@@ -189,7 +189,8 @@ export default function BatchTransferCase() {
         <p>
           A branch employee prepares the request with nothing executed yet; a senior approver
           confirms, and only then does money move. The separation matters because verification is
-          only worth anything if its output lands <em>before</em> the irreversible step.
+          only worth anything if its output lands <em>before</em> the irreversible step. Once money
+          moves, recovery becomes an operational process rather than a design opportunity.
         </p>
         <p>
           Verification stayed optional per batch. It adds a lookup and therefore time, and not every
@@ -238,8 +239,8 @@ export default function BatchTransferCase() {
         <h2>The design system was decision leverage, not decoration</h2>
         <p>
           Design system components I had built earlier already covered the patterns this tool
-          needed, so the team could spend the deadline on workflow decisions instead of rebuilding
-          common ones under pressure.
+          needed. That let us spend limited time on the decisions that affected financial risk,
+          instead of rebuilding familiar UI patterns under deadline pressure.
         </p>
         <div className="cs-inv">
           <div className="ih">
@@ -281,8 +282,9 @@ export default function BatchTransferCase() {
             The failed batch interrupted work and frustrated people, so it got all the attention.
             Research surfaced a worse category: a transaction that completes perfectly, to the wrong
             recipient. Helping users recover from errors is not the whole job. Sometimes the job is
-            helping them recognize a risky action while it is still reversible. Design in financial
-            products is often about controlling uncertainty, not only reducing friction.
+            helping them recognize a risky action while it is still reversible. In financial
+            products, design is often less about removing every step and more about helping people
+            make the right decision at the right moment.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />

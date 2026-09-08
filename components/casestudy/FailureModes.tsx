@@ -47,8 +47,8 @@ export default function FailureModes() {
         <div className="rec">
           {[
             { k: "Account number", v: "•••• 12345", tone: "" },
-            { k: "Name in the file", v: "Ali", tone: "" },
-            { k: "Registered holder", v: "Reza", tone: "bad" },
+            { k: "Name in the file", v: "A. Rahimi", tone: "" },
+            { k: "Registered holder", v: "M. Hosseini", tone: "bad" },
           ].map((f, i) => (
             <motion.div
               key={f.k}
