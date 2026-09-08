@@ -493,6 +493,7 @@
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
 .cs-horizontal article > section:has(.cs-fm) { width: min(1060px, 95vw); }
 .cs-horizontal article > section:has(.cs-sketch) { width: min(1160px, 96vw); }
+.cs-horizontal article > section:has(.cs-ins) { width: min(1060px, 95vw); }
 /* the vocabulary gap and the weighted-match figure need both sides on one line */
 .cs-horizontal article > section:has(.cs-vocab) { width: min(1000px, 95vw); }
 .cs-horizontal article > section:has(.cs-weights) { width: min(1000px, 95vw); }
@@ -1725,4 +1726,49 @@
   .cs-sketch .paper { transform: none; }
   .cs-sketch .paper img { max-height: 58vh; }
   .cs-sketch .note .t { font-size: 13.5px; }
+}
+
+/* ── research insights, each with the consequence it created ───────────── */
+.cs-ins { display: grid; gap: 12px; margin: 16px 0 6px; }
+.cs-ins.is-pair { grid-template-columns: 1fr 1fr; }
+.cs-ins .ins {
+  display: grid; align-content: start; gap: 8px; min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 16px 18px 15px;
+  box-shadow: var(--shadow);
+}
+.cs-ins .ins .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-ins .ins .t {
+  font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3;
+}
+.cs-ins .ins .p {
+  font-size: 13px; line-height: 1.55; color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+/* the consequence, set apart so the finding never reads as neutral */
+.cs-ins .ins .imp {
+  margin-top: 2px;
+  padding-left: 12px;
+  border-left: 2px solid var(--fail);
+  font-size: 12.5px; line-height: 1.5; color: var(--ink-faint);
+}
+.cs-ins .ins .imp b {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fail);
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 900px) {
+  .cs-ins.is-pair { grid-template-columns: 1fr; }
+  .cs-ins .ins { padding: 14px 15px 13px; }
+  .cs-ins .ins .t { font-size: 14px; }
 }

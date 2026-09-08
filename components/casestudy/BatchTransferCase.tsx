@@ -54,42 +54,86 @@ export default function BatchTransferCase() {
 
       <hr className="cs-divider" />
 
-      {/* 01 THE TWO FAILURES */}
+      {/* 01 RESEARCH */}
       <section className="cs-reveal">
         <CsArt name="read" />
-        <span className="cs-num">01 / Problem framing</span>
-        <h2>Errors were cheap to create and expensive to discover</h2>
+        <span className="cs-num">01 / What we learned in branches</span>
+        <h2>Failures were arriving at the wrong moment</h2>
         <p>
-          We researched this in branches rather than from the requirements doc. We observed branch
-          employees processing real payroll files and interviewed the operators who prepare the
-          batches and the approvers who release them. Two failure modes came out of it, and they
-          were nothing alike.
+          We researched this in branches rather than from the requirements doc. We observed
+          employees processing real payroll files and interviewed both the operators who prepare
+          batch requests and the approvers who authorize them.
         </p>
-        <div className="cs-compare">
-          <div className="col legacy">
-            <span className="tag">Failure 01 · Batch-level</span>
-            <ul>
-              <li>The batch was one all-or-nothing processing unit</li>
-              <li>One unprocessable row invalidated every other row</li>
-              <li>The employee had to investigate, correct, and restart the run</li>
-            </ul>
+        <p>
+          The problem was not that the process was slow. It was that failures surfaced at the wrong
+          moment: <strong>too early</strong>, blocking valid work, or <strong>too late</strong>,
+          after money had already moved.
+        </p>
+      </section>
+
+      {/* 01b THE TWO FAILURES */}
+      <section className="cs-reveal">
+        <span className="cs-num">01 / Insights 01 &amp; 02</span>
+        <h2>Two failures, and only one of them looked like a failure</h2>
+        <div className="cs-ins is-pair">
+          <div className="ins">
+            <span className="n">Insight 01</span>
+            <span className="t">One invalid row could block an entire batch</span>
+            <span className="p">
+              The uploaded file was treated as a single processing unit. If one transaction failed
+              validation, the whole batch had to be reviewed, corrected, and submitted again.
+            </span>
+            <span className="imp">
+              <b>Impact</b>
+              Valid transactions were delayed by errors that had nothing to do with them.
+            </span>
           </div>
-          <div className="col legacy">
-            <span className="tag">Failure 02 · Invisible recipient risk</span>
-            <ul>
-              <li>Files carried account numbers, no human-readable confirmation</li>
-              <li>A mistyped identifier does not always fail</li>
-              <li>If it resolves to a real account, the money simply goes to the wrong person</li>
-            </ul>
+          <div className="ins">
+            <span className="n">Insight 02</span>
+            <span className="t">A valid account number did not mean a safe transfer</span>
+            <span className="p">
+              Files carried account numbers with no confirmation of who would actually receive the
+              money. A mistyped identifier can still resolve to a real account.
+            </span>
+            <span className="imp">
+              <b>Impact</b>
+              The most dangerous errors were not the visible ones. They were the ones that looked
+              successful.
+            </span>
           </div>
         </div>
       </section>
 
       {/* 01b THE TWO FAILURES, DRAWN */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / The two failures</span>
+        <span className="cs-num">01 / The same two failures, drawn</span>
         <h2>One stops the work. The other doesn&apos;t look like a failure at all.</h2>
         <FailureModes />
+      </section>
+
+      {/* 01d INSIGHT 03 */}
+      <section className="cs-reveal">
+        <span className="cs-num">01 / Insight 03</span>
+        <h2>Everything was checked too close to the point of no return</h2>
+        <p>
+          Employees had little visibility into what would happen after uploading a file. Validation
+          and recipient checks ran too late, so problems were discovered during or after processing
+          rather than before it.
+        </p>
+        <div className="cs-ins">
+          <div className="ins">
+            <span className="n">Insight 03</span>
+            <span className="t">Prevention had been turned into recovery</span>
+            <span className="p">
+              By the time the system had anything useful to say, the employee&apos;s options had
+              already narrowed to cleaning up after the fact.
+            </span>
+            <span className="imp">
+              <b>Impact</b>
+              Recovery became a manual operational task instead of a prevention opportunity.
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* 02 THE REFRAME */}
@@ -102,9 +146,10 @@ export default function BatchTransferCase() {
           looked correct until after the money moved.
         </div>
         <p>
-          That set the two rules the redesign had to satisfy: make{" "}
-          <strong>recoverable problems local</strong>, and make{" "}
-          <strong>irreversible risks visible</strong> before commitment.
+          That set the rules the redesign had to satisfy: isolate{" "}
+          <strong>recoverable errors at the smallest possible level</strong>, surface{" "}
+          <strong>recipient risk before approval</strong>, and give the employee enough to make a
+          safe decision <strong>while money can still be stopped</strong>.
         </p>
       </section>
 
