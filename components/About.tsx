@@ -35,29 +35,29 @@ export default function About() {
             </div>
             <h2
               id="about-heading"
-              className="text-[28px] md:text-[42px] font-semibold mb-6 tracking-tight leading-[1.05]"
+              className="text-[24px] md:text-[32px] font-semibold mb-5 tracking-tight leading-[1.12]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
               Designing products that already have users, constraints, and history.
             </h2>
-            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
               Five years of designing enterprise banking, fintech, and operational products. Most of
               my work has been inside existing systems: products with real users, established
               workflows, technical limitations, and business constraints.
             </p>
-            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
               I enjoy working in those environments because the challenge is rarely creating the
               perfect solution from scratch. It is understanding what already exists, finding the
               real problem behind the request, and designing something the team can actually build
               and users can actually adopt.
             </p>
-            <p className="text-base leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
               In practice, that means working closely with Product, Engineering, and Support. I look
               for evidence before proposing solutions, read support patterns to understand where
               users struggle, and stay involved through implementation because that is often where
               design decisions meet reality.
             </p>
-            <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-[14.5px] leading-[1.65] mb-8" style={{ color: "var(--text-secondary)" }}>
               Currently, I work on a corporate banking platform used by 58,000 organizations,
               designing complex financial workflows and internal operational tools.
             </p>
@@ -79,7 +79,7 @@ export default function About() {
                     className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
                     style={{ background: "var(--accent-color)" }}
                   />
-                  <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                  <span className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                     {trait}
                   </span>
                 </motion.div>
@@ -87,7 +87,7 @@ export default function About() {
             </div>
 
             <motion.p
-              className="text-sm leading-relaxed mt-8 pt-6"
+              className="text-[12.5px] leading-relaxed mt-7 pt-5"
               style={{ color: "var(--text-tertiary)", borderTop: "1px solid var(--border-subtle)" }}
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
@@ -105,7 +105,7 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="mono-label mb-8" style={{ color: "var(--text-tertiary)" }}>
+            <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
               Experience
             </div>
 
@@ -119,7 +119,7 @@ export default function About() {
                 aria-hidden="true"
               />
 
-              <div className="space-y-10 pl-8">
+              <div className="space-y-8 pl-8">
                 {timeline.map((item, i) => (
                   <motion.div
                     key={i}
@@ -150,16 +150,16 @@ export default function About() {
                       {item.year}
                     </div>
                     <div
-                      className="text-sm font-medium mb-0.5"
+                      className="text-[15px] font-semibold mb-1"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {item.role}
                     </div>
-                    <div className="text-sm mb-2" style={{ color: "var(--text-secondary)" }}>
+                    <div className="text-[13.5px] mb-2" style={{ color: "var(--text-secondary)" }}>
                       {item.company}
                     </div>
                     {item.note && (
-                      <div className="text-xs" style={{ color: "var(--text-tertiary)" }}>
+                      <div className="text-[12.5px] leading-[1.6]" style={{ color: "var(--text-tertiary)" }}>
                         {item.note}
                       </div>
                     )}
