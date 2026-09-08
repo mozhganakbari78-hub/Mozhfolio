@@ -1726,3 +1726,108 @@
   .cs-assume .pair { grid-template-columns: 1fr; gap: 5px; }
   .cs-assume .arw { justify-self: center; transform: rotate(90deg); }
 }
+
+/* ── research insights, each with the consequence it created ───────────── */
+.cs-ins { display: grid; gap: 12px; margin: 16px 0 6px; }
+.cs-ins.is-pair { grid-template-columns: 1fr 1fr; }
+.cs-ins .ins {
+  display: grid; align-content: start; gap: 8px; min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 16px 18px 15px;
+  box-shadow: var(--shadow);
+}
+.cs-ins .ins .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-ins .ins .t {
+  font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3;
+}
+.cs-ins .ins .p {
+  font-size: 13px; line-height: 1.55; color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+/* the consequence, set apart so the finding never reads as neutral */
+.cs-ins .ins .imp {
+  margin-top: 2px;
+  padding-left: 12px;
+  border-left: 2px solid var(--fail);
+  font-size: 12.5px; line-height: 1.5; color: var(--ink-faint);
+}
+.cs-ins .ins .imp b {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fail);
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+/* ── the early flow sketch, shown with its margin notes ────────────────── */
+.cs-sketch {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+  margin: 16px 0 6px;
+}
+/* the photo is a paper artifact: warm ground, soft lift, a little off-axis */
+.cs-sketch .paper {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f4f1ea;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .55),
+    0 0 0 1px rgba(255, 255, 255, .06);
+}
+.cs-sketch .paper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(58vh, 560px);
+  object-fit: cover;
+  object-position: top center;
+}
+.cs-sketch .notes { display: grid; align-content: center; gap: 14px; min-width: 0; }
+.cs-sketch .eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-sketch .note { display: grid; grid-template-columns: 26px 1fr; gap: 12px; min-width: 0; }
+.cs-sketch .note .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--signal);
+  padding-top: 2px;
+}
+.cs-sketch .note .t {
+  display: block;
+  font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.3;
+  margin-bottom: 3px;
+}
+.cs-sketch .note .p {
+  display: block;
+  font-size: 12.5px; line-height: 1.5; color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+.cs-sketch .goal {
+  margin: 4px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13px; line-height: 1.55; color: var(--ink-faint);
+}
+.cs-sketch .goal em { font-style: normal; color: var(--ink); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .cs-ins.is-pair { grid-template-columns: 1fr; }
+  .cs-ins .ins { padding: 14px 15px 13px; }
+  .cs-ins .ins .t { font-size: 14px; }
+  .cs-sketch { grid-template-columns: 1fr; gap: 18px; }
+  .cs-sketch .paper img { max-height: 52vh; }
+  .cs-sketch .note .t { font-size: 13.5px; }
+}

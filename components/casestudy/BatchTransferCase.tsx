@@ -358,7 +358,7 @@ export default function BatchTransferCase() {
         <span className="cs-num">08 / Rollout &amp; outcome</span>
         <h2>The failure model of batch payments changed</h2>
         <div className="cs-status">
-          <span className="cs-eyebrow">Shipped · controlled rollout</span>
+          <span className="cs-eyebrow">Shipped · limited rollout</span>
           <h3>Recovery moved from the batch to the row.</h3>
           <p>
             The workflow reached real branches. Valid transactions now continue while a failed row
@@ -367,6 +367,29 @@ export default function BatchTransferCase() {
             I describe what the shipped behavior changed rather than quoting figures I can&apos;t
             share.
           </p>
+        </div>
+      </section>
+
+      {/* 08b WHAT THE ROLLOUT REVEALED */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / What the rollout revealed</span>
+        <h2>The limited release found a requirement nobody had written down</h2>
+        <p>
+          Opening the tool to a small number of branches surfaced something no document had
+          captured: the bank&apos;s actual requirement for this process was different from the one
+          everyone had been working from, including the people who owned it. That is uncomfortable,
+          and it is also exactly what a controlled rollout is for. Finding it in a handful of
+          branches costs a revision. Finding it after a full release costs a migration.
+        </p>
+        <p>
+          We are now working through how much of the flow can be reshaped around the real
+          requirement without a large design or engineering rewrite. The row-level failure model
+          and the separation between preparation and approval both hold, which is what makes that
+          conversation cheap rather than existential.
+        </p>
+        <div className="cs-pull">
+          The phasing paid off in a way I hadn&apos;t predicted. It wasn&apos;t only about hitting a
+          deadline, it kept the product changeable once reality arrived.
         </div>
       </section>
 
