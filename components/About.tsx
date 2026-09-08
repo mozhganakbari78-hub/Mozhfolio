@@ -168,17 +168,6 @@ export default function About() {
             ))}
           </div>
 
-          <motion.p
-            className="text-[12.5px] leading-relaxed mt-8 max-w-3xl"
-            style={{ color: "var(--text-tertiary)" }}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.7 }}
-          >
-            One pattern I&apos;ve noticed in my own work: strong evidence before a decision, strong
-            reflection after it, and not enough measurement defined before launch. I&apos;m fixing
-            that at the design stage rather than the retrospective.
-          </motion.p>
         </div>
       </div>
     </section>
