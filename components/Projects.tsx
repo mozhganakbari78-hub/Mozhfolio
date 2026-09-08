@@ -108,7 +108,7 @@ export default function Projects() {
 
                 {/* Right: illustration */}
                 <div
-                  className="hidden md:flex relative min-h-[230px] items-center justify-center opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                  className="hidden md:flex relative min-h-[250px] items-center justify-center opacity-90 transition-opacity duration-300 group-hover:opacity-100"
                   style={{ background: "var(--bg-secondary)" }}
                 >
                   <CaseCardArt name={cs.illustration} />
