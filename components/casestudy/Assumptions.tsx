@@ -11,20 +11,20 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  */
 const PAIRS = [
   {
-    a: "The main problem is speed. Employees want to get through files faster.",
-    b: "Throughput was never the complaint. The complaint was when failures showed up.",
+    a: "Improving processing speed would create the biggest impact.",
+    b: "The main frustration was not how long the process took. It was the uncertainty after submission: when something failed, employees had limited visibility into what went wrong and how to recover.",
   },
   {
-    a: "A failed batch is an edge case worth handling gracefully.",
-    b: "Batch failures were not edge cases. Employees had built manual workarounds around them.",
+    a: "Batch failures were occasional exceptions that needed better error handling.",
+    b: "Failures happened often enough that employees had developed manual ways of identifying problematic rows and recovering from failed batches.",
   },
   {
-    a: "Employees can already tell which rows failed and why.",
-    b: "They could not. Employees had to manually investigate large files to find which row caused the failure.",
+    a: "Existing validation helped employees understand which transactions needed attention.",
+    b: "Employees could see that something failed, but identifying the problematic row and the reason required manual investigation.",
   },
   {
-    a: "A validated account number is enough to consider a transfer safe.",
-    b: "Valid and correct are different things, and only one of them was checked.",
+    a: "Valid account details were enough to reduce transfer risk.",
+    b: "Account validation confirmed that an account existed. It did not confirm that the account belonged to the intended recipient.",
   },
 ];
 
@@ -41,14 +41,14 @@ export default function Assumptions() {
           transition={{ delay: 0.08 + i * 0.11, duration: 0.45, ease: EASE }}
         >
           <div className="side is-a">
-            <span className="lab">We assumed</span>
+            <span className="lab">Assumption {String(i + 1).padStart(2, "0")}</span>
             <span className="txt">{p.a}</span>
           </div>
           <span className="arw" aria-hidden>
             &rarr;
           </span>
           <div className="side is-b">
-            <span className="lab">Branches showed</span>
+            <span className="lab">What we found</span>
             <span className="txt">{p.b}</span>
           </div>
         </motion.div>

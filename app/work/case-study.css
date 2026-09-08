@@ -1688,7 +1688,7 @@
 .cs-assume { display: grid; gap: 9px; margin: 16px 0 6px; }
 .cs-assume .pair {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 0.85fr) auto minmax(0, 1.15fr);
   align-items: stretch;
   gap: 12px;
 }
@@ -1710,7 +1710,7 @@
 .cs-assume .is-a .lab { color: var(--ink-faint); }
 .cs-assume .is-b .lab { color: var(--accent-ink); }
 .cs-assume .txt {
-  font-size: 13px; line-height: 1.5;
+  font-size: 12.5px; line-height: 1.5;
   overflow-wrap: anywhere;
 }
 .cs-assume .is-a .txt { color: var(--ink-faint); }
