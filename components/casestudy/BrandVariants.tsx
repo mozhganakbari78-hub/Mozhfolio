@@ -9,10 +9,31 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * rendered under three brand palettes, with the shared token names listed once
  * underneath. What changes is the value column, never the component.
  */
+/* `on` is the readable foreground for a filled surface in that brand, and
+   `tint` is what any brand-coloured text uses: the raw primary is too dark to
+   read on this page for two of the three palettes. */
 const BRANDS = [
-  { name: "Project 1", primary: "#2A539E", soft: "rgba(42,83,158,0.16)", tint: "#AABAD8" },
-  { name: "Project 2", primary: "#F9B741", soft: "rgba(249,183,65,0.16)", tint: "#FDE2B3" },
-  { name: "Project 3", primary: "#007A7F", soft: "rgba(0,122,127,0.16)", tint: "#99CACC" },
+  {
+    name: "Project 1",
+    primary: "#2A539E",
+    on: "#FFFFFF",
+    soft: "rgba(42,83,158,0.22)",
+    tint: "#AABAD8",
+  },
+  {
+    name: "Project 2",
+    primary: "#F9B741",
+    on: "#1A1206",
+    soft: "rgba(249,183,65,0.18)",
+    tint: "#FDE2B3",
+  },
+  {
+    name: "Project 3",
+    primary: "#007A7F",
+    on: "#FFFFFF",
+    soft: "rgba(0,122,127,0.24)",
+    tint: "#99CACC",
+  },
 ];
 
 const TOKENS = ["color.primary", "color.primary.soft", "color.primary.tint"];
@@ -38,18 +59,18 @@ export default function BrandVariants() {
             <span className="bname">{b.name}</span>
 
             {/* the same three elements every time, only the values differ */}
-            <span className="btn" style={{ background: b.primary }}>
+            <span className="btn" style={{ background: b.primary, color: b.on }}>
               Confirm
             </span>
-            <span className="btn is-ghost" style={{ borderColor: b.primary, color: b.primary }}>
+            <span className="btn is-ghost" style={{ borderColor: b.tint, color: b.tint }}>
               Cancel
             </span>
             <span className="chip" style={{ background: b.soft, color: b.tint }}>
-              <span className="dot" style={{ background: b.primary }} />
+              <span className="dot" style={{ background: b.tint }} />
               Pending
             </span>
             <span className="field">
-              <span className="fill" style={{ background: b.primary }} />
+              <span className="fill" style={{ background: b.tint }} />
             </span>
           </motion.div>
         ))}

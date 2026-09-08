@@ -1880,7 +1880,7 @@
 .cs-brands .btn {
   display: inline-flex; align-items: center; justify-content: center;
   height: 30px; border-radius: 8px;
-  font-size: 12px; font-weight: 600; color: #0d0f12;
+  font-size: 12px; font-weight: 600;
   border: 1px solid transparent;
 }
 .cs-brands .btn.is-ghost { background: transparent; border-style: solid; font-weight: 500; }
