@@ -3,7 +3,8 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
 import CsStats from "./CsStats";
 import Mockup from "./Mockup";
-import { TokenBridge, GovernanceFlow, SystemAnatomy, MultiBrandTokens, ChipDrop } from "./CsInlineArt";
+import { TokenBridge, GovernanceFlow, SystemAnatomy, ChipDrop } from "./CsInlineArt";
+import BrandVariants from "./BrandVariants";
 
 const components = [
   "Navigation",
@@ -176,7 +177,7 @@ export default function DesignSystemCase() {
           while each product keeps its own visual identity. Adopting engineering&apos;s naming cost
           us abstraction purity, not capability.
         </p>
-        <MultiBrandTokens />
+        <BrandVariants />
       </section>
 
       {/* 07 GOVERNANCE */}
