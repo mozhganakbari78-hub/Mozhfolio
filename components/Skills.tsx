@@ -7,6 +7,7 @@ import {
   Square3Stack3DIcon,
   DocumentCheckIcon,
   CpuChipIcon,
+  ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 
@@ -14,22 +15,27 @@ const capabilities = [
   {
     icon: MagnifyingGlassIcon,
     title: "Evidence earns scope",
-    body: "I don't challenge a brief because I disagree with it. I go get the data that gives the team a reason to reconsider it, then bring back a problem worth solving instead of an opinion.",
+    body: "I don't challenge a brief with opinion. I bring evidence that helps the team reconsider the problem, then align on what is worth solving.",
   },
   {
     icon: Square3Stack3DIcon,
     title: "Systems over screens",
-    body: "Component logic, token architecture, and a governance model the team actually uses. A design system is organisational memory: previously solved problems staying solved.",
+    body: "I design reusable decision systems, not just individual screens. Components, tokens, and governance turn solved problems into shared team knowledge.",
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: "Risk before polish",
+    body: "In high-impact workflows I make uncertainty visible before optimising the experience. The best decision is often preventing the wrong action, not just making the right one easier.",
   },
   {
     icon: DocumentCheckIcon,
     title: "Trade-offs, documented",
-    body: "Live products force compromises. I make them deliberately, write down what they cost, and leave the reasoning behind, so the next person inherits a decision, not a mess.",
+    body: "Live products require compromises. I make them explicit, document the cost, and leave the reasoning behind so the next decision starts from context, not confusion.",
   },
   {
     icon: CpuChipIcon,
     title: "Designed to be adopted",
-    body: "The cleanest model is worthless if the team needs a meeting to use it. I design inside the real constraint space (existing code, live operations, fixed deadlines) and optimise for what ships.",
+    body: "The cleanest model is worthless if the team needs a meeting to use it. I design within real constraints: existing code, operational needs, and delivery pressure, because adoption is the measure of success.",
   },
 ];
 
@@ -74,7 +80,9 @@ export default function Skills() {
                 whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="relative rounded-2xl border p-7 transition-colors duration-300 hover:border-[var(--accent-color)]"
+                className={`relative rounded-2xl border p-7 transition-colors duration-300 hover:border-[var(--accent-color)]${
+                  ci === capabilities.length - 1 ? " sm:col-span-2" : ""
+                }`}
                 style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
               >
                 <span
