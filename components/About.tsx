@@ -57,46 +57,11 @@ export default function About() {
               users struggle, and stay involved through implementation because that is often where
               design decisions meet reality.
             </p>
-            <p className="text-[14.5px] leading-[1.65] mb-8" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
               Currently, I work on a corporate banking platform used by 58,000 organizations,
               designing complex financial workflows and internal operational tools.
             </p>
 
-            {/* How I work */}
-            <div className="mono-label mb-5" style={{ color: "var(--text-tertiary)" }}>
-              How I work
-            </div>
-            <div className="space-y-3">
-              {traits.map((trait, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-start gap-3"
-                >
-                  <span
-                    className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "var(--accent-color)" }}
-                  />
-                  <span className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                    {trait}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.p
-              className="text-[12.5px] leading-relaxed mt-7 pt-5"
-              style={{ color: "var(--text-tertiary)", borderTop: "1px solid var(--border-subtle)" }}
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              One pattern I&apos;ve noticed in my own work: strong evidence before a decision,
-              strong reflection after it, and not enough measurement defined before launch.
-              I&apos;m fixing that at the design stage rather than the retrospective.
-            </motion.p>
           </motion.div>
 
           {/* Right — Timeline */}
@@ -168,6 +133,52 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        {/* How I work — sits under both columns so the two stay the same height */}
+        <div className="mt-16 md:mt-20 pt-10" style={{ borderTop: "1px solid var(--border-subtle)" }}>
+          <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
+            How I work
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {traits.map((trait, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, delay: 0.35 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-xl p-4"
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-strong)",
+                }}
+              >
+                <span
+                  aria-hidden
+                  className="block w-1.5 h-1.5 rounded-full mb-3"
+                  style={{ background: "var(--accent-color)" }}
+                />
+                <span
+                  className="text-[13px] leading-relaxed block"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {trait}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-[12.5px] leading-relaxed mt-8 max-w-3xl"
+            style={{ color: "var(--text-tertiary)" }}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            One pattern I&apos;ve noticed in my own work: strong evidence before a decision, strong
+            reflection after it, and not enough measurement defined before launch. I&apos;m fixing
+            that at the design stage rather than the retrospective.
+          </motion.p>
         </div>
       </div>
     </section>
