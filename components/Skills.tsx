@@ -69,36 +69,40 @@ export default function Skills() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        {/* One list rather than five boxes: an odd number of cards left the
+            last one stranded, and the stacked icon/title pair opened a gap in
+            every card that read as unfinished. */}
+        <div
+          className="rounded-2xl border overflow-hidden"
+          style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+        >
           {capabilities.map((cap, ci) => {
             const Icon = cap.icon;
             return (
               <motion.div
                 key={cap.title}
-                initial={isTouch ? false : { opacity: 0, y: 28 }}
+                initial={isTouch ? false : { opacity: 0, y: 16 }}
                 animate={isTouch ? { opacity: 1, y: 0 } : undefined}
                 whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.6, delay: ci * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative rounded-2xl border p-7 transition-colors duration-300 hover:border-[var(--accent-color)]${
-                  ci === capabilities.length - 1 ? " sm:col-span-2" : ""
-                }`}
-                style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className="group grid md:grid-cols-[26px_260px_1fr] gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
+                style={{
+                  borderTop: ci === 0 ? "none" : "1px solid var(--border-subtle)",
+                }}
               >
-                <span
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-8 border"
-                  style={{ borderColor: "var(--border-strong)", background: "var(--bg-secondary)" }}
-                >
-                  <Icon style={{ width: 20, height: 20, color: "var(--text-primary)" }} />
-                </span>
+                <Icon
+                  style={{ width: 20, height: 20, color: "var(--accent-ink)" }}
+                  className="mt-0.5 hidden md:block"
+                />
                 <h3
-                  className="text-lg font-semibold tracking-tight mb-3"
+                  className="text-[16px] font-semibold tracking-tight"
                   style={{ color: "var(--text-primary)", letterSpacing: "-0.015em" }}
                 >
                   {cap.title}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed"
+                  className="text-[13.5px] leading-relaxed"
                   style={{ color: "var(--text-tertiary)" }}
                 >
                   {cap.body}
