@@ -34,7 +34,8 @@ export default function BatchTransferCase() {
           Batch payments are high-trust banking workflows. A single invalid row could block an
           entire payment file, while an incorrect recipient could still result in a{" "}
           <strong>successful transfer</strong>. I redesigned the workflow to make failures
-          recoverable and risks visible before money moved.
+          recoverable and risks visible before money moved, against a launch date nobody could
+          move.
         </p>
 
         <dl className="cs-meta">
