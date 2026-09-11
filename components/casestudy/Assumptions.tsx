@@ -12,19 +12,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const PAIRS = [
   {
     a: "Improving processing speed would create the biggest impact.",
-    b: "The main frustration was not how long the process took. It was the uncertainty after submission: when something failed, employees had limited visibility into what went wrong and how to recover.",
+    b: "The bigger issue was not speed alone. It was the lack of visibility when something failed, and how to recover from it.",
   },
   {
-    a: "Batch failures were occasional exceptions that needed better error handling.",
-    b: "Failures happened often enough that employees had developed manual ways of identifying problematic rows and recovering from failed batches.",
+    a: "Existing validation was enough to reduce transfer risk.",
+    b: "A technically valid account did not guarantee the intended recipient.",
   },
   {
-    a: "Existing validation helped employees understand which transactions needed attention.",
-    b: "Employees could see that something failed, but identifying the problematic row and the reason required manual investigation.",
-  },
-  {
-    a: "Valid account details were enough to reduce transfer risk.",
-    b: "Account validation confirmed that an account existed. It did not confirm that the account belonged to the intended recipient.",
+    a: "The batch was the right unit of failure.",
+    b: "The real unit of recovery was the individual transaction.",
   },
 ];
 

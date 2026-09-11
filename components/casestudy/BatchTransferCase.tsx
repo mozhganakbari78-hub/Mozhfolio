@@ -31,10 +31,10 @@ export default function BatchTransferCase() {
           A wrong transfer should never leave.
         </h1>
         <p className="cs-lede">
-          Payroll is a high-trust workflow. A failed batch slows branch operations, but a
-          successful wrong transfer is the bigger risk:{" "}
-          <strong>money moving to the wrong person</strong>. I changed both failure modes under a
-          fixed deadline.
+          Batch payments are high-trust banking workflows. A single invalid row could block an
+          entire payment file, while an incorrect recipient could still result in a{" "}
+          <strong>successful transfer</strong>. I redesigned the workflow to make failures
+          recoverable and risks visible before money moved.
         </p>
 
         <dl className="cs-meta">
@@ -61,9 +61,9 @@ export default function BatchTransferCase() {
         <span className="cs-num">01 / What we learned in branches</span>
         <h2>Failures were arriving at the wrong moment</h2>
         <p>
-          We researched this in branches rather than from the requirements doc. We observed
-          employees processing real payroll files and interviewed both the operators who prepare
-          batch requests and the approvers who authorize them.
+          We observed branch employees processing batch files and looked beyond the happy path:
+          where errors appeared, how users recovered, and which decisions still depended on manual
+          verification.
         </p>
         <p>
           The problem was not that the process was slow. It was that failures surfaced at the wrong
@@ -151,8 +151,8 @@ export default function BatchTransferCase() {
 
       {/* 01b THE TWO FAILURES, DRAWN */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / The same two failures, drawn</span>
-        <h2>One stops the work. The other doesn&apos;t look like a failure at all.</h2>
+        <span className="cs-num">01 / Problem framing</span>
+        <h2>The workflow had two different failure points</h2>
         <FailureModes />
       </section>
 
@@ -196,6 +196,10 @@ export default function BatchTransferCase() {
           <strong>recipient risk before approval</strong>, and give the employee enough to make a
           safe decision <strong>while money can still be stopped</strong>.
         </p>
+        <p>
+          It also changed the design goal, from preventing every error to making the right errors
+          visible at the right moment.
+        </p>
       </section>
 
       {/* 02b THE FLOW, SKETCHED */}
@@ -213,8 +217,10 @@ export default function BatchTransferCase() {
         <p>
           Treating the batch as one unit made the interface simple and recovery disproportionately
           expensive, while ignoring that most rows in the file were perfectly valid. Now each
-          transaction succeeds or fails on its own. Instead of restarting a 500-row file because of
-          one mistake, an employee fixes only the affected rows and the rest keep processing.
+          transaction succeeds or fails on its own. That changed the recovery model from
+          investigating a failed file to resolving specific transactions: instead of restarting a
+          500-row file because of one mistake, an employee fixes only the affected rows and the
+          rest keep processing.
         </p>
         <FailureUnit />
       </section>
@@ -260,7 +266,8 @@ export default function BatchTransferCase() {
                 I deliberately kept an imperfect matching mechanism out of the decision itself. A
                 high-confidence match can still be wrong on a large transfer, and a lower one can be
                 obviously fine to someone who knows the client. The system surfaces evidence; the
-                authorized human still makes the call.
+                authorized human still makes the call. In financial workflows, automation should
+                reduce uncertainty, not remove accountability.
               </div>
             </div>
           </div>
@@ -295,6 +302,10 @@ export default function BatchTransferCase() {
           batch carries the same uncertainty. Because an approver could proceed without it, the
           interface had to make the verified state and any mismatch unmissable rather than rely on
           the feature simply existing.
+        </p>
+        <p>
+          The goal was not full automation. It was giving the right person better evidence before an
+          irreversible action.
         </p>
         <div className="cs-pull">
           Not a perfect safety mechanism. A conscious balance between operational speed and risk
@@ -403,9 +414,9 @@ export default function BatchTransferCase() {
             The failed batch interrupted work and frustrated people, so it got all the attention.
             Research surfaced a worse category: a transaction that completes perfectly, to the wrong
             recipient. Helping users recover from errors is not the whole job. Sometimes the job is
-            helping them recognize a risky action while it is still reversible. In financial
-            products, design is often less about removing every step and more about helping people
-            make the right decision at the right moment.
+            helping them recognize a risky action while it is still reversible. In high-trust
+            products, reducing friction is not always about removing steps. Sometimes it is about
+            adding the right information before a critical decision.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />

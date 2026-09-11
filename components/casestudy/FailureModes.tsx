@@ -16,7 +16,7 @@ export default function FailureModes() {
     <div className="cs-fm">
       {/* batch-level: one row takes the rest down */}
       <div className="fm">
-        <span className="lab is-fail">Failure 01 · Batch level</span>
+        <span className="lab is-fail">Failure 01 · Processing failure</span>
         <div className="head">
           <span>54 transactions uploaded</span>
           <span className="ok">53 of them valid</span>
