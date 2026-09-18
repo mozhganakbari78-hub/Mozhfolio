@@ -86,14 +86,14 @@ export default function Skills() {
                 whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="group grid md:grid-cols-[26px_260px_1fr] gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
+                className="group grid grid-cols-[24px_1fr] md:grid-cols-[26px_260px_1fr] gap-x-4 md:gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
                 style={{
                   borderTop: ci === 0 ? "none" : "1px solid var(--border-subtle)",
                 }}
               >
                 <Icon
                   style={{ width: 20, height: 20, color: "var(--accent-ink)" }}
-                  className="mt-0.5 hidden md:block"
+                  className="mt-[3px] md:mt-0.5 shrink-0"
                 />
                 <h3
                   className="text-[16px] font-semibold tracking-tight"
@@ -102,7 +102,7 @@ export default function Skills() {
                   {cap.title}
                 </h3>
                 <p
-                  className="text-[13.5px] leading-relaxed"
+                  className="col-start-2 md:col-start-auto text-[13.5px] leading-relaxed"
                   style={{ color: "var(--text-tertiary)" }}
                 >
                   {cap.body}
