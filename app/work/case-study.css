@@ -1777,7 +1777,9 @@
 /* ── the early flow sketch, shown with its margin notes ────────────────── */
 .cs-sketch {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  /* the paper column hugs the sketch instead of reserving a fixed share, so a
+     portrait photo is not shrunk to fit a column it never fills */
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
   gap: 30px;
   align-items: center;
   margin: 16px 0 6px;
@@ -1801,8 +1803,14 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: min(52vh, 470px);
+  max-height: min(66vh, 600px);
   object-fit: contain;
+}
+/* vertical pages scroll, so the sketch is not competing with a panel height:
+   let it use the full column width and stay readable */
+.cs-vertical .cs-sketch .paper img {
+  width: 100%;
+  max-height: none;
 }
 .cs-sketch .notes { display: grid; align-content: center; gap: 14px; min-width: 0; }
 .cs-sketch .eyebrow {
@@ -1840,7 +1848,6 @@
   .cs-ins .ins { padding: 14px 15px 13px; }
   .cs-ins .ins .t { font-size: 14px; }
   .cs-sketch { grid-template-columns: 1fr; gap: 18px; }
-  .cs-sketch .paper img { max-height: min(52vh, 420px); }
   .cs-sketch .note .t { font-size: 13.5px; }
 }
 
