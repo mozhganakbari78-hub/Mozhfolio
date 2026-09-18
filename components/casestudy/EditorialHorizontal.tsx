@@ -154,7 +154,10 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
         const c = r.left + r.width / 2;
         const dist = Math.min(1, Math.abs(c - trackCenter) / (tr.width * 0.9));
         const p = 1 - dist;
-        const scale = 0.86 + 0.14 * p;
+        // A wide scale range means the compositor is stretching a rasterised
+        // layer for most of the scroll, which softens the screenshot text.
+        // Keep the lift small and let opacity carry the reveal.
+        const scale = 0.96 + 0.04 * p;
         const op = 0.35 + 0.65 * p;
         el.style.setProperty("--mk-scale", scale.toFixed(3));
         el.style.setProperty("--mk-op", op.toFixed(3));
