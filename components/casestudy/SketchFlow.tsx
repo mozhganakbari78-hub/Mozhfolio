@@ -4,29 +4,29 @@ import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** The notes written in the margin of the sketch, in the order they appear. */
+/** Where each rule from the reframe ended up once the flow had a shape. */
 const NOTES = [
   {
     n: "01",
-    t: "Same nav as other flows",
-    p: "Reuse the platform shell so the tool doesn't read as a separate product.",
+    t: "The error had to get smaller",
+    p: "The first rule landed in the middle step. A file arrives as one thing and leaves it as a set of separate decisions, each row carrying its own state.",
   },
   {
     n: "02",
-    t: "Show row-level status",
-    p: "The batch stops being one verdict. Every row carries its own state.",
+    t: "The risk had to surface before approval",
+    p: "The second rule needed a step that did not exist yet: a pause between uploading a file and committing it, while a wrong transfer can still be stopped.",
   },
   {
     n: "03",
-    t: "Only valid rows will be processed",
-    p: "The confirm step states what will happen and what will be skipped, before anything runs.",
+    t: "Confirm had to state the consequence",
+    p: "The third rule turned the last screen from a button into a sentence. What will be sent and what will be skipped is agreed before anything runs.",
   },
 ];
 
 /**
- * The early flow sketch, shown with the annotations that were written in its
- * margin. A portrait photo alone left a lot of empty panel and no reason to
- * look at it; pairing it with the notes makes it evidence rather than decoration.
+ * The early flow sketch, paired with the argument it settled. The notes
+ * deliberately do not repeat the handwriting in the photo: they trace the three
+ * rules from the reframe to the step each one ended up in.
  */
 export default function SketchFlow({ src }: { src: string }) {
   const url = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`;
@@ -56,7 +56,7 @@ export default function SketchFlow({ src }: { src: string }) {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4 }}
         >
-          From the sketchbook · before any UI existed
+          From the sketchbook · where each rule landed
         </motion.span>
 
         {NOTES.map((note, i) => (
