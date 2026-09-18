@@ -56,8 +56,8 @@ export default function TicketWall() {
           <motion.div
             key={n.en}
             className={`note is-${n.tag}`}
-            initial={{ opacity: 0, y: -18, rotate: i % 2 ? 1.2 : -1.2 }}
-            whileInView={{ opacity: 1, y: 0, rotate: i % 2 ? 0.8 : -0.8 }}
+            initial={{ opacity: 0, y: -14 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{
               delay: 0.1 + i * 0.09,

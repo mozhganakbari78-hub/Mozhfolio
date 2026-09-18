@@ -43,6 +43,8 @@ export default function SketchFlow({ src }: { src: string }) {
         <img
           src={url}
           alt="Hand-drawn three-step wireframe flow: upload file, review and validate, confirm"
+          loading="lazy"
+          decoding="async"
         />
       </motion.figure>
 

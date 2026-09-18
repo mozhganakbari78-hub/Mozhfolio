@@ -16,7 +16,7 @@ export default function Mockup({
     <>
       <div className="cs-mockup">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={url} alt={alt} />
+        <img src={url} alt={alt} loading="lazy" decoding="async" />
       </div>
       {caption ? <div className="cs-mockup-caption">{caption}</div> : null}
     </>

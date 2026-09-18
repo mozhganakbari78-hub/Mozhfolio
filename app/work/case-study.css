@@ -1785,6 +1785,8 @@
 /* the photo is a paper artifact: warm ground, soft lift, a little off-axis */
 .cs-sketch .paper {
   margin: 0;
+  justify-self: center;
+  max-width: 100%;
   border-radius: 6px;
   overflow: hidden;
   background: #f4f1ea;
@@ -1794,11 +1796,13 @@
 }
 .cs-sketch .paper img {
   display: block;
-  width: 100%;
+  /* the sketch is portrait: fit it to the panel height instead of cropping
+     the bottom third of the flow away */
+  width: auto;
+  max-width: 100%;
   height: auto;
-  max-height: min(44vh, 430px);
-  object-fit: cover;
-  object-position: top center;
+  max-height: min(52vh, 470px);
+  object-fit: contain;
 }
 .cs-sketch .notes { display: grid; align-content: center; gap: 14px; min-width: 0; }
 .cs-sketch .eyebrow {
@@ -1836,7 +1840,7 @@
   .cs-ins .ins { padding: 14px 15px 13px; }
   .cs-ins .ins .t { font-size: 14px; }
   .cs-sketch { grid-template-columns: 1fr; gap: 18px; }
-  .cs-sketch .paper img { max-height: 46vh; }
+  .cs-sketch .paper img { max-height: min(52vh, 420px); }
   .cs-sketch .note .t { font-size: 13.5px; }
 }
 
