@@ -318,10 +318,11 @@
   transform-origin: center center;
   opacity: var(--mk-op, 0.4);
   transform: scale(var(--mk-scale, 0.96));
-  transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s ease, box-shadow .3s ease;
-  /* opacity only: promoting the transform makes the compositor raster this
-     layer once and stretch the bitmap while it scales, which reads as a blur
-     over screenshot text */
+  /* no transition on transform/opacity: JS sets these every frame, so a
+     transition would restart sixty times a second and always lag the scroll.
+     Promoting the transform makes the compositor raster the layer once and
+     stretch the bitmap while it scales, which reads as blurred screenshots */
+  transition: box-shadow .3s ease;
   will-change: opacity;
 }
 /* window chrome bar */
@@ -622,7 +623,15 @@
   background: var(--paper);
 }
 .cs-tl-line { position: absolute; left: 34px; right: 34px; top: 22px; height: 2px; background: var(--line); border-radius: 2px; }
-.cs-tl-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .12s linear; }
+/* driven per frame from JS: scaleX is composited, where animating `width`
+   dirtied layout on every scroll frame and restarted a transition each time */
+.cs-tl-fill {
+  height: 100%; width: 100%;
+  background: var(--accent); border-radius: 2px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
 .cs-tl-labels { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; gap: 8px; }
 .cs-tl-item {
   background: none; border: 0; cursor: pointer; padding: 0;

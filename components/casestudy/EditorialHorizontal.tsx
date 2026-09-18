@@ -74,7 +74,7 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
 
     targetX.current = track.scrollLeft;
     const SPEED = 1.5;
-    const EASE = 0.16;
+    const EASE = 0.22;
 
     const animate = () => {
       const cur = track.scrollLeft;
@@ -146,56 +146,67 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
     if (!track) return;
     const mockups = Array.from(track.querySelectorAll<HTMLElement>(".cs-mockup"));
 
-    const updateMockups = () => {
-      const tr = track.getBoundingClientRect();
-      const trackCenter = tr.left + tr.width / 2;
-      for (const el of mockups) {
-        const r = el.getBoundingClientRect();
-        const c = r.left + r.width / 2;
-        const dist = Math.min(1, Math.abs(c - trackCenter) / (tr.width * 0.9));
-        const p = 1 - dist;
-        // A wide scale range means the compositor is stretching a rasterised
-        // layer for most of the scroll, which softens the screenshot text.
-        // Keep the lift small and let opacity carry the reveal.
-        const scale = 0.96 + 0.04 * p;
-        const op = 0.35 + 0.65 * p;
-        el.style.setProperty("--mk-scale", scale.toFixed(3));
-        el.style.setProperty("--mk-op", op.toFixed(3));
-      }
-    };
-
-    // Continuous timeline sync: find the current stage from the viewport
-    // center, then interpolate the fill to the exact measured position
-    // between that stage's dot and the next one. Fill and dots can never
-    // drift apart because the fill is derived from the dots themselves.
-    // Panel offsets only move on resize, so measure them once instead of on
-    // every scroll event. Reading offsetLeft mid-scroll forces a synchronous
-    // layout, and the smooth-scroll rAF is writing scrollLeft on the same
-    // frame, which is what made scrolling feel heavy.
+    // Everything the scroll handler needs is measured here and nowhere else.
+    // Reading a rect inside the scroll handler forces a synchronous layout on
+    // a frame that has already written scrollLeft, which is what made the
+    // track feel heavy: the browser had to re-lay-out the whole article
+    // before it could answer, sixty times a second.
     let anchors: number[] = [];
+    let mockCenters: number[] = [];
+    let dotX: number[] = [];
+    let lineW = 1;
+    let viewHalf = 0;
+    // Last value written per mockup: setting a custom property invalidates
+    // style for that subtree, and most mockups sit pinned at their resting
+    // values for the whole scroll.
+    const lastP = new Array(mockups.length).fill(-1);
+
     const measure = () => {
       anchors = stages.map((s) => panels[s.firstIdx].el.offsetLeft);
+      viewHalf = track.clientWidth / 2;
+
+      const tr = track.getBoundingClientRect();
+      const sl = track.scrollLeft;
+      mockCenters = mockups.map((el) => {
+        const r = el.getBoundingClientRect();
+        return r.left - tr.left + sl + r.width / 2;
+      });
+
+      const line = lineRef.current;
+      if (line) {
+        const lr = line.getBoundingClientRect();
+        lineW = lr.width || 1;
+        dotX = dotRefs.current.map((d) => {
+          if (!d) return 0;
+          const rd = d.getBoundingClientRect();
+          return rd.left + rd.width / 2 - lr.left;
+        });
+      } else {
+        lineW = 1;
+        dotX = [];
+      }
     };
     measure();
 
     let lastStage = -1;
     let queued = false;
 
+    // Continuous timeline sync: find the current stage from the viewport
+    // centre, then interpolate the fill between that stage's dot and the next
+    // one. Pure arithmetic over the cached measurements, so the frame is a
+    // write-only frame.
     const sync = () => {
       queued = false;
-      if (stages.length) {
-        const center = track.scrollLeft + track.clientWidth / 2;
+      const center = track.scrollLeft + viewHalf;
 
+      if (stages.length) {
         let k = 0;
-        anchors.forEach((a, i) => {
-          if (a <= center) k = i;
-        });
-        let frac = 0;
+        for (let i = 0; i < anchors.length; i++) if (anchors[i] <= center) k = i;
+
+        let frac = 1;
         if (k < anchors.length - 1) {
           frac = (center - anchors[k]) / (anchors[k + 1] - anchors[k]);
           frac = Math.max(0, Math.min(1, frac));
-        } else {
-          frac = 1;
         }
 
         // Only touch React state when the stage actually changes; this used to
@@ -205,20 +216,26 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
           setActiveStage(k);
         }
 
-        const line = lineRef.current;
         const fill = fillRef.current;
-        const dA = dotRefs.current[k];
-        const dB = dotRefs.current[k + 1] ?? dA;
-        if (line && fill && dA && dB) {
-          const lr = line.getBoundingClientRect();
-          const ra = dA.getBoundingClientRect();
-          const rb = dB.getBoundingClientRect();
-          const xa = ra.left + ra.width / 2 - lr.left;
-          const xb = rb.left + rb.width / 2 - lr.left;
-          fill.style.width = `${Math.max(0, xa + (xb - xa) * frac)}px`;
+        const xa = dotX[k] ?? 0;
+        const xb = dotX[k + 1] ?? xa;
+        if (fill) {
+          const x = Math.max(0, xa + (xb - xa) * frac);
+          fill.style.transform = `scaleX(${(x / lineW).toFixed(4)})`;
         }
       }
-      updateMockups();
+
+      const reach = viewHalf * 1.8;
+      for (let i = 0; i < mockups.length; i++) {
+        const p = 1 - Math.min(1, Math.abs(mockCenters[i] - center) / reach);
+        if (Math.abs(p - lastP[i]) < 0.004) continue;
+        lastP[i] = p;
+        // A wide scale range means the compositor is stretching a rasterised
+        // layer for most of the scroll, which softens the screenshot text.
+        // Keep the lift small and let opacity carry the reveal.
+        mockups[i].style.setProperty("--mk-scale", (0.96 + 0.04 * p).toFixed(3));
+        mockups[i].style.setProperty("--mk-op", (0.35 + 0.65 * p).toFixed(3));
+      }
     };
 
     // Coalesce bursts of scroll events into one read/write per frame.
@@ -232,6 +249,9 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       onScroll();
     };
     sync();
+    // Label widths move the dots once the mono webfont lands, so take the
+    // measurements again rather than caching the fallback-font positions.
+    document.fonts?.ready.then(onResize).catch(() => {});
     track.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     return () => {
