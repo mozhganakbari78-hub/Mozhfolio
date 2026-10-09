@@ -9,6 +9,7 @@ import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
 import ErrorMessagesCase from "@/components/casestudy/ErrorMessagesCase";
 import "../case-study.css";
 import "../ticket-ratio.css";
+import "../password-gate.css";
 
 const cases: Record<string, React.ComponentType> = {
   "reducing-support-friction": SupportFrictionCase,
@@ -17,9 +18,13 @@ const cases: Record<string, React.ComponentType> = {
   "error-messages": ErrorMessagesCase,
 };
 
-const protectedSlugs: Record<string, string> = {
-  // Password temporarily removed — case study is open to everyone.
-};
+// Every case study is behind the same code for now. The check runs in the
+// browser, so this is a courtesy gate, not real access control.
+const CASE_PASSWORD = "709080";
+
+const protectedSlugs: Record<string, string> = Object.fromEntries(
+  Object.keys(cases).map((slug) => [slug, CASE_PASSWORD])
+);
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));

@@ -1,7 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
+const STORE_KEY = "cs-unlocked";
+
+/**
+ * Soft gate in front of a case study. The password is checked in the browser,
+ * so this keeps the work out of casual reach rather than genuinely secret:
+ * the page is a static export and its markup ships with the site.
+ *
+ * Unlocking once unlocks every gated case for the rest of the session, and a
+ * `?k=<password>` link skips the dialog entirely so a single link can go in a
+ * resume or an application.
+ */
 export default function PasswordGate({
   password,
   children,
@@ -10,22 +22,27 @@ export default function PasswordGate({
   children: React.ReactNode;
 }) {
   const [unlocked, setUnlocked] = useState(false);
+  const [ready, setReady] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
 
-  // Auto-unlock via a share link, e.g. ?k=000 — lets you put one clickable
-  // link in your resume so recruiters never have to type the password.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const key = params.get("k") ?? params.get("key");
-    if (key && key === password) setUnlocked(true);
+    const remembered = sessionStorage.getItem(STORE_KEY) === password;
+    if (remembered || key === password) {
+      sessionStorage.setItem(STORE_KEY, password);
+      setUnlocked(true);
+    }
+    setReady(true);
   }, [password]);
 
   if (unlocked) return <>{children}</>;
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (value === password) {
+    if (value.trim() === password) {
+      sessionStorage.setItem(STORE_KEY, password);
       setUnlocked(true);
       setError(false);
     } else {
@@ -34,75 +51,46 @@ export default function PasswordGate({
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "#0a0a0a",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-      }}
-    >
-      <form
-        onSubmit={submit}
-        style={{
-          background: "#141414",
-          border: "1px solid #2a2a2a",
-          borderRadius: 12,
-          padding: 32,
-          width: "min(360px, 90vw)",
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-        }}
-      >
-        <h2 style={{ margin: 0, color: "#fff", fontSize: 18, fontWeight: 600 }}>
-          Protected case study
-        </h2>
-        <p style={{ margin: 0, color: "#888", fontSize: 14, lineHeight: 1.5 }}>
-          Enter the password to view this case study.
+    <div className="pw-gate">
+      {/* Held back until the session check has run, so a remembered unlock
+          never flashes the dialog on the way to the case study. */}
+      <form className="pw-card" onSubmit={submit} hidden={!ready}>
+        <span className="pw-eyebrow">Protected case study</span>
+        <h1 className="pw-title">This one is behind a password</h1>
+        <p className="pw-body">
+          The work is covered by a confidentiality agreement, so it is shared on request rather
+          than published. Enter the code you were given to read it.
         </p>
+
+        <label className="pw-label" htmlFor="pw-input">
+          Access code
+        </label>
         <input
+          id="pw-input"
           type="password"
+          inputMode="numeric"
+          autoComplete="off"
+          autoFocus
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
             setError(false);
           }}
-          placeholder="Password"
-          autoFocus
-          style={{
-            background: "#0a0a0a",
-            border: `1px solid ${error ? "#ef4444" : "#2a2a2a"}`,
-            borderRadius: 8,
-            padding: "10px 12px",
-            color: "#fff",
-            fontSize: 16,
-            outline: "none",
-          }}
+          className={`pw-input${error ? " is-error" : ""}`}
+          aria-invalid={error}
+          aria-describedby={error ? "pw-error" : undefined}
         />
-        {error && (
-          <span style={{ color: "#ef4444", fontSize: 13 }}>
-            Incorrect password.
-          </span>
-        )}
-        <button
-          type="submit"
-          style={{
-            background: "#2563eb",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            padding: "10px 12px",
-            fontSize: 14,
-            fontWeight: 500,
-            cursor: "pointer",
-          }}
-        >
+        <span id="pw-error" className="pw-error" hidden={!error}>
+          That code is not right.
+        </span>
+
+        <button type="submit" className="pw-submit">
           Unlock
         </button>
+
+        <Link href="/#projects" className="pw-back">
+          Back to all work
+        </Link>
       </form>
     </div>
   );
