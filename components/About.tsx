@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
-  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Share design ownership of Bank Melli Iran's corporate banking platform (58,000 organizations), with primary ownership of its back-office domain. Co-own the design system across both: 90+ screens, three brand configurations, governed with the frontend tech lead." },
+  { year: "Apr 2024 – Present", role: "Product Designer", company: "Sadad Informatic Corporation", note: "Share design ownership of Bank Melli Iran's corporate banking platform, with primary ownership of its back-office domain. Co-own the design system across both: 90+ screens, three brand configurations, governed with the frontend tech lead." },
   { year: "Nov 2023 – May 2024", role: "User Experience Designer", company: "IRO Team", note: "Mobile monitoring for IoT greenhouse systems. Turned programming-style conditional logic into visual rule building, so non-technical operators could automate without understanding if/else, and saw conflicting rules before confirming." },
   { year: "Nov 2021 – Nov 2023", role: "UI/UX Specialist", company: "Wallex Exchange · Algo Team", note: "Customer-facing trading experiences, translating crypto concepts into structured workflows. Validated MVPs with in-house traders and mentored an incoming design intern." },
   { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
@@ -58,8 +58,8 @@ export default function About() {
               design decisions meet reality.
             </p>
             <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
-              Currently, I work on a corporate banking platform used by 58,000 organizations,
-              designing complex financial workflows and internal operational tools.
+              Currently, I work on a corporate banking platform for organizational customers, designing
+              complex financial workflows and internal operational tools.
             </p>
 
           </motion.div>
