@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/gtag";
 
-const STORE_KEY = "cs-unlocked";
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/akbarimozhgan99@gmail.com";
 
 const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
@@ -14,9 +13,9 @@ const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
  * so this keeps the work out of casual reach rather than genuinely secret:
  * the page is a static export and its markup ships with the site.
  *
- * Unlocking once unlocks every gated case for the rest of the session, and a
- * `?k=<password>` link skips the dialog entirely so a single link can go in a
- * resume or an application.
+ * Nothing is remembered: the code is asked for on every page load. A
+ * `?k=<password>` link is the one way past the dialog, so a single link can go
+ * in a resume or an application without the reader typing anything.
  *
  * Anyone without a code can ask for one from the same dialog. A gate with no
  * way through is a dead end; this turns it into a conversation.
@@ -28,8 +27,8 @@ export default function PasswordGate({
   password: string;
   children: React.ReactNode;
 }) {
-  const [unlocked, setUnlocked] = useState(false);
-  const [ready, setReady] = useState(false);
+  // One piece of state so the mount check is a single update, not a cascade.
+  const [gate, setGate] = useState({ unlocked: false, ready: false });
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
 
@@ -38,24 +37,24 @@ export default function PasswordGate({
   const [reqErrors, setReqErrors] = useState<{ name?: string; email?: string }>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
+  // The code is asked for on every visit: nothing is remembered between page
+  // loads. Only an explicit ?k= link skips the dialog, and that has to be
+  // read after mount because the markup is prerendered.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const key = params.get("k") ?? params.get("key");
-    const remembered = sessionStorage.getItem(STORE_KEY) === password;
-    if (remembered || key === password) {
-      sessionStorage.setItem(STORE_KEY, password);
-      setUnlocked(true);
-    }
-    setReady(true);
+    // window does not exist during the static export, so the share-link check
+    // cannot happen during render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setGate({ unlocked: key === password, ready: true });
   }, [password]);
 
-  if (unlocked) return <>{children}</>;
+  if (gate.unlocked) return <>{children}</>;
 
   const submitCode = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim() === password) {
-      sessionStorage.setItem(STORE_KEY, password);
-      setUnlocked(true);
+      setGate({ unlocked: true, ready: true });
       setError(false);
     } else {
       setError(true);
@@ -102,7 +101,7 @@ export default function PasswordGate({
     <div className="pw-gate">
       {/* Held back until the session check has run, so a remembered unlock
           never flashes the dialog on the way to the case study. */}
-      <div className="pw-card" hidden={!ready}>
+      <div className="pw-card" hidden={!gate.ready}>
         {mode === "code" ? (
           <form onSubmit={submitCode}>
             <span className="pw-eyebrow">Protected case study</span>
