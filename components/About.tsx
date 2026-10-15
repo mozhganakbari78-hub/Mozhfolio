@@ -21,33 +21,62 @@ const traits = [
   "I optimize for solutions teams can build and users can successfully adopt.",
 ];
 
-/** The About copy. It sits in the left column next to the resume, and in the
+/** The About copy, as four short chapters. A single column of four equal
+ *  paragraphs read as a wall and gave the eye nothing to land on; a label per
+ *  chapter makes the section skimmable without cutting anything. */
+const story = [
+  {
+    label: "Background",
+    body: "Five years of designing enterprise banking and fintech products. Most of my work has been inside existing systems: products with real users, established workflows, technical limitations, and business constraints.",
+    lede: true,
+  },
+  {
+    label: "Why these products",
+    body: "I enjoy those environments. The work is understanding what already exists, finding the real problem behind the request, and designing something the team can actually build and users can actually adopt.",
+  },
+  {
+    label: "In practice",
+    body: "That means working closely with Product, Engineering, and Support. I look for evidence before proposing solutions, read support patterns to understand where users struggle, and stay involved through implementation because that is often where design decisions meet reality.",
+  },
+  {
+    label: "Now",
+    body: "I work on a corporate banking platform for organizational customers, designing complex financial workflows and internal back-office tools.",
+  },
+];
+
+/** The copy block. It sits in the left column next to the resume, and in the
  *  right column once the resume is hidden, so it lives in one place. */
-function AboutProse() {
+function AboutProse({ inView }: { inView: boolean }) {
   return (
-    <>
-      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-        Five years of designing enterprise banking and fintech products. Most of my work has
-        been inside existing systems: products with real users, established workflows,
-        technical limitations, and business constraints.
-      </p>
-      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-        I enjoy working in those environments because the challenge is rarely creating the
-        perfect solution from scratch. It is understanding what already exists, finding the
-        real problem behind the request, and designing something the team can actually build
-        and users can actually adopt.
-      </p>
-      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-        In practice, that means working closely with Product, Engineering, and Support. I look
-        for evidence before proposing solutions, read support patterns to understand where
-        users struggle, and stay involved through implementation because that is often where
-        design decisions meet reality.
-      </p>
-      <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
-        Currently, I work on a corporate banking platform for organizational customers,
-        designing complex financial workflows and internal back-office tools.
-      </p>
-    </>
+    <div>
+      {story.map((chapter, i) => (
+        <motion.div
+          key={chapter.label}
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, delay: 0.2 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className={i === 0 ? "" : "mt-6 pt-6"}
+          style={i === 0 ? undefined : { borderTop: "1px solid var(--border-subtle)" }}
+        >
+          <div className="mono-label mb-2.5" style={{ color: "var(--text-tertiary)" }}>
+            {chapter.label}
+          </div>
+          <p
+            className={
+              chapter.lede
+                ? "text-[16px] md:text-[17px] leading-[1.6]"
+                : "text-[14.5px] leading-[1.65]"
+            }
+            style={{
+              color: chapter.lede ? "var(--text-primary)" : "var(--text-secondary)",
+              letterSpacing: chapter.lede ? "-0.01em" : undefined,
+            }}
+          >
+            {chapter.body}
+          </p>
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
@@ -71,14 +100,45 @@ export default function About() {
             <div className="mono-label mb-6" style={{ color: "var(--accent-ink)" }}>
               [ 01 ] About
             </div>
+            {/* Two-tone, the same move the hero makes on the surname: the
+                subject stays bright and the qualifier drops back. */}
             <h2
               id="about-heading"
               className="text-[24px] md:text-[32px] font-semibold mb-5 tracking-tight leading-[1.12]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Designing products that already have users, constraints, and history.
+              Designing products that already have{" "}
+              <span style={{ color: "var(--text-secondary)" }}>
+                users, constraints, and history.
+              </span>
             </h2>
-            {SHOW_TIMELINE && <AboutProse />}
+            {SHOW_TIMELINE && <AboutProse inView={inView} />}
+
+            {/* With the resume hidden the left column ran out of content half
+                way down. The thesis of the section sits here instead of being
+                buried in the third sentence of a paragraph. */}
+            {!SHOW_TIMELINE && (
+              <motion.figure
+                className="mt-10 pt-9 mr-0 md:mr-6"
+                style={{ borderTop: "1px solid var(--border-subtle)" }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span
+                  aria-hidden
+                  className="block w-7 h-px mb-6"
+                  style={{ background: "var(--accent-color)" }}
+                />
+                <blockquote
+                  className="text-[18px] md:text-[21px] leading-[1.42] m-0"
+                  style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
+                >
+                  The challenge is rarely creating the perfect solution from scratch. It is
+                  understanding what already exists.
+                </blockquote>
+              </motion.figure>
+            )}
           </motion.div>
 
           {/* Right — the resume, or the copy itself once the resume is off, so
@@ -158,7 +218,7 @@ export default function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
-              <AboutProse />
+              <AboutProse inView={inView} />
             </motion.div>
           )}
         </div>
