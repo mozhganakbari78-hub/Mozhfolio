@@ -33,6 +33,7 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
+          CASE_PASSWORD: ${{ secrets.CASE_PASSWORD }}
         run: npm run build
 
       # Next's static export lives in ./out; disable Jekyll processing.
