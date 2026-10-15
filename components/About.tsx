@@ -14,6 +14,9 @@ const timeline = [
 // resume column back; nothing else needs changing.
 const SHOW_TIMELINE = false;
 
+// Principles card row hidden for now. Set this back to true to bring it back.
+const SHOW_PRINCIPLES = false;
+
 const traits = [
   "I investigate the problem before designing the solution.",
   "I design workflows and systems, not isolated screens.",
@@ -226,6 +229,7 @@ export default function About() {
         {/* Principles — sits under both columns so the two stay the same height.
             Named 'Principles' because the Capabilities section already owns
             the 'How I work.' headline. */}
+        {SHOW_PRINCIPLES && (
         <div className="mt-16 md:mt-20 pt-10" style={{ borderTop: "1px solid var(--border-subtle)" }}>
           <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
             Principles
@@ -259,6 +263,7 @@ export default function About() {
           </div>
 
         </div>
+        )}
       </div>
     </section>
   );
