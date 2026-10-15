@@ -21,22 +21,47 @@ const traits = [
   "I optimize for solutions teams can build and users can successfully adopt.",
 ];
 
+/** The About copy. It sits in the left column next to the resume, and in the
+ *  right column once the resume is hidden, so it lives in one place. */
+function AboutProse() {
+  return (
+    <>
+      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
+        Five years of designing enterprise banking and fintech products. Most of my work has
+        been inside existing systems: products with real users, established workflows,
+        technical limitations, and business constraints.
+      </p>
+      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
+        I enjoy working in those environments because the challenge is rarely creating the
+        perfect solution from scratch. It is understanding what already exists, finding the
+        real problem behind the request, and designing something the team can actually build
+        and users can actually adopt.
+      </p>
+      <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
+        In practice, that means working closely with Product, Engineering, and Support. I look
+        for evidence before proposing solutions, read support patterns to understand where
+        users struggle, and stay involved through implementation because that is often where
+        design decisions meet reality.
+      </p>
+      <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
+        Currently, I work on a corporate banking platform for organizational customers,
+        designing complex financial workflows and internal back-office tools.
+      </p>
+    </>
+  );
+}
+
 export default function About() {
   const { ref, inView } = useInView();
 
   return (
     <section id="about" className="py-28 md:py-40 px-6" aria-labelledby="about-heading">
-      {/* One width for the whole section. With the timeline hidden there is no
-          second column to fill, so the measure narrows to stay readable and
-          the principles row narrows with it rather than running past the
-          paragraphs above. */}
-      <div className={`mx-auto ${SHOW_TIMELINE ? "max-w-5xl" : "max-w-2xl"}`}>
-        <div
-          ref={ref}
-          className={`grid gap-16 lg:gap-24 items-start ${
-            SHOW_TIMELINE ? "md:grid-cols-2" : ""
-          }`}
-        >
+      {/* Same width as every section below, so the edges line up down the page. */}
+      <div className="max-w-5xl mx-auto">
+        {/* Two columns either way. With the timeline shown it is copy and
+            resume; with it hidden the heading keeps the left column so the
+            copy still has a readable measure instead of one very wide line. */}
+        <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
@@ -53,32 +78,12 @@ export default function About() {
             >
               Designing products that already have users, constraints, and history.
             </h2>
-            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-              Five years of designing enterprise banking and fintech products. Most of my work has
-              been inside existing systems: products with real users, established workflows,
-              technical limitations, and business constraints.
-            </p>
-            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-              I enjoy working in those environments because the challenge is rarely creating the
-              perfect solution from scratch. It is understanding what already exists, finding the
-              real problem behind the request, and designing something the team can actually build
-              and users can actually adopt.
-            </p>
-            <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-              In practice, that means working closely with Product, Engineering, and Support. I look
-              for evidence before proposing solutions, read support patterns to understand where
-              users struggle, and stay involved through implementation because that is often where
-              design decisions meet reality.
-            </p>
-            <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
-              Currently, I work on a corporate banking platform for organizational customers,
-              designing complex financial workflows and internal back-office tools.
-            </p>
-
+            {SHOW_TIMELINE && <AboutProse />}
           </motion.div>
 
-          {/* Right — Timeline */}
-          {SHOW_TIMELINE && (
+          {/* Right — the resume, or the copy itself once the resume is off, so
+              the section keeps both of its columns either way. */}
+          {SHOW_TIMELINE ? (
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -147,6 +152,14 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <AboutProse />
+            </motion.div>
           )}
         </div>
 
@@ -157,7 +170,7 @@ export default function About() {
           <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
             Principles
           </div>
-          <div className={`grid sm:grid-cols-2 gap-3 ${SHOW_TIMELINE ? "lg:grid-cols-4" : ""}`}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {traits.map((trait, i) => (
               <motion.div
                 key={i}
