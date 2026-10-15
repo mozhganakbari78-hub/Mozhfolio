@@ -10,6 +10,10 @@ const timeline = [
   { year: "Sep 2017 – Sep 2021", role: "B.Sc. Computer Engineering", company: "Islamic Azad University, Central Tehran Branch", note: "" },
 ];
 
+// Experience timeline hidden for now. Set this back to true to bring the
+// resume column back; nothing else needs changing.
+const SHOW_TIMELINE = false;
+
 const traits = [
   "I investigate the problem before designing the solution.",
   "I design workflows and systems, not isolated screens.",
@@ -23,7 +27,12 @@ export default function About() {
   return (
     <section id="about" className="py-28 md:py-40 px-6" aria-labelledby="about-heading">
       <div className="max-w-5xl mx-auto">
-        <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div
+          ref={ref}
+          className={`grid gap-16 lg:gap-24 items-start ${
+            SHOW_TIMELINE ? "md:grid-cols-2" : "max-w-2xl"
+          }`}
+        >
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
@@ -65,6 +74,7 @@ export default function About() {
           </motion.div>
 
           {/* Right — Timeline */}
+          {SHOW_TIMELINE && (
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -133,6 +143,7 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+          )}
         </div>
 
         {/* Principles — sits under both columns so the two stay the same height.

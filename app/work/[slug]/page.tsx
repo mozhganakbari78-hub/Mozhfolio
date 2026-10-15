@@ -18,11 +18,14 @@ const cases: Record<string, React.ComponentType> = {
   "error-messages": ErrorMessagesCase,
 };
 
-// Gate temporarily off: every case study is open. To put the code back, drop
-// the empty object and uncomment the two lines above it.
-// const CASE_PASSWORD = "709080";
-// Object.fromEntries(Object.keys(cases).map((slug) => [slug, CASE_PASSWORD]))
-const protectedSlugs: Record<string, string> = {};
+// Every case study is behind the same code. The check runs in the browser, so
+// this is a courtesy gate, not real access control.
+// To turn it off, swap the mapping below for an empty object: {}
+const CASE_PASSWORD = "709080";
+
+const protectedSlugs: Record<string, string> = Object.fromEntries(
+  Object.keys(cases).map((slug) => [slug, CASE_PASSWORD])
+);
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
