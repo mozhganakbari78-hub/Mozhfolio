@@ -27,12 +27,12 @@ const traits = [
 const story = [
   {
     label: "Background",
-    body: "Five years of designing enterprise banking and fintech products. Most of my work has been inside existing systems: products with real users, established workflows, technical limitations, and business constraints.",
+    body: "Five years of designing enterprise banking and fintech products: corporate payment workflows, back-office tools, a multi-brand design system, and crypto trading experiences. What connects them is complexity and consequence, not one industry.",
     lede: true,
   },
   {
-    label: "Why these products",
-    body: "I enjoy those environments. The work is understanding what already exists, finding the real problem behind the request, and designing something the team can actually build and users can actually adopt.",
+    label: "What the work looks like",
+    body: "Some of it starts from nothing: a design system, a rule builder for operators who do not write code, a feature nobody had scoped yet. Some of it starts inside a live product with real users, established workflows and technical limits. Both begin the same way, by understanding the problem before proposing a solution.",
   },
   {
     label: "In practice",
@@ -107,9 +107,9 @@ export default function About() {
               className="text-[24px] md:text-[32px] font-semibold mb-5 tracking-tight leading-[1.12]"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
             >
-              Designing products that already have{" "}
+              Designing products where a wrong decision{" "}
               <span style={{ color: "var(--text-secondary)" }}>
-                users, constraints, and history.
+                costs more than a bad experience.
               </span>
             </h2>
             {SHOW_TIMELINE && <AboutProse inView={inView} />}
@@ -134,8 +134,8 @@ export default function About() {
                   className="text-[18px] md:text-[21px] leading-[1.42] m-0"
                   style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}
                 >
-                  The challenge is rarely creating the perfect solution from scratch. It is
-                  understanding what already exists.
+                  The screen is rarely the hard part. The hard part is deciding what the system
+                  should make easy, and what it should make impossible.
                 </blockquote>
               </motion.figure>
             )}
