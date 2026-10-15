@@ -26,11 +26,15 @@ export default function About() {
 
   return (
     <section id="about" className="py-28 md:py-40 px-6" aria-labelledby="about-heading">
-      <div className="max-w-5xl mx-auto">
+      {/* One width for the whole section. With the timeline hidden there is no
+          second column to fill, so the measure narrows to stay readable and
+          the principles row narrows with it rather than running past the
+          paragraphs above. */}
+      <div className={`mx-auto ${SHOW_TIMELINE ? "max-w-5xl" : "max-w-2xl"}`}>
         <div
           ref={ref}
           className={`grid gap-16 lg:gap-24 items-start ${
-            SHOW_TIMELINE ? "md:grid-cols-2" : "max-w-2xl"
+            SHOW_TIMELINE ? "md:grid-cols-2" : ""
           }`}
         >
           {/* Left */}
@@ -153,7 +157,7 @@ export default function About() {
           <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
             Principles
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className={`grid sm:grid-cols-2 gap-3 ${SHOW_TIMELINE ? "lg:grid-cols-4" : ""}`}>
             {traits.map((trait, i) => (
               <motion.div
                 key={i}
