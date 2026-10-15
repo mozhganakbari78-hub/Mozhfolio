@@ -50,9 +50,9 @@ export default function About() {
               Designing products that already have users, constraints, and history.
             </h2>
             <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
-              Five years of designing enterprise banking, fintech, and operational products. Most of
-              my work has been inside existing systems: products with real users, established
-              workflows, technical limitations, and business constraints.
+              Five years of designing enterprise banking and fintech products. Most of my work has
+              been inside existing systems: products with real users, established workflows,
+              technical limitations, and business constraints.
             </p>
             <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: "var(--text-secondary)" }}>
               I enjoy working in those environments because the challenge is rarely creating the
@@ -67,8 +67,8 @@ export default function About() {
               design decisions meet reality.
             </p>
             <p className="text-[14.5px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
-              Currently, I work on a corporate banking platform for organizational customers, designing
-              complex financial workflows and internal operational tools.
+              Currently, I work on a corporate banking platform for organizational customers,
+              designing complex financial workflows and internal back-office tools.
             </p>
 
           </motion.div>
