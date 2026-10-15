@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/encrypt-cases.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:open": "ALLOW_UNENCRYPTED=1 next build && ALLOW_UNENCRYPTED=1 node scripts/encrypt-cases.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

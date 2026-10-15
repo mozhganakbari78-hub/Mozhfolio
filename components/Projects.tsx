@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { caseStudies } from "@/data/caseStudies";
@@ -47,7 +46,10 @@ export default function Projects() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: i * 0.06, ease }}
             >
-              <Link
+              {/* A plain anchor, not next/link: the case studies are encrypted
+                  files, so they have to be fetched as documents. A client-side
+                  route change would look for RSC data that is not published. */}
+              <a
                 href={`/work/${cs.slug}`}
                 data-hand
                 onClick={() =>
@@ -113,7 +115,7 @@ export default function Projects() {
                 >
                   <CaseCardArt name={cs.illustration} />
                 </div>
-              </Link>
+              </a>
             </motion.div>
           ))}
 

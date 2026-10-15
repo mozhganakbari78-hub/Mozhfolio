@@ -18,14 +18,10 @@ const cases: Record<string, React.ComponentType> = {
   "error-messages": ErrorMessagesCase,
 };
 
-// Every case study is behind the same code. The check runs in the browser, so
-// this is a courtesy gate, not real access control.
-// To turn it off, swap the mapping below for an empty object: {}
-const CASE_PASSWORD = "709080";
-
-const protectedSlugs: Record<string, string> = Object.fromEntries(
-  Object.keys(cases).map((slug) => [slug, CASE_PASSWORD])
-);
+// No gate here any more. The case studies are encrypted after the export by
+// scripts/encrypt-cases.mjs, so the lock sits in front of the markup itself
+// rather than in front of a page the browser has already been handed.
+const protectedSlugs: Record<string, string> = {};
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
