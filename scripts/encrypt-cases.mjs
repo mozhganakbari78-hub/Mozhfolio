@@ -15,9 +15,21 @@ import { readFile, writeFile, readdir, rm, stat } from "node:fs/promises";
 import { webcrypto as crypto } from "node:crypto";
 import path from "node:path";
 
+/**
+ * The lock switch. false publishes the case studies in the clear; true puts
+ * them back behind the passphrase. Nothing else has to change either way: the
+ * CASE_PASSWORD secret and the workflow stay as they are.
+ */
+const LOCKED = false;
+
 const OUT_DIR = path.join(process.cwd(), "out", "work");
 const PASSWORD = process.env.CASE_PASSWORD;
 const ITERATIONS = 600_000;
+
+if (!LOCKED) {
+  console.log("\n🔓 LOCKED is false: the case studies are being published unlocked.\n");
+  process.exit(0);
+}
 
 if (!PASSWORD) {
   if (process.env.ALLOW_UNENCRYPTED === "1") {
