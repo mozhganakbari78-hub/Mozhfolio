@@ -40,7 +40,8 @@ export default function SupportFrictionCase() {
         <p className="cs-lede">
           Support was spending real effort on questions that didn&apos;t need a person, which is
           operational cost. The brief was to improve the FAQ. Reviewing{" "}
-          <strong>~1,000 support tickets</strong> showed why more content wouldn&apos;t fix it:
+          <strong>~1,000 support tickets</strong>{" "}
+          showed why more content wouldn&apos;t fix it:
           people weren&apos;t missing information, they were missing guidance at the point of
           friction.
         </p>
