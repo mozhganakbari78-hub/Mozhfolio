@@ -16,11 +16,18 @@ import { webcrypto as crypto } from "node:crypto";
 import path from "node:path";
 
 /**
- * The lock switch. false publishes the case studies in the clear; true puts
- * them back behind the passphrase. Nothing else has to change either way: the
- * CASE_PASSWORD secret and the workflow stay as they are.
+ * The lock switch lives in config/lock.json, because the links into /work have
+ * to agree with it: locked, the route payloads are stripped and a client-side
+ * navigation would have nothing to fetch. Reading one file from both sides
+ * keeps them from drifting apart.
+ *
+ * false publishes the case studies in the clear; true puts them back behind
+ * the passphrase. Nothing else has to change either way: the CASE_PASSWORD
+ * secret and the workflow stay as they are.
  */
-const LOCKED = false;
+const LOCKED = JSON.parse(
+  await readFile(path.join(process.cwd(), "config", "lock.json"), "utf8")
+).caseStudiesLocked;
 
 const OUT_DIR = path.join(process.cwd(), "out", "work");
 const PASSWORD = process.env.CASE_PASSWORD;
