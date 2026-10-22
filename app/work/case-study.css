@@ -498,6 +498,7 @@
 
 /* the ticket wall needs three readable columns */
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
+.cs-horizontal article > section:has(.cs-split) { width: min(940px, 94vw); }
 .cs-horizontal article > section:has(.cs-fm) { width: min(1060px, 95vw); }
 .cs-horizontal article > section:has(.cs-sketch) { width: min(1160px, 96vw); }
 .cs-horizontal article > section:has(.cs-sketch) {
@@ -1958,4 +1959,99 @@
   .cs-brands .col { border-right: 0; border-bottom: 1px solid var(--line-soft); }
   .cs-brands .col:last-child { border-bottom: 0; }
   .cs-brands .trow { grid-template-columns: 1fr repeat(3, 22px); }
+}
+
+/* ── ticket split: what each request actually needed ───────────────────────
+   Two categorical fills only. The 43/37 pair shares one colour because they
+   are two halves of the same answer: nobody had to pick up the ticket. They
+   are told apart by the 2px surface gap and the direct labels, not by hue,
+   which also keeps the palette inside the dark fill band. Amber is a darker
+   step of --warn so it sits on the card rather than glowing off it. */
+.cs-split {
+  --split-self: #0174DC;
+  --split-support: #c0892f;
+  margin: 16px 0 6px;
+}
+
+.cs-split-brackets {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 9px;
+}
+.cs-split-brackets .b {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding-bottom: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cs-split-brackets .b.is-self {
+  color: var(--accent-ink);
+  border-bottom: 1px solid rgba(124, 184, 245, .35);
+}
+.cs-split-brackets .b.is-support {
+  color: var(--warn);
+  border-bottom: 1px solid rgba(224, 180, 85, .3);
+  text-align: right;
+}
+
+.cs-split-bar {
+  display: flex;
+  gap: 2px;
+  height: 34px;
+}
+.cs-split-bar .seg {
+  display: block;
+  min-width: 0;
+  border-radius: 2px;
+  /* scaleX rather than width: the reveal stays on the compositor and never
+     relayouts the panel while the reader is scrolling past it */
+  transform-origin: left center;
+}
+.cs-split-bar .seg.is-self { background: var(--split-self); }
+.cs-split-bar .seg.is-support { background: var(--split-support); }
+.cs-split-bar .seg:first-child { border-radius: 4px 2px 2px 4px; }
+.cs-split-bar .seg:last-child { border-radius: 2px 4px 4px 2px; }
+
+.cs-split-key {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.cs-split-key li {
+  display: grid;
+  grid-template-columns: 9px 42px 1fr;
+  align-items: baseline;
+  gap: 11px;
+  min-width: 0;
+}
+.cs-split-key .chip {
+  width: 9px; height: 9px;
+  border-radius: 2px;
+  transform: translateY(1px);
+}
+.cs-split-key .chip.is-self { background: var(--split-self); }
+.cs-split-key .chip.is-support { background: var(--split-support); }
+.cs-split-key .pct {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: var(--ink);
+}
+.cs-split-key .lbl {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .cs-split-bar { height: 28px; }
+  .cs-split-brackets .b { font-size: 9.5px; letter-spacing: .06em; }
+  .cs-split-key li { grid-template-columns: 9px 38px 1fr; gap: 9px; }
+  .cs-split-key .lbl { font-size: 12.5px; }
 }

@@ -7,6 +7,7 @@ import RoutingShift from "./RoutingShift";
 import ReframeStatement from "./ReframeStatement";
 import UserMindset from "./UserMindset";
 import TicketWall from "./TicketWall";
+import TicketSplit from "./TicketSplit";
 import VocabularyGap from "./VocabularyGap";
 import SearchWeights from "./SearchWeights";
 import { PanicJourney } from "./CsInlineArt";
@@ -148,6 +149,18 @@ export default function SupportFrictionCase() {
           Individually these look like unrelated requests. As a set they split in two: half ask how
           to do something, half ask what is happening with something already done. Nobody is
           reporting a broken feature.
+        </p>
+      </section>
+
+      {/* 03b2 THE SPLIT */}
+      <section className="cs-reveal">
+        <span className="cs-num">03 / The split</span>
+        <h2>Four out of five tickets did not need a person</h2>
+        <TicketSplit />
+        <p>
+          Sorted by what each request actually needed rather than what it asked, the set put a
+          number on the pattern: only about one in five was genuinely support work. The rest were
+          people looking for an answer, or looking for enough confidence to act on one.
         </p>
       </section>
 
