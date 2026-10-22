@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Lightbox from "./Lightbox";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -28,8 +30,12 @@ const NOTES = [
  * deliberately do not repeat the handwriting in the photo: they trace the three
  * rules from the reframe to the step each one ended up in.
  */
+const ALT =
+  "Hand-drawn three-step wireframe flow: upload file, review and validate, confirm";
+
 export default function SketchFlow({ src }: { src: string }) {
   const url = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`;
+  const [open, setOpen] = useState(false);
   return (
     <div className="cs-sketch">
       <motion.figure
@@ -39,14 +45,31 @@ export default function SketchFlow({ src }: { src: string }) {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7, ease: EASE }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={url}
-          alt="Hand-drawn three-step wireframe flow: upload file, review and validate, confirm"
-          loading="lazy"
-          decoding="async"
-        />
+        <button
+          type="button"
+          className="cs-zoom"
+          onClick={() => setOpen(true)}
+          aria-label={`View larger: ${ALT}`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={url} alt={ALT} loading="lazy" decoding="async" />
+          <span className="cs-zoom-badge" aria-hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5M11 8v6M8 11h6" strokeLinecap="round" />
+            </svg>
+          </span>
+        </button>
       </motion.figure>
+
+      {open ? (
+        <Lightbox
+          src={url}
+          alt={ALT}
+          caption="From the sketchbook, before any UI existed"
+          onClose={() => setOpen(false)}
+        />
+      ) : null}
 
       <div className="notes">
         <motion.span
