@@ -118,7 +118,7 @@ export default function VisualWork() {
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-              [ 04 ] Visual Work
+              [ 03 ] Visual Work
             </div>
             <h2
               id="visual-heading"
@@ -129,7 +129,8 @@ export default function VisualWork() {
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            UI design and 3D work. A look at the surface.
+            UI, 3D, and motion built to ship: Rive and Lottie for the front end, After
+            Effects for the heavier pieces.
           </p>
         </motion.div>
       </div>

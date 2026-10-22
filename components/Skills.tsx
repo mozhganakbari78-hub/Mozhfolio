@@ -15,7 +15,7 @@ const capabilities = [
   {
     icon: MagnifyingGlassIcon,
     title: "Evidence earns scope",
-    body: "I don't challenge a brief with opinion. I bring evidence that helps the team reconsider the problem, then align on what is worth solving.",
+    body: "I don't challenge a brief with opinion. I bring evidence: support patterns, and watching people work without framing it as a test. That is what helps a team reconsider the problem and align on what is worth solving.",
   },
   {
     icon: Square3Stack3DIcon,
@@ -58,7 +58,7 @@ export default function Skills() {
           className="mb-16 md:mb-20 max-w-2xl"
         >
           <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-            [ 03 ] Capabilities
+            [ 04 ] Capabilities
           </div>
           <h2
             id="skills-heading"

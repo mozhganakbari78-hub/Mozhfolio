@@ -30,7 +30,7 @@ const traits = [
 const story = [
   {
     label: "Background",
-    body: "Five years of designing enterprise banking and fintech products: corporate payment workflows, back-office tools, a multi-brand design system, and crypto trading experiences. What connects them is complexity and consequence, not one industry.",
+    body: "Six years of designing enterprise banking and fintech products: corporate payment workflows, back-office tools, a multi-brand design system, and crypto trading experiences. What connects them is complexity and consequence, not one industry.",
     lede: true,
   },
   {
@@ -225,6 +225,61 @@ export default function About() {
             </motion.div>
           )}
         </div>
+
+        {/* One worked example under the columns. The section claims that a wrong
+            decision costs more than a bad experience; without a case on the
+            page to show it, that stays an assertion. */}
+        <motion.div
+          className="mt-16 md:mt-20 pt-10"
+          style={{ borderTop: "1px solid var(--border-subtle)" }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="mono-label mb-6" style={{ color: "var(--text-tertiary)" }}>
+            One example
+          </div>
+          <div className="grid md:grid-cols-[1fr_auto] gap-8 lg:gap-14 items-start">
+            <div>
+              <h3
+                className="text-[17px] md:text-[19px] font-semibold tracking-tight mb-3"
+                style={{ color: "var(--text-primary)", letterSpacing: "-0.02em", lineHeight: 1.3 }}
+              >
+                Approving a company&apos;s money from a phone
+              </h3>
+              <p className="text-[14px] leading-[1.65]" style={{ color: "var(--text-secondary)" }}>
+                Mobile was the smaller audience on our corporate banking platform, so it kept losing
+                to traffic. It was also where the authorised signatories were, approving every
+                transaction their company made, often between other things. Long lists of cards with
+                the approve action sitting inline made it easy to approve the wrong one. I redesigned
+                around a single rule: details and actions open in a sheet tied to one transaction, so
+                the approval and the thing being approved can never drift apart.
+              </p>
+            </div>
+            <div
+              className="rounded-xl px-5 py-5 md:max-w-[260px]"
+              style={{ background: "var(--surface)", border: "1px solid var(--border-strong)" }}
+            >
+              <span
+                aria-hidden
+                className="block w-6 h-px mb-4"
+                style={{ background: "var(--accent-color)" }}
+              />
+              <p
+                className="text-[14px] leading-[1.5] m-0"
+                style={{ color: "var(--text-primary)" }}
+              >
+                You always know exactly what you are approving.
+              </p>
+              <span
+                className="mono-label block mt-4"
+                style={{ color: "var(--text-tertiary)" }}
+              >
+                The rule the redesign had to pass
+              </span>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Principles — sits under both columns so the two stay the same height.
             Named 'Principles' because the Capabilities section already owns
