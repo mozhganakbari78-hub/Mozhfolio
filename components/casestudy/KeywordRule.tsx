@@ -4,26 +4,26 @@ import { motion } from "framer-motion";
 
 /**
  * The exception to the extraction rules. Conjugated verbs were stripped, but
- * verbal nouns had to stay: in these two questions the verbal noun is the only
- * token that tells them apart, so removing it would have collapsed two
- * different answers into one keyword set.
+ * verbal nouns had to stay: here the verbal noun is the only token that tells
+ * the two questions apart, and they are opposites. Removing it would have
+ * collapsed granting access and revoking it into one keyword set.
  */
 const PAIR = [
   {
-    fa: "چطور می‌توان امضادار را در سامانه بانکداری سازمانی ",
+    fa: "چطور می‌توان دسترسی یک کاربر به حساب را ",
     verb: "تعریف",
     faEnd: " کرد؟",
-    en: "How do I define a signatory in the corporate banking system?",
+    en: "How do I grant a user access to an account?",
   },
   {
-    fa: "چطور می‌توان امضادار را در سامانه بانکداری سازمانی ",
-    verb: "تغییر",
-    faEnd: " داد؟",
-    en: "How do I change a signatory in the corporate banking system?",
+    fa: "چطور می‌توان دسترسی یک کاربر به حساب را ",
+    verb: "حذف",
+    faEnd: " کرد؟",
+    en: "How do I remove a user's access to an account?",
   },
 ];
 
-const SHARED = ["امضادار", "سامانه", "بانکداری", "سازمانی"];
+const SHARED = ["دسترسی", "کاربر", "حساب"];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -63,8 +63,8 @@ export default function KeywordRule() {
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
       >
-        Strip the verbal noun and both questions reduce to the same four keywords. The rule that
-        made the set clean would have made two different answers indistinguishable.
+        Strip the verbal noun and both questions reduce to the same three keywords. In a banking
+        back office, granting access and revoking it would have become the same search.
       </motion.p>
     </div>
   );
