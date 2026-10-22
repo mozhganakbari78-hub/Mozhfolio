@@ -148,9 +148,9 @@ export default function SupportFrictionCase() {
         <h2>Read together, they were asking the same kind of question</h2>
         <TicketWall />
         <p>
-          Individually these look like unrelated requests. As a set they split in two: half ask how
-          to do something, half ask what is happening with something already done. Nobody is
-          reporting a broken feature.
+          Individually these look like unrelated requests. As a set they take two shapes: how do I
+          do this, and what is happening with something I already did. Nobody is reporting a broken
+          feature.
         </p>
       </section>
 
