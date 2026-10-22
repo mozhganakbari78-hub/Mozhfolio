@@ -10,6 +10,8 @@ import TicketWall from "./TicketWall";
 import TicketSplit from "./TicketSplit";
 import VocabularyGap from "./VocabularyGap";
 import SearchWeights from "./SearchWeights";
+import MatchPipeline from "./MatchPipeline";
+import KeywordRule from "./KeywordRule";
 import { PanicJourney } from "./CsInlineArt";
 
 const ticketLens = [
@@ -119,7 +121,7 @@ export default function SupportFrictionCase() {
         <span className="cs-num">03 / Investigation</span>
         <h2>~1,000 tickets, read against the same four questions</h2>
         <p>
-          I reviewed around a thousand historical tickets, covering the period when the platform
+          I reviewed around a thousand support tickets, covering the period when the platform
           had gone through significant changes, making the data more representative of the current
           product experience.
         </p>
@@ -158,24 +160,31 @@ export default function SupportFrictionCase() {
         <h2>Four out of five tickets did not need a person</h2>
         <TicketSplit />
         <p>
-          Sorted by what each request actually needed rather than what it asked, the set put a
-          number on the pattern: only about one in five was genuinely support work. The rest were
-          people looking for an answer, or looking for enough confidence to act on one.
+          The same set, sorted a second time by what each request actually needed rather than what
+          it asked. Only about one in five was genuinely support work. The rest were people looking
+          for an answer, or for enough confidence to act on one.
         </p>
       </section>
 
       {/* 03c THE FINDING */}
       <section className="cs-reveal">
         <span className="cs-num">03 / The finding</span>
-        <h2>The answers didn&apos;t all live in the same place</h2>
+        <h2>The answer wasn&apos;t missing. It was conditional</h2>
         <p>
-          Some were in the product. Others weren&apos;t ours to give at all: adding a signatory
-          requires a branch visit and paperwork under the bank&apos;s own policy, and no amount of
-          interface design changes that.
+          The largest group was the one a static page cannot serve. Those questions repeat almost
+          word for word, but the correct answer depends on the asker:{" "}
+          <strong>their role, their organisation&apos;s state, and their permission level</strong>.
+          Publishing one answer to a question whose answer is &quot;it depends&quot; does not reduce
+          the ticket. It just moves where the user gets stuck.
+        </p>
+        <p>
+          A second group had answers that were never ours to give. Adding a signatory requires a
+          branch visit and paperwork under the bank&apos;s own policy, and no amount of interface
+          design changes that.
         </p>
         <div className="cs-pull">
-          Users had no way to tell those two situations apart, and the product never told them
-          which one they were in.
+          Users had no way to tell those situations apart, and the product never told them which one
+          they were in.
         </div>
       </section>
 
@@ -222,9 +231,10 @@ export default function SupportFrictionCase() {
       {/* 06b THE SHIFT */}
       <section className="cs-reveal">
         <span className="cs-num">06 / The shift</span>
-        <h2>Two destinations became one flow</h2>
+        <h2>The form should be the last option, not the first</h2>
         <p>
-          Finding an answer and asking for help stopped being a choice the user makes first.
+          Finding an answer and asking for help stopped being a choice the user makes first. Sending
+          everyone down one path is what produced the avoidable half of the queue.
         </p>
         <RoutingShift />
       </section>
@@ -326,21 +336,66 @@ export default function SupportFrictionCase() {
         <p>
           Rather than general search, I proposed ranked matching. The first pass is literal: the
           words the user has already typed. The second pass handles the mismatch people actually hit,
-          where they use one word and the content uses another, driven by a synonym list I wrote
-          rather than by anything the system had to infer.
+          where they use one word and the content uses another, driven by a synonym list rather than
+          by anything the system had to infer.
         </p>
         <SearchWeights />
       </section>
 
+      {/* 08b2 THE ORDER OF OPERATIONS */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / The order of operations</span>
+        <h2>Five steps, and the last one is the one that protects the user</h2>
+        <p>
+          Persian makes the first step unavoidable: the same word can be typed with Arabic or
+          Persian letters, with or without a half-space, in three different sets of digits. None of
+          the matching works until the input and the stored keywords are reduced to one form.
+        </p>
+        <MatchPipeline />
+      </section>
+
       {/* 08c SCOPE */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / The spec</span>
+        <h2>I wrote the keyword set myself rather than hand over the idea</h2>
+        <p>
+          A direction engineering has to interpret is a direction that slips. So I delivered the
+          data, not a description of it: every FAQ question broken into its searchable terms, with
+          the normalisation rules and the synonym dictionary alongside. I drafted it with{" "}
+          <strong>AI assistance</strong> to get through the volume, then had every single keyword
+          checked automatically against its own question text, because a list this size is exactly
+          where a plausible-looking invention survives review.
+        </p>
+        <CsStats
+          items={[
+            { value: "89", label: "FAQ questions covered" },
+            { value: "343", label: "keywords, each verified in its question" },
+            { value: "34", label: "synonym groups" },
+          ]}
+        />
+      </section>
+
+      {/* 08d THE EXCEPTION */}
+      <section className="cs-reveal">
+        <span className="cs-num">08 / The exception</span>
+        <h2>One rule would have quietly broken the set</h2>
+        <p>
+          Question words, generic words, and conjugated verbs were all stripped out. Verbal nouns
+          look like the same category and were the one thing I had to keep.
+        </p>
+        <KeywordRule />
+      </section>
+
+      {/* 08e SCOPE */}
       <section className="cs-reveal">
         <span className="cs-num">08 / Scoping phase one</span>
         <h2>I kept the first synonym list deliberately small</h2>
         <p>
           The list only covers pairs that are unambiguous, because a wrong synonym match is worse
-          than no match: it hands a confident answer to the wrong question. Keeping phase one narrow
-          made it cheap enough for engineering to ship, and the list is designed to grow as real
-          usage shows which words people actually reach for.
+          than no match: it hands a confident answer to the wrong question. That is also why the
+          last step returns nothing below the threshold. Keeping phase one narrow made it cheap
+          enough for engineering to ship, and the list is designed to grow as real usage shows which
+          words people actually reach for.
         </p>
         <div className="cs-pull">
           The feature shipped because I shrank it to the part that was both valuable and buildable,
@@ -355,7 +410,7 @@ export default function SupportFrictionCase() {
         <h2>I kept a taxonomy I didn&apos;t like</h2>
         <p>
           The support database ran on a fixed category taxonomy that back-office filters and two
-          years of historical tickets depended on. Rebuilding it would have been cleaner and would
+          years of support tickets depended on. Rebuilding it would have been cleaner and would
           have put a live support operation at risk. I mapped the new experience onto the existing
           structure, used a controlled &quot;Other&quot; fallback for what wouldn&apos;t map, and
           documented the compromise as deliberate design debt so the reasoning stays visible.

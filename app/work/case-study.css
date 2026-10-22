@@ -499,6 +499,8 @@
 /* the ticket wall needs three readable columns */
 .cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
 .cs-horizontal article > section:has(.cs-split) { width: min(940px, 94vw); }
+.cs-horizontal article > section:has(.cs-pipe) { width: min(1180px, 96vw); }
+.cs-horizontal article > section:has(.cs-krule) { width: min(900px, 94vw); }
 .cs-horizontal article > section:has(.cs-fm) { width: min(1060px, 95vw); }
 .cs-horizontal article > section:has(.cs-sketch) { width: min(1160px, 96vw); }
 .cs-horizontal article > section:has(.cs-sketch) {
@@ -2030,6 +2032,31 @@
   gap: 11px;
   min-width: 0;
 }
+.cs-split-key .body { min-width: 0; }
+.cs-split-key .lbl {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-split-key .lbl .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.cs-split-key .det {
+  display: block;
+  margin-top: 3px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
 .cs-split-key .chip {
   width: 9px; height: 9px;
   border-radius: 2px;
@@ -2054,4 +2081,116 @@
   .cs-split-brackets .b { font-size: 9.5px; letter-spacing: .06em; }
   .cs-split-key li { grid-template-columns: 9px 38px 1fr; gap: 9px; }
   .cs-split-key .lbl { font-size: 12.5px; }
+}
+
+/* ── keyword rule: the exception the extraction rules needed ───────────── */
+.cs-krule {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 6px;
+}
+.cs-krule .q {
+  padding: 14px 16px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--card);
+  min-width: 0;
+}
+.cs-krule .fa {
+  margin: 0;
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--ink);
+  text-align: right;
+  direction: rtl;
+  overflow-wrap: anywhere;
+}
+.cs-krule .fa mark {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+.cs-krule .en {
+  margin: 5px 0 0;
+  font-size: 11.5px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+.cs-krule .toks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line-soft);
+}
+.cs-krule .toks .t {
+  font-family: "Yekan", Tahoma, system-ui, sans-serif;
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  color: var(--ink-faint);
+}
+.cs-krule .toks .t.is-key {
+  border-color: rgba(124, 184, 245, .35);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.cs-krule .verdict {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+/* ── match pipeline: the order handed to the backend team ──────────────── */
+.cs-pipe {
+  list-style: none;
+  margin: 16px 0 6px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.cs-pipe li {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-width: 0;
+  padding: 13px 14px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--card);
+}
+.cs-pipe li.is-last {
+  border-color: rgba(124, 184, 245, .3);
+  background: var(--accent-soft);
+}
+.cs-pipe .n {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--accent-ink);
+}
+.cs-pipe .t {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.cs-pipe .p {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .cs-pipe { grid-template-columns: 1fr; gap: 8px; }
+  .cs-pipe li { padding: 12px 13px 11px; }
+  .cs-krule .fa { font-size: 13.5px; }
 }
