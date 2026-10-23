@@ -1,12 +1,10 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsSnapshot from "./CsSnapshot";
 import CsImpact from "./CsImpact";
 import Mockup from "./Mockup";
 import FailureUnit from "./FailureUnit";
 import FailureModes from "./FailureModes";
 import SketchFlow from "./SketchFlow";
-import Assumptions from "./Assumptions";
 import { MatchThreshold, DsSpeed, RowIsolation } from "./CsInlineArt";
 
 export default function BatchTransferCase() {
@@ -15,32 +13,28 @@ export default function BatchTransferCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">B2B Banking · Offline Batch Payments · 3 min read</span>
-          <h1>
-            A bad row should fail alone.
-            <br />
-            A wrong transfer should never leave.
-          </h1>
+          <span className="cs-eyebrow">B2B banking · Branch batch payments · 3 min read</span>
+          <h1>Batch payments where one bad row no longer blocks the file</h1>
           <p className="cs-lede">
-            One invalid row blocked a whole payment file, while a wrong recipient went through as a{" "}
-            <strong>successful transfer</strong>. I made failures recoverable and risk visible
-            before money moved.
+            Branch staff upload payroll and supplier files for corporate clients. One invalid row
+            sent the whole file back, while a wrong recipient went through as a{" "}
+            <strong>successful transfer</strong>. I redesigned the flow around both failures.
           </p>
         </div>
 
         <div className="cs-hero-side">
           <CsImpact
             items={[
-              { value: "Row, not file", label: "One bad row no longer blocks the batch; valid payments continue" },
-              { value: "Caught before approval", label: "Recipient mismatches surface while money can still be stopped" },
-              { value: "On the deadline", label: "Reached real branches without the launch date moving" },
+              { value: "1 fix, not a re-upload", label: "A bad row is corrected on its own; the valid rows keep processing" },
+              { value: "Before approval", label: "Recipient name mismatches flagged while the money can still be stopped" },
+              { value: "On the deadline", label: "Shipped to real branches without moving the launch date" },
             ]}
           />
 
           <dl className="cs-meta">
             <div>
               <dt>Role</dt>
-              <dd>Product Designer. Co-led the research, owned the flow and verification model, built the UI with the other designer, carried it through handoff</dd>
+              <dd>Product Designer. Co-led branch research, owned the flow and the verification model, built the UI with the second designer</dd>
             </div>
             <div>
               <dt>Team</dt>
@@ -56,81 +50,61 @@ export default function BatchTransferCase() {
 
       <hr className="cs-divider" />
 
-      {/* THE STORY IN 30 SECONDS */}
-      <section className="cs-reveal">
-        <span className="cs-num">00 / In 30 seconds</span>
-        <h2>The whole case, before the detail</h2>
-        <CsSnapshot
-          steps={[
-            { k: "The problem", t: "One bad row blocked a whole payroll file." },
-            { k: "What branches showed", t: "The worse failure looked like success: money sent to the wrong person." },
-            { k: "What I changed", t: "Rows fail alone. Recipients are checked before approval, while money can still stop." },
-          ]}
+      {/* THE RESULT */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/batch-validation.webp"
+          alt="Batch review screen showing per-row status and recipient match confidence before approval"
+          caption="The result: every row carries its own status and recipient match, before anyone approves"
         />
       </section>
 
-      {/* 01 WHAT WE GOT WRONG */}
+      {/* 01 PROBLEM */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / Research</span>
-        <h2>We wrote our assumptions down, then visited branches</h2>
-        <Assumptions />
-      </section>
-
-      {/* 02 THE TWO FAILURES */}
-      <section className="cs-reveal">
-        <span className="cs-num">02 / The problem</span>
+        <span className="cs-num">01 / Problem</span>
         <h2>Two failures, and only one looked like a failure</h2>
+        <p>Found by watching branch staff process real files.</p>
         <FailureModes />
       </section>
 
-      {/* 03 THE FLOW, SKETCHED */}
+      {/* 02 INSIGHT */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / The flow</span>
-        <h2>Upload, review, confirm</h2>
+        <span className="cs-num">02 / Insight</span>
+        <h2>Errors surfaced too late to prevent anything</h2>
         <SketchFlow src="/projects/batch-wireframe.webp" />
       </section>
 
-      {/* 04 DECISION 01 */}
+      {/* 03 DECISION 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / Decision 01</span>
-        <h2>Change the unit of failure from the file to the row</h2>
-        <p>Fix the one bad row; the other 499 keep processing.</p>
+        <span className="cs-num">03 / Decision 1</span>
+        <h2>A row fails on its own, not the whole file</h2>
         <FailureUnit />
       </section>
 
-      {/* SHOT — batch upload */}
+      {/* SHOT — upload */}
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/batch-upload.webp"
-          alt="Batch upload screen, file submission and row preview"
-          caption="Fig. 01: Upload and per-row preview before anything is committed"
+          alt="Batch upload screen with per-row preview before anything is committed"
+          caption="Upload with a per-row preview; nothing is committed yet"
         />
       </section>
 
-      {/* 05 DECISION 02 */}
+      {/* 04 DECISION 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / Decision 02</span>
+        <span className="cs-num">04 / Decision 2</span>
         <h2>Show who gets the money before anyone approves it</h2>
         <p>
-          The account holder is matched against the name in the file. Low matches are flagged, not
-          auto-rejected: the system surfaces evidence, a person makes the call.
+          Low name matches are flagged, not auto-rejected. The system shows the evidence; the
+          approver makes the call.
         </p>
         <MatchThreshold />
       </section>
 
-      {/* SHOT — validation */}
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/batch-validation.webp"
-          alt="Row-level validation and recipient match review"
-          caption="Fig. 02: Row-level state and match confidence, before approval"
-        />
-      </section>
-
-      {/* 06 SHIPPING */}
+      {/* 05 CONSTRAINT */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Shipping on a fixed deadline</span>
-        <h2>Sequenced, not cut</h2>
+        <span className="cs-num">05 / Constraint</span>
+        <h2>A fixed deadline: sequenced, not cut</h2>
         <div className="cs-phase">
           <div className="phtag">Phase 01</div>
           <div>
@@ -148,36 +122,36 @@ export default function BatchTransferCase() {
         <DsSpeed />
       </section>
 
-      {/* 07 OUTCOME */}
+      {/* 06 OUTCOME */}
       <section className="cs-reveal">
-        <span className="cs-num">07 / Outcome</span>
-        <h2>Recovery moved from the batch to the row</h2>
+        <span className="cs-num">06 / Outcome</span>
+        <h2>Recovery moved from the file to the row</h2>
         <RowIsolation />
         <p>
-          Live in real branches, on the deadline. The limited rollout also exposed a requirement
-          nobody had written down, and the phasing made it a revision instead of a rewrite.
+          Live in branches, on the deadline. The limited rollout also exposed a requirement nobody
+          had written down; because of the phasing it cost a revision, not a rewrite.
         </p>
         <p className="cs-takeaway">
-          <span>Takeaway</span>
-          The most dangerous error is the one that succeeds.
+          <span>What I learned</span>
+          The most dangerous error is the one that looks like success.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/design-system"
-        caseStudyName="Design System for a Live Enterprise Platform"
+        caseStudyName="A design system engineers actually adopted"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Design System for a Live Enterprise Platform{" "}
+          A design system engineers actually adopted{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Offline batch payments · Shipped</p>
+        <p>Corporate banking · Branch batch payments · Shipped</p>
       </footer>
     </article>
   );

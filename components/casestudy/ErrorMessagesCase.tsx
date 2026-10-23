@@ -1,6 +1,5 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsSnapshot from "./CsSnapshot";
 import CsImpact from "./CsImpact";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
@@ -49,33 +48,27 @@ export default function ErrorMessagesCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">
-            Corporate Banking · UX Writing · 2 min read
-          </span>
-          <h1>
-            Users knew something had failed.
-            <br />
-            They didn&apos;t know what to do next.
-          </h1>
+          <span className="cs-eyebrow">Corporate banking · UX writing · 2 min read</span>
+          <h1>Rewriting ~2,000 error messages so users know what to do next</h1>
           <p className="cs-lede">
-            People were filing support tickets that were just screenshots of errors. I audited{" "}
-            <strong>~2,000 messages</strong> and wrote three rules that became the platform standard.
+            Support tickets were arriving as screenshots of error messages. I audited every message
+            the platform could show and wrote <strong>three rules</strong> that became the standard.
           </p>
         </div>
 
         <div className="cs-hero-side">
           <CsImpact
             items={[
-              { value: "6 → 3 in 10", label: "Error tickets that were only asking what to do next" },
-              { value: "Shipped", label: "Every rewritten message reviewed by hand before release" },
-              { value: "Platform standard", label: "Three rules now the reference for every new error message" },
+              { value: "6 \u2192 3 in 10", label: "Error tickets that only asked \u201cwhat do I do now?\u201d" },
+              { value: "~2,000", label: "Messages audited; technical ones moved to logs, the rest rewritten" },
+              { value: "Platform standard", label: "The three rules are now the reference for every new message" },
             ]}
           />
 
           <dl className="cs-meta">
             <div>
               <dt>Role</dt>
-              <dd>Product Designer. Found the problem, ran the audit, defined the framework, reviewed every message</dd>
+              <dd>Product Designer. Spotted it in tickets, ran the audit, wrote the framework, reviewed every message</dd>
             </div>
             <div>
               <dt>Scope</dt>
@@ -87,61 +80,49 @@ export default function ErrorMessagesCase() {
 
       <hr className="cs-divider" />
 
-      {/* THE STORY IN 30 SECONDS */}
+      {/* THE RESULT */}
       <section className="cs-reveal">
-        <span className="cs-num">00 / In 30 seconds</span>
-        <h2>The whole case, before the detail</h2>
-        <CsSnapshot
-          steps={[
-            { k: "The signal", t: "Support tickets that were just screenshots of error messages." },
-            { k: "The pattern", t: "~2,000 messages said what failed, never what to do next." },
-            { k: "What I changed", t: "Three rules every message must pass, now the platform standard." },
-          ]}
-        />
+        <span className="cs-num">The result</span>
+        <h2>Every message now says what happened and what to do next</h2>
+        <MessageRewrite items={rewrites.slice(0, 1)} />
       </section>
 
-      {/* 01 THE SIGNAL */}
+      {/* 01 PROBLEM */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / The signal</span>
-        <h2>Nobody assigned this. It came out of reading tickets</h2>
+        <span className="cs-num">01 / Problem</span>
+        <h2>Messages announced a failure and then stopped</h2>
+        <p>Nobody assigned this. I found it reading support tickets.</p>
         <DeadEndMessage />
       </section>
 
-      {/* 02 THE AUDIT */}
+      {/* 02 INSIGHT */}
       <section className="cs-reveal">
-        <span className="cs-num">02 / The audit</span>
-        <h2>I exported every error string and sorted them by failure shape</h2>
+        <span className="cs-num">02 / Insight</span>
+        <h2>2,000 one-off fixes would drift again. It needed rules</h2>
         <p>
-          Purely technical ones, like <code>FTP transfer failed</code>, moved to logs. The rest
-          needed rewriting.
+          I sorted every string by failure shape. Purely technical ones, like{" "}
+          <code>FTP transfer failed</code>, moved to logs.
         </p>
         <CsStats
           items={[
             { value: "~2,000", label: "messages audited" },
-            { value: "3", label: "rules in the framework" },
+            { value: "3", label: "failure shapes found" },
             { value: "1", label: "standard, applied platform-wide" },
           ]}
         />
       </section>
 
-      {/* 03 THE FRAMEWORK */}
+      {/* 03 DECISION 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / The framework</span>
-        <h2>Three rules every message had to pass</h2>
+        <span className="cs-num">03 / Decision 1</span>
+        <h2>Three rules every message has to pass</h2>
         <MessageAnatomy />
       </section>
 
-      {/* 04 THE REWRITES */}
+      {/* 04 DECISION 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / In production</span>
-        <h2>The rules on a real string</h2>
-        <MessageRewrite items={rewrites.slice(0, 1)} />
-      </section>
-
-      {/* 04b THE HARD ONE */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / In production</span>
-        <h2>The one written as an accusation</h2>
+        <span className="cs-num">04 / Decision 2</span>
+        <h2>A system rule is not the user&apos;s fault</h2>
         <MessageRewrite items={rewrites.slice(1)} />
       </section>
 
@@ -155,19 +136,19 @@ export default function ErrorMessagesCase() {
           banking a plausible rewrite can change what a message claims about money.
         </p>
         <p className="cs-takeaway">
-          <span>Takeaway</span>
-          Copy is interface, not decoration.
+          <span>What I learned</span>
+          Some problems only show up at the level of the whole set.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/reducing-support-friction"
-        caseStudyName="The answers already existed. People couldn't reach them in time."
+        caseStudyName="Answers that appear while users describe their problem"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          The answers already existed{" "}
+          Answers that appear while users describe their problem{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
