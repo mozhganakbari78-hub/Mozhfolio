@@ -55,63 +55,70 @@ export default function ErrorMessagesCase() {
 
       {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">Stuck</span>
-        <h2>Nadia tries to cancel a payment request</h2>
-        <p>Nadia is a company treasurer. She clicks cancel and sees this:</p>
+        <span className="cs-num">The starting point</span>
+        <h2>Support tickets that were just screenshots</h2>
+        <p>
+          Nobody assigned this. I read support tickets regularly, and kept seeing the same thing: a
+          screenshot of an error message, and nothing else. Users weren&apos;t reporting bugs. They
+          were asking what to do.
+        </p>
+      </section>
+
+      {/* 2 */}
+      <section className="cs-reveal">
+        <span className="cs-num">An example</span>
+        <h2>A user tries to cancel a payment request</h2>
+        <p>They click cancel and see this:</p>
         <div className="cs-msg">
           <span>Error</span>
           You are not the creator of the request.
         </div>
         <p className="cs-quote">&ldquo;Did I do something wrong? What do I do now?&rdquo;</p>
-        <p className="cs-note">Nadia is a composite. The message is real.</p>
-      </section>
-
-      {/* 2 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Not alone</span>
-        <h2>She sends a screenshot to support</h2>
-        <p>
-          Reading tickets, I noticed many were just screenshots of error messages. Nobody had
-          assigned this. The messages said what failed, but never what to do next.
-        </p>
+        <p>The message says what failed, but not why, and not what to do next.</p>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">The audit</span>
-        <h2>I pulled all ~2,000 messages</h2>
+        <span className="cs-num">The question</span>
+        <h2>One bad message, or a pattern?</h2>
         <p>
-          The same three problems kept repeating: internal jargon, no next step, and blame. Purely
-          technical errors, like &ldquo;FTP transfer failed&rdquo;, didn&apos;t belong in front of
-          users at all, so they moved to logs.
+          A few screenshots are an anecdote. I asked the backend team to export every error message
+          the platform could show: about 2,000. The same three problems kept repeating: internal
+          jargon, no next step, and blame.
         </p>
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">The rules</span>
-        <h2>Three rules every message has to pass</h2>
+        <span className="cs-num">Decision 1</span>
+        <h2>Show users only errors they can act on</h2>
+        <p>
+          Many messages were purely technical, like &ldquo;FTP transfer failed&rdquo;. That matters
+          to the on-call team, not to a treasurer. Those moved to logs.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> less raw detail on screen for curious users.
+        </p>
+      </section>
+
+      {/* 5 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 2</span>
+        <h2>Write rules, not 2,000 one-off fixes</h2>
+        <p>Fixing messages one by one would drift again with the next release. So every message has to pass three rules:</p>
         <ol className="cs-rules">
           <li>Say what happened, in the user&apos;s words.</li>
           <li>Give the next step.</li>
           <li>Never blame the user.</li>
         </ol>
         <p className="cs-trade">
-          <b>Why rules, not quick fixes:</b> one-off fixes drift again with the next release. Rules
-          let anyone write a good message.
+          <b>Trade-off:</b> slower than quickly patching the worst messages.
         </p>
-      </section>
-
-      {/* 5 */}
-      <section className="cs-reveal">
-        <span className="cs-num">The change</span>
-        <h2>Now Nadia knows why, and what to do</h2>
-        <MessageRewrite items={rewrites} />
       </section>
 
       {/* 6 */}
       <section className="cs-reveal">
-        <span className="cs-num">At scale</span>
+        <span className="cs-num">Decision 3</span>
         <h2>AI wrote the drafts. I checked every one</h2>
         <p>
           In banking, a plausible rewrite can quietly change what a message says about money or
@@ -124,11 +131,18 @@ export default function ErrorMessagesCase() {
 
       {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">Result</span>
+        <span className="cs-num">The change</span>
+        <h2>Now the message says why, and what to do</h2>
+        <MessageRewrite items={rewrites} />
+      </section>
+
+      {/* 8 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Now</span>
         <h2>Fewer screenshots in the support queue</h2>
         <p>
           Error tickets that only asked &ldquo;what do I do now?&rdquo; went from about 6 in 10 to 3
-          in 10, and the three rules are now how every new message is written.
+          in 10. The three rules are now how every new message is written.
         </p>
         <TicketRatio />
         <p className="cs-takeaway">
