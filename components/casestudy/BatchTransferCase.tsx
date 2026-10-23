@@ -119,7 +119,7 @@ export default function BatchTransferCase() {
       <section className="cs-reveal">
         <span className="cs-num">Testing</span>
         <h2>Two things changed after testing</h2>
-        <p>We ran a heuristic evaluation and tested with branch staff. Two findings changed the design:</p>
+        <p>We tested the flow with branch staff. Two findings changed the design:</p>
         <ol className="cs-rules is-plain">
           <li>Staff wanted to know where a batch stood, so we added a step-by-step progress tracker with clear statuses.</li>
           <li>Vague error messages confused them, so we made each one specific, tied to its row, and visually distinct.</li>
