@@ -25,43 +25,46 @@ export default function BatchTransferCase() {
     <article>
       {/* HERO */}
       <header className="cs-hero">
-        <span className="cs-eyebrow">Case Study · B2B Banking · Offline Batch Payments</span>
-        <h1>
-          A bad row should fail alone.
-          <br />
-          A wrong transfer should never leave.
-        </h1>
-        <p className="cs-lede">
-          Batch payments are high-trust banking workflows. A single invalid row could block an
-          entire payment file, while an incorrect recipient could still result in a{" "}
-          <strong>successful transfer</strong>. I redesigned the workflow to make failures
-          recoverable and risks visible before money moved, against a launch date nobody could
-          move.
-        </p>
+        <div className="cs-hero-main">
+          <span className="cs-eyebrow">Case Study · B2B Banking · Offline Batch Payments</span>
+          <h1>
+            A bad row should fail alone.
+            <br />
+            A wrong transfer should never leave.
+          </h1>
+          <p className="cs-lede">
+            Batch payments are high-trust banking workflows. A single invalid row could block an
+            entire payment file, while an incorrect recipient could still result in a{" "}
+            <strong>successful transfer</strong>. I redesigned the workflow to make failures
+            recoverable and risks visible before money moved, against a launch date nobody could
+            move.
+          </p>
+        </div>
 
-        <CsImpact
-          items={[
-            { value: "Row, not file", label: "One bad row no longer blocks the batch; valid payments continue" },
-            { value: "Caught before approval", label: "Recipient mismatches surface while money can still be stopped" },
-            { value: "On the deadline", label: "Shipped to real branches on a date nobody could move" },
-          ]}
-        />
+        <div className="cs-hero-side">
+          <CsImpact
+            items={[
+              { value: "Row, not file", label: "One bad row no longer blocks the batch; valid payments continue" },
+              { value: "Caught before approval", label: "Recipient mismatches surface while money can still be stopped" },
+              { value: "On the deadline", label: "Shipped to real branches on a date nobody could move" },
+            ]}
+          />
 
-
-        <dl className="cs-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Product Designer. Co-led the research, owned the flow and verification model, built the UI with the other designer, carried it through handoff</dd>
-          </div>
-          <div>
-            <dt>Team</dt>
-            <dd>2 product designers · Product · Engineering · Banking stakeholders</dd>
-          </div>
-          <div>
-            <dt>Constraint</dt>
-            <dd>A launch date nobody could move</dd>
-          </div>
-        </dl>
+          <dl className="cs-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Product Designer. Co-led the research, owned the flow and verification model, built the UI with the other designer, carried it through handoff</dd>
+            </div>
+            <div>
+              <dt>Team</dt>
+              <dd>2 product designers · Product · Engineering · Banking stakeholders</dd>
+            </div>
+            <div>
+              <dt>Constraint</dt>
+              <dd>A launch date nobody could move</dd>
+            </div>
+          </dl>
+        </div>
       </header>
 
       <hr className="cs-divider" />

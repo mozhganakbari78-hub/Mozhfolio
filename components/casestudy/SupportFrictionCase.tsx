@@ -23,44 +23,47 @@ export default function SupportFrictionCase() {
     <article>
       {/* HERO */}
       <header className="cs-hero">
-        <span className="cs-eyebrow">
-          Case Study · Corporate Banking · Support &amp; Content Architecture
-        </span>
-        <h1>
-          The answers already existed.
-          <br />
-          People couldn&apos;t reach them.
-        </h1>
-        <p className="cs-lede">
-          The brief was to expand the FAQ. Reading{" "}
-          <strong>~1,000 support tickets</strong>{" "}
-          first showed that four out of five didn&apos;t need a person, and the answer usually
-          existed already. The problem was reaching it at the moment someone got stuck.
-        </p>
+        <div className="cs-hero-main">
+          <span className="cs-eyebrow">
+            Case Study · Corporate Banking · Support &amp; Content Architecture
+          </span>
+          <h1>
+            The answers already existed.
+            <br />
+            People couldn&apos;t reach them.
+          </h1>
+          <p className="cs-lede">
+            The brief was to expand the FAQ. Reading{" "}
+            <strong>~1,000 support tickets</strong>{" "}
+            first showed that four out of five didn&apos;t need a person, and the answer usually
+            existed already. The problem was reaching it at the moment someone got stuck.
+          </p>
+        </div>
 
-        <CsImpact
-          items={[
-            { value: "Brief rewritten", label: "Investment moved from more FAQ content to fixing the flow" },
-            { value: "Live", label: "Answers now surface while the user describes the problem" },
-            { value: "Fewer repeat tickets", label: "Support reported fewer of this kind, and more time on real issues" },
-          ]}
-        />
+        <div className="cs-hero-side">
+          <CsImpact
+            items={[
+              { value: "Brief rewritten", label: "Investment moved from more FAQ content to fixing the flow" },
+              { value: "Live", label: "Answers now surface while the user describes the problem" },
+              { value: "Fewer repeat tickets", label: "Support reported fewer of this kind, and more time on real issues" },
+            ]}
+          />
 
-
-        <dl className="cs-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Product Designer. Found the pattern, built the evidence, reframed the brief, and wrote the matching spec handed to engineering</dd>
-          </div>
-          <div>
-            <dt>Worked with</dt>
-            <dd>Product · Support · Frontend tech lead · One product designer</dd>
-          </div>
-          <div>
-            <dt>Status</dt>
-            <dd>Live</dd>
-          </div>
-        </dl>
+          <dl className="cs-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Product Designer. Found the pattern, built the evidence, reframed the brief, and wrote the matching spec handed to engineering</dd>
+            </div>
+            <div>
+              <dt>Worked with</dt>
+              <dd>Product · Support · Frontend tech lead · One product designer</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Live</dd>
+            </div>
+          </dl>
+        </div>
       </header>
 
       <hr className="cs-divider" />

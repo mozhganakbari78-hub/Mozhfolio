@@ -63,38 +63,41 @@ export default function ErrorMessagesCase() {
     <article>
       {/* HERO */}
       <header className="cs-hero">
-        <span className="cs-eyebrow">
-          Case Study · Corporate Banking · UX Writing &amp; Error Systems
-        </span>
-        <h1>
-          Users knew something had failed.
-          <br />
-          They didn&apos;t know what to do next.
-        </h1>
-        <p className="cs-lede">
-          People were filing support tickets that were just screenshots of errors. I audited{" "}
-          <strong>~2,000 messages</strong> and wrote three rules that became the platform standard.
-        </p>
+        <div className="cs-hero-main">
+          <span className="cs-eyebrow">
+            Case Study · Corporate Banking · UX Writing &amp; Error Systems
+          </span>
+          <h1>
+            Users knew something had failed.
+            <br />
+            They didn&apos;t know what to do next.
+          </h1>
+          <p className="cs-lede">
+            People were filing support tickets that were just screenshots of errors. I audited{" "}
+            <strong>~2,000 messages</strong> and wrote three rules that became the platform standard.
+          </p>
+        </div>
 
-        <CsImpact
-          items={[
-            { value: "6 → 3 in 10", label: "Error tickets that were only asking what to do next" },
-            { value: "~2,000", label: "Messages audited against one framework" },
-            { value: "Platform standard", label: "Three rules now the reference for every new error message" },
-          ]}
-        />
+        <div className="cs-hero-side">
+          <CsImpact
+            items={[
+              { value: "6 → 3 in 10", label: "Error tickets that were only asking what to do next" },
+              { value: "~2,000", label: "Messages audited against one framework" },
+              { value: "Platform standard", label: "Three rules now the reference for every new error message" },
+            ]}
+          />
 
-
-        <dl className="cs-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Product Designer. Found the problem, ran the audit, defined the framework, reviewed every message</dd>
-          </div>
-          <div>
-            <dt>Scope</dt>
-            <dd>~2,000 error messages · Persian-language product</dd>
-          </div>
-        </dl>
+          <dl className="cs-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Product Designer. Found the problem, ran the audit, defined the framework, reviewed every message</dd>
+            </div>
+            <div>
+              <dt>Scope</dt>
+              <dd>~2,000 error messages · Persian-language product</dd>
+            </div>
+          </dl>
+        </div>
       </header>
 
       <hr className="cs-divider" />

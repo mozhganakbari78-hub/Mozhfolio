@@ -21,42 +21,45 @@ export default function DesignSystemCase() {
     <article>
       {/* HERO */}
       <header className="cs-hero">
-        <span className="cs-eyebrow">Case Study · Enterprise Banking · Design System</span>
-        <h1>
-          The design system worked when decisions
-          <br />
-          stopped living in people&apos;s heads.
-        </h1>
-        <p className="cs-lede">
-          90+ live screens, no dedicated system engineer, and no pause in delivery. My first token
-          model was cleaner from a design perspective, but it introduced a{" "}
-          <strong>translation layer</strong> between design and engineering. I adapted the system to the
-          vocabulary already used in the codebase.
-        </p>
+        <div className="cs-hero-main">
+          <span className="cs-eyebrow">Case Study · Enterprise Banking · Design System</span>
+          <h1>
+            The design system worked when decisions
+            <br />
+            stopped living in people&apos;s heads.
+          </h1>
+          <p className="cs-lede">
+            90+ live screens, no dedicated system engineer, and no pause in delivery. My first token
+            model was cleaner from a design perspective, but it introduced a{" "}
+            <strong>translation layer</strong> between design and engineering. I adapted the system to the
+            vocabulary already used in the codebase.
+          </p>
+        </div>
 
-        <CsImpact
-          items={[
-            { value: "8–9 → 3–4", label: "Clarification questions a day, observed as coverage grew" },
-            { value: "90+ screens", label: "One component set across three brand configurations" },
-            { value: "Reused", label: "The foundation the batch tool shipped on under a fixed deadline" },
-          ]}
-        />
+        <div className="cs-hero-side">
+          <CsImpact
+            items={[
+              { value: "8–9 → 3–4", label: "Clarification questions a day, observed as coverage grew" },
+              { value: "90+ screens", label: "One component set across three brand configurations" },
+              { value: "Reused", label: "The foundation the batch tool shipped on under a fixed deadline" },
+            ]}
+          />
 
-
-        <dl className="cs-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Product Designer. Owned design system architecture, tokens, coverage, governance, and adoption</dd>
-          </div>
-          <div>
-            <dt>Team</dt>
-            <dd>2 product designers · Frontend tech lead · Engineering · Product</dd>
-          </div>
-          <div>
-            <dt>Scope</dt>
-            <dd>90+ live screens · 29 documented components · 3 brand configurations</dd>
-          </div>
-        </dl>
+          <dl className="cs-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Product Designer. Owned design system architecture, tokens, coverage, governance, and adoption</dd>
+            </div>
+            <div>
+              <dt>Team</dt>
+              <dd>2 product designers · Frontend tech lead · Engineering · Product</dd>
+            </div>
+            <div>
+              <dt>Scope</dt>
+              <dd>90+ live screens · 29 documented components · 3 brand configurations</dd>
+            </div>
+          </dl>
+        </div>
       </header>
 
       <hr className="cs-divider" />
