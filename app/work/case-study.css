@@ -2483,3 +2483,130 @@
   text-transform: uppercase;
   color: var(--ink-faint);
 }
+
+/* ── scenario: one person's moment, before and after ──────────────────────
+   A numbered path with the person's thought under each step. Pain steps take
+   the signal colour, resolved steps the resolve colour, so the reader can see
+   where it breaks before reading a word. */
+.cs-scn {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  padding: 20px 22px 18px;
+  margin: 10px 0 8px;
+}
+.cs-scn.is-after {
+  border-color: rgba(95, 202, 166, .3);
+  background: linear-gradient(180deg, rgba(95, 202, 166, .07), rgba(95, 202, 166, .01)), var(--card);
+}
+.cs-scn .scn-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.cs-scn .scn-tag {
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px;
+  color: var(--signal); background: var(--signal-soft);
+}
+.cs-scn.is-after .scn-tag { color: var(--resolve); background: var(--resolve-soft); }
+.cs-scn .scn-who { font-size: 15px; color: var(--ink-soft); }
+.cs-scn .scn-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+.cs-scn li {
+  position: relative;
+  display: grid; align-content: start; gap: 6px;
+  padding: 26px 0 0;
+}
+/* the path: a line through every dot */
+.cs-scn li::before {
+  content: ""; position: absolute; left: 0; right: -10px; top: 7px; height: 2px; background: var(--line);
+}
+.cs-scn li:last-child::before { right: 0; }
+.cs-scn li .dot {
+  position: absolute; left: 0; top: 2px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--ink-faint);
+}
+.cs-scn li.is-pain .dot { border-color: var(--signal); background: var(--signal); box-shadow: 0 0 0 4px var(--signal-soft); }
+.cs-scn li.is-good .dot { border-color: var(--resolve); background: var(--resolve); box-shadow: 0 0 0 4px var(--resolve-soft); }
+.cs-scn li .lbl { font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.cs-scn li .thought { font-size: 13px; line-height: 1.45; font-style: italic; color: var(--ink-faint); }
+.cs-scn li.is-pain .thought { color: #f0a796; }
+.cs-scn .scn-end {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line-soft);
+  font-size: 15px; font-weight: 700; color: var(--signal);
+}
+.cs-scn.is-after .scn-end { color: var(--resolve); }
+.cs-scn .scn-note { margin-top: 6px; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--ink-faint); }
+@media (max-width: 900px) {
+  .cs-scn { padding: 16px 16px 14px; }
+  .cs-scn .scn-steps { grid-auto-flow: row; grid-auto-columns: auto; gap: 0; }
+  .cs-scn li { padding: 0 0 14px 26px; }
+  .cs-scn li::before { left: 5px; right: auto; top: 14px; bottom: 0; width: 2px; height: auto; }
+  .cs-scn li:last-child::before { display: none; }
+  .cs-scn li .dot { top: 3px; }
+}
+
+/* ── the calls: judgement, with its price ─────────────────────────────── */
+.cs-calls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 10px 0 6px; }
+.cs-calls .call {
+  display: grid; align-content: start; gap: 8px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--card);
+}
+.cs-calls .n { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+.cs-calls .t { font-size: 17px; font-weight: 700; line-height: 1.3; color: var(--ink); }
+.cs-calls .ten { font-family: var(--font-mono), monospace; font-size: 11.5px; line-height: 1.5; color: var(--ink-faint); }
+.cs-calls .why { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+.cs-calls .cost {
+  margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line-soft);
+  font-size: 13px; line-height: 1.45; color: var(--ink-soft);
+}
+.cs-calls .cost b {
+  display: block; margin-bottom: 3px;
+  font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--warn);
+}
+@media (max-width: 900px) { .cs-calls { grid-template-columns: 1fr; } }
+
+.cs-horizontal article > section:has(.cs-scn),
+.cs-horizontal article > section:has(.cs-calls) { width: min(1200px, 96vw); }
+
+/* ── vertical layout on desktop: a centred reading column ─────────────────
+   The vertical layout was built for phones (edge-to-edge panels). On a wide
+   screen the same panels get a centred column so lines stay readable and the
+   figures have room. */
+@media (min-width: 901px) {
+  .cs-vertical .cs-vpanel {
+    padding: 64px max(48px, calc((100% - 1120px) / 2)) 40px;
+  }
+  .cs-vertical .cs-vpanel.cs-hero {
+    min-height: auto;
+    padding-top: 88px;
+    padding-bottom: 56px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    column-gap: 56px;
+    align-items: center;
+  }
+  .cs-vertical .cs-hero h1 { font-size: clamp(36px, 3.6vw, 52px); }
+  .cs-vertical .cs-impact ul { grid-template-columns: 1fr; }
+  .cs-vertical .cs-vpanel > h2 { font-size: clamp(26px, 2.3vw, 34px); margin-bottom: 12px; }
+  .cs-vertical .cs-vpanel > p { max-width: 720px; }
+  .cs-vertical .cs-shot .cs-mockup img { max-height: none; }
+  .cs-vertical .cs-next, .cs-vertical .cs-foot { padding-top: 56px; padding-bottom: 56px; }
+}
+
+/* ── layout toggle (desktop only) ─────────────────────────────────────── */
+.cs-viewtoggle {
+  position: fixed; top: 11px; left: 50%; transform: translateX(-50%); z-index: 40;
+  display: inline-flex; gap: 2px; padding: 3px;
+  border: 1px solid #20222f; border-radius: 999px; background: #121314;
+}
+.cs-viewtoggle button {
+  border: 0; cursor: pointer; padding: 6px 12px; border-radius: 999px;
+  font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: #9698ab; background: transparent;
+}
+.cs-viewtoggle button[aria-pressed="true"] { color: #FEFEFF; background: #1C1D1F; }
+.cs-viewtoggle button:focus-visible { outline: 2px solid #7cb8f5; outline-offset: 2px; }

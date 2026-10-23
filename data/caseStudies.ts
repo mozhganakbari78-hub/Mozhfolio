@@ -19,7 +19,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "01",
     slug: "reducing-support-friction",
-    title: "Answers that appear while users describe their problem",
+    title: "Getting users unstuck mid-task, without waiting for support",
     short:
       "Asked for a bigger FAQ, ~1,000 tickets showed 4 in 5 never needed a person. I moved the answers into the flow.",
     description:
@@ -30,7 +30,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "02",
     slug: "batch-transfer",
-    title: "Batch payments where one bad row no longer blocks the file",
+    title: "Making bulk payments safe for bank branches",
     short:
       "Row-level failure and recipient checks before approval, shipped to branches on a fixed deadline.",
     description:
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "04",
     slug: "error-messages",
-    title: "Rewriting ~2,000 error messages so users know what to do next",
+    title: "Error messages that tell users what to do next",
     short:
       "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:

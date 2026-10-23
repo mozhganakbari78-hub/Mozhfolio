@@ -6,6 +6,8 @@ import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import MessageAnatomy from "./MessageAnatomy";
 import DeadEndMessage from "./DeadEndMessage";
 import TicketRatio from "./TicketRatio";
+import Scenario from "./Scenario";
+import SeniorCalls from "./SeniorCalls";
 
 
 const rewrites: Rewrite[] = [
@@ -48,11 +50,12 @@ export default function ErrorMessagesCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Corporate banking · UX writing · 2 min read</span>
-          <h1>Rewriting ~2,000 error messages so users know what to do next</h1>
+          <span className="cs-eyebrow">Corporate banking platform · UX writing at scale</span>
+          <h1>Error messages that tell users what to do next</h1>
           <p className="cs-lede">
-            Support tickets were arriving as screenshots of error messages. I audited every message
-            the platform could show and wrote <strong>three rules</strong> that became the standard.
+            Nobody assigned this. Reading tickets, I noticed many were just screenshots of error
+            messages. I audited all <strong>~2,000</strong> messages and set three rules that became
+            the platform standard.
           </p>
         </div>
 
@@ -61,14 +64,13 @@ export default function ErrorMessagesCase() {
             items={[
               { value: "6 \u2192 3 in 10", label: "Error tickets that only asked \u201cwhat do I do now?\u201d" },
               { value: "~2,000", label: "Messages audited; technical ones moved to logs, the rest rewritten" },
-              { value: "Platform standard", label: "The three rules are now the reference for every new message" },
+              { value: "Platform standard", label: "Every new error message is now written against the three rules" },
             ]}
           />
-
           <dl className="cs-meta">
             <div>
-              <dt>Role</dt>
-              <dd>Product Designer. Spotted it in tickets, ran the audit, wrote the framework, reviewed every message</dd>
+              <dt>My role</dt>
+              <dd>Product Designer. Spotted it, ran the audit, wrote the framework, reviewed every message</dd>
             </div>
             <div>
               <dt>Scope</dt>
@@ -80,75 +82,127 @@ export default function ErrorMessagesCase() {
 
       <hr className="cs-divider" />
 
-      {/* THE RESULT */}
+      {/* 01 SCENARIO */}
       <section className="cs-reveal">
-        <span className="cs-num">The result</span>
-        <h2>Every message now says what happened and what to do next</h2>
-        <MessageRewrite items={rewrites.slice(0, 1)} />
+        <span className="cs-num">01 / The scenario</span>
+        <h2>A treasurer tries to cancel a payment request</h2>
+        <Scenario
+          kind="before"
+          who="Company treasurer, cancelling a request a colleague created"
+          steps={[
+            { label: "Clicks cancel" },
+            { label: "Sees \u201cYou are not the creator of the request.\u201d", thought: "Did I do something wrong?", tone: "pain" },
+            { label: "No next step on screen", thought: "Can anyone cancel it? Who do I call?", tone: "pain" },
+            { label: "Screenshots the error and files a ticket" },
+          ]}
+          end="Support answers a question the message should have answered."
+          note="Composite scenario. The message is real."
+        />
       </section>
 
-      {/* 01 PROBLEM */}
+      {/* 02 WHY IT MATTERED */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / Problem</span>
-        <h2>Messages announced a failure and then stopped</h2>
-        <p>Nobody assigned this. I found it reading support tickets.</p>
+        <span className="cs-num">02 / Why it mattered</span>
+        <h2>Most error tickets were really asking &ldquo;what now?&rdquo;</h2>
         <DeadEndMessage />
       </section>
 
-      {/* 02 INSIGHT */}
+      {/* 03 THE REAL PROBLEM */}
       <section className="cs-reveal">
-        <span className="cs-num">02 / Insight</span>
-        <h2>2,000 one-off fixes would drift again. It needed rules</h2>
+        <span className="cs-num">03 / The real problem</span>
+        <h2>2,000 messages, each written ad hoc by whoever built the feature</h2>
         <p>
-          I sorted every string by failure shape. Purely technical ones, like{" "}
-          <code>FTP transfer failed</code>, moved to logs.
+          No single message was worth a meeting, so nobody owned the set. Fixing them one by one
+          would drift again with the next release.
         </p>
         <CsStats
           items={[
             { value: "~2,000", label: "messages audited" },
-            { value: "3", label: "failure shapes found" },
+            { value: "3", label: "failure shapes: jargon, no next step, blame" },
             { value: "1", label: "standard, applied platform-wide" },
           ]}
         />
       </section>
 
-      {/* 03 DECISION 1 */}
+      {/* 04 MY CALLS */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / Decision 1</span>
-        <h2>Three rules every message has to pass</h2>
+        <span className="cs-num">04 / The calls I made</span>
+        <h2>Three decisions, and what each one cost</h2>
+        <SeniorCalls
+          calls={[
+            {
+              title: "Decide what users should see at all",
+              tension: "Show every error  vs  show only what users can act on",
+              why: "\u201cFTP transfer failed\u201d matters to the on-call team, not to a treasurer. Purely technical errors moved to logs.",
+              gaveUp: "The appearance of full transparency.",
+            },
+            {
+              title: "Write rules, not 2,000 rewrites",
+              tension: "Fix messages as reported  vs  fix the pattern",
+              why: "Three rules any message can be checked against: say what happened, give the next step, drop the blame. The next person writing one doesn\u2019t start from zero.",
+              gaveUp: "Quick visible wins on single messages.",
+            },
+            {
+              title: "AI drafts, I review every message",
+              tension: "Speed  vs  accuracy in a financial product",
+              why: "A plausible rewrite can quietly change what a message claims about money or permissions. The model didn\u2019t know which terms were regulated.",
+              gaveUp: "Time. Every one of the messages was read by hand.",
+            },
+          ]}
+        />
+      </section>
+
+      {/* 04b THE RULES */}
+      <section className="cs-reveal">
+        <span className="cs-num">04 / The three rules</span>
+        <h2>One shape every message has to pass</h2>
         <MessageAnatomy />
       </section>
 
-      {/* 04 DECISION 2 */}
+      {/* 05 SCENARIO, REDESIGNED */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / Decision 2</span>
-        <h2>A system rule is not the user&apos;s fault</h2>
+        <span className="cs-num">05 / The same moment, redesigned</span>
+        <h2>The message answers the treasurer&apos;s three questions</h2>
+        <Scenario
+          kind="after"
+          who="Same treasurer, same request"
+          steps={[
+            { label: "Clicks cancel" },
+            { label: "Learns why: only the creator can cancel", tone: "good" },
+            { label: "Sees the next step: contact support", tone: "good" },
+          ]}
+          end="No screenshot, no guessing."
+        />
         <MessageRewrite items={rewrites.slice(1)} />
       </section>
 
-      {/* 05 OUTCOME */}
+      {/* 05b ANOTHER */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / Outcome</span>
-        <h2>&quot;What do I do now?&quot; tickets went from majority to minority</h2>
+        <span className="cs-num">05 / The same rules, another message</span>
+        <h2>Internal jargon becomes the user&apos;s own reality</h2>
+        <MessageRewrite items={rewrites.slice(0, 1)} />
+      </section>
+
+      {/* 06 OUTCOME */}
+      <section className="cs-reveal">
+        <span className="cs-num">06 / Outcome</span>
+        <h2>&ldquo;What do I do now?&rdquo; went from majority to minority</h2>
         <TicketRatio />
-        <p>
-          <strong>AI</strong> drafted the first pass; I reviewed every message by hand, because in
-          banking a plausible rewrite can change what a message claims about money.
-        </p>
         <p className="cs-takeaway">
-          <span>What I learned</span>
-          Some problems only show up at the level of the whole set.
+          <span>What I&apos;d do differently</span>
+          Tie support contacts to error codes from the start, so I could see which messages still
+          fail instead of reading the queue.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/reducing-support-friction"
-        caseStudyName="Answers that appear while users describe their problem"
+        caseStudyName="Getting users unstuck mid-task, without waiting for support"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Answers that appear while users describe their problem{" "}
+          Getting users unstuck mid-task{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
