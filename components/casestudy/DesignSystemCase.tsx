@@ -40,7 +40,7 @@ export default function DesignSystemCase() {
           <CsImpact
             items={[
               { value: "8–9 → 3–4", label: "Clarification questions a day, observed as coverage grew" },
-              { value: "90+ screens", label: "One component set across three brand configurations" },
+              { value: "Better questions", label: "From \u201cwhich version do we use?\u201d to \u201cdoes this justify a system decision?\u201d" },
               { value: "Reused", label: "The foundation the batch tool shipped on under a fixed deadline" },
             ]}
           />

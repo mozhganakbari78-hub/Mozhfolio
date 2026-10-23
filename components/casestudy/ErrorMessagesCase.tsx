@@ -82,7 +82,7 @@ export default function ErrorMessagesCase() {
           <CsImpact
             items={[
               { value: "6 → 3 in 10", label: "Error tickets that were only asking what to do next" },
-              { value: "~2,000", label: "Messages audited against one framework" },
+              { value: "Shipped", label: "Every rewritten message reviewed by hand before release" },
               { value: "Platform standard", label: "Three rules now the reference for every new error message" },
             ]}
           />

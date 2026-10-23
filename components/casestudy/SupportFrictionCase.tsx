@@ -58,10 +58,6 @@ export default function SupportFrictionCase() {
               <dt>Worked with</dt>
               <dd>Product · Support · Frontend tech lead · One product designer</dd>
             </div>
-            <div>
-              <dt>Status</dt>
-              <dd>Live</dd>
-            </div>
           </dl>
         </div>
       </header>

@@ -36,8 +36,7 @@ export default function BatchTransferCase() {
             Batch payments are high-trust banking workflows. A single invalid row could block an
             entire payment file, while an incorrect recipient could still result in a{" "}
             <strong>successful transfer</strong>. I redesigned the workflow to make failures
-            recoverable and risks visible before money moved, against a launch date nobody could
-            move.
+            recoverable and risks visible before money moved.
           </p>
         </div>
 
@@ -46,7 +45,7 @@ export default function BatchTransferCase() {
             items={[
               { value: "Row, not file", label: "One bad row no longer blocks the batch; valid payments continue" },
               { value: "Caught before approval", label: "Recipient mismatches surface while money can still be stopped" },
-              { value: "On the deadline", label: "Shipped to real branches on a date nobody could move" },
+              { value: "On the deadline", label: "Reached real branches without the launch date moving" },
             ]}
           />
 
