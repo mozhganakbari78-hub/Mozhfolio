@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useInView } from "@/lib/useInView";
 
 const timeline = [
@@ -47,37 +48,94 @@ const story = [
   },
 ];
 
-/** The copy block. It sits in the left column next to the resume, and in the
- *  right column once the resume is hidden, so it lives in one place. */
-function AboutProse({ inView }: { inView: boolean }) {
+/** One chapter on the timeline. It lights up as it scrolls past the reading
+ *  line: the dot fills, a halo appears and the text comes up to full
+ *  strength, so the eye always knows which chapter it is on. */
+function Chapter({
+  chapter,
+  index,
+  still,
+}: {
+  chapter: (typeof story)[number];
+  index: number;
+  still: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 72%", "start 52%"] });
+  const lit = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const textOpacity = useTransform(scrollYProgress, [0, 1], [0.35, 1]);
+  const halo = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+
   return (
-    <div>
-      {story.map((chapter, i) => (
-        <motion.div
-          key={chapter.label}
-          initial={{ opacity: 0, y: 14 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.2 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className={i === 0 ? "" : "mt-6 pt-6"}
-          style={i === 0 ? undefined : { borderTop: "1px solid var(--border-subtle)" }}
+    <div ref={ref} className="relative pl-12 pb-12 last:pb-0">
+      {/* Dot: an outlined number underneath, the filled one fades in on top. */}
+      <span
+        aria-hidden
+        className="absolute left-0 top-0 w-[30px] h-[30px] rounded-full grid place-items-center text-[12px] font-medium"
+        style={{
+          background: "var(--bg)",
+          border: "1px solid var(--border-strong)",
+          color: "var(--text-tertiary)",
+        }}
+      >
+        {index + 1}
+      </span>
+      <motion.span
+        aria-hidden
+        className="absolute left-0 top-0 w-[30px] h-[30px] rounded-full grid place-items-center text-[12px] font-semibold"
+        style={{
+          background: "var(--accent-color)",
+          color: "#fff",
+          opacity: still ? 1 : lit,
+          scale: still ? 1 : halo,
+          boxShadow: "0 0 0 6px color-mix(in srgb, var(--accent-color) 22%, transparent)",
+        }}
+      >
+        {index + 1}
+      </motion.span>
+
+      <motion.div style={{ opacity: still ? 1 : textOpacity }}>
+        <h3
+          className={chapter.lede ? "text-[19px] md:text-[21px] font-semibold mb-2" : "text-[17px] md:text-[18px] font-semibold mb-2"}
+          style={{ color: "var(--text-primary)", letterSpacing: "-0.02em", lineHeight: 1.3, paddingTop: 3 }}
         >
-          <div className="mono-label mb-2.5" style={{ color: "var(--text-tertiary)" }}>
-            {chapter.label}
-          </div>
-          <p
-            className={
-              chapter.lede
-                ? "text-[16px] md:text-[17px] leading-[1.6]"
-                : "text-[14.5px] leading-[1.65]"
-            }
-            style={{
-              color: chapter.lede ? "var(--text-primary)" : "var(--text-secondary)",
-              letterSpacing: chapter.lede ? "-0.01em" : undefined,
-            }}
-          >
-            {chapter.body}
-          </p>
-        </motion.div>
+          {chapter.label}
+        </h3>
+        <p
+          className={chapter.lede ? "text-[16px] md:text-[17px] leading-[1.6]" : "text-[14.5px] md:text-[15px] leading-[1.65]"}
+          style={{ color: chapter.lede ? "var(--text-primary)" : "var(--text-secondary)" }}
+        >
+          {chapter.body}
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
+/** The copy as a scroll-driven timeline: a rail that fills with the accent as
+ *  the reader moves down, and chapters that light up as the fill reaches them.
+ *  With reduced motion everything is simply shown, fully lit. */
+function AboutProse() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion() ?? false;
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 62%", "end 62%"] });
+  const fill = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 });
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Rail behind the dots, centred on them (dot is 30px wide). */}
+      <span
+        aria-hidden
+        className="absolute left-[15px] top-[15px] bottom-0 w-px"
+        style={{ background: "var(--border)" }}
+      />
+      <motion.span
+        aria-hidden
+        className="absolute left-[15px] top-[15px] bottom-0 w-[2px] -translate-x-[0.5px] origin-top rounded-full"
+        style={{ background: "var(--accent-color)", scaleY: reduce ? 1 : fill }}
+      />
+      {story.map((chapter, i) => (
+        <Chapter key={chapter.label} chapter={chapter} index={i} still={reduce} />
       ))}
     </div>
   );
@@ -96,6 +154,7 @@ export default function About() {
         <div ref={ref} className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
           <motion.div
+            className="md:sticky md:top-28"
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -115,7 +174,7 @@ export default function About() {
                 costs more than a bad experience.
               </span>
             </h2>
-            {SHOW_TIMELINE && <AboutProse inView={inView} />}
+            {SHOW_TIMELINE && <AboutProse />}
 
             {/* With the resume hidden the left column ran out of content half
                 way down. The thesis of the section sits here instead of being
@@ -221,7 +280,7 @@ export default function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
-              <AboutProse inView={inView} />
+              <AboutProse />
             </motion.div>
           )}
         </div>
