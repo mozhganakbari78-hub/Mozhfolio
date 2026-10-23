@@ -20,7 +20,7 @@ export default function SupportFrictionCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Sadad · Corporate banking platform</span>
+          <span className="cs-eyebrow">Case study</span>
           <h1>Support that answers users before they open a ticket</h1>
           <p className="cs-lede">
             Redesigning the support page of a banking platform used by 58,000+ organisations.
@@ -29,20 +29,18 @@ export default function SupportFrictionCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            problem="Support was flooded with tickets. 4 in 5 didn't need a person: the answer already existed, but users couldn't find it."
-            did="Read ~1,000 tickets, changed the brief from “expand the FAQ” to “answer users while they describe the problem”, and designed the flow and the matching logic."
-            impact="Answers now appear as users type their question. Support reported fewer repeat tickets after launch."
+            company="Sadad · Bank Melli Iran"
+            role="Product Designer"
+            platform="Web app · B2B corporate banking"
+            team="Product, Support, Frontend lead, 1 designer"
+            problem="Support was flooded with tickets. 4 in 5 didn't need a person: the answer already existed, but users couldn't find it mid-task."
+            did="Read ~1,000 tickets, changed the brief from “expand the FAQ” to “answer users while they describe the problem”, and designed the flow, the UI and the matching logic."
+            results={[
+              <><b>4 in 5</b> tickets didn&apos;t need a person; the redesign targets exactly those</>,
+              <>Answers appear <b>while users type</b> their question, before a ticket is sent</>,
+              <>Support reported <b>fewer repeat tickets</b> after launch</>,
+            ]}
           />
-          <dl className="cs-meta">
-            <div>
-              <dt>My role</dt>
-              <dd>Product Designer: research, flow, UI, matching spec</dd>
-            </div>
-            <div>
-              <dt>Team</dt>
-              <dd>Product · Support · Frontend lead · 1 designer</dd>
-            </div>
-          </dl>
         </div>
       </header>
 

@@ -13,7 +13,7 @@ export default function BatchTransferCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Sadad · Branch banking tool</span>
+          <span className="cs-eyebrow">Case study</span>
           <h1>Bulk payments where one bad row doesn&apos;t stop the file</h1>
           <p className="cs-lede">
             Redesigning the tool branch staff use to pay salaries and suppliers for corporate
@@ -23,20 +23,18 @@ export default function BatchTransferCase() {
 
         <div className="cs-hero-side">
           <CsGlance
+            company="Sadad"
+            role="Product Designer"
+            platform="Web app · Bank branch staff"
+            team="2 designers, Product, Engineering, Banking"
             problem="One invalid row rejected the whole payment file. Worse, a wrong but valid account number went through as a success."
             did="Co-led research in branches, designed row-level processing and a recipient name check before approval, and phased the release to hit a fixed deadline."
-            impact="Shipped to branches on time. Bad rows are fixed one by one, and risky recipients are flagged before money moves."
+            results={[
+              <>A bad row is <b>fixed on its own</b>; valid payments keep going</>,
+              <>Wrong-recipient risk <b>flagged before approval</b>, while money can still be stopped</>,
+              <>Shipped to branches <b>on the deadline</b></>,
+            ]}
           />
-          <dl className="cs-meta">
-            <div>
-              <dt>My role</dt>
-              <dd>Product Designer: research, flow, verification model, UI</dd>
-            </div>
-            <div>
-              <dt>Team</dt>
-              <dd>2 designers · Product · Engineering · Banking</dd>
-            </div>
-          </dl>
         </div>
       </header>
 

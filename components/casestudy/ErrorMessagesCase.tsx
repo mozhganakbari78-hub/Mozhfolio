@@ -49,7 +49,7 @@ export default function ErrorMessagesCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Sadad · Corporate banking platform</span>
+          <span className="cs-eyebrow">Case study</span>
           <h1>Error messages that tell users what to do next</h1>
           <p className="cs-lede">
             A self-initiated audit and rewrite of every error message in a banking platform.
@@ -58,20 +58,18 @@ export default function ErrorMessagesCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            problem="Many support tickets were just screenshots of error messages. Users knew something had failed, but not what to do."
+            company="Sadad · Bank Melli Iran"
+            role="Product Designer, self-initiated"
+            platform="Web app · Persian-language"
+            team="Solo, reviewed with backend"
+            problem="Many support tickets were just screenshots of error messages. Users knew something had failed, not what to do next."
             did="Audited ~2,000 messages, moved technical ones to logs, wrote three rules every message must pass, and reviewed every AI-drafted rewrite by hand."
-            impact="“What do I do now?” tickets fell from about 6 to 3 in 10 error tickets. The three rules are now the standard."
+            results={[
+              <>“What do I do now?” tickets: <b>6 → 3 in 10</b> error tickets</>,
+              <><b>~2,000</b> messages audited and cleaned up</>,
+              <>The three rules are now the <b>platform standard</b></>,
+            ]}
           />
-          <dl className="cs-meta">
-            <div>
-              <dt>My role</dt>
-              <dd>Product Designer: spotted it, ran the audit, wrote the rules</dd>
-            </div>
-            <div>
-              <dt>Scope</dt>
-              <dd>~2,000 messages · Persian-language product</dd>
-            </div>
-          </dl>
         </div>
       </header>
 

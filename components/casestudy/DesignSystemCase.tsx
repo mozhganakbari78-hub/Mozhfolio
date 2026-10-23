@@ -13,7 +13,7 @@ export default function DesignSystemCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Sadad · Corporate banking platform</span>
+          <span className="cs-eyebrow">Case study</span>
           <h1>A design system the engineers actually used</h1>
           <p className="cs-lede">
             Built on Ant Design for 90+ live screens and three brands, without pausing delivery.
@@ -22,20 +22,18 @@ export default function DesignSystemCase() {
 
         <div className="cs-hero-side">
           <CsGlance
+            company="Sadad · Bank Melli Iran"
+            role="Product Designer, design system owner"
+            platform="Web app · 90+ screens"
+            team="2 designers, Frontend lead, Engineering"
             problem="Developers asked design the same questions about 8 times a day: which button, which spacing, which state."
             did="Built the system on the names already in the code (after scrapping my own first token model), documented 29 components, and set up a decision process with the frontend lead."
-            impact="Repeat questions dropped to about 3 a day. Three brands now run on one component layer."
+            results={[
+              <>Repeat questions from developers: <b>~8 → ~3 a day</b></>,
+              <><b>3 brands</b> run on one component layer</>,
+              <>The bulk-payment tool <b>shipped on it</b> under a fixed deadline</>,
+            ]}
           />
-          <dl className="cs-meta">
-            <div>
-              <dt>My role</dt>
-              <dd>Product Designer: architecture, tokens, components, governance</dd>
-            </div>
-            <div>
-              <dt>Team</dt>
-              <dd>2 designers · Frontend lead · Engineering</dd>
-            </div>
-          </dl>
         </div>
       </header>
 

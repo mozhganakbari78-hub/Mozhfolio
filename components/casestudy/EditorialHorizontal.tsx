@@ -49,7 +49,8 @@ export default function EditorialHorizontal({ children }: { children: React.Reac
       else {
         const num = el.querySelector(".cs-num")?.textContent ?? "";
         const before = num.split("/")[0]?.trim();
-        const after = num.split("/")[1]?.trim();
+        // "03 / The flow" or a plain "Decision 1"
+        const after = (num.includes("/") ? num.split("/")[1] : num).trim();
         if (after) {
           const short = after.length > 18 ? after.slice(0, 16).trimEnd() + "..." : after;
           label = short;
