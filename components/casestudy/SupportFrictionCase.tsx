@@ -5,28 +5,18 @@ import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import RoutingShift from "./RoutingShift";
 import ReframeStatement from "./ReframeStatement";
-import UserMindset from "./UserMindset";
 import TicketWall from "./TicketWall";
 import TicketSplit from "./TicketSplit";
 import VocabularyGap from "./VocabularyGap";
 import SearchWeights from "./SearchWeights";
-import MatchPipeline from "./MatchPipeline";
 import KeywordRule from "./KeywordRule";
-import { PanicJourney } from "./CsInlineArt";
 
-const ticketLens = [
-  "What the user was trying to accomplish",
-  "Which questions appeared again and again",
-  "Whether the answer was missing or already available somewhere",
-  "Which moments in the workflow created uncertainty",
-];
-
-const goals = [
-  "Help users recover faster when they hit uncertainty",
-  "Reduce unnecessary dependency on support",
-  "Put guidance closer to where the friction happens",
-];
-
+/*
+ * Each claim is made once. The earlier draft restated "support was carrying
+ * questions that didn't need a person" four times and the branch-visit
+ * example four times; a reader skimming panels should meet every idea in
+ * exactly one of them.
+ */
 export default function SupportFrictionCase() {
   return (
     <article>
@@ -41,18 +31,16 @@ export default function SupportFrictionCase() {
           People couldn&apos;t reach them.
         </h1>
         <p className="cs-lede">
-          Support was spending real effort on questions that didn&apos;t need a person, which is
-          operational cost. The brief was to improve the FAQ. Reviewing{" "}
+          The brief was to expand the FAQ. Reading{" "}
           <strong>~1,000 support tickets</strong>{" "}
-          showed why more content wouldn&apos;t fix it:
-          people weren&apos;t missing information, they were missing guidance at the point of
-          friction.
+          first showed that four out of five didn&apos;t need a person, and the answer usually
+          existed already. The problem was reaching it at the moment someone got stuck.
         </p>
 
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
-            <dd>Product Designer. Identified the pattern, built the evidence, reframed the problem, and collaborated with Product and Engineering on the solution direction</dd>
+            <dd>Product Designer. Found the pattern, built the evidence, reframed the brief, and wrote the matching spec handed to engineering</dd>
           </div>
           <div>
             <dt>Worked with</dt>
@@ -60,181 +48,52 @@ export default function SupportFrictionCase() {
           </div>
           <div>
             <dt>Status</dt>
-            <dd>Live. Early feedback showed fewer repetitive questions of this type</dd>
+            <dd>Live</dd>
           </div>
         </dl>
       </header>
 
       <hr className="cs-divider" />
 
-      {/* 01 THE B2B CONSTRAINT */}
+      {/* 01 THE EVIDENCE */}
       <section className="cs-reveal">
         <CsArt name="tickets" />
-        <span className="cs-num">01 / The research constraint</span>
-        <h2>In B2B products, continuous access to end users is limited</h2>
+        <span className="cs-num">01 / The evidence</span>
+        <h2>I read the tickets before touching the FAQ</h2>
         <p>
-          Users here are organizations, with different roles, workflows, and internal constraints,
-          which makes continuous user research much harder than in a consumer product. To stay
-          connected to real problems, I made reviewing support tickets part of my regular design
-          routine.
+          Organisations are hard to research continuously, so support tickets became the research:
+          two years of them, in users&apos; own words, unprompted by anyone.
         </p>
-        <p>
-          Over time I kept seeing questions that didn&apos;t really need support intervention.
-          People were looking for information that would let them move forward, while the support
-          team was already carrying a high volume of requests.
-        </p>
-        <div className="cs-pull">
-          Support tickets are not only a list of complaints. They are a record of where people got
-          stuck, in their own words, without being prompted by a researcher.
-        </div>
-      </section>
-
-      {/* SHOT — panic journey */}
-      <section className="cs-shot cs-reveal">
-        <PanicJourney />
-      </section>
-
-      {/* 02 THE PATTERN */}
-      <section className="cs-reveal">
-        <CsArt name="fork" />
-        <span className="cs-num">02 / Discovering the pattern</span>
-        <h2>Before redesigning the FAQ, I wanted to know what people were stuck on</h2>
-        <p>
-          The request that reached me was to improve the FAQ section. Adding content is the obvious
-          response, and it is only the right one if information is the thing that&apos;s missing.
-        </p>
-        <p>
-          Meanwhile support was absorbing significant effort on questions that didn&apos;t need a
-          person at all. Some had an answer already sitting in the product; others had an answer
-          nobody had ever told the user, such as a task that can only be done at a branch. Either
-          way the ticket was avoidable, and every avoidable ticket is operational cost and a slower
-          queue for the people who genuinely need help.
-        </p>
-        <div className="cs-pull">
-          Are we solving the right problem, or are we only adding more support content?
-        </div>
-      </section>
-
-      {/* 03 INVESTIGATION */}
-      <section className="cs-reveal">
-        <CsArt name="read" />
-        <span className="cs-num">03 / Investigation</span>
-        <h2>~1,000 tickets, read against the same four questions</h2>
-        <p>
-          I reviewed around a thousand support tickets, covering the period when the platform
-          had gone through significant changes, making the data more representative of the current
-          product experience.
-        </p>
-        <div className="cs-metrics">
-          {ticketLens.map((q) => (
-            <div className="cs-metric" key={q}>
-              <span className="i" aria-hidden />
-              <span className="t">{q}</span>
-            </div>
-          ))}
-        </div>
-        <CsStats
-          items={[
-            { value: "~1,000", label: "tickets reviewed" },
-            { value: "2 yrs", label: "of support history" },
-            { value: "4", label: "questions asked of every ticket" },
-          ]}
-        />
-      </section>
-
-      {/* 03b WHAT THE TICKETS SAID */}
-      <section className="cs-reveal">
-        <span className="cs-num">03 / What the tickets said</span>
-        <h2>Read together, they were asking the same kind of question</h2>
         <TicketWall />
-        <p>
-          Individually these look like unrelated requests. As a set they take two shapes: how do I
-          do this, and what is happening with something I already did. Nobody is reporting a broken
-          feature.
-        </p>
       </section>
 
-      {/* 03b2 THE SPLIT */}
+      {/* 02 THE SPLIT */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / The split</span>
+        <span className="cs-num">02 / The split</span>
         <h2>Four out of five tickets did not need a person</h2>
         <TicketSplit />
-        <p>
-          The same set, sorted a second time by what each request actually needed rather than what
-          it asked. Only about one in five was genuinely support work. The rest were people looking
-          for an answer, or for enough confidence to act on one.
-        </p>
       </section>
 
-      {/* 03c THE FINDING */}
+      {/* 03 THE FINDING, AND WHAT IT DID TO THE BRIEF */}
       <section className="cs-reveal">
         <span className="cs-num">03 / The finding</span>
         <h2>The answer wasn&apos;t missing. It was conditional</h2>
         <p>
-          The largest group was the one a static page cannot serve. Those questions repeat almost
-          word for word, but the correct answer depends on the asker:{" "}
-          <strong>their role, their organisation&apos;s state, and their permission level</strong>.
-          Publishing one answer to a question whose answer is &quot;it depends&quot; does not reduce
-          the ticket. It just moves where the user gets stuck.
+          The largest group repeats almost word for word, but the right answer depends on the
+          asker&apos;s <strong>role, organisation, and permissions</strong>. One published answer
+          cannot serve a question whose answer is &quot;it depends&quot;. Others weren&apos;t ours
+          to give at all: adding a signatory needs a branch visit under bank policy.
         </p>
-        <p>
-          A second group had answers that were never ours to give. Adding a signatory requires a
-          branch visit and paperwork under the bank&apos;s own policy, and no amount of interface
-          design changes that.
-        </p>
-        <div className="cs-pull">
-          Users had no way to tell those situations apart, and the product never told them which one
-          they were in.
-        </div>
-      </section>
-
-      {/* 04 REFRAME */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / Reframing the problem</span>
-        <h2>The analysis described a different opportunity</h2>
         <ReframeStatement />
       </section>
 
-      {/* 05 THE MOMENT */}
+      {/* 04 THE SHIFT */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / The moment itself</span>
-        <h2>Users rarely approach help content calmly in a banking product</h2>
-        <p>
-          Whether the answer was in the product or at a branch counter, people reached out because
-          they were already stuck while trying to complete something that mattered. You can hear it in the tickets themselves:
-          &ldquo;why hasn&apos;t the money gone through?&rdquo; is not a documentation question. It
-          is someone checking whether something has gone wrong.
-        </p>
-        <UserMindset />
-      </section>
-
-      {/* 06 DIRECTION */}
-      <section className="cs-reveal">
-        <CsArt name="merge" />
-        <span className="cs-num">06 / Design direction</span>
-        <h2>Move the answer to the point of friction</h2>
-        <p>
-          Guidance does not only mean showing an answer. Sometimes the honest answer is that the
-          task cannot be done online at all, and saying so immediately beats a help article that
-          lets someone keep hunting for a button that was never going to exist.
-        </p>
-        <div className="cs-metrics">
-          {goals.map((g) => (
-            <div className="cs-metric" key={g}>
-              <span className="i" aria-hidden />
-              <span className="t">{g}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 06b THE SHIFT */}
-      <section className="cs-reveal">
-        <span className="cs-num">06 / The shift</span>
+        <span className="cs-num">04 / The shift</span>
         <h2>The form should be the last option, not the first</h2>
         <p>
-          Finding an answer and asking for help stopped being a choice the user makes first. Sending
-          everyone down one path is what produced the avoidable half of the queue.
+          People arrive mid-task, often mid-payment. The old flow made them choose between the FAQ
+          and a ticket before they understood their own problem.
         </p>
         <RoutingShift />
       </section>
@@ -244,63 +103,21 @@ export default function SupportFrictionCase() {
         <Mockup
           src="/projects/support-faq.webp"
           alt="Unified support surface, FAQ and ticket in one flow"
-          caption="Fig. 01: Finding an answer and asking for help are the same flow"
+          caption="Fig. 01: Finding an answer and asking for help are one flow"
         />
       </section>
 
-      {/* 07 DECISION 01 */}
+      {/* 05 THE DECISION */}
       <section className="cs-reveal">
-        <span className="cs-num">07 / Key decision 01</span>
-        <h2>Surface answers while the user describes the issue</h2>
-        <div className="cs-decision">
-          <div className="dhead">
-            <span className="dnum">DECISION 01</span>
-            <div className="dtitle">Contextual matching instead of a searchable FAQ</div>
-          </div>
-          <div className="dbody">
-            <div className="cs-dline">
-              <div className="k">Why not search</div>
-              <div className="v">
-                A searchable FAQ still depends on the user knowing what to search for, which is
-                exactly what they don&apos;t have at that moment. It also assumes users understand
-                the product&apos;s terminology, which is often not true in banking workflows.
-              </div>
-            </div>
-            <div className="cs-dline chose">
-              <div className="k">What I pushed for</div>
-              <div className="v">
-                Answers appear as the user describes the problem. Ticket submission stays available
-                but becomes a <strong>fallback rather than the default</strong>, and what the user
-                already typed carries into the ticket instead of being discarded.
-              </div>
-            </div>
-            <div className="cs-dline">
-              <div className="k">The trade-off I accepted</div>
-              <div className="v">
-                More interaction and implementation complexity than a static FAQ. Worth it, because
-                it addressed the behavior revealed by the evidence rather than only changing how
-                content was presented.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 07b THE VOCABULARY GAP */}
-      <section className="cs-reveal">
-        <span className="cs-num">07 / Why search alone fails</span>
-        <h2>The user and the system don&apos;t call it the same thing</h2>
+        <span className="cs-num">05 / The decision</span>
+        <h2>Show answers while the user is still typing</h2>
         <p>
-          Search only works if both sides use the same word for the same event. Here they
-          don&apos;t. Someone asks why their money hasn&apos;t arrived; the product files that
-          event under the name of a settlement network they have never heard of. Nothing the user
-          would think to type appears anywhere in the answer they need.
+          Search assumes the user knows the right word, and here they rarely do. I pushed for
+          answers that appear as the problem is described, with the ticket kept as a fallback that
+          carries what they already typed. More to build than a static FAQ, and the only option
+          that matched what the tickets showed.
         </p>
         <VocabularyGap />
-        <p>
-          This is why the matching had to run on what people actually write, not on what the
-          product calls things.
-        </p>
       </section>
 
       {/* SHOT — live filtering */}
@@ -308,116 +125,59 @@ export default function SupportFrictionCase() {
         <Mockup
           src="/projects/support-faq-filter.webp"
           alt="Real-time FAQ filtering as the user types their issue"
-          caption="Fig. 02: Answers filter in live as the user describes the problem"
+          caption="Fig. 02: Answers filter in as the user describes the problem"
         />
       </section>
 
-      {/* 08 DECISION 02 — the engineering constraint */}
+      {/* 06 THE PUSHBACK */}
       <section className="cs-reveal">
-        <span className="cs-num">08 / Key decision 02</span>
-        <h2>Engineering said keyword search was too expensive to build</h2>
+        <span className="cs-num">06 / The pushback</span>
+        <h2>Engineering said keyword search was too expensive</h2>
         <p>
-          The direction depended on matching what a user typed against existing content, and backend
-          pushed back: open-ended keyword search was hard to implement on their data structure. I
-          didn&apos;t argue the point and I didn&apos;t drop the idea. I asked to understand the
-          actual constraint first, including how their database was structured, then went looking
-          for a version that fit inside it.
-        </p>
-        <div className="cs-pull">
-          &quot;Too hard to build&quot; is rarely about the whole idea. It is usually about one part
-          of it, and that part is often negotiable once you can name it.
-        </div>
-      </section>
-
-      {/* 08b THE WEIGHTED MODEL */}
-      <section className="cs-reveal">
-        <span className="cs-num">08 / The simplification</span>
-        <h2>Two weighted passes instead of open-ended search</h2>
-        <p>
-          Rather than general search, I proposed ranked matching. The first pass is literal: the
-          words the user has already typed. The second pass handles the mismatch people actually hit,
-          where they use one word and the content uses another, driven by a synonym list rather than
-          by anything the system had to infer.
+          Open-ended search didn&apos;t fit the backend&apos;s data structure. Instead of arguing,
+          I asked how their database worked, then proposed ranked matching in two passes: the words
+          the user typed, then a fixed synonym list. Nothing the system had to infer.
         </p>
         <SearchWeights />
       </section>
 
-      {/* 08b2 THE ORDER OF OPERATIONS */}
+      {/* 07 THE SPEC */}
       <section className="cs-reveal">
-        <span className="cs-num">08 / The order of operations</span>
-        <h2>Five steps, and the last one is the one that protects the user</h2>
+        <span className="cs-num">07 / The spec</span>
+        <h2>I handed over the data, not a description of it</h2>
         <p>
-          Persian makes the first step unavoidable: the same word can be typed with Arabic or
-          Persian letters, with or without a half-space, in three different sets of digits. None of
-          the matching works until the input and the stored keywords are reduced to one form.
-        </p>
-        <MatchPipeline />
-      </section>
-
-      {/* 08c SCOPE */}
-      <section className="cs-reveal">
-        <span className="cs-num">08 / The spec</span>
-        <h2>I wrote the keyword set myself rather than hand over the idea</h2>
-        <p>
-          A direction engineering has to interpret is a direction that slips. So I delivered the
-          data, not a description of it: every FAQ question broken into its searchable terms, with
-          the normalisation rules and the synonym dictionary alongside. I drafted it with{" "}
-          <strong>AI assistance</strong> to get through the volume, then had every single keyword
-          checked automatically against its own question text, because a list this size is exactly
-          where a plausible-looking invention survives review.
+          Every FAQ question broken into searchable keywords, with normalisation rules and a synonym
+          dictionary. I drafted it with <strong>AI</strong> to get through the volume, then checked
+          every keyword automatically against its own question. Below a match threshold the product
+          shows nothing, because a confident wrong answer is worse than none.
         </p>
         <CsStats
           items={[
-            { value: "89", label: "FAQ questions covered" },
-            { value: "343", label: "keywords, each verified in its question" },
+            { value: "89", label: "FAQ questions" },
+            { value: "343", label: "keywords, each verified" },
             { value: "34", label: "synonym groups" },
           ]}
         />
       </section>
 
-      {/* 08d THE EXCEPTION */}
+      {/* 08 THE EXCEPTION */}
       <section className="cs-reveal">
         <span className="cs-num">08 / The exception</span>
         <h2>One rule would have quietly broken the set</h2>
-        <p>
-          Question words, generic words, and conjugated verbs were all stripped out. Verbal nouns
-          look like the same category and were the one thing I had to keep.
-        </p>
+        <p>Conjugated verbs were stripped. Verbal nouns look the same, and had to stay.</p>
         <KeywordRule />
       </section>
 
-      {/* 08e SCOPE */}
-      <section className="cs-reveal">
-        <span className="cs-num">08 / Scoping phase one</span>
-        <h2>I kept the first synonym list deliberately small</h2>
-        <p>
-          The list only covers pairs that are unambiguous, because a wrong synonym match is worse
-          than no match: it hands a confident answer to the wrong question. That is also why the
-          last step returns nothing below the threshold. Keeping phase one narrow made it cheap
-          enough for engineering to ship, and the list is designed to grow as real usage shows which
-          words people actually reach for.
-        </p>
-        <div className="cs-pull">
-          The feature shipped because I shrank it to the part that was both valuable and buildable,
-          not because I convinced anyone to build the hard version.
-        </div>
-      </section>
-
-      {/* 09 DECISION 03 */}
+      {/* 09 THE TRADE-OFF */}
       <section className="cs-reveal">
         <CsArt name="shield" />
-        <span className="cs-num">09 / Key decision 03</span>
+        <span className="cs-num">09 / The trade-off</span>
         <h2>I kept a taxonomy I didn&apos;t like</h2>
         <p>
-          The support database ran on a fixed category taxonomy that back-office filters and two
-          years of support tickets depended on. Rebuilding it would have been cleaner and would
-          have put a live support operation at risk. I mapped the new experience onto the existing
-          structure, used a controlled &quot;Other&quot; fallback for what wouldn&apos;t map, and
-          documented the compromise as deliberate design debt so the reasoning stays visible.
+          Back-office filters and two years of tickets depended on the existing categories. I mapped
+          the new flow onto them, added a controlled &quot;Other&quot;, and logged it as design debt
+          rather than put a live support operation at risk.
         </p>
-        <div className="cs-pull">
-          A cleaner design was not worth destabilizing the operation supporting it.
-        </div>
       </section>
 
       {/* 10 OUTCOME */}
@@ -426,19 +186,11 @@ export default function SupportFrictionCase() {
         <h2>Support conversations changed subject</h2>
         <div className="cs-status">
           <span className="cs-eyebrow">Shipped</span>
-          <h3>
-            From &quot;where do I find this?&quot; toward genuinely functional issues.
-          </h3>
+          <h3>From &quot;where do I find this?&quot; to genuinely functional issues.</h3>
           <p>
-            After launch, support feedback indicated fewer repetitive questions of this type.
-            Since we did not have instrumented before-and-after measurement, I avoid attributing a
-            specific percentage to the change. The qualitative shift was that support spent less
-            time directing users to existing information and more time resolving issues that
-            required human assistance.
+            Support reported fewer repetitive questions of this kind after launch. Without
+            instrumented before-and-after data, I don&apos;t put a percentage on it.
           </p>
-          <span className="pill">
-            The analysis also outlived the project: root cause first, not the first visible symptom
-          </span>
         </div>
       </section>
 
@@ -449,17 +201,16 @@ export default function SupportFrictionCase() {
         <div className="cs-reflect">
           <h3>Evidence earns scope</h3>
           <p>
-            I didn&apos;t have the authority to redefine the project, and I didn&apos;t need it. The
-            ticket history turned an intuition into evidence the team could evaluate.
+            I didn&apos;t have the authority to redefine the project, and didn&apos;t need it. The
+            tickets did that.
           </p>
         </div>
         <div className="cs-divider" style={{ margin: "22px 0" }} />
         <div className="cs-reflect">
           <h3>A technical objection is information, not a verdict</h3>
           <p>
-            When engineering said search was too expensive, the useful move was understanding their
-            data structure well enough to propose something narrower. The design survived because I
-            changed its shape, not because I defended its first version.
+            The design survived because I changed its shape, not because I defended its first
+            version.
           </p>
         </div>
       </section>
