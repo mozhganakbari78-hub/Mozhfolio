@@ -67,8 +67,8 @@ export default function SupportFrictionCase() {
         <h2>Many tickets weren&apos;t support requests at all</h2>
         <p>
           A large share just needed information. &ldquo;How do I add a signatory?&rdquo; has one
-          answer: visit a branch in person. Yet users called to ask, filling the phone lines and
-          taking the support team&apos;s time.
+          answer: bank policy requires a branch visit, and neither we nor support can change that.
+          Yet users called to ask, filling the phone lines and taking the support team&apos;s time.
         </p>
         <TicketSplit />
       </section>
