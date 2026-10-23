@@ -2628,3 +2628,8 @@
 .cs-shot.is-small .cs-mockup { max-width: 440px; flex: none; }
 .cs-horizontal article > .cs-shot.is-small { width: min(560px, 96vw); }
 .cs-horizontal .cs-shot.is-small .cs-mockup img { max-height: calc(100vh - 260px); }
+
+/* Without JavaScript nothing adds .in, so the sections would stay hidden. */
+@media (scripting: none) {
+  .cs-reveal { opacity: 1; transform: none; }
+}

@@ -36,24 +36,30 @@ export default function Editorial({ children }: { children: React.ReactNode }) {
     } catch {}
   };
 
-  if (touch === null) return null;
-  if (touch) return <EditorialVertical>{children}</EditorialVertical>;
+  // Before mount (touch === null) this renders the default vertical layout
+  // rather than nothing, so the case study is in the exported HTML and shows
+  // before the JavaScript has loaded. The tree keeps the same shape either
+  // way, so hydrating doesn't remount the case; the toggle and a saved
+  // "Slides" choice join once the pointer is known.
+  const desktop = touch === false;
 
   return (
     <>
-      {view === "horizontal" ? (
+      {desktop && view === "horizontal" ? (
         <EditorialHorizontal>{children}</EditorialHorizontal>
       ) : (
         <EditorialVertical>{children}</EditorialVertical>
       )}
-      <div className="cs-viewtoggle" role="group" aria-label="Case study layout">
-        <button type="button" aria-pressed={view === "vertical"} onClick={() => choose("vertical")}>
-          Scroll
-        </button>
-        <button type="button" aria-pressed={view === "horizontal"} onClick={() => choose("horizontal")}>
-          Slides
-        </button>
-      </div>
+      {desktop && (
+        <div className="cs-viewtoggle" role="group" aria-label="Case study layout">
+          <button type="button" aria-pressed={view === "vertical"} onClick={() => choose("vertical")}>
+            Scroll
+          </button>
+          <button type="button" aria-pressed={view === "horizontal"} onClick={() => choose("horizontal")}>
+            Slides
+          </button>
+        </div>
+      )}
     </>
   );
 }

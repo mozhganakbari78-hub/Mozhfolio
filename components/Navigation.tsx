@@ -28,11 +28,10 @@ export default function Navigation() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      {/* CSS entrance, so the bar is in the exported HTML from the first
+          paint instead of waiting for hydration at opacity 0. */}
+      <header
+        className="nav-drop fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           // Solid rather than backdrop-filter: a blurred backdrop on a fixed
           // bar makes the browser re-composite (and soften) the whole page on
@@ -93,7 +92,7 @@ export default function Navigation() {
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       {/* Mobile menu */}
       <AnimatePresence>
