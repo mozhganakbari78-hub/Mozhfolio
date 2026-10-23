@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import CsImpact from "./CsImpact";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import RoutingShift from "./RoutingShift";
@@ -36,6 +37,15 @@ export default function SupportFrictionCase() {
           first showed that four out of five didn&apos;t need a person, and the answer usually
           existed already. The problem was reaching it at the moment someone got stuck.
         </p>
+
+        <CsImpact
+          items={[
+            { value: "Brief rewritten", label: "Investment moved from more FAQ content to fixing the flow" },
+            { value: "Live", label: "Answers now surface while the user describes the problem" },
+            { value: "Fewer repeat tickets", label: "Support reported fewer of this kind, and more time on real issues" },
+          ]}
+        />
+
 
         <dl className="cs-meta">
           <div>

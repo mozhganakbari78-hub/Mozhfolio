@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import CsImpact from "./CsImpact";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import MessageAnatomy from "./MessageAnatomy";
@@ -75,6 +76,15 @@ export default function ErrorMessagesCase() {
           <strong>~2,000 messages</strong> and wrote three rules that became the platform standard.
         </p>
 
+        <CsImpact
+          items={[
+            { value: "6 → 3 in 10", label: "Error tickets that were only asking what to do next" },
+            { value: "~2,000", label: "Messages audited against one framework" },
+            { value: "Platform standard", label: "Three rules now the reference for every new error message" },
+          ]}
+        />
+
+
         <dl className="cs-meta">
           <div>
             <dt>Role</dt>
@@ -83,10 +93,6 @@ export default function ErrorMessagesCase() {
           <div>
             <dt>Scope</dt>
             <dd>~2,000 error messages · Persian-language product</dd>
-          </div>
-          <div>
-            <dt>Outcome</dt>
-            <dd>Platform standard. Error screenshot tickets roughly halved</dd>
           </div>
         </dl>
       </header>

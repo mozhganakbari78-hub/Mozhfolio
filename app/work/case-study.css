@@ -2338,3 +2338,82 @@
   .cs-lb-stage img { max-height: calc(100dvh - 124px); }
   .cs-lb-close { top: 12px; right: 12px; }
 }
+
+/* ── impact strip in the hero ──────────────────────────────────────────────
+   The one block in the hero allowed to be loud: it is the reason to keep
+   reading. Tinted with the accent rather than outlined like the meta row, so
+   the eye lands on it before the role and team details below it. */
+.cs-impact {
+  margin: 34px 0 0;
+  padding: 16px 22px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(124, 184, 245, .24);
+  background: linear-gradient(180deg, rgba(1, 116, 220, .12), rgba(1, 116, 220, .03));
+  animation: cs-impact-in .6s cubic-bezier(.16, 1, .3, 1) .25s both;
+}
+@keyframes cs-impact-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.cs-impact-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.cs-impact-k .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  box-shadow: 0 0 0 3px rgba(124, 184, 245, .18);
+}
+.cs-impact ul {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cs-impact li {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-width: 0;
+  padding: 0 18px;
+  border-left: 1px solid rgba(124, 184, 245, .16);
+}
+.cs-impact li:first-child { padding-left: 0; border-left: 0; }
+.cs-impact .v {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.cs-impact .l {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+/* the meta row only needs to separate itself from the strip, not from prose */
+.cs-impact + .cs-meta { margin-top: 22px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-impact { animation: none; }
+}
+@media (max-width: 900px) {
+  .cs-impact { padding: 14px 16px 16px; margin-top: 24px; }
+  .cs-impact .v { font-size: 20px; }
+}
+.cs-vertical .cs-impact ul { grid-template-columns: 1fr; gap: 12px; }
+.cs-vertical .cs-impact li {
+  padding: 12px 0 0;
+  border-left: 0;
+  border-top: 1px solid rgba(124, 184, 245, .16);
+}
+.cs-vertical .cs-impact li:first-child { padding-top: 0; border-top: 0; }

@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import CsImpact from "./CsImpact";
 import Mockup from "./Mockup";
 import FailureUnit from "./FailureUnit";
 import FailureModes from "./FailureModes";
@@ -37,6 +38,15 @@ export default function BatchTransferCase() {
           recoverable and risks visible before money moved, against a launch date nobody could
           move.
         </p>
+
+        <CsImpact
+          items={[
+            { value: "Row, not file", label: "One bad row no longer blocks the batch; valid payments continue" },
+            { value: "Caught before approval", label: "Recipient mismatches surface while money can still be stopped" },
+            { value: "On the deadline", label: "Shipped to real branches on a date nobody could move" },
+          ]}
+        />
+
 
         <dl className="cs-meta">
           <div>

@@ -1,6 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsArt from "./CsArt";
+import CsImpact from "./CsImpact";
 import CsStats from "./CsStats";
 import Mockup from "./Mockup";
 import { TokenBridge, GovernanceFlow, SystemAnatomy, ChipDrop } from "./CsInlineArt";
@@ -32,6 +33,15 @@ export default function DesignSystemCase() {
           <strong>translation layer</strong> between design and engineering. I adapted the system to the
           vocabulary already used in the codebase.
         </p>
+
+        <CsImpact
+          items={[
+            { value: "8–9 → 3–4", label: "Clarification questions a day, observed as coverage grew" },
+            { value: "90+ screens", label: "One component set across three brand configurations" },
+            { value: "Reused", label: "The foundation the batch tool shipped on under a fixed deadline" },
+          ]}
+        />
+
 
         <dl className="cs-meta">
           <div>
