@@ -21,7 +21,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "Support that answers users before they open a ticket",
     short:
-      "Asked for a bigger FAQ, ~1,000 tickets showed 4 in 5 never needed a person. I moved the answers into the flow.",
+      "Asked to refresh the FAQ, I first asked whether anyone reads it. The answers now come to users while they write a ticket.",
     description:
       "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",

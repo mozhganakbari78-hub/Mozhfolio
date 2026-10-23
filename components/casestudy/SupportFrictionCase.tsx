@@ -4,12 +4,11 @@ import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
-import VocabularyGap from "./VocabularyGap";
 
 /*
- * Each case follows one person from the moment they get stuck to the moment
- * they don't. Every section is one step of that story: a heading, a sentence
- * or two, and at most one visual, preferably the real screen.
+ * Each case follows one line of thought from the brief to where the product
+ * is now. Every section is one step: a heading, a sentence or two, and at
+ * most one visual, preferably the real screen.
  */
 export default function SupportFrictionCase() {
   return (
@@ -20,8 +19,8 @@ export default function SupportFrictionCase() {
           <span className="cs-eyebrow">Case study · Corporate banking</span>
           <h1>Support that answers users before they open a ticket</h1>
           <p className="cs-lede">
-            How I turned a request for a bigger FAQ into a support page that finds the answer while
-            users describe their problem.
+            I was asked to refresh an outdated FAQ. First I asked a different question: would
+            anyone stuck in a banking system actually read it?
           </p>
         </div>
 
@@ -30,9 +29,9 @@ export default function SupportFrictionCase() {
             role="Product Designer, research to UI"
             team="Product, Support, Frontend lead"
             results={[
-              <><b>4 in 5</b> tickets never needed a person. The redesign is built for them.</>,
-              <>Answers appear <b>while users type</b>, before a ticket is sent.</>,
-              <>Support reported <b>fewer repeat tickets</b> after launch.</>,
+              <><b>4 in 5</b> tickets didn&apos;t need a person. The redesign is built for them.</>,
+              <>FAQ and ticket <b>merged into one page</b>, with answers that appear as users type.</>,
+              <><b>Live now.</b> Real user behaviour is shaping phase 2.</>,
             ]}
           />
         </div>
@@ -42,45 +41,56 @@ export default function SupportFrictionCase() {
 
       {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">Stuck</span>
-        <h2>Sara&apos;s transfer is rejected</h2>
+        <span className="cs-num">The brief</span>
+        <h2>Make the FAQ clearer and up to date</h2>
         <p>
-          Sara is a finance officer paying a supplier before the end of the day. The transfer
-          fails, so she opens Support.
+          The questions were old and hard to follow. My task was to rewrite them and add what was
+          missing.
         </p>
-        <p className="cs-quote">&ldquo;Why won&apos;t my transfer go through?&rdquo;</p>
-        <p className="cs-note">Sara is a composite, built from real support tickets.</p>
       </section>
 
       {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">Lost</span>
-        <h2>The answer exists, under a word she doesn&apos;t use</h2>
-        <p>
-          She searches the FAQ in her own words and finds nothing. The answer is there, filed under
-          the product&apos;s term.
+        <span className="cs-num">The question</span>
+        <h2>Would anyone read it?</h2>
+        <p>I put myself in the user&apos;s place:</p>
+        <p className="cs-quote">
+          &ldquo;I&apos;m stuck in the middle of a payment in a banking system. Do I go and read the
+          FAQ?&rdquo;
         </p>
-        <VocabularyGap />
+        <p>Probably not. So before touching the FAQ, I went to see what users were actually asking.</p>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">Not alone</span>
-        <h2>She files a ticket, like hundreds of others</h2>
+        <span className="cs-num">The tickets</span>
+        <h2>Many tickets weren&apos;t support requests at all</h2>
         <p>
-          I was asked to make the FAQ bigger. First I read about 1,000 tickets: 4 in 5 asked
-          something the FAQ already answered. The FAQ wasn&apos;t too small. It was out of reach.
+          A large share just needed information. &ldquo;How do I add a signatory?&rdquo; has one
+          answer: visit a branch in person. Yet users called to ask, filling the phone lines and
+          taking the support team&apos;s time.
         </p>
         <TicketSplit />
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">The change</span>
-        <h2>Now Sara just types her question</h2>
+        <span className="cs-num">The challenge</span>
+        <h2>Adding answers to the FAQ wouldn&apos;t change anything</h2>
         <p>
-          The answers come to her. As she describes the problem, matching answers appear beside
-          the ticket form.
+          Users still wouldn&apos;t go looking. The answers had to reach them where they already
+          were: in the middle of filing a ticket. But without blocking them. Forcing users to search
+          the FAQ before they can ask for help would only frustrate them.
+        </p>
+      </section>
+
+      {/* 5 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The decision</span>
+        <h2>Merge the FAQ and the ticket form, with live search</h2>
+        <p>
+          As the user types their question into the ticket, matching answers appear beside it. If
+          one helps, they&apos;re done. If not, they just send the ticket.
         </p>
       </section>
 
@@ -88,61 +98,53 @@ export default function SupportFrictionCase() {
         <Mockup
           src="/projects/support-live-match.webp"
           alt="Support page: the user types how to increase the amount they can transfer, and FAQ answers about transfer limits appear with the matched word highlighted"
-          caption="Sara types “How can I increase the amount I’m allowed to transfer?” and the answers about limits appear"
+          caption="The user types “How can I increase the amount I’m allowed to transfer?” and the answers about limits appear"
         />
-      </section>
-
-      {/* 5 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Behind it</span>
-        <h2>Matching that engineering could actually build</h2>
-        <p>
-          Full search didn&apos;t fit the backend. So I designed matching on a fixed list of
-          keywords and synonyms, built with AI and checked by hand. When it isn&apos;t sure, it
-          shows nothing: a wrong answer is worse than none.
-        </p>
-        <p className="cs-trade">
-          <b>Trade-off:</b> less flexible than search, and the list needs upkeep.
-        </p>
-        <CsStats
-          items={[
-            { value: "89", label: "FAQ answers" },
-            { value: "343", label: "keywords, each checked" },
-            { value: "34", label: "synonym groups" },
-          ]}
-        />
-      </section>
-
-      {/* 6 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Fallback</span>
-        <h2>If it still doesn&apos;t help, the ticket is one step away</h2>
-        <p>
-          FAQ and ticket sit on one page, so Sara never has to choose a path before she understands
-          her problem.
-        </p>
       </section>
 
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/support-unified.webp"
           alt="Support page with the FAQ on the left and the ticket form on the right"
-          caption="FAQ and ticket on one page"
+          caption="FAQ and ticket on one page: the answers are in view, and the ticket is never blocked"
+        />
+      </section>
+
+      {/* 6 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The constraint</span>
+        <h2>Matching users&apos; words was hard for the backend, so I phased it</h2>
+        <p>Mapping a user&apos;s question to the right FAQ answer was the biggest technical issue.</p>
+        <ol className="cs-rules is-plain">
+          <li>First: words that appear in the question, plus known synonyms, like loan and facility, or deposit and transfer.</li>
+          <li>Then: grow the synonym list by watching how real users phrase things.</li>
+          <li>Later: match whole sentences and meaning.</li>
+        </ol>
+        <p>
+          I used AI to pull the keywords for every question, both the exact words and their
+          synonyms, then checked them.
+        </p>
+        <CsStats
+          items={[
+            { value: "89", label: "FAQ questions" },
+            { value: "343", label: "keywords" },
+            { value: "34", label: "synonym groups" },
+          ]}
         />
       </section>
 
       {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">Result</span>
-        <h2>Sara gets back to her payment. Support gets its time back</h2>
+        <span className="cs-num">Now</span>
+        <h2>Live, and learning from real users</h2>
         <p>
-          After launch, support reported fewer &ldquo;where do I find this?&rdquo; tickets and more
-          time on real issues. There was no instrumented baseline, so I don&apos;t claim a
-          percentage.
+          The merged page is live. We&apos;re studying how users search and what they type, to plan
+          the next phase of matching.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          I didn&apos;t have the authority to change the brief. The tickets did.
+          Before improving something, ask whether anyone uses it. The answer changed the whole
+          project.
         </p>
       </section>
 
@@ -160,7 +162,7 @@ export default function SupportFrictionCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Support experience · Shipped</p>
+        <p>Corporate banking · Support experience · Live</p>
       </footer>
     </article>
   );
