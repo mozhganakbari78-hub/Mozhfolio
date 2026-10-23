@@ -121,7 +121,7 @@ export default function BatchTransferCase() {
         <h2>Two things changed after testing</h2>
         <p>We tested the flow with branch staff. Two findings changed the design:</p>
         <ol className="cs-rules is-plain">
-          <li>Staff wanted to know where a batch stood, so we added a step-by-step progress tracker with clear statuses.</li>
+          <li>Staff wanted to know where a batch stood, so we added a step-by-step progress tracker with clear statuses. The batch history now shows each batch&apos;s current status, and the status of every row in it, meaning every single payment.</li>
           <li>Vague error messages confused them, so we made each one specific, tied to its row, and visually distinct.</li>
         </ol>
       </section>
