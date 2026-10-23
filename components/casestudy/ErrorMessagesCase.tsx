@@ -1,29 +1,11 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsImpact from "./CsImpact";
-import CsStats from "./CsStats";
+import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
-import MessageAnatomy from "./MessageAnatomy";
-import DeadEndMessage from "./DeadEndMessage";
 import TicketRatio from "./TicketRatio";
 
 
 const rewrites: Rewrite[] = [
-  {
-    label: "Access not registered for offline batch deposit",
-    before: {
-      fa: "کاربر گرامی، کلاینت شما در سامانه واریز دسته ای آفلاین ثبت نشده است",
-      en: "“Dear user, your client is not registered in the offline batch deposit system.”",
-    },
-    after: {
-      fa: "کاربر گرامی، دسترسی شما در سامانه واریز دسته‌ای آفلاین ثبت نشده است. لطفاً برای ثبت یا فعال‌سازی با پشتیبانی تماس بگیرید.",
-      en: "“Dear user, your access is not registered in the offline batch deposit system. Please contact support to register or activate it.”",
-    },
-    changes: [
-      "internal term → the user's own reality",
-      "dead end → escalation path",
-    ],
-  },
   {
     label: "Cancellation blocked by permission",
     before: {
@@ -48,114 +30,143 @@ export default function ErrorMessagesCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Corporate banking · UX writing · 2 min read</span>
-          <h1>Rewriting ~2,000 error messages so users know what to do next</h1>
+          <span className="cs-eyebrow">Case study · UX writing</span>
+          <h1>Error messages that tell users what to do next</h1>
           <p className="cs-lede">
-            Support tickets were arriving as screenshots of error messages. I audited every message
-            the platform could show and wrote <strong>three rules</strong> that became the standard.
+            How a pattern I spotted in support tickets became a rewrite of ~2,000 error messages and
+            a writing standard for the whole platform.
           </p>
         </div>
 
         <div className="cs-hero-side">
-          <CsImpact
-            items={[
-              { value: "6 \u2192 3 in 10", label: "Error tickets that only asked \u201cwhat do I do now?\u201d" },
-              { value: "~2,000", label: "Messages audited; technical ones moved to logs, the rest rewritten" },
-              { value: "Platform standard", label: "The three rules are now the reference for every new message" },
+          <CsGlance
+            role="Product Designer, self-initiated"
+            team="Solo, with the backend team"
+            results={[
+              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”" },
+              { value: "~2,000", label: "messages audited, rewritten or moved to logs" },
+              { value: "3 rules", label: "now the platform standard" },
             ]}
           />
-
-          <dl className="cs-meta">
-            <div>
-              <dt>Role</dt>
-              <dd>Product Designer. Spotted it in tickets, ran the audit, wrote the framework, reviewed every message</dd>
-            </div>
-            <div>
-              <dt>Scope</dt>
-              <dd>~2,000 error messages · Persian-language product</dd>
-            </div>
-          </dl>
         </div>
       </header>
 
       <hr className="cs-divider" />
 
-      {/* THE RESULT */}
+      {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">The result</span>
-        <h2>Every message now says what happened and what to do next</h2>
-        <MessageRewrite items={rewrites.slice(0, 1)} />
-      </section>
-
-      {/* 01 PROBLEM */}
-      <section className="cs-reveal">
-        <span className="cs-num">01 / Problem</span>
-        <h2>Messages announced a failure and then stopped</h2>
-        <p>Nobody assigned this. I found it reading support tickets.</p>
-        <DeadEndMessage />
-      </section>
-
-      {/* 02 INSIGHT */}
-      <section className="cs-reveal">
-        <span className="cs-num">02 / Insight</span>
-        <h2>2,000 one-off fixes would drift again. It needed rules</h2>
+        <span className="cs-num">The starting point</span>
+        <h2>Support tickets that were just screenshots</h2>
         <p>
-          I sorted every string by failure shape. Purely technical ones, like{" "}
-          <code>FTP transfer failed</code>, moved to logs.
+          Nobody assigned this. I read support tickets regularly, and kept seeing the same thing: a
+          screenshot of an error message, and nothing else. Users weren&apos;t reporting bugs. They
+          were asking what to do.
         </p>
-        <CsStats
-          items={[
-            { value: "~2,000", label: "messages audited" },
-            { value: "3", label: "failure shapes found" },
-            { value: "1", label: "standard, applied platform-wide" },
-          ]}
-        />
       </section>
 
-      {/* 03 DECISION 1 */}
+      {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / Decision 1</span>
-        <h2>Three rules every message has to pass</h2>
-        <MessageAnatomy />
+        <span className="cs-num">An example</span>
+        <h2>A user tries to cancel a payment request</h2>
+        <p>They click cancel and see this:</p>
+        <div className="cs-msg">
+          <span>Error</span>
+          You are not the creator of the request.
+        </div>
+        <p className="cs-quote">&ldquo;Did I do something wrong? What do I do now?&rdquo;</p>
+        <p>The message says what failed, but not why, and not what to do next.</p>
       </section>
 
-      {/* 04 DECISION 2 */}
+      {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">04 / Decision 2</span>
-        <h2>A system rule is not the user&apos;s fault</h2>
-        <MessageRewrite items={rewrites.slice(1)} />
+        <span className="cs-num">The question</span>
+        <h2>One bad message, or a pattern?</h2>
+        <p>
+          A few screenshots are an anecdote. I asked the backend team to export every error message
+          the platform could show: about 2,000. The same three problems kept repeating: internal
+          jargon, no next step, and blame.
+        </p>
       </section>
 
-      {/* 05 OUTCOME */}
+      {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / Outcome</span>
-        <h2>&quot;What do I do now?&quot; tickets went from majority to minority</h2>
+        <span className="cs-num">Decision 1</span>
+        <h2>Show users only errors they can act on</h2>
+        <p>
+          Many messages were purely technical, like &ldquo;FTP transfer failed&rdquo;. That matters
+          to the on-call team, not to a treasurer. Those moved to logs.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> less raw detail on screen for curious users.
+        </p>
+      </section>
+
+      {/* 5 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 2</span>
+        <h2>Write rules, not 2,000 one-off fixes</h2>
+        <p>Fixing messages one by one would drift again with the next release. So every message has to pass three rules:</p>
+        <ol className="cs-rules">
+          <li>Say what happened, in the user&apos;s words.</li>
+          <li>Give the next step.</li>
+          <li>Never blame the user.</li>
+        </ol>
+        <p className="cs-trade">
+          <b>Trade-off:</b> slower than quickly patching the worst messages.
+        </p>
+      </section>
+
+      {/* 6 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 3</span>
+        <h2>AI wrote the drafts. I checked every one</h2>
+        <p>
+          In banking, a plausible rewrite can quietly change what a message says about money or
+          permissions. So AI handled the volume, and I reviewed every message by hand.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> slower than trusting the drafts.
+        </p>
+      </section>
+
+      {/* 7 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The change</span>
+        <h2>Now the message says why, and what to do</h2>
+        <MessageRewrite items={rewrites} />
+      </section>
+
+      {/* 8 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Now</span>
+        <h2>Fewer screenshots in the support queue</h2>
+        <p>
+          Error tickets that only asked &ldquo;what do I do now?&rdquo; went from about 6 in 10 to 3
+          in 10. The three rules are now how every new message is written.
+        </p>
         <TicketRatio />
-        <p>
-          <strong>AI</strong> drafted the first pass; I reviewed every message by hand, because in
-          banking a plausible rewrite can change what a message claims about money.
-        </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          Some problems only show up at the level of the whole set.
+          Copy is interface. Next time I&apos;d link tickets to error codes from day one, to measure
+          each message.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/reducing-support-friction"
-        caseStudyName="Answers that appear while users describe their problem"
+        caseStudyName="Support that answers users before they open a ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Answers that appear while users describe their problem{" "}
+          Support that answers users before they open a ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · UX writing &amp; error systems · Shipped</p>
+        <p>Corporate banking · UX writing · Shipped</p>
       </footer>
     </article>
   );

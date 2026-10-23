@@ -1,18 +1,14 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsImpact from "./CsImpact";
+import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
-import RoutingShift from "./RoutingShift";
-import ReframeStatement from "./ReframeStatement";
 import TicketSplit from "./TicketSplit";
-import VocabularyGap from "./VocabularyGap";
-import SearchWeights from "./SearchWeights";
 
 /*
- * Same shape as every case: what it is and what changed, the shipped design,
- * then problem → insight → two decisions → outcome. One visual per panel; the
- * copy only says what the figure can't.
+ * Each case follows one line of thought from the brief to where the product
+ * is now. Every section is one step: a heading, a sentence or two, and at
+ * most one visual, preferably the real screen.
  */
 export default function SupportFrictionCase() {
   return (
@@ -20,131 +16,153 @@ export default function SupportFrictionCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">
-            Corporate banking · 58,000+ organisations · 3 min read
-          </span>
-          <h1>Answers that appear while users describe their problem</h1>
+          <span className="cs-eyebrow">Case study · Corporate banking</span>
+          <h1>Support that answers users before they open a ticket</h1>
           <p className="cs-lede">
-            I was asked to expand the FAQ. <strong>~1,000 support tickets</strong> showed the
-            answers already existed; users just couldn&apos;t reach them mid-task. So I moved the
-            answers into the moment of friction.
+            The FAQ had fallen behind the product. Before refreshing it, I asked a different
+            question: would anyone stuck in a banking system actually read it?
           </p>
         </div>
 
         <div className="cs-hero-side">
-          <CsImpact
-            items={[
-              { value: "4 in 5", label: "Tickets that never needed a person, now targeted by in-flow answers" },
-              { value: "Fewer repeats", label: "Support reported fewer “where do I find this?” tickets after launch" },
-              { value: "343 keywords", label: "A matching spec engineering could build without new infrastructure" },
+          <CsGlance
+            role="Product Designer, research to UI"
+            team="Product, Support, Frontend lead"
+            results={[
+              { value: "4 in 5", label: "tickets didn't need a person" },
+              { value: "1 page", label: "FAQ and ticket merged, with answers as users type" },
+              { value: "Live", label: "real user behaviour is shaping phase 2" },
             ]}
           />
-
-          <dl className="cs-meta">
-            <div>
-              <dt>Role</dt>
-              <dd>Product Designer. Ticket analysis, reframing the brief, the flow, and the matching spec</dd>
-            </div>
-            <div>
-              <dt>Worked with</dt>
-              <dd>Product · Support · Frontend tech lead · One product designer</dd>
-            </div>
-          </dl>
         </div>
       </header>
 
       <hr className="cs-divider" />
 
-      {/* THE RESULT */}
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/support-faq-filter.webp"
-          alt="Support page where matching FAQ answers filter in as the user types their issue"
-          caption="The result: answers filter in as the user describes the problem; the ticket is the fallback"
-        />
+      {/* 1 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The starting point</span>
+        <h2>The product had moved on. The FAQ hadn&apos;t</h2>
+        <p>
+          We had added and removed widgets and changed how the platform works, but the FAQ still
+          described the old version. The product owner and I agreed it was time for a refresh.
+        </p>
       </section>
 
-      {/* 01 PROBLEM */}
+      {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / Problem</span>
-        <h2>4 out of 5 tickets did not need a person</h2>
-        <p>I read ~1,000 tickets before touching the FAQ.</p>
+        <span className="cs-num">The question</span>
+        <h2>Would anyone read it?</h2>
+        <p>I put myself in the user&apos;s place:</p>
+        <p className="cs-quote">
+          &ldquo;I&apos;m stuck in the middle of a payment in a banking system. Do I go and read the
+          FAQ?&rdquo;
+        </p>
+        <p>Probably not. So before touching the FAQ, I went to see what users were actually asking.</p>
+      </section>
+
+      {/* 3 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The tickets</span>
+        <h2>Many tickets weren&apos;t support requests at all</h2>
+        <p>
+          A large share just needed information. &ldquo;How do I add a signatory?&rdquo; has one
+          answer: bank policy requires a branch visit, and neither we nor support can change that.
+          Yet users called to ask, filling the phone lines and taking the support team&apos;s time.
+        </p>
         <TicketSplit />
       </section>
 
-      {/* 02 INSIGHT */}
+      {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">02 / Insight</span>
-        <h2>The answer wasn&apos;t missing. It was out of reach</h2>
-        <ReframeStatement />
+        <span className="cs-num">The challenge</span>
+        <h2>Adding answers to the FAQ wouldn&apos;t change anything</h2>
+        <p>
+          Users still wouldn&apos;t go looking. The answers had to reach them where they already
+          were: in the middle of filing a ticket. But without blocking them. Forcing users to search
+          the FAQ before they can ask for help would only frustrate them.
+        </p>
       </section>
 
-      {/* 03 DECISION 1 */}
+      {/* 5 */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / Decision 1</span>
-        <h2>The ticket form becomes the last step, not the first</h2>
-        <RoutingShift />
+        <span className="cs-num">The decision</span>
+        <h2>Merge the FAQ and the ticket form, with live search</h2>
+        <p>
+          As the user types their question into the ticket, matching answers appear beside it. If
+          one helps, they&apos;re done. If not, they just send the ticket.
+        </p>
       </section>
 
-      {/* 04 DECISION 2 */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / Decision 2</span>
-        <h2>Match the user&apos;s words, not the product&apos;s</h2>
-        <VocabularyGap />
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/support-unified.webp"
+          alt="Support page with the FAQ on the left and the ticket form on the right"
+          caption="FAQ and ticket on one page: the answers are in view, and the ticket is never blocked"
+        />
       </section>
 
-      {/* 05 CONSTRAINT */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/support-live-match.webp"
+          alt="Support page: the user types how to increase the amount they can transfer, and FAQ answers about transfer limits appear with the matched word highlighted"
+          caption="The user types “How can I increase the amount I’m allowed to transfer?” and the answers about limits appear"
+        />
+      </section>
+
+      {/* 6 */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / Constraint</span>
-        <h2>Search was too expensive, so I changed its shape</h2>
-        <p>A fixed keyword and synonym list, built and checked with <strong>AI</strong>.</p>
-        <SearchWeights />
+        <span className="cs-num">The constraint</span>
+        <h2>Matching users&apos; words was hard for the backend, so I phased it</h2>
+        <p>Mapping a user&apos;s question to the right FAQ answer was the biggest technical issue.</p>
+        <ol className="cs-rules is-plain">
+          <li>First: words that appear in the question, plus known synonyms, like loan and facility, or deposit and transfer.</li>
+          <li>Then: grow the synonym list by watching how real users phrase things.</li>
+          <li>Later: match whole sentences and meaning.</li>
+        </ol>
+        <p>
+          I used AI to pull the keywords for every question, both the exact words and their
+          synonyms, then checked them.
+        </p>
         <CsStats
           items={[
             { value: "89", label: "FAQ questions" },
-            { value: "343", label: "keywords, each verified" },
+            { value: "343", label: "keywords" },
             { value: "34", label: "synonym groups" },
           ]}
         />
       </section>
 
-      {/* 06 OUTCOME */}
+      {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Outcome</span>
-        <h2>Support conversations changed subject</h2>
-        <div className="cs-signal">
-          <div className="box">
-            <div className="lab">Before</div>
-            <div className="quote">&quot;Where do I find this?&quot;</div>
-          </div>
-          <div className="arrow">&rarr;</div>
-          <div className="box">
-            <div className="lab">After</div>
-            <div className="quote">Genuinely functional issues</div>
-          </div>
-        </div>
-        <p>Reported by the support team; there was no instrumented baseline.</p>
+        <span className="cs-num">Now</span>
+        <h2>Live, and learning from real users</h2>
+        <p>
+          The merged page is live. We&apos;re studying how users search and what they type, to plan
+          the next phase of matching.
+        </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          Evidence earns scope. The tickets rewrote the brief, not me.
+          Before improving something, ask whether anyone uses it. The answer changed the whole
+          project.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/batch-transfer"
-        caseStudyName="Batch payments where one bad row no longer blocks the file"
+        caseStudyName="Bulk payments where one bad row doesn't stop the file"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Batch payments where one bad row no longer blocks the file{" "}
+          Bulk payments where one bad row doesn&apos;t stop the file{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Support experience · Shipped</p>
+        <p>Corporate banking · Support experience · Live</p>
       </footer>
     </article>
   );

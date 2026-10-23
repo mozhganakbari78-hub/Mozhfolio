@@ -19,9 +19,9 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "01",
     slug: "reducing-support-friction",
-    title: "Answers that appear while users describe their problem",
+    title: "Support that answers users before they open a ticket",
     short:
-      "Asked for a bigger FAQ, ~1,000 tickets showed 4 in 5 never needed a person. I moved the answers into the flow.",
+      "Asked to refresh the FAQ, I first asked whether anyone reads it. The answers now come to users while they write a ticket.",
     description:
       "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
@@ -30,9 +30,9 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "02",
     slug: "batch-transfer",
-    title: "Batch payments where one bad row no longer blocks the file",
+    title: "Bulk payments where one bad row doesn't stop the file",
     short:
-      "Row-level failure and recipient checks before approval, shipped to branches on a fixed deadline.",
+      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
     description:
       "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
     meta: "Workflow Design · Risk & Validation",
@@ -41,9 +41,9 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "03",
     slug: "design-system",
-    title: "A design system engineers actually adopted",
+    title: "A design system the engineers actually used",
     short:
-      "Developer questions to design dropped from ~8 to ~3 a day after I threw out my own token model.",
+      "Built from scratch: tokens for light and dark, then renamed to match the code. Developer questions dropped from ~8 to ~3 a day.",
     description:
       "Building a design system inside a moving enterprise banking product: choosing adoption over theoretical purity, and turning consistency into operating infrastructure.",
     meta: "Design Systems · Governance",
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "04",
     slug: "error-messages",
-    title: "Rewriting ~2,000 error messages so users know what to do next",
+    title: "Error messages that tell users what to do next",
     short:
       "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:

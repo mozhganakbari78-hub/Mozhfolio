@@ -12,6 +12,7 @@ export default function EditorialVertical({ children }: { children: React.ReactN
   const [panels, setPanels] = useState<Panel[]>([]);
   const [active, setActive] = useState(0);
   const [tlVisible, setTlVisible] = useState(false);
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     const root = rootRef.current;
@@ -41,7 +42,8 @@ export default function EditorialVertical({ children }: { children: React.ReactN
         inTimeline = false;
       } else {
         const num = el.querySelector(".cs-num")?.textContent ?? "";
-        const after = num.split("/")[1]?.trim();
+        // "03 / The flow" or a plain "Decision 1"
+        const after = (num.includes("/") ? num.split("/")[1] : num).trim();
         if (after) {
           const short = after.length > 18 ? after.slice(0, 16).trimEnd() + "..." : after;
           label = short;
@@ -52,6 +54,7 @@ export default function EditorialVertical({ children }: { children: React.ReactN
       return { el, label, inTimeline };
     });
     setPanels(built);
+    setTitle(article.querySelector(".cs-hero h1")?.textContent ?? "");
   }, []);
 
   // Reveal-on-enter animation (panels are natural height now).
@@ -126,7 +129,32 @@ export default function EditorialVertical({ children }: { children: React.ReactN
       </div>
 
       <div className="cs-vtrack" ref={trackRef}>
-        {children}
+        <div className="cs-vlayout">
+          {/* Desktop only: the case title and its contents stay in view, so the
+              reader always knows which case this is and where they are in it. */}
+          <nav className="cs-toc" aria-label="Case study contents">
+            <span className={`cs-toc-title${active > 0 ? " shown" : ""}`}>{title}</span>
+            <span className="cs-toc-k">Contents</span>
+            <ol>
+              {tlPanels.map((p) => {
+                const idx = panels.indexOf(p);
+                return (
+                  <li key={idx}>
+                    <button
+                      type="button"
+                      className={idx === active ? "active" : undefined}
+                      aria-current={idx === active ? "true" : undefined}
+                      onClick={() => jumpTo(idx)}
+                    >
+                      {p.label}
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+          <div className="cs-vmain">{children}</div>
+        </div>
       </div>
 
       <div className={`cs-vtimeline${tlVisible ? " visible" : ""}`} aria-hidden={tlPanels.length === 0}>

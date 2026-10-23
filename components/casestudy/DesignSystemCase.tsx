@@ -1,9 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsImpact from "./CsImpact";
-import CsStats from "./CsStats";
+import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
-import { TokenBridge, GovernanceFlow, SystemAnatomy } from "./CsInlineArt";
 import BrandVariants from "./BrandVariants";
 
 export default function DesignSystemCase() {
@@ -12,151 +10,163 @@ export default function DesignSystemCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Enterprise banking · Design system · 3 min read</span>
-          <h1>A design system engineers actually adopted</h1>
+          <span className="cs-eyebrow">Case study · Design system</span>
+          <h1>A design system the engineers actually used</h1>
           <p className="cs-lede">
-            90+ live screens, no system engineer, no pause in delivery. Developers kept asking design
-            the same questions. I threw out my own cleaner token model and built on the{" "}
-            <strong>vocabulary already in the code</strong>.
+            When I joined, there was no design system. I built one, got the naming wrong for the
+            people who mattered most, and changed it.
           </p>
         </div>
 
         <div className="cs-hero-side">
-          <CsImpact
-            items={[
-              { value: "~8 → ~3", label: "Repeat questions from developers per day, as coverage grew" },
-              { value: "3 brands", label: "Themed from one component layer and one token contract" },
-              { value: "Reused", label: "The foundation the batch-payment tool shipped on under a fixed deadline" },
+          <CsGlance
+            role="Product Designer, owned the system"
+            team="2 designers, Frontend lead, Engineering"
+            results={[
+              { value: "1 token set", label: "light and dark mode from the same colours" },
+              { value: "~8 → ~3", label: "repeat questions from developers, per day" },
+              { value: "3 brands", label: "running on one set of components" },
             ]}
           />
-
-          <dl className="cs-meta">
-            <div>
-              <dt>Role</dt>
-              <dd>Product Designer. Owned architecture, tokens, coverage, governance, and adoption</dd>
-            </div>
-            <div>
-              <dt>Team</dt>
-              <dd>2 product designers · Frontend tech lead · Engineering · Product</dd>
-            </div>
-            <div>
-              <dt>Scope</dt>
-              <dd>90+ live screens · 29 documented components · Built on Ant Design</dd>
-            </div>
-          </dl>
         </div>
       </header>
 
       <hr className="cs-divider" />
 
-      {/* THE RESULT */}
+      {/* 1 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The starting point</span>
+        <h2>No design system, just a library and some styles</h2>
+        <p>
+          The frontend used the Ant Design library. The Figma file had a set of colour styles and a
+          handful of components, and nothing tying them together.
+        </p>
+      </section>
+
+      {/* 2 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The first problem</span>
+        <h2>Every screen had to be designed twice</h2>
+        <p>
+          Light and dark mode were two separate sets of colour styles. So every design had to be
+          made once for light and again for dark.
+        </p>
+      </section>
+
+      {/* 3 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 1</span>
+        <h2>Turn the colours into tokens</h2>
+        <p>
+          I turned the colours into tokens and built light and dark mode on top of them. One
+          design, two modes, from the same set of tokens.
+        </p>
+      </section>
+
+      {/* 4 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 2</span>
+        <h2>Name the tokens by what they&apos;re for</h2>
+        <p>
+          I gave the tokens semantic names, with designers in mind: so my teammate and I knew
+          exactly where each colour belonged, and our designs came out consistent in design review.
+        </p>
+      </section>
+
+      {/* 5 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The cost</span>
+        <h2>The names made sense in Figma, not in the code</h2>
+        <p>
+          Our developers work from Figma, and they had already built themes in the code with their
+          own names. Every handoff turned into a translation:
+        </p>
+        <div className="cs-signal">
+          <div className="box">
+            <div className="lab">Name in Figma</div>
+            <div className="quote">Color-Base-Solid-bg</div>
+          </div>
+          <div className="arrow">&ne;</div>
+          <div className="box">
+            <div className="lab">Name in the code</div>
+            <div className="quote">cardColor</div>
+          </div>
+        </div>
+        <p className="cs-quote">&ldquo;Which colour is this in our code?&rdquo;</p>
+        <p>Developers were asking design questions like that about 8 times a day.</p>
+      </section>
+
+      {/* 6 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 3</span>
+        <h2>Rename the tokens to match the code</h2>
+        <p>
+          I went back and gave the tokens the same names as the code. For us, a smooth handoff to
+          development was worth more than names that read nicely to designers.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> less descriptive names in Figma, written down as a deliberate choice.
+        </p>
+      </section>
+
+      {/* 7 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Building on it</span>
+        <h2>Ant Design first, custom only on purpose</h2>
+        <p>
+          We kept Ant Design&apos;s defaults wherever they worked, and documented our own components
+          where the product needed more, each with every variant and state. With the frontend lead
+          I set up one path for anything new, and design reviews with engineering before each
+          release to catch mismatches early.
+        </p>
+      </section>
+
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/DesignSystem-Button.webp"
           alt="Button component documented with every variant, state and size"
-          caption="The result: components specified by behaviour, every variant, state and size"
+          caption="The Button page: every variant, state and size, named the way the code names it"
         />
       </section>
 
-      {/* 01 PROBLEM */}
+      {/* 8 */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / Problem</span>
-        <h2>Inconsistency was the symptom. Repeat questions were the cost</h2>
-        <CsStats
-          items={[
-            { value: "90+", label: "live screens, already shipping" },
-            { value: "~8", label: "repeat questions to design, per day" },
-            { value: "0", label: "dedicated design system engineers" },
-          ]}
-        />
-      </section>
-
-      {/* 02 INSIGHT */}
-      <section className="cs-reveal">
-        <span className="cs-num">02 / Insight</span>
-        <h2>My cleaner token model was harder to adopt</h2>
-        <p>Engineers had to translate every name I gave them back into the code&apos;s.</p>
-        <TokenBridge />
-      </section>
-
-      {/* 03 DECISION 1 */}
-      <section className="cs-reveal">
-        <span className="cs-num">03 / Decision 1</span>
-        <h2>Adopt the code&apos;s vocabulary instead of migrating it</h2>
-        <div className="cs-compare">
-          <div className="col legacy">
-            <span className="tag">Option A · Migrate code to my model</span>
-            <ul>
-              <li>Cleaner abstraction</li>
-              <li>Refactoring live code mid-delivery</li>
-            </ul>
-          </div>
-          <div className="col new">
-            <span className="tag">Option B · Adopt the code&apos;s vocabulary ✓</span>
-            <ul>
-              <li>Shared language from day one</li>
-              <li>No migration</li>
-            </ul>
-          </div>
-        </div>
-        <SystemAnatomy />
-      </section>
-
-      {/* 04 DECISION 2 */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / Decision 2</span>
-        <h2>Every customisation goes through one decision path</h2>
-        <p>
-          Set up with the frontend tech lead. Once decided, the next screen inherits it, even a
-          &quot;no&quot;, like the Card variant we moved to the backlog.
-        </p>
-        <GovernanceFlow />
-      </section>
-
-      {/* 05 SCALE */}
-      <section className="cs-reveal">
-        <span className="cs-num">05 / Scale</span>
-        <h2>The compromise still themed three brands</h2>
+        <span className="cs-num">Scale</span>
+        <h2>The same components run three brands</h2>
+        <p>Only the brand values change; the components and their names stay the same.</p>
         <BrandVariants />
       </section>
 
-      {/* 06 OUTCOME */}
+      {/* 9 */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Outcome</span>
+        <span className="cs-num">Now</span>
         <h2>Fewer questions, and better ones</h2>
-        <div className="cs-signal">
-          <div className="box">
-            <div className="lab">Before · 8&ndash;9 a day</div>
-            <div className="quote">&quot;Which version are we supposed to use?&quot;</div>
-          </div>
-          <div className="arrow">&rarr;</div>
-          <div className="box">
-            <div className="lab">After · 3&ndash;4 a day</div>
-            <div className="quote">&quot;Does this new case justify a system decision?&quot;</div>
-          </div>
-        </div>
-        <p>Observed, not instrumented.</p>
+        <p>
+          Repeat questions dropped from about 8 a day to about 3, observed by the team rather than
+          measured with a tool. The ones left changed too: &ldquo;does this new case need a system
+          decision?&rdquo;
+        </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          Map the implementation before designing the abstraction.
+          A design system has two audiences. Check how the code is built before naming anything.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/error-messages"
-        caseStudyName="Rewriting ~2,000 error messages so users know what to do next"
+        caseStudyName="Error messages that tell users what to do next"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Rewriting ~2,000 error messages{" "}
+          Error messages that tell users what to do next{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Design system &amp; governance · Live</p>
+        <p>Corporate banking · Design system · Live</p>
       </footer>
     </article>
   );
