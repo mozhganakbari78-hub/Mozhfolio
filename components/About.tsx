@@ -44,7 +44,7 @@ const story = [
   },
   {
     label: "Now",
-    body: "I work on a corporate banking platform for organizational customers, designing complex financial workflows and internal back-office tools.",
+    body: "I work on a corporate banking platform for organizational customers, designing complex financial workflows and internal back-office tools. Alongside it, I design smaller, sensitive banking systems.",
   },
 ];
 
