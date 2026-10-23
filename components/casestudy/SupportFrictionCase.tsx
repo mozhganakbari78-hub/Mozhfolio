@@ -56,8 +56,10 @@ export default function SupportFrictionCase() {
       <hr className="cs-divider" />
 
       {/* 01 THE EVIDENCE */}
+      {/* No CsArt here: the ticket wall is already the panel's image, and the
+          icon cost the height that keeps this panel from scrolling on a
+          shorter laptop screen. */}
       <section className="cs-reveal">
-        <CsArt name="tickets" />
         <span className="cs-num">01 / The evidence</span>
         <h2>I read the tickets before touching the FAQ</h2>
         <p>
