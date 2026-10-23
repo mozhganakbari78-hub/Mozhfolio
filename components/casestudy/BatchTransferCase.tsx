@@ -59,7 +59,7 @@ export default function BatchTransferCase() {
         </ol>
       </section>
 
-      <section className="cs-shot cs-reveal">
+      <section className="cs-shot is-small cs-reveal">
         <Mockup
           src="/projects/batch-brainstorm.webp"
           alt="Sticky notes on a whiteboard grouped by colour: pain points, security needs, familiarity with the current process, and wishes for the new system"
