@@ -2548,29 +2548,7 @@
   .cs-scn li .dot { top: 3px; }
 }
 
-/* ── the calls: judgement, with its price ─────────────────────────────── */
-.cs-calls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 10px 0 6px; }
-.cs-calls .call {
-  display: grid; align-content: start; gap: 8px;
-  padding: 18px 18px 16px;
-  border: 1px solid var(--line); border-radius: 14px; background: var(--card);
-}
-.cs-calls .n { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
-.cs-calls .t { font-size: 17px; font-weight: 700; line-height: 1.3; color: var(--ink); }
-.cs-calls .ten { font-family: var(--font-mono), monospace; font-size: 11.5px; line-height: 1.5; color: var(--ink-faint); }
-.cs-calls .why { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
-.cs-calls .cost {
-  margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line-soft);
-  font-size: 13px; line-height: 1.45; color: var(--ink-soft);
-}
-.cs-calls .cost b {
-  display: block; margin-bottom: 3px;
-  font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--warn);
-}
-@media (max-width: 900px) { .cs-calls { grid-template-columns: 1fr; } }
-
-.cs-horizontal article > section:has(.cs-scn),
-.cs-horizontal article > section:has(.cs-calls) { width: min(1200px, 96vw); }
+.cs-horizontal article > section:has(.cs-scn) { width: min(1200px, 96vw); }
 
 /* ── vertical layout on desktop: a centred reading column ─────────────────
    The vertical layout was built for phones (edge-to-edge panels). On a wide
@@ -2610,3 +2588,47 @@
 }
 .cs-viewtoggle button[aria-pressed="true"] { color: #FEFEFF; background: #1C1D1F; }
 .cs-viewtoggle button:focus-visible { outline: 2px solid #7cb8f5; outline-offset: 2px; }
+
+/* ── at a glance: problem, what I did, impact, in the hero ────────────────
+   The one block a hiring manager must be able to read in ten seconds, so it
+   is plain text at body size: no chips, no mono, no numbers to decode. */
+.cs-glance { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.cs-glance > div {
+  display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+}
+.cs-glance dt {
+  font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--ink-faint);
+  padding-top: 2px;
+}
+.cs-glance dd { margin: 0; font-size: 16.5px; line-height: 1.55; color: var(--ink); }
+.cs-glance .is-impact dt { color: var(--resolve); }
+.cs-glance .is-impact dd { font-weight: 600; }
+.cs-glance + .cs-meta { margin-top: 20px; }
+@media (max-width: 900px) {
+  .cs-glance > div { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  .cs-glance dd { font-size: 15.5px; }
+}
+
+/* ── why / trade-off under a decision ─────────────────────────────────── */
+.cs-why {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 22px;
+}
+.cs-why > div { padding: 14px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+.cs-why .k { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
+.cs-why .is-cost .k { color: var(--warn); }
+.cs-root .cs-why p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
+@media (max-width: 900px) { .cs-why { grid-template-columns: 1fr; } }
+
+/* ── readability: bigger body, calmer labels ──────────────────────────── */
+.cs-root section > p { font-size: 18px; line-height: 1.7; max-width: 700px; }
+.cs-num {
+  font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--accent-ink);
+}
+@media (max-width: 900px) { .cs-root section > p { font-size: 16px; } }
+.cs-horizontal .cs-hero-side .cs-glance > div { grid-template-columns: 96px minmax(0, 1fr); padding: 12px 0; }
+.cs-horizontal .cs-hero-side .cs-glance dd { font-size: 15px; }
+.cs-horizontal article > section > p { font-size: 16.5px; }
+/* decisions carry two reasoning boxes; a wider slide keeps them short */
+.cs-horizontal article > section:has(.cs-why) { width: min(1180px, 96vw); }

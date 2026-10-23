@@ -1,13 +1,12 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsImpact from "./CsImpact";
+import CsGlance from "./CsGlance";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import MessageAnatomy from "./MessageAnatomy";
 import DeadEndMessage from "./DeadEndMessage";
 import TicketRatio from "./TicketRatio";
-import Scenario from "./Scenario";
-import SeniorCalls from "./SeniorCalls";
+import WhyTradeoff from "./WhyTradeoff";
 
 
 const rewrites: Rewrite[] = [
@@ -50,31 +49,27 @@ export default function ErrorMessagesCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Corporate banking platform · UX writing at scale</span>
+          <span className="cs-eyebrow">Sadad · Corporate banking platform</span>
           <h1>Error messages that tell users what to do next</h1>
           <p className="cs-lede">
-            Nobody assigned this. Reading tickets, I noticed many were just screenshots of error
-            messages. I audited all <strong>~2,000</strong> messages and set three rules that became
-            the platform standard.
+            A self-initiated audit and rewrite of every error message in a banking platform.
           </p>
         </div>
 
         <div className="cs-hero-side">
-          <CsImpact
-            items={[
-              { value: "6 \u2192 3 in 10", label: "Error tickets that only asked \u201cwhat do I do now?\u201d" },
-              { value: "~2,000", label: "Messages audited; technical ones moved to logs, the rest rewritten" },
-              { value: "Platform standard", label: "Every new error message is now written against the three rules" },
-            ]}
+          <CsGlance
+            problem="Many support tickets were just screenshots of error messages. Users knew something had failed, but not what to do."
+            did="Audited ~2,000 messages, moved technical ones to logs, wrote three rules every message must pass, and reviewed every AI-drafted rewrite by hand."
+            impact="“What do I do now?” tickets fell from about 6 to 3 in 10 error tickets. The three rules are now the standard."
           />
           <dl className="cs-meta">
             <div>
               <dt>My role</dt>
-              <dd>Product Designer. Spotted it, ran the audit, wrote the framework, reviewed every message</dd>
+              <dd>Product Designer: spotted it, ran the audit, wrote the rules</dd>
             </div>
             <div>
               <dt>Scope</dt>
-              <dd>~2,000 error messages · Persian-language product</dd>
+              <dd>~2,000 messages · Persian-language product</dd>
             </div>
           </dl>
         </div>
@@ -82,134 +77,89 @@ export default function ErrorMessagesCase() {
 
       <hr className="cs-divider" />
 
-      {/* 01 SCENARIO */}
+      {/* FINAL DESIGN */}
       <section className="cs-reveal">
-        <span className="cs-num">01 / The scenario</span>
-        <h2>A treasurer tries to cancel a payment request</h2>
-        <Scenario
-          kind="before"
-          who="Company treasurer, cancelling a request a colleague created"
-          steps={[
-            { label: "Clicks cancel" },
-            { label: "Sees \u201cYou are not the creator of the request.\u201d", thought: "Did I do something wrong?", tone: "pain" },
-            { label: "No next step on screen", thought: "Can anyone cancel it? Who do I call?", tone: "pain" },
-            { label: "Screenshots the error and files a ticket" },
-          ]}
-          end="Support answers a question the message should have answered."
-          note="Composite scenario. The message is real."
-        />
-      </section>
-
-      {/* 02 WHY IT MATTERED */}
-      <section className="cs-reveal">
-        <span className="cs-num">02 / Why it mattered</span>
-        <h2>Most error tickets were really asking &ldquo;what now?&rdquo;</h2>
-        <DeadEndMessage />
-      </section>
-
-      {/* 03 THE REAL PROBLEM */}
-      <section className="cs-reveal">
-        <span className="cs-num">03 / The real problem</span>
-        <h2>2,000 messages, each written ad hoc by whoever built the feature</h2>
-        <p>
-          No single message was worth a meeting, so nobody owned the set. Fixing them one by one
-          would drift again with the next release.
-        </p>
-        <CsStats
-          items={[
-            { value: "~2,000", label: "messages audited" },
-            { value: "3", label: "failure shapes: jargon, no next step, blame" },
-            { value: "1", label: "standard, applied platform-wide" },
-          ]}
-        />
-      </section>
-
-      {/* 04 MY CALLS */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / The calls I made</span>
-        <h2>Three decisions, and what each one cost</h2>
-        <SeniorCalls
-          calls={[
-            {
-              title: "Decide what users should see at all",
-              tension: "Show every error  vs  show only what users can act on",
-              why: "\u201cFTP transfer failed\u201d matters to the on-call team, not to a treasurer. Purely technical errors moved to logs.",
-              gaveUp: "The appearance of full transparency.",
-            },
-            {
-              title: "Write rules, not 2,000 rewrites",
-              tension: "Fix messages as reported  vs  fix the pattern",
-              why: "Three rules any message can be checked against: say what happened, give the next step, drop the blame. The next person writing one doesn\u2019t start from zero.",
-              gaveUp: "Quick visible wins on single messages.",
-            },
-            {
-              title: "AI drafts, I review every message",
-              tension: "Speed  vs  accuracy in a financial product",
-              why: "A plausible rewrite can quietly change what a message claims about money or permissions. The model didn\u2019t know which terms were regulated.",
-              gaveUp: "Time. Every one of the messages was read by hand.",
-            },
-          ]}
-        />
-      </section>
-
-      {/* 04b THE RULES */}
-      <section className="cs-reveal">
-        <span className="cs-num">04 / The three rules</span>
-        <h2>One shape every message has to pass</h2>
-        <MessageAnatomy />
-      </section>
-
-      {/* 05 SCENARIO, REDESIGNED */}
-      <section className="cs-reveal">
-        <span className="cs-num">05 / The same moment, redesigned</span>
-        <h2>The message answers the treasurer&apos;s three questions</h2>
-        <Scenario
-          kind="after"
-          who="Same treasurer, same request"
-          steps={[
-            { label: "Clicks cancel" },
-            { label: "Learns why: only the creator can cancel", tone: "good" },
-            { label: "Sees the next step: contact support", tone: "good" },
-          ]}
-          end="No screenshot, no guessing."
-        />
+        <span className="cs-num">Before and after</span>
+        <h2>From an accusation to a next step</h2>
         <MessageRewrite items={rewrites.slice(1)} />
       </section>
 
-      {/* 05b ANOTHER */}
+      {/* CONTEXT */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / The same rules, another message</span>
-        <h2>Internal jargon becomes the user&apos;s own reality</h2>
+        <span className="cs-num">Context</span>
+        <h2>Nobody assigned this. I found it in the tickets</h2>
+        <p>
+          Users weren&apos;t reporting bugs. They were asking the questions the message left
+          unanswered.
+        </p>
+        <DeadEndMessage />
+      </section>
+
+      {/* DECISION 1 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 1</span>
+        <h2>Show users only errors they can act on</h2>
+        <WhyTradeoff
+          why="“FTP transfer failed” matters to the on-call team, not to a treasurer. Purely technical errors moved to logs."
+          tradeoff="Less raw detail on screen for curious users."
+        />
+        <CsStats
+          items={[
+            { value: "~2,000", label: "messages audited" },
+            { value: "3", label: "common failures: jargon, no next step, blame" },
+            { value: "1", label: "standard for the whole platform" },
+          ]}
+        />
+      </section>
+
+      {/* DECISION 2 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 2</span>
+        <h2>Write rules, not 2,000 one-off fixes</h2>
+        <WhyTradeoff
+          why="One-off fixes drift again with the next release. Three rules (say what happened, give the next step, drop the blame) let anyone write a good message."
+          tradeoff="Slower than quickly patching the worst messages."
+        />
+        <MessageAnatomy />
+      </section>
+
+      {/* DECISION 3 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 3</span>
+        <h2>AI drafts, a person reviews every message</h2>
+        <WhyTradeoff
+          why="In banking, a plausible rewrite can quietly change what a message says about money or permissions. AI handled the volume; I checked every result."
+          tradeoff="Time: every message was read by hand."
+        />
         <MessageRewrite items={rewrites.slice(0, 1)} />
       </section>
 
-      {/* 06 OUTCOME */}
+      {/* RESULT */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / Outcome</span>
+        <span className="cs-num">Result</span>
         <h2>&ldquo;What do I do now?&rdquo; went from majority to minority</h2>
         <TicketRatio />
         <p className="cs-takeaway">
-          <span>What I&apos;d do differently</span>
-          Tie support contacts to error codes from the start, so I could see which messages still
-          fail instead of reading the queue.
+          <span>What I learned</span>
+          Copy is interface. I&apos;d tie support tickets to error codes from day one to measure it.
         </p>
       </section>
 
       <NextCaseLink
         href="/work/reducing-support-friction"
-        caseStudyName="Getting users unstuck mid-task, without waiting for support"
+        caseStudyName="Support that answers users before they open a ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Getting users unstuck mid-task{" "}
+          Support that answers users before they open a ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · UX writing &amp; error systems · Shipped</p>
+        <p>Corporate banking · UX writing · Shipped</p>
       </footer>
     </article>
   );

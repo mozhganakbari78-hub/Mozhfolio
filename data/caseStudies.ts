@@ -19,7 +19,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "01",
     slug: "reducing-support-friction",
-    title: "Getting users unstuck mid-task, without waiting for support",
+    title: "Support that answers users before they open a ticket",
     short:
       "Asked for a bigger FAQ, ~1,000 tickets showed 4 in 5 never needed a person. I moved the answers into the flow.",
     description:
@@ -30,7 +30,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "02",
     slug: "batch-transfer",
-    title: "Making bulk payments safe for bank branches",
+    title: "Bulk payments where one bad row doesn't stop the file",
     short:
       "Row-level failure and recipient checks before approval, shipped to branches on a fixed deadline.",
     description:
@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "03",
     slug: "design-system",
-    title: "A design system engineers actually adopted",
+    title: "A design system the engineers actually used",
     short:
       "Developer questions to design dropped from ~8 to ~3 a day after I threw out my own token model.",
     description:
