@@ -31,7 +31,7 @@ const traits = [
 const story = [
   {
     label: "Background",
-    body: "Six years of designing software products across banking, fintech and IoT: corporate payment workflows, back-office tools, a multi-brand design system, crypto trading experiences, and automation rules for greenhouse operators. What connects them is complexity and consequence, not one industry.",
+    body: "Six years of designing digital products in complex, high-stakes domains: corporate payment workflows, back-office tools, a multi-brand design system, crypto trading experiences, and automation tools for non-technical operators. What connects them is complexity and consequence, not one industry.",
     lede: true,
   },
   {
