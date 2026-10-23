@@ -43,7 +43,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "A design system the engineers actually used",
     short:
-      "Developer questions to design dropped from ~8 to ~3 a day after I threw out my own token model.",
+      "Built from scratch: tokens for light and dark, then renamed to match the code. Developer questions dropped from ~8 to ~3 a day.",
     description:
       "Building a design system inside a moving enterprise banking product: choosing adoption over theoretical purity, and turning consistency into operating infrastructure.",
     meta: "Design Systems · Governance",

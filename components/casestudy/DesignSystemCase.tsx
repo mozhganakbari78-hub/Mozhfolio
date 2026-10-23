@@ -13,8 +13,8 @@ export default function DesignSystemCase() {
           <span className="cs-eyebrow">Case study · Design system</span>
           <h1>A design system the engineers actually used</h1>
           <p className="cs-lede">
-            90+ live screens and nobody dedicated to a design system. The fix wasn&apos;t more
-            components. It was making each decision once, in a form engineers could reuse.
+            When I joined, there was no design system. I built one, got the naming wrong for the
+            people who mattered most, and changed it.
           </p>
         </div>
 
@@ -23,9 +23,9 @@ export default function DesignSystemCase() {
             role="Product Designer, owned the system"
             team="2 designers, Frontend lead, Engineering"
             results={[
+              { value: "1 token set", label: "light and dark mode from the same colours" },
               { value: "~8 → ~3", label: "repeat questions from developers, per day" },
               { value: "3 brands", label: "running on one set of components" },
-              { value: "Reused", label: "the bulk-payment tool was built on it" },
             ]}
           />
         </div>
@@ -36,72 +36,88 @@ export default function DesignSystemCase() {
       {/* 1 */}
       <section className="cs-reveal">
         <span className="cs-num">The starting point</span>
-        <h2>A live product that grew one screen at a time</h2>
+        <h2>No design system, just a library and some styles</h2>
         <p>
-          The platform had 90+ screens built on Ant Design, each with its own small variations.
-          There was no design system engineer, and delivery couldn&apos;t stop while we fixed it.
+          The frontend used the Ant Design library. The Figma file had a set of colour styles and a
+          handful of components, and nothing tying them together.
         </p>
       </section>
 
       {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">The question</span>
-        <h2>Where was the real cost?</h2>
+        <span className="cs-num">The first problem</span>
+        <h2>Every screen had to be designed twice</h2>
         <p>
-          Screens looked inconsistent, but that was the symptom. The cost showed up in
-          developers&apos; questions to design, about 8 a day: which spacing, which state, is this
-          Ant&apos;s default or ours?
+          Light and dark mode were two separate sets of colour styles. So every design had to be
+          made once for light and again for dark.
         </p>
-        <p className="cs-quote">&ldquo;Which version are we supposed to use?&rdquo;</p>
-        <p>Every answer was given once and never reused.</p>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">My first attempt</span>
-        <h2>My cleaner token names made it worse</h2>
+        <span className="cs-num">Decision 1</span>
+        <h2>Turn the colours into tokens</h2>
         <p>
-          I designed a tidier set of names for colours and spacing. But the code already had its
-          own names, so developers had to translate every one of mine.
+          I turned the colours into tokens and built light and dark mode on top of them. One
+          design, two modes, from the same set of tokens.
         </p>
-        <div className="cs-signal">
-          <div className="box">
-            <div className="lab">My name</div>
-            <div className="quote">Color-Base-Solid-bg</div>
-          </div>
-          <div className="arrow">&ne;</div>
-          <div className="box">
-            <div className="lab">The name in the code</div>
-            <div className="quote">cardColor</div>
-          </div>
-        </div>
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">Decision 1</span>
-        <h2>Use the names already in the code</h2>
+        <span className="cs-num">Decision 2</span>
+        <h2>Name the tokens by what they&apos;re for</h2>
         <p>
-          Migrating the code to my names meant refactoring working screens in the middle of
-          delivery, with no benefit to users. So I dropped my model and built on the code&apos;s
-          vocabulary.
-        </p>
-        <p className="cs-trade">
-          <b>Trade-off:</b> a less elegant naming model, written down as a deliberate choice.
+          I gave the tokens semantic names, with designers in mind: so my teammate and I knew
+          exactly where each colour belonged, and our designs came out consistent in design review.
         </p>
       </section>
 
       {/* 5 */}
       <section className="cs-reveal">
-        <span className="cs-num">Decision 2</span>
-        <h2>Ant Design first, customise only on purpose</h2>
+        <span className="cs-num">The cost</span>
+        <h2>The names made sense in Figma, not in the code</h2>
         <p>
-          With no system engineer, every custom component is something to maintain. So we kept Ant
-          Design&apos;s defaults wherever they worked, and documented 29 components where the
-          product needed more, each with every variant and state a developer might ask about.
+          Our developers work from Figma, and they had already built themes in the code with their
+          own names. Every handoff turned into a translation:
+        </p>
+        <div className="cs-signal">
+          <div className="box">
+            <div className="lab">Name in Figma</div>
+            <div className="quote">Color-Base-Solid-bg</div>
+          </div>
+          <div className="arrow">&ne;</div>
+          <div className="box">
+            <div className="lab">Name in the code</div>
+            <div className="quote">cardColor</div>
+          </div>
+        </div>
+        <p className="cs-quote">&ldquo;Which colour is this in our code?&rdquo;</p>
+        <p>Developers were asking design questions like that about 8 times a day.</p>
+      </section>
+
+      {/* 6 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 3</span>
+        <h2>Rename the tokens to match the code</h2>
+        <p>
+          I went back and gave the tokens the same names as the code. For us, a smooth handoff to
+          development was worth more than names that read nicely to designers.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> some visual distinctiveness.
+          <b>Trade-off:</b> less descriptive names in Figma, written down as a deliberate choice.
+        </p>
+      </section>
+
+      {/* 7 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Building on it</span>
+        <h2>Ant Design first, custom only on purpose</h2>
+        <p>
+          We kept Ant Design&apos;s defaults wherever they worked, and documented our own components
+          where the product needed more, each with every variant and state. With the frontend lead
+          I set up one path for anything new, and design reviews with engineering before each
+          release to catch mismatches early.
         </p>
       </section>
 
@@ -113,22 +129,7 @@ export default function DesignSystemCase() {
         />
       </section>
 
-      {/* 6 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Decision 3</span>
-        <h2>Decide once, and check before release</h2>
-        <p>
-          With the frontend lead, I set up one path for anything new: the decision is made once,
-          written down, and the next screen reuses it. Even a &ldquo;no&rdquo;, like a card variant
-          we moved to the backlog. I also started design reviews with engineering before each
-          release, to catch mismatches before users did.
-        </p>
-        <p className="cs-trade">
-          <b>Trade-off:</b> one-off requests take a little longer.
-        </p>
-      </section>
-
-      {/* 7 */}
+      {/* 8 */}
       <section className="cs-reveal">
         <span className="cs-num">Scale</span>
         <h2>The same components run three brands</h2>
@@ -136,19 +137,18 @@ export default function DesignSystemCase() {
         <BrandVariants />
       </section>
 
-      {/* 8 */}
+      {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">Now</span>
         <h2>Fewer questions, and better ones</h2>
         <p>
           Repeat questions dropped from about 8 a day to about 3, observed by the team rather than
           measured with a tool. The ones left changed too: &ldquo;does this new case need a system
-          decision?&rdquo; Later, the bulk-payment tool was built on this system.
+          decision?&rdquo;
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          Understand how it&apos;s built before designing the abstraction. And set the metrics
-          before the system ships, not after.
+          A design system has two audiences. Check how the code is built before naming anything.
         </p>
       </section>
 
