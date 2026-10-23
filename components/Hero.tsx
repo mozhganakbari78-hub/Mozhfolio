@@ -1,20 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import ParticleField from "./ParticleField";
 
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-const stagger: Variants = {
-  animate: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
-
-const fadeUp: Variants = {
-  initial: { y: 32, opacity: 0 },
-  animate: { y: 0, opacity: 1, transition: { duration: 0.9, ease } },
-};
+// The entrance is a CSS animation, not framer variants: framer starts the
+// elements at opacity 0 in the exported HTML, so the hero stayed blank until
+// the JavaScript had downloaded and hydrated. CSS plays from the first paint.
 
 export default function Hero() {
   return (
@@ -40,20 +32,20 @@ export default function Hero() {
       />
 
       <div className="relative max-w-6xl mx-auto w-full">
-        <motion.div variants={stagger} initial="initial" animate="animate">
+        <div>
 
           {/* Eyebrow */}
-          <motion.div variants={fadeUp} className="mb-10">
+          <div className="hero-rise mb-10" style={{ animationDelay: "0.05s" }}>
             <span
               className="mono-label"
               style={{ color: "var(--accent-ink)" }}
             >
               Product Designer · Enterprise UX · Design Systems
             </span>
-          </motion.div>
+          </div>
 
           {/* Name */}
-          <motion.div variants={fadeUp}>
+          <div className="hero-rise" style={{ animationDelay: "0.15s" }}>
             <h1
               className="font-semibold leading-[0.96] mb-8"
               style={{
@@ -66,13 +58,13 @@ export default function Hero() {
               <br />
               <span style={{ color: "var(--text-secondary)" }}>Akbari.</span>
             </h1>
-          </motion.div>
+          </div>
 
           {/* Tagline */}
-          <motion.p
-            variants={fadeUp}
-            className="max-w-4xl leading-snug mb-4"
+          <p
+            className="hero-rise max-w-4xl leading-snug mb-4"
             style={{
+              animationDelay: "0.25s",
               fontSize: "clamp(18px, 2vw, 24px)",
               fontWeight: 300,
               letterSpacing: "-0.015em",
@@ -80,11 +72,11 @@ export default function Hero() {
             }}
           >
             Designing clarity in complex systems.
-          </motion.p>
-          <motion.p
-            variants={fadeUp}
-            className="max-w-4xl leading-snug mb-12"
+          </p>
+          <p
+            className="hero-rise max-w-4xl leading-snug mb-12"
             style={{
+              animationDelay: "0.35s",
               fontSize: "clamp(16px, 1.6vw, 20px)",
               fontWeight: 300,
               letterSpacing: "-0.01em",
@@ -92,10 +84,10 @@ export default function Hero() {
             }}
           >
             Enterprise workflows, financial products, and design systems at scale.
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-20">
+          <div className="hero-rise flex flex-wrap items-center gap-3 mb-20" style={{ animationDelay: "0.45s" }}>
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -113,13 +105,12 @@ export default function Hero() {
             >
               Contact me
             </button>
-          </motion.div>
+          </div>
 
           {/* Discipline strip */}
-          <motion.div
-            variants={fadeUp}
-            className="flex flex-wrap items-center gap-x-8 gap-y-3"
-            style={{ borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
+          <div
+            className="hero-rise flex flex-wrap items-center gap-x-8 gap-y-3"
+            style={{ animationDelay: "0.55s", borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
           >
             {[
               { label: "6 years", note: "shipping live products" },
@@ -135,9 +126,9 @@ export default function Hero() {
                 </span>
               </div>
             ))}
-          </motion.div>
+          </div>
 
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
