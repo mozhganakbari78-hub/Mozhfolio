@@ -1,10 +1,7 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
-import CsStats from "./CsStats";
 import Mockup from "./Mockup";
-import WhyTradeoff from "./WhyTradeoff";
-import { TokenBridge, GovernanceFlow, SystemAnatomy } from "./CsInlineArt";
 import BrandVariants from "./BrandVariants";
 
 export default function DesignSystemCase() {
@@ -13,25 +10,22 @@ export default function DesignSystemCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Case study</span>
+          <span className="cs-eyebrow">Case study · Design system</span>
           <h1>A design system the engineers actually used</h1>
           <p className="cs-lede">
-            Built on Ant Design for 90+ live screens and three brands, without pausing delivery.
+            How I built a design system for 90+ live screens of a banking platform, without pausing
+            delivery, after throwing out my own first version.
           </p>
         </div>
 
         <div className="cs-hero-side">
           <CsGlance
-            company="Sadad · Bank Melli Iran"
-            role="Product Designer, design system owner"
-            platform="Web app · 90+ screens"
+            role="Product Designer, owned the system"
             team="2 designers, Frontend lead, Engineering"
-            problem="Developers asked design the same questions about 8 times a day: which button, which spacing, which state."
-            did="Built the system on the names already in the code (after scrapping my own first token model), documented 29 components, and set up a decision process with the frontend lead."
             results={[
-              <>Repeat questions from developers: <b>~8 → ~3 a day</b></>,
-              <><b>3 brands</b> run on one component layer</>,
-              <>The bulk-payment tool <b>shipped on it</b> under a fixed deadline</>,
+              <>Developers&apos; repeat questions to design: <b>~8 → ~3 a day</b>.</>,
+              <><b>3 brands</b> run on one set of components.</>,
+              <>A later product <b>shipped on it</b> under a fixed deadline.</>,
             ]}
           />
         </div>
@@ -39,95 +33,102 @@ export default function DesignSystemCase() {
 
       <hr className="cs-divider" />
 
-      {/* FINAL DESIGN */}
+      {/* 1 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The question</span>
+        <h2>Reza needs a button, and finds three</h2>
+        <p>
+          Reza is a frontend developer building a new screen. The design file has three slightly
+          different buttons, so he messages design and waits for an answer.
+        </p>
+        <p className="cs-quote">&ldquo;Which one is the right one?&rdquo;</p>
+        <p className="cs-note">Reza is a composite, built from the questions we logged.</p>
+      </section>
+
+      {/* 2 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Every day</span>
+        <h2>The same questions, about 8 times a day</h2>
+        <p>
+          Each answer was given once and never reused, across 90+ live screens, with no one
+          dedicated to a design system. Inconsistent screens were the symptom; lost time was the
+          cost.
+        </p>
+      </section>
+
+      {/* 3 */}
+      <section className="cs-reveal">
+        <span className="cs-num">My mistake</span>
+        <h2>My first fix made Reza&apos;s day harder</h2>
+        <p>
+          I designed a cleaner set of names for colours and spacing. But Reza&apos;s code already
+          had its own names, so he had to translate every one of mine.
+        </p>
+        <div className="cs-signal">
+          <div className="box">
+            <div className="lab">My name</div>
+            <div className="quote">Color-Base-Solid-bg</div>
+          </div>
+          <div className="arrow">&ne;</div>
+          <div className="box">
+            <div className="lab">The name in his code</div>
+            <div className="quote">cardColor</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The change</span>
+        <h2>So I used the names already in his code</h2>
+        <p>
+          I dropped my model and built the system on top of Ant Design, the library the code
+          already used, with the code&apos;s own names. I documented 29 components, each with every
+          state Reza might need.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> a less elegant naming model, written down as a deliberate choice.
+        </p>
+      </section>
+
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/DesignSystem-Button.webp"
           alt="Button component documented with every variant, state and size"
-          caption="Button component: every variant, state and size, specified for engineering"
+          caption="Now Reza opens the Button page and finds every variant and state, named like his code"
         />
       </section>
 
-      {/* PROBLEM */}
+      {/* 5 */}
       <section className="cs-reveal">
-        <span className="cs-num">Problem</span>
-        <h2>The same questions, every day</h2>
+        <span className="cs-num">New needs</span>
+        <h2>When Reza needs something new, it&apos;s decided once</h2>
         <p>
-          Screens looked inconsistent, but the real cost was time. Each answer was given once and
-          never reused, and there was no one dedicated to a design system.
+          With the frontend lead, I set up one path for new components. The decision is written
+          down, and the next screen reuses it. Even a &ldquo;no&rdquo;, like a card variant we moved
+          to the backlog.
         </p>
-        <CsStats
-          items={[
-            { value: "90+", label: "live screens" },
-            { value: "~8", label: "repeat questions a day" },
-            { value: "0", label: "design system engineers" },
-          ]}
-        />
-      </section>
-
-      {/* DECISION 1 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Decision 1</span>
-        <h2>Use the names already in the code</h2>
-        <p>
-          My first token model was cleaner, but developers had to translate every name back into
-          theirs. So I dropped it.
+        <p className="cs-trade">
+          <b>Trade-off:</b> one-off requests take a little longer.
         </p>
-        <WhyTradeoff
-          why="In a live product, adoption matters more than a neat abstraction. Renaming working code mid-delivery added risk and no user value."
-          tradeoff="A less elegant naming model, documented as a deliberate choice."
-        />
-        <TokenBridge />
       </section>
 
-      {/* DECISION 2 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Decision 2</span>
-        <h2>Build on Ant Design, customise only when needed</h2>
-        <WhyTradeoff
-          why="With no system engineer, every custom component is something to maintain. Defaults first; 29 components specified where the product needed more."
-          tradeoff="Some visual distinctiveness."
-        />
-        <SystemAnatomy />
-      </section>
-
-      {/* DECISION 3 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Decision 3</span>
-        <h2>One decision path for every new component</h2>
-        <WhyTradeoff
-          why="With the frontend lead, new needs are reviewed once and the next screen inherits the answer. Even a “no”, like a Card variant we moved to the backlog."
-          tradeoff="One-off requests take longer."
-        />
-        <GovernanceFlow />
-      </section>
-
-      {/* SCALE */}
+      {/* 6 */}
       <section className="cs-reveal">
         <span className="cs-num">Scale</span>
-        <h2>Three brands, one component layer</h2>
-        <p>Same components and token names; only the brand values change.</p>
+        <h2>The same components run three brands</h2>
+        <p>Only the brand values change; the components and their names stay the same.</p>
         <BrandVariants />
       </section>
 
-      {/* RESULT */}
+      {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Result</span>
-        <h2>Fewer questions, and better ones</h2>
-        <div className="cs-signal">
-          <div className="box">
-            <div className="lab">Before · 8&ndash;9 a day</div>
-            <div className="quote">&quot;Which version are we supposed to use?&quot;</div>
-          </div>
-          <div className="arrow">&rarr;</div>
-          <div className="box">
-            <div className="lab">After · 3&ndash;4 a day</div>
-            <div className="quote">&quot;Does this new case need a system decision?&quot;</div>
-          </div>
-        </div>
+        <h2>Reza builds without asking</h2>
         <p>
-          Numbers observed by the team, not instrumented. The bulk-payment tool was built on this
-          system under a fixed deadline.
+          Repeat questions dropped from about 8 a day to about 3, and the ones left were better:
+          &ldquo;does this new case need a system decision?&rdquo; These were observed by the team,
+          not measured with a tool.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>

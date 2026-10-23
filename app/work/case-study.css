@@ -2484,71 +2484,6 @@
   color: var(--ink-faint);
 }
 
-/* ── scenario: one person's moment, before and after ──────────────────────
-   A numbered path with the person's thought under each step. Pain steps take
-   the signal colour, resolved steps the resolve colour, so the reader can see
-   where it breaks before reading a word. */
-.cs-scn {
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--card);
-  padding: 20px 22px 18px;
-  margin: 10px 0 8px;
-}
-.cs-scn.is-after {
-  border-color: rgba(95, 202, 166, .3);
-  background: linear-gradient(180deg, rgba(95, 202, 166, .07), rgba(95, 202, 166, .01)), var(--card);
-}
-.cs-scn .scn-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-.cs-scn .scn-tag {
-  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 999px;
-  color: var(--signal); background: var(--signal-soft);
-}
-.cs-scn.is-after .scn-tag { color: var(--resolve); background: var(--resolve-soft); }
-.cs-scn .scn-who { font-size: 15px; color: var(--ink-soft); }
-.cs-scn .scn-steps {
-  list-style: none; margin: 0; padding: 0;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: 10px;
-}
-.cs-scn li {
-  position: relative;
-  display: grid; align-content: start; gap: 6px;
-  padding: 26px 0 0;
-}
-/* the path: a line through every dot */
-.cs-scn li::before {
-  content: ""; position: absolute; left: 0; right: -10px; top: 7px; height: 2px; background: var(--line);
-}
-.cs-scn li:last-child::before { right: 0; }
-.cs-scn li .dot {
-  position: absolute; left: 0; top: 2px; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--paper); border: 2px solid var(--ink-faint);
-}
-.cs-scn li.is-pain .dot { border-color: var(--signal); background: var(--signal); box-shadow: 0 0 0 4px var(--signal-soft); }
-.cs-scn li.is-good .dot { border-color: var(--resolve); background: var(--resolve); box-shadow: 0 0 0 4px var(--resolve-soft); }
-.cs-scn li .lbl { font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--ink); }
-.cs-scn li .thought { font-size: 13px; line-height: 1.45; font-style: italic; color: var(--ink-faint); }
-.cs-scn li.is-pain .thought { color: #f0a796; }
-.cs-scn .scn-end {
-  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line-soft);
-  font-size: 15px; font-weight: 700; color: var(--signal);
-}
-.cs-scn.is-after .scn-end { color: var(--resolve); }
-.cs-scn .scn-note { margin-top: 6px; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--ink-faint); }
-@media (max-width: 900px) {
-  .cs-scn { padding: 16px 16px 14px; }
-  .cs-scn .scn-steps { grid-auto-flow: row; grid-auto-columns: auto; gap: 0; }
-  .cs-scn li { padding: 0 0 14px 26px; }
-  .cs-scn li::before { left: 5px; right: auto; top: 14px; bottom: 0; width: 2px; height: auto; }
-  .cs-scn li:last-child::before { display: none; }
-  .cs-scn li .dot { top: 3px; }
-}
-
-.cs-horizontal article > section:has(.cs-scn) { width: min(1200px, 96vw); }
 
 /* ── vertical layout on desktop: sidebar + reading column ────────────────
    The vertical layout was built for phones (edge-to-edge panels). On a wide
@@ -2599,19 +2534,10 @@
   .cs-vertical .cs-next, .cs-vertical .cs-foot { padding-top: 56px; padding-bottom: 56px; }
 }
 
-/* ── hero facts, problem / what I did, results ─────────────────────────── */
-.cs-facts {
-  list-style: none; margin: 18px 0 22px; padding: 0;
-  display: flex; flex-wrap: wrap; gap: 8px 22px;
-}
-.cs-facts li { display: inline-flex; align-items: center; gap: 7px; font-size: 14.5px; color: var(--ink-soft); }
-.cs-facts svg { color: var(--ink-faint); }
-.cs-pd { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.cs-pd dt { margin-bottom: 6px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
-.cs-pd dd { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--ink-soft); }
-.cs-results { margin-top: 26px; }
-.cs-root .cs-results h3 { font-size: 16px; margin-bottom: 10px; }
-.cs-results ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+/* ── hero: role line and results ─────────────────────────────────────── */
+.cs-root .cs-roleline { margin: 22px 0 18px; font-size: 15.5px; color: var(--ink-soft); }
+.cs-roleline b { color: var(--ink); font-weight: 700; }
+.cs-results { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .cs-results li {
   display: flex; align-items: flex-start; gap: 10px;
   padding: 12px 14px; border-radius: 10px;
@@ -2620,15 +2546,28 @@
 }
 .cs-results li svg { color: var(--resolve); margin-top: 2px; }
 .cs-results li b { color: #fff; }
-@media (max-width: 900px) {
-  .cs-pd { grid-template-columns: 1fr; gap: 16px; }
-  .cs-pd dd { font-size: 15.5px; }
+.cs-horizontal .cs-hero-side .cs-roleline { margin-top: 0; }
+
+/* ── story pieces: a quoted thought, an on-screen message, a trade-off ─── */
+.cs-root .cs-quote {
+  margin: 6px 0 18px; padding-left: 18px; border-left: 3px solid var(--line);
+  font-size: clamp(20px, 2vw, 24px); font-weight: 600; line-height: 1.4; color: var(--ink);
 }
-/* slides: the hero side column holds the glance */
-.cs-horizontal .cs-hero-side .cs-pd { grid-template-columns: 1fr; gap: 12px; }
-.cs-horizontal .cs-hero-side .cs-pd dd { font-size: 14.5px; }
-.cs-horizontal .cs-hero-side .cs-results li { padding: 8px 12px; font-size: 14px; }
-.cs-horizontal .cs-hero-side .cs-facts { margin-top: 0; }
+.cs-msg {
+  max-width: 560px; margin: 8px 0 18px; padding: 16px 18px;
+  border-radius: 12px; background: var(--card); border: 1px solid var(--fail-soft);
+  font-size: 17px; color: var(--ink);
+}
+.cs-msg span { display: block; margin-bottom: 4px; font-size: 12.5px; color: var(--ink-faint); }
+.cs-root .cs-trade { font-size: 15.5px; color: var(--ink-faint); }
+.cs-trade b { color: var(--warn); font-weight: 700; }
+.cs-rules { margin: 8px 0 18px; padding-left: 0; list-style: none; counter-reset: r; display: grid; gap: 10px; max-width: 640px; }
+.cs-rules li {
+  counter-increment: r; display: flex; gap: 14px; align-items: baseline;
+  font-size: 19px; font-weight: 600; color: var(--ink);
+}
+.cs-rules li::before { content: counter(r); font-size: 15px; font-weight: 800; color: var(--accent-ink); }
+.cs-note { font-size: 13px; color: var(--ink-faint); }
 
 /* ── layout toggle (desktop only) ─────────────────────────────────────── */
 .cs-viewtoggle {
@@ -2644,16 +2583,6 @@
 .cs-viewtoggle button[aria-pressed="true"] { color: #FEFEFF; background: #1C1D1F; }
 .cs-viewtoggle button:focus-visible { outline: 2px solid #7cb8f5; outline-offset: 2px; }
 
-/* ── why / trade-off under a decision ─────────────────────────────────── */
-.cs-why {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 22px;
-}
-.cs-why > div { padding: 14px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
-.cs-why .k { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
-.cs-why .is-cost .k { color: var(--warn); }
-.cs-root .cs-why p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
-@media (max-width: 900px) { .cs-why { grid-template-columns: 1fr; } }
-
 /* ── readability: bigger body, calmer labels ──────────────────────────── */
 .cs-root section > p { font-size: 18px; line-height: 1.7; max-width: 700px; }
 .cs-num {
@@ -2662,5 +2591,6 @@
 }
 @media (max-width: 900px) { .cs-root section > p { font-size: 16px; } }
 .cs-horizontal article > section > p { font-size: 16.5px; }
-/* decisions carry two reasoning boxes; a wider slide keeps them short */
-.cs-horizontal article > section:has(.cs-why) { width: min(1180px, 96vw); }
+.cs-root section > p.cs-note { font-size: 13px; color: var(--ink-faint); }
+.cs-root section > p.cs-trade { font-size: 15.5px; }
+.cs-root section > p.cs-quote { font-size: clamp(20px, 2vw, 24px); line-height: 1.4; }

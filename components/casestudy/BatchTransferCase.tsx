@@ -2,10 +2,7 @@ import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
-import FailureModes from "./FailureModes";
 import FailureUnit from "./FailureUnit";
-import Scenario from "./Scenario";
-import WhyTradeoff from "./WhyTradeoff";
 
 export default function BatchTransferCase() {
   return (
@@ -13,26 +10,22 @@ export default function BatchTransferCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Case study</span>
+          <span className="cs-eyebrow">Case study · Branch banking</span>
           <h1>Bulk payments where one bad row doesn&apos;t stop the file</h1>
           <p className="cs-lede">
-            Redesigning the tool branch staff use to pay salaries and suppliers for corporate
-            clients.
+            How I redesigned the tool bank tellers use to pay a company&apos;s salaries in one file,
+            so mistakes stay small and wrong transfers get caught.
           </p>
         </div>
 
         <div className="cs-hero-side">
           <CsGlance
-            company="Sadad"
-            role="Product Designer"
-            platform="Web app · Bank branch staff"
-            team="2 designers, Product, Engineering, Banking"
-            problem="One invalid row rejected the whole payment file. Worse, a wrong but valid account number went through as a success."
-            did="Co-led research in branches, designed row-level processing and a recipient name check before approval, and phased the release to hit a fixed deadline."
+            role="Product Designer, research to UI"
+            team="2 designers, Product, Engineering"
             results={[
-              <>A bad row is <b>fixed on its own</b>; valid payments keep going</>,
-              <>Wrong-recipient risk <b>flagged before approval</b>, while money can still be stopped</>,
-              <>Shipped to branches <b>on the deadline</b></>,
+              <>A bad row is <b>fixed on its own</b>. The rest of the payments keep going.</>,
+              <>Wrong recipients are <b>flagged before approval</b>, while money can still be stopped.</>,
+              <>Shipped to branches <b>on a fixed deadline</b>.</>,
             ]}
           />
         </div>
@@ -40,90 +33,105 @@ export default function BatchTransferCase() {
 
       <hr className="cs-divider" />
 
-      {/* FINAL DESIGN */}
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/batch-validation.webp"
-          alt="Batch review screen with per-row status and recipient match before approval"
-          caption="Final design: every row has its own status and recipient match, before anyone approves"
-        />
-      </section>
-
-      {/* CONTEXT */}
+      {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">Context</span>
-        <h2>Payday at a branch, with the client waiting</h2>
-        <p>What we saw when we watched branch staff process real payroll files.</p>
-        <Scenario
-          kind="before"
-          who="Branch employee uploading a company's payroll file"
-          steps={[
-            { label: "Uploads hundreds of rows" },
-            { label: "One account number has a typo", tone: "pain" },
-            { label: "The whole file is rejected", thought: "Everyone's salary waits for one row.", tone: "pain" },
-            { label: "Another row is valid but goes to the wrong person", tone: "pain" },
-          ]}
-          end="Salaries are late, and one reached a stranger."
-        />
-      </section>
-
-      {/* PROBLEM */}
-      <section className="cs-reveal">
-        <span className="cs-num">Problem</span>
-        <h2>Two failures, and only one looked like a failure</h2>
+        <span className="cs-num">Payday</span>
+        <h2>Ali uploads a company&apos;s payroll</h2>
         <p>
-          The first costs time. The second costs money that can&apos;t be pulled back.
+          Ali is a bank teller. On payday a client brings a file with dozens of salaries, and waits
+          at the counter while Ali uploads it.
         </p>
-        <FailureModes />
+        <p className="cs-note">Ali is a composite, built from what we saw in branches.</p>
       </section>
 
-      {/* DECISION 1 */}
+      {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">Decision 1</span>
-        <h2>Each row succeeds or fails on its own</h2>
-        <WhyTradeoff
-          why="Most rows in a rejected file were fine. Restarting the file delayed every valid payment because of one mistake."
-          tradeoff="Engineering now tracks a status for every row, not one for the file."
-        />
+        <span className="cs-num">One typo</span>
+        <h2>One wrong digit sends the whole file back</h2>
+        <p>
+          A single invalid account number rejected the entire file. Ali had to fix it, upload
+          again, and check every row from the start.
+        </p>
         <FailureUnit />
       </section>
 
-      {/* SHOT — upload */}
+      {/* 3 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Worse</span>
+        <h2>And a mistake that looked like success</h2>
+        <p>
+          Another row had a valid account number that belonged to the wrong person. The system said
+          &ldquo;successful&rdquo;, and the salary went to a stranger. That was the costlier failure,
+          because nobody saw it until it was too late.
+        </p>
+        <p className="cs-quote">A valid account number isn&apos;t the same as the right person.</p>
+      </section>
+
+      {/* 4 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Change 1</span>
+        <h2>Now Ali sees every row before anything is sent</h2>
+        <p>
+          Each row succeeds or fails on its own. Ali fixes only the bad one, and the other salaries
+          go through.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> engineering tracks a status for every row, not just one for the file.
+        </p>
+      </section>
+
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/batch-upload.webp"
           alt="Batch upload screen with a per-row preview before anything is committed"
-          caption="Upload: every row previewed, nothing sent yet"
+          caption="Ali uploads the file and sees every row, with nothing sent yet"
         />
       </section>
 
-      {/* DECISION 2 */}
+      {/* 5 */}
       <section className="cs-reveal">
-        <span className="cs-num">Decision 2</span>
-        <h2>Check the recipient&apos;s name before approval</h2>
-        <WhyTradeoff
-          why="A valid account number doesn't mean the right person. The system compares the account holder with the name in the file and flags low matches, while the money can still be stopped."
-          tradeoff="Flagged rows aren't auto-rejected. The approver decides, which is slower but keeps a person accountable."
+        <span className="cs-num">Change 2</span>
+        <h2>The name on each account is checked before approval</h2>
+        <p>
+          The system compares the account holder&apos;s name with the name in the file and shows
+          how well they match. A low match is flagged, and the approver checks it with the client
+          before any money moves.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> flagged rows aren&apos;t rejected automatically. A person decides, which
+          is slower but keeps someone accountable.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/batch-validation.webp"
+          alt="Batch review screen with per-row status and recipient name match before approval"
+          caption="Every row shows its status and how well the recipient's name matches"
         />
       </section>
 
-      {/* DECISION 3 */}
+      {/* 6 */}
       <section className="cs-reveal">
-        <span className="cs-num">Decision 3</span>
-        <h2>Ship in two phases to keep the deadline</h2>
-        <WhyTradeoff
-          why="The launch date couldn't move. Phase 1 fixed the row-level failures; phase 2 added the name check on top. Components I had already built in the design system covered the rest of the UI."
-          tradeoff="Name checks weren't there on day one."
-        />
+        <span className="cs-num">Deadline</span>
+        <h2>Shipped in two steps to keep the date</h2>
+        <p>
+          The launch date couldn&apos;t move. First we shipped row-by-row processing, then added the
+          name check on top. Components I had already built in the design system covered the rest
+          of the screens.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> the name check wasn&apos;t there on day one.
+        </p>
       </section>
 
-      {/* RESULT */}
+      {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Result</span>
-        <h2>Shipped on time, and easy to change after launch</h2>
+        <h2>Ali fixes one row, and payroll goes to the right people</h2>
         <p>
-          The first branches surfaced a requirement nobody had written down. Because of the phasing,
-          it cost a revision, not a rewrite.
+          The tool reached branches on time. The first branches also revealed a requirement nobody
+          had written down. Because we shipped in steps, it cost a revision, not a rewrite.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
@@ -145,7 +153,7 @@ export default function BatchTransferCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Corporate banking · Bulk payments · Shipped</p>
+        <p>Branch banking · Bulk payments · Shipped</p>
       </footer>
     </article>
   );
