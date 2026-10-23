@@ -23,9 +23,9 @@ export default function DesignSystemCase() {
             role="Product Designer, owned the system"
             team="2 designers, Frontend lead, Engineering"
             results={[
-              <>Developers&apos; repeat questions to design: <b>~8 → ~3 a day</b>.</>,
-              <><b>3 brands</b> run on one set of components.</>,
-              <>A later product <b>shipped on it</b> under a fixed deadline.</>,
+              { value: "~8 → ~3", label: "repeat questions from developers, per day" },
+              { value: "3 brands", label: "running on one set of components" },
+              { value: "Reused", label: "a later product shipped on it under a fixed deadline" },
             ]}
           />
         </div>

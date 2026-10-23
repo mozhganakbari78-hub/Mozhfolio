@@ -19,8 +19,8 @@ export default function SupportFrictionCase() {
           <span className="cs-eyebrow">Case study · Corporate banking</span>
           <h1>Support that answers users before they open a ticket</h1>
           <p className="cs-lede">
-            I was asked to refresh an outdated FAQ. First I asked a different question: would
-            anyone stuck in a banking system actually read it?
+            The FAQ had fallen behind the product. Before refreshing it, I asked a different
+            question: would anyone stuck in a banking system actually read it?
           </p>
         </div>
 
@@ -29,9 +29,9 @@ export default function SupportFrictionCase() {
             role="Product Designer, research to UI"
             team="Product, Support, Frontend lead"
             results={[
-              <><b>4 in 5</b> tickets didn&apos;t need a person. The redesign is built for them.</>,
-              <>FAQ and ticket <b>merged into one page</b>, with answers that appear as users type.</>,
-              <><b>Live now.</b> Real user behaviour is shaping phase 2.</>,
+              { value: "4 in 5", label: "tickets didn't need a person" },
+              { value: "1 page", label: "FAQ and ticket merged, with answers as users type" },
+              { value: "Live", label: "real user behaviour is shaping phase 2" },
             ]}
           />
         </div>
@@ -41,11 +41,11 @@ export default function SupportFrictionCase() {
 
       {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">The brief</span>
-        <h2>Make the FAQ clearer and up to date</h2>
+        <span className="cs-num">The starting point</span>
+        <h2>The product had moved on. The FAQ hadn&apos;t</h2>
         <p>
-          The questions were old and hard to follow. My task was to rewrite them and add what was
-          missing.
+          We had added and removed widgets and changed how the platform works, but the FAQ still
+          described the old version. The product owner and I agreed it was time for a refresh.
         </p>
       </section>
 
@@ -96,17 +96,17 @@ export default function SupportFrictionCase() {
 
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/support-live-match.webp"
-          alt="Support page: the user types how to increase the amount they can transfer, and FAQ answers about transfer limits appear with the matched word highlighted"
-          caption="The user types “How can I increase the amount I’m allowed to transfer?” and the answers about limits appear"
+          src="/projects/support-unified.webp"
+          alt="Support page with the FAQ on the left and the ticket form on the right"
+          caption="FAQ and ticket on one page: the answers are in view, and the ticket is never blocked"
         />
       </section>
 
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/support-unified.webp"
-          alt="Support page with the FAQ on the left and the ticket form on the right"
-          caption="FAQ and ticket on one page: the answers are in view, and the ticket is never blocked"
+          src="/projects/support-live-match.webp"
+          alt="Support page: the user types how to increase the amount they can transfer, and FAQ answers about transfer limits appear with the matched word highlighted"
+          caption="The user types “How can I increase the amount I’m allowed to transfer?” and the answers about limits appear"
         />
       </section>
 

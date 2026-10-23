@@ -23,9 +23,9 @@ export default function BatchTransferCase() {
             role="Product Designer, research to UI"
             team="2 designers, Product, Engineering"
             results={[
-              <>A bad row is <b>fixed on its own</b>. The rest of the payments keep going.</>,
-              <>Wrong recipients are <b>flagged before approval</b>, while money can still be stopped.</>,
-              <>Shipped to branches <b>on a fixed deadline</b>.</>,
+              { value: "1 row", label: "a bad row is fixed on its own; the rest keep going" },
+              { value: "Before approval", label: "wrong recipients flagged while money can still be stopped" },
+              { value: "On time", label: "shipped to branches on a fixed deadline" },
             ]}
           />
         </div>

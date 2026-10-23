@@ -1,9 +1,7 @@
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
-
 /**
  * The hero's answer to "what was this and what was your part": one line for
- * role and team, then the results as check rows with the figure in bold.
- * Deliberately nothing else: the story below carries the rest.
+ * role and team, then three results as figure cards. The figure is the first
+ * thing the eye lands on; the label says what it means.
  */
 export default function CsGlance({
   role,
@@ -12,7 +10,7 @@ export default function CsGlance({
 }: {
   role: string;
   team: string;
-  results: React.ReactNode[];
+  results: { value: string; label: string }[];
 }) {
   return (
     <div className="cs-glance">
@@ -21,9 +19,9 @@ export default function CsGlance({
       </p>
       <ul className="cs-results">
         {results.map((r, i) => (
-          <li key={i}>
-            <CheckCircleIcon style={{ width: 18, height: 18, flexShrink: 0 }} aria-hidden />
-            <span>{r}</span>
+          <li key={r.value} style={{ animationDelay: `${0.1 + i * 0.1}s` }}>
+            <span className="v">{r.value}</span>
+            <span className="l">{r.label}</span>
           </li>
         ))}
       </ul>

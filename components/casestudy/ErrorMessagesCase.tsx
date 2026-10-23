@@ -43,9 +43,9 @@ export default function ErrorMessagesCase() {
             role="Product Designer, self-initiated"
             team="Solo, with the backend team"
             results={[
-              <>&ldquo;What do I do now?&rdquo; tickets: <b>6 → 3 in 10</b> error tickets.</>,
-              <><b>~2,000</b> messages audited and rewritten or moved to logs.</>,
-              <>Three rules are now the <b>platform standard</b>.</>,
+              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”" },
+              { value: "~2,000", label: "messages audited, rewritten or moved to logs" },
+              { value: "3 rules", label: "now the platform standard" },
             ]}
           />
         </div>
