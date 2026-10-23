@@ -1,6 +1,5 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsArt from "./CsArt";
 import CsImpact from "./CsImpact";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
@@ -10,13 +9,12 @@ import TicketWall from "./TicketWall";
 import TicketSplit from "./TicketSplit";
 import VocabularyGap from "./VocabularyGap";
 import SearchWeights from "./SearchWeights";
-import KeywordRule from "./KeywordRule";
+import CsSnapshot from "./CsSnapshot";
 
 /*
- * Each claim is made once. The earlier draft restated "support was carrying
- * questions that didn't need a person" four times and the branch-visit
- * example four times; a reader skimming panels should meet every idea in
- * exactly one of them.
+ * Impact first, then the story in three beats, then one visual per panel.
+ * Copy is capped at a line or two: the figures carry the argument, and a
+ * hiring manager skimming panels should never meet a wall of text.
  */
 export default function SupportFrictionCase() {
   return (
@@ -25,7 +23,7 @@ export default function SupportFrictionCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">
-            Case Study · Corporate Banking · Support &amp; Content Architecture
+            Corporate Banking · 58,000+ organisations · 3 min read
           </span>
           <h1>
             The answers already existed.
@@ -33,10 +31,8 @@ export default function SupportFrictionCase() {
             People couldn&apos;t reach them.
           </h1>
           <p className="cs-lede">
-            The brief was to expand the FAQ. Reading{" "}
-            <strong>~1,000 support tickets</strong>{" "}
-            first showed that four out of five didn&apos;t need a person, and the answer usually
-            existed already. The problem was reaching it at the moment someone got stuck.
+            The brief was a bigger FAQ. <strong>~1,000 support tickets</strong> said the answers
+            existed; people just couldn&apos;t reach them mid-task.
           </p>
         </div>
 
@@ -64,17 +60,24 @@ export default function SupportFrictionCase() {
 
       <hr className="cs-divider" />
 
+      {/* THE STORY IN 30 SECONDS */}
+      <section className="cs-reveal">
+        <span className="cs-num">00 / In 30 seconds</span>
+        <h2>The whole case, before the detail</h2>
+        <CsSnapshot
+          steps={[
+            { k: "The brief", t: "Make the FAQ bigger." },
+            { k: "What ~1,000 tickets showed", t: "4 in 5 didn\u2019t need a person. The answer existed, but users couldn\u2019t find it mid-task." },
+            { k: "What I changed", t: "Answers appear while the user types. The ticket becomes the fallback." },
+          ]}
+        />
+      </section>
+
       {/* 01 THE EVIDENCE */}
-      {/* No CsArt here: the ticket wall is already the panel's image, and the
-          icon cost the height that keeps this panel from scrolling on a
-          shorter laptop screen. */}
       <section className="cs-reveal">
         <span className="cs-num">01 / The evidence</span>
         <h2>I read the tickets before touching the FAQ</h2>
-        <p>
-          Organisations are hard to research continuously, so support tickets became the research:
-          two years of them, in users&apos; own words, unprompted by anyone.
-        </p>
+        <p>Two years of tickets, in users&apos; own words.</p>
         <TicketWall />
       </section>
 
@@ -85,16 +88,10 @@ export default function SupportFrictionCase() {
         <TicketSplit />
       </section>
 
-      {/* 03 THE FINDING, AND WHAT IT DID TO THE BRIEF */}
+      {/* 03 THE REFRAME */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / The finding</span>
-        <h2>The answer wasn&apos;t missing. It was conditional</h2>
-        <p>
-          The largest group repeats almost word for word, but the right answer depends on the
-          asker&apos;s <strong>role, organisation, and permissions</strong>. One published answer
-          cannot serve a question whose answer is &quot;it depends&quot;. Others weren&apos;t ours
-          to give at all: adding a signatory needs a branch visit under bank policy.
-        </p>
+        <span className="cs-num">03 / The reframe</span>
+        <h2>The answer wasn&apos;t missing. It was hard to reach</h2>
         <ReframeStatement />
       </section>
 
@@ -102,10 +99,6 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <span className="cs-num">04 / The shift</span>
         <h2>The form should be the last option, not the first</h2>
-        <p>
-          People arrive mid-task, often mid-payment. The old flow made them choose between the FAQ
-          and a ticket before they understood their own problem.
-        </p>
         <RoutingShift />
       </section>
 
@@ -122,12 +115,7 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <span className="cs-num">05 / The decision</span>
         <h2>Show answers while the user is still typing</h2>
-        <p>
-          Search assumes the user knows the right word, and here they rarely do. I pushed for
-          answers that appear as the problem is described, with the ticket kept as a fallback that
-          carries what they already typed. More to build than a static FAQ, and the only option
-          that matched what the tickets showed.
-        </p>
+        <p>Users rarely know the right search word, so matching uses theirs.</p>
         <VocabularyGap />
       </section>
 
@@ -140,28 +128,12 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 06 THE PUSHBACK */}
+      {/* 06 THE PUSHBACK + SPEC */}
       <section className="cs-reveal">
         <span className="cs-num">06 / The pushback</span>
-        <h2>Engineering said keyword search was too expensive</h2>
-        <p>
-          Open-ended search didn&apos;t fit the backend&apos;s data structure. Instead of arguing,
-          I asked how their database worked, then proposed ranked matching in two passes: the words
-          the user typed, then a fixed synonym list. Nothing the system had to infer.
-        </p>
+        <h2>Too expensive to build? I changed its shape</h2>
+        <p>A fixed keyword and synonym list, built and verified with <strong>AI</strong>.</p>
         <SearchWeights />
-      </section>
-
-      {/* 07 THE SPEC */}
-      <section className="cs-reveal">
-        <span className="cs-num">07 / The spec</span>
-        <h2>I handed over the data, not a description of it</h2>
-        <p>
-          Every FAQ question broken into searchable keywords, with normalisation rules and a synonym
-          dictionary. I drafted it with <strong>AI</strong> to get through the volume, then checked
-          every keyword automatically against its own question. Below a match threshold the product
-          shows nothing, because a confident wrong answer is worse than none.
-        </p>
         <CsStats
           items={[
             { value: "89", label: "FAQ questions" },
@@ -171,59 +143,29 @@ export default function SupportFrictionCase() {
         />
       </section>
 
-      {/* 08 THE EXCEPTION */}
+      {/* 07 OUTCOME */}
       <section className="cs-reveal">
-        <span className="cs-num">08 / The exception</span>
-        <h2>One rule would have quietly broken the set</h2>
-        <p>Conjugated verbs were stripped. Verbal nouns look the same, and had to stay.</p>
-        <KeywordRule />
-      </section>
-
-      {/* 09 THE TRADE-OFF */}
-      <section className="cs-reveal">
-        <CsArt name="shield" />
-        <span className="cs-num">09 / The trade-off</span>
-        <h2>I kept a taxonomy I didn&apos;t like</h2>
-        <p>
-          Back-office filters and two years of tickets depended on the existing categories. I mapped
-          the new flow onto them, added a controlled &quot;Other&quot;, and logged it as design debt
-          rather than put a live support operation at risk.
-        </p>
-      </section>
-
-      {/* 10 OUTCOME */}
-      <section className="cs-reveal">
-        <span className="cs-num">10 / Outcome</span>
+        <span className="cs-num">07 / Outcome</span>
         <h2>Support conversations changed subject</h2>
-        <div className="cs-status">
-          <span className="cs-eyebrow">Shipped</span>
-          <h3>From &quot;where do I find this?&quot; to genuinely functional issues.</h3>
-          <p>
-            Support reported fewer repetitive questions of this kind after launch. Without
-            instrumented before-and-after data, I don&apos;t put a percentage on it.
-          </p>
+        <div className="cs-signal">
+          <div className="box">
+            <div className="lab">Before</div>
+            <div className="quote">&quot;Where do I find this?&quot;</div>
+          </div>
+          <div className="arrow">&rarr;</div>
+          <div className="box">
+            <div className="lab">After</div>
+            <div className="quote">Genuinely functional issues</div>
+          </div>
         </div>
-      </section>
-
-      {/* 11 REFLECTION */}
-      <section className="cs-reveal">
-        <span className="cs-num">11 / Reflection</span>
-        <h2>A ticket is a signal, not just a request to answer</h2>
-        <div className="cs-reflect">
-          <h3>Evidence earns scope</h3>
-          <p>
-            I didn&apos;t have the authority to redefine the project, and didn&apos;t need it. The
-            tickets did that.
-          </p>
-        </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
-        <div className="cs-reflect">
-          <h3>A technical objection is information, not a verdict</h3>
-          <p>
-            The design survived because I changed its shape, not because I defended its first
-            version.
-          </p>
-        </div>
+        <p>
+          Support reported fewer repeat questions after launch. No instrumented baseline, so no
+          percentage.
+        </p>
+        <p className="cs-takeaway">
+          <span>Takeaway</span>
+          I didn&apos;t have the authority to rewrite the brief. The tickets did.
+        </p>
       </section>
 
       <NextCaseLink

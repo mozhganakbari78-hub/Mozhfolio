@@ -1,6 +1,6 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsArt from "./CsArt";
+import CsSnapshot from "./CsSnapshot";
 import CsImpact from "./CsImpact";
 import CsStats from "./CsStats";
 import Mockup from "./Mockup";
@@ -22,17 +22,15 @@ export default function DesignSystemCase() {
       {/* HERO */}
       <header className="cs-hero">
         <div className="cs-hero-main">
-          <span className="cs-eyebrow">Case Study · Enterprise Banking · Design System</span>
+          <span className="cs-eyebrow">Enterprise Banking · Design System · 3 min read</span>
           <h1>
             The design system worked when decisions
             <br />
             stopped living in people&apos;s heads.
           </h1>
           <p className="cs-lede">
-            90+ live screens, no dedicated system engineer, and no pause in delivery. My first token
-            model was cleaner from a design perspective, but it introduced a{" "}
-            <strong>translation layer</strong> between design and engineering. I adapted the system to the
-            vocabulary already used in the codebase.
+            90+ live screens, no system engineer, no pause in delivery. I dropped my own cleaner model
+            for the <strong>vocabulary already in the code</strong>, and adoption followed.
           </p>
         </div>
 
@@ -64,111 +62,65 @@ export default function DesignSystemCase() {
 
       <hr className="cs-divider" />
 
+      {/* THE STORY IN 30 SECONDS */}
+      <section className="cs-reveal">
+        <span className="cs-num">00 / In 30 seconds</span>
+        <h2>The whole case, before the detail</h2>
+        <CsSnapshot
+          steps={[
+            { k: "The problem", t: "Developers asked design the same questions ~8 times a day." },
+            { k: "My mistake", t: "My cleaner token model forced engineers to translate every name." },
+            { k: "What I changed", t: "Adopted the code\u2019s own vocabulary, and set up governance so decisions stick." },
+          ]}
+        />
+      </section>
+
       {/* 01 THE REAL PROBLEM */}
       <section className="cs-reveal">
-        <CsArt name="tickets" />
         <span className="cs-num">01 / The real problem</span>
-        <h2>Visual inconsistency was only the symptom</h2>
-        <p>
-          Design and product both noticed the drift, but the useful signal came from engineering.
-          We observed frontend developers repeatedly interrupting design with recurring questions:
-          which spacing value to use, which state was correct, or whether a component was an Ant
-          Design default or a custom version. Every one of those questions meant a decision had
-          failed to become reusable.
-        </p>
+        <h2>Inconsistency was the symptom. Repeated questions were the cost</h2>
         <CsStats
           items={[
             { value: "90+", label: "live screens, already shipping" },
-            { value: "~8", label: "recurring clarification questions observed per day before the system" },
+            { value: "~8", label: "repeat questions to design, per day" },
             { value: "0", label: "dedicated design system engineers" },
           ]}
         />
-        <div className="cs-pull">
-          The system&apos;s job was not to make every screen look the same. It was to stop the team
-          from solving the same problem twice.
-        </div>
       </section>
 
       {/* 02 THE DECISION THAT DEFINED IT */}
       <section className="cs-reveal">
-        <CsArt name="fork" />
-        <span className="cs-num">02 / The decision that defined the system</span>
-        <h2>The first abstraction was cleaner, but harder to adopt</h2>
-        <p>
-          The product already had a language: the one in working code, with names like{" "}
-          <code>cardColor</code> and <code>textSecondary</code>. My instinct was to normalize it, so
-          I built a more semantic token model that described the role each value represented. On
-          paper it was cleaner. In practice it created a translation layer between design
-          terminology and implementation terminology, and developers had to map my token names back
-          to values that already existed in the codebase.
-        </p>
+        <span className="cs-num">02 / The decision</span>
+        <h2>My cleaner model was harder to adopt, so I threw it out</h2>
         <TokenBridge />
-        <p>
-          I had recreated the exact problem the system was supposed to remove.
-        </p>
-      </section>
-
-      {/* 03 THE OPTIONS */}
-      <section className="cs-reveal">
-        <span className="cs-num">03 / The options</span>
-        <h2>Migrate the code, or adopt its vocabulary</h2>
         <div className="cs-compare">
           <div className="col legacy">
-            <span className="tag">Option A · Migrate engineering to my model</span>
+            <span className="tag">Option A · Migrate code to my model</span>
             <ul>
-              <li>Cleaner abstraction, easier to explain</li>
-              <li>Refactoring working code during active delivery</li>
-              <li>Migration risk and coordination overhead</li>
+              <li>Cleaner abstraction</li>
+              <li>Refactoring live code mid-delivery</li>
             </ul>
           </div>
           <div className="col new">
-            <span className="tag">Option B · Adopt the existing vocabulary</span>
+            <span className="tag">Option B · Adopt the code&apos;s vocabulary ✓</span>
             <ul>
-              <li>Immediate shared language, no translation step</li>
-              <li>No migration dependency</li>
-              <li>Less abstract than a greenfield model</li>
+              <li>Shared language from day one</li>
+              <li>No migration</li>
             </ul>
           </div>
         </div>
-        <p>
-          In a live product, adoption mattered more than abstraction purity.{" "}
-          <strong>I chose Option B</strong>, and documented the tighter coupling as an intentional
-          trade-off rather than letting it look like an accident.
-        </p>
-        <div className="cs-pull">
-          A naming model nobody can use without translation is not a better system. Adoption is the
-          only test that counts.
-        </div>
       </section>
 
-      {/* 04 WHAT I BUILT */}
+      {/* 03 WHAT I BUILT */}
       <section className="cs-reveal">
-        <CsArt name="rows" />
-        <span className="cs-num">04 / What I built</span>
+        <span className="cs-num">03 / What I built</span>
         <h2>A product layer on top of Ant Design</h2>
-        <p>
-          I didn&apos;t recreate what Ant Design already solved. I defined where we relied on
-          defaults and where the product had enough specific need to justify customization.
-        </p>
         <SystemAnatomy />
-        <div className="cs-pull">Default first. Customize deliberately.</div>
-      </section>
-
-      {/* 05 COVERAGE */}
-      <section className="cs-reveal">
-        <span className="cs-num">05 / Coverage</span>
-        <h2>29 components, specified by behavior rather than appearance</h2>
-        <p>
-          29 components covering the recurring patterns used across navigation, forms, feedback,
-          data display, and transaction workflows. Each spec carried enough for engineering to pick the right variant without
-          asking design to reconstruct the decision.
-        </p>
         <div className="cs-inv">
           <div className="ih">
-            <span className="t">Documented across the live product</span>
-            <span className="c">Variants, states, sizes, behaviors</span>
+            <span className="t">29 components, specified by behavior</span>
+            <span className="c">Variants, states, sizes</span>
           </div>
-          <div className="isub">A sample of the 29 documented components.</div>
           <ChipDrop items={components} />
         </div>
       </section>
@@ -191,126 +143,47 @@ export default function DesignSystemCase() {
         />
       </section>
 
-      {/* 06 MULTI-BRAND */}
+      {/* 04 MULTI-BRAND */}
       <section className="cs-reveal">
-        <span className="cs-num">06 / One system, three brands</span>
-        <h2>The compromise did not block theming at scale</h2>
-        <p>
-          The platform eventually needed the same component layer to carry three product
-          identities. Same token contract, different brand values: component behavior stays shared
-          while each product keeps its own visual identity. Adopting engineering&apos;s naming cost
-          us abstraction purity, not capability.
-        </p>
+        <span className="cs-num">04 / One system, three brands</span>
+        <h2>The compromise still scaled to three brands</h2>
         <BrandVariants />
       </section>
 
-      {/* 07 GOVERNANCE */}
+      {/* 05 GOVERNANCE */}
       <section className="cs-reveal">
-        <CsArt name="shield" />
-        <span className="cs-num">07 / Governance</span>
-        <h2>Without a system engineer, governance became part of my role</h2>
+        <span className="cs-num">05 / Governance</span>
+        <h2>Every customization became a conscious decision</h2>
         <p>
-          Building components was half the problem. Without governance the system would drift again
-          the first time a feature needed something unusual, so I set up a lightweight decision
-          process with the frontend tech lead: once a decision is made, the next screen{" "}
-          <strong>inherits</strong> it instead of restarting the conversation.
-        </p>
-        <p>
-          The goal was not to prevent every customization. It was to make every customization a
-          conscious decision.
+          Set up with the frontend tech lead. Once decided, the next screen inherits it, even a
+          &quot;no&quot;, like the Card variant we moved to the backlog.
         </p>
         <GovernanceFlow />
       </section>
 
-      {/* 07b GOVERNANCE IN PRACTICE */}
+      {/* 06 OUTCOME */}
       <section className="cs-reveal">
-        <span className="cs-num">07 / Governance in practice</span>
-        <h2>The Card component we deliberately did not build</h2>
-        <div className="cs-decision">
-          <div className="dhead">
-            <span className="dnum">CASE IN POINT</span>
-            <div className="dtitle">A valid customization that was not worth the current product trade-off</div>
-          </div>
-          <div className="dbody">
-            <div className="cs-dline">
-              <div className="k">The request</div>
-              <div className="v">
-                Design requested additional Card behavior beyond what the Ant Design implementation supported.
-              </div>
-            </div>
-            <div className="cs-dline chose">
-              <div className="k">What we did</div>
-              <div className="v">
-                Rather than quietly adding a Figma variant, I reviewed it with the frontend tech
-                lead against product value, effort, and sprint pressure, and we consciously moved it
-                to the backlog.
-              </div>
-            </div>
-            <div className="cs-dline">
-              <div className="k">Why it mattered</div>
-              <div className="v">
-                The result was not that the Card stayed unchanged. It was that{" "}
-                <strong>both teams understood why</strong>, and the trade-off was recorded instead
-                of disappearing into implementation history.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 08 OUTCOME */}
-      <section className="cs-reveal">
-        <span className="cs-num">08 / Outcome</span>
-        <h2>The best signal wasn&apos;t prettier screens. It was better questions.</h2>
-        <p>
-          Through observation, repeated clarification questions appeared to drop from roughly
-          8&ndash;9 a day to around 3&ndash;4 as coverage grew. That was an <em>observed operational signal</em>, not an
-          instrumented metric with a formal baseline, and I won&apos;t present it as more than that.
-        </p>
+        <span className="cs-num">06 / Outcome</span>
+        <h2>Fewer questions, and better ones</h2>
         <div className="cs-signal">
           <div className="box">
-            <div className="lab">Before</div>
-            <div className="quote">
-              &quot;Why does this look different here?&quot; / &quot;Which version are we supposed
-              to use?&quot;
-            </div>
+            <div className="lab">Before · 8&ndash;9 a day</div>
+            <div className="quote">&quot;Which version are we supposed to use?&quot;</div>
           </div>
           <div className="arrow">&rarr;</div>
           <div className="box">
-            <div className="lab">After</div>
-            <div className="quote">
-              &quot;Does this new case justify a system decision?&quot;
-            </div>
+            <div className="lab">After · 3&ndash;4 a day</div>
+            <div className="quote">&quot;Does this new case justify a system decision?&quot;</div>
           </div>
         </div>
         <p>
-          The team stopped reconstructing old decisions and started proposing deliberate extensions.
-          Later projects reused the foundation directly, which is why the batch-payment tool could
-          ship under a fixed deadline without trading away quality.
+          Observed, not instrumented. The batch-payment tool later shipped on this foundation under
+          a fixed deadline.
         </p>
-      </section>
-
-      {/* 09 REFLECTION */}
-      <section className="cs-reveal">
-        <span className="cs-num">09 / Reflection</span>
-        <h2>Map the implementation before designing the abstraction</h2>
-        <div className="cs-reflect">
-          <h3>The mistake was sequencing, not taste</h3>
-          <p>
-            The abstraction itself was not the problem. The mistake was introducing it before
-            understanding the implementation constraints. In a live product, a design system is a
-            negotiation between ideal structure and existing reality.
-          </p>
-        </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
-        <div className="cs-reflect">
-          <h3>I had the signal, not the baseline</h3>
-          <p>
-            I noticed the interruptions before the system and watched them fall as coverage grew,
-            but never set up formal tracking. I now define adoption and clarification-rate metrics
-            before a system ships rather than relying on informal signals afterward.
-          </p>
-        </div>
+        <p className="cs-takeaway">
+          <span>Takeaway</span>
+          Map the implementation before designing the abstraction.
+        </p>
       </section>
 
       <NextCaseLink
