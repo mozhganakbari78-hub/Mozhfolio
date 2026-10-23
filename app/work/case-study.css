@@ -2621,3 +2621,10 @@
 .cs-root section > p.cs-trade { font-size: 15.5px; }
 .cs-root section > p.cs-quote { font-size: clamp(20px, 2vw, 24px); line-height: 1.4; }
 .cs-rules.is-plain li { font-size: 17px; font-weight: 500; line-height: 1.55; color: var(--ink-soft); }
+
+/* A supporting photo (a workshop wall, a sketch) rather than a product
+   screen: shown at a modest size so it backs the text instead of taking
+   over the section. */
+.cs-shot.is-small .cs-mockup { max-width: 440px; flex: none; }
+.cs-horizontal article > .cs-shot.is-small { width: min(560px, 96vw); }
+.cs-horizontal .cs-shot.is-small .cs-mockup img { max-height: calc(100vh - 260px); }
