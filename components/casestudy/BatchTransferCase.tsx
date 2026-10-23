@@ -50,13 +50,21 @@ export default function BatchTransferCase() {
       <section className="cs-reveal">
         <span className="cs-num">What we found</span>
         <h2>The old system made every mistake expensive</h2>
-        <p>Talking to branch staff and walking through real files, the same problems kept coming up:</p>
+        <p>We brought what clients and branch staff told us into a brainstorm, and grouped it. The same problems kept coming up:</p>
         <ol className="cs-rules is-plain">
           <li>One failed transaction rejected the whole file.</li>
           <li>Errors showed up late, so staff found out after the fact and redid the work by hand.</li>
           <li>No clear validation rules, so the same mistakes kept slipping through.</li>
           <li>No check on who owns the account, so a valid number could pay the wrong person.</li>
         </ol>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/batch-brainstorm.webp"
+          alt="Sticky notes on a whiteboard grouped by colour: pain points, security needs, familiarity with the current process, and wishes for the new system"
+          caption="The brainstorm: pain points, security needs, keeping the process familiar, and what clients wished for"
+        />
       </section>
 
       {/* 3 */}
