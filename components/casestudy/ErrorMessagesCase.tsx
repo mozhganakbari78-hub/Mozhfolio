@@ -1,6 +1,6 @@
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import CsArt from "./CsArt";
+import CsSnapshot from "./CsSnapshot";
 import CsImpact from "./CsImpact";
 import CsStats from "./CsStats";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
@@ -23,21 +23,6 @@ const rewrites: Rewrite[] = [
     changes: [
       "internal term → the user's own reality",
       "dead end → escalation path",
-    ],
-  },
-  {
-    label: "Withdrawal terms not found",
-    before: {
-      fa: "شرایط برداشتی با این شماره یافت نشد",
-      en: "“Withdrawal terms with this number were not found.”",
-    },
-    after: {
-      fa: "شرایط برداشتی با این شماره یافت نشد؛ لطفاً از مبلغ و تاریخ انقضا اطمینان حاصل کرده و دوباره تلاش کنید.",
-      en: "“Withdrawal terms with this number were not found. Please check the amount and expiry date, then try again.”",
-    },
-    changes: [
-      "no next step → self-recovery",
-      "names the two fields worth checking",
     ],
   },
   {
@@ -65,7 +50,7 @@ export default function ErrorMessagesCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">
-            Case Study · Corporate Banking · UX Writing &amp; Error Systems
+            Corporate Banking · UX Writing · 2 min read
           </span>
           <h1>
             Users knew something had failed.
@@ -102,30 +87,33 @@ export default function ErrorMessagesCase() {
 
       <hr className="cs-divider" />
 
+      {/* THE STORY IN 30 SECONDS */}
+      <section className="cs-reveal">
+        <span className="cs-num">00 / In 30 seconds</span>
+        <h2>The whole case, before the detail</h2>
+        <CsSnapshot
+          steps={[
+            { k: "The signal", t: "Support tickets that were just screenshots of error messages." },
+            { k: "The pattern", t: "~2,000 messages said what failed, never what to do next." },
+            { k: "What I changed", t: "Three rules every message must pass, now the platform standard." },
+          ]}
+        />
+      </section>
+
       {/* 01 THE SIGNAL */}
       <section className="cs-reveal">
-        <CsArt name="tickets" />
         <span className="cs-num">01 / The signal</span>
-        <h2>Nobody assigned this. It came out of reading tickets.</h2>
-        <p>
-          I set aside time each day to read support tickets, and a pattern surfaced that I had not
-          gone looking for: a lot of them were just screenshots of error messages. The people
-          filing them were not reporting a bug. They were asking the three questions the message
-          had left unanswered.
-        </p>
+        <h2>Nobody assigned this. It came out of reading tickets</h2>
         <DeadEndMessage />
       </section>
 
       {/* 02 THE AUDIT */}
       <section className="cs-reveal">
-        <CsArt name="read" />
         <span className="cs-num">02 / The audit</span>
-        <h2>A handful of screenshots is an anecdote, so I measured it</h2>
+        <h2>I exported every error string and sorted them by failure shape</h2>
         <p>
-          I asked the backend team to export every error string the platform could produce and got
-          back roughly <strong>2,000 messages</strong>. Fixing them as they were reported would have
-          meant 2,000 separate decisions and no shared logic, so I classified the whole set by{" "}
-          <strong>failure shape</strong>: internal language, no next step, blame aimed at the user.
+          Purely technical ones, like <code>FTP transfer failed</code>, moved to logs. The rest
+          needed rewriting.
         </p>
         <CsStats
           items={[
@@ -136,101 +124,40 @@ export default function ErrorMessagesCase() {
         />
       </section>
 
-      {/* 03 THE TRIAGE */}
+      {/* 03 THE FRAMEWORK */}
       <section className="cs-reveal">
-        <span className="cs-num">03 / The first decision</span>
-        <h2>Before asking how to rewrite it, I asked whether to show it at all</h2>
-        <p>
-          A large share of the set was purely technical. <code>FTP transfer failed</code> refers to
-          a file conversion that happens behind the scenes. It matters to the team on call and
-          means nothing to a treasurer trying to release payroll. Handing that string to a user is
-          not transparency, it is noise dressed as an explanation.
-        </p>
-        <div className="cs-pull">
-          Technical failures belonged in logs. What survived that filter was the set that genuinely
-          needed rewriting.
-        </div>
-      </section>
-
-      {/* 04 THE FRAMEWORK */}
-      <section className="cs-reveal">
-        <CsArt name="shield" />
-        <span className="cs-num">04 / The framework</span>
+        <span className="cs-num">03 / The framework</span>
         <h2>Three rules every message had to pass</h2>
-        <p>
-          Not a style guide. A shape you can hold any message against and see immediately what it
-          is missing.
-        </p>
         <MessageAnatomy />
       </section>
 
-      {/* 05 THE REWRITES */}
+      {/* 04 THE REWRITES */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / In production</span>
-        <h2>What the rules look like on real strings</h2>
-        <MessageRewrite items={rewrites.slice(0, 2)} />
+        <span className="cs-num">04 / In production</span>
+        <h2>The rules on a real string</h2>
+        <MessageRewrite items={rewrites.slice(0, 1)} />
       </section>
 
-      {/* 05b THE HARD ONE */}
+      {/* 04b THE HARD ONE */}
       <section className="cs-reveal">
-        <span className="cs-num">05 / In production</span>
+        <span className="cs-num">04 / In production</span>
         <h2>The one written as an accusation</h2>
-        <MessageRewrite items={rewrites.slice(2)} />
-        <div className="cs-pull">
-          A system enforcing a rule is not the same as the user doing something wrong. Most of the
-          rewrite was making the copy stop confusing the two.
-        </div>
+        <MessageRewrite items={rewrites.slice(1)} />
       </section>
 
-      {/* 06 THE AI DECISION */}
+      {/* 05 OUTCOME */}
       <section className="cs-reveal">
-        <CsArt name="rows" />
-        <span className="cs-num">06 / Working through the volume</span>
-        <h2>AI drafted the first pass. I reviewed every message.</h2>
-        <p>
-          Once the framework existed, I used AI to generate a first pass, then read and edited every
-          message myself. In a financial product, a plausible-sounding rewrite can quietly change
-          what a message claims about a transaction, a permission, or a balance, and the model had
-          no way to know which terms were regulated vocabulary.
-        </p>
-        <div className="cs-pull">
-          The tool was good at volume. It was not accountable for accuracy. That part stayed mine.
-        </div>
-      </section>
-
-      {/* 07 OUTCOME */}
-      <section className="cs-reveal">
-        <span className="cs-num">07 / Outcome</span>
-        <h2>From a cleanup to a standard</h2>
-        <p>
-          The rewritten messages shipped, but the more durable result is that the three rules became
-          the reference for new error copy, so the next person writing one doesn&apos;t have to
-          rediscover what a good message looks like. In the queue I had been reading all along, the
-          screenshots asking what to do next went from a majority of error tickets to a minority.
-        </p>
+        <span className="cs-num">05 / Outcome</span>
+        <h2>&quot;What do I do now?&quot; tickets went from majority to minority</h2>
         <TicketRatio />
-      </section>
-
-      {/* 08 REFLECTION */}
-      <section className="cs-reveal">
-        <span className="cs-num">08 / Reflection</span>
-        <h2>Copy is interface, not decoration</h2>
-        <div className="cs-reflect">
-          <h3>It never looked like a project, so nobody owned it</h3>
-          <p>
-            No single error message is worth a meeting. Two thousand of them, each written under
-            deadline by whoever built the feature, become a quality problem with no owner. Some
-            problems are only visible at the level of the set.
-          </p>
-        </div>
-        <div className="cs-divider" style={{ margin: "22px 0" }} />
-        <div className="cs-reflect">
-          <h3>What I&apos;d do differently</h3>
-          <p>
-            Instrument it from the start. Support contacts tied to specific error states would have
-            made this measurable, and would have shown me which messages were still failing.
-          </p>
-        </div>
+        <p>
+          <strong>AI</strong> drafted the first pass; I reviewed every message by hand, because in
+          banking a plausible rewrite can change what a message claims about money.
+        </p>
+        <p className="cs-takeaway">
+          <span>Takeaway</span>
+          Copy is interface, not decoration.
+        </p>
       </section>
 
       <NextCaseLink

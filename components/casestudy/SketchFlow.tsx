@@ -11,17 +11,17 @@ const NOTES = [
   {
     n: "01",
     t: "The error had to get smaller",
-    p: "The first rule landed in the middle step. A file arrives as one thing and leaves it as a set of separate decisions, each row carrying its own state.",
+    p: "Review splits the file into rows, each with its own state.",
   },
   {
     n: "02",
     t: "The risk had to surface before approval",
-    p: "The second rule needed a step that did not exist yet: a pause between uploading a file and committing it, while a wrong transfer can still be stopped.",
+    p: "A new pause between upload and commit, while money can still stop.",
   },
   {
     n: "03",
     t: "Confirm had to state the consequence",
-    p: "The third rule turned the last screen from a button into a sentence. What will be sent and what will be skipped is agreed before anything runs.",
+    p: "Confirm says what will be sent and what will be skipped.",
   },
 ];
 
@@ -106,8 +106,8 @@ export default function SketchFlow({ src }: { src: string }) {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: 0.68, duration: 0.5, ease: EASE }}
         >
-          Written at the bottom of the page: <em>a bad row should fail alone, a wrong transfer
-          should never leave.</em> It stayed the brief for the rest of the project.
+          The line at the bottom of the page became the brief:{" "}
+          <em>a bad row should fail alone, a wrong transfer should never leave.</em>
         </motion.p>
       </div>
     </div>
