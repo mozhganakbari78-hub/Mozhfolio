@@ -13,8 +13,8 @@ export default function BatchTransferCase() {
           <span className="cs-eyebrow">Case study · Branch banking</span>
           <h1>Bulk payments where one bad row doesn&apos;t stop the file</h1>
           <p className="cs-lede">
-            How I redesigned the tool bank tellers use to pay a company&apos;s salaries in one file,
-            so mistakes stay small and wrong transfers get caught.
+            Bank branches pay a company&apos;s salaries by uploading one file. Before designing
+            anything, another designer and I went to branches to see where it actually broke.
           </p>
         </div>
 
@@ -35,44 +35,66 @@ export default function BatchTransferCase() {
 
       {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">Payday</span>
-        <h2>Ali uploads a company&apos;s payroll</h2>
+        <span className="cs-num">The starting point</span>
+        <h2>A batch payment tool for branches, on a date that couldn&apos;t move</h2>
         <p>
-          Ali is a bank teller. On payday a client brings a file with dozens of salaries, and waits
-          at the counter while Ali uploads it.
+          Branch tellers upload files with dozens of payments for corporate clients: payroll,
+          suppliers. The tool needed a redesign, and the launch date was fixed.
         </p>
-        <p className="cs-note">Ali is a composite, built from what we saw in branches.</p>
       </section>
 
       {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">One typo</span>
-        <h2>One wrong digit sends the whole file back</h2>
+        <span className="cs-num">The question</span>
+        <h2>Where does it actually break?</h2>
         <p>
-          A single invalid account number rejected the entire file. Ali had to fix it, upload
-          again, and check every row from the start.
+          We assumed speed was the problem. So we went to branches and watched tellers process real
+          files. We each talked to staff separately, so neither of us shaped what the other heard,
+          then compared notes.
         </p>
-        <FailureUnit />
+        <p className="cs-quote">Speed wasn&apos;t the problem. Failures were.</p>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">Worse</span>
-        <h2>And a mistake that looked like success</h2>
+        <span className="cs-num">Failure 1</span>
+        <h2>One wrong digit sent the whole file back</h2>
         <p>
-          Another row had a valid account number that belonged to the wrong person. The system said
-          &ldquo;successful&rdquo;, and the salary went to a stranger. That was the costlier failure,
-          because nobody saw it until it was too late.
+          A single invalid account number rejected the entire file. The teller had to fix it,
+          upload again and check every row from the start, while every valid payment waited.
         </p>
-        <p className="cs-quote">A valid account number isn&apos;t the same as the right person.</p>
+        <FailureUnit />
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">Change 1</span>
-        <h2>Now Ali sees every row before anything is sent</h2>
+        <span className="cs-num">Failure 2</span>
+        <h2>And a mistake that looked like success</h2>
         <p>
-          Each row succeeds or fails on its own. Ali fixes only the bad one, and the other salaries
+          A valid account number can still belong to the wrong person. The system said
+          &ldquo;successful&rdquo;, and the money went to a stranger. Nobody saw it until it was
+          too late to stop.
+        </p>
+        <p className="cs-quote">A valid account number isn&apos;t the same as the right person.</p>
+      </section>
+
+      {/* 5 */}
+      <section className="cs-reveal">
+        <span className="cs-num">The challenge</span>
+        <h2>Catch both, without slowing branches down</h2>
+        <p>
+          The first failure wasted time; the second lost money that can&apos;t be pulled back. The
+          fix had to make mistakes small and visible before money moved, and keep a person
+          accountable for the final call.
+        </p>
+      </section>
+
+      {/* 6 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 1</span>
+        <h2>Each row succeeds or fails on its own</h2>
+        <p>
+          The teller sees every row before anything is sent, fixes only the bad one, and the rest
           go through.
         </p>
         <p className="cs-trade">
@@ -84,22 +106,22 @@ export default function BatchTransferCase() {
         <Mockup
           src="/projects/batch-upload.webp"
           alt="Batch upload screen with a per-row preview before anything is committed"
-          caption="Ali uploads the file and sees every row, with nothing sent yet"
+          caption="The teller uploads the file and sees every row, with nothing sent yet"
         />
       </section>
 
-      {/* 5 */}
+      {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">Change 2</span>
-        <h2>The name on each account is checked before approval</h2>
+        <span className="cs-num">Decision 2</span>
+        <h2>Check each recipient&apos;s name before approval</h2>
         <p>
           The system compares the account holder&apos;s name with the name in the file and shows
-          how well they match. A low match is flagged, and the approver checks it with the client
-          before any money moves.
+          how well they match. A low match is flagged, not rejected: the approver checks it with
+          the client before any money moves.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> flagged rows aren&apos;t rejected automatically. A person decides, which
-          is slower but keeps someone accountable.
+          <b>Trade-off:</b> no automatic rejection. A person decides, which is slower but keeps
+          someone accountable for the money.
         </p>
       </section>
 
@@ -111,27 +133,27 @@ export default function BatchTransferCase() {
         />
       </section>
 
-      {/* 6 */}
+      {/* 8 */}
       <section className="cs-reveal">
-        <span className="cs-num">Deadline</span>
-        <h2>Shipped in two steps to keep the date</h2>
+        <span className="cs-num">The constraint</span>
+        <h2>A fixed deadline, so we shipped in two steps</h2>
+        <ol className="cs-rules is-plain">
+          <li>First: row-by-row processing, so branches got the safer flow on time.</li>
+          <li>Then: the name check, added on top of a flow already running.</li>
+        </ol>
         <p>
-          The launch date couldn&apos;t move. First we shipped row-by-row processing, then added the
-          name check on top. Components I had already built in the design system covered the rest
-          of the screens.
-        </p>
-        <p className="cs-trade">
-          <b>Trade-off:</b> the name check wasn&apos;t there on day one.
+          Components I had already built in the design system covered the rest of the screens, so
+          our time went into the decisions about money, not into redrawing tables and buttons.
         </p>
       </section>
 
-      {/* 7 */}
+      {/* 9 */}
       <section className="cs-reveal">
-        <span className="cs-num">Result</span>
-        <h2>Ali fixes one row, and payroll goes to the right people</h2>
+        <span className="cs-num">Now</span>
+        <h2>Live in branches, and easy to change</h2>
         <p>
-          The tool reached branches on time. The first branches also revealed a requirement nobody
-          had written down. Because we shipped in steps, it cost a revision, not a rewrite.
+          The first branches revealed a requirement nobody had written down. Because we shipped in
+          steps, it costs a revision, not a rewrite, and we&apos;re reshaping the flow around it now.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
