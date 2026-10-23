@@ -58,9 +58,9 @@ export default function SupportFrictionCase() {
       {/* THE RESULT */}
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/support-faq-filter.webp"
-          alt="Support page where matching FAQ answers filter in as the user types their issue"
-          caption="The result: answers filter in as the user describes the problem; the ticket is the fallback"
+          src="/projects/support-live-match.webp"
+          alt="Support page: the user types a ticket asking how to increase the amount they can transfer, and FAQ answers about transfer limits filter in with the matched word highlighted"
+          caption="The result: the user types “how can I increase the amount I’m allowed to transfer?” and answers about limits appear before they send a ticket"
         />
       </section>
 
@@ -84,6 +84,15 @@ export default function SupportFrictionCase() {
         <span className="cs-num">03 / Decision 1</span>
         <h2>The ticket form becomes the last step, not the first</h2>
         <RoutingShift />
+      </section>
+
+      {/* SHOT — FAQ and ticket on one surface */}
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/support-unified.webp"
+          alt="Support page with the FAQ on the left and the ticket form on the right, on the same screen"
+          caption="FAQ and ticket on one screen: the user never has to choose a path before understanding the problem"
+        />
       </section>
 
       {/* 04 DECISION 2 */}
