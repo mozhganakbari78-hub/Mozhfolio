@@ -32,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "batch-transfer",
     title: "Bulk payments where one bad row doesn't stop the file",
     short:
-      "Row-level failure and recipient checks before approval, shipped to branches on a fixed deadline.",
+      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
     description:
       "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
     meta: "Workflow Design · Risk & Validation",

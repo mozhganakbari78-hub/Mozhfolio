@@ -13,8 +13,9 @@ export default function BatchTransferCase() {
           <span className="cs-eyebrow">Case study · Branch banking</span>
           <h1>Bulk payments where one bad row doesn&apos;t stop the file</h1>
           <p className="cs-lede">
-            Bank branches pay a company&apos;s salaries by uploading one file. Before designing
-            anything, another designer and I went to branches to see where it actually broke.
+            Some companies won&apos;t pay online, so they bring a cheque and an Excel file to the
+            branch. I redesigned the tool bank staff use to process those files: safer, faster, and
+            with mistakes caught before money moves.
           </p>
         </div>
 
@@ -24,8 +25,8 @@ export default function BatchTransferCase() {
             team="2 designers, Product, Engineering"
             results={[
               { value: "1 row", label: "a bad row is fixed on its own; the rest keep going" },
-              { value: "Before approval", label: "wrong recipients flagged while money can still be stopped" },
-              { value: "On time", label: "shipped to branches on a fixed deadline" },
+              { value: "Verified", label: "each recipient's account ownership checked before approval" },
+              { value: "Next", label: "after the branch pilot, removing the branch visit itself" },
             ]}
           />
         </div>
@@ -36,88 +37,69 @@ export default function BatchTransferCase() {
       {/* 1 */}
       <section className="cs-reveal">
         <span className="cs-num">The starting point</span>
-        <h2>A batch payment tool for branches, on a date that couldn&apos;t move</h2>
+        <h2>Companies that won&apos;t pay online</h2>
         <p>
-          Branch tellers upload files with dozens of payments for corporate clients: payroll,
-          suppliers. The tool needed a redesign, and the launch date was fixed.
+          For security reasons or their own policies, some corporate clients refuse online
+          transactions. They pay salaries and suppliers the traditional way: a cheque and an Excel
+          file, handed to the bank. Branch staff then process the file in an old, frustrating
+          system.
         </p>
       </section>
 
       {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">The question</span>
-        <h2>Where does it actually break?</h2>
-        <p>
-          We assumed speed was the problem. So we went to branches and watched tellers process real
-          files. We each talked to staff separately, so neither of us shaped what the other heard,
-          then compared notes.
-        </p>
-        <p className="cs-quote">Speed wasn&apos;t the problem. Failures were.</p>
+        <span className="cs-num">What we found</span>
+        <h2>The old system made every mistake expensive</h2>
+        <p>Talking to branch staff and walking through real files, the same problems kept coming up:</p>
+        <ol className="cs-rules is-plain">
+          <li>One failed transaction rejected the whole file.</li>
+          <li>Errors showed up late, so staff found out after the fact and redid the work by hand.</li>
+          <li>No clear validation rules, so the same mistakes kept slipping through.</li>
+          <li>No check on who owns the account, so a valid number could pay the wrong person.</li>
+        </ol>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">Failure 1</span>
-        <h2>One wrong digit sent the whole file back</h2>
+        <span className="cs-num">The challenge</span>
+        <h2>Make it safe, without forcing it online</h2>
         <p>
-          A single invalid account number rejected the entire file. The teller had to fix it,
-          upload again and check every row from the start, while every valid payment waited.
+          The process had to stay offline and meet strict banking security rules. It had to fit
+          the cheques and Excel files clients already use. And it still had to be quick and clear
+          for branch staff.
         </p>
-        <FailureUnit />
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
-        <span className="cs-num">Failure 2</span>
-        <h2>And a mistake that looked like success</h2>
-        <p>
-          A valid account number can still belong to the wrong person. The system said
-          &ldquo;successful&rdquo;, and the money went to a stranger. Nobody saw it until it was
-          too late to stop.
-        </p>
-        <p className="cs-quote">A valid account number isn&apos;t the same as the right person.</p>
-      </section>
-
-      {/* 5 */}
-      <section className="cs-reveal">
-        <span className="cs-num">The challenge</span>
-        <h2>Catch both, without slowing branches down</h2>
-        <p>
-          The first failure wasted time; the second lost money that can&apos;t be pulled back. The
-          fix had to make mistakes small and visible before money moved, and keep a person
-          accountable for the final call.
-        </p>
-      </section>
-
-      {/* 6 */}
-      <section className="cs-reveal">
         <span className="cs-num">Decision 1</span>
-        <h2>Each row succeeds or fails on its own</h2>
+        <h2>Check every row up front, and let each one fail on its own</h2>
         <p>
-          The teller sees every row before anything is sent, fixes only the bad one, and the rest
-          go through.
+          The file is validated as soon as it&apos;s uploaded, against clear rules. A bad row is
+          flagged and fixed on its own; the rest of the payments keep going.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> engineering tracks a status for every row, not just one for the file.
         </p>
+        <FailureUnit />
       </section>
 
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/batch-upload.webp"
-          alt="Batch upload screen with a per-row preview before anything is committed"
-          caption="The teller uploads the file and sees every row, with nothing sent yet"
+          alt="Batch upload screen with file details and a per-row preview before anything is committed"
+          caption="Upload: the file is checked right away, before anything is sent"
         />
       </section>
 
-      {/* 7 */}
+      {/* 5 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 2</span>
-        <h2>Check each recipient&apos;s name before approval</h2>
+        <h2>Verify who owns each account before approval</h2>
         <p>
-          The system compares the account holder&apos;s name with the name in the file and shows
-          how well they match. A low match is flagged, not rejected: the approver checks it with
-          the client before any money moves.
+          The system looks up the registered owner of each account, compares it with the name in
+          the file, and shows how well they match. A low match is flagged, not rejected: the
+          approver checks it with the client before money moves.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> no automatic rejection. A person decides, which is slower but keeps
@@ -128,36 +110,35 @@ export default function BatchTransferCase() {
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/batch-validation.webp"
-          alt="Batch review screen with per-row status and recipient name match before approval"
-          caption="Every row shows its status and how well the recipient's name matches"
+          alt="Validation screen showing each row with its verified account owner and match percentage"
+          caption="Validation: each row shows the verified account owner and how well it matches"
         />
       </section>
 
-      {/* 8 */}
+      {/* 6 */}
       <section className="cs-reveal">
-        <span className="cs-num">The constraint</span>
-        <h2>A fixed deadline, so we shipped in two steps</h2>
+        <span className="cs-num">Testing</span>
+        <h2>Two things changed after testing</h2>
+        <p>We ran a heuristic evaluation and tested with branch staff. Two findings changed the design:</p>
         <ol className="cs-rules is-plain">
-          <li>First: row-by-row processing, so branches got the safer flow on time.</li>
-          <li>Then: the name check, added on top of a flow already running.</li>
+          <li>Staff wanted to know where a batch stood, so we added a step-by-step progress tracker with clear statuses.</li>
+          <li>Vague error messages confused them, so we made each one specific, tied to its row, and visually distinct.</li>
         </ol>
-        <p>
-          Components I had already built in the design system covered the rest of the screens, so
-          our time went into the decisions about money, not into redrawing tables and buttons.
-        </p>
       </section>
 
-      {/* 9 */}
+      {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Now</span>
-        <h2>Live in branches, and easy to change</h2>
+        <h2>The pilot showed a bigger opportunity</h2>
         <p>
-          The first branches revealed a requirement nobody had written down. Because we shipped in
-          steps, it costs a revision, not a rewrite, and we&apos;re reshaping the flow around it now.
+          We ran a limited test in a few branches. It showed we could go further and remove the trip
+          to the branch altogether: a separate system where clients upload the file themselves,
+          connected to this one. That&apos;s what we&apos;re building now.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          The most dangerous error is the one that looks like success.
+          Fixing the tool showed us the real opportunity: not a better branch visit, but no branch
+          visit at all.
         </p>
       </section>
 
@@ -175,7 +156,7 @@ export default function BatchTransferCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Branch banking · Bulk payments · Shipped</p>
+        <p>Branch banking · Bulk payments · Pilot</p>
       </footer>
     </article>
   );
