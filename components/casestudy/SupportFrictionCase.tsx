@@ -149,7 +149,7 @@ export default function SupportFrictionCase() {
       </section>
 
       <NextCaseLink
-        href="/work/batch-transfer"
+        href="/work/batch-transfer/"
         caseStudyName="Bulk payments where one bad row doesn't stop the file"
         className="cs-next"
       >

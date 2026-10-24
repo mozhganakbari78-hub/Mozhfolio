@@ -215,26 +215,36 @@ function gateHtml({ salt, iv, data, title }) {
 `;
 }
 
-const entries = await readdir(OUT_DIR);
-const files = entries.filter((f) => f.endsWith(".html"));
+// With trailingSlash each case study is out/work/<slug>/index.html, and the
+// same folder holds the React payload for the route as plain text
+// (index.txt, __next.*.txt). Those carry the same copy as the page, so
+// encrypting only the HTML would leave the case studies readable right next
+// to it. They exist for client-side navigation, which is why the links into
+// /work are plain anchors while the lock is on.
+const slugs = [];
+for (const entry of await readdir(OUT_DIR)) {
+  const full = path.join(OUT_DIR, entry);
+  if ((await stat(full)).isDirectory()) slugs.push(entry);
+  else await rm(full, { force: true });
+}
+
+let stripped = 0;
+const files = [];
+for (const slug of slugs) {
+  const dir = path.join(OUT_DIR, slug);
+  for (const entry of await readdir(dir)) {
+    if (entry === "index.html") continue;
+    await rm(path.join(dir, entry), { recursive: true, force: true });
+    stripped++;
+  }
+  try {
+    await stat(path.join(dir, "index.html"));
+    files.push(path.join(slug, "index.html"));
+  } catch {}
+}
 if (!files.length) {
   console.error("✗ No case-study pages found in out/work. Did the export run?");
   process.exit(1);
-}
-
-// The export also writes the React payload for each route as plain text, both
-// as <slug>.txt and inside a <slug>/ folder. Those carry the same copy as the
-// page, so encrypting only the HTML would leave the case studies readable one
-// directory across. They exist for client-side navigation, which is why the
-// links into /work are plain anchors now.
-let stripped = 0;
-for (const entry of entries) {
-  const full = path.join(OUT_DIR, entry);
-  const isDir = (await stat(full)).isDirectory();
-  if (entry.endsWith(".txt") || isDir) {
-    await rm(full, { recursive: true, force: true });
-    stripped++;
-  }
 }
 if (stripped) console.log(`🧹 removed ${stripped} unencrypted route payloads from out/work`);
 

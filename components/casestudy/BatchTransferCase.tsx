@@ -151,7 +151,7 @@ export default function BatchTransferCase() {
       </section>
 
       <NextCaseLink
-        href="/work/design-system"
+        href="/work/design-system/"
         caseStudyName="A design system the engineers actually used"
         className="cs-next"
       >

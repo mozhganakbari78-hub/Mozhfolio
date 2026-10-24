@@ -153,7 +153,7 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/reducing-support-friction"
+        href="/work/reducing-support-friction/"
         caseStudyName="Support that answers users before they open a ticket"
         className="cs-next"
       >

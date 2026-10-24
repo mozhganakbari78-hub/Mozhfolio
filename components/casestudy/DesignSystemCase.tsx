@@ -153,7 +153,7 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/error-messages"
+        href="/work/error-messages/"
         caseStudyName="Error messages that tell users what to do next"
         className="cs-next"
       >
