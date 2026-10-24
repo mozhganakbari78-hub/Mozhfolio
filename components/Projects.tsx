@@ -48,7 +48,7 @@ export default function Projects() {
               transition={{ duration: 0.45, delay: i * 0.06, ease }}
             >
               <CaseLink
-                href={`/work/${cs.slug}`}
+                href={`/work/${cs.slug}/`}
                 data-hand
                 onClick={() =>
                   trackEvent("case_study_click", { case_study_name: cs.title })
