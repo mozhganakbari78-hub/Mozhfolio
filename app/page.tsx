@@ -19,9 +19,11 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <About />
+        {/* The work comes first: a hiring manager scanning the page should
+            reach the case studies and screens before the bio. */}
         <Projects />
         <VisualWork />
+        <About />
         <Skills />
         <AIWorkflow />
         {/* <Reviews /> */}

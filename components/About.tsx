@@ -160,7 +160,7 @@ export default function About() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mono-label mb-6" style={{ color: "var(--accent-ink)" }}>
-              [ 01 ] About
+              [ 03 ] About
             </div>
             {/* Two-tone, the same move the hero makes on the surname: the
                 subject stays bright and the qualifier drops back. */}

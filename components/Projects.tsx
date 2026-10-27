@@ -26,7 +26,7 @@ export default function Projects() {
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-              [ 02 ] Selected Work
+              [ 01 ] Selected Work
             </div>
             <h2
               id="projects-heading"
