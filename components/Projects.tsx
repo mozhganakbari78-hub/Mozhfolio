@@ -5,13 +5,17 @@ import CaseLink from "./CaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { caseStudies } from "@/data/caseStudies";
 import CaseCardArt from "./CaseCardArt";
+import CasePrefetch from "./CasePrefetch";
 import { trackEvent } from "@/lib/gtag";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+const caseHrefs = caseStudies.map((cs) => `/work/${cs.slug}/`);
+
 export default function Projects() {
   return (
     <section id="projects" className="py-28 md:py-40 px-6" aria-labelledby="projects-heading">
+      <CasePrefetch hrefs={caseHrefs} />
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

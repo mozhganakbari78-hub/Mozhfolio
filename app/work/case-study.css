@@ -130,7 +130,6 @@
   border: 1px solid var(--line-soft); background: var(--paper-warm);
   color: var(--accent-ink); margin-bottom: 20px;
 }
-.cs-horizontal .cs-art { width: 56px; height: 56px; margin-bottom: 16px; }
 
 /* pull statement */
 .cs-pull {
@@ -434,165 +433,41 @@
 /* ──────────────────────────────────────────────────────────────────────────
    HORIZONTAL, TIMELINE-DRIVEN LAYOUT (konpo-style)
    ────────────────────────────────────────────────────────────────────────── */
-.cs-horizontal { height: 100dvh; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
-
-.cs-horizontal .cs-bar { position: static; }
 .cs-bar-inner {
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 28px; max-width: none;
 }
 
 /* horizontal scroller */
-.cs-htrack {
-  flex: 1 1 auto; min-height: 0;
-  overflow-x: auto; overflow-y: hidden;
-  scroll-behavior: auto;
-}
-.cs-htrack::-webkit-scrollbar { height: 8px; }
-.cs-htrack::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-.cs-htrack::-webkit-scrollbar-track { background: transparent; }
-
-.cs-horizontal article { display: flex; flex-direction: row; align-items: stretch; height: 100%; width: max-content; }
 
 /* every top-level block becomes a panel */
-.cs-horizontal article > * {
-  flex: 0 0 auto;
-  width: min(820px, 92vw);
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 52px 52px 100px;
-  border-right: 1px solid var(--line-soft);
-}
-.cs-horizontal article > *::-webkit-scrollbar { width: 6px; }
-.cs-horizontal article > *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-
-.cs-horizontal article > .cs-hero { width: min(1020px, 94vw); padding-top: 64px; }
-.cs-horizontal article > .cs-next {
-  width: min(640px, 90vw);
-  display: flex; flex-direction: column; justify-content: center;
-  border-top: 0;
-}
-.cs-horizontal article > .cs-foot {
-  width: min(540px, 88vw);
-  display: flex; flex-direction: column; justify-content: center;
-  border-top: 0;
-}
 /* panels manage their own padding; neutralize the vertical-mode section rhythm.
    Extra bottom padding keeps the last block clear of the fixed timeline. */
-.cs-horizontal article > section { padding: 44px 52px 100px; }
-.cs-horizontal .cs-hero { padding-bottom: 44px; }
-.cs-horizontal .cs-pull { font-size: clamp(20px, 2.4vw, 25px); line-height: 1.28; padding-left: 20px; }
 
 /* Sections carrying stats or an animated scene get a wider panel so their
    text wraps into fewer lines and the whole section fits one screen. */
-.cs-horizontal article > section:has(.cs-statrow),
-.cs-horizontal article > section:has(.cs-scene) {
-  width: min(1000px, 95vw);
-}
 /* message rewrites and anatomy need width for the before|after comparison */
-.cs-horizontal article > section:has(.cs-msg-set),
-.cs-horizontal article > section:has(.cs-anat) {
-  width: min(1120px, 96vw);
-}
 
 /* the ticket wall needs three readable columns */
-.cs-horizontal article > section:has(.cs-tw) { width: min(1120px, 96vw); }
-.cs-horizontal article > section:has(.cs-split) { width: min(940px, 94vw); }
-.cs-horizontal article > section:has(.cs-pipe) { width: min(1180px, 96vw); }
-.cs-horizontal article > section:has(.cs-krule) { width: min(900px, 94vw); }
-.cs-horizontal article > section:has(.cs-fm) { width: min(1060px, 95vw); }
-.cs-horizontal article > section:has(.cs-sketch) { width: min(1160px, 96vw); }
-.cs-horizontal article > section:has(.cs-sketch) {
-  padding-bottom: 52px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.cs-horizontal article > section:has(.cs-ins) { width: min(1060px, 95vw); }
-.cs-horizontal article > section:has(.cs-assume) { width: min(1100px, 95vw); }
-.cs-horizontal article > section:has(.cs-brands) { width: min(1000px, 95vw); }
 /* the vocabulary gap and the weighted-match figure need both sides on one line */
-.cs-horizontal article > section:has(.cs-vocab) { width: min(1000px, 95vw); }
-.cs-horizontal article > section:has(.cs-weights) { width: min(1000px, 95vw); }
 
 /* the reframe and mindset figures want a wider panel */
-.cs-horizontal article > section:has(.cs-mindset) { width: min(1000px, 95vw); }
-.cs-horizontal article > section:has(.cs-reframe) { width: min(880px, 94vw); }
 
 /* two-column step lists need the extra width */
-.cs-horizontal article > section:has(.cs-steps) {
-  width: min(1060px, 95vw);
-}
 
 /* dead-end illustration needs room for the questions around the dialog */
-.cs-horizontal article > section:has(.cs-deadend) {
-  width: min(880px, 94vw);
-}
 
 /* cinematic big-stats panel: wide and vertically centered */
-.cs-horizontal article > section:has(.cs-bigstats) {
-  width: min(1160px, 96vw);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 /* decision panels: keep entries stacked (one column), but widen the panel and
    center it so a tall card still reads as one screen */
-.cs-horizontal article > section:has(.cs-decision) {
-  width: min(920px, 94vw);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.cs-horizontal .cs-dline { margin-bottom: 12px; }
-.cs-horizontal .cs-dline .v { font-size: 14px; line-height: 1.5; }
-.cs-horizontal .cs-dline .k { font-size: 11px; margin-bottom: 3px; }
-.cs-horizontal .cs-decision .dtitle { font-size: 18px; margin-top: 4px; }
-.cs-horizontal .cs-decision .dhead { padding: 14px 22px 11px; }
-.cs-horizontal .cs-decision .dbody { padding: 16px 22px; }
 /* …and their extras render compact in horizontal mode */
-.cs-horizontal .cs-scene { margin: 14px 0 8px; }
-.cs-horizontal .cs-statrow { margin: 14px 0 6px; gap: 10px; }
-.cs-horizontal .cs-stat { padding: 12px 14px; }
-.cs-horizontal .cs-stat .v { font-size: 24px; }
-.cs-horizontal .cs-stat .l { font-size: 11px; margin-top: 4px; }
 
 /* compact the vertical rhythm inside horizontal panels so tall sections
    never run past the bottom edge */
-.cs-horizontal article > section > h2 { margin-bottom: 16px; }
-.cs-horizontal article > section > p { margin-bottom: 14px; }
-.cs-horizontal .cs-decision { margin-bottom: 14px; }
-.cs-horizontal .cs-decision .dhead { padding: 16px 24px 13px; }
-.cs-horizontal .cs-decision .dbody { padding: 18px 24px; }
-.cs-horizontal .cs-dline { margin-bottom: 13px; }
 /* A four-item step list is taller than one panel. In the horizontal layout,
    run the steps as two columns so the section still fits a single screen. */
-.cs-horizontal .cs-step { padding: 13px 0; }
-.cs-horizontal .cs-steps {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 34px;
-}
-.cs-horizontal .cs-steps .cs-step { border-bottom: 0; }
-.cs-horizontal .cs-step p { font-size: 14px; line-height: 1.5; }
-.cs-horizontal .cs-reflect { margin-bottom: 16px; }
-.cs-horizontal .cs-card { padding: 16px 22px; margin-bottom: 14px; }
-.cs-horizontal .cs-phase { padding: 14px 0; gap: 16px; }
-.cs-horizontal .cs-phase h3 { margin-bottom: 4px; font-size: 18px; }
-.cs-horizontal .cs-phase p { font-size: 14.5px; line-height: 1.55; }
-.cs-horizontal .cs-chart { padding: 20px 22px 16px; }
-.cs-horizontal .cs-bar { padding: 11px 14px; margin-bottom: 8px; }
-.cs-horizontal .cs-bar .blabel { margin-bottom: 10px; }
-.cs-horizontal .cs-bar .bpcts b { font-size: 17px; }
-.cs-horizontal .cs-mockup { margin: 4px 0 14px; }
 
 /* dedicated full-image panel: fills the whole viewport height, no padding */
-.cs-horizontal article > .cs-shot {
-  width: min(1160px, 96vw);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 16px 24px;
-}
 .cs-shot .cs-mockup {
   margin: 0;
   width: 100%;
@@ -613,47 +488,12 @@
   background: transparent;
 }
 .cs-shot .cs-mockup-caption { font-size: 11.5px; margin-top: 10px; }
-.cs-horizontal .cs-status { padding: 24px 26px; }
 
 /* divider between hero and first section isn't needed horizontally */
-.cs-horizontal .cs-divider { display: none; }
 
 /* timeline */
-.cs-timeline {
-  flex: 0 0 auto; height: 80px;
-  border-top: 1px solid var(--line);
-  padding: 16px 28px 0; position: relative;
-  background: var(--paper);
-}
-.cs-tl-line { position: absolute; left: 34px; right: 34px; top: 22px; height: 2px; background: var(--line); border-radius: 2px; }
 /* driven per frame from JS: scaleX is composited, where animating `width`
    dirtied layout on every scroll frame and restarted a transition each time */
-.cs-tl-fill {
-  height: 100%; width: 100%;
-  background: var(--accent); border-radius: 2px;
-  transform-origin: left center;
-  transform: scaleX(0);
-  will-change: transform;
-}
-.cs-tl-labels { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; gap: 8px; }
-.cs-tl-item {
-  background: none; border: 0; cursor: pointer; padding: 0;
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--ink-faint); transition: color .2s ease;
-}
-.cs-tl-item .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); box-shadow: 0 0 0 4px var(--paper); transition: background .2s ease, transform .2s ease; }
-.cs-tl-item .txt { white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
-.cs-tl-item:hover { color: var(--ink); }
-.cs-tl-item.active { color: var(--accent-ink); }
-.cs-tl-item.active .dot { background: var(--accent); transform: scale(1.25); }
-
-@media (max-width: 760px) {
-  .cs-tl-item .txt { display: none; }
-  .cs-tl-item.active .txt { display: block; }
-  .cs-horizontal article > * { padding: 32px 26px 48px; }
-  .cs-horizontal article > .cs-hero { padding-top: 40px; }
-}
 
 /* ──────────────────────────────────────────────────────────────────────────
    Vertical mode (mobile) — snap-scroll panels with right-side timeline.
@@ -2423,45 +2263,10 @@
    1440x800 laptop, so it scrolled even before the impact strip was added.
    A horizontal case has width to spare and no height, so the claim sits on
    the left and the evidence for it (impact, role, team) on the right. */
-.cs-horizontal article > .cs-hero {
-  width: min(1320px, 96vw);
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-  column-gap: clamp(36px, 4.4vw, 64px);
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-.cs-horizontal .cs-hero h1 { font-size: clamp(34px, 3.6vw, 50px); margin-bottom: 22px; }
-.cs-horizontal .cs-hero .cs-eyebrow { margin-bottom: 20px; }
-.cs-horizontal .cs-hero .cs-lede { font-size: clamp(16px, 1.3vw, 18.5px); }
 
 /* impact: one row per result, value and explanation side by side */
-.cs-horizontal .cs-hero-side .cs-impact { margin-top: 0; padding: 15px 20px 6px; }
-.cs-horizontal .cs-hero-side .cs-impact ul { grid-template-columns: 1fr; margin-top: 8px; }
-.cs-horizontal .cs-hero-side .cs-impact li {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
-  align-items: baseline;
-  column-gap: 16px;
-  padding: 11px 0;
-  border-left: 0;
-  border-top: 1px solid rgba(124, 184, 245, .14);
-}
-.cs-horizontal .cs-hero-side .cs-impact li:first-child { border-top: 0; padding-top: 6px; }
-.cs-horizontal .cs-hero-side .cs-impact .v { font-size: clamp(17px, 1.45vw, 21px); }
 
 /* meta: compact label-over-value rows instead of a full-width ruled band */
-.cs-horizontal .cs-hero-side .cs-meta {
-  margin-top: 18px;
-  border: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px 22px;
-}
-.cs-horizontal .cs-hero-side .cs-meta div { padding: 0; }
-.cs-horizontal .cs-hero-side .cs-meta div:first-child { grid-column: 1 / -1; }
-.cs-horizontal .cs-hero-side .cs-meta dt { font-size: 10.5px; margin-bottom: 4px; }
-.cs-horizontal .cs-hero-side .cs-meta dd { font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); }
 
 /* one-line takeaway closing a case, in place of a full reflection panel */
 .cs-takeaway {
@@ -2569,10 +2374,6 @@
 @keyframes cs-result-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cs-results li { animation: none; } }
 @media (max-width: 900px) { .cs-results { grid-template-columns: 1fr; } }
-.cs-horizontal .cs-hero-side .cs-results { grid-template-columns: 1fr; gap: 8px; }
-.cs-horizontal .cs-hero-side .cs-results li { padding: 14px 16px; }
-.cs-horizontal .cs-hero-side .cs-results .v { font-size: 24px; }
-.cs-horizontal .cs-hero-side .cs-roleline { margin-top: 0; }
 
 /* ── story pieces: a quoted thought, an on-screen message, a trade-off ─── */
 .cs-root .cs-quote {
@@ -2596,18 +2397,6 @@
 .cs-note { font-size: 13px; color: var(--ink-faint); }
 
 /* ── layout toggle (desktop only) ─────────────────────────────────────── */
-.cs-viewtoggle {
-  position: fixed; top: 11px; left: 50%; transform: translateX(-50%); z-index: 40;
-  display: inline-flex; gap: 2px; padding: 3px;
-  border: 1px solid #20222f; border-radius: 999px; background: #121314;
-}
-.cs-viewtoggle button {
-  border: 0; cursor: pointer; padding: 6px 12px; border-radius: 999px;
-  font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
-  color: #9698ab; background: transparent;
-}
-.cs-viewtoggle button[aria-pressed="true"] { color: #FEFEFF; background: #1C1D1F; }
-.cs-viewtoggle button:focus-visible { outline: 2px solid #7cb8f5; outline-offset: 2px; }
 
 /* ── readability: bigger body, calmer labels ──────────────────────────── */
 .cs-root section > p { font-size: 18px; line-height: 1.7; max-width: 700px; }
@@ -2616,7 +2405,6 @@
   text-transform: uppercase; color: var(--accent-ink);
 }
 @media (max-width: 900px) { .cs-root section > p { font-size: 16px; } }
-.cs-horizontal article > section > p { font-size: 16.5px; }
 .cs-root section > p.cs-note { font-size: 13px; color: var(--ink-faint); }
 .cs-root section > p.cs-trade { font-size: 15.5px; }
 .cs-root section > p.cs-quote { font-size: clamp(20px, 2vw, 24px); line-height: 1.4; }
@@ -2626,8 +2414,6 @@
    screen: shown at a modest size so it backs the text instead of taking
    over the section. */
 .cs-shot.is-small .cs-mockup { max-width: 440px; flex: none; }
-.cs-horizontal article > .cs-shot.is-small { width: min(560px, 96vw); }
-.cs-horizontal .cs-shot.is-small .cs-mockup img { max-height: calc(100vh - 260px); }
 
 /* Without JavaScript nothing adds .in, so the sections would stay hidden. */
 @media (scripting: none) {
