@@ -1,65 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import EditorialHorizontal from "./EditorialHorizontal";
 import EditorialVertical from "./EditorialVertical";
 
-type View = "vertical" | "horizontal";
-const KEY = "cs-view";
-
+/**
+ * The case-study frame. There is one layout, a vertical scroll; the old
+ * horizontal "Slides" view and its toggle were removed. Rendering the layout
+ * directly (no mount check) keeps the case study in the exported HTML, so it
+ * shows before the JavaScript has loaded.
+ */
 export default function Editorial({ children }: { children: React.ReactNode }) {
-  // null until mounted: the choice depends on the pointer and on storage,
-  // neither of which exists during the static export.
-  const [touch, setTouch] = useState<boolean | null>(null);
-  const [view, setView] = useState<View>("vertical");
-
-  useEffect(() => {
-    // Small screens and touch devices always get the vertical layout: the
-    // horizontal one is driven by a mouse wheel.
-    const mq = window.matchMedia("(max-width: 900px), (pointer: coarse)");
-    const update = () => setTouch(mq.matches);
-    const restore = () => {
-      try {
-        if (localStorage.getItem(KEY) === "horizontal") setView("horizontal");
-      } catch {}
-    };
-    restore();
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  const choose = (v: View) => {
-    setView(v);
-    try {
-      localStorage.setItem(KEY, v);
-    } catch {}
-  };
-
-  // Before mount (touch === null) this renders the default vertical layout
-  // rather than nothing, so the case study is in the exported HTML and shows
-  // before the JavaScript has loaded. The tree keeps the same shape either
-  // way, so hydrating doesn't remount the case; the toggle and a saved
-  // "Slides" choice join once the pointer is known.
-  const desktop = touch === false;
-
-  return (
-    <>
-      {desktop && view === "horizontal" ? (
-        <EditorialHorizontal>{children}</EditorialHorizontal>
-      ) : (
-        <EditorialVertical>{children}</EditorialVertical>
-      )}
-      {desktop && (
-        <div className="cs-viewtoggle" role="group" aria-label="Case study layout">
-          <button type="button" aria-pressed={view === "vertical"} onClick={() => choose("vertical")}>
-            Scroll
-          </button>
-          <button type="button" aria-pressed={view === "horizontal"} onClick={() => choose("horizontal")}>
-            Slides
-          </button>
-        </div>
-      )}
-    </>
-  );
+  return <EditorialVertical>{children}</EditorialVertical>;
 }
