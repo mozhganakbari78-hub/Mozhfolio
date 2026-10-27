@@ -11,31 +11,33 @@ import {
 } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 
+// One plain sentence each: the section is skimmed, so every line has to make
+// its point without a second read.
 const capabilities = [
   {
     icon: MagnifyingGlassIcon,
     title: "Evidence earns scope",
-    body: "I don't challenge a brief with opinion. I bring evidence: support patterns, and watching people work without framing it as a test. That is what helps a team reconsider the problem and align on what is worth solving.",
+    body: "I bring evidence, not opinion: support tickets and watching people work. That is what gets a team to rethink the problem.",
   },
   {
     icon: Square3Stack3DIcon,
     title: "Systems over screens",
-    body: "I design reusable decision systems, not just individual screens. Components, tokens, and governance turn solved problems into shared team knowledge.",
+    body: "I design reusable components and tokens, so a problem solved once stays solved for the whole team.",
   },
   {
     icon: ShieldCheckIcon,
     title: "Risk before polish",
-    body: "In high-impact workflows I make uncertainty visible before optimising the experience. The best decision is often preventing the wrong action, not just making the right one easier.",
+    body: "Where a mistake costs money, I first make the wrong action hard, then make the right one easy.",
   },
   {
     icon: DocumentCheckIcon,
     title: "Trade-offs, documented",
-    body: "Live products require compromises. I make them explicit, document the cost, and leave the reasoning behind so the next decision starts from context, not confusion.",
+    body: "Every compromise is written down with its cost, so the next decision starts from context.",
   },
   {
     icon: CpuChipIcon,
     title: "Designed to be adopted",
-    body: "The cleanest model is worthless if the team needs a meeting to use it. I design within real constraints: existing code, operational needs, and delivery pressure, because adoption is the measure of success.",
+    body: "I design within real constraints: existing code, operations and deadlines. If the team can't ship it, it isn't done.",
   },
 ];
 
@@ -96,14 +98,14 @@ export default function Skills() {
                   className="mt-[3px] md:mt-0.5 shrink-0"
                 />
                 <h3
-                  className="text-[16px] font-semibold tracking-tight"
+                  className="text-[16px] md:text-[17px] font-semibold tracking-tight"
                   style={{ color: "var(--text-primary)", letterSpacing: "-0.015em" }}
                 >
                   {cap.title}
                 </h3>
                 <p
-                  className="col-start-2 md:col-start-auto text-[13.5px] leading-relaxed"
-                  style={{ color: "var(--text-tertiary)" }}
+                  className="col-start-2 md:col-start-auto text-[15px] md:text-[16px] leading-[1.6] max-w-[56ch]"
+                  style={{ color: "var(--text-secondary)" }}
                 >
                   {cap.body}
                 </p>
