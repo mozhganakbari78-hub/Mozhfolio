@@ -119,7 +119,7 @@ export default function VisualWork() {
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-              [ 03 ] Visual Work
+              [ 02 ] Visual Work
             </div>
             <h2
               id="visual-heading"
