@@ -125,13 +125,6 @@ WHEN 18:00–06:00`}</pre>
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/iot-builder.webp"
-          alt="Three screens in Persian: a new rule with a condition, an event and an execution time; the add condition sheet; and an event with its prerequisites"
-          caption="The shipped builder (Persian): a rule, a condition, and an event"
-        />
-      </section>
 
       {/* 5 */}
       <section className="cs-reveal">
@@ -155,13 +148,6 @@ WHEN 18:00–06:00`}</pre>
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/Screen14.webp"
-          alt="Choose condition screen with preset humidity conditions, and the add new condition sheet with less than, in the range of and greater than, and a condition preview sentence"
-          caption="Presets first, then a custom condition with its preview sentence"
-        />
-      </section>
 
       {/* 6 */}
       <section className="cs-reveal">
@@ -178,13 +164,6 @@ WHEN 18:00–06:00`}</pre>
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/iot-requirements.webp"
-          alt="Add prerequisite sheets in Persian: choose a controller state or a delay, pick a controller, and set it on, off or to an amount"
-          caption="Adding a prerequisite (Persian): another machine's state, or a delay"
-        />
-      </section>
 
       {/* 7 */}
       <section className="cs-reveal">
@@ -198,13 +177,6 @@ WHEN 18:00–06:00`}</pre>
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/iot-schedule.webp"
-          alt="Rule schedule screen in Persian: chosen weekdays, start and end dates, every two hours with a five-minute duration, and two time windows"
-          caption="The schedule (Persian): every two hours, within set windows"
-        />
-      </section>
 
       {/* 8 */}
       <section className="cs-reveal">
@@ -221,13 +193,6 @@ WHEN 18:00–06:00`}</pre>
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/iot-category-edit.webp"
-          alt="Create and edit rule category screens in Persian, with rule cards to select and confirmation dialogs"
-          caption="Rule categories (Persian): one active set per zone"
-        />
-      </section>
 
       {/* 9 */}
       <section className="cs-reveal">
