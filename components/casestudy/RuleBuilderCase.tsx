@@ -20,7 +20,7 @@ export default function RuleBuilderCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, owned the rule builder's logic and flow"
+            role="Product Designer"
             team="3–4 designers, PM, Developers"
             results={[
               { value: "3 blocks", label: "every rule is a condition, an event and a time" },
