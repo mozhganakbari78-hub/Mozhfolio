@@ -2419,3 +2419,8 @@
 @media (scripting: none) {
   .cs-reveal { opacity: 1; transform: none; }
 }
+
+/* rule builder: the logic underneath, next to what the user builds */
+.cs-signal .box .cs-code { margin: 0; white-space: pre; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+.cs-signal .box .cs-plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.cs-signal .box .cs-plain b { display: block; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 2px; }

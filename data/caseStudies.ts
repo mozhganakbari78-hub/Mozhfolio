@@ -12,7 +12,7 @@ export type CaseStudy = {
   description: string;
   /** Small label above the card title. */
   meta: string;
-  illustration: "support" | "batch" | "designsystem" | "errorcopy";
+  illustration: "support" | "batch" | "designsystem" | "errorcopy" | "rules";
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -59,6 +59,17 @@ export const caseStudies: CaseStudy[] = [
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
     illustration: "errorcopy",
+  },
+  {
+    index: "05",
+    slug: "iot-rule-builder",
+    title: "Automation rules for people who don't write code",
+    short:
+      "Greenhouse managers asked for timers. I hid the if-else behind three plain questions and a sentence that reads each rule back.",
+    description:
+      "Designing an IoT rule builder for non-technical greenhouse managers: timer and sensor rules built from a condition, an event and a time, with presets and a plain-language read-back.",
+    meta: "IoT · Logic Design",
+    illustration: "rules",
   },
 ];
 

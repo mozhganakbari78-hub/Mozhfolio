@@ -153,13 +153,13 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/reducing-support-friction/"
-        caseStudyName="Support that answers users before they open a ticket"
+        href="/work/iot-rule-builder/"
+        caseStudyName="Automation rules for people who don't write code"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Support that answers users before they open a ticket{" "}
+          Automation rules for people who don&apos;t write code{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
