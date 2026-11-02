@@ -63,11 +63,11 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "05",
     slug: "iot-rule-builder",
-    title: "Automation rules for people who don't write code",
+    title: "Rule-based automation for non-technical greenhouse operators",
     short:
-      "Greenhouse managers asked for timers. I hid the if-else behind three plain questions and a sentence that reads each rule back.",
+      "A fixed rule model (condition, event, schedule) and a plain-language read-back, so operators who never think in if-else can automate their greenhouse.",
     description:
-      "Designing an IoT rule builder for non-technical greenhouse managers: timer and sensor rules built from a condition, an event and a time, with presets and a plain-language read-back.",
+      "Designing an IoT rule builder for non-technical greenhouse operators: a constrained condition-event-schedule model, preset conditions with plain-language verification, and safeguards for real equipment.",
     meta: "IoT · Logic Design",
     illustration: "rules",
   },

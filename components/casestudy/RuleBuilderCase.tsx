@@ -10,11 +10,11 @@ export default function RuleBuilderCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · IoT · Mobile</span>
-          <h1>Automation rules for people who don&apos;t write code</h1>
+          <h1>Rule-based automation for non-technical greenhouse operators</h1>
           <p className="cs-lede">
-            Greenhouse managers asked for rules that run on a clock. Many of them were already
-            struggling with the simple rules they had. I designed the rule builder so they could
-            write if-else logic without ever seeing it.
+            Customers asked for scheduled automation. The users asking were the same ones already
+            struggling with basic rules. I designed a rule builder that delivers the power of
+            conditional logic without exposing the logic itself.
           </p>
         </div>
 
@@ -23,9 +23,9 @@ export default function RuleBuilderCase() {
             role="Product Designer"
             team="3–4 designers, PM, Developers"
             results={[
-              { value: "3 blocks", label: "every rule is a condition, an event and a time" },
-              { value: "1 sentence", label: "each condition read back in plain words before saving" },
-              { value: "Live", label: "shipped in Persian, right to left" },
+              { value: "3-part model", label: "condition, event and schedule replace free-form logic" },
+              { value: "Read-back", label: "every condition confirmed in plain language before it runs" },
+              { value: "Shipped", label: "live in production, in Persian (RTL)" },
             ]}
           />
         </div>
@@ -35,13 +35,13 @@ export default function RuleBuilderCase() {
 
       {/* 1 */}
       <section className="cs-reveal">
-        <span className="cs-num">The starting point</span>
-        <h2>The app could flip the switch. It couldn&apos;t remember to</h2>
+        <span className="cs-num">Context</span>
+        <h2>Remote control is not automation</h2>
         <p>
-          The product puts sensors and controllers in greenhouses and connects them to an app.
-          Managers could see every hall&apos;s temperature and humidity and switch a fan, a mister or a
-          heater from their phone. But the day still ran on memory: fans on, fans off, every couple
-          of hours.
+          The product connects greenhouse sensors and controllers to a mobile app. Operators could
+          monitor every hall and switch fans, misters and heaters remotely, with a few fixed default
+          rules. But routine operation was still manual: the app provided the control channel, not
+          the autonomy.
         </p>
         <p className="cs-quote">
           &ldquo;I have to manually adjust things, like turning the fans on and off throughout the
@@ -53,51 +53,52 @@ export default function RuleBuilderCase() {
         <Mockup
           src="/projects/iot-greenhouse.webp"
           alt="A temperature and humidity sensor mounted on a post above a crop inside a customer's greenhouse"
-          caption="A sensor in a customer's greenhouse"
+          caption="A sensor deployed in a customer's greenhouse"
         />
       </section>
 
       {/* 2 */}
       <section className="cs-reveal">
-        <span className="cs-num">The ask</span>
-        <h2>The request sounded small: add a timer</h2>
+        <span className="cs-num">Customer signal</span>
+        <h2>Demand for time-based and combined rules</h2>
         <p>
-          In interviews about automation, users wanted rules that run on a clock, and rules that
-          mix a clock with a sensor reading.
+          User interviews on automation surfaced two needs: rules that run on a schedule, and rules
+          that combine a schedule with a sensor threshold.
         </p>
         <p className="cs-quote">
           &ldquo;I can trigger actions based on sensor thresholds, but it&apos;s frustrating that I
           can&apos;t combine that with time-based conditions.&rdquo;
         </p>
         <p>
-          The team turned this into three requirements: timer rules, rules with several conditions,
-          and rule categories.
+          The team scoped three requirements: scheduled rules, multi-condition rules, and rule
+          categories.
         </p>
       </section>
 
       {/* 3 */}
       <section className="cs-reveal">
-        <span className="cs-num">The challenge</span>
-        <h2>The people asking for more rules were struggling with the ones they had</h2>
+        <span className="cs-num">The product risk</span>
+        <h2>More capability, fewer people able to use it</h2>
         <p>
-          Many users were older and not technical. Even the existing threshold rules were hard for
-          them, and they asked for templates and step-by-step help. Every new requirement made
-          rules more powerful, and more like programming: a timer plus two conditions plus
-          &ldquo;only if the fan is on&rdquo; is an if-else statement.
+          The core users were older and non-technical. Many already struggled with simple threshold
+          rules and had asked for templates and step-by-step guidance. Each new requirement added
+          expressive power, and moved the product closer to programming. A logic editor would have
+          served the few power users and lost the core segment.
         </p>
         <p className="cs-quote">
-          How do you let someone write an if-else without knowing they&apos;re writing one?
+          The goal: deliver the expressive power of conditional logic to users who will never think
+          in conditional logic.
         </p>
       </section>
 
       {/* 4 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 1</span>
-        <h2>Hide the logic behind three plain questions</h2>
+        <h2>A fixed rule model: condition, event, schedule</h2>
         <p>
-          Every rule is logic underneath. I split it into the three questions anyone asks without
-          thinking about code: what should I watch, what should happen, and when. The rule screen
-          shows those three blocks and nothing else. Nobody types an operator or a sensor ID.
+          I constrained every rule to three components that match how an operator already thinks:
+          what to watch, what should happen, and when. The interface exposes those three blocks and
+          nothing else: no operators, variables or device IDs.
         </p>
         <div className="cs-signal">
           <div className="box">
@@ -111,102 +112,102 @@ WHEN 18:00–06:00`}</pre>
           </div>
           <div className="arrow">&rarr;</div>
           <div className="box">
-            <div className="lab">What the user builds</div>
+            <div className="lab">What the operator builds</div>
             <ol className="cs-plain">
               <li><b>Condition</b>The hall&apos;s average temperature drops below 15 °C, until it rises above 18 °C</li>
-              <li><b>Event</b>Heater 1 turns on, once the fan is running, after 30 seconds</li>
-              <li><b>Time</b>Every night, 18:00 to 06:00</li>
+              <li><b>Event</b>Heater 1 turns on once the fan is running, after 30 seconds</li>
+              <li><b>Schedule</b>Every night, 18:00 to 06:00</li>
             </ol>
           </div>
         </div>
         <p className="cs-trade">
-          <b>Trade-off:</b> an experienced user taps through more sheets than one form would need.
-          I chose fewer mistakes over fewer taps.
+          <b>Trade-off:</b> less flexible than a free-form editor, and more steps for power users.
+          Accepted, because a wrong rule moves physical equipment.
         </p>
       </section>
-
 
       {/* 5 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 2</span>
-        <h2>No blank fields, and every condition read back as a sentence</h2>
+        <h2>Defaults first, verification before commit</h2>
         <p>
-          Users had asked for templates, so a condition never starts empty. Picking a sensor offers
-          ready-made conditions; a custom one is built from three choices: less than, in the range
-          of, or greater than. Before saving, the sheet reads it back:
+          No condition starts from a blank field. Each sensor offers preset conditions; a custom one
+          is built from three comparators: less than, within a range, or greater than. Before saving,
+          the condition is read back in plain language:
         </p>
         <p className="cs-quote">
           &ldquo;If the humidity is less than 20%, and until it exceeds 30%.&rdquo;
         </p>
         <p>
-          One sentence is easier to check than a set of fields. If it doesn&apos;t say what they
-          meant, they see it before the rule touches a machine.
+          This moves verification from inspecting fields to reading one sentence, so a mismatch
+          between intent and configuration is caught before any equipment acts on it.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> presets steer people toward the values we chose, so the presets need
-          someone who knows the crops.
+          <b>Trade-off:</b> presets anchor users to the values we chose, so they need agronomic
+          review.
         </p>
       </section>
-
 
       {/* 6 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 3</span>
-        <h2>Design for real machines, not just for the rule</h2>
-        <p>A rule can read well and still behave badly in a greenhouse. Two things needed handling:</p>
+        <h2>Model the physical system, not just the logic</h2>
+        <p>A rule that reads correctly can still misbehave on real equipment. Two behaviours were built into the model:</p>
         <ol className="cs-rules is-plain">
-          <li>Readings hover around a line. So a condition can carry an exit: start at one value, stop at another, the &ldquo;until&rdquo; in the sentence above.</li>
-          <li>Machines depend on each other. A heater shouldn&apos;t start before the fan is running, so an event can carry prerequisites in priority order: another machine&apos;s state, or a delay.</li>
+          <li><span><b>Exit thresholds.</b> A condition can start at one value and stop at another, so a reading hovering around a single threshold doesn&apos;t switch a device on and off repeatedly.</span></li>
+          <li><span><b>Prerequisites.</b> An event can depend on another device&apos;s state or a delay, in priority order, so a heater never starts before the fan is running.</span></li>
         </ol>
         <p className="cs-trade">
-          <b>Trade-off:</b> one more thing to understand on each rule. The read-back sentence keeps
-          it readable.
+          <b>Trade-off:</b> two more concepts per rule. The plain-language read-back keeps them
+          legible.
         </p>
       </section>
-
 
       {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">Back to the ask</span>
-        <h2>Fans every two hours, on their own</h2>
+        <span className="cs-num">Scheduling</span>
+        <h2>Closing the original request</h2>
         <p>
-          The request that started it ended up as one screen. A rule runs always or on a schedule,
-          at a set time or at an interval, like every two hours for five minutes, and can be
-          limited to time windows. Put a condition in front of it, and a sensor threshold only
-          counts at certain hours.
+          A rule runs always or on a schedule (daily, alternate days or chosen weekdays, within a
+          date range), at a fixed time or at an interval with a set duration, and can be limited to
+          time windows. Combined with a condition, it delivers what customers asked for: a sensor
+          threshold that applies only at certain hours.
         </p>
       </section>
-
 
       {/* 8 */}
       <section className="cs-reveal">
-        <span className="cs-num">Trust</span>
-        <h2>Handing control to software raised new questions</h2>
+        <span className="cs-num">Operational trust</span>
+        <h2>Making automation observable and controllable</h2>
+        <p>Handing control to software raised three operator questions, each answered in the product:</p>
         <ol className="cs-rules is-plain">
-          <li><b>Which rules are running?</b> Rules live in categories, like Summer, and one is active per zone. Switching asks for confirmation in plain words.</li>
-          <li><b>Who switched my fan?</b> Every controller shows its mode: manual, by rule, or by time.</li>
-          <li><b>Will I hear when it matters?</b> A limit sends a quiet notification; an alarm calls the manager&apos;s phone.</li>
+          <li><span><b>Which rules are running?</b> Rules are grouped into categories, such as seasons, with one active per zone. Switching requires an explicit confirmation of what will run.</span></li>
+          <li><span><b>Who changed this device?</b> Every controller shows its current control mode: manual, rule-based or scheduled.</span></li>
+          <li><span><b>Will I know when it matters?</b> Two alert tiers: a limit sends a notification; an alarm triggers a phone call.</span></li>
         </ol>
         <p className="cs-trade">
-          <b>Trade-off:</b> one active category per zone, so a week that mixes two seasons needs a
-          category of its own.
+          <b>Trade-off:</b> one active category per zone, so mixed periods need a category of their
+          own.
         </p>
       </section>
 
-
       {/* 9 */}
       <section className="cs-reveal">
-        <span className="cs-num">Now</span>
-        <h2>It shipped, and I left before I could measure it</h2>
+        <span className="cs-num">Outcome</span>
+        <h2>Shipped to production</h2>
         <p>
-          The rule builder is live, in Persian, right to left. Had I stayed, I&apos;d have measured
-          how many users set up a timed rule, how many manual switches it saved each week, and how
-          often people overrode a rule by hand.
+          The rule builder is live, in Persian with a right-to-left layout. I left the company
+          before post-launch measurement. These are the metrics I would use to evaluate it:
         </p>
+        <ol className="cs-rules is-plain">
+          <li><span><b>Adoption.</b> Share of accounts with at least one scheduled rule.</span></li>
+          <li><span><b>Effort.</b> Manual device switches per week, before and after.</span></li>
+          <li><span><b>Conflict.</b> Manual overrides of rule-controlled devices.</span></li>
+        </ol>
         <p className="cs-takeaway">
           <span>What I learned</span>
-          The hard part of automation wasn&apos;t the logic. It was letting people use logic without
-          thinking like a programmer.
+          In automation products, the limit is rarely the engine. It&apos;s the user&apos;s model of
+          it. Design the model first, then the interface.
         </p>
       </section>
 

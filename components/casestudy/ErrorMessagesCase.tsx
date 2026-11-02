@@ -154,12 +154,12 @@ export default function ErrorMessagesCase() {
 
       <NextCaseLink
         href="/work/iot-rule-builder/"
-        caseStudyName="Automation rules for people who don't write code"
+        caseStudyName="Rule-based automation for non-technical greenhouse operators"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Automation rules for people who don&apos;t write code{" "}
+          Rule-based automation for non-technical greenhouse operators{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
