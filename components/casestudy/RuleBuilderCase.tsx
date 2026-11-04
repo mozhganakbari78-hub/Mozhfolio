@@ -289,8 +289,8 @@ WHEN always`}</pre>
       </section>
 
       <NextCaseLink
-        href="/work/reducing-support-friction/"
-        caseStudyName="Support that answers users before they open a ticket"
+        href="/work/batch-transfer/"
+        caseStudyName="Bulk payments where one bad row doesn't stop the file"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>

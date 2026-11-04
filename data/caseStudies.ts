@@ -29,6 +29,17 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "02",
+    slug: "iot-rule-builder",
+    title: "Rule-based automation for non-technical greenhouse operators",
+    short:
+      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
+    description:
+      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
+    meta: "IoT · Logic Design",
+    illustration: "rules",
+  },
+  {
+    index: "03",
     slug: "batch-transfer",
     title: "Bulk payments where one bad row doesn't stop the file",
     short:
@@ -39,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
     illustration: "batch",
   },
   {
-    index: "03",
+    index: "04",
     slug: "design-system",
     title: "A design system the engineers actually used",
     short:
@@ -50,7 +61,7 @@ export const caseStudies: CaseStudy[] = [
     illustration: "designsystem",
   },
   {
-    index: "04",
+    index: "05",
     slug: "error-messages",
     title: "Error messages that tell users what to do next",
     short:
@@ -59,17 +70,6 @@ export const caseStudies: CaseStudy[] = [
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
     illustration: "errorcopy",
-  },
-  {
-    index: "05",
-    slug: "iot-rule-builder",
-    title: "Rule-based automation for non-technical greenhouse operators",
-    short:
-      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
-    description:
-      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
-    meta: "IoT · Logic Design",
-    illustration: "rules",
   },
 ];
 
