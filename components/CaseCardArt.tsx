@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy";
+export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy" | "rules";
 
 const A = "var(--accent-color)";
 const AI = "var(--accent-ink)";
@@ -171,11 +171,39 @@ function ErrorCopy() {
   );
 }
 
+/* Rule builder: the logic underneath, three plain blocks on top. */
+function Rules() {
+  return (
+    <Frame>
+      <div className="grid gap-2">
+        <motion.span style={{ ...Mono, color: SUB }} {...rise(0)}>
+          if &lt; 15 · until &gt; 18 · then on
+        </motion.span>
+        {["condition", "event", "time"].map((label, i) => (
+          <motion.div
+            key={label}
+            className="rounded-lg px-3 py-2 flex items-center gap-2"
+            style={{
+              border: `1px solid ${i === 0 ? AI : LINE}`,
+              background: i === 0 ? "var(--accent-soft)" : "rgba(255,255,255,0.02)",
+            }}
+            {...rise(0.18 + i * 0.12)}
+          >
+            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: i === 0 ? AI : SUB }} />
+            <span style={{ ...Mono, color: i === 0 ? FG : SUB }}>{label}</span>
+          </motion.div>
+        ))}
+      </div>
+    </Frame>
+  );
+}
+
 const map: Record<CaseIllustration, () => React.JSX.Element> = {
   support: Support,
   batch: Batch,
   designsystem: DesignSystem,
   errorcopy: ErrorCopy,
+  rules: Rules,
 };
 
 export default function CaseCardArt({ name }: { name: CaseIllustration }) {

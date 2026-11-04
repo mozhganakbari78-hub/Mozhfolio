@@ -2371,6 +2371,10 @@
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .cs-results .l { font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); }
+.cs-results.is-four { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 18px 0 22px; }
+.cs-results.is-four li { animation: none; }
+.cs-root .cs-source { font-size: 12.5px; color: var(--ink-faint); margin: -12px 0 22px; }
+@media (max-width: 900px) { .cs-results.is-four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @keyframes cs-result-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cs-results li { animation: none; } }
 @media (max-width: 900px) { .cs-results { grid-template-columns: 1fr; } }
@@ -2419,3 +2423,8 @@
 @media (scripting: none) {
   .cs-reveal { opacity: 1; transform: none; }
 }
+
+/* rule builder: the logic underneath, next to what the user builds */
+.cs-signal .box .cs-code { margin: 0; white-space: pre; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+.cs-signal .box .cs-plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.cs-signal .box .cs-plain b { display: block; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 2px; }
