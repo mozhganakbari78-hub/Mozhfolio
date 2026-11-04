@@ -112,53 +112,73 @@ function Batch() {
 }
 
 /* Design system: one shared contract, and the exception you decide on. */
+const BW = 22, BH = 10, GROUND = 112;
+const Brick = ({ x, y, c, delay }: { x: number; y: number; c: string; delay: number }) => (
+  <motion.g
+    initial={{ opacity: 0, y: -14 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay, duration: 0.35, ease: EASE }}
+  >
+    <rect x={x + 4} y={y - 3} width={5} height={3} rx={1} fill={c} opacity={0.85} />
+    <rect x={x + 13} y={y - 3} width={5} height={3} rx={1} fill={c} opacity={0.85} />
+    <rect x={x} y={y} width={BW} height={BH} rx={2} fill={c} opacity={0.5} stroke={c} strokeWidth={1} />
+  </motion.g>
+);
+
 function DesignSystem() {
-  // A component as it looks in Figma (dashed purple frame) in light and dark,
-  // and the same component as code: one name on both sides.
-  const PURPLE = "#9a7cf0";
-  const variants = (dark: boolean) => (
-    <div className="grid gap-1.5 p-2.5 rounded-md" style={{ background: dark ? "#16181d" : "#eef0f3" }}>
-      <span className="h-5 rounded-md flex items-center justify-center" style={{ background: A }}>
-        <span style={{ ...Mono, fontSize: 9, color: "#fff" }}>Primary</span>
-      </span>
-      <span className="h-5 rounded-md flex items-center justify-center" style={{ border: `1px solid ${A}` }}>
-        <span style={{ ...Mono, fontSize: 9, color: dark ? AI : A }}>Secondary</span>
-      </span>
-      <span className="h-5 flex items-center justify-center">
-        <span style={{ ...Mono, fontSize: 9, color: dark ? SUB : "#5b6270" }}>Ghost</span>
-      </span>
-    </div>
-  );
+  // Same bricks, three buildings: one set of parts builds every brand.
+  const towers = [
+    { x: 58, rows: 4, c: A },
+    { x: 118, rows: 6, c: "#2bb3a3" },
+    { x: 178, rows: 3, c: "#9a7cf0" },
+  ];
+  const starts = towers.map((_, i) => towers.slice(0, i).reduce((n, t) => n + t.rows, 0));
   return (
     <Frame>
       <div className="grid gap-2">
         <motion.div className="flex items-baseline justify-between" {...rise(0)}>
-          <span style={{ ...Mono, color: PURPLE }}>&#x25C7; Button</span>
-          <span style={{ ...Mono, color: SUB }}>light · dark</span>
+          <span style={{ ...Mono, color: SUB }}>same bricks</span>
+          <span style={{ ...Mono, color: AI }}>3 brands</span>
         </motion.div>
-
-        <motion.div
-          className="grid grid-cols-2 gap-2 p-2 rounded-lg"
-          style={{ border: `1px dashed ${PURPLE}` }}
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.12, duration: 0.45, ease: EASE }}
-        >
-          {variants(false)}
-          {variants(true)}
-        </motion.div>
-
-        <motion.div
-          className="rounded-md px-2.5 py-1.5 flex items-center justify-between"
-          style={{ border: `1px solid ${LINE}`, background: "rgba(255,255,255,0.02)" }}
-          {...rise(0.45)}
-        >
-          <span style={{ ...Mono, color: FG }}>
-            &lt;Button <span style={{ color: AI }}>variant</span>=&quot;primary&quot; /&gt;
-          </span>
-          <span style={{ ...Mono, fontSize: 9, color: SUB }}>same name</span>
-        </motion.div>
+        <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
+          {/* loose bricks: the shared parts */}
+          <Brick x={6} y={GROUND - BH} c={SUB} delay={0.05} />
+          <Brick x={10} y={GROUND - 2 * BH - 3} c={SUB} delay={0.12} />
+          {towers.map((t, ti) =>
+            Array.from({ length: t.rows }, (_, r) => (
+              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - (r + 1) * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
+            ))
+          )}
+          {/* windows */}
+          {towers.map((t, i) => (
+            <motion.rect
+              key={`w${i}`} x={t.x + 8} y={GROUND - (BH + 3) * 2 + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
+              initial={{ opacity: 0 }} whileInView={{ opacity: 0.7 }} viewport={{ once: true }} transition={{ delay: 1.3 + i * 0.1 }}
+            />
+          ))}
+          {/* crane over the purple tower, lowering one more brick */}
+          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.4 }}>
+            <line x1={236} y1={GROUND} x2={236} y2={8} stroke={LINE} strokeWidth={1.5} />
+            <line x1={170} y1={8} x2={250} y2={8} stroke={LINE} strokeWidth={1.5} />
+            <line x1={236} y1={8} x2={250} y2={20} stroke={LINE} strokeWidth={1} />
+          </motion.g>
+          <motion.g
+            initial={{ y: -20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
+          >
+            <line x1={189} y1={8} x2={189} y2={46} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
+            <rect x={183} y={46} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
+            <rect x={192} y={46} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
+            <rect x={178} y={49} width={BW} height={BH} rx={2} fill="#9a7cf0" opacity={0.5} stroke="#9a7cf0" strokeWidth={1} />
+          </motion.g>
+          <line x1={0} x2={260} y1={GROUND + 0.5} y2={GROUND + 0.5} stroke={LINE} strokeWidth={1.2} />
+        </svg>
+        <motion.span style={{ ...Mono, color: SUB }} {...rise(1.4)}>
+          one set of parts, every brand built from it
+        </motion.span>
       </div>
     </Frame>
   );
