@@ -1,6 +1,6 @@
 // Draft: not published yet. To publish, add it to data/caseStudies.ts and
-// app/work/[slug]/page.tsx, and move drafts/trading-bots/bot-profile.webp
-// back to public/projects/.
+// app/work/[slug]/page.tsx, and move drafts/trading-bots/bot-list.webp and
+// bot-report.webp to public/projects/.
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
@@ -121,16 +121,32 @@ export default function TradingBotCase() {
         <span className="cs-num">Decision 1</span>
         <h2>Scan many bots, act on one</h2>
         <p>
-          Traders run several bots at once. The list answers one question per card: is this bot
-          doing its job? Each card shows the bot&apos;s name and creation date, a notification
-          switch, and a minimal report: signals in total, live and closed; success and failure
-          rate; and the spot or futures split. Edit, report, duplicate and delete sit on the card.
-          Search by name and filters by date and performance narrow a long list.
+          Traders run several bots at once, across crypto and forex. Each card answers one
+          question: is this bot doing its job? A status label sits next to the name, Running or
+          Paused, so the state reads before any number. Below it, in the order a trader checks:
+        </p>
+        <ol className="cs-rules is-plain">
+          <li><span><b>Money.</b> What the bot was given, as an amount and a share of the balance, and its profit or loss so far.</span></li>
+          <li><span><b>Reliability.</b> Signals with a win rate, and how many were won and lost.</span></li>
+          <li><span><b>Behaviour.</b> The split between buy and sell signals, drawn to scale.</span></li>
+          <li><span><b>Now.</b> The last signal: side, entry, leverage, take-profit and stop-loss.</span></li>
+        </ol>
+        <p>
+          A paused bot keeps its history but fades back, so the running ones stand out. Search by
+          name or pair, a Running / Paused filter and sorting by P&amp;L narrow a long list.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> the card carries only the numbers needed to compare bots. Everything
           else lives on the bot&apos;s own page, one click away.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/bot-list.webp"
+          alt="The bots list: six bot cards for crypto and forex pairs, each with a Running or Paused label, allocation and profit or loss, win rate, buy and sell ratio and the last signal; paused bots are faded"
+          caption="The bot list: state, money, reliability and the last signal on every card"
+        />
       </section>
 
       {/* 6 */}
@@ -157,13 +173,6 @@ export default function TradingBotCase() {
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/bot-profile.webp"
-          alt="A bot's report page: balance changes over time with maximum and minimum balance lines, signals analysis, profit and loss, buy and sell ratio, and the last signal with a Copy to order button"
-          caption="A bot's report: performance, signals and the last trade on one screen"
-        />
-      </section>
 
       {/* 7 */}
       <section className="cs-reveal">
@@ -173,15 +182,27 @@ export default function TradingBotCase() {
           The report is ordered by the questions a trader asks about a bot:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Is it making money?</b> Balance over time, with its maximum and minimum marked as lines, and the change for the period.</span></li>
-          <li><span><b>How reliable are its signals?</b> Signals by state, expired, live and pending, with success and failure rates.</span></li>
+          <li><span><b>Is it making money?</b> Balance over time, with the period&apos;s high and low marked as lines, and the change for the day.</span></li>
+          <li><span><b>How reliable are its signals?</b> Signals by state, closed, live and pending, with how many were won and lost.</span></li>
           <li><span><b>How does it win and lose?</b> Total and average profit and loss per trade, and the buy and sell ratio.</span></li>
           <li><span><b>What is it doing now?</b> The last signal in full: pair, market, type and leverage, side, entry, stop-loss and take-profit. Copy to order turns it into a trade.</span></li>
         </ol>
         <p>
-          Activation sits at the top of the page as a single switch, next to the market and pair.
+          The on/off switch sits at the top of the side column, above the market and pair.
           Turning a bot on or off is never buried.
         </p>
+        <p className="cs-trade">
+          <b>Colour carries meaning only:</b> green for profit and wins, red for losses, orange for
+          pending. Everything else stays neutral, so a loss is never missed.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/bot-report.webp"
+          alt="A bot's report: balance over the last 24 hours with high and low lines, signals by state with won and lost counts, total and average profit and loss, buy and sell ratio, and the last signal with Copy to order"
+          caption="A bot's report, ordered by the questions a trader asks"
+        />
       </section>
 
       {/* 8 */}
