@@ -33,6 +33,14 @@ export default function RuleBuilderCase() {
 
       <hr className="cs-divider" />
 
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/iot-hand.webp"
+          alt="A hand holding a phone showing the greenhouse app's green launch screen"
+          caption="The greenhouse, in your hand"
+        />
+      </section>
+
       {/* 1 */}
       <section className="cs-reveal">
         <span className="cs-num">Context</span>
