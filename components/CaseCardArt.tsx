@@ -113,33 +113,69 @@ function Batch() {
 
 /* Design system: one shared contract, and the exception you decide on. */
 function DesignSystem() {
+  // Tokens on top feed the same component in three brand themes below.
+  const tokens = [
+    { label: "bg", c: "rgba(255,255,255,0.04)" },
+    { label: "line", c: LINE },
+    { label: "text", c: "var(--text-secondary)" },
+    { label: "brand", c: A },
+  ];
+  const brands = [
+    { name: "A", c: A },
+    { name: "B", c: "#2bb3a3" },
+    { name: "C", c: "#9a7cf0" },
+  ];
   return (
     <Frame>
       <div className="grid gap-2.5">
         <motion.div className="flex items-baseline justify-between" {...rise(0)}>
-          <span style={{ ...Mono, color: SUB }}>one shared contract</span>
-          <span style={{ ...Mono, color: AI }}>3 brands</span>
+          <span style={{ ...Mono, color: SUB }}>tokens</span>
+          <span style={{ ...Mono, color: AI }}>1 system · 3 brands</span>
         </motion.div>
 
-        <div className="grid grid-cols-5 gap-2">
-          {Array.from({ length: 10 }, (_, i) => (
-            <motion.span
-              key={i}
-              className="aspect-square rounded"
-              style={{
-                background: i === 6 ? A : "transparent",
-                border: `1px solid ${i === 6 ? A : LINE}`,
-              }}
-              initial={{ opacity: 0, scale: 0.7 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.12 + i * 0.035, duration: 0.32, ease: EASE }}
-            />
+        <div className="grid grid-cols-4 gap-1.5">
+          {tokens.map((t, i) => (
+            <motion.div
+              key={t.label}
+              className="flex items-center gap-1.5 rounded-md px-1.5 py-1"
+              style={{ border: `1px solid ${LINE}` }}
+              {...rise(0.1 + i * 0.06)}
+            >
+              <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: t.c, border: `1px solid ${LINE}` }} />
+              <span style={{ ...Mono, fontSize: 9, color: SUB }}>{t.label}</span>
+            </motion.div>
           ))}
         </div>
 
-        <motion.span style={{ ...Mono, color: SUB }} {...rise(0.5)}>
-          one exception, decided out loud
+        <motion.div className="flex justify-center" {...rise(0.38)}>
+          <span style={{ ...Mono, color: SUB }}>&darr;</span>
+        </motion.div>
+
+        <div className="grid grid-cols-3 gap-2">
+          {brands.map((b, i) => (
+            <motion.div
+              key={b.name}
+              className="rounded-lg p-2 grid gap-1.5"
+              style={{ border: `1px solid ${i === 0 ? AI : LINE}`, background: "rgba(255,255,255,0.02)" }}
+              {...rise(0.48 + i * 0.1)}
+            >
+              <div className="flex items-center justify-between">
+                <span style={{ ...Mono, fontSize: 9, color: SUB }}>brand {b.name}</span>
+                <span className="w-5 h-2.5 rounded-full relative" style={{ background: b.c }}>
+                  <span className="absolute top-[1px] right-[1px] w-2 h-2 rounded-full" style={{ background: FG }} />
+                </span>
+              </div>
+              <span className="h-[5px] rounded-full" style={{ background: LINE }} />
+              <span className="h-[5px] w-2/3 rounded-full" style={{ background: LINE }} />
+              <span className="h-4 rounded-md flex items-center justify-center" style={{ background: b.c }}>
+                <span style={{ ...Mono, fontSize: 8, color: "#fff" }}>button</span>
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.span style={{ ...Mono, color: SUB }} {...rise(0.85)}>
+          same components, one set of names
         </motion.span>
       </div>
     </Frame>
