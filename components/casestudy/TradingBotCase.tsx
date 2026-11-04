@@ -213,9 +213,41 @@ export default function TradingBotCase() {
         />
       </section>
 
-      {/* 8 */}
+      {/* risk limits */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 4</span>
+        <h2>Risk limits in plain terms, with no surprises</h2>
+        <p>
+          A trader sets how much a bot may use and when it must stop. Each control says what it
+          does, not just what it is called:
+        </p>
+        <ol className="cs-rules is-plain">
+          <li><span><b>Allocation.</b> An amount and its share of the available balance, typed or set with a slider, so the size of the bet is always in view.</span></li>
+          <li><span><b>Stop loss.</b> &ldquo;Pause the bot when losses reach&rdquo; a set amount.</span></li>
+          <li><span><b>Take profit.</b> &ldquo;Pause the bot when profit reaches&rdquo; a set amount.</span></li>
+        </ol>
+        <p>
+          Editing a live bot changes only what comes next. The dialog says so: new settings apply to
+          new signals, and open positions keep their stop-loss and take-profit. A new bot starts in
+          test mode, on simulated funds, until the trader switches it to live.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> these limits act on the bot as a whole. Per-trade stop-loss and
+          take-profit still come from the strategy, so there are two levels to understand.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/bot-edit.webp"
+          alt="The Edit bot details dialog over the bot page: running switch with a note that changes apply to new signals, bot name, market, pair, amount to allocate with a slider and the available balance, stop loss and take profit described as pausing the bot"
+          caption="Editing a live bot: limits described by what they do, and nothing changes for open positions"
+        />
+      </section>
+
+      {/* 8 */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 5</span>
         <h2>AI assist hands over blocks the trader can still read</h2>
         <p>
           The assistant helps in two ways. It answers questions, and it writes strategy blocks.
