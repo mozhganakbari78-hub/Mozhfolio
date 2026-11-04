@@ -17,7 +17,7 @@ export default function SupportFrictionCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Corporate banking</span>
-          <h1>Support that answers users before they open a ticket</h1>
+          <h1>Answers before the ticket</h1>
           <p className="cs-lede">
             The FAQ had fallen behind the product. Before refreshing it, I asked a different
             question: would anyone stuck in a banking system actually read it?
@@ -150,12 +150,12 @@ export default function SupportFrictionCase() {
 
       <NextCaseLink
         href="/work/iot-rule-builder/"
-        caseStudyName="Rule-based automation for non-technical greenhouse operators"
+        caseStudyName="Greenhouse rules in one sentence"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Rule-based automation for non-technical greenhouse operators{" "}
+          Greenhouse rules in one sentence{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

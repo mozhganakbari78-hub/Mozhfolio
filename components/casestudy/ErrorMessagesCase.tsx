@@ -31,7 +31,7 @@ export default function ErrorMessagesCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · UX writing</span>
-          <h1>Error messages that tell users what to do next</h1>
+          <h1>Errors that say what&apos;s next</h1>
           <p className="cs-lede">
             How a pattern I spotted in support tickets became a rewrite of ~2,000 error messages and
             a writing standard for the whole platform.
@@ -153,13 +153,13 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/trading-bots/"
-        caseStudyName="Trading bots that earn trust before they touch real money"
+        href="/work/reducing-support-friction/"
+        caseStudyName="Answers before the ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Trading bots that earn trust before they touch real money{" "}
+          Answers before the ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

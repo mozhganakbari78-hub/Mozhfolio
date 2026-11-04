@@ -1,3 +1,6 @@
+// Draft: not published yet. To publish, add it to data/caseStudies.ts and
+// app/work/[slug]/page.tsx, and move drafts/trading-bots/bot-profile.webp
+// back to public/projects/.
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
@@ -10,7 +13,7 @@ export default function TradingBotCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Trading · Web</span>
-          <h1>Trading bots that earn trust before they touch real money</h1>
+          <h1>Trading bots traders can trust</h1>
           <p className="cs-lede">
             The algo team was building trading bots for a platform that serves forex and crypto
             traders. I was handed a list of requirements in a domain I didn&apos;t know. I turned it
@@ -234,12 +237,12 @@ export default function TradingBotCase() {
 
       <NextCaseLink
         href="/work/reducing-support-friction/"
-        caseStudyName="Support that answers users before they open a ticket"
+        caseStudyName="Answers before the ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Support that answers users before they open a ticket{" "}
+          Answers before the ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
