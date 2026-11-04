@@ -128,6 +128,14 @@ WHEN always`}</pre>
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/iot-flow-rule.webp"
+          alt="The new rule screen in Persian: Condition and Event blocks with sentence hints and execution time set to Always, then the same rule with a humidity condition and the note that all conditions must be met together"
+          caption="A rule is built as one sentence. Save stays off until it is complete"
+        />
+      </section>
+
       {/* 5 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 2</span>
@@ -143,6 +151,14 @@ WHEN always`}</pre>
           <b>Trade-off:</b> presets anchor operators to the values we chose, so they need agronomic
           review.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/iot-flow-condition.webp"
+          alt="Three screens in Persian: choosing a specific sensor or the hall average, a sensor picker showing live readings, and preset humidity conditions with a custom option"
+          caption="Sensor or hall average, live readings, then ready-made conditions"
+        />
       </section>
 
       {/* 6 */}
@@ -164,6 +180,14 @@ WHEN always`}</pre>
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/iot-flow-event.webp"
+          alt="Three screens in Persian: the heater event with ordered prerequisites and on, off or specific value; adding a controller prerequisite; and adding a timed wait"
+          caption="The event: what the controller should do, and what must happen first, in order"
+        />
+      </section>
+
       {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 4</span>
@@ -179,6 +203,14 @@ WHEN always`}</pre>
         <p className="cs-trade">
           <b>Trade-off:</b> the full schedule is one long screen, shown only to those who opt in.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/iot-flow-schedule.webp"
+          alt="Schedule screens in Persian: Always selected by default, then Selective revealing days, start date, interval, on-duration and active time windows"
+          caption="Always by default; the full schedule appears only when Selective is chosen"
+        />
       </section>
 
       {/* 8 */}
