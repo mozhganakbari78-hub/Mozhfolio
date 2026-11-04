@@ -8,6 +8,7 @@ import BatchTransferCase from "@/components/casestudy/BatchTransferCase";
 import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
 import ErrorMessagesCase from "@/components/casestudy/ErrorMessagesCase";
 import RuleBuilderCase from "@/components/casestudy/RuleBuilderCase";
+import TradingBotCase from "@/components/casestudy/TradingBotCase";
 import "../case-study.css";
 import "../ticket-ratio.css";
 import "../password-gate.css";
@@ -18,6 +19,7 @@ const cases: Record<string, React.ComponentType> = {
   "design-system": DesignSystemCase,
   "error-messages": ErrorMessagesCase,
   "iot-rule-builder": RuleBuilderCase,
+  "trading-bots": TradingBotCase,
 };
 
 // No gate here any more. The case studies are encrypted after the export by

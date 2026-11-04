@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy" | "rules";
+export type CaseIllustration = "support" | "batch" | "designsystem" | "errorcopy" | "rules" | "bots";
 
 const A = "var(--accent-color)";
 const AI = "var(--accent-ink)";
@@ -269,12 +269,63 @@ function Rules() {
   );
 }
 
+/* Bots: a balance line from a test run, then the same line going live. */
+function Bots() {
+  return (
+    <Frame>
+      <div className="grid gap-2.5">
+        <motion.div className="flex items-baseline justify-between" {...rise(0)}>
+          <span style={{ ...Mono, color: SUB }}>BTC / USDT · bot</span>
+          <span style={{ ...Mono, color: AI }}>80% success</span>
+        </motion.div>
+        <svg viewBox="0 0 260 90" className="w-full h-auto block" aria-hidden>
+          <line x1={0} x2={260} y1={12} y2={12} stroke="rgba(126,178,138,0.5)" strokeWidth={0.8} />
+          <line x1={0} x2={260} y1={84} y2={84} stroke="rgba(232,190,110,0.5)" strokeWidth={0.8} />
+          <line x1={130} x2={130} y1={6} y2={88} stroke={LINE} strokeWidth={0.8} strokeDasharray="2 3" />
+          <motion.path
+            d="M0 62 L18 58 L34 64 L52 50 L70 54 L88 42 L106 46 L130 36"
+            fill="none"
+            stroke={SUB}
+            strokeWidth={1.4}
+            strokeDasharray="3 3"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+          />
+          <motion.path
+            d="M130 36 L148 40 L166 30 L184 34 L202 24 L222 28 L240 20 L260 22"
+            fill="none"
+            stroke={AI}
+            strokeWidth={1.6}
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.7, ease: EASE }}
+          />
+        </svg>
+        <motion.div className="flex items-center justify-between" {...rise(1.1)}>
+          <span style={{ ...Mono, color: SUB }}>test run</span>
+          <span
+            className="rounded-md px-2 py-1 flex items-center gap-1.5"
+            style={{ ...Mono, color: FG, border: `1px solid ${AI}`, background: "var(--accent-soft)" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: AI }} />
+            live
+          </span>
+        </motion.div>
+      </div>
+    </Frame>
+  );
+}
+
 const map: Record<CaseIllustration, () => React.JSX.Element> = {
   support: Support,
   batch: Batch,
   designsystem: DesignSystem,
   errorcopy: ErrorCopy,
   rules: Rules,
+  bots: Bots,
 };
 
 export default function CaseCardArt({ name }: { name: CaseIllustration }) {

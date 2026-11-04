@@ -12,7 +12,7 @@ export type CaseStudy = {
   description: string;
   /** Small label above the card title. */
   meta: string;
-  illustration: "support" | "batch" | "designsystem" | "errorcopy" | "rules";
+  illustration: "support" | "batch" | "designsystem" | "errorcopy" | "rules" | "bots";
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -70,6 +70,17 @@ export const caseStudies: CaseStudy[] = [
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
     illustration: "errorcopy",
+  },
+  {
+    index: "06",
+    slug: "trading-bots",
+    title: "Trading bots that earn trust before they touch real money",
+    short:
+      "A requirements list in a domain I didn't know became one flow: manage bots, test them in the same dashboard as live trading, and get strategy blocks from AI.",
+    description:
+      "Designing trading bots for a forex and crypto platform: learning an unfamiliar domain, turning a feature list into a product flow, and building trust with one dashboard for test and live.",
+    meta: "Trading · AI Assist",
+    illustration: "bots",
   },
 ];
 
