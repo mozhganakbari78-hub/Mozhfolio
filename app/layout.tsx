@@ -1,20 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import Analytics from "@/components/Analytics";
 
-const inter = Inter({
+// Geist for the whole site: crisp at small sizes, calm at display sizes.
+const sans = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
-// Labels previously used a monospace face; the site is now fully Inter, so the
-// mono variable points to Inter too (labels keep their tracking/uppercase styling).
-const mono = Inter({
+// Labels (eyebrows, section numbers, small caps) use the same face with
+// tracking and uppercase, so --font-mono points to Geist as well. Real
+// monospace is kept for code.
+const labels = Geist({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const code = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-code",
   display: "swap",
 });
 
@@ -43,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${labels.variable} ${code.variable}`}>
       <body>
         <Analytics />
         <CustomCursor />
