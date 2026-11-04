@@ -149,8 +149,8 @@ export default function SupportFrictionCase() {
       </section>
 
       <NextCaseLink
-        href="/work/batch-transfer/"
-        caseStudyName="Bulk payments where one bad row doesn't stop the file"
+        href="/work/iot-rule-builder/"
+        caseStudyName="Rule-based automation for non-technical greenhouse operators"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
