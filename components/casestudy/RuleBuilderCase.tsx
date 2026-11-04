@@ -263,17 +263,18 @@ WHEN always`}</pre>
         <h2>Shipped to production</h2>
         <p>
           The rule builder is live, in Persian with a right-to-left layout, on a platform that
-          runs real greenhouses every day. The company&apos;s published figures for the platform:
+          runs real greenhouses every day. The figures below are taken from the company&apos;s website:
         </p>
         <ul className="cs-results is-four">
           <li><span className="v">31+</span><span className="l">active users</span></li>
           <li><span className="v">65+</span><span className="l">active controllers</span></li>
           <li><span className="v">28M+</span><span className="l">messages sent to the server</span></li>
-          <li><span className="v">99.97%</span><span className="l">system uptime</span></li>
+          <li><span className="v">99.97%</span><span className="l">system uptime, as stated on the company&apos;s website</span></li>
         </ul>
+        <p className="cs-source">Source: the company&apos;s public website. Platform-wide figures, not my own measurements.</p>
         <p>
-          These describe the whole platform, not the rule builder alone. I left before
-          post-launch measurement of the feature itself. These are the metrics I would use:
+          I left before post-launch measurement of the rule builder itself.
+          These are the metrics I would use:
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Adoption.</b> Share of accounts with at least one scheduled rule.</span></li>
