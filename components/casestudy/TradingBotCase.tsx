@@ -24,7 +24,7 @@ export default function TradingBotCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, requirements to UI"
+            role="Product Designer · bot list, bot page, risk limits and AI assist"
             team="PM, Developers, Designers, Algo team"
             results={[
               { value: "3 surfaces", label: "bot list, bot page and AI assist, connected in one flow" },
@@ -159,7 +159,7 @@ export default function TradingBotCase() {
           page with three parts:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Edit.</b> The strategy is built from code blocks. Traders add a block or ask the AI assistant for one.</span></li>
+          <li><span><b>Edit.</b> The strategy is a set of indicators with their parameters and a timeframe. Traders add one themselves or bring one in from the AI assistant.</span></li>
           <li><span><b>Test.</b> A test run reports in the same dashboard as live trading.</span></li>
           <li><span><b>Report.</b> The live bot&apos;s performance, in the format traders already know from the platform&apos;s analytics.</span></li>
         </ol>
