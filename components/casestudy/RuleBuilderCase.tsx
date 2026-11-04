@@ -10,7 +10,7 @@ export default function RuleBuilderCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · IoT · Mobile</span>
-          <h1>Rule-based automation for non-technical greenhouse operators</h1>
+          <h1>Greenhouse rules in one sentence</h1>
           <p className="cs-lede">
             Customers asked for scheduled automation. The users asking were the same ones already
             struggling with basic rules. I designed a rule builder that delivers the power of
@@ -290,12 +290,12 @@ WHEN always`}</pre>
 
       <NextCaseLink
         href="/work/batch-transfer/"
-        caseStudyName="Bulk payments where one bad row doesn't stop the file"
+        caseStudyName="One bad row, not a failed file"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Bulk payments where one bad row doesn&apos;t stop the file{" "}
+          One bad row, not a failed file{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

@@ -12,14 +12,14 @@ export type CaseStudy = {
   description: string;
   /** Small label above the card title. */
   meta: string;
-  illustration: "support" | "batch" | "designsystem" | "errorcopy" | "rules";
+  illustration: "support" | "batch" | "designsystem" | "errorcopy" | "rules" | "bots";
 };
 
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
     slug: "reducing-support-friction",
-    title: "Support that answers users before they open a ticket",
+    title: "Answers before the ticket",
     short:
       "Asked to refresh the FAQ, I first asked whether anyone reads it. The answers now come to users while they write a ticket.",
     description:
@@ -30,7 +30,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "02",
     slug: "iot-rule-builder",
-    title: "Rule-based automation for non-technical greenhouse operators",
+    title: "Greenhouse rules in one sentence",
     short:
       "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
     description:
@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "03",
     slug: "batch-transfer",
-    title: "Bulk payments where one bad row doesn't stop the file",
+    title: "One bad row, not a failed file",
     short:
       "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
     description:
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "04",
     slug: "design-system",
-    title: "A design system the engineers actually used",
+    title: "A design system engineers used",
     short:
       "Built from scratch: tokens for light and dark, then renamed to match the code. Developer questions dropped from ~8 to ~3 a day.",
     description:
@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "05",
     slug: "error-messages",
-    title: "Error messages that tell users what to do next",
+    title: "Errors that say what's next",
     short:
       "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:

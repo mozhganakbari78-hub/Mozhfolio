@@ -11,7 +11,7 @@ export default function BatchTransferCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Branch banking</span>
-          <h1>Bulk payments where one bad row doesn&apos;t stop the file</h1>
+          <h1>One bad row, not a failed file</h1>
           <p className="cs-lede">
             Some companies won&apos;t pay online, so they bring a cheque and an Excel file to the
             branch. I redesigned the tool bank staff use to process those files: safer, faster, and
@@ -152,12 +152,12 @@ export default function BatchTransferCase() {
 
       <NextCaseLink
         href="/work/design-system/"
-        caseStudyName="A design system the engineers actually used"
+        caseStudyName="A design system engineers used"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          A design system the engineers actually used{" "}
+          A design system engineers used{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

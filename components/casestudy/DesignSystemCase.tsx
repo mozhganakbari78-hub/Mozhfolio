@@ -11,7 +11,7 @@ export default function DesignSystemCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Design system</span>
-          <h1>A design system the engineers actually used</h1>
+          <h1>A design system engineers used</h1>
           <p className="cs-lede">
             When I joined, there was no design system. I built one, got the naming wrong for the
             people who mattered most, and changed it.
@@ -154,12 +154,12 @@ export default function DesignSystemCase() {
 
       <NextCaseLink
         href="/work/error-messages/"
-        caseStudyName="Error messages that tell users what to do next"
+        caseStudyName="Errors that say what's next"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Error messages that tell users what to do next{" "}
+          Errors that say what&apos;s next{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
