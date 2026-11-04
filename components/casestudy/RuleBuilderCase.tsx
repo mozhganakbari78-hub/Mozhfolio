@@ -20,11 +20,11 @@ export default function RuleBuilderCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer"
+            role="Product Designer, owned simplifying the rules"
             team="3–4 designers, PM, Developers"
             results={[
               { value: "If → Then", label: "every rule reads as one sentence: a condition, then an event" },
-              { value: "Always", label: "the default schedule; detail appears only when asked for" },
+              { value: "2 changes", label: "from testing with operators: live readings and timed waits" },
               { value: "Shipped", label: "live in production, in Persian (RTL)" },
             ]}
           />
@@ -88,8 +88,9 @@ export default function RuleBuilderCase() {
         <span className="cs-num">The product risk</span>
         <h2>More capability, fewer people able to use it</h2>
         <p>
-          The core users were older and non-technical. Many already struggled with simple threshold
-          rules and had asked for templates and step-by-step guidance. Each new requirement added
+          The core users were older, non-technical, and not comfortable with technology in general.
+          Many already struggled with simple threshold rules and had asked for templates and
+          step-by-step guidance. Each new requirement added
           expressive power, and moved the product closer to programming. A logic editor would have
           served the few power users and lost the core segment.
         </p>
@@ -151,7 +152,7 @@ WHEN always`}</pre>
         <p>Every choice in the flow starts from suggestions grounded in the operator&apos;s own greenhouse:</p>
         <ol className="cs-rules is-plain">
           <li><span><b>Source.</b> A condition watches one specific sensor or the hall average, so a single sensor near a door doesn&apos;t have to decide alone.</span></li>
-          <li><span><b>Live readings.</b> Suggested sensors show their current value (&ldquo;air humidity, now 65%&rdquo;), so thresholds are set against the actual state of the hall.</span></li>
+          <li><span><b>Live readings.</b> Suggested sensors show their current value (&ldquo;air humidity, now 65%&rdquo;), so thresholds are set against the actual state of the hall. Added after testing.</span></li>
           <li><span><b>Ready-made conditions.</b> Each sensor offers presets, including one with an exit: &ldquo;if it drops below 20%, until it reaches 30%&rdquo;. A custom condition covers the rest.</span></li>
           <li><span><b>Suggested controllers.</b> The event starts the same way: the likely devices first, then the full list.</span></li>
         </ol>
@@ -179,7 +180,7 @@ WHEN always`}</pre>
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>&ldquo;What should the controller do?&rdquo;</b> Turn on, turn off, or run at a specific value, such as 40%.</span></li>
-          <li><span><b>&ldquo;Before running, in this order.&rdquo;</b> Prerequisites: another controller&apos;s state, or a wait (&ldquo;How long should the heater wait?&rdquo;), reordered by dragging.</span></li>
+          <li><span><b>&ldquo;Before running, in this order.&rdquo;</b> Prerequisites: another controller&apos;s state, or a wait (&ldquo;How long should the heater wait?&rdquo;, added after testing), reordered by dragging.</span></li>
           <li><span><b>&ldquo;All conditions must be met together.&rdquo;</b> Additional conditions combine in one way only, and the screen says so.</span></li>
         </ol>
         <p className="cs-trade">
@@ -219,6 +220,17 @@ WHEN always`}</pre>
           alt="Schedule screens in Persian: Always selected by default, then Selective revealing days, start date, interval, on-duration and active time windows"
           caption="Always by default; the full schedule appears only when Selective is chosen"
         />
+      </section>
+
+      {/* 7b */}
+      <section className="cs-reveal">
+        <span className="cs-num">Testing</span>
+        <h2>Two changes came from testing with operators</h2>
+        <p>We tested the flow with a group of operators. Two things they needed were missing:</p>
+        <ol className="cs-rules is-plain">
+          <li><span><b>The current state.</b> Choosing a sensor showed only its name. Operators wanted to see what it reads right now before setting a threshold, so every sensor card now shows its live value.</span></li>
+          <li><span><b>A wait between devices.</b> Prerequisites only covered another controller&apos;s state. Operators needed time between machines, so a timed wait became a second prerequisite type.</span></li>
+        </ol>
       </section>
 
       {/* 8 */}
