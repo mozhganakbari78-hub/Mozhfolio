@@ -172,27 +172,96 @@ function ErrorCopy() {
 }
 
 /* Rule builder: the logic underneath, three plain blocks on top. */
+/* Rules: a greenhouse, a live reading inside it, and the one-sentence rule it drives. */
 function Rules() {
+  // Arched greenhouse in outline, with ribs and a row of seedlings.
+  const ribs = [58, 94, 130, 166, 202];
+  const plants = [40, 76, 112, 148, 184, 220];
   return (
     <Frame>
-      <div className="grid gap-2">
-        <motion.span style={{ ...Mono, color: SUB }} {...rise(0)}>
-          if &lt; 15 · until &gt; 18 · then on
-        </motion.span>
-        {["condition", "event", "time"].map((label, i) => (
+      <div className="grid gap-2.5">
+        <div className="relative">
+          <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
+            <motion.path
+              d="M14 112 V62 Q14 14 130 14 Q246 14 246 62 V112"
+              fill="rgba(255,255,255,0.02)"
+              stroke={LINE}
+              strokeWidth={1.2}
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: EASE }}
+            />
+            {ribs.map((x, k) => (
+              <motion.line
+                key={x}
+                x1={x}
+                x2={x}
+                y1={x === 130 ? 14 : 20 + Math.abs(130 - x) * 0.16}
+                y2={112}
+                stroke={LINE}
+                strokeWidth={0.8}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + k * 0.05, duration: 0.4 }}
+              />
+            ))}
+            <line x1={4} x2={256} y1={112} y2={112} stroke={LINE} strokeWidth={1.2} />
+            {plants.map((x, k) => (
+              <motion.g
+                key={x}
+                stroke={SUB}
+                strokeWidth={1.2}
+                strokeLinecap="round"
+                fill="none"
+                initial={{ opacity: 0, y: 4 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.45 + k * 0.05, duration: 0.4, ease: EASE }}
+              >
+                <path d={`M${x} 112 V100`} />
+                <path d={`M${x} 104 q-6 -2 -7 -8 q6 1 7 8`} />
+                <path d={`M${x} 101 q6 -2 7 -8 q-6 1 -7 8`} />
+              </motion.g>
+            ))}
+            {/* the sensor, with its reading */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7, duration: 0.4 }}
+            >
+              <circle cx={176} cy={58} r={9} fill="var(--accent-soft)" />
+              <circle cx={176} cy={58} r={3.2} fill={AI} />
+              <line x1={176} x2={176} y1={61} y2={92} stroke={AI} strokeWidth={0.8} strokeDasharray="2 3" />
+            </motion.g>
+          </svg>
           <motion.div
-            key={label}
-            className="rounded-lg px-3 py-2 flex items-center gap-2"
-            style={{
-              border: `1px solid ${i === 0 ? AI : LINE}`,
-              background: i === 0 ? "var(--accent-soft)" : "rgba(255,255,255,0.02)",
-            }}
-            {...rise(0.18 + i * 0.12)}
+            className="absolute rounded-md px-2 py-1"
+            style={{ left: "14%", top: "34%", border: `1px solid ${AI}`, background: "var(--accent-soft)" }}
+            {...rise(0.8)}
           >
-            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: i === 0 ? AI : SUB }} />
-            <span style={{ ...Mono, color: i === 0 ? FG : SUB }}>{label}</span>
+            <span style={{ ...Mono, color: FG }}>humidity · 34% now</span>
           </motion.div>
-        ))}
+        </div>
+
+        <motion.div className="flex items-center gap-1.5" {...rise(1)}>
+          <span
+            className="rounded-md px-2 py-1"
+            style={{ ...Mono, color: SUB, border: `1px solid ${LINE}`, background: "rgba(255,255,255,0.02)" }}
+          >
+            if &gt; 30
+          </span>
+          <span style={{ ...Mono, color: SUB }}>→</span>
+          <span
+            className="rounded-md px-2 py-1 flex items-center gap-1.5"
+            style={{ ...Mono, color: FG, border: `1px solid ${AI}`, background: "var(--accent-soft)" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: AI }} />
+            fan on
+          </span>
+        </motion.div>
       </div>
     </Frame>
   );
