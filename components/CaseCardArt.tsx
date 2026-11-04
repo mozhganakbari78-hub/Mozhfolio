@@ -10,6 +10,8 @@ const FAIL = "#e8836e";
 const LINE = "rgba(255,255,255,0.10)";
 const SUB = "var(--text-tertiary)";
 const FG = "var(--text-primary)";
+// A muted sage, so the seedlings read as plants without pulling focus.
+const LEAF = "rgba(126, 178, 138, 0.62)";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const Mono: React.CSSProperties = {
@@ -211,7 +213,7 @@ function Rules() {
             {plants.map((x, k) => (
               <motion.g
                 key={x}
-                stroke={SUB}
+                stroke={LEAF}
                 strokeWidth={1.2}
                 strokeLinecap="round"
                 fill="none"
