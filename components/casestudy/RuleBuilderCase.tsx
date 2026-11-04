@@ -237,6 +237,14 @@ WHEN always`}</pre>
         </p>
       </section>
 
+      <section className="cs-shot is-small cs-reveal">
+        <Mockup
+          src="/projects/iot-dashboard.webp"
+          alt="The greenhouse dashboard in Persian: connection status, active and inactive sensors and controllers, and the greenhouse's zones"
+          caption="The dashboard: connection status, what is active or offline, and every zone at a glance"
+        />
+      </section>
+
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">Outcome</span>
