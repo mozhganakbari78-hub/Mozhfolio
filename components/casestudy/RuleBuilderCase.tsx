@@ -23,8 +23,8 @@ export default function RuleBuilderCase() {
             role="Product Designer"
             team="3–4 designers, PM, Developers"
             results={[
-              { value: "3-part model", label: "condition, event and schedule replace free-form logic" },
-              { value: "Read-back", label: "every condition confirmed in plain language before it runs" },
+              { value: "If → Then", label: "every rule reads as one sentence: a condition, then an event" },
+              { value: "Always", label: "the default schedule; detail appears only when asked for" },
               { value: "Shipped", label: "live in production, in Persian (RTL)" },
             ]}
           />
@@ -94,34 +94,36 @@ export default function RuleBuilderCase() {
       {/* 4 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 1</span>
-        <h2>A fixed rule model: condition, event, schedule</h2>
+        <h2>A rule is one sentence: if this, then that</h2>
         <p>
-          I constrained every rule to three components that match how an operator already thinks:
-          what to watch, what should happen, and when. The interface exposes those three blocks and
-          nothing else: no operators, variables or device IDs.
+          A new rule opens with two blocks, Condition and Event, each with a hint that completes the
+          sentence: &ldquo;if the sensor meets this condition&hellip;&rdquo; and &ldquo;&hellip;this
+          happens to the controller.&rdquo; Execution time sits below them and defaults to Always.
+          Save stays disabled until the sentence is complete. There are no operators, variables or
+          device IDs anywhere in the flow.
         </p>
         <div className="cs-signal">
           <div className="box">
             <div className="lab">What the system runs</div>
-            <pre className="cs-code">{`IF temp_avg(orchid_hall) < 15
-UNTIL temp_avg(orchid_hall) > 18
-THEN heater_1.on()
-  REQUIRE fan == ON
+            <pre className="cs-code">{`IF humidity(orchid_hall) > 30
+THEN heater_1.set(40%)
+  REQUIRE circulation_fan == ON
+  REQUIRE vent == 10%
   DELAY 30s
-WHEN 18:00–06:00`}</pre>
+WHEN always`}</pre>
           </div>
           <div className="arrow">&rarr;</div>
           <div className="box">
             <div className="lab">What the operator builds</div>
             <ol className="cs-plain">
-              <li><b>Condition</b>The hall&apos;s average temperature drops below 15 °C, until it rises above 18 °C</li>
-              <li><b>Event</b>Heater 1 turns on once the fan is running, after 30 seconds</li>
-              <li><b>Schedule</b>Every night, 18:00 to 06:00</li>
+              <li><b>Condition</b>If the air humidity rises above 30%</li>
+              <li><b>Event</b>The heater runs at 40%, after the circulation fan is on, the vent is open 10% and 30 seconds have passed</li>
+              <li><b>Execution time</b>Always</li>
             </ol>
           </div>
         </div>
         <p className="cs-trade">
-          <b>Trade-off:</b> less flexible than a free-form editor, and more steps for power users.
+          <b>Trade-off:</b> less flexible than a free-form editor, and more taps for power users.
           Accepted, because a wrong rule moves physical equipment.
         </p>
       </section>
@@ -129,21 +131,16 @@ WHEN 18:00–06:00`}</pre>
       {/* 5 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 2</span>
-        <h2>Defaults first, verification before commit</h2>
-        <p>
-          No condition starts from a blank field. Each sensor offers preset conditions; a custom one
-          is built from three comparators: less than, within a range, or greater than. Before saving,
-          the condition is read back in plain language:
-        </p>
-        <p className="cs-quote">
-          &ldquo;If the humidity is less than 20%, and until it exceeds 30%.&rdquo;
-        </p>
-        <p>
-          This moves verification from inspecting fields to reading one sentence, so a mismatch
-          between intent and configuration is caught before any equipment acts on it.
-        </p>
+        <h2>Start from what&apos;s real, never from a blank field</h2>
+        <p>Every choice in the flow starts from suggestions grounded in the operator&apos;s own greenhouse:</p>
+        <ol className="cs-rules is-plain">
+          <li><span><b>Source.</b> A condition watches one specific sensor or the hall average, so a single sensor near a door doesn&apos;t have to decide alone.</span></li>
+          <li><span><b>Live readings.</b> Suggested sensors show their current value (&ldquo;air humidity, now 65%&rdquo;), so thresholds are set against the actual state of the hall.</span></li>
+          <li><span><b>Ready-made conditions.</b> Each sensor offers presets, including one with an exit: &ldquo;if it drops below 20%, until it reaches 30%&rdquo;. A custom condition covers the rest.</span></li>
+          <li><span><b>Suggested controllers.</b> The event starts the same way: the likely devices first, then the full list.</span></li>
+        </ol>
         <p className="cs-trade">
-          <b>Trade-off:</b> presets anchor users to the values we chose, so they need agronomic
+          <b>Trade-off:</b> presets anchor operators to the values we chose, so they need agronomic
           review.
         </p>
       </section>
@@ -151,27 +148,36 @@ WHEN 18:00–06:00`}</pre>
       {/* 6 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 3</span>
-        <h2>Model the physical system, not just the logic</h2>
-        <p>A rule that reads correctly can still misbehave on real equipment. Two behaviours were built into the model:</p>
+        <h2>Add complexity in the operator&apos;s own words</h2>
+        <p>
+          Power is added one step at a time, and every step is phrased as the question an operator
+          would ask:
+        </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Exit thresholds.</b> A condition can start at one value and stop at another, so a reading hovering around a single threshold doesn&apos;t switch a device on and off repeatedly.</span></li>
-          <li><span><b>Prerequisites.</b> An event can depend on another device&apos;s state or a delay, in priority order, so a heater never starts before the fan is running.</span></li>
+          <li><span><b>&ldquo;What should the controller do?&rdquo;</b> Turn on, turn off, or run at a specific value, such as 40%.</span></li>
+          <li><span><b>&ldquo;Before running, in this order.&rdquo;</b> Prerequisites: another controller&apos;s state, or a wait (&ldquo;How long should the heater wait?&rdquo;), reordered by dragging.</span></li>
+          <li><span><b>&ldquo;All conditions must be met together.&rdquo;</b> Additional conditions combine in one way only, and the screen says so.</span></li>
         </ol>
         <p className="cs-trade">
-          <b>Trade-off:</b> two more concepts per rule. The plain-language read-back keeps them
-          legible.
+          <b>Trade-off:</b> with a single way to combine conditions, either/or logic takes two
+          rules. A smaller model the operator can trust was worth more.
         </p>
       </section>
 
       {/* 7 */}
       <section className="cs-reveal">
-        <span className="cs-num">Scheduling</span>
-        <h2>Closing the original request</h2>
+        <span className="cs-num">Decision 4</span>
+        <h2>Simple by default, detailed on demand</h2>
         <p>
-          A rule runs always or on a schedule (daily, alternate days or chosen weekdays, within a
-          date range), at a fixed time or at an interval with a set duration, and can be limited to
-          time windows. Combined with a condition, it delivers what customers asked for: a sensor
-          threshold that applies only at certain hours.
+          Execution time defaults to Always, so most rules never touch scheduling. Choosing
+          Selective reveals the rest: every day, alternate days or chosen weekdays; optional start
+          and end dates; a fixed time or an interval, such as every two hours staying on for 25
+          minutes; and active time windows, such as 08:00–12:00 and 13:00–14:30. Combined with a
+          condition, it delivers what customers asked for: a sensor threshold that applies only at
+          certain hours.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> the full schedule is one long screen, shown only to those who opt in.
         </p>
       </section>
 
