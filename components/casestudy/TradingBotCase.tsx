@@ -1,6 +1,6 @@
 // Draft: not published yet. To publish, add it to data/caseStudies.ts and
-// app/work/[slug]/page.tsx, and move drafts/trading-bots/bot-list.webp and
-// bot-report.webp to public/projects/.
+// app/work/[slug]/page.tsx, and move the images in drafts/trading-bots/
+// to public/projects/.
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
@@ -173,6 +173,14 @@ export default function TradingBotCase() {
         </p>
       </section>
 
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/bot-onepage.webp"
+          alt="A bot's page: overview with allocation, signals, buy and sell split and the last signal; balance over the last 30 days; and the strategy's indicators, MACD, RSI and ATR trailing stop, each with its parameters"
+          caption="One page per bot: how it is doing, how it has done, and the strategy behind it"
+        />
+      </section>
 
       {/* 7 */}
       <section className="cs-reveal">
