@@ -159,7 +159,7 @@ export default function ErrorMessagesCase() {
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Rule-based automation for non-technical greenhouse operators{" "}
+          Support that answers users before they open a ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

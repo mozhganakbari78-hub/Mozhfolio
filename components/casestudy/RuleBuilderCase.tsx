@@ -295,7 +295,7 @@ WHEN always`}</pre>
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Support that answers users before they open a ticket{" "}
+          Bulk payments where one bad row doesn&apos;t stop the file{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

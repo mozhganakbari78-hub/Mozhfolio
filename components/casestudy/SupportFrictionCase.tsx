@@ -155,7 +155,7 @@ export default function SupportFrictionCase() {
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Bulk payments where one bad row doesn&apos;t stop the file{" "}
+          Rule-based automation for non-technical greenhouse operators{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
