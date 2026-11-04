@@ -17,8 +17,8 @@ export default function TradingBotCase() {
           <p className="cs-lede">
             The algo team was building trading bots for a platform that serves forex and crypto
             traders. I was handed a list of requirements in a domain I didn&apos;t know. I turned it
-            into one flow: manage bots, build and test each one on a single page, and get strategy
-            blocks from an AI assistant.
+            into one flow: manage bots, follow each one on a single page, set its risk limits, and ask
+            an AI assistant about the market.
           </p>
         </div>
 
@@ -154,25 +154,24 @@ export default function TradingBotCase() {
         <span className="cs-num">Decision 2</span>
         <h2>Build, test and report on one page</h2>
         <p>
-          A bot&apos;s life is a loop: change the strategy, test it, read the result, change it
-          again. Splitting those steps across the product would break the loop, so each bot has one
-          page with three parts:
+          A bot&apos;s life is a loop: check how it is doing, read the result, adjust the strategy,
+          check again. Splitting those steps across the product would break the loop, so each bot
+          has one page with three parts:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Edit.</b> The strategy is a set of indicators with their parameters and a timeframe. Traders add one themselves or bring one in from the AI assistant.</span></li>
-          <li><span><b>Test.</b> A test run reports in the same dashboard as live trading.</span></li>
-          <li><span><b>Report.</b> The live bot&apos;s performance, in the format traders already know from the platform&apos;s analytics.</span></li>
+          <li><span><b>Overview.</b> What the bot was given, its signals, the buy and sell split, and the last signal in full.</span></li>
+          <li><span><b>Balance.</b> How the bot&apos;s balance moved, from the last 24 hours to all time.</span></li>
+          <li><span><b>Strategy.</b> The indicators the bot trades on, each with its parameters, and the timeframe. Indicators are added, edited and removed right here.</span></li>
         </ol>
         <p>
-          One dashboard for both test and live means a trader compares like with like. The
-          numbers that convinced them in a test are the numbers they watch once the bot is live.
+          The same report serves a test run and live trading, so a trader compares like with like:
+          the numbers that convinced them in a test are the numbers they watch once the bot is live.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> a dense page. Accepted for expert users, who would rather see everything
           than click between screens.
         </p>
       </section>
-
 
       <section className="cs-shot cs-reveal">
         <Mockup
@@ -228,8 +227,7 @@ export default function TradingBotCase() {
         </ol>
         <p>
           Editing a live bot changes only what comes next. The dialog says so: new settings apply to
-          new signals, and open positions keep their stop-loss and take-profit. A new bot starts in
-          test mode, on simulated funds, until the trader switches it to live.
+          new signals, and open positions keep their stop-loss and take-profit.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> these limits act on the bot as a whole. Per-trade stop-loss and
@@ -248,20 +246,37 @@ export default function TradingBotCase() {
       {/* 8 */}
       <section className="cs-reveal">
         <span className="cs-num">Decision 5</span>
-        <h2>AI assist hands over blocks the trader can still read</h2>
+        <h2>An assistant that answers in a trader&apos;s format</h2>
         <p>
-          The assistant helps in two ways. It answers questions, and it writes strategy blocks.
-          Answers are labelled by type, so a trader can tell an explanation from a block of code.
-          A code block comes with Add to my bot, which places it in the bot&apos;s editor.
+          Traders asked the assistant about the market as much as about bots. Its answers are
+          structured instead of a wall of text:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Asking.</b> Suggestions while typing and example prompts in the input show what the assistant can do.</span></li>
-          <li><span><b>History.</b> Every question and answer is kept, and filterable by text, date and type, so a useful block can be found again.</span></li>
+          <li><span><b>Asking.</b> An empty chat opens with example questions, and suggestions appear while typing, so a trader sees what the assistant can do.</span></li>
+          <li><span><b>Facts first.</b> A news question returns a short summary next to the numbered sources it came from, each with its time and a link to read more.</span></li>
+          <li><span><b>Opinion on request.</b> Analysis is a separate step, behind its own button, so the summary stays factual.</span></li>
+          <li><span><b>Feedback.</b> Every answer can be rated, so weak answers are visible to the team.</span></li>
         </ol>
         <p className="cs-trade">
-          <b>Trade-off:</b> AI output never runs on its own. It lands in the editor as a block,
-          where the trader can review it, change it and test it like any other.
+          <b>Trade-off:</b> one more click for analysis. Accepted, because in trading a summary that
+          quietly mixes in opinion can move money.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/ai-ask.webp"
+          alt="AI Assist chat in its empty state: a question input with send and Suggestion buttons, and a list of example questions such as what makes the market price fluctuate and when is the least risky time to trade"
+          caption="An empty chat starts with questions traders actually ask"
+        />
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/ai-news.webp"
+          alt="An AI answer to a Bitcoin news question: a news summary with an Analysis button next to numbered news sources with times and Read more links, with typing suggestions open above the input"
+          caption="A news answer: the summary beside its sources, analysis behind its own button"
+        />
       </section>
 
       {/* 9 */}
@@ -270,8 +285,8 @@ export default function TradingBotCase() {
         <h2>Shadowing the team&apos;s traders</h2>
         <p>
           To move fast, we sat beside in-house traders while they worked through the designs and
-          said nothing. We didn&apos;t explain or guide, and we watched where they went. When
-          a trader searched for something, its place was wrong, and we moved it.
+          said nothing. We didn&apos;t explain or guide, and we watched where they went. If a
+          trader had to search for something, its place was wrong, and we moved it.
         </p>
       </section>
 
@@ -286,7 +301,7 @@ export default function TradingBotCase() {
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Readiness.</b> Share of bots that are tested before they go live.</span></li>
-          <li><span><b>Assistance.</b> Share of AI-written blocks that are added to a bot and kept.</span></li>
+          <li><span><b>Assistance.</b> Share of AI answers rated helpful.</span></li>
           <li><span><b>Retention.</b> How long live bots stay switched on.</span></li>
         </ol>
         <p className="cs-takeaway">
