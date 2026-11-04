@@ -32,7 +32,7 @@
 
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -2425,6 +2425,62 @@
 }
 
 /* rule builder: the logic underneath, next to what the user builds */
-.cs-signal .box .cs-code { margin: 0; white-space: pre; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+.cs-signal .box .cs-code { margin: 0; white-space: pre; overflow-x: auto; font-family: var(--font-code), ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
 .cs-signal .box .cs-plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
 .cs-signal .box .cs-plain b { display: block; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 2px; }
+
+
+/* ── Typography (one scale for every case study) ──────────────────────────
+   Before: h1, h2, list items, quotes and takeaways were all 600 to 800, so
+   nothing stood out. Now weight carries hierarchy: titles are semibold and
+   tight, reading text is regular, and emphasis is kept for labels and a
+   single bold lead-in per list item. */
+.cs-root { font-family: var(--font-sans), system-ui, sans-serif; font-feature-settings: "ss01", "cv11"; text-rendering: optimizeLegibility; }
+
+/* labels: eyebrow, section number, captions */
+.cs-root .cs-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+.cs-root .cs-num { font-family: var(--font-sans), sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 14px; }
+.cs-root .cs-mockup-caption { font-family: var(--font-sans), sans-serif; font-size: 13px; letter-spacing: 0; color: var(--ink-faint); }
+
+/* titles */
+.cs-root .cs-hero h1 { font-weight: 600; letter-spacing: -0.035em; line-height: 1.04; }
+.cs-root.cs-vertical .cs-hero h1, .cs-vertical .cs-hero h1 { font-weight: 600; letter-spacing: -0.035em; }
+.cs-root h2 { font-weight: 600; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.15; letter-spacing: -0.028em; margin: 0 0 16px; max-width: 760px; }
+.cs-root h3 { font-weight: 600; letter-spacing: -0.015em; }
+
+/* reading text */
+.cs-root .cs-lede { font-size: 20px; line-height: 1.6; font-weight: 400; letter-spacing: -0.005em; }
+.cs-root section > p { font-size: 17.5px; line-height: 1.72; font-weight: 400; max-width: 680px; }
+.cs-root p strong, .cs-root li b { font-weight: 600; color: var(--ink); }
+
+/* lists: regular text, a semibold lead-in, numbers as quiet markers */
+.cs-root .cs-rules li { font-size: 18px; font-weight: 500; line-height: 1.55; letter-spacing: -0.005em; }
+.cs-root .cs-rules.is-plain li { font-size: 17.5px; font-weight: 400; line-height: 1.65; color: var(--ink-soft); }
+.cs-root .cs-rules li::before { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 14px; }
+
+/* quote: a line set apart, not a second headline */
+.cs-root .cs-quote, .cs-root section > p.cs-quote {
+  font-size: clamp(19px, 1.9vw, 23px); font-weight: 500; line-height: 1.45; letter-spacing: -0.015em;
+  color: var(--ink); border-left: 2px solid var(--accent); padding-left: 20px; margin: 22px 0 24px;
+}
+
+/* trade-off: a quiet note with a small label */
+.cs-root section > p.cs-trade, .cs-root .cs-trade { font-size: 15px; line-height: 1.6; }
+.cs-root .cs-trade b { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-right: 6px; }
+
+/* takeaway */
+.cs-root .cs-takeaway { font-size: clamp(19px, 1.8vw, 23px); font-weight: 500; line-height: 1.45; letter-spacing: -0.015em; border-left-width: 2px; }
+.cs-root .cs-takeaway span { font-family: var(--font-sans), sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+
+/* hero result cards */
+.cs-root .cs-results .v { font-weight: 600; letter-spacing: -0.03em; }
+.cs-root .cs-results .l { font-size: 14px; }
+.cs-root .cs-roleline { font-size: 15px; }
+.cs-root .cs-roleline b { font-weight: 600; }
+
+@media (max-width: 900px) {
+  .cs-root h2 { font-size: 24px; }
+  .cs-root .cs-lede { font-size: 17px; }
+  .cs-root section > p, .cs-root .cs-rules.is-plain li { font-size: 16px; }
+  .cs-root .cs-quote, .cs-root section > p.cs-quote, .cs-root .cs-takeaway { font-size: 19px; }
+}
