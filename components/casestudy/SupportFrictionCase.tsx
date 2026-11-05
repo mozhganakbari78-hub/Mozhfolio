@@ -4,6 +4,7 @@ import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
+import HelpDeskScene from "./HelpDeskScene";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -92,6 +93,10 @@ export default function SupportFrictionCase() {
           same meeting. The PM wanted the help desk spending less time on questions with a fixed
           answer and more on the financial issues that need a person.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <HelpDeskScene />
       </section>
 
       {/* 4 */}
