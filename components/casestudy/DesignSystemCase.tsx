@@ -22,9 +22,9 @@ export default function DesignSystemCase() {
             role="Product Designer, owned the system"
             team="2 designers, Frontend lead, Engineering"
             results={[
-              { value: "~8 → ~3", label: "repeat questions from developers, per day" },
-              { value: "4 products", label: "running on one set of components" },
-              { value: "1 design", label: "for light and dark mode, not two" },
+              { value: "~8 → ~3", label: "repeat questions from developers, per day", icon: "ChatBubbleLeftRight" },
+              { value: "4 products", label: "running on one set of components", icon: "Squares2X2" },
+              { value: "1 design", label: "for light and dark mode, not two", icon: "Swatch" },
             ]}
           />
         </div>

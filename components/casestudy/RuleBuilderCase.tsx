@@ -24,9 +24,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor" },
-              { value: "4 of 4 managers", label: "built a rule unaided in testing" },
-              { value: "Live in production", label: "Persian, right-to-left" },
+              { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
+              { value: "4 of 4 managers", label: "built a rule unaided in testing", icon: "UserGroup" },
+              { value: "Live in production", label: "Persian, right-to-left", icon: "RocketLaunch" },
             ]}
           />
         </div>

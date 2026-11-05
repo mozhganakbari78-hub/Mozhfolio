@@ -24,9 +24,9 @@ export default function BatchTransferCase() {
             role="Product Designer, research to UI"
             team="2 designers, Product, Engineering"
             results={[
-              { value: "1 row", label: "a bad row is fixed on its own; the rest keep going" },
-              { value: "Verified", label: "each recipient's account ownership checked before approval" },
-              { value: "Next", label: "after the branch pilot, removing the branch visit itself" },
+              { value: "1 row", label: "a bad row is fixed on its own; the rest keep going", icon: "TableCells" },
+              { value: "Verified", label: "each recipient's account ownership checked before approval", icon: "ShieldCheck" },
+              { value: "Next", label: "after the branch pilot, removing the branch visit itself", icon: "ArrowTrendingUp" },
             ]}
           />
         </div>
