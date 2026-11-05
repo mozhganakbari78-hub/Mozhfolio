@@ -19,7 +19,7 @@ export default function DesignSystemCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, owned the system"
+            role="Product Designer, built the system in Figma and co-governed it with the frontend lead"
             team="2 designers, Frontend lead, Engineering"
             results={[
               { value: "~8 → ~3", label: "repeat questions from developers, per day", icon: "ChatBubbleLeftRight" },

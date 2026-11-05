@@ -30,7 +30,7 @@ const SEGMENTS = [
     n: 195,
     pct: 20,
     label: "Genuinely support work",
-    bracket: "20% genuinely support work",
+    bracket: "20% support work",
     detail: "New bugs, feature requests, and edge cases that needed a person.",
     tone: "support" as const,
   },
