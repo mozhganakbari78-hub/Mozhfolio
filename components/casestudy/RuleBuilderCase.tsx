@@ -115,7 +115,7 @@ export default function RuleBuilderCase() {
         <div className="cs-signal">
           <div className="box">
             <div className="lab">What the system runs</div>
-            <pre className="cs-code">{`IF humidity(orchid_hall) > 30
+            <pre className="cs-code">{`IF humidity(orchid_hall) > 85
 THEN heater_1.set(40%)
   REQUIRE circulation_fan == ON
   REQUIRE vent == 10%
@@ -126,12 +126,13 @@ WHEN always`}</pre>
           <div className="box">
             <div className="lab">What the operator builds</div>
             <ol className="cs-plain">
-              <li><b>Condition</b>If the air humidity rises above 30%</li>
+              <li><b>Condition</b>If the air humidity rises above 85%</li>
               <li><b>Event</b>The heater runs at 40%, after the circulation fan is on, the vent is open 10% and 30 seconds have passed</li>
               <li><b>Execution time</b>Always</li>
             </ol>
           </div>
         </div>
+        <p className="cs-note">Heating while venting is how greenhouses bring humidity down.</p>
         <p className="cs-trade">
           <b>Trade-off:</b> less flexible than a free-form editor, and more taps for power users.
           Accepted, because a wrong rule moves physical equipment. The model also has a limit: with
