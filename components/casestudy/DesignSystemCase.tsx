@@ -3,17 +3,6 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 
-/* Stands in for a diagram the author has not supplied yet. Swap for a
-   <Mockup src=...> once the image file exists. */
-function DiagramPlaceholder({ alt }: { alt: string }) {
-  return (
-    <figure className="cs-placeholder" role="img" aria-label={alt}>
-      <span className="cs-placeholder-tag">Diagram coming</span>
-      <span className="cs-placeholder-alt">{alt}</span>
-    </figure>
-  );
-}
-
 export default function DesignSystemCase() {
   return (
     <article>
@@ -77,7 +66,11 @@ export default function DesignSystemCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <DiagramPlaceholder alt="Version 1: primitives with separate light and dark palettes, feeding role tokens, feeding components" />
+        <Mockup
+          src="/projects/DesignSystem-v1-tokens.webp"
+          alt="Version 1: primitives with separate light and dark palettes, feeding role tokens, feeding components"
+          caption="Version 1: each role token picks one step from the light palettes and one from the dark"
+        />
       </section>
 
       {/* 3 */}
