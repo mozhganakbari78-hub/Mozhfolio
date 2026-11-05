@@ -34,56 +34,45 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto w-full">
         <div>
 
-          {/* Eyebrow */}
-          <div className="hero-rise mb-10" style={{ animationDelay: "0.05s" }}>
-            <span
-              className="mono-label"
-              style={{ color: "var(--accent-ink)" }}
-            >
-              Product Designer · Enterprise UX · Design Systems
-            </span>
-          </div>
-
-          {/* Name */}
-          <div className="hero-rise" style={{ animationDelay: "0.15s" }}>
+          {/* Name and role: the page's h1, set small */}
+          <div className="hero-rise mb-8" style={{ animationDelay: "0.05s" }}>
             <h1
-              className="font-semibold leading-[0.96] mb-8"
-              style={{
-                fontSize: "clamp(52px, 10vw, 112px)",
-                letterSpacing: "-0.04em",
-                color: "var(--text-primary)",
-              }}
+              className="text-[15px] font-medium"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
             >
-              Mozhgan
-              <br />
-              <span style={{ color: "var(--text-secondary)" }}>Akbari.</span>
+              Mozhgan Akbari · Product Designer
             </h1>
           </div>
 
-          {/* Tagline */}
+          {/* Statement: the largest text on the page */}
+          <div className="hero-rise" style={{ animationDelay: "0.15s" }}>
+            <p
+              className="font-semibold leading-[1.02] mb-8 max-w-5xl"
+              style={{
+                fontSize: "clamp(36px, 6.2vw, 80px)",
+                letterSpacing: "-0.04em",
+                color: "var(--text-primary)",
+                textWrap: "balance",
+              }}
+            >
+              Designing banking products{" "}
+              <span style={{ color: "var(--text-secondary)" }}>where a mistake moves real money.</span>
+            </p>
+          </div>
+
+          {/* Supporting line */}
           <p
-            className="hero-rise max-w-4xl leading-snug mb-4"
+            className="hero-rise max-w-4xl leading-snug mb-12"
             style={{
               animationDelay: "0.25s",
               fontSize: "clamp(18px, 2vw, 24px)",
               fontWeight: 300,
               letterSpacing: "-0.015em",
               color: "var(--text-secondary)",
+              textWrap: "pretty",
             }}
           >
-            Designing clarity in complex systems.
-          </p>
-          <p
-            className="hero-rise max-w-4xl leading-snug mb-12"
-            style={{
-              animationDelay: "0.35s",
-              fontSize: "clamp(16px, 1.6vw, 20px)",
-              fontWeight: 300,
-              letterSpacing: "-0.01em",
-              color: "var(--text-tertiary)",
-            }}
-          >
-            Enterprise workflows, financial products, and design systems at scale.
+            Corporate banking workflows, design systems and UX writing, from research to handoff.
           </p>
 
           {/* CTAs */}
