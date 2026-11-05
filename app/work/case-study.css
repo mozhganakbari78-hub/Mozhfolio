@@ -2641,3 +2641,23 @@
 .cs-msg-row .tag { margin-bottom: 5px; }
 .cs-msg-row .fa { margin-bottom: 5px; }
 .cs-msg-changes { padding: 9px 16px; }
+
+/* version 2 token architecture: live SVG, each layer lifts on hover */
+.ds-arch { display: block; width: 100%; height: auto; max-height: calc(100vh - 160px); }
+.ds-arch text { font-family: var(--font-sans), sans-serif; }
+.ds-arch .eb { font-family: var(--font-mono), monospace; font-size: 21px; letter-spacing: .18em; fill: #aab2c0; font-weight: 500; }
+.ds-arch .ti { font-size: 66px; font-weight: 600; fill: #f5f6f8; letter-spacing: -.02em; }
+.ds-arch .st { font-size: 27px; fill: #c3c8d1; }
+.ds-arch .lt { font-size: 36px; font-weight: 600; fill: #f5f6f8; letter-spacing: -.01em; }
+.ds-arch .ls { font-size: 24px; fill: #aeb4bf; transition: fill .3s; }
+.ds-arch .n1 { font-family: var(--font-mono), monospace; font-size: 20px; letter-spacing: .06em; fill: #e6e9ee; font-weight: 500; }
+.ds-arch .n2 { font-size: 23px; fill: #aeb4bf; transition: fill .3s; }
+.ds-arch .br { transition: stroke .3s; }
+.ds-arch .stk { transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+.ds-arch .ly:hover .stk { transform: translateY(-14px); }
+.ds-arch .ly:hover .ls, .ds-arch .ly:hover .n2 { fill: #e6e9ee; }
+.ds-arch .ly:hover .br { stroke: rgba(255,255,255,.7); }
+@media (prefers-reduced-motion: reduce) {
+  .ds-arch .stk { transition: none; }
+  .ds-arch .ly:hover .stk { transform: none; }
+}
