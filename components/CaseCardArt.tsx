@@ -195,16 +195,16 @@ function DesignSystem() {
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
           {/* loose bricks: the shared parts */}
           <Brick x={6} y={GROUND - BH} c={SUB} delay={0.05} />
-          <Brick x={10} y={GROUND - 2 * BH - 3} c={SUB} delay={0.12} />
+          <Brick x={6} y={GROUND - BH - (BH + 3)} c={SUB} delay={0.12} />
           {towers.map((t, ti) =>
             Array.from({ length: t.rows }, (_, r) => (
-              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - (r + 1) * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
+              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - BH - r * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
             ))
           )}
           {/* windows */}
           {towers.map((t, i) => (
             <motion.rect
-              key={`w${i}`} x={t.x + 8} y={GROUND - (BH + 3) * 2 + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
+              key={`w${i}`} x={t.x + 8} y={GROUND - BH - (BH + 3) + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
               initial={{ opacity: 0 }} whileInView={{ opacity: 0.7 }} viewport={{ once: true }} transition={{ delay: 1.3 + i * 0.1 }}
             />
           ))}
