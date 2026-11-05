@@ -213,12 +213,39 @@ button:disabled,
 .iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #a9adb6; }
 /* where the floating tile would land: a dashed outline on the plate */
 .iso-ghost { color: transparent; background: none; border: 1px dashed rgba(255, 255, 255, .22); box-shadow: none; }
-.iso-ghost-wrap { transform: translateZ(.03em) rotateZ(-5deg); }
-.iso-hard-wrap { position: absolute; inset: 0; transform: translateZ(10em) rotateZ(-5deg); }
-.iso-hard-wrap.is-on { animation: iso-float 6s ease-in-out infinite; }
+.iso-ghost-wrap { transform: translateZ(.03em); transition: opacity .5s ease .5s; }
+.iso-hard-wrap {
+  position: absolute; inset: 0; transform: translateZ(10em) rotateZ(-5deg);
+  transition: transform 1s cubic-bezier(.2, .85, .25, 1);
+}
+.iso-float { position: absolute; inset: 0; }
+.iso-float.is-on { animation: iso-float 6s ease-in-out infinite; }
 @keyframes iso-float {
-  0%, 100% { transform: translateZ(10em) rotateZ(-5deg); }
-  50% { transform: translateZ(11.2em) rotateZ(-3.5deg); }
+  0%, 100% { transform: none; }
+  50% { transform: translateZ(1.2em) rotateZ(1.5deg); }
+}
+.iso-hard { transition: color .5s ease .6s, border-color .5s ease .6s; }
+
+/* clicked: the problem straightens and drops into its outline */
+.iso-world.is-landed .iso-hard-wrap { transform: translateZ(.06em); }
+.iso-world.is-landed .iso-float { animation: none; }
+.iso-world.is-landed .iso-ghost-wrap { opacity: 0; transition-delay: .6s; }
+.iso-world.is-landed .iso-hard { color: #f2f3f5; border-color: rgba(255, 255, 255, .34); }
+.iso-world.is-landed .iso-handle { animation: iso-flash .9s ease-out .75s; }
+@keyframes iso-flash {
+  0%, 100% { box-shadow: 0 0 .6em rgba(255, 255, 255, .7), 0 0 1.6em rgba(255, 255, 255, .25); }
+  30% { box-shadow: 0 0 1.2em #fff, 0 0 3.5em rgba(255, 255, 255, .55); }
+}
+.iso-plate { transition: border-color .6s ease .7s; }
+.iso-world.is-landed .iso-plate { border-color: rgba(255, 255, 255, .28); }
+
+/* the whole scene is the toggle; a small hint sits under it */
+.iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
+.iso-hit:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
+.iso-hint {
+  position: absolute; right: 6%; bottom: 3%; pointer-events: none;
+  font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-tertiary); transition: opacity .3s;
 }
 /* entrance: the plate draws in, the flat tile settles, the floating one drops in */
 .iso-in-plate { animation: iso-fade .7s ease-out both; }
@@ -228,7 +255,7 @@ button:disabled,
 @keyframes iso-settle { from { opacity: 0; transform: translateZ(3em); } to { opacity: 1; transform: none; } }
 @keyframes iso-drop { from { opacity: 0; transform: translateZ(6em); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .iso-world { transition: none; }
+  .iso-world, .iso-hard-wrap { transition: none; }
   .iso-in-plate, .iso-in-obvious, .iso-in-hard { animation: none; }
 }
 @media (min-width: 1024px) {

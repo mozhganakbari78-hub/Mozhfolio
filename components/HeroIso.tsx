@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 /**
  * "Hard problems. Obvious screens." as an exploded isometric stack: a plate
  * with glowing corner handles and dashed guides running off the frame.
  * "Obvious screens." lies flat and square on the plate; "Hard problems."
- * floats above it, a little crooked, over a dashed outline of where it lands. The scene leans
+ * floats above it, a little crooked, over a dashed outline of where it lands.
+ * Clicking the scene drops it into place; clicking again lifts it back up. The scene leans
  * a few degrees toward the pointer. Decorative: the hero says the same
  * thing in a visually hidden line. Styles: .iso-* in globals.css.
  */
@@ -22,6 +23,7 @@ const subscribeMotion = (cb: () => void) => {
 export default function HeroIso() {
   const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
   const world = useRef<HTMLDivElement>(null);
+  const [landed, setLanded] = useState(false);
 
   useEffect(() => {
     if (!motion) return;
@@ -38,8 +40,8 @@ export default function HeroIso() {
   }, [motion]);
 
   return (
-    <div className="iso" aria-hidden="true">
-      <div ref={world} className="iso-world">
+    <div className="iso">
+      <div ref={world} className={`iso-world${landed ? " is-landed" : ""}`} aria-hidden="true">
         {/* guides along every edge of the plate, fading off the frame */}
         <div className="iso-guide x" style={{ top: 0 }} />
         <div className="iso-guide x" style={{ top: "17em" }} />
@@ -60,12 +62,26 @@ export default function HeroIso() {
         <div className="iso-layer iso-ghost-wrap iso-in-plate">
           <div className="iso-tile iso-hard iso-ghost">Hard problems.</div>
         </div>
-        <div className={`iso-hard-wrap${motion ? " is-on" : ""}`}>
-          <div className="iso-layer iso-in-hard">
-            <div className="iso-tile iso-hard">Hard problems.</div>
+        <div className="iso-hard-wrap">
+          <div className={`iso-float${motion ? " is-on" : ""}`}>
+            <div className="iso-layer iso-in-hard">
+              <div className="iso-tile iso-hard">Hard problems.</div>
+            </div>
           </div>
         </div>
       </div>
+
+      <button
+        type="button"
+        data-hand
+        className="iso-hit"
+        aria-pressed={landed}
+        aria-label={landed ? "Lift the hard problem back up" : "Drop the hard problem into place"}
+        onClick={() => setLanded((v) => !v)}
+      />
+      <span className="iso-hint" aria-hidden="true">
+        {landed ? "Click to lift it" : "Click to place it"}
+      </span>
     </div>
   );
 }
