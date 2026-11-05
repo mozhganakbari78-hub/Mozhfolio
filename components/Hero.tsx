@@ -82,7 +82,7 @@ export default function Hero() {
             {[
               { label: "6 years", note: "shipping live products" },
               { label: "Banking · Fintech · Crypto · IoT", note: "domains designed for" },
-              { label: "CS background", note: "engineering-fluent by training" },
+              { label: "BSc Computer Engineering", note: "engineering-fluent by training" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col gap-0.5">
                 <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
