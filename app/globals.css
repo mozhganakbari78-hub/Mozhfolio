@@ -210,6 +210,7 @@ button:disabled,
 .iso-tangle { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .iso-tangle path { fill: none; stroke: rgba(255, 255, 255, .2); stroke-width: .07; }
 .iso-tangle circle { fill: #15161a; stroke: rgba(255, 255, 255, .45); stroke-width: .07; }
+.iso-tangle .iso-scribble { stroke: rgba(255, 255, 255, .28); stroke-width: .08; stroke-linecap: round; stroke-linejoin: round; }
 .iso-code {
   position: absolute; white-space: nowrap; line-height: 1;
   font-family: var(--font-code, ui-monospace), ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -221,10 +222,10 @@ button:disabled,
   -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
 }
 
-/* 02 Screen: the clean panel. Same width as the plate, 3em shallower,
-   so once placed a thin front strip of the tangle still shows. */
+/* 02 Screen: the clean panel, exactly the plate's size, so once placed it
+   covers the tangle completely. */
 .iso-screen-wrap {
-  position: absolute; left: 0; top: 0; width: 46em; height: 14em;
+  position: absolute; left: 0; top: 0; width: 46em; height: 17em;
   transform: translateZ(13em) rotateZ(-4deg);
 }
 .iso-float { position: absolute; inset: 0; }
@@ -266,7 +267,7 @@ button:disabled,
 /* the floating screen's shadow: softer and further off the higher it is */
 .iso-shadow-wrap { transform: translateZ(.06em) rotateZ(-4deg); }
 .iso-shadow {
-  position: absolute; left: 0; top: 0; width: 46em; height: 14em; border-radius: .5em;
+  position: absolute; left: 0; top: 0; width: 46em; height: 17em; border-radius: .5em;
   background: rgba(0, 0, 0, .7); filter: blur(.9em); opacity: .38; transform: translateY(3.2em) scale(1.03);
 }
 .iso-shadow.is-on { animation: iso-shadow 6s ease-in-out infinite; }
@@ -277,38 +278,61 @@ button:disabled,
 .iso-shadow-enter { animation: iso-shadow-appear .95s cubic-bezier(.3, 0, .5, 1) .45s both; }
 @keyframes iso-shadow-appear { from { opacity: 0; } to { opacity: 1; } }
 
-/* Place: about 600ms, ease-out, with a gentle settle at the end */
-.iso-world.is-landed .iso-screen-wrap { transform: translateZ(.35em); animation: iso-place .6s both; }
+/* Place: anticipation (a small lift), an accelerating fall, the hit (a
+   ripple runs out from the edge, the handles flash, the plate gives a little),
+   two shrinking bounces, settle. Impact at 57% of .95s, about .54s in. */
+.iso-world.is-landed .iso-screen-wrap { transform: translateZ(.35em); animation: iso-place .95s both; }
 .iso-world.is-landed .iso-float { animation: none; }
 @keyframes iso-place {
-  0%   { transform: translateZ(13em) rotateZ(-4deg); animation-timing-function: cubic-bezier(.22, .8, .3, 1); }
-  80%  { transform: translateZ(.18em) rotateZ(0deg); animation-timing-function: ease-in-out; }
+  0%   { transform: translateZ(13em) rotateZ(-4deg); animation-timing-function: cubic-bezier(.3, 0, .5, 1); }
+  16%  { transform: translateZ(14.6em) rotateZ(-5deg); animation-timing-function: cubic-bezier(.6, 0, 1, .6); }
+  57%  { transform: translateZ(.35em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
+  70%  { transform: translateZ(1.3em) rotateZ(.4deg); animation-timing-function: cubic-bezier(.5, 0, 1, .5); }
+  81%  { transform: translateZ(.35em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
+  90%  { transform: translateZ(.65em) rotateZ(0deg); animation-timing-function: cubic-bezier(.5, 0, 1, .5); }
   100% { transform: translateZ(.35em) rotateZ(0deg); }
 }
-.iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .12s .45s; }
-.iso-world.is-landed .iso-shadow { animation: iso-shadow-in .5s cubic-bezier(.22, .8, .3, 1) both; }
-@keyframes iso-shadow-in {
-  from { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
-  to { opacity: .6; filter: blur(.15em); transform: none; }
+.iso-world.is-landed .iso-plate { animation: iso-give .45s cubic-bezier(.2, .7, .3, 1) .54s; }
+@keyframes iso-give {
+  0%, 100% { transform: none; }
+  25% { transform: translateZ(-.35em); }
 }
-.iso-world.is-landed .iso-handle { animation: iso-flash .7s ease-out .45s; }
+.iso-ripple-wrap { transform: translateZ(.1em); pointer-events: none; }
+.iso-ripple { position: absolute; inset: 0; border-radius: .5em; border: 1px solid rgba(255, 255, 255, .55); opacity: 0; }
+.iso-world.is-landed .iso-ripple { animation: iso-ripple .7s cubic-bezier(.2, .7, .3, 1) .54s; }
+@keyframes iso-ripple {
+  0% { opacity: .9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.08, 1.22); }
+}
+.iso-world.is-landed .iso-handle { animation: iso-flash .8s ease-out .54s; }
 @keyframes iso-flash {
   0%, 100% { box-shadow: 0 0 .6em rgba(255, 255, 255, .7), 0 0 1.6em rgba(255, 255, 255, .25); }
-  25% { box-shadow: 0 0 1em #fff, 0 0 2.6em rgba(255, 255, 255, .5); }
+  20% { box-shadow: 0 0 1.2em #fff, 0 0 3.5em rgba(255, 255, 255, .6); }
+}
+/* the shadow gathers in under the screen as it falls, then hides beneath it */
+.iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .1s .54s; }
+.iso-world.is-landed .iso-shadow { animation: iso-shadow-in .54s cubic-bezier(.6, 0, 1, .6) both; }
+@keyframes iso-shadow-in {
+  0% { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
+  30% { opacity: .32; filter: blur(1em); transform: translateY(3.5em) scale(1.05); }
+  100% { opacity: .7; filter: blur(.15em); transform: none; }
 }
 
-/* Lift (second click): the reverse, same length, then the float takes over */
-.iso-world.was-landed:not(.is-landed) .iso-screen-wrap { animation: iso-unplace .6s cubic-bezier(.22, .8, .3, 1) both; }
+/* Lift (second click): quick ease-out rise with a small overshoot, then the
+   float takes over; the shadow leaves with it on the same timing */
+.iso-world.was-landed:not(.is-landed) .iso-screen-wrap { animation: iso-unplace .75s both; }
 @keyframes iso-unplace {
-  from { transform: translateZ(.35em) rotateZ(0deg); }
-  to { transform: translateZ(13em) rotateZ(-4deg); }
+  0%   { transform: translateZ(.35em) rotateZ(0deg); animation-timing-function: cubic-bezier(.15, .8, .3, 1); }
+  70%  { transform: translateZ(13.8em) rotateZ(-4.6deg); animation-timing-function: ease-in-out; }
+  100% { transform: translateZ(13em) rotateZ(-4deg); }
 }
 .iso-world.was-landed:not(.is-landed) .iso-shadow.is-on {
-  animation: iso-shadow 6s ease-in-out infinite, iso-shadow-out .6s cubic-bezier(.22, .8, .3, 1);
+  animation: iso-shadow 6s ease-in-out infinite, iso-shadow-out .75s;
 }
 @keyframes iso-shadow-out {
-  from { opacity: .6; filter: blur(.15em); transform: none; }
-  to { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
+  0%   { opacity: .7; filter: blur(.15em); transform: none; animation-timing-function: cubic-bezier(.15, .8, .3, 1); }
+  70%  { opacity: .34; filter: blur(1em); transform: translateY(3.4em) scale(1.04); animation-timing-function: ease-in-out; }
+  100% { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
 }
 
 /* entrance: plate first, then the screen drops in */
@@ -324,8 +348,9 @@ button:disabled,
   .iso-hint-touch { display: inline; }
 }
 .iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
-.iso-hit:focus { outline: none; }
-.iso-hit:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
+/* ring only for keyboard focus (is-kbd is set from key events, cleared on pointer) */
+.iso-hit:focus, .iso-hit:focus-visible { outline: none; }
+.iso-hit.is-kbd:focus { outline: 2px solid var(--accent-color); outline-offset: 4px; }
 .iso-hint {
   position: absolute; right: 6%; bottom: 3%; pointer-events: none;
   font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
@@ -335,7 +360,7 @@ button:disabled,
 /* reduced motion: nothing moves, and the screen starts in place */
 @media (prefers-reduced-motion: reduce) {
   .iso-world { transition: none; }
-  .iso-world *, .iso-world .iso-screen-wrap, .iso-world .iso-shadow, .iso-shadow-enter,
+  .iso-world *, .iso-world .iso-screen-wrap, .iso-world .iso-shadow, .iso-world .iso-ripple, .iso-shadow-enter,
   .iso-in-plate, .iso-in-hard { animation: none !important; }
   .iso-world:not(.was-landed) .iso-screen-wrap { transform: translateZ(.35em); }
   .iso-world:not(.was-landed) .iso-shadow-wrap { opacity: 0; }
