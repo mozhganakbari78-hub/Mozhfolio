@@ -134,10 +134,6 @@ export default function VisualWork() {
               Selected screens.
             </h2>
           </div>
-          <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            UI, 3D, and motion built to ship: Rive and Lottie for the front end, After
-            Effects for the heavier pieces.
-          </p>
         </Reveal>
       </div>
 

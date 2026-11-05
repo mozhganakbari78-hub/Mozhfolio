@@ -21,7 +21,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 24 }}
           to={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
-          className="mb-10 md:mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+          className="mb-10 md:mb-12 flex flex-col gap-4"
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
@@ -35,7 +35,7 @@ export default function Projects() {
               The decisions, not just the screens.
             </h2>
           </div>
-          <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
+          <p className="text-sm md:text-base max-w-md" style={{ color: "var(--text-tertiary)" }}>
             Each case shows the reframe, the evidence behind it, and the trade-offs I owned.
           </p>
         </Reveal>
