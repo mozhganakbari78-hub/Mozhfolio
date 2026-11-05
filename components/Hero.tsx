@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import ParticleField from "./ParticleField";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 
 // The entrance is a CSS animation, not framer variants: framer starts the
 // elements at opacity 0 in the exported HTML, so the hero stayed blank until
@@ -12,14 +10,11 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center px-6 pt-28 pb-24 overflow-hidden"
+      className="relative flex items-center px-6 pt-28 md:pt-28 pb-12 md:pb-12 overflow-hidden"
       aria-label="Introduction"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <ParticleField />
-      </div>
 
       {/* Radial fade from bottom */}
       <div
@@ -35,7 +30,7 @@ export default function Hero() {
         <div>
 
           {/* Name and role: the page's h1, set small */}
-          <div className="hero-rise mb-8" style={{ animationDelay: "0s" }}>
+          <div className="hero-rise mb-6" style={{ animationDelay: "0s" }}>
             <h1
               className="text-[15px] font-medium"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
@@ -44,25 +39,26 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* Statement: the largest text on the page */}
+          {/* Statement: the largest text on the page, one phrase per line */}
           <div className="hero-rise" style={{ animationDelay: "0.05s" }}>
             <p
-              className="font-semibold leading-[1.02] mb-8 max-w-5xl"
+              className="font-semibold leading-[0.96] mb-6"
               style={{
-                fontSize: "clamp(36px, 6.2vw, 80px)",
+                fontSize: "clamp(30px, 9vw, 68px)",
                 letterSpacing: "-0.04em",
                 color: "var(--text-primary)",
-                textWrap: "balance",
               }}
             >
-              Designing banking products{" "}
-              <span style={{ color: "var(--text-secondary)" }}>where a mistake moves real money.</span>
+              <span className="block whitespace-nowrap">Hard problems.</span>
+              <span className="block whitespace-nowrap" style={{ color: "var(--text-secondary)" }}>
+                Obvious screens.
+              </span>
             </p>
           </div>
 
           {/* Supporting line */}
           <p
-            className="hero-rise max-w-4xl leading-snug mb-12"
+            className="hero-rise max-w-4xl leading-snug mb-9"
             style={{
               animationDelay: "0.1s",
               fontSize: "clamp(18px, 2vw, 24px)",
@@ -72,11 +68,11 @@ export default function Hero() {
               textWrap: "pretty",
             }}
           >
-            Corporate banking workflows, design systems and UX writing, from research to handoff.
+            Workflows, design systems and UX writing, built on evidence from real users.
           </p>
 
           {/* CTAs */}
-          <div className="hero-rise flex flex-wrap items-center gap-3 mb-20" style={{ animationDelay: "0.15s" }}>
+          <div className="hero-rise flex flex-wrap items-center gap-3 mb-12" style={{ animationDelay: "0.15s" }}>
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -99,7 +95,7 @@ export default function Hero() {
           {/* Discipline strip */}
           <div
             className="hero-rise flex flex-wrap items-center gap-x-8 gap-y-3"
-            style={{ animationDelay: "0.2s", borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
+            style={{ animationDelay: "0.2s", borderTop: "1px solid var(--border-strong)", paddingTop: 20 }}
           >
             {[
               { label: "6 years", note: "shipping live products" },
@@ -120,21 +116,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 items-center gap-2"
-        aria-hidden="true"
-      >
-        <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-          Scroll
-        </span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-          <ArrowDownIcon style={{ width: 14, height: 14, color: "var(--text-tertiary)" }} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

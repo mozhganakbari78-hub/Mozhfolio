@@ -14,14 +14,14 @@ const caseHrefs = caseStudies.map((cs) => `/work/${cs.slug}/`);
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 md:py-40 px-6" aria-labelledby="projects-heading">
+    <section id="projects" className="pt-16 pb-28 md:pt-16 md:pb-40 px-6" aria-labelledby="projects-heading">
       <CasePrefetch hrefs={caseHrefs} />
       <div className="max-w-5xl mx-auto">
         <Reveal as="div"
           initial={{ opacity: 0, y: 24 }}
           to={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
-          className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+          className="mb-10 md:mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
         >
           <div>
             <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
