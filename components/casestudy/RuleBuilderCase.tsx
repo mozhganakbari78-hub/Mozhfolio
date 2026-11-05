@@ -2,6 +2,7 @@ import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
+import GreenhouseScene from "./GreenhouseScene";
 
 export default function RuleBuilderCase() {
   return (
@@ -55,6 +56,10 @@ export default function RuleBuilderCase() {
           &ldquo;I have to manually adjust things, like turning the fans on and off throughout the
           day.&rdquo;
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <GreenhouseScene />
       </section>
 
       <section className="cs-shot cs-reveal">

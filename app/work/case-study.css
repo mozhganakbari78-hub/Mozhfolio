@@ -2522,3 +2522,63 @@
   .cs-results li { min-height: 0; }
   .cs-results .cs-result-art { max-height: 110px; }
 }
+
+/* ── greenhouse scene (rule builder): line art with live motion ─────── */
+.gh-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; }
+.gh-scene svg { display: block; width: 100%; height: auto; }
+.gh-scene svg * { vector-effect: non-scaling-stroke; }
+.gh-frame path, .gh-device path, .gh-device rect, .gh-device circle, .gh-plant path {
+  fill: none; stroke: rgba(238, 240, 244, .78); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+}
+.gh-scene .gh-faint { stroke: rgba(238, 240, 244, .2); }
+.gh-device rect, .gh-device circle { fill: #15171b; }
+.gh-device .gh-screen { fill: rgba(124, 184, 245, .08); stroke: rgba(124, 184, 245, .5); }
+.gh-scene .gh-accent { stroke: var(--accent-ink); }
+.gh-scene .gh-accent-fill { fill: var(--accent-ink); stroke: none; }
+.gh-led { fill: #2a2d33 !important; stroke: none !important; }
+.gh-led.is-on { fill: #4ade80 !important; }
+
+.gh-plant { transform-box: fill-box; transform-origin: 50% 100%; animation: gh-sway 4.5s ease-in-out infinite; }
+.gh-plant path { stroke: #5fcf8e; }
+.gh-plant path + path { fill: rgba(95, 207, 142, .12); }
+@keyframes gh-sway { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+
+.gh-wires path { fill: none; stroke: var(--accent-ink); stroke-width: 1.4; stroke-dasharray: 4 8; opacity: .8; animation: gh-flow 1.2s linear infinite; }
+.gh-wires path.is-idle { opacity: .22; animation-duration: 3s; }
+@keyframes gh-flow { to { stroke-dashoffset: -24; } }
+
+.gh-blades path { fill: rgba(124, 184, 245, .12); stroke: var(--accent-ink); stroke-width: 1.4; }
+.gh-blades { animation: gh-spin 2.4s linear infinite; }
+.gh-blades.is-on { animation-duration: .45s; }
+@keyframes gh-spin { to { rotate: 360deg; } }
+.gh-air path { stroke: var(--accent-ink); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 14 46; opacity: 0; }
+.gh-air.is-on path { opacity: .8; animation: gh-air 1s linear infinite; }
+@keyframes gh-air { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 60; } }
+
+.gh-drops circle { fill: #7cc8f5; animation: gh-drop 1.6s ease-in infinite; opacity: 0; }
+@keyframes gh-drop { 0% { opacity: 0; translate: 0 0; } 15% { opacity: .9; } 100% { opacity: 0; translate: 0 150px; } }
+
+.gh-coil { fill: none; stroke: rgba(238, 240, 244, .35) !important; }
+.gh-coil.is-warm { stroke: #f7a440 !important; animation: gh-glow 2s ease-in-out infinite; }
+@keyframes gh-glow { 50% { opacity: .45; } }
+
+.gh-pulse circle { fill: none; stroke: var(--accent-ink); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: gh-pulse 2.2s ease-out infinite; opacity: 0; }
+@keyframes gh-pulse { 0% { opacity: .7; scale: .5; } 100% { opacity: 0; scale: 1.6; } }
+
+.gh-label rect { fill: #15171b; stroke: rgba(255, 255, 255, .14); }
+.gh-label .gh-k { font-family: var(--font-code), monospace; font-size: 15px; letter-spacing: .1em; fill: #9aa1ac; }
+.gh-label .gh-v { font-size: 19px; font-weight: 500; fill: #eef0f3; }
+.gh-label.is-on rect { stroke: rgba(124, 184, 245, .6); }
+.gh-label.is-on .gh-v { fill: var(--accent-ink); }
+
+.gh-rule rect { fill: #15171b; stroke: rgba(255, 255, 255, .16); transition: stroke .3s ease; }
+.gh-rule text { font-size: 21px; fill: #d6dae1; }
+.gh-rule .gh-kw { font-family: var(--font-code), monospace; font-weight: 600; fill: var(--accent-ink); letter-spacing: .06em; }
+.gh-rule .gh-dot { fill: #2a2d33; transition: fill .3s ease; }
+.gh-rule.is-on rect { stroke: rgba(124, 184, 245, .7); }
+.gh-rule.is-on .gh-dot { fill: #4ade80; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-plant, .gh-wires path, .gh-blades, .gh-air path, .gh-drops circle, .gh-coil, .gh-pulse circle { animation: none !important; }
+  .gh-drops circle { opacity: .6; }
+}
