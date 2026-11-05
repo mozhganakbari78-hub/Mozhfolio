@@ -67,17 +67,17 @@ export default function DesignSystemCase() {
         </p>
         <p>
           The first version had two layers. Primitives held the raw palettes, with the dark
-          palettes tuned separately for contrast. On top of them, 26 role tokens gave each colour a
+          palettes tuned separately for contrast. On top of them, role tokens gave each colour a
           job, with a light and a dark value each. Designers only used the role tokens.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> 212 primitives for a single product. Designers never saw them, but
+          <b>Trade-off:</b> a large set of primitives for a single product. Designers never saw them, but
           they were a lot to maintain.
         </p>
       </section>
 
       <section className="cs-shot cs-reveal">
-        <DiagramPlaceholder alt="Version 1: primitives with separate light and dark palettes, feeding 26 role tokens, feeding components" />
+        <DiagramPlaceholder alt="Version 1: primitives with separate light and dark palettes, feeding role tokens, feeding components" />
       </section>
 
       {/* 3 */}
@@ -159,7 +159,7 @@ export default function DesignSystemCase() {
           them into separate layers:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Source.</b> 270 raw colours. No modes.</span></li>
+          <li><span><b>Source.</b> Every raw colour, in one place. No modes.</span></li>
           <li><span><b>Identity.</b> One mode per product. Brand, primary, neutral and status colours (success, error, info, warning).</span></li>
           <li><span><b>Semantic.</b> Light and dark mode. Each role picks the right step from the product&apos;s identity.</span></li>
         </ol>
