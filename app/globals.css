@@ -207,8 +207,9 @@ button:disabled,
 .iso-tile {
   position: absolute; white-space: nowrap; line-height: 1;
   padding: .34em .52em .4em; border-radius: .12em;
-  font-weight: 550; letter-spacing: -.045em;
-  font-feature-settings: "ss01", "kern";
+  font-weight: 560; letter-spacing: -.05em; word-spacing: .02em;
+  font-feature-settings: "kern", "calt";
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision;
   border: 1px solid rgba(255, 255, 255, .2);
   background: linear-gradient(160deg, #26282d 0%, #1a1b1f 55%, #151619 100%);
   /* top-edge highlight, like light catching a slab */
@@ -235,9 +236,50 @@ button:disabled,
 .iso-layer { position: absolute; inset: 0; }
 .iso-obvious {
   font-size: 3.9em; left: .6em; top: 2.45em; transform: translateZ(.09em);
-  color: #f5f6f8; text-shadow: 0 0 .35em rgba(255, 255, 255, .12);
+  font-weight: 620; color: #f7f8fa; text-shadow: 0 0 .35em rgba(255, 255, 255, .12);
 }
-.iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #8e929b; }
+/* the two tiles feel each other */
+/* impact: a big jolt then a small one, in step with the bounces, and a flare */
+.iso-world.is-landed .iso-obvious { animation: iso-jolt .55s cubic-bezier(.2, .7, .3, 1) .57s; }
+@keyframes iso-jolt {
+  0%   { transform: translateZ(.09em); text-shadow: 0 0 .35em rgba(255, 255, 255, .12); }
+  14%  { transform: translateZ(.3em) rotateZ(-.4deg); text-shadow: 0 0 .6em rgba(255, 255, 255, .45); }
+  36%  { transform: translateZ(.09em); }
+  44%  { transform: translateZ(.16em) rotateZ(.2deg); }
+  60%  { transform: translateZ(.09em); }
+  100% { transform: translateZ(.09em); text-shadow: 0 0 .35em rgba(255, 255, 255, .12); }
+}
+/* lift: suction pulls it up a little, then it settles */
+.iso-world.was-landed:not(.is-landed) .iso-obvious { animation: iso-suck .6s cubic-bezier(.3, .7, .3, 1); }
+@keyframes iso-suck {
+  0%, 100% { transform: translateZ(.09em); }
+  25% { transform: translateZ(.22em); }
+  55% { transform: translateZ(.06em); }
+}
+/* shadow of the floating tile: soft and faint when high, darker and tighter as it comes down */
+/* just above the flat tile, so the shadow falls on it as well as on the plate */
+.iso-shadow-wrap { transform: translateZ(.4em) rotateZ(-5deg); transition: opacity .2s; }
+/* .iso-tile.iso-shadow: must beat .iso-hard, which sets the text colour */
+.iso-tile.iso-shadow {
+  background: rgba(0, 0, 0, .8); border-color: transparent; color: transparent; box-shadow: none; text-shadow: none;
+  filter: blur(.1em); opacity: .75; transform: translateY(1.15em) scale(1.03);
+}
+.iso-shadow::before, .iso-shadow::after { display: none; }
+/* light comes from behind, so the higher the tile, the further its shadow
+   reaches across onto "Obvious screens." (and the softer it gets) */
+.iso-shadow.is-on { animation: iso-shadow 6s ease-in-out infinite; }
+@keyframes iso-shadow {
+  0%, 100% { opacity: .75; filter: blur(.1em); transform: translateY(1.15em) scale(1.03); }
+  50% { opacity: .55; filter: blur(.16em); transform: translateY(1.35em) scale(1.06) rotateZ(1.5deg); }
+}
+.iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .15s .5s; }
+.iso-world.is-landed .iso-shadow { animation: iso-shadow-in .57s cubic-bezier(.6, 0, 1, .6) both; }
+@keyframes iso-shadow-in {
+  0% { opacity: .75; filter: blur(.1em); transform: translateY(1.15em) scale(1.03); }
+  16% { opacity: .6; filter: blur(.13em); transform: translateY(1.3em) scale(1.05); }
+  100% { opacity: .95; filter: blur(.03em); transform: none; }
+}
+.iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #8e929b; font-weight: 540; }
 /* where the floating tile would land: a dashed outline on the plate */
 .iso-ghost { color: transparent; background: none; border: 1px dashed rgba(255, 255, 255, .22); box-shadow: none; }
 .iso-ghost-wrap { transform: translateZ(.03em); transition: opacity .5s ease .5s; }
@@ -254,7 +296,7 @@ button:disabled,
 .iso-hard { transition: color .12s, border-color .12s, box-shadow .12s, text-shadow .12s; }
 .iso-ghost-wrap { transition: opacity .2s; }
 .iso-plate { transition: border-color .12s; }
-.iso-world.is-landed .iso-hard:not(.iso-ghost):not(.iso-ripple) {
+.iso-world.is-landed .iso-hard:not(.iso-ghost):not(.iso-ripple):not(.iso-shadow) {
   color: #f5f6f8; border-color: rgba(255, 255, 255, .36); text-shadow: 0 0 .35em rgba(255, 255, 255, .14);
   box-shadow: inset 0 .03em 0 rgba(255, 255, 255, .14), 0 0 1.2em rgba(255, 255, 255, .09);
   transition: color .15s .57s, border-color .15s .57s, box-shadow .3s .57s, text-shadow .3s .57s;
@@ -303,6 +345,7 @@ button:disabled,
   .iso-hint-touch { display: inline; }
 }
 .iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
+.iso-hit:focus { outline: none; }
 .iso-hit:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
 .iso-hint {
   position: absolute; right: 6%; bottom: 3%; pointer-events: none;
@@ -318,7 +361,7 @@ button:disabled,
 @keyframes iso-drop { from { opacity: 0; transform: translateZ(6em); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .iso-world { transition: none; }
-  .iso-world .iso-hard-wrap, .iso-world .iso-ripple { animation: none !important; }
+  .iso-world .iso-hard-wrap, .iso-world .iso-ripple, .iso-world .iso-obvious, .iso-world .iso-shadow { animation: none !important; }
   .iso-in-plate, .iso-in-obvious, .iso-in-hard { animation: none; }
 }
 @media (min-width: 1024px) {
