@@ -3,32 +3,34 @@
 import { motion } from "framer-motion";
 
 /**
- * The ticket set sorted by what each request actually needed. The point of the
- * figure is the 80/20 line, so the two groups that never needed a person share
- * one colour and the support group gets its own: the reader should see one
- * block and one remainder before reading any number.
+ * The ticket set sorted by what each request actually needed, in three parts:
+ * one fixed answer, the user's own case, and genuine support work. Each part
+ * has its own bracket above the bar so the three read before any number.
  */
 const SEGMENTS = [
   {
-    n: 420,
-    pct: 43,
-    label: "Repetitive, but conditional",
+    n: 360,
+    pct: 37,
+    label: "One fixed answer",
+    bracket: "37% one fixed answer",
     detail:
-      "The same question with no single answer. What is correct depends on the user's role, their organisation's state, and their permission level.",
+      "Questions with one answer, often a bank policy. Nothing had gone wrong; the user needed information, not a person.",
     tone: "self" as const,
   },
   {
-    n: 360,
-    pct: 37,
-    label: "Answerable by the FAQ",
+    n: 420,
+    pct: 43,
+    label: "About the user's own case",
+    bracket: "43% the user's own case",
     detail:
-      "Nothing technical had gone wrong. The user did not know how to do something, or why the product was behaving the way it was.",
+      "The answer depends on the user's role, their organisation, or a specific transaction. These need someone to look at the case.",
     tone: "self" as const,
   },
   {
     n: 195,
     pct: 20,
     label: "Genuinely support work",
+    bracket: "20% genuinely support work",
     detail: "New bugs, feature requests, and edge cases that needed a person.",
     tone: "support" as const,
   },
@@ -40,18 +42,17 @@ export default function TicketSplit() {
   return (
     <div className="cs-split">
       <div className="cs-split-brackets" aria-hidden>
-        <span className="b is-self" style={{ flexBasis: "80%" }}>
-          80% wanted an answer, not support
-        </span>
-        <span className="b is-support" style={{ flexBasis: "20%" }}>
-          20%
-        </span>
+        {SEGMENTS.map((s) => (
+          <span key={s.label} className={`b is-${s.tone}`} style={{ flexBasis: `${s.pct}%` }}>
+            {s.bracket}
+          </span>
+        ))}
       </div>
 
       <div
         className="cs-split-bar"
         role="img"
-        aria-label="Of 975 tickets, 420 were repetitive but conditional, 360 were answerable by the FAQ, and 195 genuinely needed support."
+        aria-label="Of 975 tickets, 360 had one fixed answer, 420 were about the user's own case, and 195 were genuinely support work."
       >
         {SEGMENTS.map((s, i) => (
           <motion.span

@@ -1804,11 +1804,10 @@
 }
 
 /* ── ticket split: what each request actually needed ───────────────────────
-   Two categorical fills only. The 43/37 pair shares one colour because they
-   are two halves of the same answer: nobody had to pick up the ticket. They
-   are told apart by the 2px surface gap and the direct labels, not by hue,
-   which also keeps the palette inside the dark fill band. Amber is a darker
-   step of --warn so it sits on the card rather than glowing off it. */
+   Two categorical fills only. The 37/43 pair shares one colour and is told
+   apart by the 2px surface gap and its own bracket label, not by hue, which
+   keeps the palette inside the dark fill band. Amber is a darker step of
+   --warn so it sits on the card rather than glowing off it. */
 .cs-split {
   --split-self: #0174DC;
   --split-support: #c0892f;
@@ -1826,9 +1825,11 @@
   letter-spacing: .08em;
   text-transform: uppercase;
   padding-bottom: 7px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0;
+  /* three brackets share the row, so the narrow ones wrap rather than clip */
+  display: flex;
+  align-items: flex-end;
+  overflow-wrap: anywhere;
 }
 .cs-split-brackets .b.is-self {
   color: var(--accent-ink);
@@ -1838,6 +1839,7 @@
   color: var(--warn);
   border-bottom: 1px solid rgba(224, 180, 85, .3);
   text-align: right;
+  justify-content: flex-end;
 }
 
 .cs-split-bar {
