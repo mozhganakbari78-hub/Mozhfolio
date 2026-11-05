@@ -24,6 +24,8 @@ export default function HeroIso() {
   const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
   const world = useRef<HTMLDivElement>(null);
   const [landed, setLanded] = useState(false);
+  // set after the first click, so the lift animation never plays on load
+  const [touched, setTouched] = useState(false);
 
   useEffect(() => {
     if (!motion) return;
@@ -41,7 +43,7 @@ export default function HeroIso() {
 
   return (
     <div className="iso">
-      <div ref={world} className={`iso-world${landed ? " is-landed" : ""}`} aria-hidden="true">
+      <div ref={world} className={`iso-world${landed ? " is-landed" : ""}${touched ? " was-landed" : ""}`} aria-hidden="true">
         {/* guides along every edge of the plate, fading off the frame */}
         <div className="iso-guide x" style={{ top: 0 }} />
         <div className="iso-guide x" style={{ top: "17em" }} />
@@ -62,6 +64,10 @@ export default function HeroIso() {
         <div className="iso-layer iso-ghost-wrap iso-in-plate">
           <div className="iso-tile iso-hard iso-ghost">Hard problems.</div>
         </div>
+        {/* ripple on impact, same footprint as the tile */}
+        <div className="iso-layer iso-ripple-wrap">
+          <div className="iso-tile iso-hard iso-ripple">Hard problems.</div>
+        </div>
         <div className="iso-hard-wrap">
           <div className={`iso-float${motion ? " is-on" : ""}`}>
             <div className="iso-layer iso-in-hard">
@@ -77,7 +83,10 @@ export default function HeroIso() {
         className="iso-hit"
         aria-pressed={landed}
         aria-label={landed ? "Lift the hard problem back up" : "Drop the hard problem into place"}
-        onClick={() => setLanded((v) => !v)}
+        onClick={() => {
+          setTouched(true);
+          setLanded((v) => !v);
+        }}
       />
       <span className="iso-hint" aria-hidden="true">
         {landed ? "Click to lift it" : "Click to place it"}

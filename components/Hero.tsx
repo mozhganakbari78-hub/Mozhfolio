@@ -49,8 +49,8 @@ export default function Hero() {
               textWrap: "balance",
             }}
           >
-            Workflows, design systems and UX writing,{" "}
-            <span style={{ color: "var(--text-secondary)" }}>built on evidence from real users.</span>
+            <span className="block">Products shaped by</span>
+            <span className="block" style={{ color: "var(--text-secondary)" }}>what users actually do.</span>
           </p>
 
           {/* CTAs */}
