@@ -50,7 +50,7 @@ function Label({ x, y, k, v, on }: { x: number; y: number; k: string; v: string;
 const MACHINE: Pt = [600, 470];
 const KEYBOARD: Pt = [250, 560];
 const QUEUE: Pt = [960, 540];
-const LOOP = 2.6; // seconds per ticket
+const LOOP = 4; // seconds per ticket
 
 /* a coiled cable between two points */
 function coil(a: Pt, b: Pt, turns = 14, r = 7) {
@@ -86,8 +86,8 @@ export default function TicketMachineScene() {
 
   const M = iso(MACHINE[0], MACHINE[1]);
   const K = iso(KEYBOARD[0], KEYBOARD[1]);
-  const slotIn = M(0, 0, 242);
-  const slotTop = M(0, 0, 330);
+  const slotIn = M(0, 0, 232);
+  const slotTop = M(0, 0, 318);
   const pileTop = iso(QUEUE[0], QUEUE[1])(0, 0, 44);
   // out of the slot, straight up, then across to the queue
   const flight = `M${slotIn[0]},${slotIn[1]} L${slotTop[0]},${slotTop[1]} C${slotTop[0] + 90},${slotTop[1] - 40} ${pileTop[0] - 40},${pileTop[1] - 200} ${pileTop[0]},${pileTop[1]}`;
@@ -137,8 +137,9 @@ export default function TicketMachineScene() {
             })
           )}
           <g className={`tm-send${on}`}>
-            <rect x={103} y={59} width={87} height={19} rx={3} />
-            <text x={146.5} y={73} textAnchor="middle">SEND</text>
+            <rect x={101} y={57} width={91} height={23} rx={4} className="tm-send-glow" />
+            <rect x={103} y={59} width={87} height={19} rx={3} className="tm-send-key" />
+            <text x={146.5} y={73.5} textAnchor="middle">SEND</text>
           </g>
         </g>
         <Label x={60} y={612} k="USER" v="writes, presses Send" />
@@ -151,7 +152,7 @@ export default function TicketMachineScene() {
           <rect x={16} y={40} width={188} height={112} rx={6} className="tm-screen" />
           <text x={28} y={60} className="tm-screen-k">New ticket</text>
           {[0, 1, 2, 3].map((n) => (
-            <rect key={n} x={28} y={72 + n * 16} width={[150, 120, 160, 90][n]} height={7} rx={3.5} className={`tm-type${on}`} style={{ animationDelay: `${n * 0.32}s` }} />
+            <rect key={n} x={28} y={72 + n * 16} width={[150, 120, 160, 90][n]} height={7} rx={3.5} className={`tm-type${on} l${n}`} />
           ))}
           <rect x={16} y={168} width={40} height={26} rx={4} className="tm-btn" />
           <rect x={64} y={168} width={40} height={26} rx={4} className="tm-btn" />
@@ -170,10 +171,21 @@ export default function TicketMachineScene() {
         {/* the ticket in flight */}
         {motion && (
           <g className="tm-flying">
-            <rect x={-26} y={-16} width={52} height={32} rx={4} />
-            <path d="M-16,-6 h26 M-16,2 h32 M-16,10 h18" />
-            <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" path={flight} keyPoints="0;0;0.28;1" keyTimes="0;0.62;0.74;1" calcMode="linear" />
-            <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.62;0.66;0.97;1" />
+            {/* a printed ticket: notched sides, a tear line */}
+            <path d="M-20,-30 h40 v22 a5,5 0 0 0 0,10 v28 h-40 v-28 a5,5 0 0 0 0,-10 z" />
+            <path d="M-13,-21 h20 M-13,-14 h26 M-15,-3 h30" className="tm-tear" />
+            <path d="M-13,9 h22 M-13,16 h16" />
+            {/* rises slowly out of the slot like a print, then glides to the queue */}
+            <animateMotion
+              dur={`${LOOP}s`}
+              repeatCount="indefinite"
+              path={flight}
+              keyPoints="0;0;0.3;1"
+              keyTimes="0;0.56;0.8;1"
+              calcMode="spline"
+              keySplines="0 0 1 1; 0.25 0.1 0.4 1; 0.45 0 0.3 1"
+            />
+            <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.56;0.58;0.97;1" />
           </g>
         )}
 

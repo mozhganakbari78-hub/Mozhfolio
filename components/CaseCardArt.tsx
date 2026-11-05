@@ -177,11 +177,11 @@ const Brick = ({ x, y, c, delay }: { x: number; y: number; c: string; delay: num
 );
 
 function DesignSystem() {
-  // Same bricks, three buildings: one set of parts builds every brand.
+  // Same bricks, four buildings: one set of parts builds every product.
   const towers = [
-    { x: 46, rows: 4, c: "#5575B1" },
-    { x: 94, rows: 6, c: "#16B2FF" },
-    { x: 142, rows: 3, c: "#F9B741" },
+    { x: 34, rows: 4, c: "#5575B1" },
+    { x: 86, rows: 6, c: "#16B2FF" },
+    { x: 138, rows: 3, c: "#F9B741" },
     { x: 190, rows: 2, c: "#339599" },
   ];
   const starts = towers.map((_, i) => towers.slice(0, i).reduce((n, t) => n + t.rows, 0));
@@ -193,9 +193,6 @@ function DesignSystem() {
           <span style={{ ...Mono, color: AI }}>4 products</span>
         </motion.div>
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
-          {/* loose bricks: the shared parts */}
-          <Brick x={6} y={GROUND - BH} c={SUB} delay={0.05} />
-          <Brick x={6} y={GROUND - BH - (BH + 3)} c={SUB} delay={0.12} />
           {towers.map((t, ti) =>
             Array.from({ length: t.rows }, (_, r) => (
               <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - BH - r * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />

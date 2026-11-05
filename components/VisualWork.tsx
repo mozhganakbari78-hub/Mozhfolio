@@ -69,8 +69,11 @@ export default function VisualWork() {
     );
     vis.observe(wrap);
 
+    // No preventDefault on pointerdown: it would also suppress the mouse events
+    // the custom cursor follows, so the cursor froze during a drag and jumped
+    // on release. Text selection and native image drag are blocked instead.
     const onPointerDown = (e: PointerEvent) => {
-      e.preventDefault();
+      if (e.button !== 0) return;
       dragRef.current = { active: true, startX: e.clientX, startPos: posRef.current };
       pausedRef.current = true;
       wrap.style.cursor = "grabbing";
@@ -91,7 +94,9 @@ export default function VisualWork() {
       wrap.style.cursor = "grab";
     };
 
-    wrap.addEventListener("pointerdown", onPointerDown, { passive: false });
+    const noNativeDrag = (e: Event) => e.preventDefault();
+    wrap.addEventListener("pointerdown", onPointerDown);
+    wrap.addEventListener("dragstart", noNativeDrag);
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
@@ -100,6 +105,7 @@ export default function VisualWork() {
       cancelAnimationFrame(rafRef.current);
       vis.disconnect();
       wrap.removeEventListener("pointerdown", onPointerDown);
+      wrap.removeEventListener("dragstart", noNativeDrag);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("pointercancel", onPointerUp);
