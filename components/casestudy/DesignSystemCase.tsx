@@ -136,9 +136,17 @@ export default function DesignSystemCase() {
 
       <section className="cs-shot cs-reveal">
         <Mockup
-          src="/projects/DesignSystem-Button-modes.webp"
-          alt="The Button component: its properties (state, type, size, loading, icon button, title, left and right icon), every type in every state and size, and the same button switched by mode across four products in light and dark"
-          caption="The Button: every variant, state and size, then the same component switched by mode across four products"
+          src="/projects/DesignSystem-Button-variants.webp"
+          alt="The Button component: its properties (state, type, size, loading, icon button, title, left and right icon) and every type in every state and size"
+          caption="The Button: every type, state and size, set through its properties"
+        />
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-Button-products.webp"
+          alt="The same Button switched by mode across four products, in light and dark"
+          caption="The same Button across four products, in light and dark: only the mode changes"
         />
       </section>
 
