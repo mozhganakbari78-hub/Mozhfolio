@@ -24,9 +24,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "4 of 4", label: "greenhouse managers built a rule without help in testing" },
-              { value: "2 changes", label: "came from that testing: live readings and timed waits" },
-              { value: "Shipped", label: "live in production, in Persian (RTL)" },
+              { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor" },
+              { value: "4 of 4 managers", label: "built a rule unaided in testing" },
+              { value: "Live in production", label: "Persian, right-to-left" },
             ]}
           />
         </div>
@@ -47,15 +47,28 @@ export default function RuleBuilderCase() {
         <span className="cs-num">Context</span>
         <h2>Remote control is not automation</h2>
         <p>
-          The product connects greenhouse sensors and controllers to a mobile app. Operators could
-          monitor every hall and switch fans, misters and heaters remotely, with a few fixed default
-          rules. But routine operation was still manual. When humidity rose, the app sent an alert,
-          and the operator still had to switch on the heater or the fan by hand. The app provided
-          the control channel, not the autonomy.
+          The app connects greenhouse sensors and controllers to operators&apos; phones. Operators
+          could monitor every hall and switch fans, misters and heaters from anywhere, but only a
+          few fixed rules ran on their own. When humidity rose, the app sent an alert, and the
+          operator still switched the device by hand. The app was a remote control, not an
+          autopilot.
         </p>
         <p className="cs-quote">
           &ldquo;I have to manually adjust things, like turning the fans on and off throughout the
           day.&rdquo;
+        </p>
+        <p>
+          Our team lead visited several greenhouses and interviewed operators in person, then
+          brought the findings back to the design team. We worked through them together in a
+          brainstorm. Two needs stood out: rules that run on a schedule, and rules that combine a
+          schedule with a sensor threshold. The team scoped three requirements: scheduled rules,
+          multi-condition rules and rule categories.
+        </p>
+        <p>
+          <b>
+            From there, I owned the rule builder and the trust layer around it: how operators build
+            a rule, and how they see and control what&apos;s running.
+          </b>
         </p>
       </section>
 
@@ -69,25 +82,6 @@ export default function RuleBuilderCase() {
           alt="A temperature and humidity sensor mounted on a post above a crop inside a customer's greenhouse"
           caption="A sensor deployed in a customer's greenhouse"
         />
-      </section>
-
-      {/* 2 */}
-      <section className="cs-reveal">
-        <span className="cs-num">Customer signal</span>
-        <h2>Demand for time-based and combined rules</h2>
-        <p>
-          Our team lead visited several greenhouses and interviewed the operators in person. I
-          worked from those findings. Two needs came up: rules that run on a schedule, and rules
-          that combine a schedule with a sensor threshold.
-        </p>
-        <p className="cs-quote">
-          &ldquo;I can trigger actions based on sensor thresholds, but it&apos;s frustrating that I
-          can&apos;t combine that with time-based conditions.&rdquo;
-        </p>
-        <p>
-          The team scoped three requirements: scheduled rules, multi-condition rules, and rule
-          categories.
-        </p>
       </section>
 
       {/* 3 */}
