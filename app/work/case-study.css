@@ -2586,40 +2586,34 @@
 .hd-box .hd-top { fill: #1b1e23; }
 .hd-box .hd-left { fill: #15171b; }
 .hd-box .hd-right { fill: #111317; }
-.hd-disc path, .hd-disc ellipse { fill: #15171b; }
-.hd-disc .hd-ring { fill: none; stroke: rgba(238, 240, 244, .14); stroke-dasharray: 3 6; }
-.hd-disc .hd-ring.is-glow { stroke: rgba(124, 184, 245, .45); }
-.hd-scene .hd-slot { fill: none; stroke: rgba(238, 240, 244, .3); stroke-width: 1.2; }
-.hd-person path, .hd-person circle { fill: #15171b; }
-.hd-person.is-agent path, .hd-person.is-agent circle { stroke: #e0b455; }
-
-.hd-led { fill: #2a2d33; }
-.hd-led.is-blink { animation: hd-blink 2.1s ease-in-out infinite; }
-@keyframes hd-blink { 0%, 100% { fill: #2a2d33; } 50% { fill: var(--accent-ink); } }
-
-.hd-page .hd-pane { fill: #111317; stroke: rgba(238, 240, 244, .22); stroke-width: 1; }
-.hd-page .hd-answer { fill: rgba(238, 240, 244, .05); stroke: rgba(238, 240, 244, .18); stroke-width: 1; }
-.hd-page .hd-answer.is-match { fill: rgba(124, 184, 245, .14); stroke: var(--accent-ink); animation: hd-match 3s ease-in-out infinite; }
-@keyframes hd-match { 0%, 25% { opacity: .35; } 45%, 85% { opacity: 1; } 100% { opacity: .35; } }
-.hd-page .hd-input { fill: #15171b; stroke: rgba(124, 184, 245, .5); stroke-width: 1; }
-.hd-page .hd-typing { fill: rgba(238, 240, 244, .6); transform-box: fill-box; transform-origin: left center; }
-.hd-page .hd-typing.is-on { animation: hd-type 3s steps(10) infinite; }
-@keyframes hd-type { 0% { scale: 0 1; } 60%, 100% { scale: 1 1; } }
-.hd-page .hd-send { fill: rgba(192, 137, 47, .25); stroke: #c0892f; stroke-width: 1; }
-
-.hd-screen { fill: rgba(224, 180, 85, .1); stroke: rgba(224, 180, 85, .55); stroke-width: 1; }
-.hd-screen.is-glow { animation: hd-glow 4s ease-in-out infinite; }
-@keyframes hd-glow { 50% { fill: rgba(224, 180, 85, .26); } }
-
-.hd-dot { stroke: none; }
-.hd-dot.is-ticket { fill: #eef0f3; }
-.hd-dot.is-answer { fill: var(--accent-ink); }
-.hd-dot.is-support { fill: #e0b455; }
-.hd-dot.is-query { fill: rgba(124, 184, 245, .55); }
 .hd-key text { font-size: 17px; fill: #9aa1ac; }
 
+/* ticket machine (support case): the old loop of write, send, repeat */
+.tm-cable { fill: none; stroke: rgba(238, 240, 244, .55); stroke-width: 1.4; stroke-linejoin: round; }
+.tm-key { fill: #15171b; stroke: rgba(238, 240, 244, .55); stroke-width: 1; }
+.tm-send rect { fill: rgba(124, 184, 245, .16); stroke: var(--accent-ink); stroke-width: 1.2; }
+.tm-send text { font-family: var(--font-code), monospace; font-size: 11px; letter-spacing: .2em; fill: var(--accent-ink); }
+.tm-send { transform-box: fill-box; transform-origin: center; }
+.tm-send.is-on { animation: tm-press 2.6s ease-in-out infinite; }
+@keyframes tm-press { 0%, 52%, 70%, 100% { transform: scale(1); } 58%, 64% { transform: scale(.9); } 58% { filter: brightness(1.6); } }
+.tm-slot { fill: #0c0d10; stroke: rgba(238, 240, 244, .4); stroke-width: 1; }
+.tm-brand { font-size: 15px; font-weight: 600; fill: rgba(238, 240, 244, .85); }
+.tm-screen { fill: #0f1115; stroke: rgba(124, 184, 245, .5); stroke-width: 1.2; }
+.tm-screen-k { font-family: var(--font-code), monospace; font-size: 10px; letter-spacing: .14em; fill: var(--accent-ink); text-transform: uppercase; }
+.tm-type { fill: rgba(238, 240, 244, .55); transform-box: fill-box; transform-origin: left center; }
+.tm-type.is-on { animation: tm-type 2.6s steps(8) infinite; }
+@keyframes tm-type { 0% { transform: scaleX(0); } 45%, 62% { transform: scaleX(1); } 66%, 100% { transform: scaleX(0); } }
+.tm-btn { fill: #15171b; stroke: rgba(238, 240, 244, .45); stroke-width: 1; }
+.tm-dial { fill: #15171b; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; }
+.tm-led { fill: #2a2d33; }
+.tm-led.is-on { animation: tm-led 2.6s steps(1) infinite; }
+@keyframes tm-led { 0%, 58% { fill: #2a2d33; } 60%, 80% { fill: #e0b455; } }
+.tm-paper .hd-top { fill: #1e2126; }
+.tm-paper polygon { stroke: rgba(224, 180, 85, .7); }
+.tm-flying rect { fill: #1e2126; stroke: #e0b455; stroke-width: 1.4; }
+.tm-flying path { fill: none; stroke: rgba(238, 240, 244, .6); stroke-width: 1.4; stroke-linecap: round; }
 @media (prefers-reduced-motion: reduce) {
-  .hd-led.is-blink, .hd-page .hd-answer.is-match, .hd-page .hd-typing.is-on, .hd-screen.is-glow { animation: none !important; }
+  .tm-send.is-on, .tm-type.is-on, .tm-led.is-on { animation: none !important; }
 }
 
 /* ── error rewrites: compact before/after pairs ───────────────────────── */
