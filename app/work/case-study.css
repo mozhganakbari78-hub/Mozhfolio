@@ -2495,7 +2495,7 @@
 
 /* ── hero results as illustrated cards: number top-right, line art below ── */
 .cs-results li {
-  padding: 22px 22px 0; min-height: 280px;
+  padding: 22px 22px 0; min-height: 236px;
   grid-template-rows: auto auto 1fr;
   background: #0f1013; border-color: rgba(255, 255, 255, .09);
 }
@@ -2510,17 +2510,39 @@
   padding-right: 28px;
 }
 .cs-results .cs-result-art {
-  align-self: end; width: 100%; height: auto; max-height: 132px; margin-top: 14px; margin-bottom: 14px;
-  fill: none; stroke: rgba(238, 240, 244, .82); stroke-width: 1.2;
-  stroke-linecap: round; stroke-linejoin: round; overflow: visible;
+  align-self: end; width: 100%; height: auto; max-height: 96px; margin: 12px 0 16px;
+  overflow: visible;
 }
-.cs-result-art .a { stroke: var(--accent-ink); }
-.cs-result-art .f { stroke: rgba(238, 240, 244, .3); }
-.cs-result-art .af { fill: rgba(124, 184, 245, .14); }
+.cs-result-art .grid path { stroke: rgba(255, 255, 255, .07); stroke-width: 1; }
+.cs-result-art .g1 { fill: #5c6068; }
+.cs-result-art .g2 { fill: #3d4047; }
+.cs-result-art .g3 { fill: #2a2d33; }
+.cs-result-art .lt { fill: #e9ebef; }
+.cs-result-art .ac { fill: var(--accent-color); }
+.cs-result-art .wh { fill: #fff; }
+.cs-result-art .p { fill: #6e727b; }
+.cs-result-art .p2 { fill: #4e525a; }
+.cs-result-art .pd { fill: #9aa0aa; }
+.cs-result-art .pd2 { fill: #c3c7ce; }
+.cs-result-art .dash { fill: rgba(255, 255, 255, .03); stroke: rgba(255, 255, 255, .32); stroke-width: 1; stroke-dasharray: 3 3; }
+.cs-result-art .outline { fill: none; stroke: #fff; stroke-width: 1.4; }
+.cs-result-art .ln { fill: none; stroke: rgba(255, 255, 255, .4); stroke-width: 1.4; stroke-linecap: round; }
+.cs-result-art .ln2 { fill: none; stroke: rgba(255, 255, 255, .08); stroke-width: 1; }
+.cs-result-art .dashed { stroke-dasharray: 3 4; }
+.cs-result-art .mk { fill: var(--accent-color); stroke: #fff; stroke-width: 2; }
+.cs-result-art .arc, .cs-result-art .donut { fill: none; stroke-width: 12; }
+.cs-result-art .donut { stroke-width: 14; }
+.cs-result-art .g2s { stroke: #3d4047; }
+.cs-result-art .g1s { stroke: #5c6068; }
+.cs-result-art .acs { stroke: var(--accent-color); }
+.cs-result-art .line { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.cs-result-art .ring { fill: none; stroke: rgba(255, 255, 255, .32); stroke-dasharray: 3 3; }
+.cs-result-art .needle { stroke: #fff; stroke-width: 2.2; stroke-linecap: round; }
+.cs-result-art .check { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .cs-results.is-four li { min-height: 0; padding-bottom: 18px; }
 @media (max-width: 900px) {
   .cs-results li { min-height: 0; }
-  .cs-results .cs-result-art { max-height: 110px; }
+  .cs-results .cs-result-art { max-height: 88px; }
 }
 
 /* ── greenhouse scene (rule builder): line art with live motion ─────── */
