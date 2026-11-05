@@ -7,10 +7,10 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
  * complexity stays where it is; a simple screen sits on top and hides it.
  *
  * Bottom layer (01 Problem): the plate itself, covered in tangled lines,
- * nodes and faint rule code, with "Hard problems." in the dim colour.
- * Top layer (02 Screen): a clean panel with only "Obvious screens.", floating
- * above. Clicking (or Enter / Space) drops it onto the plate, where it covers
- * all but a thin front strip of the complexity; clicking again lifts it.
+ * nodes, scribbles and faint stray code, with "Hard problems." in the dim
+ * colour. Top layer (02 Screen): a clean panel the same size, with only
+ * "Obvious screens.", floating above. Clicking (or Enter / Space) drops it
+ * onto the plate, which it covers exactly; clicking again lifts it.
  * Under reduced motion the screen starts in place and nothing animates.
  *
  * Decorative: the hero carries the same words as real text in a visually
@@ -25,21 +25,29 @@ const subscribeMotion = (cb: () => void) => {
   return () => mq.removeEventListener("change", cb);
 };
 
-// the rules underneath: faint, monospace, scattered around (never over) the
-// "Hard problems." line; the last two sit in the front strip that stays
-// visible once the screen is placed
+// generic noise underneath, nothing from a real project: stray code, hex,
+// half-finished notes. Kept around (never over) the "Hard problems." line.
 const CODE: [string, number, number][] = [
-  ["IF humidity > 80", 30.5, 1.3],
-  ["THEN heater.set(40%)", 30.5, 2.7],
-  ["REQUIRE fan == ON", 2.5, 9.2],
-  ["DELAY 30s", 14, 11.4],
-  ["ELSE vent.open(25%)", 25, 9.8],
-  ["WAIT sensor.ready", 3, 15.1],
-  ["IF co2 > 1200 AND door == OPEN", 20, 15.4],
+  ["fn(x) => x * 2", 30.5, 1.3],
+  ["0x3F9A // ?", 39, 3.1],
+  ["if (a && !b) retry()", 2.5, 9.2],
+  ["TODO: fix later", 14, 11.6],
+  ["null ?? undefined", 26, 9.9],
+  ["v2.0.1-beta", 3, 14.6],
+  ["while (true) { ... }", 19.5, 15.3],
+  ["#ff00aa", 38, 15.6],
+];
+
+// scribbles: loose hand-drawn squiggles, as if someone thought out loud here
+const SCRIBBLES = [
+  "M30,6.2 c1,-1.2 2,1.2 3,0 s2,1.2 3,0 s2,1.2 3,0 s2,1.4 3.2,0",
+  "M4,12.6 q2,-2 4,0 t4,0 t4,0",
+  "M33,12.4 c-2,1.5 1,3 3,1.5 s1,-3 -1.5,-2.2 s-1,3.2 2,3",
+  "M9.5,16.2 l1.4,-1 l1.2,1 l1.4,-1 l1.2,1 l1.4,-1",
 ];
 
 // nodes (plate coordinates, em) and the tangle of links between them, kept
-// to the right of and below the text, and running into the front strip
+// to the right of and below the text
 const NODES: [number, number][] = [
   [34, 5.6], [40.5, 4.2], [43.5, 9], [36.5, 11.8], [29.5, 7.6], [8, 12.6],
   [18.5, 13.2], [27.5, 12.6], [41, 13.6], [6.5, 15.9], [14.5, 16.3], [31, 16], [43, 16.1],
@@ -64,6 +72,9 @@ export default function HeroIso() {
   // reduced motion means the screen is already in place
   const [choice, setChoice] = useState<boolean | null>(null);
   const placed = choice ?? !motion;
+  // focus ring only when the focus came from the keyboard; some browsers
+  // treat a click on this button as :focus-visible and draw it anyway
+  const [kbd, setKbd] = useState(false);
 
   useEffect(() => {
     if (!motion) return;
@@ -72,8 +83,8 @@ export default function HeroIso() {
       if (!w) return;
       const px = e.clientX / window.innerWidth - 0.5;
       const py = e.clientY / window.innerHeight - 0.5;
-      w.style.setProperty("--rz", `${(px * 6).toFixed(2)}deg`);
-      w.style.setProperty("--rx", `${(py * -5).toFixed(2)}deg`);
+      w.style.setProperty("--rz", `${(px * 11).toFixed(2)}deg`);
+      w.style.setProperty("--rx", `${(py * -8).toFixed(2)}deg`);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
@@ -95,6 +106,9 @@ export default function HeroIso() {
           <svg className="iso-tangle" viewBox="0 0 46 17" preserveAspectRatio="none">
             {LINKS.map((l, i) => (
               <path key={i} d={curve(l)} />
+            ))}
+            {SCRIBBLES.map((d, i) => (
+              <path key={`s${i}`} d={d} className="iso-scribble" />
             ))}
             {NODES.map(([x, y], i) => (
               <circle key={i} cx={x} cy={y} r={0.28} />
@@ -123,6 +137,11 @@ export default function HeroIso() {
           </div>
         </div>
 
+        {/* a ripple runs out from the screen's edge when it hits */}
+        <div className="iso-layer iso-ripple-wrap">
+          <div className="iso-ripple" />
+        </div>
+
         {/* 02 Screen: clean, floating, until it is placed */}
         <div className="iso-screen-wrap">
           <div className={`iso-float${motion ? " is-on" : ""}`}>
@@ -139,7 +158,12 @@ export default function HeroIso() {
       <button
         type="button"
         data-hand
-        className="iso-hit"
+        className={`iso-hit${kbd ? " is-kbd" : ""}`}
+        onKeyUp={(e) => {
+          if (e.key === "Tab" || e.key === "Enter" || e.key === " ") setKbd(true);
+        }}
+        onPointerDown={() => setKbd(false)}
+        onBlur={() => setKbd(false)}
         aria-pressed={placed}
         aria-label={placed ? "Lift the screen off the complexity" : "Place the screen over the complexity"}
         onClick={() => setChoice(!placed)}
