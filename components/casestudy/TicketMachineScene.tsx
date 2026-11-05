@@ -5,8 +5,8 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 /**
  * Before the redesign: the user types a ticket, hits Send, and does it again.
  * A ticket machine on an isometric floor. The screen fills with a new ticket,
- * the SEND key goes down, a ticket pops out of the slot and lands on the
- * support queue, which keeps growing. Line art on the same dark card as the
+ * the SEND key goes down, and one more sheet lands on the support queue,
+ * which keeps growing. Line art on the same dark card as the
  * greenhouse scene, so it reuses the gh-* and hd-* base styles.
  */
 
@@ -50,7 +50,9 @@ function Label({ x, y, k, v, on }: { x: number; y: number; k: string; v: string;
 const MACHINE: Pt = [600, 470];
 const KEYBOARD: Pt = [250, 560];
 const QUEUE: Pt = [960, 540];
-const LOOP = 4; // seconds per ticket
+const LOOP = 4; // seconds per ticket, matches the 4s CSS loop
+const PRESS = 0.54; // the SEND key is down at 52–56% of the loop
+const BASE = 7, MAX = 16; // sheets in the queue at rest, and at most
 
 /* a coiled cable between two points */
 function coil(a: Pt, b: Pt, turns = 14, r = 7) {
@@ -76,21 +78,25 @@ const subscribeMotion = (cb: () => void) => {
 
 export default function TicketMachineScene() {
   const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
-  const [count, setCount] = useState(128);
+  const [sent, setSent] = useState(0);
 
+  // one more ticket each time the SEND key goes down
   useEffect(() => {
     if (!motion) return;
-    const id = window.setInterval(() => setCount((c) => c + 1), LOOP * 1000);
-    return () => window.clearInterval(id);
+    let id = 0;
+    const first = window.setTimeout(() => {
+      setSent((n) => n + 1);
+      id = window.setInterval(() => setSent((n) => n + 1), LOOP * 1000);
+    }, LOOP * PRESS * 1000);
+    return () => {
+      window.clearTimeout(first);
+      window.clearInterval(id);
+    };
   }, [motion]);
+  const sheets = Math.min(BASE + sent, MAX);
 
   const M = iso(MACHINE[0], MACHINE[1]);
   const K = iso(KEYBOARD[0], KEYBOARD[1]);
-  const slotIn = M(0, 0, 232);
-  const slotTop = M(0, 0, 318);
-  const pileTop = iso(QUEUE[0], QUEUE[1])(0, 0, 44);
-  // out of the slot, straight up, then across to the queue
-  const flight = `M${slotIn[0]},${slotIn[1]} L${slotTop[0]},${slotTop[1]} C${slotTop[0] + 90},${slotTop[1] - 40} ${pileTop[0] - 40},${pileTop[1] - 200} ${pileTop[0]},${pileTop[1]}`;
   const on = motion ? " is-on" : "";
 
   return (
@@ -163,37 +169,17 @@ export default function TicketMachineScene() {
         <Label x={410} y={78} k="SUPPORT FORM" v="one more ticket" on />
 
         {/* the queue */}
-        {Array.from({ length: 7 }, (_, n) => (
-          <Box key={n} at={QUEUE} x={-50} y={-34} z={n * 6} w={100} d={68} h={4} className="tm-paper" />
-        ))}
-        <Label x={880} y={620} k="SUPPORT QUEUE" v={`${count} tickets`} />
+        {Array.from({ length: sheets }, (_, n) => {
+          const sheet = <Box at={QUEUE} x={-50} y={-34} z={n * 6} w={100} d={68} h={4} className="tm-paper" />;
+          // the newest sheet drops onto the pile; keyed by `sent` so it lands again at the cap
+          return n === sheets - 1 && sent > 0 ? (
+            <g key={`new-${sent}`} className="tm-land">{sheet}</g>
+          ) : (
+            <g key={n}>{sheet}</g>
+          );
+        })}
+        <Label x={880} y={620} k="SUPPORT QUEUE" v={`${128 + sent} tickets`} />
 
-        {/* the ticket in flight */}
-        {motion && (
-          <g className="tm-flying">
-            {/* a printed ticket: notched sides, a tear line */}
-            <path d="M-20,-30 h40 v22 a5,5 0 0 0 0,10 v28 h-40 v-28 a5,5 0 0 0 0,-10 z" />
-            <path d="M-13,-21 h20 M-13,-14 h26 M-15,-3 h30" className="tm-tear" />
-            <path d="M-13,9 h22 M-13,16 h16" />
-            {/* rises slowly out of the slot like a print, then glides to the queue */}
-            <animateMotion
-              dur={`${LOOP}s`}
-              repeatCount="indefinite"
-              path={flight}
-              keyPoints="0;0;0.3;1"
-              keyTimes="0;0.56;0.8;1"
-              calcMode="spline"
-              keySplines="0 0 1 1; 0.25 0.1 0.4 1; 0.45 0 0.3 1"
-            />
-            <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.56;0.58;0.97;1" />
-          </g>
-        )}
-
-        {/* slot on top, drawn after the ticket so the ticket rises out of it */}
-        <Box at={MACHINE} x={-46} y={-16} z={240} w={92} d={32} h={12} />
-        <g transform={faceTop(MACHINE, -40, -6, 252)}>
-          <rect x={0} y={0} width={80} height={12} rx={2} className="tm-slot" />
-        </g>
       </svg>
     </figure>
   );
