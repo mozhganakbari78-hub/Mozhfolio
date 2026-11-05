@@ -7,20 +7,40 @@ import TicketRatio from "./TicketRatio";
 
 const rewrites: Rewrite[] = [
   {
-    label: "Cancellation blocked by permission",
+    label: "Internal jargon",
     before: {
-      fa: "شما ایجادکننده درخواست نیستید",
-      en: "“You are not the creator of the request.”",
+      fa: "پارامترهای ورودی نامعتبر میباشد",
+      en: "“Invalid input parameters.”",
     },
     after: {
-      fa: "شما ایجادکننده درخواست نیستید و دسترسی به لغو آن برای شما وجود ندارد؛ لطفاً با پشتیبانی تماس بگیرید.",
-      en: "“You are not the creator of this request, so you do not have access to cancel it. Please contact support.”",
+      fa: "اطلاعات حساب به‌درستی وارد نشده‌اند. لطفاً اطلاعات را بررسی کرده و دوباره تلاش کنید.",
+      en: "“The account details weren’t entered correctly. Please check them and try again.”",
     },
-    changes: [
-      "accusatory phrasing → neutral rule",
-      "broken clause → one readable sentence",
-      "dead end → escalation path",
-    ],
+    changes: ["system language → the user’s words", "dead end → check and retry"],
+  },
+  {
+    label: "A vague next step",
+    before: {
+      fa: "فایل اکسل آپلود شده منسوخ شده است ، لطفا از فایل  جدید استفاده نمایید",
+      en: "“The uploaded Excel file is obsolete. Please use a new file.”",
+    },
+    after: {
+      fa: "فایل اکسل بارگذاری‌شده با نسخه فعلی سامانه سازگار نیست، لطفاً از فایل نمونه جدید استفاده نمایید.",
+      en: "“The uploaded Excel file isn’t compatible with the current version of the system. Please use the new sample file.”",
+    },
+    changes: ["“obsolete” → why it fails", "“a new file” → which file"],
+  },
+  {
+    label: "A cause outside our control",
+    before: {
+      fa: "خطا در سرویس استعلام کارت",
+      en: "“Card inquiry service error.”",
+    },
+    after: {
+      fa: "سرویس استعلام کارت در حال حاضر در دسترس نیست؛ لطفاً چند دقیقه دیگر دوباره تلاش کنید و در صورت تداوم مشکل با پشتیبانی تماس بگیرید.",
+      en: "“The card inquiry service is unavailable right now. Please try again in a few minutes, and contact support if the problem continues.”",
+    },
+    changes: ["“error” → temporarily unavailable", "no next step → retry first, support only if it persists"],
   },
 ];
 
@@ -33,19 +53,19 @@ export default function ErrorMessagesCase() {
           <span className="cs-eyebrow">Case study · UX writing</span>
           <h1>Errors that say what&apos;s next</h1>
           <p className="cs-lede">
-            How a pattern I spotted in support tickets became a rewrite of ~2,000 error messages and
-            a writing standard for the whole platform.
+            How a pattern I spotted in support tickets became an audit of ~2,000 error messages and
+            a writing standard for every design we hand off.
           </p>
         </div>
 
         <div className="cs-hero-side">
           <CsGlance
             role="Product Designer, self-initiated"
-            team="Solo, with the backend team"
+            team="a fellow designer, the product owner, the backend team"
             results={[
-              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”", icon: "Ticket" },
-              { value: "~2,000", label: "messages audited, rewritten or moved to logs", icon: "DocumentMagnifyingGlass" },
-              { value: "3 rules", label: "now the platform standard", icon: "ListBullet" },
+              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”, after the first phase", icon: "Ticket" },
+              { value: "~2,000", label: "messages audited; the first phase is live: transfers, cheques, card services", icon: "DocumentMagnifyingGlass" },
+              { value: "3 rules", label: "now in every design handoff", icon: "ListBullet" },
             ]}
           />
         </div>
@@ -85,6 +105,26 @@ export default function ErrorMessagesCase() {
           A few screenshots are an anecdote. I asked the backend team to export every error message
           the platform could show: about 2,000. The same three problems kept repeating: internal
           jargon, no next step, and blame.
+        </p>
+      </section>
+
+      {/* 3b */}
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>Evidence first, then a phased plan</h2>
+        <p>
+          I brought it to my fellow designer first, and together we sorted and read the tickets.
+          Then we took it to the product owner with two things side by side: error messages as
+          users saw them, and the support tickets that were nothing but a screenshot and &ldquo;what
+          do I do now?&rdquo;. That put it on the roadmap.
+        </p>
+        <p>
+          The backend team pushed back. Every rewritten message meant changes in their code, across
+          about 2,000 messages. So we phased it: first the flows people use most and where an error
+          costs the most (money transfers, cheques and card services), then the rest.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> less-used flows keep their old messages for longer.
         </p>
       </section>
 
@@ -129,6 +169,20 @@ export default function ErrorMessagesCase() {
         </p>
       </section>
 
+      {/* 6b */}
+      <section className="cs-reveal">
+        <span className="cs-num">Decision 4</span>
+        <h2>When the cause isn&apos;t ours, say so</h2>
+        <p>
+          Some errors come from outside services, such as card inquiry. Neither the user nor we can
+          fix them, so the message says what it can: try again in a few minutes, and contact support
+          if it keeps happening. Support is the last step, there for trust, not a dead end.
+        </p>
+        <p className="cs-trade">
+          <b>Trade-off:</b> these messages still send some users to support.
+        </p>
+      </section>
+
       {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">The change</span>
@@ -142,7 +196,12 @@ export default function ErrorMessagesCase() {
         <h2>Fewer screenshots in the support queue</h2>
         <p>
           Error tickets that only asked &ldquo;what do I do now?&rdquo; went from about 6 in 10 to 3
-          in 10. The three rules are now how every new message is written.
+          in 10 after the first phase. Most of what&apos;s left is about how features work, not what
+          an error means. When a rewritten message still confused people, we went back and fixed it.
+        </p>
+        <p>
+          The three rules are now part of how we design. Every new design specifies its error
+          states, written to the rules, and goes to developers in a handoff format we defined.
         </p>
         <TicketRatio />
         <p className="cs-takeaway">

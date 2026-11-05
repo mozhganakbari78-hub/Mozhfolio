@@ -21,7 +21,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "error-messages",
     title: "Errors that say what's next",
     short:
-      "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
