@@ -57,12 +57,13 @@ export default function HeroIso() {
 
         {/* the answer: flat, square, on the plate */}
         <div className="iso-layer iso-in-obvious">
-          <div className="iso-tile iso-obvious">Obvious screens.</div>
+          <div className="iso-tile iso-obvious"><span className="iso-tag"><b>02</b>Screen</span>Obvious screens.</div>
         </div>
 
         {/* the problem: up in the air and crooked; its outline waits on the plate */}
-        <div className="iso-layer iso-ghost-wrap iso-in-plate">
-          <div className="iso-tile iso-hard iso-ghost">Hard problems.</div>
+        {/* entrance on the tile, not the wrap: the wrap's opacity is the landed toggle */}
+        <div className="iso-layer iso-ghost-wrap">
+          <div className="iso-tile iso-hard iso-ghost iso-in-plate">Hard problems.</div>
         </div>
         {/* ripple on impact, same footprint as the tile */}
         <div className="iso-layer iso-ripple-wrap">
@@ -71,7 +72,7 @@ export default function HeroIso() {
         <div className="iso-hard-wrap">
           <div className={`iso-float${motion ? " is-on" : ""}`}>
             <div className="iso-layer iso-in-hard">
-              <div className="iso-tile iso-hard">Hard problems.</div>
+              <div className="iso-tile iso-hard"><span className="iso-tag"><b>01</b>Problem</span>Hard problems.</div>
             </div>
           </div>
         </div>

@@ -184,8 +184,11 @@ button:disabled,
 }
 .iso-world * { transform-style: preserve-3d; }
 .iso-plate {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015));
+  position: absolute; inset: 0; border-radius: .5em;
+  /* a canvas: fine dot grid over a soft sheen */
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .09) .09em, transparent .11em) 0 0 / 1.5em 1.5em,
+    linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .012) 70%);
   border: 1px solid rgba(255, 255, 255, .16);
 }
 .iso-guide { position: absolute; border: 0 dashed rgba(255, 255, 255, .16); }
@@ -203,14 +206,38 @@ button:disabled,
 }
 .iso-tile {
   position: absolute; white-space: nowrap; line-height: 1;
-  padding: .32em .5em .38em; letter-spacing: -.035em; font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, .22);
-  background: linear-gradient(135deg, rgba(34, 36, 41, .92), rgba(20, 21, 24, .92));
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .3);
+  padding: .34em .52em .4em; border-radius: .12em;
+  font-weight: 550; letter-spacing: -.045em;
+  font-feature-settings: "ss01", "kern";
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: linear-gradient(160deg, #26282d 0%, #1a1b1f 55%, #151619 100%);
+  /* top-edge highlight, like light catching a slab */
+  box-shadow: inset 0 .03em 0 rgba(255, 255, 255, .1), inset 0 -.04em .08em rgba(0, 0, 0, .35);
 }
+/* thickness: the two faces that face the viewer, folded down toward the plate */
+.iso-tile::before, .iso-tile::after { content: ""; position: absolute; pointer-events: none; }
+.iso-tile::before {
+  left: -1px; right: -1px; top: 100%; height: .09em;
+  background: linear-gradient(#2c2e33, #0e0f11); transform-origin: top; transform: rotateX(-90deg);
+}
+.iso-tile::after {
+  left: 100%; top: -1px; bottom: -1px; width: .09em;
+  background: linear-gradient(90deg, #232529, #0b0c0e); transform-origin: left; transform: rotateY(90deg);
+}
+.iso-ghost::before, .iso-ghost::after, .iso-ripple::before, .iso-ripple::after { display: none; }
+/* small layer name above each tile, as in a design tool */
+.iso-tag {
+  position: absolute; left: 0; bottom: calc(100% + .32em); font-size: .2em; line-height: 1;
+  font-family: var(--font-mono), monospace; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: #6f737c; white-space: nowrap;
+}
+.iso-tag b { color: #9aa0aa; font-weight: 500; margin-right: .6em; }
 .iso-layer { position: absolute; inset: 0; }
-.iso-obvious { font-size: 3.9em; left: .6em; top: 2.45em; color: #f2f3f5; transform: translateZ(.02em); }
-.iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #a9adb6; }
+.iso-obvious {
+  font-size: 3.9em; left: .6em; top: 2.45em; transform: translateZ(.09em);
+  color: #f5f6f8; text-shadow: 0 0 .35em rgba(255, 255, 255, .12);
+}
+.iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #8e929b; }
 /* where the floating tile would land: a dashed outline on the plate */
 .iso-ghost { color: transparent; background: none; border: 1px dashed rgba(255, 255, 255, .22); box-shadow: none; }
 .iso-ghost-wrap { transform: translateZ(.03em); transition: opacity .5s ease .5s; }
@@ -224,33 +251,33 @@ button:disabled,
 
 /* Lit vs unlit. Going back to unlit has no delay: the light switches off at
    the click. Going to lit waits for the impact (.57s into the drop). */
-.iso-hard { transition: color .12s, border-color .12s, box-shadow .12s; }
+.iso-hard { transition: color .12s, border-color .12s, box-shadow .12s, text-shadow .12s; }
 .iso-ghost-wrap { transition: opacity .2s; }
 .iso-plate { transition: border-color .12s; }
 .iso-world.is-landed .iso-hard:not(.iso-ghost):not(.iso-ripple) {
-  color: #f2f3f5; border-color: rgba(255, 255, 255, .38);
-  box-shadow: 0 0 1.4em rgba(255, 255, 255, .1);
-  transition: color .15s .57s, border-color .15s .57s, box-shadow .3s .57s;
+  color: #f5f6f8; border-color: rgba(255, 255, 255, .36); text-shadow: 0 0 .35em rgba(255, 255, 255, .14);
+  box-shadow: inset 0 .03em 0 rgba(255, 255, 255, .14), 0 0 1.2em rgba(255, 255, 255, .09);
+  transition: color .15s .57s, border-color .15s .57s, box-shadow .3s .57s, text-shadow .3s .57s;
 }
 .iso-world.is-landed .iso-ghost-wrap { opacity: 0; transition: opacity .1s .57s; }
 .iso-world.is-landed .iso-plate { border-color: rgba(255, 255, 255, .28); transition: border-color .2s .57s; }
 
 /* Drop: anticipation (a small lift), an accelerating fall, the hit, two
    shrinking bounces, settle. Lift: quick ease-out rise with a small overshoot. */
-.iso-world.is-landed .iso-hard-wrap { transform: translateZ(.06em); animation: iso-land .95s both; }
+.iso-world.is-landed .iso-hard-wrap { transform: translateZ(.3em); animation: iso-land .95s both; }
 .iso-world.is-landed .iso-float { animation: none; }
 .iso-world.was-landed:not(.is-landed) .iso-hard-wrap { animation: iso-lift .75s both; }
 @keyframes iso-land {
   0%   { transform: translateZ(10em) rotateZ(-5deg); animation-timing-function: cubic-bezier(.3, 0, .5, 1); }
   16%  { transform: translateZ(11.6em) rotateZ(-6deg); animation-timing-function: cubic-bezier(.6, 0, 1, .6); }
-  60%  { transform: translateZ(.06em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
+  60%  { transform: translateZ(.3em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
   72%  { transform: translateZ(1em) rotateZ(.5deg); animation-timing-function: cubic-bezier(.5, 0, 1, .5); }
-  82%  { transform: translateZ(.06em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
+  82%  { transform: translateZ(.3em) rotateZ(0deg); animation-timing-function: cubic-bezier(0, .5, .5, 1); }
   90%  { transform: translateZ(.3em) rotateZ(0deg); animation-timing-function: cubic-bezier(.5, 0, 1, .5); }
-  100% { transform: translateZ(.06em) rotateZ(0deg); }
+  100% { transform: translateZ(.3em) rotateZ(0deg); }
 }
 @keyframes iso-lift {
-  0%   { transform: translateZ(.06em) rotateZ(0deg); animation-timing-function: cubic-bezier(.15, .8, .3, 1); }
+  0%   { transform: translateZ(.3em) rotateZ(0deg); animation-timing-function: cubic-bezier(.15, .8, .3, 1); }
   70%  { transform: translateZ(10.7em) rotateZ(-5.6deg); animation-timing-function: ease-in-out; }
   100% { transform: translateZ(10em) rotateZ(-5deg); }
 }
