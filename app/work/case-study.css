@@ -1810,6 +1810,7 @@
    --warn so it sits on the card rather than glowing off it. */
 .cs-split {
   --split-self: #0174DC;
+  --split-case: #2a9d8f;
   --split-support: #c0892f;
   margin: 16px 0 6px;
 }
@@ -1835,6 +1836,10 @@
   color: var(--accent-ink);
   border-bottom: 1px solid rgba(124, 184, 245, .35);
 }
+.cs-split-brackets .b.is-case {
+  color: #5fd0c2;
+  border-bottom: 1px solid rgba(95, 208, 194, .35);
+}
 .cs-split-brackets .b.is-support {
   color: var(--warn);
   border-bottom: 1px solid rgba(224, 180, 85, .3);
@@ -1856,6 +1861,7 @@
   transform-origin: left center;
 }
 .cs-split-bar .seg.is-self { background: var(--split-self); }
+.cs-split-bar .seg.is-case { background: var(--split-case); }
 .cs-split-bar .seg.is-support { background: var(--split-support); }
 .cs-split-bar .seg:first-child { border-radius: 4px 2px 2px 4px; }
 .cs-split-bar .seg:last-child { border-radius: 2px 4px 4px 2px; }
@@ -1905,6 +1911,7 @@
   transform: translateY(1px);
 }
 .cs-split-key .chip.is-self { background: var(--split-self); }
+.cs-split-key .chip.is-case { background: var(--split-case); }
 .cs-split-key .chip.is-support { background: var(--split-support); }
 .cs-split-key .pct {
   font-family: var(--font-mono), monospace;
