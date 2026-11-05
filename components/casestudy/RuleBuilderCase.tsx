@@ -24,9 +24,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "4 of 4", label: "greenhouse managers built a rule without help in testing", art: "fourOfFour" },
-              { value: "2 changes", label: "came from that testing: live readings and timed waits", art: "testing" },
-              { value: "Shipped", label: "live in production, in Persian (RTL)", art: "rtl" },
+              { value: "4 of 4", label: "greenhouse managers built a rule without help in testing" },
+              { value: "2 changes", label: "came from that testing: live readings and timed waits" },
+              { value: "Shipped", label: "live in production, in Persian (RTL)" },
             ]}
           />
         </div>
