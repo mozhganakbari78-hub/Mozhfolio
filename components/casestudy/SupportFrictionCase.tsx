@@ -4,6 +4,7 @@ import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
+import HelpDeskScene from "./HelpDeskScene";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -29,9 +30,9 @@ export default function SupportFrictionCase() {
             role="Product Designer, research to UI"
             team="Product, Support, Frontend lead"
             results={[
-              { value: "4 in 5", label: "tickets didn't need a person", icon: "Inbox" },
+              { value: "37%", label: "of ~1,000 tickets had one fixed answer, often a bank policy", icon: "Inbox" },
+              { value: "~15% fewer", label: "guidance questions after launch, by my own count", icon: "Ticket" },
               { value: "1 page", label: "FAQ and ticket merged, with answers as users type", icon: "DocumentText" },
-              { value: "Live", label: "real user behaviour is shaping phase 2", icon: "Signal" },
             ]}
           />
         </div>
@@ -64,13 +65,38 @@ export default function SupportFrictionCase() {
       {/* 3 */}
       <section className="cs-reveal">
         <span className="cs-num">The tickets</span>
-        <h2>Many tickets weren&apos;t support requests at all</h2>
+        <h2>Many tickets had one fixed answer</h2>
         <p>
           A large share just needed information. &ldquo;How do I add a signatory?&rdquo; has one
           answer: bank policy requires a branch visit, and neither we nor support can change that.
           Yet users called to ask, filling the phone lines and taking the support team&apos;s time.
         </p>
         <TicketSplit />
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">The long tail</span>
+        <h2>No short list would cover it</h2>
+        <p>
+          The most common topic, account statements, was only 1.5% of tickets. The twelve most
+          common together came to about a tenth. A curated list of top questions would miss most
+          users, so whatever we built had to search everything.
+        </p>
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>Answer first, ask later</h2>
+        <p>
+          We took the analysis to the PM and product owner as a short deck: the ticket breakdown,
+          what each group needed, and one principle: answer first, ask later. It was approved in the
+          same meeting. The PM wanted the help desk spending less time on questions with a fixed
+          answer and more on the financial issues that need a person.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <HelpDeskScene />
       </section>
 
       {/* 4 */}
@@ -80,7 +106,9 @@ export default function SupportFrictionCase() {
         <p>
           Users still wouldn&apos;t go looking. The answers had to reach them where they already
           were: in the middle of filing a ticket. But without blocking them. Forcing users to search
-          the FAQ before they can ask for help would only frustrate them.
+          the FAQ before they can ask for help would only frustrate them. And 43% of tickets were
+          about the user&apos;s own case. Blocking the ticket form would hurt the people with the
+          most at stake.
         </p>
       </section>
 
@@ -138,8 +166,9 @@ export default function SupportFrictionCase() {
         <span className="cs-num">Now</span>
         <h2>Live, and learning from real users</h2>
         <p>
-          The merged page is live. We&apos;re studying how users search and what they type, to plan
-          the next phase of matching.
+          The merged page is live. By my own count of the support queue, guidance questions fell by
+          about 15% after launch, and most of what&apos;s left is about how features work. We&apos;re
+          now studying what users type to plan the next phase of matching.
         </p>
         <p className="cs-takeaway">
           <span>What I learned</span>
