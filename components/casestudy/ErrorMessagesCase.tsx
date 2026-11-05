@@ -17,7 +17,6 @@ const rewrites: Rewrite[] = [
       en: "“The account details weren’t entered correctly. Please check them and try again.”",
     },
     changes: ["system language → the user’s words", "dead end → check and retry"],
-    hint: "retry",
   },
   {
     label: "A vague next step",
@@ -30,7 +29,6 @@ const rewrites: Rewrite[] = [
       en: "“The uploaded Excel file isn’t compatible with the current version of the system. Please use the new sample file.”",
     },
     changes: ["“obsolete” → why it fails", "“a new file” → which file"],
-    hint: "file",
   },
   {
     label: "A cause outside our control",
@@ -43,7 +41,6 @@ const rewrites: Rewrite[] = [
       en: "“The card inquiry service is unavailable right now. Please try again in a few minutes, and contact support if the problem continues.”",
     },
     changes: ["“error” → temporarily unavailable", "no next step → retry first, support only if it persists"],
-    hint: "clock",
   },
 ];
 
@@ -56,8 +53,8 @@ export default function ErrorMessagesCase() {
           <span className="cs-eyebrow">Case study · UX writing</span>
           <h1>Errors that say what&apos;s next</h1>
           <p className="cs-lede">
-            How a pattern I spotted in support tickets became a rewrite of ~2,000 error messages and
-            a writing standard for the whole platform.
+            How a pattern I spotted in support tickets became an audit of ~2,000 error messages and
+            a writing standard for every design we hand off.
           </p>
         </div>
 

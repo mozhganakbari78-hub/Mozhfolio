@@ -2576,5 +2576,10 @@
   .gh-drops circle { opacity: .6; }
 }
 
-/* ── error rewrites: a halftone illustration above each message ────── */
-.cs-msg-row .cs-escene { display: block; width: 100%; max-width: 230px; height: auto; margin: 4px 0 12px; overflow: visible; }
+/* ── error rewrites: compact before/after pairs ───────────────────────── */
+.cs-msg-set { gap: 12px; }
+.cs-msg-head { padding: 10px 16px; }
+.cs-msg-row { padding: 12px 16px; }
+.cs-msg-row .tag { margin-bottom: 5px; }
+.cs-msg-row .fa { margin-bottom: 5px; }
+.cs-msg-changes { padding: 9px 16px; }
