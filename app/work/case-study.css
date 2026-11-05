@@ -2493,61 +2493,28 @@
 .cs-placeholder-tag { font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--warn); }
 .cs-placeholder-alt { max-width: 520px; font-size: 15px; line-height: 1.55; color: var(--ink-faint); }
 
-/* ── hero results: dark cards with a coloured glow in the corner ─────── */
+/* ── hero results: flat dark cards, a small coloured icon, a quiet dot ── */
 .cs-results li {
-  --g: 47, 134, 245;
-  isolation: isolate;
-  padding: 22px 22px 24px; min-height: 0; gap: 10px;
-  background: #111215; border-color: rgba(255, 255, 255, .08);
-  transition: transform .25s ease, border-color .25s ease;
+  --g: 124, 184, 245;
+  padding: 26px 26px 28px; min-height: 0; gap: 0;
+  background: #1a1a1c; border: 1px solid transparent; border-radius: 24px;
+  transition: transform .25s ease, background-color .25s ease, border-color .25s ease;
 }
-.cs-results li:nth-child(2) { --g: 22, 178, 255; }
-.cs-results li:nth-child(3) { --g: 43, 190, 170; }
-/* the glow */
-.cs-results li::before {
-  display: block; content: ""; position: absolute; z-index: -1;
-  top: -55%; right: -25%; width: 80%; height: 150%; inset-inline-start: auto; left: auto;
-  background: radial-gradient(closest-side, rgba(var(--g), .8), rgba(var(--g), .25) 55%, transparent 100%);
-  filter: blur(4px); pointer-events: none; transition: opacity .3s ease, transform .4s ease;
-  opacity: .85;
-}
-/* faint folded shapes over the glow */
-.cs-results li::after {
-  display: block; content: ""; position: absolute; z-index: -1;
-  top: 0; right: 0; width: 46%; height: 70%; border-radius: 0;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .03));
-  clip-path: polygon(36% 0, 100% 0, 100% 22%, 86% 38%, 100% 54%, 100% 62%, 62% 62%, 80% 38%, 18% 38%);
-  pointer-events: none;
-}
-.cs-results li:hover { transform: translateY(-3px); border-color: rgba(var(--g), .45); }
-.cs-results li:hover::before { opacity: 1; transform: scale(1.06); }
-/* sparkle dots */
-.cs-results .fx {
-  position: absolute; z-index: -1; top: 0; right: 0; width: 60%; height: 80%; pointer-events: none;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .55) 0 1.4px, transparent 2px),
-    radial-gradient(circle at 22% 34%, rgba(255, 255, 255, .45) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 46% 70%, rgba(255, 255, 255, .5) 0 1.2px, transparent 1.8px),
-    radial-gradient(circle at 70% 12%, rgba(255, 255, 255, .35) 0 1.6px, transparent 2.2px),
-    radial-gradient(circle at 92% 64%, rgba(255, 255, 255, .45) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 36% 52%, rgba(255, 255, 255, .25) 0 2.4px, transparent 3px);
-  animation: cs-twinkle 4s ease-in-out infinite;
-}
-.cs-results li:nth-child(2) .fx { animation-delay: -1.3s; }
-.cs-results li:nth-child(3) .fx { animation-delay: -2.6s; }
-@keyframes cs-twinkle { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-.cs-results .n {
-  font-family: var(--font-code), monospace; font-size: 12px; letter-spacing: .08em;
-  color: rgb(var(--g)); filter: brightness(1.25);
+.cs-results li:nth-child(2) { --g: 110, 214, 255; }
+.cs-results li:nth-child(3) { --g: 110, 231, 183; }
+.cs-results li::before, .cs-results li::after { display: none; }
+.cs-results li:hover { transform: translateY(-2px); background: #1e1e21; border-color: rgba(var(--g), .22); }
+.cs-results .ic { width: 26px; height: 26px; color: rgb(var(--g)); margin-bottom: 22px; }
+.cs-results .dot {
+  position: absolute; top: 26px; right: 26px; width: 22px; height: 22px; border-radius: 50%;
+  background: #2c2c30;
 }
 .cs-root .cs-results .v {
   background: none; color: #fff; -webkit-background-clip: initial; background-clip: initial;
-  margin-top: 18px;
+  font-size: clamp(21px, 1.9vw, 25px); font-weight: 600; letter-spacing: -.01em; line-height: 1.2;
+  margin: 0 0 10px; padding-right: 30px;
 }
-.cs-root .cs-results .l { color: rgba(238, 240, 244, .72); max-width: 30ch; }
-.cs-results.is-four li { padding-bottom: 18px; }
-@media (prefers-reduced-motion: reduce) { .cs-results .fx { animation: none; } }
+.cs-root .cs-results .l { font-size: 15.5px; line-height: 1.5; color: #8f9199; max-width: 30ch; }
 
 /* ── greenhouse scene (rule builder): line art with live motion ─────── */
 .gh-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; }
