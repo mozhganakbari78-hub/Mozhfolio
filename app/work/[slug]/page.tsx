@@ -4,7 +4,7 @@ import { caseStudies, getCaseStudy } from "@/data/caseStudies";
 import Editorial from "@/components/casestudy/Editorial";
 import PasswordGate from "@/components/casestudy/PasswordGate";
 import SupportFrictionCase from "@/components/casestudy/SupportFrictionCase";
-// import BatchTransferCase from "@/components/casestudy/BatchTransferCase"; // hidden for now
+import BatchTransferCase from "@/components/casestudy/BatchTransferCase";
 import DesignSystemCase from "@/components/casestudy/DesignSystemCase";
 import ErrorMessagesCase from "@/components/casestudy/ErrorMessagesCase";
 import RuleBuilderCase from "@/components/casestudy/RuleBuilderCase";
@@ -14,7 +14,7 @@ import "../password-gate.css";
 
 const cases: Record<string, React.ComponentType> = {
   "reducing-support-friction": SupportFrictionCase,
-  // "batch-transfer": BatchTransferCase, // hidden for now
+  "batch-transfer": BatchTransferCase,
   "design-system": DesignSystemCase,
   "error-messages": ErrorMessagesCase,
   "iot-rule-builder": RuleBuilderCase,
