@@ -179,9 +179,10 @@ const Brick = ({ x, y, c, delay }: { x: number; y: number; c: string; delay: num
 function DesignSystem() {
   // Same bricks, three buildings: one set of parts builds every brand.
   const towers = [
-    { x: 58, rows: 4, c: A },
-    { x: 118, rows: 6, c: "#2bb3a3" },
-    { x: 178, rows: 3, c: "#9a7cf0" },
+    { x: 46, rows: 4, c: A },
+    { x: 94, rows: 6, c: "#2bb3a3" },
+    { x: 142, rows: 3, c: "#e8c34a" },
+    { x: 190, rows: 2, c: "#9a7cf0" },
   ];
   const starts = towers.map((_, i) => towers.slice(0, i).reduce((n, t) => n + t.rows, 0));
   return (
@@ -189,7 +190,7 @@ function DesignSystem() {
       <div className="grid gap-2">
         <motion.div className="flex items-baseline justify-between" {...rise(0)}>
           <span style={{ ...Mono, color: SUB }}>same bricks</span>
-          <span style={{ ...Mono, color: AI }}>3 brands</span>
+          <span style={{ ...Mono, color: AI }}>4 products</span>
         </motion.div>
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
           {/* loose bricks: the shared parts */}
@@ -209,9 +210,9 @@ function DesignSystem() {
           ))}
           {/* crane over the purple tower, lowering one more brick */}
           <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.4 }}>
-            <line x1={236} y1={GROUND} x2={236} y2={8} stroke={LINE} strokeWidth={1.5} />
-            <line x1={170} y1={8} x2={250} y2={8} stroke={LINE} strokeWidth={1.5} />
-            <line x1={236} y1={8} x2={250} y2={20} stroke={LINE} strokeWidth={1} />
+            <line x1={240} y1={GROUND} x2={240} y2={8} stroke={LINE} strokeWidth={1.5} />
+            <line x1={186} y1={8} x2={254} y2={8} stroke={LINE} strokeWidth={1.5} />
+            <line x1={240} y1={8} x2={254} y2={20} stroke={LINE} strokeWidth={1} />
           </motion.g>
           <motion.g
             initial={{ y: -20, opacity: 0 }}
@@ -219,15 +220,15 @@ function DesignSystem() {
             viewport={{ once: true }}
             transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
           >
-            <line x1={189} y1={8} x2={189} y2={46} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
-            <rect x={183} y={46} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
-            <rect x={192} y={46} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
-            <rect x={178} y={49} width={BW} height={BH} rx={2} fill="#9a7cf0" opacity={0.5} stroke="#9a7cf0" strokeWidth={1} />
+            <line x1={201} y1={8} x2={201} y2={58} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
+            <rect x={195} y={58} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
+            <rect x={204} y={58} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
+            <rect x={190} y={61} width={BW} height={BH} rx={2} fill="#9a7cf0" opacity={0.5} stroke="#9a7cf0" strokeWidth={1} />
           </motion.g>
           <line x1={0} x2={260} y1={GROUND + 0.5} y2={GROUND + 0.5} stroke={LINE} strokeWidth={1.2} />
         </svg>
         <motion.span style={{ ...Mono, color: SUB }} {...rise(1.4)}>
-          one set of parts, every brand built from it
+          one set of parts, every product built from it
         </motion.span>
       </div>
     </Frame>

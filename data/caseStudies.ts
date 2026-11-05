@@ -54,9 +54,9 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-system",
     title: "A design system engineers used",
     short:
-      "Built from scratch: tokens for light and dark, then renamed to match the code. Developer questions dropped from ~8 to ~3 a day.",
+      "Built from scratch, renamed to match the code, then split product from theme to carry four products. Developer questions dropped from ~8 to ~3 a day.",
     description:
-      "Building a design system inside a moving enterprise banking product: choosing adoption over theoretical purity, and turning consistency into operating infrastructure.",
+      "Building a design system on Ant Design for a corporate banking platform, renaming it to match the code, then growing it to four products by separating product identity from theme.",
     meta: "Design Systems · Governance",
     illustration: "designsystem",
   },
