@@ -258,7 +258,7 @@ button:disabled,
 }
 /* shadow of the floating tile: soft and faint when high, darker and tighter as it comes down */
 /* just above the flat tile, so the shadow falls on it as well as on the plate */
-.iso-shadow-wrap { transform: translateZ(.4em) rotateZ(-5deg); transition: opacity .2s; }
+.iso-shadow-wrap { transform: translateZ(.4em) rotateZ(-5deg); }
 /* .iso-tile.iso-shadow: must beat .iso-hard, which sets the text colour */
 .iso-tile.iso-shadow {
   background: rgba(0, 0, 0, .7); border-color: transparent; color: transparent; box-shadow: none; text-shadow: none;
@@ -273,6 +273,20 @@ button:disabled,
   50% { opacity: .28; filter: blur(.3em); transform: translateY(1.35em) scale(1.06) rotateZ(1.5deg); }
 }
 .iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .15s .5s; }
+/* on load the shadow arrives with the tile: it darkens as the tile drops in */
+.iso-shadow-enter { animation: iso-shadow-appear .95s cubic-bezier(.3, 0, .5, 1) .45s both; }
+@keyframes iso-shadow-appear { from { opacity: 0; } to { opacity: 1; } }
+/* on the lift the shadow leaves with the tile, same timing and overshoot as
+   iso-lift, then hands over to the float loop (which restarts in step with
+   the tile's own float) */
+.iso-world.was-landed:not(.is-landed) .iso-shadow.is-on {
+  animation: iso-shadow 6s ease-in-out infinite, iso-shadow-out .75s;
+}
+@keyframes iso-shadow-out {
+  0%   { opacity: .6; filter: blur(.08em); transform: none; animation-timing-function: cubic-bezier(.15, .8, .3, 1); }
+  70%  { opacity: .38; filter: blur(.25em); transform: translateY(1.2em) scale(1.04); animation-timing-function: ease-in-out; }
+  100% { opacity: .42; filter: blur(.22em); transform: translateY(1.15em) scale(1.03); }
+}
 .iso-world.is-landed .iso-shadow { animation: iso-shadow-in .57s cubic-bezier(.6, 0, 1, .6) both; }
 @keyframes iso-shadow-in {
   0% { opacity: .42; filter: blur(.22em); transform: translateY(1.15em) scale(1.03); }
@@ -361,7 +375,8 @@ button:disabled,
 @keyframes iso-drop { from { opacity: 0; transform: translateZ(6em); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .iso-world { transition: none; }
-  .iso-world .iso-hard-wrap, .iso-world .iso-ripple, .iso-world .iso-obvious, .iso-world .iso-shadow { animation: none !important; }
+  .iso-world .iso-hard-wrap, .iso-world .iso-ripple, .iso-world .iso-obvious, .iso-world .iso-shadow,
+  .iso-shadow-enter { animation: none !important; }
   .iso-in-plate, .iso-in-obvious, .iso-in-hard { animation: none; }
 }
 @media (min-width: 1024px) {

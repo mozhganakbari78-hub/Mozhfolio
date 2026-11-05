@@ -66,8 +66,12 @@ export default function HeroIso() {
           <div className="iso-tile iso-hard iso-ghost iso-in-plate">Hard problems.</div>
         </div>
         {/* the floating tile's shadow, cast on the plate and the other tile */}
+        {/* three levels: the wrap hides it when landed, the middle one fades it in on
+            load with the tile's drop, the tile itself carries the float/land/lift motion */}
         <div className="iso-layer iso-shadow-wrap">
-          <div className={`iso-tile iso-hard iso-shadow${motion ? " is-on" : ""}`}>Hard problems.</div>
+          <div className="iso-layer iso-shadow-enter">
+            <div className={`iso-tile iso-hard iso-shadow${motion ? " is-on" : ""}`}>Hard problems.</div>
+          </div>
         </div>
         {/* ripple on impact, same footprint as the tile */}
         <div className="iso-layer iso-ripple-wrap">
