@@ -18,14 +18,14 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "iot-rule-builder",
-    title: "Greenhouse rules in one sentence",
+    slug: "error-messages",
+    title: "Errors that say what's next",
     short:
-      "Operators who switched fans and heaters by hand after every alert now build rules alone: every rule reads as one sentence, built from live sensor readings and ready-made conditions.",
+      "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:
-      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
-    meta: "IoT · Logic Design",
-    illustration: "rules",
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
   },
   {
     index: "02",
@@ -40,17 +40,6 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "03",
-    slug: "error-messages",
-    title: "Errors that say what's next",
-    short:
-      "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
-    description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
-  },
-  {
-    index: "04",
     slug: "reducing-support-friction",
     title: "Answers before the ticket",
     short:
@@ -60,18 +49,28 @@ export const caseStudies: CaseStudy[] = [
     meta: "Problem Framing · Content Architecture",
     illustration: "support",
   },
-  // Batch transfer: hidden for now. Uncomment to put it back on the site.
-  // {
-  //   index: "05",
-  //   slug: "batch-transfer",
-  //   title: "One bad row, not a failed file",
-  //   short:
-  //     "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
-  //   description:
-  //     "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
-  //   meta: "Workflow Design · Risk & Validation",
-  //   illustration: "batch",
-  // },
+  {
+    index: "04",
+    slug: "iot-rule-builder",
+    title: "Greenhouse rules in one sentence",
+    short:
+      "Operators who switched fans and heaters by hand after every alert built rules on their own in testing: every rule reads as one sentence, built from live sensor readings and ready-made conditions.",
+    description:
+      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
+    meta: "IoT · Logic Design",
+    illustration: "rules",
+  },
+  {
+    index: "05",
+    slug: "batch-transfer",
+    title: "One bad row, not a failed file",
+    short:
+      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
+    description:
+      "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
+    meta: "Workflow Design · Risk & Validation",
+    illustration: "batch",
+  },
 ];
 
 export function getCaseStudy(slug: string) {
