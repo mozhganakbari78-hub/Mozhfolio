@@ -14,7 +14,7 @@ const caseHrefs = caseStudies.map((cs) => `/work/${cs.slug}/`);
 
 export default function Projects() {
   return (
-    <section id="projects" className="pt-16 pb-28 md:pt-16 md:pb-40 px-6" aria-labelledby="projects-heading">
+    <section id="projects" className="pt-28 pb-28 md:pt-36 md:pb-40 px-6" aria-labelledby="projects-heading">
       <CasePrefetch hrefs={caseHrefs} />
       <div className="max-w-5xl mx-auto">
         <Reveal as="div"
