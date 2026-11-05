@@ -2538,10 +2538,10 @@
 .gh-led { fill: #2a2d33 !important; stroke: none !important; }
 .gh-led.is-on { fill: #4ade80 !important; }
 
-.gh-plant { transform-box: fill-box; transform-origin: 50% 100%; animation: gh-sway 4.5s ease-in-out infinite; }
+.gh-plant { transform-origin: 0 0; animation: gh-sway 4.5s ease-in-out infinite; }
 .gh-plant path { stroke: #5fcf8e; }
 .gh-plant path + path { fill: rgba(95, 207, 142, .12); }
-@keyframes gh-sway { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+@keyframes gh-sway { 0%, 100% { rotate: -4deg; } 50% { rotate: 4deg; } }
 
 .gh-wires path { fill: none; stroke: var(--accent-ink); stroke-width: 1.4; stroke-dasharray: 4 8; opacity: .8; animation: gh-flow 1.2s linear infinite; }
 .gh-wires path.is-idle { opacity: .22; animation-duration: 3s; }

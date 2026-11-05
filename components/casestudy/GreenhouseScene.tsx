@@ -31,11 +31,15 @@ function Label({ x, y, k, v, on }: { x: number; y: number; k: string; v: string;
 }
 
 function Plant({ x, s = 1, d = 0 }: { x: number; s?: number; d?: number }) {
+  // Position on the outer group, sway on the inner one: the sway pivots on
+  // the stem's base, so the plant leans in the air and never lifts.
   return (
-    <g className="gh-plant" style={{ animationDelay: `${d}s` }} transform={`translate(${x} 600) scale(${s})`}>
-      <path d="M0,0 V-38" />
-      <path d="M0,-16 C-14,-18 -22,-30 -20,-40 C-8,-38 0,-28 0,-16z" />
-      <path d="M0,-26 C14,-28 24,-40 22,-50 C9,-48 0,-38 0,-26z" />
+    <g transform={`translate(${x} 600) scale(${s})`}>
+      <g className="gh-plant" style={{ animationDelay: `${d}s` }}>
+        <path d="M0,0 V-38" />
+        <path d="M0,-16 C-14,-18 -22,-30 -20,-40 C-8,-38 0,-28 0,-16z" />
+        <path d="M0,-26 C14,-28 24,-40 22,-50 C9,-48 0,-38 0,-26z" />
+      </g>
     </g>
   );
 }
