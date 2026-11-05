@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex items-center px-6 pt-28 md:pt-28 pb-12 md:pb-12 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center px-6 pt-28 md:pt-28 pb-12 md:pb-12 overflow-hidden"
       aria-label="Introduction"
     >
       {/* Subtle grid */}
