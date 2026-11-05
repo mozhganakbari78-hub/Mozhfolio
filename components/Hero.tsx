@@ -76,7 +76,7 @@ export default function Hero() {
 
           {/* Discipline strip */}
           <div
-            className="hero-rise flex flex-wrap items-center gap-x-8 gap-y-3"
+            className="hero-rise flex flex-col gap-4"
             style={{ animationDelay: "0.2s", borderTop: "1px solid var(--border-strong)", paddingTop: 20 }}
           >
             {[
