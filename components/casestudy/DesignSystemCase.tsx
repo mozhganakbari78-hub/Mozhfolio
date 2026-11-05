@@ -170,7 +170,11 @@ export default function DesignSystemCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <DiagramPlaceholder alt="Version 2: source palettes feed an identity layer with one mode per product, which feeds a semantic layer with light and dark modes, which components use" />
+        <Mockup
+          src="/projects/DesignSystem-architecture.webp"
+          alt="Version 2: source palettes feed an identity layer with one mode per product, which feeds a semantic layer with light and dark modes, which Ant Design and custom components use across four products"
+          caption="Version 2: a product picks its identity, a theme picks the step, and four products share one set of components"
+        />
       </section>
 
       {/* 8 */}
