@@ -151,13 +151,13 @@ export default function BatchTransferCase() {
       </section>
 
       <NextCaseLink
-        href="/work/design-system/"
-        caseStudyName="A design system engineers used"
+        href="/work/error-messages/"
+        caseStudyName="Errors that say what's next"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          A design system engineers used{" "}
+          Errors that say what&apos;s next{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -26,10 +26,24 @@ export default function Lightbox({
   onClose: () => void;
 }) {
   const [zoomed, setZoomed] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // Focus moves into the dialog on open and back to whatever opened it
+  // (the image's zoom button) on close.
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    return () => opener?.focus?.();
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      // The close button is the only focusable control: keep Tab inside.
+      if (e.key === "Tab") {
+        e.preventDefault();
+        closeRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -52,7 +66,7 @@ export default function Lightbox({
       aria-label={alt}
       onClick={onClose}
     >
-      <button type="button" className="cs-lb-close" onClick={onClose} aria-label="Close">
+      <button ref={closeRef} type="button" className="cs-lb-close" onClick={onClose} aria-label="Close">
         Close
         <span aria-hidden>esc</span>
       </button>

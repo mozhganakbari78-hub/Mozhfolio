@@ -56,12 +56,12 @@ export default function DesignSystemCase() {
         </p>
         <p>
           The first version had two layers. Primitives held the raw palettes, with the dark
-          palettes tuned separately for contrast. On top of them, role tokens gave each colour a
+          palettes tuned separately for contrast. On top of them, 28 role tokens gave each colour a
           job, with a light and a dark value each. Designers only used the role tokens.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> a large set of primitives for a single product. Designers never saw them, but
-          they were a lot to maintain.
+          <b>Trade-off:</b> 88 primitives, with separate dark palettes. Every new colour had to be
+          added and tuned twice.
         </p>
       </section>
 
@@ -114,7 +114,8 @@ export default function DesignSystemCase() {
           I went back and gave the tokens the same names as the code: <code>background</code> and{" "}
           <code>surface</code> where the code named roles, <code>cardColor</code> and{" "}
           <code>sideBar</code> where it named components. For us, a smooth handoff to development
-          was worth more than names that read nicely to designers.
+          was worth more than names that read nicely to designers. That set the number too: 28
+          role tokens, one for each name the code already used.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> a mixed naming scheme, part role and part component. Less pure, but one
@@ -134,22 +135,6 @@ export default function DesignSystemCase() {
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/DesignSystem-Button-variants.webp"
-          alt="The Button component: its properties (state, type, size, loading, icon button, title, left and right icon) and every type in every state and size"
-          caption="The Button: every type, state and size, set through its properties"
-        />
-      </section>
-
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/DesignSystem-Button-products.webp"
-          alt="The same Button switched by mode across four products, in light and dark"
-          caption="The same Button across four products, in light and dark: only the mode changes"
-        />
-      </section>
-
       {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Scale</span>
@@ -160,7 +145,7 @@ export default function DesignSystemCase() {
           them into separate layers:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Source.</b> Every raw colour, in one place. No modes.</span></li>
+          <li><span><b>Source.</b> 270 raw colours, in one place. No modes.</span></li>
           <li><span><b>Identity.</b> One mode per product. Brand, primary, neutral and status colours (success, error, info, warning).</span></li>
           <li><span><b>Semantic.</b> Light and dark mode. Each role picks the right step from the product&apos;s identity.</span></li>
         </ol>
@@ -192,6 +177,22 @@ export default function DesignSystemCase() {
           <b>Trade-off:</b> brand and primary are separate tokens in every product, even where they
           hold the same value.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-Button-variants.webp"
+          alt="The Button component: its properties (state, type, size, loading, icon button, title, left and right icon) and every type in every state and size"
+          caption="The Button: every type, state and size, set through its properties"
+        />
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-Button-products.webp"
+          alt="The same Button switched by mode across four products, in light and dark"
+          caption="The same Button across four products, in light and dark: only the mode changes"
+        />
       </section>
 
       {/* 9 */}
@@ -231,13 +232,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/error-messages/"
-        caseStudyName="Errors that say what's next"
+        href="/work/reducing-support-friction/"
+        caseStudyName="Answers before the ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Errors that say what&apos;s next{" "}
+          Answers before the ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
