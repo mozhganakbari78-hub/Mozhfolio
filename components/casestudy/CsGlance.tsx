@@ -3,7 +3,7 @@
  * role and team, then three results as figure cards. The figure is the first
  * thing the eye lands on; the label says what it means.
  */
-import GlanceArt, { type GlanceArtName } from "./GlanceArt";
+import GlanceArt, { GlanceDefs, type GlanceArtName } from "./GlanceArt";
 
 export default function CsGlance({
   role,
@@ -16,6 +16,7 @@ export default function CsGlance({
 }) {
   return (
     <div className="cs-glance">
+      {results.some((r) => r.art) && <GlanceDefs />}
       <p className="cs-roleline">
         <b>My role:</b> {role} <span aria-hidden>·</span> <b>Team:</b> {team}
       </p>
