@@ -2544,7 +2544,7 @@
 .cs-result-art .line { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
 .cs-result-art .ring { fill: none; stroke: rgba(255, 255, 255, .32); stroke-dasharray: 3 3; }
 .cs-result-art .needle { stroke: #fff; stroke-width: 2.2; stroke-linecap: round; }
-.cs-result-art .check { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.cs-result-art .check { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .cs-result-art .tick { fill: none; stroke: #8fd19e; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .cs-result-art .x { fill: none; stroke: #ff7a7a; stroke-width: 2; stroke-linecap: round; }
 .cs-result-art .q { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; }

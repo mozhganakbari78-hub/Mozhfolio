@@ -21,11 +21,11 @@ export default function RuleBuilderCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, owned simplifying the rules"
-            team="3–4 designers, PM, Developers"
+            role="Product Designer, owned the rule builder and operational trust"
+            team="4 designers, PM, team lead, developers"
             results={[
-              { value: "If → Then", label: "every rule reads as one sentence: a condition, then an event", art: "ifThen" },
-              { value: "2 changes", label: "from testing with operators: live readings and timed waits", art: "testing" },
+              { value: "4 of 4", label: "greenhouse managers built a rule without help in testing", art: "fourOfFour" },
+              { value: "2 changes", label: "came from that testing: live readings and timed waits", art: "testing" },
               { value: "Shipped", label: "live in production, in Persian (RTL)", art: "rtl" },
             ]}
           />
@@ -49,8 +49,9 @@ export default function RuleBuilderCase() {
         <p>
           The product connects greenhouse sensors and controllers to a mobile app. Operators could
           monitor every hall and switch fans, misters and heaters remotely, with a few fixed default
-          rules. But routine operation was still manual: the app provided the control channel, not
-          the autonomy.
+          rules. But routine operation was still manual. When humidity rose, the app sent an alert,
+          and the operator still had to switch on the heater or the fan by hand. The app provided
+          the control channel, not the autonomy.
         </p>
         <p className="cs-quote">
           &ldquo;I have to manually adjust things, like turning the fans on and off throughout the
@@ -75,7 +76,8 @@ export default function RuleBuilderCase() {
         <span className="cs-num">Customer signal</span>
         <h2>Demand for time-based and combined rules</h2>
         <p>
-          User interviews on automation surfaced two needs: rules that run on a schedule, and rules
+          Our team lead visited several greenhouses and interviewed the operators in person. I
+          worked from those findings. Two needs came up: rules that run on a schedule, and rules
           that combine a schedule with a sensor threshold.
         </p>
         <p className="cs-quote">
@@ -93,11 +95,11 @@ export default function RuleBuilderCase() {
         <span className="cs-num">The product risk</span>
         <h2>More capability, fewer people able to use it</h2>
         <p>
-          The core users were older, non-technical, and not comfortable with technology in general.
-          Many already struggled with simple threshold rules and had asked for templates and
-          step-by-step guidance. Each new requirement added
-          expressive power, and moved the product closer to programming. A logic editor would have
-          served the few power users and lost the core segment.
+          The core users were older, non-technical and not comfortable with technology in general.
+          They were unhappy doing everything by hand, but in the greenhouse visits, our team lead
+          saw many of them already struggling with the simple threshold rules they had. Each new
+          requirement added expressive power and moved the product closer to programming. A logic
+          editor would have served the few power users and lost the core segment.
         </p>
         <p className="cs-quote">
           The goal: deliver the expressive power of conditional logic to users who will never think
@@ -138,7 +140,9 @@ WHEN always`}</pre>
         </div>
         <p className="cs-trade">
           <b>Trade-off:</b> less flexible than a free-form editor, and more taps for power users.
-          Accepted, because a wrong rule moves physical equipment.
+          Accepted, because a wrong rule moves physical equipment. The model also has a limit: with
+          several prerequisites, the event sentence gets long, as in the example above. That&apos;s
+          where one sentence starts to strain.
         </p>
       </section>
 
@@ -158,7 +162,7 @@ WHEN always`}</pre>
         <ol className="cs-rules is-plain">
           <li><span><b>Source.</b> A condition watches one specific sensor or the hall average, so a single sensor near a door doesn&apos;t have to decide alone.</span></li>
           <li><span><b>Live readings.</b> Suggested sensors show their current value (&ldquo;air humidity, now 65%&rdquo;), so thresholds are set against the actual state of the hall. Added after testing.</span></li>
-          <li><span><b>Ready-made conditions.</b> Each sensor offers presets, including one with an exit: &ldquo;if it drops below 20%, until it reaches 30%&rdquo;. A custom condition covers the rest.</span></li>
+          <li><span><b>Ready-made conditions.</b> Each sensor offers presets, including one with an exit: &ldquo;if it drops below 20%, until it reaches 30%&rdquo;. The exit keeps machines from flickering on and off around a single threshold. A custom condition covers the rest.</span></li>
           <li><span><b>Suggested controllers.</b> The event starts the same way: the likely devices first, then the full list.</span></li>
         </ol>
         <p className="cs-trade">
@@ -230,11 +234,14 @@ WHEN always`}</pre>
       {/* 7b */}
       <section className="cs-reveal">
         <span className="cs-num">Testing</span>
-        <h2>Two changes came from testing with operators</h2>
-        <p>We tested the flow with a group of operators. Two things they needed were missing:</p>
+        <h2>Four managers, four rules, two changes</h2>
+        <p>
+          We tested the flow with four greenhouse managers. All four built a rule on their own,
+          without help. Two things they needed were missing:
+        </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>The current state.</b> Choosing a sensor showed only its name. Operators wanted to see what it reads right now before setting a threshold, so every sensor card now shows its live value.</span></li>
-          <li><span><b>A wait between devices.</b> Prerequisites only covered another controller&apos;s state. Operators needed time between machines, so a timed wait became a second prerequisite type.</span></li>
+          <li><span><b>The current state.</b> Choosing a sensor showed only its name. Managers wanted to see what it reads right now before setting a threshold, so every sensor card now shows its live value.</span></li>
+          <li><span><b>A wait between devices.</b> Prerequisites only covered another controller&apos;s state. Managers needed time between machines, so a timed wait became a second prerequisite type.</span></li>
         </ol>
       </section>
 
@@ -242,7 +249,10 @@ WHEN always`}</pre>
       <section className="cs-reveal">
         <span className="cs-num">Operational trust</span>
         <h2>Making automation observable and controllable</h2>
-        <p>Handing control to software raised three operator questions, each answered in the product:</p>
+        <p>
+          Handing control to software raised three operator questions. I designed the answers,
+          starting from a brainstorm with the other designers:
+        </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Which rules are running?</b> Rules are grouped into categories, such as seasons, with one active per zone. Switching requires an explicit confirmation of what will run.</span></li>
           <li><span><b>Who changed this device?</b> Every controller shows its current control mode: manual, rule-based or scheduled.</span></li>
@@ -268,28 +278,33 @@ WHEN always`}</pre>
         <h2>Shipped to production</h2>
         <p>
           The rule builder is live, in Persian with a right-to-left layout, on a platform that
-          runs real greenhouses every day. The figures below are taken from the company&apos;s website:
+          runs real greenhouses every day.
         </p>
-        <ul className="cs-results is-four">
-          <li><span className="v">31+</span><span className="l">active users</span></li>
-          <li><span className="v">65+</span><span className="l">active controllers</span></li>
-          <li><span className="v">28M+</span><span className="l">messages sent to the server</span></li>
-          <li><span className="v">99.97%</span><span className="l">system uptime, as stated on the company&apos;s website</span></li>
-        </ul>
-        <p className="cs-source">Source: the company&apos;s public website. Platform-wide figures, not my own measurements.</p>
         <p>
-          I left before post-launch measurement of the rule builder itself.
-          These are the metrics I would use:
+          I left before post-launch measurement. Before leaving, I defined three metrics for the
+          team:
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Adoption.</b> Share of accounts with at least one scheduled rule.</span></li>
           <li><span><b>Effort.</b> Manual device switches per week, before and after.</span></li>
           <li><span><b>Conflict.</b> Manual overrides of rule-controlled devices.</span></li>
         </ol>
+      </section>
+
+      {/* 10 */}
+      <section className="cs-reveal">
+        <span className="cs-num">What I learned</span>
         <p className="cs-takeaway">
-          <span>What I learned</span>
           In automation products, the limit is rarely the engine. It&apos;s the user&apos;s model of
           it. Design the model first, then the interface.
+        </p>
+        <p className="cs-takeaway">
+          <span>What I&apos;d do differently</span>
+          The schedule is the one screen where the one-sentence idea breaks. With an interval, an
+          on-duration and active time windows combined, operators can&apos;t see when their device
+          will actually run. I&apos;d end the schedule the way the rule itself works: with one
+          summary sentence, such as &ldquo;Monday and Friday at 08:00, 10:00 and 13:00, on for 25
+          minutes each.&rdquo;
         </p>
       </section>
 

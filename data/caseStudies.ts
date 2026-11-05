@@ -21,9 +21,9 @@ export const caseStudies: CaseStudy[] = [
     slug: "iot-rule-builder",
     title: "Greenhouse rules in one sentence",
     short:
-      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
+      "Operators who switched fans and heaters by hand after every alert now build rules alone: every rule reads as one sentence, built from live sensor readings and ready-made conditions.",
     description:
-      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
+      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
     meta: "IoT · Logic Design",
     illustration: "rules",
   },

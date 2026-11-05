@@ -10,7 +10,7 @@ import type { CSSProperties, ReactNode } from "react";
 export type GlanceArtName =
   | "questions" | "products" | "oneDesign"
   | "tickets" | "audit" | "rules"
-  | "ifThen" | "testing" | "rtl"
+  | "ifThen" | "fourOfFour" | "testing" | "rtl"
   | "deflect" | "onePage" | "live"
   | "oneRow" | "verified" | "branch"
   | "surfaces" | "dashboard" | "shadowing";
@@ -157,6 +157,20 @@ const ART: Record<GlanceArtName, ReactNode> = {
         ))}
       </g>
       <circle cx={174} cy={60} r={3} className="ac" />
+    </>
+  ),
+  fourOfFour: (
+    <>
+      {[44, 88, 132, 176].map((x, i) => (
+        <g key={x} className="rise" style={d(0.12 * i)}>
+          <rect x={x} y={20} width={36} height={80} rx={8} className="g3" />
+          <circle cx={x + 18} cy={46} r={9} className="g1" />
+          <path d={`M${x + 4},${80} a14,14 0 0 1 28,0z`} className="g1" />
+          <circle cx={x + 30} cy={26} r={8} className="ac glow pop" style={d(0.5 + 0.18 * i)} />
+          <path d={`M${x + 26},${26} l3,3 l5,-6`} className="check pop" style={d(0.5 + 0.18 * i)} />
+          <rect x={x + 8} y={88} width={20} height={5} rx={2.5} className="p2" />
+        </g>
+      ))}
     </>
   ),
   testing: (
