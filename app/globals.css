@@ -297,6 +297,11 @@ button:disabled,
 }
 
 /* the whole scene is the toggle; a small hint sits under it */
+.iso-hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .iso-hint-fine { display: none; }
+  .iso-hint-touch { display: inline; }
+}
 .iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
 .iso-hit:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
 .iso-hint {

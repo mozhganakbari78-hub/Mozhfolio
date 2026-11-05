@@ -90,7 +90,10 @@ export default function HeroIso() {
         }}
       />
       <span className="iso-hint" aria-hidden="true">
-        {landed ? "Click to lift it" : "Click to place it"}
+        {/* "Click" with a mouse, "Tap" on touch screens; CSS picks one */}
+        <span className="iso-hint-fine">Click</span>
+        <span className="iso-hint-touch">Tap</span>
+        {landed ? " to lift it" : " to place it"}
       </span>
     </div>
   );
