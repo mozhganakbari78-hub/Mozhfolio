@@ -35,7 +35,7 @@ export default function Hero() {
         <div>
 
           {/* Name and role: the page's h1, set small */}
-          <div className="hero-rise mb-8" style={{ animationDelay: "0.05s" }}>
+          <div className="hero-rise mb-8" style={{ animationDelay: "0s" }}>
             <h1
               className="text-[15px] font-medium"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
@@ -45,7 +45,7 @@ export default function Hero() {
           </div>
 
           {/* Statement: the largest text on the page */}
-          <div className="hero-rise" style={{ animationDelay: "0.15s" }}>
+          <div className="hero-rise" style={{ animationDelay: "0.05s" }}>
             <p
               className="font-semibold leading-[1.02] mb-8 max-w-5xl"
               style={{
@@ -64,7 +64,7 @@ export default function Hero() {
           <p
             className="hero-rise max-w-4xl leading-snug mb-12"
             style={{
-              animationDelay: "0.25s",
+              animationDelay: "0.1s",
               fontSize: "clamp(18px, 2vw, 24px)",
               fontWeight: 300,
               letterSpacing: "-0.015em",
@@ -76,7 +76,7 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="hero-rise flex flex-wrap items-center gap-3 mb-20" style={{ animationDelay: "0.45s" }}>
+          <div className="hero-rise flex flex-wrap items-center gap-3 mb-20" style={{ animationDelay: "0.15s" }}>
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -99,7 +99,7 @@ export default function Hero() {
           {/* Discipline strip */}
           <div
             className="hero-rise flex flex-wrap items-center gap-x-8 gap-y-3"
-            style={{ animationDelay: "0.55s", borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
+            style={{ animationDelay: "0.2s", borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
           >
             {[
               { label: "6 years", note: "shipping live products" },
