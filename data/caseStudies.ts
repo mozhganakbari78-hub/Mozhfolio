@@ -60,17 +60,18 @@ export const caseStudies: CaseStudy[] = [
     meta: "IoT · Logic Design",
     illustration: "rules",
   },
-  {
-    index: "05",
-    slug: "batch-transfer",
-    title: "One bad row, not a failed file",
-    short:
-      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
-    description:
-      "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
-    meta: "Workflow Design · Risk & Validation",
-    illustration: "batch",
-  },
+  // Batch transfer: hidden for now. Uncomment to put it back on the site.
+  // {
+  //   index: "05",
+  //   slug: "batch-transfer",
+  //   title: "One bad row, not a failed file",
+  //   short:
+  //     "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
+  //   description:
+  //     "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
+  //   meta: "Workflow Design · Risk & Validation",
+  //   illustration: "batch",
+  // },
 ];
 
 export function getCaseStudy(slug: string) {
