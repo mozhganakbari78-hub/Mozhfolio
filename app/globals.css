@@ -168,3 +168,70 @@ button:disabled,
 @media (prefers-reduced-motion: reduce) {
   .hero-rise, .nav-drop { animation: none; }
 }
+
+/* ── hero beam: a "+ Design" field whose caret throws light ─────────────── */
+.hb { position: relative; isolation: isolate; font-size: clamp(17px, 3.2vw, 32px); }
+.hb-field {
+  position: relative; display: inline-flex; align-items: center; white-space: nowrap;
+  padding: .55em 1.1em .55em .8em; border-radius: 999px;
+  letter-spacing: -.02em;
+}
+/* fill and border sit under the beam (z -2), so the light falls over the field */
+.hb-field::after {
+  content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(90deg, #1c1d21 0%, rgba(28, 29, 33, .6) 55%, rgba(28, 29, 33, 0) 100%);
+}
+.hb-field::before {
+  content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .06) 50%, transparent 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.hb-plus { font-weight: 200; font-size: 1.15em; line-height: 1; color: var(--text-primary); margin-right: .45em; }
+.hb-verb { font-weight: 400; color: var(--text-primary); }
+.hb-caret {
+  position: relative; display: inline-block; width: 2px; height: 1.3em; margin: 0 .3em 0 .45em;
+  background: #fff; border-radius: 1px; box-shadow: 0 0 10px rgba(255, 255, 255, .8), 0 0 24px rgba(160, 190, 255, .6);
+}
+.hb-caret.is-on { animation: hb-blink 1.1s steps(1) infinite; }
+@keyframes hb-blink { 50% { background: rgba(255, 255, 255, .55); } }
+.hb-text { position: relative; z-index: 1; color: #fff; mix-blend-mode: difference; font-weight: 400; min-width: 1px; }
+
+/* the beam: blurred outside, a clipped cone inside, so the cone's edges go soft */
+.hb-beam {
+  position: absolute; left: 1px; top: 50%; z-index: -1; pointer-events: none;
+  width: min(1150px, 100vw); height: min(620px, 62vw);
+  transform: translateY(-50%) rotate(var(--tilt, -4deg)); transform-origin: 0 50%;
+  transition: transform .9s cubic-bezier(.16, 1, .3, 1);
+  filter: blur(12px);
+}
+.hb-beam.is-on { animation: hb-flicker 6s ease-in-out infinite; }
+.hb-cone {
+  width: 100%; height: 100%;
+  clip-path: polygon(0 46.5%, 100% 2%, 100% 98%, 0 53.5%);
+  background: radial-gradient(ellipse 80% 70% at 0% 50%,
+    #fff 0%, rgba(240, 243, 255, .92) 14%, rgba(205, 218, 255, .5) 32%, rgba(160, 185, 255, .14) 58%, transparent 82%);
+  animation: hb-open 1.4s cubic-bezier(.16, 1, .3, 1) .35s both;
+}
+@keyframes hb-open {
+  from { clip-path: polygon(0 46.5%, 0 46.5%, 0 53.5%, 0 53.5%); opacity: 0; }
+  to { clip-path: polygon(0 46.5%, 100% 2%, 100% 98%, 0 53.5%); opacity: 1; }
+}
+@keyframes hb-flicker { 0%, 100% { opacity: 1; } 40% { opacity: .86; } 44% { opacity: .97; } 70% { opacity: .9; } }
+
+/* dust in the light, just off the caret */
+.hb-sparks { position: absolute; left: 3px; top: 50%; pointer-events: none; }
+.hb-sparks i {
+  position: absolute; left: 0; top: calc((var(--k) - 3) * 5px); width: 2px; height: 2px; border-radius: 50%;
+  background: #fff; opacity: 0;
+}
+.hb-caret.is-on .hb-sparks i { animation: hb-spark 2.6s linear infinite; animation-delay: calc(var(--k) * -.37s); }
+@keyframes hb-spark {
+  0% { transform: translate(0, 0); opacity: 0; }
+  15% { opacity: .9; }
+  100% { transform: translate(70px, calc((var(--k) - 3) * 9px)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hb-cone { animation: none; }
+  .hb-beam { transition: none; }
+}

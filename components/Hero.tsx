@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import HeroBeam from "@/components/HeroBeam";
 
 // The entrance is a CSS animation, not framer variants: framer starts the
 // elements at opacity 0 in the exported HTML, so the hero stayed blank until
@@ -13,8 +14,15 @@ export default function Hero() {
       className="relative min-h-[100svh] flex items-center px-6 pt-28 md:pt-28 pb-12 md:pb-12 overflow-hidden"
       aria-label="Introduction"
     >
-      {/* Subtle grid */}
-      <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
+      {/* Grid, only in the lower part of the hero, fading in from the middle */}
+      <div
+        className="absolute inset-0 grid-bg pointer-events-none"
+        style={{
+          maskImage: "linear-gradient(to bottom, transparent 35%, #000 80%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 35%, #000 80%)",
+        }}
+        aria-hidden="true"
+      />
 
       {/* Radial fade from bottom */}
       <div
@@ -70,6 +78,11 @@ export default function Hero() {
           >
             Workflows, design systems and UX writing, built on evidence from real users.
           </p>
+
+          {/* "+ Design" field with a beam of light from its caret */}
+          <div className="hero-rise mb-10" style={{ animationDelay: "0.12s" }}>
+            <HeroBeam />
+          </div>
 
           {/* CTAs */}
           <div className="hero-rise flex flex-wrap items-center gap-3 mb-12" style={{ animationDelay: "0.15s" }}>
