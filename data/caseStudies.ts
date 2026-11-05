@@ -18,39 +18,17 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "reducing-support-friction",
-    title: "Answers before the ticket",
-    short:
-      "Asked to refresh the FAQ, I first asked whether anyone reads it. The answers now come to users while they write a ticket.",
-    description:
-      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
-    meta: "Problem Framing · Content Architecture",
-    illustration: "support",
-  },
-  {
-    index: "02",
     slug: "iot-rule-builder",
     title: "Greenhouse rules in one sentence",
     short:
-      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
+      "Operators who switched fans and heaters by hand after every alert now build rules alone: every rule reads as one sentence, built from live sensor readings and ready-made conditions.",
     description:
-      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
+      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
     meta: "IoT · Logic Design",
     illustration: "rules",
   },
   {
-    index: "03",
-    slug: "batch-transfer",
-    title: "One bad row, not a failed file",
-    short:
-      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
-    description:
-      "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
-    meta: "Workflow Design · Risk & Validation",
-    illustration: "batch",
-  },
-  {
-    index: "04",
+    index: "02",
     slug: "design-system",
     title: "A design system engineers used",
     short:
@@ -61,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
     illustration: "designsystem",
   },
   {
-    index: "05",
+    index: "03",
     slug: "error-messages",
     title: "Errors that say what's next",
     short:
@@ -70,6 +48,28 @@ export const caseStudies: CaseStudy[] = [
       "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
     meta: "UX Writing · Content Systems",
     illustration: "errorcopy",
+  },
+  {
+    index: "04",
+    slug: "reducing-support-friction",
+    title: "Answers before the ticket",
+    short:
+      "Asked to refresh the FAQ, I first asked whether anyone reads it. The answers now come to users while they write a ticket.",
+    description:
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+    meta: "Problem Framing · Content Architecture",
+    illustration: "support",
+  },
+  {
+    index: "05",
+    slug: "batch-transfer",
+    title: "One bad row, not a failed file",
+    short:
+      "For companies that won't pay online: row-level checks and account-ownership verification, piloted in branches.",
+    description:
+      "Redesigning an offline batch-payment workflow for bank branches: isolating operational failure, surfacing financial risk before money moves, and sequencing the release under a fixed deadline.",
+    meta: "Workflow Design · Risk & Validation",
+    illustration: "batch",
   },
 ];
 

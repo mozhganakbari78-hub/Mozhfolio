@@ -179,10 +179,10 @@ const Brick = ({ x, y, c, delay }: { x: number; y: number; c: string; delay: num
 function DesignSystem() {
   // Same bricks, three buildings: one set of parts builds every brand.
   const towers = [
-    { x: 46, rows: 4, c: A },
-    { x: 94, rows: 6, c: "#2bb3a3" },
-    { x: 142, rows: 3, c: "#e8c34a" },
-    { x: 190, rows: 2, c: "#9a7cf0" },
+    { x: 46, rows: 4, c: "#5575B1" },
+    { x: 94, rows: 6, c: "#16B2FF" },
+    { x: 142, rows: 3, c: "#F9B741" },
+    { x: 190, rows: 2, c: "#339599" },
   ];
   const starts = towers.map((_, i) => towers.slice(0, i).reduce((n, t) => n + t.rows, 0));
   return (
@@ -195,16 +195,16 @@ function DesignSystem() {
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
           {/* loose bricks: the shared parts */}
           <Brick x={6} y={GROUND - BH} c={SUB} delay={0.05} />
-          <Brick x={10} y={GROUND - 2 * BH - 3} c={SUB} delay={0.12} />
+          <Brick x={6} y={GROUND - BH - (BH + 3)} c={SUB} delay={0.12} />
           {towers.map((t, ti) =>
             Array.from({ length: t.rows }, (_, r) => (
-              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - (r + 1) * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
+              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - BH - r * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
             ))
           )}
           {/* windows */}
           {towers.map((t, i) => (
             <motion.rect
-              key={`w${i}`} x={t.x + 8} y={GROUND - (BH + 3) * 2 + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
+              key={`w${i}`} x={t.x + 8} y={GROUND - BH - (BH + 3) + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
               initial={{ opacity: 0 }} whileInView={{ opacity: 0.7 }} viewport={{ once: true }} transition={{ delay: 1.3 + i * 0.1 }}
             />
           ))}
@@ -221,9 +221,9 @@ function DesignSystem() {
             transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
           >
             <line x1={201} y1={8} x2={201} y2={58} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
-            <rect x={195} y={58} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
-            <rect x={204} y={58} width={5} height={3} rx={1} fill="#9a7cf0" opacity={0.85} />
-            <rect x={190} y={61} width={BW} height={BH} rx={2} fill="#9a7cf0" opacity={0.5} stroke="#9a7cf0" strokeWidth={1} />
+            <rect x={195} y={58} width={5} height={3} rx={1} fill="#339599" opacity={0.85} />
+            <rect x={204} y={58} width={5} height={3} rx={1} fill="#339599" opacity={0.85} />
+            <rect x={190} y={61} width={BW} height={BH} rx={2} fill="#339599" opacity={0.5} stroke="#339599" strokeWidth={1} />
           </motion.g>
           <line x1={0} x2={260} y1={GROUND + 0.5} y2={GROUND + 0.5} stroke={LINE} strokeWidth={1.2} />
         </svg>

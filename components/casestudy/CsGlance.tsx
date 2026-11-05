@@ -20,6 +20,8 @@ export default function CsGlance({
       <ul className="cs-results">
         {results.map((r, i) => (
           <li key={r.value} style={{ animationDelay: `${0.1 + i * 0.1}s` }}>
+            <span className="fx" aria-hidden />
+            <span className="n" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
             <span className="v">{r.value}</span>
             <span className="l">{r.label}</span>
           </li>

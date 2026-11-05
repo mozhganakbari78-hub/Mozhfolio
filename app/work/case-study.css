@@ -2492,3 +2492,119 @@
 }
 .cs-placeholder-tag { font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--warn); }
 .cs-placeholder-alt { max-width: 520px; font-size: 15px; line-height: 1.55; color: var(--ink-faint); }
+
+/* ── hero results: dark cards with a coloured glow in the corner ─────── */
+.cs-results li {
+  --g: 47, 134, 245;
+  isolation: isolate;
+  padding: 22px 22px 24px; min-height: 0; gap: 10px;
+  background: #111215; border-color: rgba(255, 255, 255, .08);
+  transition: transform .25s ease, border-color .25s ease;
+}
+.cs-results li:nth-child(2) { --g: 22, 178, 255; }
+.cs-results li:nth-child(3) { --g: 43, 190, 170; }
+/* the glow */
+.cs-results li::before {
+  display: block; content: ""; position: absolute; z-index: -1;
+  top: -55%; right: -25%; width: 80%; height: 150%; inset-inline-start: auto; left: auto;
+  background: radial-gradient(closest-side, rgba(var(--g), .8), rgba(var(--g), .25) 55%, transparent 100%);
+  filter: blur(4px); pointer-events: none; transition: opacity .3s ease, transform .4s ease;
+  opacity: .85;
+}
+/* faint folded shapes over the glow */
+.cs-results li::after {
+  display: block; content: ""; position: absolute; z-index: -1;
+  top: 0; right: 0; width: 46%; height: 70%; border-radius: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .03));
+  clip-path: polygon(36% 0, 100% 0, 100% 22%, 86% 38%, 100% 54%, 100% 62%, 62% 62%, 80% 38%, 18% 38%);
+  pointer-events: none;
+}
+.cs-results li:hover { transform: translateY(-3px); border-color: rgba(var(--g), .45); }
+.cs-results li:hover::before { opacity: 1; transform: scale(1.06); }
+/* sparkle dots */
+.cs-results .fx {
+  position: absolute; z-index: -1; top: 0; right: 0; width: 60%; height: 80%; pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .55) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 22% 34%, rgba(255, 255, 255, .45) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 46% 70%, rgba(255, 255, 255, .5) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle at 70% 12%, rgba(255, 255, 255, .35) 0 1.6px, transparent 2.2px),
+    radial-gradient(circle at 92% 64%, rgba(255, 255, 255, .45) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 36% 52%, rgba(255, 255, 255, .25) 0 2.4px, transparent 3px);
+  animation: cs-twinkle 4s ease-in-out infinite;
+}
+.cs-results li:nth-child(2) .fx { animation-delay: -1.3s; }
+.cs-results li:nth-child(3) .fx { animation-delay: -2.6s; }
+@keyframes cs-twinkle { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+.cs-results .n {
+  font-family: var(--font-code), monospace; font-size: 12px; letter-spacing: .08em;
+  color: rgb(var(--g)); filter: brightness(1.25);
+}
+.cs-root .cs-results .v {
+  background: none; color: #fff; -webkit-background-clip: initial; background-clip: initial;
+  margin-top: 18px;
+}
+.cs-root .cs-results .l { color: rgba(238, 240, 244, .72); max-width: 30ch; }
+.cs-results.is-four li { padding-bottom: 18px; }
+@media (prefers-reduced-motion: reduce) { .cs-results .fx { animation: none; } }
+
+/* ── greenhouse scene (rule builder): line art with live motion ─────── */
+.gh-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; }
+.gh-scene svg { display: block; width: 100%; height: auto; }
+.gh-scene svg * { vector-effect: non-scaling-stroke; }
+.gh-frame path, .gh-device path, .gh-device rect, .gh-device circle, .gh-plant path {
+  fill: none; stroke: rgba(238, 240, 244, .78); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+}
+.gh-scene .gh-faint { stroke: rgba(238, 240, 244, .2); }
+.gh-device rect, .gh-device circle { fill: #15171b; }
+.gh-device .gh-screen { fill: rgba(124, 184, 245, .08); stroke: rgba(124, 184, 245, .5); }
+.gh-scene .gh-accent { stroke: var(--accent-ink); }
+.gh-scene .gh-accent-fill { fill: var(--accent-ink); stroke: none; }
+.gh-led { fill: #2a2d33 !important; stroke: none !important; }
+.gh-led.is-on { fill: #4ade80 !important; }
+
+.gh-plant { transform-origin: 0 0; animation: gh-sway 4.5s ease-in-out infinite; }
+.gh-plant path { stroke: #5fcf8e; }
+.gh-plant path + path { fill: rgba(95, 207, 142, .12); }
+@keyframes gh-sway { 0%, 100% { rotate: -4deg; } 50% { rotate: 4deg; } }
+
+.gh-wires path { fill: none; stroke: var(--accent-ink); stroke-width: 1.4; stroke-dasharray: 4 8; opacity: .8; animation: gh-flow 1.2s linear infinite; }
+.gh-wires path.is-idle { opacity: .22; animation-duration: 3s; }
+@keyframes gh-flow { to { stroke-dashoffset: -24; } }
+
+.gh-blades path { fill: rgba(124, 184, 245, .12); stroke: var(--accent-ink); stroke-width: 1.4; }
+.gh-blades { animation: gh-spin 2.4s linear infinite; }
+.gh-blades.is-on { animation-duration: .45s; }
+@keyframes gh-spin { to { rotate: 360deg; } }
+.gh-air path { stroke: var(--accent-ink); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 14 46; opacity: 0; }
+.gh-air.is-on path { opacity: .8; animation: gh-air 1s linear infinite; }
+@keyframes gh-air { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 60; } }
+
+.gh-drops circle { fill: #7cc8f5; animation: gh-drop 1.6s ease-in infinite; opacity: 0; }
+@keyframes gh-drop { 0% { opacity: 0; translate: 0 0; } 15% { opacity: .9; } 100% { opacity: 0; translate: 0 150px; } }
+
+.gh-coil { fill: none; stroke: rgba(238, 240, 244, .35) !important; }
+.gh-coil.is-warm { stroke: #f7a440 !important; animation: gh-glow 2s ease-in-out infinite; }
+@keyframes gh-glow { 50% { opacity: .45; } }
+
+.gh-pulse circle { fill: none; stroke: var(--accent-ink); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: gh-pulse 2.2s ease-out infinite; opacity: 0; }
+@keyframes gh-pulse { 0% { opacity: .7; scale: .5; } 100% { opacity: 0; scale: 1.6; } }
+
+.gh-label rect { fill: #15171b; stroke: rgba(255, 255, 255, .14); }
+.gh-label .gh-k { font-family: var(--font-code), monospace; font-size: 15px; letter-spacing: .1em; fill: #9aa1ac; }
+.gh-label .gh-v { font-size: 19px; font-weight: 500; fill: #eef0f3; }
+.gh-label.is-on rect { stroke: rgba(124, 184, 245, .6); }
+.gh-label.is-on .gh-v { fill: var(--accent-ink); }
+
+.gh-rule rect { fill: #15171b; stroke: rgba(255, 255, 255, .16); transition: stroke .3s ease; }
+.gh-rule text { font-size: 21px; fill: #d6dae1; }
+.gh-rule .gh-kw { font-family: var(--font-code), monospace; font-weight: 600; fill: var(--accent-ink); letter-spacing: .06em; }
+.gh-rule .gh-dot { fill: #2a2d33; transition: fill .3s ease; }
+.gh-rule.is-on rect { stroke: rgba(124, 184, 245, .7); }
+.gh-rule.is-on .gh-dot { fill: #4ade80; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-plant, .gh-wires path, .gh-blades, .gh-air path, .gh-drops circle, .gh-coil, .gh-pulse circle { animation: none !important; }
+  .gh-drops circle { opacity: .6; }
+}

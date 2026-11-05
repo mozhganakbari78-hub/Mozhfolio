@@ -3,17 +3,6 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 
-/* Stands in for a diagram the author has not supplied yet. Swap for a
-   <Mockup src=...> once the image file exists. */
-function DiagramPlaceholder({ alt }: { alt: string }) {
-  return (
-    <figure className="cs-placeholder" role="img" aria-label={alt}>
-      <span className="cs-placeholder-tag">Diagram coming</span>
-      <span className="cs-placeholder-alt">{alt}</span>
-    </figure>
-  );
-}
-
 export default function DesignSystemCase() {
   return (
     <article>
@@ -66,18 +55,22 @@ export default function DesignSystemCase() {
           design, two modes, from the same set of tokens.
         </p>
         <p>
-          The first version had two layers. Primitives held the raw palettes, with the dark
-          palettes tuned separately for contrast. On top of them, role tokens gave each colour a
+          The first version had two layers. 88 primitives held the raw palettes: one set, with no
+          modes. On top of them, 28 role tokens gave each colour a
           job, with a light and a dark value each. Designers only used the role tokens.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> a large set of primitives for a single product. Designers never saw them, but
-          they were a lot to maintain.
+          <b>Trade-off:</b> 88 primitives for a single product. Designers never saw them, but they
+          were a lot to maintain.
         </p>
       </section>
 
       <section className="cs-shot cs-reveal">
-        <DiagramPlaceholder alt="Version 1: primitives with separate light and dark palettes, feeding role tokens, feeding components" />
+        <Mockup
+          src="/projects/DesignSystem-v1-tokens.webp"
+          alt="Version 1: one set of primitive palettes feeding role tokens, each with a light and a dark value, feeding components"
+          caption="Version 1: one set of palettes; each role token picks one step for light mode and one for dark"
+        />
       </section>
 
       {/* 3 */}
@@ -121,7 +114,8 @@ export default function DesignSystemCase() {
           I went back and gave the tokens the same names as the code: <code>background</code> and{" "}
           <code>surface</code> where the code named roles, <code>cardColor</code> and{" "}
           <code>sideBar</code> where it named components. For us, a smooth handoff to development
-          was worth more than names that read nicely to designers.
+          was worth more than names that read nicely to designers. That set the number too: 28
+          role tokens, one for each name the code already used.
         </p>
         <p className="cs-trade">
           <b>Trade-off:</b> a mixed naming scheme, part role and part component. Less pure, but one
@@ -141,14 +135,6 @@ export default function DesignSystemCase() {
         </p>
       </section>
 
-      <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/DesignSystem-Button.webp"
-          alt="Button component documented with every variant, state and size"
-          caption="The Button page: every variant, state and size, named the way the code names it"
-        />
-      </section>
-
       {/* 7 */}
       <section className="cs-reveal">
         <span className="cs-num">Scale</span>
@@ -159,7 +145,7 @@ export default function DesignSystemCase() {
           them into separate layers:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Source.</b> Every raw colour, in one place. No modes.</span></li>
+          <li><span><b>Source.</b> 270 raw colours, in one place. No modes.</span></li>
           <li><span><b>Identity.</b> One mode per product. Brand, primary, neutral and status colours (success, error, info, warning).</span></li>
           <li><span><b>Semantic.</b> Light and dark mode. Each role picks the right step from the product&apos;s identity.</span></li>
         </ol>
@@ -193,14 +179,31 @@ export default function DesignSystemCase() {
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-Button-variants.webp"
+          alt="The Button component: its properties (state, type, size, loading, icon button, title, left and right icon) and every type in every state and size"
+          caption="The Button: every type, state and size, set through its properties"
+        />
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/DesignSystem-Button-products.webp"
+          alt="The same Button switched by mode across four products, in light and dark"
+          caption="The same Button across four products, in light and dark: only the mode changes"
+        />
+      </section>
+
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">What changed from v1</span>
-        <h2>Contrast moved up a layer</h2>
+        <h2>The product got its own layer</h2>
         <p>
-          Version 1 handled dark-mode contrast with separate dark palettes. In version 2, contrast
-          is handled by which step each semantic token picks in each mode. One set of palettes now
-          serves both themes and all four products.
+          Version 1 already put light and dark mode on the role tokens, but each role pointed
+          straight at one product&apos;s palette. In version 2, the semantic tokens point to the
+          identity layer instead. The same semantic tokens, and the same light and dark steps, now
+          serve all four products.
         </p>
       </section>
 
@@ -224,8 +227,9 @@ export default function DesignSystemCase() {
         </p>
         <p className="cs-takeaway">
           <span>What I&apos;d do differently</span>
-          I&apos;d split product and theme from the start. Version 1 tied contrast to the palettes,
-          and that had to be rebuilt when the second product arrived.
+          I&apos;d split product and theme from the start. Version 1 pointed the role tokens
+          straight at one product&apos;s palette, and that had to be rebuilt when the second product
+          arrived.
         </p>
       </section>
 

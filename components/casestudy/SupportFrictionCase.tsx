@@ -149,13 +149,13 @@ export default function SupportFrictionCase() {
       </section>
 
       <NextCaseLink
-        href="/work/iot-rule-builder/"
-        caseStudyName="Greenhouse rules in one sentence"
+        href="/work/batch-transfer/"
+        caseStudyName="One bad row, not a failed file"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Greenhouse rules in one sentence{" "}
+          One bad row, not a failed file{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
