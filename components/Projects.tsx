@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import CaseLink from "./CaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { caseStudies } from "@/data/caseStudies";
 import CaseCardArt from "./CaseCardArt";
 import CasePrefetch from "./CasePrefetch";
 import { trackEvent } from "@/lib/gtag";
+import Reveal from "@/components/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -17,10 +17,9 @@ export default function Projects() {
     <section id="projects" className="py-28 md:py-40 px-6" aria-labelledby="projects-heading">
       <CasePrefetch hrefs={caseHrefs} />
       <div className="max-w-5xl mx-auto">
-        <motion.div
+        <Reveal as="div"
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          to={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
           className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
         >
@@ -37,18 +36,16 @@ export default function Projects() {
             </h2>
           </div>
           <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            Each case opens the reframe, the evidence behind it, the trade-offs I owned, and what I
-            would do differently.
+            Each case shows the reframe, the evidence behind it, and the trade-offs I owned.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid gap-5">
           {caseStudies.map((cs, i) => (
-            <motion.div
+            <Reveal as="div"
               key={cs.index}
               initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              to={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.06, ease }}
             >
               <CaseLink
@@ -118,7 +115,7 @@ export default function Projects() {
                   <CaseCardArt name={cs.illustration} />
                 </div>
               </CaseLink>
-            </motion.div>
+            </Reveal>
           ))}
 
         </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ChatBubbleLeftEllipsisIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { reviews } from "@/data/reviews";
+import Reveal from "@/components/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -10,10 +10,9 @@ export default function Reviews() {
   return (
     <section id="reviews" className="py-28 md:py-40 px-6" aria-labelledby="reviews-heading">
       <div className="max-w-5xl mx-auto">
-        <motion.div
+        <Reveal as="div"
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          to={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
           className="mb-16 md:mb-20"
         >
@@ -27,15 +26,14 @@ export default function Reviews() {
           >
             What people say.
           </h2>
-        </motion.div>
+        </Reveal>
 
         <div className="grid gap-5 md:gap-6 md:grid-cols-3">
           {reviews.map((r, i) => (
-            <motion.figure
+            <Reveal as="figure"
               key={i}
               initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              to={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.08, ease }}
               className="group relative flex flex-col justify-between gap-8 rounded-2xl border p-7 md:p-8 transition-all duration-300 hover:-translate-y-1"
               style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
@@ -74,7 +72,7 @@ export default function Reviews() {
                   </a>
                 )}
               </figcaption>
-            </motion.figure>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -86,9 +86,11 @@ export default function TicketMachineScene() {
 
   const M = iso(MACHINE[0], MACHINE[1]);
   const K = iso(KEYBOARD[0], KEYBOARD[1]);
-  const slotTop = M(0, 0, 254);
+  const slotIn = M(0, 0, 242);
+  const slotTop = M(0, 0, 330);
   const pileTop = iso(QUEUE[0], QUEUE[1])(0, 0, 44);
-  const flight = `M${slotTop[0]},${slotTop[1]} C${slotTop[0] + 40},${slotTop[1] - 120} ${pileTop[0] - 60},${pileTop[1] - 160} ${pileTop[0]},${pileTop[1]}`;
+  // out of the slot, straight up, then across to the queue
+  const flight = `M${slotIn[0]},${slotIn[1]} L${slotTop[0]},${slotTop[1]} C${slotTop[0] + 90},${slotTop[1] - 40} ${pileTop[0] - 40},${pileTop[1] - 200} ${pileTop[0]},${pileTop[1]}`;
   const on = motion ? " is-on" : "";
 
   return (
@@ -143,11 +145,6 @@ export default function TicketMachineScene() {
 
         {/* the machine */}
         <Box at={MACHINE} x={-110} y={-80} w={220} d={160} h={240} />
-        {/* slot on top */}
-        <Box at={MACHINE} x={-46} y={-16} z={240} w={92} d={32} h={12} />
-        <g transform={faceTop(MACHINE, -40, -6, 252)}>
-          <rect x={0} y={0} width={80} height={12} rx={2} className="tm-slot" />
-        </g>
         {/* front panel */}
         <g transform={faceY(MACHINE, -110, 80, 240)}>
           <text x={18} y={26} className="tm-brand">Support</text>
@@ -175,9 +172,16 @@ export default function TicketMachineScene() {
           <g className="tm-flying">
             <rect x={-26} y={-16} width={52} height={32} rx={4} />
             <path d="M-16,-6 h26 M-16,2 h32 M-16,10 h18" />
-            <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" path={flight} keyPoints="0;0;1" keyTimes="0;0.62;1" calcMode="linear" />
+            <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" path={flight} keyPoints="0;0;0.28;1" keyTimes="0;0.62;0.74;1" calcMode="linear" />
+            <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.62;0.66;0.97;1" />
           </g>
         )}
+
+        {/* slot on top, drawn after the ticket so the ticket rises out of it */}
+        <Box at={MACHINE} x={-46} y={-16} z={240} w={92} d={32} h={12} />
+        <g transform={faceTop(MACHINE, -40, -6, 252)}>
+          <rect x={0} y={0} width={80} height={12} rx={2} className="tm-slot" />
+        </g>
       </svg>
     </figure>
   );

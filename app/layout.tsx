@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import Analytics from "@/components/Analytics";
+import MotionPrefs from "@/components/MotionPrefs";
 
 // Geist for the whole site: crisp at small sizes, calm at display sizes.
 const sans = Geist({
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en" className={`${sans.variable} ${labels.variable} ${code.variable}`}>
       <body>
         <Analytics />
+        <MotionPrefs />
         <CustomCursor />
         {children}
       </body>

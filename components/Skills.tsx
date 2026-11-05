@@ -10,6 +10,7 @@ import {
   ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
+import Reveal from "@/components/Reveal";
 
 // One plain sentence each: the section is skimmed, so every line has to make
 // its point without a second read.
@@ -81,12 +82,10 @@ export default function Skills() {
           {capabilities.map((cap, ci) => {
             const Icon = cap.icon;
             return (
-              <motion.div
+              <Reveal as="div"
                 key={cap.title}
                 initial={isTouch ? false : { opacity: 0, y: 16 }}
-                animate={isTouch ? { opacity: 1, y: 0 } : undefined}
-                whileInView={isTouch ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                to={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
                 className="group grid grid-cols-[24px_1fr] md:grid-cols-[26px_260px_1fr] gap-x-4 md:gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
                 style={{
@@ -109,7 +108,7 @@ export default function Skills() {
                 >
                   {cap.body}
                 </p>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>

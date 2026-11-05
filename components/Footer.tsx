@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { EnvelopeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import Reveal from "@/components/Reveal";
 
 function LinkedinIcon({ size = 15 }: { size?: number }) {
   return (
@@ -25,13 +25,12 @@ export default function Footer() {
   ];
 
   return (
-    <motion.footer
+    <Reveal as="footer"
       className="px-6 py-14 border-t"
       style={{ borderColor: "var(--border)" }}
       role="contentinfo"
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      to={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
@@ -70,11 +69,8 @@ export default function Footer() {
           <span className="text-xs" style={{ color: "var(--text-tertiary)" }}>
             © {year} Mozhgan Akbari
           </span>
-          <span className="text-xs" style={{ color: "var(--text-tertiary)" }}>
-            Designed &amp; built with intention.
-          </span>
         </div>
       </div>
-    </motion.footer>
+    </Reveal>
   );
 }
