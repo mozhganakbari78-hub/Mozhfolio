@@ -13,10 +13,13 @@ export default function Mockup({
   src,
   alt,
   caption,
+  children,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** live drawing shown in place of the image; the lightbox still opens `src` */
+  children?: React.ReactNode;
 }) {
   const url = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`;
   const [open, setOpen] = useState(false);
@@ -30,8 +33,10 @@ export default function Mockup({
           onClick={() => setOpen(true)}
           aria-label={`View larger: ${alt}`}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={url} alt={alt} loading="lazy" decoding="async" />
+          {children ?? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={url} alt={alt} loading="lazy" decoding="async" />
+          )}
           <span className="cs-zoom-badge" aria-hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="7" />

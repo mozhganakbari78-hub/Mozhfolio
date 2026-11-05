@@ -4,7 +4,7 @@ import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
-import HelpDeskScene from "./HelpDeskScene";
+import TicketMachineScene from "./TicketMachineScene";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -96,7 +96,7 @@ export default function SupportFrictionCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <HelpDeskScene />
+        <TicketMachineScene />
       </section>
 
       {/* 4 */}

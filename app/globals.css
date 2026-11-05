@@ -161,10 +161,185 @@ button:disabled,
 /* Above-the-fold entrances. Plain CSS so they play from the exported HTML:
    a JS-driven entrance keeps the content invisible until the bundle has
    downloaded and hydrated, which on a slow connection is a blank screen. */
-@keyframes hero-rise { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: none; } }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes nav-drop { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: none; } }
-.hero-rise { animation: hero-rise .9s cubic-bezier(.16, 1, .3, 1) both; }
+.hero-rise { animation: hero-rise .5s cubic-bezier(.16, 1, .3, 1) both; }
 .nav-drop { animation: nav-drop .6s cubic-bezier(.16, 1, .3, 1) both; }
 @media (prefers-reduced-motion: reduce) {
   .hero-rise, .nav-drop { animation: none; }
+}
+
+/* ── hero: the statement as an isometric layer stack ──────────────────────
+   Orthographic: no perspective. The plate is the problem layer (tangled
+   lines, nodes, faint rule code, "Hard problems."). A clean screen panel
+   ("Obvious screens.") floats above it; placed, it covers all but a thin
+   front strip of the plate. Sizes are in em, so one font-size scales the
+   whole scene. */
+.iso { position: relative; font-size: clamp(7px, 1.9vw, 12.5px); height: 38em; pointer-events: none; }
+.iso-world {
+  position: absolute; left: 50%; top: 25em; width: 46em; height: 17em;
+  transform-style: preserve-3d; transform-origin: 0 0;
+  transform: rotateX(calc(60deg + var(--rx, 0deg))) rotateZ(calc(-45deg + var(--rz, 0deg))) translate(-23em, -8.5em);
+  transition: transform 1.2s cubic-bezier(.16, 1, .3, 1);
+}
+.iso-world * { transform-style: preserve-3d; }
+.iso-layer { position: absolute; inset: 0; }
+
+.iso-guide { position: absolute; border: 0 dashed rgba(255, 255, 255, .16); }
+.iso-guide.x { left: -60em; width: 160em; height: 0; border-top-width: 2px; border-top-style: dashed;
+  -webkit-mask: linear-gradient(90deg, transparent 10%, #000 32%, #000 62%, transparent 92%);
+          mask: linear-gradient(90deg, transparent 10%, #000 32%, #000 62%, transparent 92%); }
+.iso-guide.y { top: -40em; height: 94em; width: 0; border-left-width: 2px; border-left-style: dashed;
+  -webkit-mask: linear-gradient(180deg, transparent 8%, #000 34%, #000 66%, transparent 92%);
+          mask: linear-gradient(180deg, transparent 8%, #000 34%, #000 66%, transparent 92%); }
+.iso-handle {
+  position: absolute; width: .8em; height: .8em; margin: -.4em 0 0 -.4em;
+  background: #d9dce2; border-radius: 1px;
+  box-shadow: 0 0 .6em rgba(255, 255, 255, .7), 0 0 1.6em rgba(255, 255, 255, .25);
+  transform: translateZ(.05em);
+}
+
+/* 01 Problem: the plate */
+.iso-plate {
+  position: absolute; inset: 0; border-radius: .5em; overflow: hidden;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .07) .09em, transparent .11em) 0 0 / 1.5em 1.5em,
+    linear-gradient(135deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .012) 70%);
+  border: 1px solid rgba(255, 255, 255, .16);
+}
+.iso-tangle { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.iso-tangle path { fill: none; stroke: rgba(255, 255, 255, .2); stroke-width: .07; }
+.iso-tangle circle { fill: #15161a; stroke: rgba(255, 255, 255, .45); stroke-width: .07; }
+.iso-code {
+  position: absolute; white-space: nowrap; line-height: 1;
+  font-family: var(--font-code, ui-monospace), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .82em; letter-spacing: .02em; color: rgba(205, 210, 220, .38);
+}
+.iso-problem {
+  position: absolute; left: .7em; top: .95em; font-size: 3.3em; line-height: 1; white-space: nowrap;
+  font-weight: 540; letter-spacing: -.05em; color: #8e929b;
+  -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+}
+
+/* 02 Screen: the clean panel. Same width as the plate, 3em shallower,
+   so once placed a thin front strip of the tangle still shows. */
+.iso-screen-wrap {
+  position: absolute; left: 0; top: 0; width: 46em; height: 14em;
+  transform: translateZ(13em) rotateZ(-4deg);
+}
+.iso-float { position: absolute; inset: 0; }
+.iso-float.is-on { animation: iso-float 6s ease-in-out infinite; }
+@keyframes iso-float {
+  0%, 100% { transform: none; }
+  50% { transform: translateZ(1.2em) rotateZ(1.2deg); }
+}
+/* font-size 3.9em sets the type; inset: 0 keeps the panel at the wrap's size */
+.iso-screen {
+  position: absolute; inset: 0; display: flex; align-items: center; padding: 0 .36em;
+  border-radius: .13em; border: 1px solid rgba(255, 255, 255, .22);
+  background: linear-gradient(160deg, #26282d 0%, #1b1c20 55%, #16171a 100%);
+  box-shadow: inset 0 .03em 0 rgba(255, 255, 255, .1);
+  font-size: 3.9em; line-height: 1; white-space: nowrap;
+  font-weight: 620; letter-spacing: -.05em; color: #f7f8fa;
+  -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+}
+/* thickness: the two faces toward the viewer, folded down toward the plate */
+.iso-screen::before, .iso-screen::after { content: ""; position: absolute; pointer-events: none; }
+.iso-screen::before {
+  left: -1px; right: -1px; top: 100%; height: .09em;
+  background: linear-gradient(#2c2e33, #0e0f11); transform-origin: top; transform: rotateX(-90deg);
+}
+.iso-screen::after {
+  left: 100%; top: -1px; bottom: -1px; width: .09em;
+  background: linear-gradient(90deg, #232529, #0b0c0e); transform-origin: left; transform: rotateY(90deg);
+}
+
+/* small layer names, as in a design tool */
+.iso-tag {
+  position: absolute; left: 0; bottom: calc(100% + .32em); font-size: .2em; line-height: 1;
+  font-family: var(--font-mono), monospace; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: #6f737c; white-space: nowrap;
+}
+.iso-tag b { color: #9aa0aa; font-weight: 500; margin-right: .6em; }
+.iso-screen .iso-tag { left: .1em; }
+
+/* the floating screen's shadow: softer and further off the higher it is */
+.iso-shadow-wrap { transform: translateZ(.06em) rotateZ(-4deg); }
+.iso-shadow {
+  position: absolute; left: 0; top: 0; width: 46em; height: 14em; border-radius: .5em;
+  background: rgba(0, 0, 0, .7); filter: blur(.9em); opacity: .38; transform: translateY(3.2em) scale(1.03);
+}
+.iso-shadow.is-on { animation: iso-shadow 6s ease-in-out infinite; }
+@keyframes iso-shadow {
+  0%, 100% { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
+  50% { opacity: .28; filter: blur(1.1em); transform: translateY(3.5em) scale(1.05) rotateZ(1.2deg); }
+}
+.iso-shadow-enter { animation: iso-shadow-appear .95s cubic-bezier(.3, 0, .5, 1) .45s both; }
+@keyframes iso-shadow-appear { from { opacity: 0; } to { opacity: 1; } }
+
+/* Place: about 600ms, ease-out, with a gentle settle at the end */
+.iso-world.is-landed .iso-screen-wrap { transform: translateZ(.35em); animation: iso-place .6s both; }
+.iso-world.is-landed .iso-float { animation: none; }
+@keyframes iso-place {
+  0%   { transform: translateZ(13em) rotateZ(-4deg); animation-timing-function: cubic-bezier(.22, .8, .3, 1); }
+  80%  { transform: translateZ(.18em) rotateZ(0deg); animation-timing-function: ease-in-out; }
+  100% { transform: translateZ(.35em) rotateZ(0deg); }
+}
+.iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .12s .45s; }
+.iso-world.is-landed .iso-shadow { animation: iso-shadow-in .5s cubic-bezier(.22, .8, .3, 1) both; }
+@keyframes iso-shadow-in {
+  from { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
+  to { opacity: .6; filter: blur(.15em); transform: none; }
+}
+.iso-world.is-landed .iso-handle { animation: iso-flash .7s ease-out .45s; }
+@keyframes iso-flash {
+  0%, 100% { box-shadow: 0 0 .6em rgba(255, 255, 255, .7), 0 0 1.6em rgba(255, 255, 255, .25); }
+  25% { box-shadow: 0 0 1em #fff, 0 0 2.6em rgba(255, 255, 255, .5); }
+}
+
+/* Lift (second click): the reverse, same length, then the float takes over */
+.iso-world.was-landed:not(.is-landed) .iso-screen-wrap { animation: iso-unplace .6s cubic-bezier(.22, .8, .3, 1) both; }
+@keyframes iso-unplace {
+  from { transform: translateZ(.35em) rotateZ(0deg); }
+  to { transform: translateZ(13em) rotateZ(-4deg); }
+}
+.iso-world.was-landed:not(.is-landed) .iso-shadow.is-on {
+  animation: iso-shadow 6s ease-in-out infinite, iso-shadow-out .6s cubic-bezier(.22, .8, .3, 1);
+}
+@keyframes iso-shadow-out {
+  from { opacity: .6; filter: blur(.15em); transform: none; }
+  to { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
+}
+
+/* entrance: plate first, then the screen drops in */
+.iso-in-plate { animation: iso-fade .7s ease-out both; }
+.iso-in-hard { animation: iso-drop 1.1s cubic-bezier(.16, 1, .3, 1) .45s both; }
+@keyframes iso-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes iso-drop { from { opacity: 0; transform: translateZ(6em); } to { opacity: 1; transform: none; } }
+
+/* the whole scene is the toggle; a small hint sits under it */
+.iso-hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .iso-hint-fine { display: none; }
+  .iso-hint-touch { display: inline; }
+}
+.iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
+.iso-hit:focus { outline: none; }
+.iso-hit:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 4px; }
+.iso-hint {
+  position: absolute; right: 6%; bottom: 3%; pointer-events: none;
+  font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* reduced motion: nothing moves, and the screen starts in place */
+@media (prefers-reduced-motion: reduce) {
+  .iso-world { transition: none; }
+  .iso-world *, .iso-world .iso-screen-wrap, .iso-world .iso-shadow, .iso-shadow-enter,
+  .iso-in-plate, .iso-in-hard { animation: none !important; }
+  .iso-world:not(.was-landed) .iso-screen-wrap { transform: translateZ(.35em); }
+  .iso-world:not(.was-landed) .iso-shadow-wrap { opacity: 0; }
+}
+@media (min-width: 1024px) {
+  .iso { font-size: clamp(9px, .9vw, 13px); }
 }

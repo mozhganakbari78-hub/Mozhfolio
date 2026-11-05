@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -69,8 +69,11 @@ export default function VisualWork() {
     );
     vis.observe(wrap);
 
+    // No preventDefault on pointerdown: it would also suppress the mouse events
+    // the custom cursor follows, so the cursor froze during a drag and jumped
+    // on release. Text selection and native image drag are blocked instead.
     const onPointerDown = (e: PointerEvent) => {
-      e.preventDefault();
+      if (e.button !== 0) return;
       dragRef.current = { active: true, startX: e.clientX, startPos: posRef.current };
       pausedRef.current = true;
       wrap.style.cursor = "grabbing";
@@ -91,7 +94,9 @@ export default function VisualWork() {
       wrap.style.cursor = "grab";
     };
 
-    wrap.addEventListener("pointerdown", onPointerDown, { passive: false });
+    const noNativeDrag = (e: Event) => e.preventDefault();
+    wrap.addEventListener("pointerdown", onPointerDown);
+    wrap.addEventListener("dragstart", noNativeDrag);
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
@@ -100,6 +105,7 @@ export default function VisualWork() {
       cancelAnimationFrame(rafRef.current);
       vis.disconnect();
       wrap.removeEventListener("pointerdown", onPointerDown);
+      wrap.removeEventListener("dragstart", noNativeDrag);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("pointercancel", onPointerUp);
@@ -110,10 +116,9 @@ export default function VisualWork() {
     <section id="visual" className="py-28 md:py-40" aria-labelledby="visual-heading">
       {/* Header */}
       <div className="px-6 max-w-6xl mx-auto mb-16 md:mb-20">
-        <motion.div
+        <Reveal as="div"
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          to={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
@@ -129,20 +134,13 @@ export default function VisualWork() {
               Selected screens.
             </h2>
           </div>
-          <p className="text-sm md:text-base max-w-xs" style={{ color: "var(--text-tertiary)" }}>
-            UI, 3D, and motion built to ship: Rive and Lottie for the front end, After
-            Effects for the heavier pieces.
-          </p>
-        </motion.div>
+        </Reveal>
       </div>
 
       {/* Marquee */}
-      <motion.div
+      {/* no fade: the marquee is always visible, whatever the scroll position */}
+      <div
         ref={wrapRef}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="overflow-hidden select-none"
         style={{ cursor: "grab", touchAction: "pan-y" }}
       >
@@ -175,7 +173,7 @@ export default function VisualWork() {
             </figure>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

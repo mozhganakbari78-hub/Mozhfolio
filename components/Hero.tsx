@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import ParticleField from "./ParticleField";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import HeroIso from "@/components/HeroIso";
 
 // The entrance is a CSS animation, not framer variants: framer starts the
 // elements at opacity 0 in the exported HTML, so the hero stayed blank until
@@ -12,82 +11,50 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center px-6 pt-28 pb-24 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center px-6 pt-24 md:pt-28 pb-12 overflow-hidden"
       aria-label="Introduction"
+      style={{ background: "radial-gradient(ellipse 70% 60% at 70% 45%, #17181b 0%, transparent 70%)" }}
     >
-      {/* Subtle grid */}
-      <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <ParticleField />
-      </div>
+      <div className="relative max-w-6xl mx-auto w-full grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-center gap-x-10 gap-y-2">
 
-      {/* Radial fade from bottom */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 120%, var(--accent-color) 0%, transparent 60%)",
-          opacity: 0.07,
-        }}
-        aria-hidden="true"
-      />
+        {/* The statement, drawn as an exploded isometric stack */}
+        <div className="lg:order-last -mx-6 lg:mx-0">
+          <HeroIso />
+        </div>
 
-      <div className="relative max-w-6xl mx-auto w-full">
-        <div>
-
-          {/* Eyebrow */}
-          <div className="hero-rise mb-10" style={{ animationDelay: "0.05s" }}>
-            <span
-              className="mono-label"
-              style={{ color: "var(--accent-ink)" }}
-            >
-              Product Designer · Enterprise UX · Design Systems
-            </span>
-          </div>
-
-          {/* Name */}
-          <div className="hero-rise" style={{ animationDelay: "0.15s" }}>
+        {/* above the scene, so its guide lines pass under the text */}
+        <div className="relative z-10">
+          {/* Name and role: the page's h1, set small */}
+          <div className="hero-rise mb-5" style={{ animationDelay: "0s" }}>
             <h1
-              className="font-semibold leading-[0.96] mb-8"
-              style={{
-                fontSize: "clamp(52px, 10vw, 112px)",
-                letterSpacing: "-0.04em",
-                color: "var(--text-primary)",
-              }}
+              className="text-[15px] font-medium"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
             >
-              Mozhgan
-              <br />
-              <span style={{ color: "var(--text-secondary)" }}>Akbari.</span>
+              Mozhgan Akbari · Product Designer
             </h1>
           </div>
 
-          {/* Tagline */}
+          {/* the statement in words, for readers that can't see the drawing */}
+          <p className="sr-only">Hard problems. Obvious screens.</p>
+
+          {/* Supporting line */}
           <p
-            className="hero-rise max-w-4xl leading-snug mb-4"
+            className="hero-rise leading-[1.2] mb-9"
             style={{
-              animationDelay: "0.25s",
-              fontSize: "clamp(18px, 2vw, 24px)",
-              fontWeight: 300,
-              letterSpacing: "-0.015em",
-              color: "var(--text-secondary)",
+              animationDelay: "0.1s",
+              fontSize: "clamp(24px, 2.6vw, 34px)",
+              fontWeight: 400,
+              letterSpacing: "-0.025em",
+              color: "var(--text-primary)",
+              textWrap: "balance",
             }}
           >
-            Designing clarity in complex systems.
-          </p>
-          <p
-            className="hero-rise max-w-4xl leading-snug mb-12"
-            style={{
-              animationDelay: "0.35s",
-              fontSize: "clamp(16px, 1.6vw, 20px)",
-              fontWeight: 300,
-              letterSpacing: "-0.01em",
-              color: "var(--text-tertiary)",
-            }}
-          >
-            Enterprise workflows, financial products, and design systems at scale.
+            <span className="block">Products shaped by</span>
+            <span className="block" style={{ color: "var(--text-secondary)" }}>what users actually do.</span>
           </p>
 
           {/* CTAs */}
-          <div className="hero-rise flex flex-wrap items-center gap-3 mb-20" style={{ animationDelay: "0.45s" }}>
+          <div className="hero-rise flex flex-wrap items-center gap-3 mb-12" style={{ animationDelay: "0.15s" }}>
             <button
               data-hand
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -109,13 +76,13 @@ export default function Hero() {
 
           {/* Discipline strip */}
           <div
-            className="hero-rise flex flex-wrap items-center gap-x-8 gap-y-3"
-            style={{ animationDelay: "0.55s", borderTop: "1px solid var(--border-strong)", paddingTop: 24 }}
+            className="hero-rise flex flex-col gap-4"
+            style={{ animationDelay: "0.2s" }}
           >
             {[
               { label: "6 years", note: "shipping live products" },
               { label: "Banking · Fintech · Crypto · IoT", note: "domains designed for" },
-              { label: "CS background", note: "engineering-fluent by training" },
+              { label: "BSc Computer Engineering", note: "engineering-fluent by training" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col gap-0.5">
                 <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
@@ -130,22 +97,6 @@ export default function Hero() {
 
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 items-center gap-2"
-        aria-hidden="true"
-      >
-        <span className="mono-label" style={{ color: "var(--text-tertiary)" }}>
-          Scroll
-        </span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-          <ArrowDownIcon style={{ width: 14, height: 14, color: "var(--text-tertiary)" }} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

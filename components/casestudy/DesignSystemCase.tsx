@@ -2,6 +2,7 @@ import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
+import DsArchitecture from "./DsArchitecture";
 
 export default function DesignSystemCase() {
   return (
@@ -160,7 +161,9 @@ export default function DesignSystemCase() {
           src="/projects/DesignSystem-architecture.webp"
           alt="Version 2: source palettes feed an identity layer with one mode per product, which feeds a semantic layer with light and dark modes, which Ant Design and custom components use across four products"
           caption="Version 2: a product picks its identity, a theme picks the step, and four products share one set of components"
-        />
+        >
+          <DsArchitecture label="Version 2: source palettes feed an identity layer with one mode per product, which feeds a semantic layer with light and dark modes, which Ant Design and custom components use across four products" />
+        </Mockup>
       </section>
 
       {/* 8 */}

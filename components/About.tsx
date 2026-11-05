@@ -63,7 +63,8 @@ function Chapter({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 72%", "start 52%"] });
   const lit = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const textOpacity = useTransform(scrollYProgress, [0, 1], [0.35, 1]);
+  // never below 0.65: inactive steps stay readable (≥ 4.5:1 on the background)
+  const textOpacity = useTransform(scrollYProgress, [0, 1], [0.65, 1]);
   const halo = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
 
   return (

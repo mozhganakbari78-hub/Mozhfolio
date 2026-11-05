@@ -1,26 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
-export function useInView(threshold = 0.15) {
+const REDUCE = "(prefers-reduced-motion: reduce)";
+const subscribe = (cb: () => void) => {
+  const mq = window.matchMedia(REDUCE);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+const prefersReduced = () => window.matchMedia(REDUCE).matches;
+
+/**
+ * Scroll reveal trigger. Fires as soon as any part of the element enters the
+ * viewport, and also for anything already above it (an anchor jump, a fast
+ * scroll or a refresh mid-page), so content never stays hidden. With reduced
+ * motion it reports "in view" straight away.
+ */
+export function useInView() {
   const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
+  const [seen, setSeen] = useState(false);
+  const reduce = useSyncExternalStore(subscribe, prefersReduced, () => false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || reduce || typeof IntersectionObserver === "undefined") return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          setSeen(true);
           obs.disconnect();
         }
       },
-      { threshold }
+      { threshold: 0, rootMargin: "0px 0px 10% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [threshold]);
+  }, [reduce]);
 
-  return { ref, inView };
+  return { ref, inView: seen || reduce };
 }
