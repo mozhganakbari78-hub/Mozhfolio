@@ -2575,3 +2575,6 @@
   .gh-plant, .gh-wires path, .gh-blades, .gh-air path, .gh-drops circle, .gh-coil, .gh-pulse circle { animation: none !important; }
   .gh-drops circle { opacity: .6; }
 }
+
+/* ── error rewrites: a halftone illustration above each message ────── */
+.cs-msg-row .cs-escene { display: block; width: 100%; max-width: 230px; height: auto; margin: 4px 0 12px; overflow: visible; }

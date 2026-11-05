@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ErrorScene, { type SceneHint } from "./ErrorScene";
 
 export type Rewrite = {
   /** Short label for what the message is about. */
@@ -9,6 +10,8 @@ export type Rewrite = {
   after: { fa: string; en: string };
   /** What the rewrite fixed. */
   changes: string[];
+  /** What the checkpoint shows once the message is fixed. */
+  hint?: SceneHint;
 };
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -48,6 +51,7 @@ export default function MessageRewrite({ items }: { items: Rewrite[] }) {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: t + 0.15, duration: 0.45, ease: EASE }}
               >
+                {m.hint && <ErrorScene state="before" hint={m.hint} delay={t + 0.2} />}
                 <span className="tag">Before</span>
                 <p className="fa" dir="rtl" lang="fa">
                   {m.before.fa}
@@ -63,6 +67,7 @@ export default function MessageRewrite({ items }: { items: Rewrite[] }) {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: t + 0.5, duration: 0.5, ease: EASE }}
               >
+                {m.hint && <ErrorScene state="after" hint={m.hint} delay={t + 0.6} />}
                 <span className="tag">After</span>
                 <p className="fa" dir="rtl" lang="fa">
                   {m.after.fa}
