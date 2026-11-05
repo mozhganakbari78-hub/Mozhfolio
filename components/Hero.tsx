@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import HeroBeam from "@/components/HeroBeam";
+import HeroIso from "@/components/HeroIso";
 
 // The entrance is a CSS animation, not framer variants: framer starts the
 // elements at opacity 0 in the exported HTML, so the hero stayed blank until
@@ -11,34 +11,21 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] flex items-center px-6 pt-28 md:pt-28 pb-12 md:pb-12 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center px-6 pt-24 md:pt-28 pb-12 overflow-hidden"
       aria-label="Introduction"
+      style={{ background: "radial-gradient(ellipse 70% 60% at 70% 45%, #17181b 0%, transparent 70%)" }}
     >
-      {/* Grid, only in the lower part of the hero, fading in from the middle */}
-      <div
-        className="absolute inset-0 grid-bg pointer-events-none"
-        style={{
-          maskImage: "linear-gradient(to bottom, transparent 35%, #000 80%)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 35%, #000 80%)",
-        }}
-        aria-hidden="true"
-      />
+      <div className="relative max-w-6xl mx-auto w-full grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-center gap-x-10 gap-y-2">
 
-      {/* Radial fade from bottom */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 80% 60% at 50% 120%, var(--accent-color) 0%, transparent 60%)",
-          opacity: 0.07,
-        }}
-        aria-hidden="true"
-      />
+        {/* The statement, drawn as an exploded isometric stack */}
+        <div className="lg:order-last -mx-6 lg:mx-0">
+          <HeroIso />
+        </div>
 
-      <div className="relative max-w-6xl mx-auto w-full">
-        <div>
-
+        {/* above the scene, so its guide lines pass under the text */}
+        <div className="relative z-10">
           {/* Name and role: the page's h1, set small */}
-          <div className="hero-rise mb-6" style={{ animationDelay: "0s" }}>
+          <div className="hero-rise mb-5" style={{ animationDelay: "0s" }}>
             <h1
               className="text-[15px] font-medium"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
@@ -47,42 +34,24 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* Statement: the largest text on the page, one phrase per line */}
-          <div className="hero-rise" style={{ animationDelay: "0.05s" }}>
-            <p
-              className="font-semibold leading-[0.96] mb-6"
-              style={{
-                fontSize: "clamp(30px, 9vw, 68px)",
-                letterSpacing: "-0.04em",
-                color: "var(--text-primary)",
-              }}
-            >
-              <span className="block whitespace-nowrap">Hard problems.</span>
-              <span className="block whitespace-nowrap" style={{ color: "var(--text-secondary)" }}>
-                Obvious screens.
-              </span>
-            </p>
-          </div>
+          {/* the statement in words, for readers that can't see the drawing */}
+          <p className="sr-only">Hard problems. Obvious screens.</p>
 
           {/* Supporting line */}
           <p
-            className="hero-rise max-w-4xl leading-snug mb-9"
+            className="hero-rise leading-[1.2] mb-9"
             style={{
               animationDelay: "0.1s",
-              fontSize: "clamp(18px, 2vw, 24px)",
-              fontWeight: 300,
-              letterSpacing: "-0.015em",
-              color: "var(--text-secondary)",
-              textWrap: "pretty",
+              fontSize: "clamp(24px, 2.6vw, 34px)",
+              fontWeight: 400,
+              letterSpacing: "-0.025em",
+              color: "var(--text-primary)",
+              textWrap: "balance",
             }}
           >
-            Workflows, design systems and UX writing, built on evidence from real users.
+            Workflows, design systems and UX writing,{" "}
+            <span style={{ color: "var(--text-secondary)" }}>built on evidence from real users.</span>
           </p>
-
-          {/* "+ Design" field with a beam of light from its caret */}
-          <div className="hero-rise mb-10" style={{ animationDelay: "0.12s" }}>
-            <HeroBeam />
-          </div>
 
           {/* CTAs */}
           <div className="hero-rise flex flex-wrap items-center gap-3 mb-12" style={{ animationDelay: "0.15s" }}>
@@ -128,7 +97,6 @@ export default function Hero() {
 
         </div>
       </div>
-
     </section>
   );
 }
