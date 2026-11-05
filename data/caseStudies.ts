@@ -18,14 +18,14 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "error-messages",
-    title: "Errors that say what's next",
+    slug: "iot-rule-builder",
+    title: "Greenhouse rules in one sentence",
     short:
-      "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
     description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
+      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
+    meta: "IoT · Logic Design",
+    illustration: "rules",
   },
   {
     index: "02",
@@ -40,6 +40,17 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "03",
+    slug: "error-messages",
+    title: "Errors that say what's next",
+    short:
+      "Three rules became the platform standard; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+    description:
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
+  },
+  {
+    index: "04",
     slug: "reducing-support-friction",
     title: "Answers before the ticket",
     short:
@@ -48,17 +59,6 @@ export const caseStudies: CaseStudy[] = [
       "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
     illustration: "support",
-  },
-  {
-    index: "04",
-    slug: "iot-rule-builder",
-    title: "Greenhouse rules in one sentence",
-    short:
-      "Rules that read as one sentence, built from live sensor readings and ready-made conditions, so operators who never think in if-else can automate their greenhouse.",
-    description:
-      "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it is needed.",
-    meta: "IoT · Logic Design",
-    illustration: "rules",
   },
   {
     index: "05",

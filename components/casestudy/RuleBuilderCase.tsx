@@ -289,13 +289,13 @@ WHEN always`}</pre>
       </section>
 
       <NextCaseLink
-        href="/work/batch-transfer/"
-        caseStudyName="One bad row, not a failed file"
+        href="/work/design-system/"
+        caseStudyName="A design system engineers used"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          One bad row, not a failed file{" "}
+          A design system engineers used{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
