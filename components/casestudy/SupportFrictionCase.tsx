@@ -56,7 +56,7 @@ export default function SupportFrictionCase() {
         <h2>Would anyone read it?</h2>
         <p>I put myself in the user&apos;s place:</p>
         <p className="cs-quote">
-          &ldquo;I&apos;m stuck in the middle of a payment in a banking system. Do I go and read the
+          &ldquo;I&apos;m in the middle of a task and I have a question. Do I stop and go read the
           FAQ?&rdquo;
         </p>
         <p>Probably not. So before touching the FAQ, I went to see what users were actually asking.</p>
@@ -84,21 +84,6 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
-      <section className="cs-reveal">
-        <span className="cs-num">Making the case</span>
-        <h2>Answer first, ask later</h2>
-        <p>
-          We took the analysis to the PM and product owner as a short deck: the ticket breakdown,
-          what each group needed, and one principle: answer first, ask later. It was approved in the
-          same meeting. The PM wanted the help desk spending less time on questions with a fixed
-          answer and more on the financial issues that need a person.
-        </p>
-      </section>
-
-      <section className="cs-shot cs-reveal">
-        <HelpDeskScene />
-      </section>
-
       {/* 4 */}
       <section className="cs-reveal">
         <span className="cs-num">The challenge</span>
@@ -112,6 +97,17 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>Answer first, ask later</h2>
+        <p>
+          We took the analysis to the PM and product owner as a short deck: the ticket breakdown,
+          what each group needed, and one principle: answer first, ask later. It was approved in the
+          same meeting. The PM wanted the help desk spending less time on questions with a fixed
+          answer and more on the financial issues that need a person.
+        </p>
+      </section>
+
       {/* 5 */}
       <section className="cs-reveal">
         <span className="cs-num">The decision</span>
@@ -120,6 +116,7 @@ export default function SupportFrictionCase() {
           As the user types their question into the ticket, matching answers appear beside it. If
           one helps, they&apos;re done. If not, they just send the ticket.
         </p>
+        <HelpDeskScene />
       </section>
 
       <section className="cs-shot cs-reveal">

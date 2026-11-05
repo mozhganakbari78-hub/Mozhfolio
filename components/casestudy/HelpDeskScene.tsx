@@ -84,20 +84,57 @@ const TO_PAGE = "M250,500 L548,328 L600,358";
 const TO_DESK = "M600,358 L620,370 L930,550";
 const TO_KB = "M600,330 L830,197";
 
-/** A dot that travels a wire on a loop; drawn only when motion is allowed. */
-function Mover({ path, dur, delay, tone, reverse }: { path: string; dur: number; delay: number; tone: string; reverse?: boolean }) {
+/*
+ * One story on one shared clock, so every step lands in order:
+ * a user asks, the page finds the fixed answer and sends it straight back;
+ * then a second user asks something that needs a person, and it goes on to
+ * the help desk. Values are fractions of the loop.
+ */
+const LOOP = 9;
+
+/** An attribute animated on the shared loop. */
+function A({ attr, v, t }: { attr: string; v: string; t: string }) {
   return (
-    <circle r={6} className={`hd-dot ${tone}`}>
-      <animateMotion
-        dur={`${dur}s`}
-        begin={`${delay}s`}
-        repeatCount="indefinite"
-        path={path}
-        keyPoints={reverse ? "1;0" : "0;1"}
-        keyTimes="0;1"
-        calcMode="linear"
-      />
-    </circle>
+    <animate attributeName={attr} values={v} keyTimes={t} dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" />
+  );
+}
+
+/** A small ticket card with a soft glow that travels a wire, visible only for its leg. */
+function Chip({ path, tone, kp, kt, ov, ot }: { path: string; tone: string; kp: string; kt: string; ov: string; ot: string }) {
+  return (
+    <g className={`hd-chip ${tone}`} opacity={0}>
+      <A attr="opacity" v={ov} t={ot} />
+      <animateMotion path={path} keyPoints={kp} keyTimes={kt} dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" />
+      <circle r={18} className="halo" filter="url(#hd-blur)" />
+      <rect x={-11} y={-8} width={22} height={16} rx={4} className="card" />
+      <path d="M-6,-2 h12 M-6,3 h7" className="ink" />
+    </g>
+  );
+}
+
+/** A speech bubble with typing dots, above a user. */
+function Bubble({ x, y, ov, ot }: { x: number; y: number; ov: string; ot: string }) {
+  return (
+    <g className="hd-bubble" transform={`translate(${x} ${y})`} opacity={0}>
+      <A attr="opacity" v={ov} t={ot} />
+      <path d="M0,0 h56 a10,10 0 0 1 10,10 v12 a10,10 0 0 1 -10,10 h-34 l-10,10 v-10 h-12 a10,10 0 0 1 -10,-10 v-12 a10,10 0 0 1 10,-10 z" />
+      {[0, 1, 2].map((n) => (
+        <circle key={n} cx={16 + n * 12} cy={16} r={3} style={{ animationDelay: `${n * 0.18}s` }} />
+      ))}
+    </g>
+  );
+}
+
+/** A ripple on a platform when something arrives. */
+function Ripple({ cx, cy, r, t, amber }: { cx: number; cy: number; r: number; t: [number, number]; amber?: boolean }) {
+  const [a, b] = t;
+  const times = `0;${a};${b};1`;
+  return (
+    <ellipse cx={cx} cy={cy} className={`hd-ripple${amber ? " is-support" : ""}`} opacity={0}>
+      <A attr="rx" v={`${r * 0.4};${r * 0.4};${r * 1.3};${r * 1.3}`} t={times} />
+      <A attr="ry" v={`${r * 0.23};${r * 0.23};${r * 0.75};${r * 0.75}`} t={times} />
+      <A attr="opacity" v="0;0;.9;0;0" t={`0;${a};${a + 0.005};${b};1`} />
+    </ellipse>
   );
 }
 
@@ -128,6 +165,9 @@ export default function HelpDeskScene() {
             <stop offset="0%" stopColor="#fff" stopOpacity="1" />
             <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </radialGradient>
+          <filter id="hd-blur" x="-1" y="-1" width="3" height="3">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
           <mask id="hd-grid-mask">
             <rect x="0" y="0" width="1200" height="720" fill="url(#hd-fade)" />
           </mask>
@@ -154,8 +194,22 @@ export default function HelpDeskScene() {
           <path d={TO_DESK} className="is-idle" />
           <path d={TO_KB} className="is-idle" />
         </g>
+        {motion && (
+          <g className="hd-hot">
+            <path d={TO_PAGE} opacity={0}>
+              <A attr="opacity" v="0;0;.9;.9;0;0;.9;.9;0;.9;.9;0;0" t="0;.07;.09;.24;.27;.39;.41;.54;.56;.57;.68;.70;1" />
+            </path>
+            <path d={TO_KB} opacity={0}>
+              <A attr="opacity" v="0;0;.9;.9;0;0" t="0;.29;.30;.38;.40;1" />
+            </path>
+            <path d={TO_DESK} className="is-support" opacity={0}>
+              <A attr="opacity" v="0;0;.9;.9;0;0" t="0;.77;.79;.92;.95;1" />
+            </path>
+          </g>
+        )}
 
-        {/* the FAQ: a stack of answer units */}
+        {/* the FAQ: a stack of answer units, floating gently */}
+        <g className={motion ? "hd-float" : undefined} style={{ animationDelay: "-2s" }}>
         {[0, 1, 2].map((n) => (
           <g key={n}>
             <Box at={kbAt} x={-40} y={-40} z={n * 30} w={80} d={80} h={24} />
@@ -165,6 +219,7 @@ export default function HelpDeskScene() {
             </g>
           </g>
         ))}
+        </g>
         <Label x={968} y={150} k="FAQ" v="89 answers" />
 
         {/* users */}
@@ -176,19 +231,33 @@ export default function HelpDeskScene() {
 
         {/* the merged support page */}
         <Disc cx={PAGE[0]} cy={PAGE[1]} r={120} glow />
+        <g className={motion ? "hd-float" : undefined}>
         <Box at={pageAt} x={-90} y={-6} w={180} d={8} h={150} />
         <g transform={faceMatrix(pageAt, -90, 2, 150)} className="hd-page">
           {/* FAQ column */}
           <rect x={12} y={14} width={70} height={122} rx={4} className="hd-pane" />
           {[0, 1, 2, 3].map((n) => (
-            <rect key={n} x={20} y={24 + n * 27} width={54} height={19} rx={3} className={`hd-answer${n === 1 ? " is-match" : ""}`} />
+            <rect key={n} x={20} y={24 + n * 27} width={54} height={19} rx={3} className="hd-answer" />
           ))}
+          {motion && (
+            <rect x={20} y={51} width={54} height={19} rx={3} className="hd-hit" opacity={0}>
+              <A attr="opacity" v="0;0;1;1;0;0" t="0;.37;.40;.52;.56;1" />
+            </rect>
+          )}
           {/* ticket form */}
           <rect x={92} y={14} width={76} height={122} rx={4} className="hd-pane" />
           <rect x={100} y={26} width={60} height={14} rx={3} className="hd-input" />
-          <rect x={104} y={31} width={40} height={4} rx={2} className={`hd-typing${motion ? " is-on" : ""}`} />
+          <rect x={104} y={31} width={motion ? 0 : 40} height={4} rx={2} className="hd-typing">
+            {motion && <A attr="width" v="0;0;40;40;0;0;40;40;0" t="0;.24;.30;.46;.48;.68;.74;.95;1" />}
+          </rect>
           <path d="M100,52 h56 M100,62 h44 M100,72 h50" className="gh-device hd-slot" />
           <rect x={126} y={116} width={34} height={12} rx={3} className="hd-send" />
+          {motion && (
+            <rect x={126} y={116} width={34} height={12} rx={3} className="hd-send-hit" opacity={0}>
+              <A attr="opacity" v="0;0;1;0;1;0;0" t="0;.74;.76;.78;.80;.84;1" />
+            </rect>
+          )}
+        </g>
         </g>
         <Label x={420} y={60} k="SUPPORT PAGE" v="answers as they type" on />
 
@@ -203,6 +272,11 @@ export default function HelpDeskScene() {
             <Box at={deskAt} x={p.x + 18} y={p.y + 4} z={28} w={48} d={4} h={34} className="hd-monitor" />
             <g transform={faceMatrix(deskAt, p.x + 18, p.y + 8, 62)}>
               <rect x={5} y={5} width={38} height={24} rx={2} className={`hd-screen${motion ? " is-glow" : ""}`} style={{ animationDelay: `${n * 1.3}s` }} />
+              {motion && n === 1 && (
+                <rect x={5} y={5} width={38} height={24} rx={2} className="hd-screen-hit" opacity={0}>
+                  <A attr="opacity" v="0;0;1;1;0;0" t="0;.91;.93;.985;.998;1" />
+                </rect>
+              )}
             </g>
           </g>
         ))}
@@ -218,17 +292,24 @@ export default function HelpDeskScene() {
         })()}
         <Label x={900} y={612} k="HELP DESK" v="cases that need a person" />
 
-        {/* the flow: tickets out, fixed answers back, the rest to the desk */}
+        {/* the story: one question answered on the page, one sent to the desk */}
         {motion && (
           <g>
-            <Mover path={TO_PAGE} dur={3} delay={0} tone="is-ticket" />
-            <Mover path={TO_PAGE} dur={3} delay={1} tone="is-ticket" />
-            <Mover path={TO_PAGE} dur={3} delay={2} tone="is-ticket" />
-            <Mover path={TO_PAGE} dur={3} delay={0.5} tone="is-answer" reverse />
-            <Mover path={TO_PAGE} dur={3} delay={2} tone="is-answer" reverse />
-            <Mover path={TO_DESK} dur={3.4} delay={1.6} tone="is-support" />
-            <Mover path={TO_KB} dur={2.4} delay={0.8} tone="is-query" />
-            <Mover path={TO_KB} dur={2.4} delay={1.2} tone="is-query" reverse />
+            <Bubble x={300} y={414} ov="0;0;1;1;0;0" ot="0;.01;.04;.12;.15;1" />
+            <Chip path={TO_PAGE} tone="is-ticket" kp="0;0;1;1" kt="0;.08;.24;1" ov="0;0;1;1;0;0" ot="0;.07;.08;.24;.25;1" />
+            <Chip path={TO_KB} tone="is-query" kp="0;0;1;0;0" kt="0;.30;.34;.38;1" ov="0;0;1;1;0;0" ot="0;.295;.30;.38;.385;1" />
+            <Chip path={TO_PAGE} tone="is-answer" kp="1;1;0;0" kt="0;.40;.54;1" ov="0;0;1;1;0;0" ot="0;.395;.40;.54;.55;1" />
+            <Ripple cx={USERS[0]} cy={USERS[1]} r={110} t={[0.54, 0.64]} />
+            <g className="hd-check" transform="translate(336 454)" opacity={0}>
+              <A attr="opacity" v="0;0;1;1;0;0" t="0;.54;.56;.66;.69;1" />
+              <circle r={13} />
+              <path d="M-5.5,0 l3.8,3.8 l7,-7.2" />
+            </g>
+
+            <Bubble x={102} y={420} ov="0;0;1;1;0;0" ot="0;.50;.53;.60;.63;1" />
+            <Chip path={TO_PAGE} tone="is-ticket" kp="0;0;1;1" kt="0;.57;.68;1" ov="0;0;1;1;0;0" ot="0;.565;.57;.68;.69;1" />
+            <Chip path={TO_DESK} tone="is-support" kp="0;0;1;1" kt="0;.78;.92;1" ov="0;0;1;1;0;0" ot="0;.775;.78;.92;.93;1" />
+            <Ripple cx={DESK[0]} cy={DESK[1]} r={130} t={[0.92, 0.995]} amber />
           </g>
         )}
 

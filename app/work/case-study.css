@@ -1804,13 +1804,13 @@
 }
 
 /* ── ticket split: what each request actually needed ───────────────────────
-   Two categorical fills only. The 37/43 pair shares one colour and is told
-   apart by the 2px surface gap and its own bracket label, not by hue, which
-   keeps the palette inside the dark fill band. Amber is a darker step of
-   --warn so it sits on the card rather than glowing off it. */
+   Same colour logic as the help desk scene further down: blue is answered on
+   the page, amber goes to the help desk. The user's own case also needs a
+   person, so it is a lighter step of the same amber. */
 .cs-split {
-  --split-self: #0174DC;
-  --split-support: #c0892f;
+  --split-answer: var(--accent-ink);
+  --split-case: color-mix(in srgb, var(--warn) 55%, #fff);
+  --split-support: var(--warn);
   margin: 16px 0 6px;
 }
 
@@ -1831,9 +1831,13 @@
   align-items: flex-end;
   overflow-wrap: anywhere;
 }
-.cs-split-brackets .b.is-self {
-  color: var(--accent-ink);
+.cs-split-brackets .b.is-answer {
+  color: var(--split-answer);
   border-bottom: 1px solid rgba(124, 184, 245, .35);
+}
+.cs-split-brackets .b.is-case {
+  color: var(--split-case);
+  border-bottom: 1px solid rgba(224, 180, 85, .3);
 }
 .cs-split-brackets .b.is-support {
   color: var(--warn);
@@ -1855,7 +1859,8 @@
      relayouts the panel while the reader is scrolling past it */
   transform-origin: left center;
 }
-.cs-split-bar .seg.is-self { background: var(--split-self); }
+.cs-split-bar .seg.is-answer { background: var(--split-answer); }
+.cs-split-bar .seg.is-case { background: var(--split-case); }
 .cs-split-bar .seg.is-support { background: var(--split-support); }
 .cs-split-bar .seg:first-child { border-radius: 4px 2px 2px 4px; }
 .cs-split-bar .seg:last-child { border-radius: 2px 4px 4px 2px; }
@@ -1904,7 +1909,8 @@
   border-radius: 2px;
   transform: translateY(1px);
 }
-.cs-split-key .chip.is-self { background: var(--split-self); }
+.cs-split-key .chip.is-answer { background: var(--split-answer); }
+.cs-split-key .chip.is-case { background: var(--split-case); }
 .cs-split-key .chip.is-support { background: var(--split-support); }
 .cs-split-key .pct {
   font-family: var(--font-mono), monospace;
@@ -2599,13 +2605,32 @@
 
 .hd-page .hd-pane { fill: #111317; stroke: rgba(238, 240, 244, .22); stroke-width: 1; }
 .hd-page .hd-answer { fill: rgba(238, 240, 244, .05); stroke: rgba(238, 240, 244, .18); stroke-width: 1; }
-.hd-page .hd-answer.is-match { fill: rgba(124, 184, 245, .14); stroke: var(--accent-ink); animation: hd-match 3s ease-in-out infinite; }
-@keyframes hd-match { 0%, 25% { opacity: .35; } 45%, 85% { opacity: 1; } 100% { opacity: .35; } }
+.hd-page .hd-hit { fill: rgba(124, 184, 245, .22); stroke: var(--accent-ink); stroke-width: 1.2; }
 .hd-page .hd-input { fill: #15171b; stroke: rgba(124, 184, 245, .5); stroke-width: 1; }
-.hd-page .hd-typing { fill: rgba(238, 240, 244, .6); transform-box: fill-box; transform-origin: left center; }
-.hd-page .hd-typing.is-on { animation: hd-type 3s steps(10) infinite; }
-@keyframes hd-type { 0% { scale: 0 1; } 60%, 100% { scale: 1 1; } }
+.hd-page .hd-typing { fill: rgba(238, 240, 244, .6); }
 .hd-page .hd-send { fill: rgba(192, 137, 47, .25); stroke: #c0892f; stroke-width: 1; }
+.hd-page .hd-send-hit { fill: var(--warn); stroke: none; }
+.hd-screen-hit { fill: rgba(224, 180, 85, .55); stroke: var(--warn); stroke-width: 1; }
+
+/* the story */
+.hd-float { animation: hd-float 6s ease-in-out infinite; }
+@keyframes hd-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.hd-hot path { fill: none; stroke: var(--accent-ink); stroke-width: 2.4; stroke-dasharray: 4 8; animation: gh-flow .6s linear infinite; }
+.hd-hot path.is-support { stroke: var(--warn); }
+.hd-chip .card { stroke: none; }
+.hd-chip .ink { fill: none; stroke: #0f1013; stroke-width: 1.6; stroke-linecap: round; }
+.hd-chip .halo { opacity: .45; }
+.hd-chip.is-ticket .card, .hd-chip.is-ticket .halo { fill: #eef0f3; }
+.hd-chip.is-answer .card, .hd-chip.is-answer .halo { fill: var(--accent-ink); }
+.hd-chip.is-support .card, .hd-chip.is-support .halo { fill: var(--warn); }
+.hd-chip.is-query .card, .hd-chip.is-query .halo { fill: rgba(124, 184, 245, .6); }
+.hd-bubble path { fill: #1b1e23; stroke: rgba(238, 240, 244, .55); stroke-width: 1.2; }
+.hd-bubble circle { fill: #eef0f3; animation: hd-typing-dot 1s ease-in-out infinite; }
+@keyframes hd-typing-dot { 0%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.hd-check circle { fill: var(--accent-ink); }
+.hd-check path { fill: none; stroke: #0f1013; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.hd-ripple { fill: none; stroke: var(--accent-ink); stroke-width: 1.4; }
+.hd-ripple.is-support { stroke: var(--warn); }
 
 .hd-screen { fill: rgba(224, 180, 85, .1); stroke: rgba(224, 180, 85, .55); stroke-width: 1; }
 .hd-screen.is-glow { animation: hd-glow 4s ease-in-out infinite; }
@@ -2619,7 +2644,7 @@
 .hd-key text { font-size: 17px; fill: #9aa1ac; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hd-led.is-blink, .hd-page .hd-answer.is-match, .hd-page .hd-typing.is-on, .hd-screen.is-glow { animation: none !important; }
+  .hd-led.is-blink, .hd-screen.is-glow, .hd-float, .hd-bubble circle, .hd-hot path { animation: none !important; }
 }
 
 /* ── error rewrites: compact before/after pairs ───────────────────────── */

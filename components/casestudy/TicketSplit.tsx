@@ -15,7 +15,7 @@ const SEGMENTS = [
     bracket: "37% one fixed answer",
     detail:
       "Questions with one answer, often a bank policy. Nothing had gone wrong; the user needed information, not a person.",
-    tone: "self" as const,
+    tone: "answer" as const,
   },
   {
     n: 420,
@@ -24,7 +24,7 @@ const SEGMENTS = [
     bracket: "43% the user's own case",
     detail:
       "The answer depends on the user's role, their organisation, or a specific transaction. These need someone to look at the case.",
-    tone: "self" as const,
+    tone: "case" as const,
   },
   {
     n: 195,
