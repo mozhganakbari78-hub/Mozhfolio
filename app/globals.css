@@ -261,23 +261,23 @@ button:disabled,
 .iso-shadow-wrap { transform: translateZ(.4em) rotateZ(-5deg); transition: opacity .2s; }
 /* .iso-tile.iso-shadow: must beat .iso-hard, which sets the text colour */
 .iso-tile.iso-shadow {
-  background: rgba(0, 0, 0, .8); border-color: transparent; color: transparent; box-shadow: none; text-shadow: none;
-  filter: blur(.1em); opacity: .75; transform: translateY(1.15em) scale(1.03);
+  background: rgba(0, 0, 0, .7); border-color: transparent; color: transparent; box-shadow: none; text-shadow: none;
+  filter: blur(.22em); opacity: .42; transform: translateY(1.15em) scale(1.03);
 }
 .iso-shadow::before, .iso-shadow::after { display: none; }
 /* light comes from behind, so the higher the tile, the further its shadow
    reaches across onto "Obvious screens." (and the softer it gets) */
 .iso-shadow.is-on { animation: iso-shadow 6s ease-in-out infinite; }
 @keyframes iso-shadow {
-  0%, 100% { opacity: .75; filter: blur(.1em); transform: translateY(1.15em) scale(1.03); }
-  50% { opacity: .55; filter: blur(.16em); transform: translateY(1.35em) scale(1.06) rotateZ(1.5deg); }
+  0%, 100% { opacity: .42; filter: blur(.22em); transform: translateY(1.15em) scale(1.03); }
+  50% { opacity: .28; filter: blur(.3em); transform: translateY(1.35em) scale(1.06) rotateZ(1.5deg); }
 }
 .iso-world.is-landed .iso-shadow-wrap { opacity: 0; transition: opacity .15s .5s; }
 .iso-world.is-landed .iso-shadow { animation: iso-shadow-in .57s cubic-bezier(.6, 0, 1, .6) both; }
 @keyframes iso-shadow-in {
-  0% { opacity: .75; filter: blur(.1em); transform: translateY(1.15em) scale(1.03); }
-  16% { opacity: .6; filter: blur(.13em); transform: translateY(1.3em) scale(1.05); }
-  100% { opacity: .95; filter: blur(.03em); transform: none; }
+  0% { opacity: .42; filter: blur(.22em); transform: translateY(1.15em) scale(1.03); }
+  16% { opacity: .32; filter: blur(.27em); transform: translateY(1.3em) scale(1.05); }
+  100% { opacity: .6; filter: blur(.08em); transform: none; }
 }
 .iso-hard { font-size: 3.3em; left: 2.6em; top: .45em; color: #8e929b; font-weight: 540; }
 /* where the floating tile would land: a dashed outline on the plate */
