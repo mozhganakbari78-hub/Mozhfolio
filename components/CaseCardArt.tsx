@@ -38,10 +38,14 @@ function Frame({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* Start only once the card is well on screen: the default fires on the first
+   pixel, so the first card had finished animating before anyone reached it. */
+const VIEW = { once: true, margin: "0px 0px -35% 0px" } as const;
+
 const rise = (delay: number) => ({
   initial: { opacity: 0, y: 8 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
+  viewport: VIEW,
   transition: { delay, duration: 0.45, ease: EASE },
 });
 
@@ -59,7 +63,7 @@ function Support() {
           <motion.g
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={VIEW}
             transition={{ delay: 0.6, duration: 0.5, ease: EASE }}
             style={{ transformOrigin: "60px 50px" }}
           >
@@ -74,16 +78,16 @@ function Support() {
           <rect x={14} y={70} width={170} height={30} rx={8} fill="rgba(255,255,255,0.03)" stroke={LINE} strokeWidth={1} />
           <motion.rect
             x={26} y={82} height={6} rx={3} fill={SUB}
-            initial={{ width: 0 }} whileInView={{ width: 92 }} viewport={{ once: true }}
+            initial={{ width: 0 }} whileInView={{ width: 92 }} viewport={VIEW}
             transition={{ duration: 0.6, ease: "linear" }}
           />
           <motion.rect x={122} y={79} width={1.6} height={12} fill={FG}
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.55 }} />
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={VIEW} transition={{ delay: 0.55 }} />
           {/* the ticket that no longer needs sending */}
           <motion.g
             initial={{ x: 0, y: 0, rotate: 0, opacity: 1 }}
             whileInView={{ x: 18, y: 10, rotate: 14, opacity: 0.35 }}
-            viewport={{ once: true }}
+            viewport={VIEW}
             transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
             style={{ transformOrigin: "212px 70px" }}
           >
@@ -93,7 +97,7 @@ function Support() {
             <rect x={209} y={71} width={14} height={4} rx={2} fill={SUB} opacity={0.6} />
           </motion.g>
           <motion.text x={190} y={108} fill={SUB} style={{ ...Mono, fontSize: 9 }}
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.6 }}>
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={VIEW} transition={{ delay: 1.6 }}>
             not needed
           </motion.text>
         </svg>
@@ -128,7 +132,7 @@ function Batch() {
                 key={i}
                 initial={{ x: -30, opacity: 0 }}
                 whileInView={bad ? { x: 0, y: -46, opacity: 1 } : { x: 0, opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={VIEW}
                 transition={bad
                   ? { delay: 0.15 + i * 0.08, duration: 0.9, ease: EASE, y: { delay: 1.0, duration: 0.5, ease: EASE } }
                   : { delay: 0.15 + i * 0.08, duration: 0.6, ease: EASE }}
@@ -142,16 +146,16 @@ function Batch() {
             );
           })}
           {/* the little arm that lifts the bad row off */}
-          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.3 }}>
+          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={VIEW} transition={{ delay: 0.9, duration: 0.3 }}>
             <line x1={135} y1={0} x2={135} y2={14} stroke={LINE} strokeWidth={1.5} />
             <path d="M127 14 h16 M127 14 v4 M143 14 v4" stroke={FAIL} strokeWidth={1.2} fill="none" />
           </motion.g>
           <motion.text x={166} y={30} fill={FAIL} style={{ ...Mono, fontSize: 9 }}
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.5 }}>
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={VIEW} transition={{ delay: 1.5 }}>
             fix this one
           </motion.text>
           {/* the rest arrive */}
-          <motion.g initial={{ opacity: 0, x: -6 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 1.4, duration: 0.4 }}>
+          <motion.g initial={{ opacity: 0, x: -6 }} whileInView={{ opacity: 1, x: 0 }} viewport={VIEW} transition={{ delay: 1.4, duration: 0.4 }}>
             <path d="M232 112 l10 0 m-4 -4 l4 4 l-4 4" stroke={AI} strokeWidth={1.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />
             <text x={6} y={115} fill={SUB} style={{ ...Mono, fontSize: 9 }}>the rest keep going</text>
           </motion.g>
@@ -167,7 +171,7 @@ const Brick = ({ x, y, c, delay }: { x: number; y: number; c: string; delay: num
   <motion.g
     initial={{ opacity: 0, y: -14 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    viewport={VIEW}
     transition={{ delay, duration: 0.35, ease: EASE }}
   >
     <rect x={x + 4} y={y - 3} width={5} height={3} rx={1} fill={c} opacity={0.85} />
@@ -202,11 +206,11 @@ function DesignSystem() {
           {towers.map((t, i) => (
             <motion.rect
               key={`w${i}`} x={t.x + 8} y={GROUND - BH - (BH + 3) + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
-              initial={{ opacity: 0 }} whileInView={{ opacity: 0.7 }} viewport={{ once: true }} transition={{ delay: 1.3 + i * 0.1 }}
+              initial={{ opacity: 0 }} whileInView={{ opacity: 0.7 }} viewport={VIEW} transition={{ delay: 1.3 + i * 0.1 }}
             />
           ))}
           {/* crane over the purple tower, lowering one more brick */}
-          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.4 }}>
+          <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={VIEW} transition={{ delay: 0.9, duration: 0.4 }}>
             <line x1={240} y1={GROUND} x2={240} y2={8} stroke={LINE} strokeWidth={1.5} />
             <line x1={186} y1={8} x2={254} y2={8} stroke={LINE} strokeWidth={1.5} />
             <line x1={240} y1={8} x2={254} y2={20} stroke={LINE} strokeWidth={1} />
@@ -214,7 +218,7 @@ function DesignSystem() {
           <motion.g
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={VIEW}
             transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
           >
             <line x1={201} y1={8} x2={201} y2={58} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
@@ -245,7 +249,7 @@ function ErrorCopy() {
           <line x1={0} x2={260} y1={112.5} y2={112.5} stroke={LINE} strokeWidth={1.2} />
           {/* the old dead-end sign, fading out */}
           <motion.g
-            initial={{ opacity: 1 }} whileInView={{ opacity: 0.35 }} viewport={{ once: true }}
+            initial={{ opacity: 1 }} whileInView={{ opacity: 0.35 }} viewport={VIEW}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             <line x1={48} y1={58} x2={48} y2={112} stroke={SUB} strokeWidth={2} />
@@ -255,17 +259,17 @@ function ErrorCopy() {
           </motion.g>
           {/* the signpost: what happened, and where to go next */}
           <motion.line x1={170} y1={30} x2={170} y2={112} stroke={SUB} strokeWidth={2}
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.6, duration: 0.4 }} />
-          <motion.g initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.45, ease: EASE }}>
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={VIEW} transition={{ delay: 0.6, duration: 0.4 }} />
+          <motion.g initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={VIEW} transition={{ delay: 0.9, duration: 0.45, ease: EASE }}>
             <path d="M94 32 h74 v18 h-74 l-9 -9 z" fill="rgba(255,255,255,0.04)" stroke={SUB} strokeWidth={1} />
             <text x={132} y={44} textAnchor="middle" fill={FG} style={{ ...Mono, fontSize: 8 }}>what happened</text>
           </motion.g>
-          <motion.g initial={{ opacity: 0, x: 10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 1.15, duration: 0.45, ease: EASE }}>
+          <motion.g initial={{ opacity: 0, x: 10 }} whileInView={{ opacity: 1, x: 0 }} viewport={VIEW} transition={{ delay: 1.15, duration: 0.45, ease: EASE }}>
             <path d="M172 60 h76 l9 9 l-9 9 h-76 z" fill="var(--accent-soft)" stroke={AI} strokeWidth={1} />
             <text x={210} y={72} textAnchor="middle" fill={FG} style={{ ...Mono, fontSize: 8 }}>what to do next</text>
           </motion.g>
           <motion.circle cx={170} cy={28} r={3} fill={AI}
-            initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.4 }} />
+            initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={VIEW} transition={{ delay: 1.4 }} />
         </svg>
       </div>
     </Frame>
@@ -290,7 +294,7 @@ function Rules() {
               strokeWidth={1.2}
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={VIEW}
               transition={{ duration: 0.9, ease: EASE }}
             />
             {ribs.map((x, k) => (
@@ -304,7 +308,7 @@ function Rules() {
                 strokeWidth={0.8}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={VIEW}
                 transition={{ delay: 0.3 + k * 0.05, duration: 0.4 }}
               />
             ))}
@@ -318,7 +322,7 @@ function Rules() {
                 fill="none"
                 initial={{ opacity: 0, y: 4 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={VIEW}
                 transition={{ delay: 0.45 + k * 0.05, duration: 0.4, ease: EASE }}
               >
                 <path d={`M${x} 112 V100`} />
@@ -330,7 +334,7 @@ function Rules() {
             <motion.g
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={VIEW}
               transition={{ delay: 0.7, duration: 0.4 }}
             >
               <circle cx={176} cy={58} r={9} fill="var(--accent-soft)" />
@@ -389,7 +393,7 @@ function Bots() {
             strokeDasharray="3 3"
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
+            viewport={VIEW}
             transition={{ duration: 0.7, ease: EASE }}
           />
           <motion.path
@@ -399,7 +403,7 @@ function Bots() {
             strokeWidth={1.6}
             initial={{ pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
+            viewport={VIEW}
             transition={{ delay: 0.6, duration: 0.7, ease: EASE }}
           />
         </svg>
