@@ -55,21 +55,21 @@ export default function DesignSystemCase() {
           design, two modes, from the same set of tokens.
         </p>
         <p>
-          The first version had two layers. Primitives held the raw palettes, with the dark
-          palettes tuned separately for contrast. On top of them, 28 role tokens gave each colour a
+          The first version had two layers. 88 primitives held the raw palettes: one set, with no
+          modes. On top of them, 28 role tokens gave each colour a
           job, with a light and a dark value each. Designers only used the role tokens.
         </p>
         <p className="cs-trade">
-          <b>Trade-off:</b> 88 primitives, with separate dark palettes. Every new colour had to be
-          added and tuned twice.
+          <b>Trade-off:</b> 88 primitives for a single product. Designers never saw them, but they
+          were a lot to maintain.
         </p>
       </section>
 
       <section className="cs-shot cs-reveal">
         <Mockup
           src="/projects/DesignSystem-v1-tokens.webp"
-          alt="Version 1: primitives with separate light and dark palettes, feeding role tokens, feeding components"
-          caption="Version 1: each role token picks one step from the light palettes and one from the dark"
+          alt="Version 1: one set of primitive palettes feeding role tokens, each with a light and a dark value, feeding components"
+          caption="Version 1: one set of palettes; each role token picks one step for light mode and one for dark"
         />
       </section>
 
@@ -198,11 +198,12 @@ export default function DesignSystemCase() {
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">What changed from v1</span>
-        <h2>Contrast moved up a layer</h2>
+        <h2>The product got its own layer</h2>
         <p>
-          Version 1 handled dark-mode contrast with separate dark palettes. In version 2, contrast
-          is handled by which step each semantic token picks in each mode. One set of palettes now
-          serves both themes and all four products.
+          Version 1 already put light and dark mode on the role tokens, but each role pointed
+          straight at one product&apos;s palette. In version 2, the semantic tokens point to the
+          identity layer instead. The same semantic tokens, and the same light and dark steps, now
+          serve all four products.
         </p>
       </section>
 
@@ -226,8 +227,9 @@ export default function DesignSystemCase() {
         </p>
         <p className="cs-takeaway">
           <span>What I&apos;d do differently</span>
-          I&apos;d split product and theme from the start. Version 1 tied contrast to the palettes,
-          and that had to be rebuilt when the second product arrived.
+          I&apos;d split product and theme from the start. Version 1 pointed the role tokens
+          straight at one product&apos;s palette, and that had to be rebuilt when the second product
+          arrived.
         </p>
       </section>
 
