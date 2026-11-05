@@ -27,9 +27,9 @@ export default function TradingBotCase() {
             role="Product Designer · bot list, bot page, risk limits and AI assist"
             team="PM, Developers, Designers, Algo team"
             results={[
-              { value: "3 surfaces", label: "bot list, bot page and AI assist, connected in one flow" },
-              { value: "1 dashboard", label: "the same report for a test run and for live trading" },
-              { value: "Shadowing", label: "sessions with the team's traders shaped where things live" },
+              { value: "3 surfaces", label: "bot list, bot page and AI assist, connected in one flow", art: "surfaces" },
+              { value: "1 dashboard", label: "the same report for a test run and for live trading", art: "dashboard" },
+              { value: "Shadowing", label: "sessions with the team's traders shaped where things live", art: "shadowing" },
             ]}
           />
         </div>

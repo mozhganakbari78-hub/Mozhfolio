@@ -23,9 +23,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned simplifying the rules"
             team="3–4 designers, PM, Developers"
             results={[
-              { value: "If → Then", label: "every rule reads as one sentence: a condition, then an event" },
-              { value: "2 changes", label: "from testing with operators: live readings and timed waits" },
-              { value: "Shipped", label: "live in production, in Persian (RTL)" },
+              { value: "If → Then", label: "every rule reads as one sentence: a condition, then an event", art: "ifThen" },
+              { value: "2 changes", label: "from testing with operators: live readings and timed waits", art: "testing" },
+              { value: "Shipped", label: "live in production, in Persian (RTL)", art: "rtl" },
             ]}
           />
         </div>

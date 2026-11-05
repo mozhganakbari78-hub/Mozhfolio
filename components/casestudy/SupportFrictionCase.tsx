@@ -29,9 +29,9 @@ export default function SupportFrictionCase() {
             role="Product Designer, research to UI"
             team="Product, Support, Frontend lead"
             results={[
-              { value: "4 in 5", label: "tickets didn't need a person" },
-              { value: "1 page", label: "FAQ and ticket merged, with answers as users type" },
-              { value: "Live", label: "real user behaviour is shaping phase 2" },
+              { value: "4 in 5", label: "tickets didn't need a person", art: "deflect" },
+              { value: "1 page", label: "FAQ and ticket merged, with answers as users type", art: "onePage" },
+              { value: "Live", label: "real user behaviour is shaping phase 2", art: "live" },
             ]}
           />
         </div>

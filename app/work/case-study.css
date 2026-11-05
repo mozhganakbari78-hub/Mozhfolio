@@ -2492,3 +2492,33 @@
 }
 .cs-placeholder-tag { font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--warn); }
 .cs-placeholder-alt { max-width: 520px; font-size: 15px; line-height: 1.55; color: var(--ink-faint); }
+
+/* ── hero results as illustrated cards: number top-right, line art below ── */
+.cs-results li {
+  padding: 22px 22px 0; min-height: 280px;
+  grid-template-rows: auto auto 1fr;
+  background: #0f1013; border-color: rgba(255, 255, 255, .09);
+}
+.cs-results li::before, .cs-results li::after { display: none; }
+.cs-results li:hover { border-color: rgba(124, 184, 245, .4); }
+.cs-results .n {
+  position: absolute; top: 22px; right: 22px;
+  font-family: var(--font-code), monospace; font-size: 12px; color: var(--ink-faint);
+}
+.cs-root .cs-results .v {
+  background: none; color: #fff; -webkit-background-clip: initial; background-clip: initial;
+  padding-right: 28px;
+}
+.cs-results .cs-result-art {
+  align-self: end; width: 100%; height: auto; max-height: 132px; margin-top: 14px; margin-bottom: 14px;
+  fill: none; stroke: rgba(238, 240, 244, .82); stroke-width: 1.2;
+  stroke-linecap: round; stroke-linejoin: round; overflow: visible;
+}
+.cs-result-art .a { stroke: var(--accent-ink); }
+.cs-result-art .f { stroke: rgba(238, 240, 244, .3); }
+.cs-result-art .af { fill: rgba(124, 184, 245, .14); }
+.cs-results.is-four li { min-height: 0; padding-bottom: 18px; }
+@media (max-width: 900px) {
+  .cs-results li { min-height: 0; }
+  .cs-results .cs-result-art { max-height: 110px; }
+}

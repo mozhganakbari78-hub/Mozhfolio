@@ -43,9 +43,9 @@ export default function ErrorMessagesCase() {
             role="Product Designer, self-initiated"
             team="Solo, with the backend team"
             results={[
-              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”" },
-              { value: "~2,000", label: "messages audited, rewritten or moved to logs" },
-              { value: "3 rules", label: "now the platform standard" },
+              { value: "6 → 3", label: "in 10 error tickets asked “what do I do now?”", art: "tickets" },
+              { value: "~2,000", label: "messages audited, rewritten or moved to logs", art: "audit" },
+              { value: "3 rules", label: "now the platform standard", art: "rules" },
             ]}
           />
         </div>
