@@ -30,8 +30,8 @@ const capabilities = [
     body: "I design within real constraints: existing code, operations and deadlines. If the team can't ship it, it isn't done.",
   },
   {
-    title: "Words are interface",
-    body: "An error message, a label or a confirmation is part of the design. I write each one to say what happened and what to do next.",
+    title: "Bring the team along",
+    body: "Engineering, product and support see the work early. A design they helped shape is one they’ll push to ship.",
   },
 ];
 
