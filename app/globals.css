@@ -304,7 +304,12 @@ button:disabled,
   0% { opacity: .9; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.08, 1.22); }
 }
-.iso-world.is-landed .iso-handle { animation: iso-flash .8s ease-out .54s; }
+/* the handles ride on top of the placed screen (it is .35em thick), so its
+   rounded corners don't land on their glow; they step up at the impact */
+.iso-world.is-landed .iso-handle {
+  transform: translateZ(.42em); transition: transform 0s .54s;
+  animation: iso-flash .8s ease-out .54s;
+}
 @keyframes iso-flash {
   0%, 100% { box-shadow: 0 0 .6em rgba(255, 255, 255, .7), 0 0 1.6em rgba(255, 255, 255, .25); }
   20% { box-shadow: 0 0 1.2em #fff, 0 0 3.5em rgba(255, 255, 255, .6); }
