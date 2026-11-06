@@ -1,10 +1,8 @@
-// Draft: not published yet. To publish, add it to data/caseStudies.ts and
-// app/work/[slug]/page.tsx, and move the images in drafts/trading-bots/
-// to public/projects/.
 import NextCaseLink from "./NextCaseLink";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
+import BotSignalsScene from "./BotSignalsScene";
 
 export default function TradingBotCase() {
   return (
@@ -24,12 +22,12 @@ export default function TradingBotCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer · bot list, bot page, risk limits and AI assist"
-            team="PM, Developers, Designers, Algo team"
+            role="Product Designer, owned the bot list, bot page, risk limits and AI assist"
+            team="a second designer, PM, developers, the algo team"
             results={[
-              { value: "3 surfaces", label: "bot list, bot page and AI assist, connected in one flow", icon: "RectangleStack" },
-              { value: "1 dashboard", label: "the same report for a test run and for live trading", icon: "PresentationChartLine" },
-              { value: "Shadowing", label: "sessions with the team's traders shaped where things live", icon: "Eye" },
+              { value: "3 wireframes", label: "a list of requirements, turned into one flow and five decisions", icon: "DocumentText" },
+              { value: "Shadowing", label: "in-house traders worked through the designs while we watched, without guiding", icon: "Eye" },
+              { value: "Internal test", label: "where the bots stood when I left", icon: "ShieldCheck" },
             ]}
           />
         </div>
@@ -49,8 +47,13 @@ export default function TradingBotCase() {
         <p>
           The company&apos;s algo team was building trading bots: automated strategies that generate
           signals and trade on the user&apos;s behalf. Bringing those bots to users was a business
-          priority, and it was a new feature for the product.
+          priority, and it was a new feature for the product. These were experts, not beginners:
+          they would rather see everything than be guided.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <BotSignalsScene />
       </section>
 
       {/* 2 */}
@@ -147,6 +150,9 @@ export default function TradingBotCase() {
           alt="The bots list: six bot cards for crypto and forex pairs, each with a Running or Paused label, allocation and profit or loss, win rate, buy and sell ratio and the last signal; paused bots are faded"
           caption="The bot list: state, money, reliability and the last signal on every card"
         />
+        <p className="cs-mockup-caption">
+          Screens recreated for this case study; names and figures are illustrative.
+        </p>
       </section>
 
       {/* 6 */}
@@ -279,6 +285,14 @@ export default function TradingBotCase() {
         />
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/ai-analysis.webp"
+          alt="The same chat after Analysis is pressed: the news summary and its numbered sources with Send feedback, a separate News Analysis block with its own Send feedback, then a follow-up question for today's Bitcoin price answered with a candlestick chart and an Export button"
+          caption="Analysis opens as its own block, and every answer can be rated"
+        />
+      </section>
+
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">Testing</span>
@@ -296,8 +310,9 @@ export default function TradingBotCase() {
         <h2>From a feature list to a product flow</h2>
         <p>
           The requirements became three connected surfaces, built around one idea: a trader should
-          trust a bot because of evidence, not because of a promise. These are the metrics I would
-          use to evaluate it:
+          trust a bot because of evidence, not because of a promise. When I left, the bots were in
+          internal testing with the company&apos;s traders. These are the metrics I would use once
+          they reach users:
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Readiness.</b> Share of bots that are tested before they go live.</span></li>
