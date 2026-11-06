@@ -19,7 +19,7 @@ const capabilities = [
   },
   {
     title: "Risk before polish",
-    body: "Where a mistake costs money, I first make the wrong action hard, then make the right one easy.",
+    body: "Where a mistake is costly, I first make the wrong action hard, then make the right one easy.",
   },
   {
     title: "Trade-offs, documented",
@@ -28,6 +28,10 @@ const capabilities = [
   {
     title: "Designed to be adopted",
     body: "I design within real constraints: existing code, operations and deadlines. If the team can't ship it, it isn't done.",
+  },
+  {
+    title: "Words are interface",
+    body: "An error message, a label or a confirmation is part of the design. I write each one to say what happened and what to do next.",
   },
 ];
 
