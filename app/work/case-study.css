@@ -2659,3 +2659,59 @@
   .ds-arch .stk { transition: none; }
   .ds-arch .ly:hover .stk { transform: none; }
 }
+
+/* ── trading bots: inputs → bot → outcomes (BotSignalsScene) ──────────────
+   No background of its own: it sits on the page. */
+.bs-scene { margin: 0; }
+.bs-scene svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bs-tile { fill: #17181c; stroke: rgba(238, 240, 244, .16); stroke-width: 1.2; }
+.bs-ic { fill: none; stroke: var(--accent-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bs-ic .bs-fill { fill: rgba(124, 184, 245, .22); }
+.bs-ic .bs-up { stroke: #6cc58f; }
+.bs-ic .bs-up rect { fill: rgba(108, 197, 143, .35); }
+.bs-ic .bs-down { stroke: #e8836e; }
+.bs-ic .bs-down rect { fill: rgba(232, 131, 110, .35); }
+.bs-dollar { font-size: 36px; font-weight: 600; fill: var(--accent-ink); }
+.bs-label { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .16em; fill: var(--text-tertiary); }
+.bs-wire { fill: none; stroke: rgba(124, 184, 245, .28); stroke-width: 1.4; transition: stroke .3s, stroke-width .3s; }
+.bs-won-wire { stroke: rgba(108, 197, 143, .35); }
+.bs-lost-wire { stroke: rgba(232, 131, 110, .35); }
+.bs-won-wire.is-hit { stroke: rgba(108, 197, 143, .9); stroke-width: 2; }
+.bs-lost-wire.is-hit { stroke: rgba(232, 131, 110, .9); stroke-width: 2; }
+.bs-node { fill: var(--accent-ink); }
+.bs-pulse { fill: #cfe4ff; filter: drop-shadow(0 0 5px rgba(124, 184, 245, .9)); }
+.bs-pulse.is-won { fill: #b9f0cf; filter: drop-shadow(0 0 6px rgba(108, 197, 143, .9)); }
+.bs-pulse.is-lost { fill: #ffd2c7; filter: drop-shadow(0 0 6px rgba(232, 131, 110, .9)); }
+
+.bs-ring { fill: none; stroke: rgba(124, 184, 245, .55); stroke-width: 1.4; }
+.bs-ring.is-inner { stroke: rgba(124, 184, 245, .3); }
+.bs-shell { fill: #1d1f24; stroke: rgba(238, 240, 244, .28); stroke-width: 1.4; }
+.bs-visor { fill: #0c0d10; stroke: rgba(124, 184, 245, .45); stroke-width: 1.2; }
+.bs-eye { fill: var(--accent-ink); filter: drop-shadow(0 0 6px rgba(124, 184, 245, .9)); transform-box: fill-box; transform-origin: center; }
+.bs-line { stroke: rgba(238, 240, 244, .35); stroke-width: 1.4; }
+.bs-tip { fill: var(--accent-ink); filter: drop-shadow(0 0 5px rgba(124, 184, 245, .8)); }
+.bs-badge { fill: #121317; stroke: rgba(124, 184, 245, .4); stroke-width: 1.2; }
+.bs-badge-t { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 600; letter-spacing: .14em; fill: var(--text-primary); }
+.bs-led { fill: #6cc58f; filter: drop-shadow(0 0 5px rgba(108, 197, 143, .8)); }
+.bs-bot.is-on { animation: bs-hover 4.8s ease-in-out infinite; }
+.bs-bot.is-on .bs-eye { animation: bs-blink 4.8s ease-in-out infinite; }
+.bs-bot.is-on .bs-tip { animation: bs-tip 2.4s ease-in-out infinite; }
+@keyframes bs-hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes bs-blink { 0%, 44%, 50%, 100% { transform: scaleY(1); } 47% { transform: scaleY(.15); } }
+@keyframes bs-tip { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+.bs-card-bg { stroke-width: 1.4; transition: fill .3s; }
+.bs-card.is-won .bs-card-bg { fill: rgba(108, 197, 143, .06); stroke: rgba(108, 197, 143, .6); }
+.bs-card.is-lost .bs-card-bg { fill: rgba(232, 131, 110, .06); stroke: rgba(232, 131, 110, .6); }
+.bs-card.is-won.is-hit .bs-card-bg { fill: rgba(108, 197, 143, .16); }
+.bs-card.is-lost.is-hit .bs-card-bg { fill: rgba(232, 131, 110, .16); }
+.bs-card.is-won .bs-tri { fill: #6cc58f; }
+.bs-card.is-lost .bs-tri { fill: #e8836e; }
+.bs-card-k { font-family: var(--font-mono), monospace; font-size: 13px; letter-spacing: .14em; font-weight: 600; fill: var(--text-primary); }
+.bs-card-v { font-size: 15px; fill: var(--text-secondary); }
+.bs-card.is-won .bs-mark { fill: #6cc58f; }
+.bs-card.is-lost .bs-mark { fill: #e8836e; }
+.bs-mark-g { fill: none; stroke: #0f1013; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: reduce) {
+  .bs-bot.is-on, .bs-bot.is-on .bs-eye, .bs-bot.is-on .bs-tip { animation: none; }
+}
