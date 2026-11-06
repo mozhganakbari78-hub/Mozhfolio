@@ -69,7 +69,7 @@ export default function TradingBotCase() {
             <div className="lab">What I received</div>
             <ol className="cs-plain">
               <li><b>Bots</b>Name, creation date, notifications, a minimal report; edit, delete, duplicate; search and filter</li>
-              <li><b>Bot page</b>Edit with code blocks and AI assist; test; report, &ldquo;same as the BI dashboard&rdquo;</li>
+              <li><b>Bot page</b>Edit with AI assist; test; report, &ldquo;same as the BI dashboard&rdquo;</li>
               <li><b>AI assist</b>Question input, categorised answers, &ldquo;add to my bot&rdquo;, history</li>
             </ol>
           </div>
@@ -298,9 +298,10 @@ export default function TradingBotCase() {
         <span className="cs-num">Testing</span>
         <h2>Shadowing the team&apos;s traders</h2>
         <p>
-          To move fast, we sat beside in-house traders while they worked through the designs and
-          said nothing. We didn&apos;t explain or guide, and we watched where they went. If a
-          trader had to search for something, its place was wrong, and we moved it.
+          To move fast, we sat beside in-house traders while they worked through the designs, and
+          said nothing. We didn&apos;t explain or guide; we watched where they went. If a trader
+          had to search for something, its place was wrong, and we moved it. Watching them work
+          surfaced problems early, while the designs were still cheap to change.
         </p>
       </section>
 
@@ -340,7 +341,7 @@ export default function TradingBotCase() {
 
       <footer className="cs-foot">
         <span className="cs-eyebrow">End of case study</span>
-        <p>Trading · Bots · AI assist</p>
+        <p>Trading · Bots · Internal test</p>
       </footer>
     </article>
   );
