@@ -2,43 +2,36 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MagnifyingGlassIcon,
-  Square3Stack3DIcon,
-  DocumentCheckIcon,
-  CpuChipIcon,
-  ShieldCheckIcon,
-} from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 import Reveal from "@/components/Reveal";
+import TangleToSystem from "@/components/TangleToSystem";
 
 // One plain sentence each: the section is skimmed, so every line has to make
 // its point without a second read.
 const capabilities = [
   {
-    icon: MagnifyingGlassIcon,
     title: "Evidence earns scope",
     body: "I bring evidence, not opinion: support tickets and watching people work. That is what gets a team to rethink the problem.",
   },
   {
-    icon: Square3Stack3DIcon,
     title: "Systems over screens",
     body: "I design reusable components and tokens, so a problem solved once stays solved for the whole team.",
   },
   {
-    icon: ShieldCheckIcon,
     title: "Risk before polish",
-    body: "Where a mistake costs money, I first make the wrong action hard, then make the right one easy.",
+    body: "Where a mistake is costly, I first make the wrong action hard, then make the right one easy.",
   },
   {
-    icon: DocumentCheckIcon,
     title: "Trade-offs, documented",
     body: "Every compromise is written down with its cost, so the next decision starts from context.",
   },
   {
-    icon: CpuChipIcon,
     title: "Designed to be adopted",
     body: "I design within real constraints: existing code, operations and deadlines. If the team can't ship it, it isn't done.",
+  },
+  {
+    title: "Bring the team along",
+    body: "Engineering, product and support see the work early. A design they helped shape is one they’ll push to ship.",
   },
 ];
 
@@ -49,6 +42,7 @@ export default function Skills() {
   const [isTouch] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
   );
+  const [active, setActive] = useState(0);
 
   return (
     <section id="skills" className="py-28 md:py-40 px-6" aria-labelledby="skills-heading">
@@ -58,56 +52,56 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-20 max-w-2xl"
+          className="mb-12 md:mb-16 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] items-center gap-8 md:gap-10"
         >
-          <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-            [ 04 ] Capabilities
+          <div>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
+              [ 04 ] Capabilities
+            </div>
+            <h2
+              id="skills-heading"
+              className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
+            >
+              How I work.
+            </h2>
+            <p
+              className="mt-5 text-[16px] md:text-[18px] leading-[1.5] max-w-[34ch]"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Problems arrive tangled.{" "}
+              <span style={{ color: "var(--text-primary)" }}>I leave a structure the team can build on.</span>
+            </p>
           </div>
-          <h2
-            id="skills-heading"
-            className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-          >
-            How I work.
-          </h2>
+          {/* the tangle becoming five rails, one per item below */}
+          <TangleToSystem />
         </motion.div>
 
-        {/* One list rather than five boxes: an odd number of cards left the
-            last one stranded, and the stacked icon/title pair opened a gap in
-            every card that read as unfinished. */}
-        <div
-          className="rounded-2xl border overflow-hidden"
-          style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
-        >
+        {/* Numbered columns, each on its own thin rule. One is active at a
+            time (the first by default, then whichever the pointer is on): its
+            number and title take the accent and its bar lights up. */}
+        <div role="list" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 md:gap-y-14" onMouseLeave={() => setActive(0)}>
           {capabilities.map((cap, ci) => {
-            const Icon = cap.icon;
+            const on = active === ci;
             return (
               <Reveal as="div"
                 key={cap.title}
                 initial={isTouch ? false : { opacity: 0, y: 16 }}
                 to={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="group grid grid-cols-[24px_1fr] md:grid-cols-[26px_260px_1fr] gap-x-4 md:gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
-                style={{
-                  borderTop: ci === 0 ? "none" : "1px solid var(--border-subtle)",
-                }}
               >
-                <Icon
-                  style={{ width: 20, height: 20, color: "var(--accent-ink)" }}
-                  className="mt-[3px] md:mt-0.5 shrink-0"
-                />
-                <h3
-                  className="text-[16px] md:text-[17px] font-semibold tracking-tight"
-                  style={{ color: "var(--text-primary)", letterSpacing: "-0.015em" }}
+                <div
+                  role="listitem"
+                  className="hiw-col"
+                  data-on={on || undefined}
+                  onMouseEnter={() => setActive(ci)}
+                  onFocus={() => setActive(ci)}
+                  tabIndex={-1}
                 >
-                  {cap.title}
-                </h3>
-                <p
-                  className="col-start-2 md:col-start-auto text-[15px] md:text-[16px] leading-[1.6] max-w-[56ch]"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {cap.body}
-                </p>
+                  <span className="hiw-num">{String(ci + 1).padStart(2, "0")}.</span>
+                  <h3 className="hiw-title">{cap.title}</h3>
+                  <p className="hiw-body">{cap.body}</p>
+                </div>
               </Reveal>
             );
           })}
