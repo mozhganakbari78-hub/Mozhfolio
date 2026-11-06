@@ -40,6 +40,17 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "03",
+    slug: "trading-bots",
+    title: "Trading bots traders can trust",
+    short:
+      "Handed a feature list in a domain I didn't know, I turned it into one flow: compare bots, read the evidence, set the limits.",
+    description:
+      "Designing trading bots for a forex and crypto platform: a bot list to compare them, one page per bot with its evidence, risk limits in plain terms, and an AI assistant for market questions.",
+    meta: "Domain learning · Expert UX",
+    illustration: "bots",
+  },
+  {
+    index: "04",
     slug: "reducing-support-friction",
     title: "Answers before the ticket",
     short:
@@ -50,7 +61,7 @@ export const caseStudies: CaseStudy[] = [
     illustration: "support",
   },
   {
-    index: "04",
+    index: "05",
     slug: "iot-rule-builder",
     title: "Greenhouse rules in one sentence",
     short:

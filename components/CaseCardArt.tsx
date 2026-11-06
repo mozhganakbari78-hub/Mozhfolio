@@ -373,50 +373,54 @@ function Rules() {
   );
 }
 
-/* Bots: a balance line from a test run, then the same line going live. */
+/* Bots: one bot card, Running, with its P&L line: red while it is below
+   zero, green once it is above. */
+const GAIN = "#6cc58f";
+const PNL = "M0 60 L20 64 L38 56 L56 62 L74 50 L92 46 L110 54 L130 42 L150 47 L170 35 L190 39 L210 27 L232 31 L260 19";
 function Bots() {
   return (
     <Frame>
       <div className="grid gap-2.5">
-        <motion.div className="flex items-baseline justify-between" {...rise(0)}>
+        <motion.div className="flex items-center justify-between" {...rise(0)}>
           <span style={{ ...Mono, color: SUB }}>BTC / USDT · bot</span>
-          <span style={{ ...Mono, color: AI }}>80% success</span>
-        </motion.div>
-        <svg viewBox="0 0 260 90" className="w-full h-auto block" aria-hidden>
-          <line x1={0} x2={260} y1={12} y2={12} stroke="rgba(126,178,138,0.5)" strokeWidth={0.8} />
-          <line x1={0} x2={260} y1={84} y2={84} stroke="rgba(232,190,110,0.5)" strokeWidth={0.8} />
-          <line x1={130} x2={130} y1={6} y2={88} stroke={LINE} strokeWidth={0.8} strokeDasharray="2 3" />
-          <motion.path
-            d="M0 62 L18 58 L34 64 L52 50 L70 54 L88 42 L106 46 L130 36"
-            fill="none"
-            stroke={SUB}
-            strokeWidth={1.4}
-            strokeDasharray="3 3"
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={VIEW}
-            transition={{ duration: 0.7, ease: EASE }}
-          />
-          <motion.path
-            d="M130 36 L148 40 L166 30 L184 34 L202 24 L222 28 L240 20 L260 22"
-            fill="none"
-            stroke={AI}
-            strokeWidth={1.6}
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={VIEW}
-            transition={{ delay: 0.45, duration: 0.7, ease: EASE }}
-          />
-        </svg>
-        <motion.div className="flex items-center justify-between" {...rise(1.1)}>
-          <span style={{ ...Mono, color: SUB }}>test run</span>
           <span
             className="rounded-md px-2 py-1 flex items-center gap-1.5"
-            style={{ ...Mono, color: FG, border: `1px solid ${AI}`, background: "var(--accent-soft)" }}
+            style={{ ...Mono, color: FG, border: `1px solid ${GAIN}`, background: "rgba(108,197,143,0.10)" }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: AI }} />
-            live
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: GAIN }} />
+            Running
           </span>
+        </motion.div>
+        <svg viewBox="0 0 260 90" className="w-full h-auto block" aria-hidden>
+          <defs>
+            <clipPath id="cca-bots-up"><rect x={0} y={0} width={260} height={52} /></clipPath>
+            <clipPath id="cca-bots-down"><rect x={0} y={52} width={260} height={38} /></clipPath>
+          </defs>
+          {/* zero line */}
+          <line x1={0} x2={260} y1={52} y2={52} stroke={LINE} strokeWidth={0.8} strokeDasharray="2 3" />
+          <text x={258} y={48} textAnchor="end" fill={SUB} style={{ ...Mono, fontSize: 8 }}>0</text>
+          {[
+            ["cca-bots-down", FAIL],
+            ["cca-bots-up", GAIN],
+          ].map(([clip, color]) => (
+            <motion.path
+              key={clip}
+              d={PNL}
+              clipPath={`url(#${clip})`}
+              fill="none"
+              stroke={color}
+              strokeWidth={1.6}
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={VIEW}
+              transition={{ delay: 0.2, duration: 1, ease: EASE }}
+            />
+          ))}
+        </svg>
+        <motion.div className="flex items-baseline justify-between" {...rise(1.1)}>
+          <span style={{ ...Mono, color: SUB }}>31 won · 14 lost</span>
+          <span style={{ ...Mono, color: GAIN }}>P&amp;L +412.80</span>
         </motion.div>
       </div>
     </Frame>
