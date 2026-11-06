@@ -237,13 +237,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/trading-bots/"
-        caseStudyName="Trading bots traders can trust"
+        href="/work/reducing-support-friction/"
+        caseStudyName="Answers before the ticket"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Trading bots traders can trust{" "}
+          Answers before the ticket{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
