@@ -173,6 +173,10 @@ export default function TradingBotCase() {
           The same report serves a test run and live trading, so a trader compares like with like:
           the numbers that convinced them in a test are the numbers they watch once the bot is live.
         </p>
+        <p>
+          That answers when a bot is ready: when its test numbers hold up in the same report the
+          trader will watch once it&apos;s live.
+        </p>
         <p className="cs-trade">
           <b>Trade-off:</b> a dense page. Accepted for expert users, who would rather see everything
           than click between screens.

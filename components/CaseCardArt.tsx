@@ -374,31 +374,65 @@ function Rules() {
 }
 
 /* Bots: one bot card, Running, with its P&L line: red while it is below
-   zero, green once it is above. */
+   zero, green once it is above, a soft fill to the zero line, and the
+   won / lost split as a thin bar underneath. */
 const GAIN = "#6cc58f";
 const PNL = "M0 60 L20 64 L38 56 L56 62 L74 50 L92 46 L110 54 L130 42 L150 47 L170 35 L190 39 L210 27 L232 31 L260 19";
+const PNL_AREA = `${PNL} L260 52 L0 52 Z`;
 function Bots() {
   return (
     <Frame>
-      <div className="grid gap-2.5">
+      <div className="grid gap-3">
         <motion.div className="flex items-center justify-between" {...rise(0)}>
-          <span style={{ ...Mono, color: SUB }}>BTC / USDT · bot</span>
+          <span className="flex items-center gap-2" style={{ ...Mono, color: SUB }}>
+            <span
+              className="w-5 h-5 rounded-md flex items-center justify-center"
+              style={{ border: `1px solid ${LINE}`, background: "rgba(255,255,255,0.03)", color: FG, fontSize: 9 }}
+            >
+              ₿
+            </span>
+            BTC / USDT · bot
+          </span>
           <span
-            className="rounded-md px-2 py-1 flex items-center gap-1.5"
-            style={{ ...Mono, color: FG, border: `1px solid ${GAIN}`, background: "rgba(108,197,143,0.10)" }}
+            className="rounded-full px-2 py-0.5 flex items-center gap-1.5"
+            style={{ ...Mono, color: GAIN, border: "1px solid rgba(108,197,143,0.45)", background: "rgba(108,197,143,0.10)" }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: GAIN }} />
+            <span className="relative flex w-1.5 h-1.5">
+              <span className="absolute inset-0 rounded-full animate-ping" style={{ background: GAIN, opacity: 0.6 }} />
+              <span className="relative w-1.5 h-1.5 rounded-full" style={{ background: GAIN }} />
+            </span>
             Running
           </span>
         </motion.div>
-        <svg viewBox="0 0 260 90" className="w-full h-auto block" aria-hidden>
+        <svg viewBox="0 0 260 90" className="w-full h-auto block overflow-visible" aria-hidden>
           <defs>
-            <clipPath id="cca-bots-up"><rect x={0} y={0} width={260} height={52} /></clipPath>
-            <clipPath id="cca-bots-down"><rect x={0} y={52} width={260} height={38} /></clipPath>
+            <clipPath id="cca-bots-up"><rect x={-4} y={-4} width={268} height={56} /></clipPath>
+            <clipPath id="cca-bots-down"><rect x={-4} y={52} width={268} height={42} /></clipPath>
+            <linearGradient id="cca-bots-gain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={GAIN} stopOpacity="0.32" />
+              <stop offset="100%" stopColor={GAIN} stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="cca-bots-loss" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stopColor={FAIL} stopOpacity="0.28" />
+              <stop offset="100%" stopColor={FAIL} stopOpacity="0" />
+            </linearGradient>
           </defs>
-          {/* zero line */}
+          {/* faint guides and the zero line */}
+          {[14, 33, 71].map((y) => (
+            <line key={y} x1={0} x2={260} y1={y} y2={y} stroke="rgba(255,255,255,0.04)" strokeWidth={0.8} />
+          ))}
           <line x1={0} x2={260} y1={52} y2={52} stroke={LINE} strokeWidth={0.8} strokeDasharray="2 3" />
           <text x={258} y={48} textAnchor="end" fill={SUB} style={{ ...Mono, fontSize: 8 }}>0</text>
+          {/* soft fill between the line and zero */}
+          <motion.g
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={VIEW}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
+            <path d={PNL_AREA} clipPath="url(#cca-bots-up)" fill="url(#cca-bots-gain)" />
+            <path d={PNL_AREA} clipPath="url(#cca-bots-down)" fill="url(#cca-bots-loss)" />
+          </motion.g>
           {[
             ["cca-bots-down", FAIL],
             ["cca-bots-up", GAIN],
@@ -409,18 +443,35 @@ function Bots() {
               clipPath={`url(#${clip})`}
               fill="none"
               stroke={color}
-              strokeWidth={1.6}
+              strokeWidth={1.8}
               strokeLinejoin="round"
+              strokeLinecap="round"
               initial={{ pathLength: 0 }}
               whileInView={{ pathLength: 1 }}
               viewport={VIEW}
               transition={{ delay: 0.2, duration: 1, ease: EASE }}
             />
           ))}
+          {/* where it is now */}
+          <motion.g
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={VIEW}
+            transition={{ delay: 1.1, duration: 0.4 }}
+          >
+            <circle cx={260} cy={19} r={7} fill={GAIN} opacity={0.18} />
+            <circle cx={260} cy={19} r={3} fill={GAIN} />
+          </motion.g>
         </svg>
-        <motion.div className="flex items-baseline justify-between" {...rise(1.1)}>
-          <span style={{ ...Mono, color: SUB }}>31 won · 14 lost</span>
-          <span style={{ ...Mono, color: GAIN }}>P&amp;L +412.80</span>
+        <motion.div className="grid gap-1.5" {...rise(1.1)}>
+          <div className="flex items-baseline justify-between">
+            <span style={{ ...Mono, color: SUB }}>31 won · 14 lost</span>
+            <span style={{ ...Mono, color: GAIN }}>P&amp;L +412.80</span>
+          </div>
+          <div className="flex h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+            <span style={{ width: "69%", background: GAIN, opacity: 0.85 }} />
+            <span style={{ width: "31%", background: FAIL, opacity: 0.85 }} />
+          </div>
         </motion.div>
       </div>
     </Frame>
