@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 import Reveal from "@/components/Reveal";
+import TangleToSystem from "@/components/TangleToSystem";
 
 // One plain sentence each: the section is skimmed, so every line has to make
 // its point without a second read.
@@ -58,18 +59,29 @@ export default function Skills() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-20 max-w-2xl"
+          className="mb-12 md:mb-16 grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] items-center gap-8 md:gap-10"
         >
-          <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
-            [ 04 ] Capabilities
+          <div>
+            <div className="mono-label mb-5" style={{ color: "var(--accent-ink)" }}>
+              [ 04 ] Capabilities
+            </div>
+            <h2
+              id="skills-heading"
+              className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
+              style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
+            >
+              How I work.
+            </h2>
+            <p
+              className="mt-5 text-[16px] md:text-[18px] leading-[1.5] max-w-[34ch]"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Problems arrive tangled.{" "}
+              <span style={{ color: "var(--text-primary)" }}>I leave a structure the team can build on.</span>
+            </p>
           </div>
-          <h2
-            id="skills-heading"
-            className="text-[28px] md:text-[42px] font-semibold tracking-tight leading-[1.02]"
-            style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}
-          >
-            How I work.
-          </h2>
+          {/* the tangle becoming five rails, one per item below */}
+          <TangleToSystem />
         </motion.div>
 
         {/* One list rather than five boxes: an odd number of cards left the

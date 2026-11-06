@@ -373,3 +373,27 @@ button:disabled,
 @media (min-width: 1024px) {
   .iso { font-size: clamp(9px, .9vw, 13px); }
 }
+
+/* ── How I work: tangle → system (TangleToSystem) ────────────────────────── */
+.tts svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tts-strand { fill: none; stroke: rgba(238, 240, 244, .5); stroke-width: 1; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tts-spine { stroke: rgba(238, 240, 244, .45); stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tts-rail { stroke: rgba(238, 240, 244, .4); stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tts-join { fill: var(--accent-color); opacity: 0; filter: drop-shadow(0 0 6px var(--accent-color)); }
+.tts-node { fill: var(--accent-ink); opacity: 0; transform-box: fill-box; transform-origin: center;
+  filter: drop-shadow(0 0 7px var(--accent-color)) drop-shadow(0 0 14px rgba(1, 116, 220, .55)); }
+
+.tts.is-on .tts-strand { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s cubic-bezier(.45, 0, .2, 1) calc(var(--i) * 25ms); }
+.tts.is-on .tts-spine { stroke-dashoffset: 0; transition: stroke-dashoffset .6s ease-out 1.2s; }
+.tts.is-on .tts-join { opacity: .9; transition: opacity .3s ease-out calc(1.5s + var(--i) * 80ms); }
+.tts.is-on .tts-rail { stroke-dashoffset: 0; transition: stroke-dashoffset .6s cubic-bezier(.2, .7, .3, 1) calc(1.6s + var(--i) * 90ms); }
+.tts.is-on .tts-rail.is-col { transition-delay: 2.2s; }
+.tts.is-on .tts-node { opacity: 1; transition: opacity .35s ease-out calc(2.1s + var(--i) * 110ms);
+  animation: tts-glow 3.2s ease-in-out calc(3s + var(--i) * 320ms) infinite; }
+@keyframes tts-glow { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: .75; } }
+@media (prefers-reduced-motion: reduce) {
+  .tts .tts-strand, .tts .tts-spine, .tts .tts-rail { stroke-dashoffset: 0; transition: none; }
+  .tts .tts-join { opacity: .9; transition: none; }
+  .tts .tts-node { opacity: 1; transition: none; animation: none; }
+}
