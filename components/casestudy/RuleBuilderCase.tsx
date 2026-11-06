@@ -304,13 +304,13 @@ WHEN always`}</pre>
       </section>
 
       <NextCaseLink
-        href="/work/error-messages/"
-        caseStudyName="Errors that say what's next"
+        href="/work/trading-bots/"
+        caseStudyName="Trading bots traders can trust"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Errors that say what&apos;s next{" "}
+          Trading bots traders can trust{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
