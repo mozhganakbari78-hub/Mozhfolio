@@ -19,7 +19,6 @@ const images: { src: string }[] = [
   { src: `${base}/projects/Screen10.webp` },
   { src: `${base}/projects/Screen11.webp` },
   { src: `${base}/projects/Screen12.webp` },
-  { src: `${base}/projects/Screen13.webp` },
 ];
 
 // Duplicate for seamless loop
