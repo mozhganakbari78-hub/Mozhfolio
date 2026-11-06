@@ -2,13 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MagnifyingGlassIcon,
-  Square3Stack3DIcon,
-  DocumentCheckIcon,
-  CpuChipIcon,
-  ShieldCheckIcon,
-} from "@heroicons/react/24/outline";
 import { useInView } from "@/lib/useInView";
 import Reveal from "@/components/Reveal";
 import TangleToSystem from "@/components/TangleToSystem";
@@ -17,27 +10,22 @@ import TangleToSystem from "@/components/TangleToSystem";
 // its point without a second read.
 const capabilities = [
   {
-    icon: MagnifyingGlassIcon,
     title: "Evidence earns scope",
     body: "I bring evidence, not opinion: support tickets and watching people work. That is what gets a team to rethink the problem.",
   },
   {
-    icon: Square3Stack3DIcon,
     title: "Systems over screens",
     body: "I design reusable components and tokens, so a problem solved once stays solved for the whole team.",
   },
   {
-    icon: ShieldCheckIcon,
     title: "Risk before polish",
     body: "Where a mistake costs money, I first make the wrong action hard, then make the right one easy.",
   },
   {
-    icon: DocumentCheckIcon,
     title: "Trade-offs, documented",
     body: "Every compromise is written down with its cost, so the next decision starts from context.",
   },
   {
-    icon: CpuChipIcon,
     title: "Designed to be adopted",
     body: "I design within real constraints: existing code, operations and deadlines. If the team can't ship it, it isn't done.",
   },
@@ -50,6 +38,7 @@ export default function Skills() {
   const [isTouch] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
   );
+  const [active, setActive] = useState(0);
 
   return (
     <section id="skills" className="py-28 md:py-40 px-6" aria-labelledby="skills-heading">
@@ -84,42 +73,31 @@ export default function Skills() {
           <TangleToSystem />
         </motion.div>
 
-        {/* One list rather than five boxes: an odd number of cards left the
-            last one stranded, and the stacked icon/title pair opened a gap in
-            every card that read as unfinished. */}
-        <div
-          className="rounded-2xl border overflow-hidden"
-          style={{ borderColor: "var(--border-strong)", background: "var(--surface)" }}
-        >
+        {/* Numbered columns, each on its own thin rule. One is active at a
+            time (the first by default, then whichever the pointer is on): its
+            number and title take the accent and its bar lights up. */}
+        <div role="list" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 md:gap-y-14" onMouseLeave={() => setActive(0)}>
           {capabilities.map((cap, ci) => {
-            const Icon = cap.icon;
+            const on = active === ci;
             return (
               <Reveal as="div"
                 key={cap.title}
                 initial={isTouch ? false : { opacity: 0, y: 16 }}
                 to={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="group grid grid-cols-[24px_1fr] md:grid-cols-[26px_260px_1fr] gap-x-4 md:gap-x-5 gap-y-2 px-6 py-6 md:px-8 md:py-7 transition-colors duration-300 hover:bg-[var(--bg-secondary)]"
-                style={{
-                  borderTop: ci === 0 ? "none" : "1px solid var(--border-subtle)",
-                }}
               >
-                <Icon
-                  style={{ width: 20, height: 20, color: "var(--accent-ink)" }}
-                  className="mt-[3px] md:mt-0.5 shrink-0"
-                />
-                <h3
-                  className="text-[16px] md:text-[17px] font-semibold tracking-tight"
-                  style={{ color: "var(--text-primary)", letterSpacing: "-0.015em" }}
+                <div
+                  role="listitem"
+                  className="hiw-col"
+                  data-on={on || undefined}
+                  onMouseEnter={() => setActive(ci)}
+                  onFocus={() => setActive(ci)}
+                  tabIndex={-1}
                 >
-                  {cap.title}
-                </h3>
-                <p
-                  className="col-start-2 md:col-start-auto text-[15px] md:text-[16px] leading-[1.6] max-w-[56ch]"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {cap.body}
-                </p>
+                  <span className="hiw-num">{String(ci + 1).padStart(2, "0")}.</span>
+                  <h3 className="hiw-title">{cap.title}</h3>
+                  <p className="hiw-body">{cap.body}</p>
+                </div>
               </Reveal>
             );
           })}

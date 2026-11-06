@@ -397,3 +397,14 @@ button:disabled,
   .tts .tts-join { opacity: .9; transition: none; }
   .tts .tts-node { opacity: 1; transition: none; animation: none; }
 }
+
+/* ── How I work: numbered columns on thin rules ──────────────────────────── */
+.hiw-col { position: relative; display: block; padding-left: 22px; border-left: 1px solid var(--border-strong); height: 100%; outline: none; }
+.hiw-num { display: block; font-size: 22px; font-weight: 300; letter-spacing: -.01em; line-height: 1; color: var(--text-tertiary); transition: color .3s; }
+.hiw-title { margin-top: 12px; font-size: 16px; font-weight: 500; letter-spacing: -.01em; color: var(--text-tertiary); transition: color .3s; }
+.hiw-body { position: relative; margin-top: 22px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); max-width: 34ch; }
+/* the short bar beside the description, sitting on the column's rule */
+.hiw-body::before { content: ""; position: absolute; left: -23px; top: 2px; bottom: 2px; width: 3px; border-radius: 2px;
+  background: rgba(238, 240, 244, .28); transition: background .3s, box-shadow .3s; }
+.hiw-col[data-on] .hiw-num, .hiw-col[data-on] .hiw-title { color: var(--accent-ink); }
+.hiw-col[data-on] .hiw-body::before { background: var(--accent-ink); box-shadow: 0 0 10px rgba(124, 184, 245, .45); }
