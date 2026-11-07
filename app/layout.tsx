@@ -54,6 +54,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${labels.variable} ${code.variable}`}>
       <body>
+        {/* Tags every scroll reveal's starting state as soon as the HTML is
+            parsed, before React runs, so MotionPrefs can tell later which
+            ones the reader has already seen. See MotionPrefs and globals.css. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("[style*=\'opacity:0\']").forEach(function(e){if(!/opacity:0\\./.test(e.getAttribute("style")))e.setAttribute("data-reveal","")})});',
+          }}
+        />
         <Analytics />
         <MotionPrefs />
         <CustomCursor />
