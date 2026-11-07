@@ -353,6 +353,11 @@ button:disabled,
   .iso-hint-touch { display: inline; }
 }
 .iso-hit { position: absolute; inset: 8% 4% 4%; pointer-events: auto; background: none; border: 0; border-radius: 12px; }
+/* the empty space around the scene toggles it too: the hit area reaches out
+   to the whole hero (its overflow:hidden clips it there), under the text column
+   (z-10) so the copy and buttons keep their own clicks. A pseudo-element, so the
+   keyboard ring stays on the scene itself */
+.iso-hit::before { content: ""; position: absolute; inset: -100vh -100vw; }
 /* ring only for keyboard focus (is-kbd is set from key events, cleared on pointer) */
 .iso-hit:focus, .iso-hit:focus-visible { outline: none; }
 .iso-hit.is-kbd:focus { outline: 2px solid var(--accent-color); outline-offset: 4px; }
