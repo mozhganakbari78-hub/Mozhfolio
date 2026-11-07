@@ -408,3 +408,15 @@ button:disabled,
   background: rgba(238, 240, 244, .28); transition: background .3s, box-shadow .3s; }
 .hiw-col[data-on] .hiw-num, .hiw-col[data-on] .hiw-title { color: var(--accent-ink); }
 .hiw-col[data-on] .hiw-body::before { background: var(--accent-ink); box-shadow: 0 0 10px rgba(124, 184, 245, .45); }
+
+/* ── before JavaScript: show what the scroll reveals hide ─────────────────
+   The exported HTML carries each reveal's starting style (opacity 0). Until
+   React is running (<html> gets .hydrated, see MotionPrefs) those elements
+   are shown as they will end up; after that, the ones already seen stay. */
+html:not(.hydrated) [style*="opacity:0;"],
+html:not(.hydrated) [style$="opacity:0"],
+html:not(.hydrated) [data-reveal],
+[data-seen] {
+  opacity: 1 !important;
+  transform: none !important;
+}

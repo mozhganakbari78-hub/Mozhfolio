@@ -14,12 +14,14 @@ import { useEffect } from "react";
  * they use at low priority, so the first click is as fast as the second.
  *
  * Plain fetch() rather than <link rel="prefetch">, which Safari doesn't
- * support. Skipped when the visitor has asked to save data.
+ * support. Skipped when the visitor has asked to save data or is on a slow
+ * (2G/3G) connection.
  */
 export default function CasePrefetch({ hrefs }: { hrefs: string[] }) {
   useEffect(() => {
-    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    if (conn?.saveData || !hrefs.length) return;
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    // on a slow connection the bytes are better spent on the page in front of the reader
+    if (conn?.saveData || /(^|-)2g$|^3g$/.test(conn?.effectiveType ?? "") || !hrefs.length) return;
 
     let cancelled = false;
     const get = (url: string) =>
