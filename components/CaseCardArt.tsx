@@ -33,7 +33,7 @@ function Frame({ children }: { children: React.ReactNode }) {
         style={{ background: A }}
         aria-hidden
       />
-      <div className="relative w-[74%] max-w-[260px]">{children}</div>
+      <div className="relative w-[64%] max-w-[230px] py-5 md:py-0 md:w-[74%] md:max-w-[260px]">{children}</div>
     </div>
   );
 }

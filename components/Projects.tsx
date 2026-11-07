@@ -109,7 +109,7 @@ export default function Projects() {
 
                 {/* Right: illustration */}
                 <div
-                  className="flex relative min-h-[220px] md:min-h-[250px] py-6 md:py-0 items-center justify-center opacity-90 transition-opacity duration-300 group-hover:opacity-100 border-t md:border-t-0"
+                  className="flex items-stretch relative min-h-[180px] md:min-h-[250px] opacity-90 transition-opacity duration-300 group-hover:opacity-100 border-t md:border-t-0"
                   style={{ background: "var(--bg-secondary)", borderColor: "var(--border-subtle)" }}
                 >
                   <CaseCardArt name={cs.illustration} />
