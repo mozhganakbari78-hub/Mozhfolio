@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    // Put the stylesheet in the HTML instead of a separate file. The site's
+    // CSS is small (~10 KB gzipped), and as its own file it was render-
+    // blocking and queued behind the scripts and fonts on a slow phone, so
+    // nothing painted until ~1.6 s. Inline, the first paint follows the HTML.
+    inlineCss: true,
+  },
 };
 
 export default nextConfig;
