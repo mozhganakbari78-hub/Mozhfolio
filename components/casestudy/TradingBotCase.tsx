@@ -333,12 +333,12 @@ export default function TradingBotCase() {
 
       <NextCaseLink
         href="/work/reducing-support-friction/"
-        caseStudyName="Answers where users get stuck"
+        caseStudyName="Bringing answers into the support journey"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Answers where users get stuck{" "}
+          Bringing answers into the support journey{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

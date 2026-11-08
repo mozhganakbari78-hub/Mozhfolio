@@ -19,7 +19,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "01",
     slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
+    title: "Bringing answers into the support journey",
     short:
       "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
     description:
