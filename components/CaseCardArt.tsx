@@ -373,12 +373,34 @@ function Rules() {
   );
 }
 
-/* Bots: one bot card, Running, with its P&L line: red while it is below
-   zero, green once it is above, a soft fill to the zero line, and the
-   won / lost split as a thin bar underneath. */
+/* Bots: one bot card, Running. A candlestick chart of the pair, with the
+   bot's own trades marked on it (B under a buy, S over a sell) so it reads
+   as a bot trading, not just a price; the won / lost split underneath. */
 const GAIN = "#6cc58f";
-const PNL = "M0 60 L20 64 L38 56 L56 62 L74 50 L92 46 L110 54 L130 42 L150 47 L170 35 L190 39 L210 27 L232 31 L260 19";
-const PNL_AREA = `${PNL} L260 52 L0 52 Z`;
+// [open, close, high, low] in chart y (smaller is higher); green when close < open
+const CANDLES: [number, number, number, number][] = [
+  [60, 66, 56, 70], [66, 58, 54, 69], [58, 62, 55, 66], [62, 52, 49, 64],
+  [52, 48, 44, 56], [48, 55, 45, 58], [55, 44, 41, 57], [44, 40, 36, 47],
+  [40, 45, 37, 49], [45, 34, 31, 47], [34, 30, 26, 37], [30, 35, 27, 38],
+  [35, 24, 20, 37], [24, 18, 14, 27],
+];
+const cx = (i: number) => 10 + i * 18.5;
+// stretch the moves so the bodies read at card size
+const sy = (y: number) => 8 + (y - 14) * 1.3;
+// the bot's trades: index, side
+const TRADES: [number, "B" | "S"][] = [[1, "B"], [7, "S"], [8, "B"]];
+function BotGlyph() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" aria-hidden>
+      <rect x="1.8" y="3.6" width="8.4" height="6.4" rx="1.8" />
+      <path d="M6 3.6V1.8" />
+      <circle cx="6" cy="1.4" r=".5" fill="currentColor" stroke="none" />
+      <circle cx="4.4" cy="6.6" r=".75" fill="currentColor" stroke="none" />
+      <circle cx="7.6" cy="6.6" r=".75" fill="currentColor" stroke="none" />
+      <path d="M1.8 6.8H1M10.2 6.8H11" />
+    </svg>
+  );
+}
 function Bots() {
   return (
     <Frame>
@@ -387,11 +409,11 @@ function Bots() {
           <span className="flex items-center gap-2" style={{ ...Mono, color: SUB }}>
             <span
               className="w-5 h-5 rounded-md flex items-center justify-center"
-              style={{ border: `1px solid ${LINE}`, background: "rgba(255,255,255,0.03)", color: FG, fontSize: 9 }}
+              style={{ border: "1px solid rgba(108,197,143,0.4)", background: "rgba(108,197,143,0.10)", color: GAIN }}
             >
-              ₿
+              <BotGlyph />
             </span>
-            BTC / USDT · bot
+            <span><span style={{ color: FG }}>Bot</span> · BTC/USDT</span>
           </span>
           <span
             className="rounded-full px-2 py-0.5 flex items-center gap-1.5"
@@ -405,62 +427,66 @@ function Bots() {
           </span>
         </motion.div>
         <svg viewBox="0 0 260 90" className="w-full h-auto block overflow-visible" aria-hidden>
-          <defs>
-            <clipPath id="cca-bots-up"><rect x={-4} y={-4} width={268} height={56} /></clipPath>
-            <clipPath id="cca-bots-down"><rect x={-4} y={52} width={268} height={42} /></clipPath>
-            <linearGradient id="cca-bots-gain" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={GAIN} stopOpacity="0.32" />
-              <stop offset="100%" stopColor={GAIN} stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="cca-bots-loss" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor={FAIL} stopOpacity="0.28" />
-              <stop offset="100%" stopColor={FAIL} stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {/* faint guides and the zero line */}
-          {[14, 33, 71].map((y) => (
-            <line key={y} x1={0} x2={260} y1={y} y2={y} stroke="rgba(255,255,255,0.04)" strokeWidth={0.8} />
+          {/* faint price guides */}
+          {[14, 33, 52, 71].map((y) => (
+            <line key={y} x1={0} x2={260} y1={y} y2={y} stroke="rgba(255,255,255,0.045)" strokeWidth={0.8} />
           ))}
-          <line x1={0} x2={260} y1={52} y2={52} stroke={LINE} strokeWidth={0.8} strokeDasharray="2 3" />
-          <text x={258} y={48} textAnchor="end" fill={SUB} style={{ ...Mono, fontSize: 8 }}>0</text>
-          {/* soft fill between the line and zero */}
+          {/* candles, left to right */}
+          {CANDLES.map(([o0, c0, h0, l0], i) => {
+            const [o, c, h, l] = [o0, c0, h0, l0].map(sy);
+            const up = c < o;
+            const col = up ? GAIN : FAIL;
+            return (
+              <motion.g
+                key={i}
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEW}
+                transition={{ delay: 0.15 + i * 0.045, duration: 0.35, ease: EASE }}
+              >
+                <line x1={cx(i)} x2={cx(i)} y1={h} y2={l} stroke={col} strokeWidth={1.3} strokeLinecap="round" />
+                <rect
+                  x={cx(i) - 5.5}
+                  y={Math.min(o, c)}
+                  width={11}
+                  height={Math.max(3, Math.abs(c - o))}
+                  rx={1.2}
+                  fill={col}
+                  fillOpacity={up ? 0.9 : 0.85}
+                />
+              </motion.g>
+            );
+          })}
+          {/* the bot's trades on the chart */}
+          {TRADES.map(([i, side], k) => {
+            const [h, l] = [CANDLES[i][2], CANDLES[i][3]].map(sy);
+            const buy = side === "B";
+            const y = buy ? l + 9 : h - 9;
+            const col = buy ? GAIN : FAIL;
+            return (
+              <motion.g
+                key={k}
+                initial={{ opacity: 0, scale: 0.6 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={VIEW}
+                style={{ transformOrigin: `${cx(i)}px ${y}px` }}
+                transition={{ delay: 0.85 + k * 0.12, type: "spring", stiffness: 420, damping: 20 }}
+              >
+                <circle cx={cx(i)} cy={y} r={6} fill="#141518" stroke={col} strokeWidth={1.1} />
+                <text x={cx(i)} y={y + 2.6} textAnchor="middle" fill={col} style={{ ...Mono, fontSize: 7.5, fontWeight: 700 }}>
+                  {side}
+                </text>
+              </motion.g>
+            );
+          })}
+          {/* the last price */}
           <motion.g
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={VIEW}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            transition={{ delay: 0.9, duration: 0.4 }}
           >
-            <path d={PNL_AREA} clipPath="url(#cca-bots-up)" fill="url(#cca-bots-gain)" />
-            <path d={PNL_AREA} clipPath="url(#cca-bots-down)" fill="url(#cca-bots-loss)" />
-          </motion.g>
-          {[
-            ["cca-bots-down", FAIL],
-            ["cca-bots-up", GAIN],
-          ].map(([clip, color]) => (
-            <motion.path
-              key={clip}
-              d={PNL}
-              clipPath={`url(#${clip})`}
-              fill="none"
-              stroke={color}
-              strokeWidth={1.8}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={VIEW}
-              transition={{ delay: 0.2, duration: 1, ease: EASE }}
-            />
-          ))}
-          {/* where it is now */}
-          <motion.g
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={VIEW}
-            transition={{ delay: 1.1, duration: 0.4 }}
-          >
-            <circle cx={260} cy={19} r={7} fill={GAIN} opacity={0.18} />
-            <circle cx={260} cy={19} r={3} fill={GAIN} />
+            <line x1={0} x2={260} y1={sy(18)} y2={sy(18)} stroke={GAIN} strokeWidth={0.7} strokeDasharray="2 3" opacity={0.55} />
           </motion.g>
         </svg>
         <motion.div className="grid gap-1.5" {...rise(1.1)}>
