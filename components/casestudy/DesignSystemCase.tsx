@@ -237,13 +237,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/reducing-support-friction/"
-        caseStudyName="Answers where users get stuck"
+        href="/work/iot-rule-builder/"
+        caseStudyName="Greenhouse rules in one sentence"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Answers where users get stuck{" "}
+          Greenhouse rules in one sentence{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
