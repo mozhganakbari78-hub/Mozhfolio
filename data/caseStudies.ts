@@ -40,17 +40,6 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "03",
-    slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
-    short:
-      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
-    description:
-      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
-    meta: "Problem Framing · Content Architecture",
-    illustration: "support",
-  },
-  {
-    index: "04",
     slug: "iot-rule-builder",
     title: "Greenhouse rules in one sentence",
     short:
@@ -59,6 +48,17 @@ export const caseStudies: CaseStudy[] = [
       "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
     meta: "IoT · Logic Design",
     illustration: "rules",
+  },
+  {
+    index: "04",
+    slug: "reducing-support-friction",
+    title: "Answers where users get stuck",
+    short:
+      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
+    description:
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+    meta: "Problem Framing · Content Architecture",
+    illustration: "support",
   },
   {
     index: "05",
