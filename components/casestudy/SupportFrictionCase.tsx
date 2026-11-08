@@ -5,6 +5,7 @@ import Mockup from "./Mockup";
 import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
+import ReframeStatement from "./ReframeStatement";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -20,8 +21,8 @@ export default function SupportFrictionCase() {
           <span className="cs-eyebrow">Case study · Corporate banking</span>
           <h1>Answers before the ticket</h1>
           <p className="cs-lede">
-            The FAQ had fallen behind the product. Before refreshing it, I asked a different
-            question: would anyone stuck in a banking system actually read it?
+            I was asked to refresh an outdated FAQ. The tickets showed the real problem: answers
+            weren&apos;t reaching users at the moment they got stuck.
           </p>
         </div>
 
@@ -84,6 +85,10 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <ReframeStatement />
+      </section>
+
       <section className="cs-reveal">
         <span className="cs-num">Making the case</span>
         <h2>Answer first, ask later</h2>
@@ -105,11 +110,29 @@ export default function SupportFrictionCase() {
         <h2>Adding answers to the FAQ wouldn&apos;t change anything</h2>
         <p>
           Users still wouldn&apos;t go looking. The answers had to reach them where they already
-          were: in the middle of filing a ticket. But without blocking them. Forcing users to search
-          the FAQ before they can ask for help would only frustrate them. And 43% of tickets were
-          about the user&apos;s own case. Blocking the ticket form would hurt the people with the
-          most at stake.
+          were: in the middle of filing a ticket, without getting in their way.
         </p>
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">The options</span>
+        <h2>Two obvious fixes, both ruled out</h2>
+        <ol className="cs-rules is-plain">
+          {/* one span per item: the list lays out number | text, so a bare <strong> would split into its own column */}
+          <li>
+            <span>
+              <strong>A list of top questions.</strong>{" "}Ruled out by the long tail: no short list
+              would reach most users.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Make users search the FAQ before filing a ticket.</strong>{" "}Ruled out: 43% of
+              tickets were about the user&apos;s own case, and blocking them would hurt the people
+              with the most at stake.
+            </span>
+          </li>
+        </ol>
       </section>
 
       {/* 5 */}
