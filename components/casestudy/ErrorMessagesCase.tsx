@@ -212,13 +212,13 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/iot-rule-builder/"
-        caseStudyName="Greenhouse rules in one sentence"
+        href="/work/design-system/"
+        caseStudyName="A design system engineers used"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Greenhouse rules in one sentence{" "}
+          A design system engineers used{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
