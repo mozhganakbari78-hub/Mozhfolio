@@ -18,14 +18,14 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
+    slug: "error-messages",
+    title: "Errors that say what's next",
     short:
-      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
+      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:
-      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
-    meta: "Problem Framing · Content Architecture",
-    illustration: "support",
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
   },
   {
     index: "02",
@@ -40,14 +40,14 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "03",
-    slug: "error-messages",
-    title: "Errors that say what's next",
+    slug: "reducing-support-friction",
+    title: "Answers where users get stuck",
     short:
-      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
     description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+    meta: "Problem Framing · Content Architecture",
+    illustration: "support",
   },
   {
     index: "04",
