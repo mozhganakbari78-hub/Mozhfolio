@@ -373,22 +373,21 @@ function Rules() {
   );
 }
 
-/* Bots: one bot card, Running. A candlestick chart of the pair, with the
-   bot's own trades marked on it (B under a buy, S over a sell) so it reads
-   as a bot trading, not just a price; the won / lost split underneath. */
+/* Bots: one bot card, Running. A short candlestick chart of the pair with
+   one buy and one sell marked on it, so it reads as a bot trading, not just
+   a price; the won / lost count and P&L underneath. Kept sparse to match
+   the other cards. */
 const GAIN = "#6cc58f";
 // [open, close, high, low] in chart y (smaller is higher); green when close < open
 const CANDLES: [number, number, number, number][] = [
-  [60, 66, 56, 70], [66, 58, 54, 69], [58, 62, 55, 66], [62, 52, 49, 64],
-  [52, 48, 44, 56], [48, 55, 45, 58], [55, 44, 41, 57], [44, 40, 36, 47],
-  [40, 45, 37, 49], [45, 34, 31, 47], [34, 30, 26, 37], [30, 35, 27, 38],
-  [35, 24, 20, 37], [24, 18, 14, 27],
+  [62, 54, 50, 68], [54, 60, 50, 64], [60, 46, 42, 63], [46, 38, 33, 50],
+  [38, 44, 34, 48], [44, 30, 26, 47], [30, 22, 17, 34], [22, 26, 18, 30],
 ];
-const cx = (i: number) => 10 + i * 18.5;
+const cx = (i: number) => 16 + i * 32.5;
 // stretch the moves so the bodies read at card size
 const sy = (y: number) => 8 + (y - 14) * 1.3;
-// the bot's trades: index, side
-const TRADES: [number, "B" | "S"][] = [[1, "B"], [7, "S"], [8, "B"]];
+// one round trip: bought low, sold high
+const TRADES: [number, "B" | "S"][] = [[1, "B"], [6, "S"]];
 function BotGlyph() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" aria-hidden>
@@ -427,10 +426,6 @@ function Bots() {
           </span>
         </motion.div>
         <svg viewBox="0 0 260 90" className="w-full h-auto block overflow-visible" aria-hidden>
-          {/* faint price guides */}
-          {[14, 33, 52, 71].map((y) => (
-            <line key={y} x1={0} x2={260} y1={y} y2={y} stroke="rgba(255,255,255,0.045)" strokeWidth={0.8} />
-          ))}
           {/* candles, left to right */}
           {CANDLES.map(([o0, c0, h0, l0], i) => {
             const [o, c, h, l] = [o0, c0, h0, l0].map(sy);
@@ -442,13 +437,13 @@ function Bots() {
                 initial={{ opacity: 0, y: 6 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={VIEW}
-                transition={{ delay: 0.15 + i * 0.045, duration: 0.35, ease: EASE }}
+                transition={{ delay: 0.15 + i * 0.06, duration: 0.35, ease: EASE }}
               >
                 <line x1={cx(i)} x2={cx(i)} y1={h} y2={l} stroke={col} strokeWidth={1.3} strokeLinecap="round" />
                 <rect
-                  x={cx(i) - 5.5}
+                  x={cx(i) - 7}
                   y={Math.min(o, c)}
-                  width={11}
+                  width={14}
                   height={Math.max(3, Math.abs(c - o))}
                   rx={1.2}
                   fill={col}
@@ -479,24 +474,11 @@ function Bots() {
               </motion.g>
             );
           })}
-          {/* the last price */}
-          <motion.g
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={VIEW}
-            transition={{ delay: 0.9, duration: 0.4 }}
-          >
-            <line x1={0} x2={260} y1={sy(18)} y2={sy(18)} stroke={GAIN} strokeWidth={0.7} strokeDasharray="2 3" opacity={0.55} />
-          </motion.g>
         </svg>
-        <motion.div className="grid gap-1.5" {...rise(1.1)}>
+        <motion.div {...rise(1.1)}>
           <div className="flex items-baseline justify-between">
             <span style={{ ...Mono, color: SUB }}>31 won · 14 lost</span>
             <span style={{ ...Mono, color: GAIN }}>P&amp;L +412.80</span>
-          </div>
-          <div className="flex h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-            <span style={{ width: "69%", background: GAIN, opacity: 0.85 }} />
-            <span style={{ width: "31%", background: FAIL, opacity: 0.85 }} />
           </div>
         </motion.div>
       </div>
