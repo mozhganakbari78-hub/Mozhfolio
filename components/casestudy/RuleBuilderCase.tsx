@@ -24,9 +24,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
+              { value: "~40% less complexity", label: "per the PM's report, easier for older and non-technical users", icon: "ArrowTrendingUp" },
               { value: "4 of 4 managers", label: "built a rule unaided in testing", icon: "UserGroup" },
-              { value: "Live in production", label: "Persian, right-to-left", icon: "RocketLaunch" },
+              { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
             ]}
           />
         </div>
@@ -273,11 +273,12 @@ WHEN always`}</pre>
         <h2>Shipped to production</h2>
         <p>
           The rule builder is live, in Persian with a right-to-left layout, on a platform that
-          runs real greenhouses every day.
+          runs real greenhouses every day. The PM&apos;s report credited it with reducing
+          complexity by about 40% and making it easier for older and non-technical users.
         </p>
         <p>
-          I left before post-launch measurement. Before leaving, I defined three metrics for the
-          team:
+          I left before my own post-launch measurement. Before leaving, I defined three metrics for
+          the team:
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Adoption.</b> Share of accounts with at least one scheduled rule.</span></li>
