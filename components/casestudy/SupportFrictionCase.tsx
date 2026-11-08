@@ -19,7 +19,7 @@ export default function SupportFrictionCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Corporate banking</span>
-          <h1>Answers before the ticket</h1>
+          <h1>Answers where users get stuck</h1>
           <p className="cs-lede">
             I was asked to refresh an outdated FAQ. The tickets showed the real problem: answers
             weren&apos;t reaching users at the moment they got stuck.
