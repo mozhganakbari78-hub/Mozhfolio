@@ -3,7 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - claude/compassionate-albattani-2xv7ko
       - main
   workflow_dispatch:
 
