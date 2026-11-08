@@ -37,11 +37,6 @@ const capabilities = [
 
 export default function Skills() {
   const { ref, inView } = useInView();
-  // Resolve on the client's first render so touch devices never flash the
-  // scroll-reveal animation.
-  const [isTouch] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
-  );
   const [active, setActive] = useState(0);
 
   return (
@@ -86,7 +81,9 @@ export default function Skills() {
             return (
               <Reveal as="div"
                 key={cap.title}
-                initial={isTouch ? false : { opacity: 0, y: 16 }}
+                // same starting state on server and client: a touch-only "initial={false}"
+                // here mismatched the server HTML (opacity 0) and the items never revealed on phones
+                initial={{ opacity: 0, y: 16 }}
                 to={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: ci * 0.06, ease: [0.16, 1, 0.3, 1] }}
               >

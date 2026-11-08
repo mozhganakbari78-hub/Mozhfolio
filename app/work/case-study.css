@@ -2163,6 +2163,12 @@
   background: rgba(255, 255, 255, .1);
   letter-spacing: .06em;
 }
+/* touch screens have no Esc key, and the button is focused on open only for
+   keyboard users, so drop both the hint and that ring there */
+@media (hover: none) and (pointer: coarse) {
+  .cs-lb-close span { display: none; }
+  .cs-lb-close:focus { outline: none; }
+}
 
 .cs-lb-caption {
   flex: 0 0 auto;
