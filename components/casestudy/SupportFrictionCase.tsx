@@ -164,16 +164,31 @@ export default function SupportFrictionCase() {
       {/* 6 */}
       <section className="cs-reveal">
         <span className="cs-num">The constraint</span>
-        <h2>Matching users&apos; words was hard for the backend, so I phased it</h2>
-        <p>Mapping a user&apos;s question to the right FAQ answer was the biggest technical issue.</p>
+        <h2>The backend said it was too heavy, so I rescoped it with them</h2>
+        <p>
+          Matching a user&apos;s question to the right FAQ answer was the hardest technical part.
+          With Claude, I pulled keywords and synonyms for every question and handed the backend
+          team a full document. They pushed back: matching all of it was too heavy to build.
+        </p>
+        <p>So I changed the plan, not the goal. I wrote a smaller spec and split it into phases:</p>
         <ol className="cs-rules is-plain">
-          <li>First: words that appear in the question, plus known synonyms, like loan and facility, or deposit and transfer.</li>
-          <li>Then: grow the synonym list by watching how real users phrase things.</li>
-          <li>Later: match whole sentences and meaning.</li>
+          <li>
+            <span>
+              <strong>Phase 1, built now.</strong> Words that appear as-is in the questions and
+              answers, like account, statement, facility and transfer, plus clear synonym pairs:
+              facility and loan, transfer and deposit, statement and financial report.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Phase 2, next.</strong> Matching by concept and whole sentence, shaped by what
+              users actually type.
+            </span>
+          </li>
         </ol>
         <p>
-          I used AI to pull the keywords for every question, both the exact words and their
-          synonyms, then checked them.
+          I did the phase 1 mapping myself, so the team built against a finished list, not a wish
+          list.
         </p>
         <CsStats
           items={[
