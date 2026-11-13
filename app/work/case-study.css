@@ -2721,3 +2721,12 @@
 @media (prefers-reduced-motion: reduce) {
   .bs-bot.is-on, .bs-bot.is-on .bs-eye, .bs-bot.is-on .bs-tip { animation: none; }
 }
+
+/* error case: the knot of one-off messages and the rules that untangle it (ErrorTangleScene) */
+.ets-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; padding: 8px; }
+.ets-scene svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ets-tall { display: none !important; }
+@media (max-width: 700px) {
+  .ets-wide { display: none !important; }
+  .ets-tall { display: block !important; max-width: 480px; margin: 0 auto; }
+}
