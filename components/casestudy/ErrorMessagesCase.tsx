@@ -4,6 +4,8 @@ import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import TicketRatio from "./TicketRatio";
 import RuleLayers from "./RuleLayers";
+import ScreenshotTickets from "./ScreenshotTickets";
+import DraftReview from "./DraftReview";
 
 
 const rewrites: Rewrite[] = [
@@ -83,6 +85,7 @@ export default function ErrorMessagesCase() {
           screenshot of an error message, and nothing else. Users weren&apos;t reporting bugs. They
           were asking what to do.
         </p>
+        <ScreenshotTickets />
       </section>
 
       {/* 2 */}
@@ -166,6 +169,7 @@ export default function ErrorMessagesCase() {
           In banking, a plausible rewrite can quietly change what a message says about money or
           permissions. So AI handled the volume, and I reviewed every message by hand.
         </p>
+        <DraftReview />
         <p className="cs-trade">
           <b>Trade-off:</b> slower than trusting the drafts.
         </p>
