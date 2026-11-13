@@ -229,12 +229,6 @@ function DesignSystem() {
 }
 
 /* Error copy: a dead-end sign fades, a signpost points to the next step. */
-/* Error copy: a small creature pops out of a hole holding the old dead-end
-   error. The sign flips to the next step, and its face goes from worried to
-   relieved: the whole case in one beat. Plays once. */
-const BODY = "#e8836e";
-const BODY_DARK = "#c4685a";
-const FACE = "#4a2620";
 function ErrorCopy() {
   return (
     <Frame>
@@ -244,62 +238,30 @@ function ErrorCopy() {
           <span style={{ ...Mono, color: AI }}>now what?</span>
         </motion.div>
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
-          <defs>
-            <clipPath id="err-hole">
-              <rect x={0} y={-20} width={260} height={128} />
-            </clipPath>
-          </defs>
-          {/* the hole it climbs out of */}
-          <ellipse cx={100} cy={108} rx={44} ry={6.5} fill="rgba(255,255,255,0.07)" />
-          <g clipPath="url(#err-hole)">
-            <motion.g
-              variants={{ hidden: { y: 70 }, show: { y: 0 } }}
-              transition={{ delay: 0.15, duration: 0.6, ease: EASE }}
-            >
-              {/* the arm holding the sign up */}
-              <path d="M124 86 Q142 74 156 52" fill="none" stroke={BODY_DARK} strokeWidth={6} strokeLinecap="round" />
-              {/* body and ears */}
-              <path d="M80 50 L84 34 L94 44 Z" fill={BODY} />
-              <path d="M120 50 L116 34 L106 44 Z" fill={BODY} />
-              <path d="M70 112 V72 a30 30 0 0 1 60 0 V112 Z" fill={BODY} />
-              <path d="M76 100 Q70 92 72 82" fill="none" stroke={BODY_DARK} strokeWidth={6} strokeLinecap="round" />
-              {/* eyes, looking up at the sign */}
-              <circle cx={90} cy={66} r={7.5} fill="#f6f2ec" />
-              <circle cx={110} cy={66} r={7.5} fill="#f6f2ec" />
-              <circle cx={92.5} cy={63.5} r={3.2} fill={FACE} />
-              <circle cx={112.5} cy={63.5} r={3.2} fill={FACE} />
-              {/* worried "o", then a smile once the sign says what to do */}
-              <motion.ellipse cx={100} cy={86} rx={3.2} ry={4.2} fill={FACE}
-                variants={{ hidden: { opacity: 1 }, show: { opacity: 0 } }} transition={{ delay: 1.7, duration: 0.15 }} />
-              <motion.path d="M93 84 Q100 92 107 84" fill="none" stroke={FACE} strokeWidth={2.4} strokeLinecap="round"
-                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} transition={{ delay: 1.75, duration: 0.2 }} />
-              {/* the dead-end error, which flips away... */}
-              <motion.g
-                variants={{
-                  hidden: { opacity: 0, scaleX: 1 },
-                  show: { opacity: [0, 1, 1, 0], scaleX: [1, 1, 1, 0] },
-                }}
-                transition={{ delay: 0.55, duration: 1.15, times: [0, 0.15, 0.8, 1] }}
-                style={{ transformOrigin: "200px 34px" }}
-              >
-                <rect x={150} y={20} width={100} height={28} rx={6} fill="#2a1d1b" stroke={FAIL} strokeWidth={1} />
-                <text x={200} y={38} textAnchor="middle" fill={FAIL} style={{ ...Mono, fontSize: 9 }}>✕ error 4012</text>
-              </motion.g>
-              {/* ...to the next step */}
-              <motion.g
-                variants={{ hidden: { opacity: 0, scaleX: 0 }, show: { opacity: 1, scaleX: 1 } }}
-                transition={{ delay: 1.7, duration: 0.25, ease: EASE }}
-                style={{ transformOrigin: "200px 34px" }}
-              >
-                <rect x={150} y={20} width={100} height={28} rx={6} fill="#14233a" stroke={AI} strokeWidth={1} />
-                <text x={200} y={38} textAnchor="middle" fill={FG} style={{ ...Mono, fontSize: 9 }}>what to do next →</text>
-              </motion.g>
-              {/* the hand on the sign */}
-              <circle cx={156} cy={50} r={5} fill={BODY} />
-            </motion.g>
-          </g>
-          {/* front lip of the hole, so it reads as climbing out */}
-          <path d="M56 108 A44 6.5 0 0 0 144 108" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth={1} />
+          <line x1={0} x2={260} y1={112.5} y2={112.5} stroke={LINE} strokeWidth={1.2} />
+          {/* the old dead-end sign, fading out */}
+          <motion.g
+            variants={{ hidden: { opacity: 1 }, show: { opacity: 0.35 } }}
+            transition={{ delay: 0.38, duration: 0.6 }}
+          >
+            <line x1={48} y1={58} x2={48} y2={112} stroke={SUB} strokeWidth={2} />
+            <rect x={22} y={30} width={52} height={30} rx={5} fill="rgba(232,131,110,0.14)" stroke={FAIL} strokeWidth={1} />
+            <text x={48} y={50} textAnchor="middle" fill={FAIL} style={{ ...Mono, fontSize: 13 }}>✕</text>
+            <text x={48} y={22} textAnchor="middle" fill={SUB} style={{ ...Mono, fontSize: 9 }}>error 4012</text>
+          </motion.g>
+          {/* the signpost: what happened, and where to go next */}
+          <motion.line x1={170} y1={30} x2={170} y2={112} stroke={SUB} strokeWidth={2}
+            variants={{ hidden: { pathLength: 0 }, show: { pathLength: 1 } }} transition={{ delay: 0.45, duration: 0.4 }} />
+          <motion.g variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }} transition={{ delay: 0.68, duration: 0.45, ease: EASE }}>
+            <path d="M94 32 h74 v18 h-74 l-9 -9 z" fill="rgba(255,255,255,0.04)" stroke={SUB} strokeWidth={1} />
+            <text x={132} y={44} textAnchor="middle" fill={FG} style={{ ...Mono, fontSize: 8 }}>what happened</text>
+          </motion.g>
+          <motion.g variants={{ hidden: { opacity: 0, x: 10 }, show: { opacity: 1, x: 0 } }} transition={{ delay: 0.86, duration: 0.45, ease: EASE }}>
+            <path d="M172 60 h76 l9 9 l-9 9 h-76 z" fill="var(--accent-soft)" stroke={AI} strokeWidth={1} />
+            <text x={210} y={72} textAnchor="middle" fill={FG} style={{ ...Mono, fontSize: 8 }}>what to do next</text>
+          </motion.g>
+          <motion.circle cx={170} cy={28} r={3} fill={AI}
+            variants={{ hidden: { scale: 0 }, show: { scale: 1 } }} transition={{ delay: 1.05 }} />
         </svg>
       </div>
     </Frame>
