@@ -10,6 +10,18 @@ import DraftReview from "./DraftReview";
 
 const rewrites: Rewrite[] = [
   {
+    label: "The cancelled request, from the example above",
+    before: {
+      fa: "شما ایجادکننده درخواست نیستید",
+      en: "“You are not the creator of the request.”",
+    },
+    after: {
+      fa: "شما ایجادکننده درخواست نیستید و دسترسی به لغو آن برای شما وجود ندارد؛ برای اطلاعات بیشتر می‌توانید با پشتیبانی تماس بگیرید.",
+      en: "“You are not the creator of the request and don’t have access to cancel it. For more information, you can contact support.”",
+    },
+    changes: ["what failed → why it failed", "no next step → contact support"],
+  },
+  {
     label: "Internal jargon",
     before: {
       fa: "پارامترهای ورودی نامعتبر میباشد",

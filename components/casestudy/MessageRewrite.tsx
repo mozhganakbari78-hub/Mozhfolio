@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 export type Rewrite = {
   /** Short label for what the message is about. */
   label: string;
-  before: { fa: string; en: string };
+  /** `fa` is left out when only the English wording is on record. */
+  before: { fa?: string; en: string };
   after: { fa: string; en: string };
   /** What the rewrite fixed. */
   changes: string[];
@@ -49,9 +50,11 @@ export default function MessageRewrite({ items }: { items: Rewrite[] }) {
                 transition={{ delay: t + 0.15, duration: 0.45, ease: EASE }}
               >
                 <span className="tag">Before</span>
-                <p className="fa" dir="rtl" lang="fa">
-                  {m.before.fa}
-                </p>
+                {m.before.fa && (
+                  <p className="fa" dir="rtl" lang="fa">
+                    {m.before.fa}
+                  </p>
+                )}
                 <p className="en">{m.before.en}</p>
               </motion.div>
 
