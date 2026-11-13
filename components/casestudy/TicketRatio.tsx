@@ -54,8 +54,8 @@ export default function TicketRatio() {
       <Row label="Before" filled={6} tone="before" delay={0.15} />
       <Row label="After" filled={3} tone="after" delay={0.65} />
       <p className="cs-ratio-note">
-        Proportions observed in the support queue. The underlying ticket data is internal to the
-        bank, so the ratio is what I can share.
+        Proportions observed over about a month of watching the support queue. The underlying ticket
+        data is internal to the bank, so the ratio is what I can share.
       </p>
     </div>
   );
