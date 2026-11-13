@@ -11,6 +11,7 @@ import RuleBuilderCase from "@/components/casestudy/RuleBuilderCase";
 import TradingBotCase from "@/components/casestudy/TradingBotCase";
 import "../case-study.css";
 import "../ticket-ratio.css";
+import "../error-visuals.css";
 import "../password-gate.css";
 
 const cases: Record<string, React.ComponentType> = {
