@@ -20,7 +20,7 @@ export default function ReframeStatement() {
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.5, ease: EASE }}
       >
-        <span className="lab">The brief</span>
+        <span className="lab">Our first idea</span>
         <p className="q">
           &ldquo;How can we improve the FAQ section?&rdquo;
           <motion.span

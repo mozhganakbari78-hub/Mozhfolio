@@ -54,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "reducing-support-friction",
     title: "Answers where users get stuck",
     short:
-      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
+      "With no analytics, we read support tickets every day and saw the same questions coming back. Answers now reach users while they write a ticket, and fewer of those questions reach support.",
     description:
       "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
     meta: "Problem Framing · Content Architecture",
