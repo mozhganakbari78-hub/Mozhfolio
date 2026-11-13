@@ -30,7 +30,7 @@ export default function Hero() {
               className="text-[15px] font-medium"
               style={{ color: "var(--text-primary)", letterSpacing: "-0.005em" }}
             >
-              Mozhgan Akbari · Product Designer
+              Mozhgan Akbari · Senior Product Designer
             </h1>
           </div>
 
