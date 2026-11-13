@@ -12,6 +12,7 @@ const rewrites: Rewrite[] = [
   {
     label: "The cancelled request, from the example above",
     before: {
+      fa: "شما ایجادکننده درخواست نیستید",
       en: "“You are not the creator of the request.”",
     },
     after: {
