@@ -18,17 +18,6 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "error-messages",
-    title: "Errors that say what's next",
-    short:
-      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
-    description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
-  },
-  {
-    index: "02",
     slug: "design-system",
     title: "A design system engineers used",
     short:
@@ -37,6 +26,17 @@ export const caseStudies: CaseStudy[] = [
       "Building a design system on Ant Design for a corporate banking platform, renaming it to match the code, then growing it to four products by separating product identity from theme.",
     meta: "Design Systems · Governance",
     illustration: "designsystem",
+  },
+  {
+    index: "02",
+    slug: "error-messages",
+    title: "Errors that say what's next",
+    short:
+      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+    description:
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
   },
   {
     index: "03",

@@ -237,13 +237,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/iot-rule-builder/"
-        caseStudyName="Greenhouse rules in one sentence"
+        href="/work/error-messages/"
+        caseStudyName="Errors that say what's next"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Greenhouse rules in one sentence{" "}
+          Errors that say what&apos;s next{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import TicketRatio from "./TicketRatio";
+import RuleLayers from "./RuleLayers";
 
 
 const rewrites: Rewrite[] = [
@@ -151,6 +152,7 @@ export default function ErrorMessagesCase() {
           <li>Give the next step.</li>
           <li>Never blame the user.</li>
         </ol>
+        <RuleLayers />
         <p className="cs-trade">
           <b>Trade-off:</b> slower than quickly patching the worst messages.
         </p>
@@ -212,13 +214,13 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/design-system/"
-        caseStudyName="A design system engineers used"
+        href="/work/iot-rule-builder/"
+        caseStudyName="Greenhouse rules in one sentence"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          A design system engineers used{" "}
+          Greenhouse rules in one sentence{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>
