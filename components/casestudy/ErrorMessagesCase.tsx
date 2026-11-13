@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import TicketRatio from "./TicketRatio";
+import RuleLayers from "./RuleLayers";
 
 
 const rewrites: Rewrite[] = [
@@ -151,6 +152,7 @@ export default function ErrorMessagesCase() {
           <li>Give the next step.</li>
           <li>Never blame the user.</li>
         </ol>
+        <RuleLayers />
         <p className="cs-trade">
           <b>Trade-off:</b> slower than quickly patching the worst messages.
         </p>

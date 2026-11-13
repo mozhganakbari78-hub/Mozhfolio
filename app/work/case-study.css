@@ -2721,3 +2721,24 @@
 @media (prefers-reduced-motion: reduce) {
   .bs-bot.is-on, .bs-bot.is-on .bs-eye, .bs-bot.is-on .bs-tip { animation: none; }
 }
+
+/* error case, decision 2: the three rules as stacked layers (RuleLayers) */
+.rl-scene { margin: 8px 0 22px; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; padding: 12px 8px 4px; }
+.rl-scene svg { display: block; width: 100%; height: auto; max-width: 720px; margin: 0 auto; overflow: visible; }
+.rl-face { fill: #17191d; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-side { fill: #121317; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-side2 { fill: #0e0f12; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-inset { fill: none; stroke: rgba(238, 240, 244, .14); stroke-width: 1; }
+.rl-plate.is-top .rl-face { fill: #121a26; stroke: var(--accent-ink); }
+.rl-plate.is-top .rl-side, .rl-plate.is-top .rl-side2 { stroke: var(--accent-ink); }
+.rl-card { fill: var(--accent); }
+.rl-dot { fill: #fff; }
+.rl-ink { fill: #fff; }
+.rl-ink.soft { fill: rgba(255, 255, 255, .6); }
+.rl-btn { fill: #fff; opacity: .9; }
+.rl-label text { font-size: 17px; fill: #d2d4df; }
+.rl-label circle { fill: rgba(238, 240, 244, .5); }
+.rl-label line { stroke: rgba(238, 240, 244, .28); stroke-width: 1; stroke-dasharray: 3 4; }
+.rl-label.is-top text { fill: var(--accent-ink); font-weight: 600; }
+.rl-label.is-top circle { fill: var(--accent-ink); }
+.rl-label.is-top line { stroke: rgba(124, 184, 245, .6); }
