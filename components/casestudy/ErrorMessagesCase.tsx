@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import TicketRatio from "./TicketRatio";
-import ErrorTangleScene from "./ErrorTangleScene";
+import ErrorMachineScene from "./ErrorMachineScene";
 
 
 const rewrites: Rewrite[] = [
@@ -185,7 +185,7 @@ export default function ErrorMessagesCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <ErrorTangleScene />
+        <ErrorMachineScene />
       </section>
 
       {/* 7 */}
