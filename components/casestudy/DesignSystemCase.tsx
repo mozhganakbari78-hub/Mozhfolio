@@ -238,12 +238,12 @@ export default function DesignSystemCase() {
 
       <NextCaseLink
         href="/work/reducing-support-friction/"
-        caseStudyName="Answers where users get stuck"
+        caseStudyName="Answer first, ask later"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Answers where users get stuck{" "}
+          Answer first, ask later{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

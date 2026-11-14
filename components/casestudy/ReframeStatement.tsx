@@ -4,11 +4,21 @@ import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+/** The four "how might we" questions from the analysis deck, in its order. */
+const HMW = [
+  {
+    q: "How might we make filing a ticket simpler for users, without adding complexity?",
+    lead: true,
+  },
+  { q: "How might we show the answers to repeated questions at the moment the user needs them?" },
+  { q: "How might we guide users to the relevant FAQ answers before they file a ticket?" },
+  { q: "How might we turn the FAQ from a static section into an active tool on the user’s path?" },
+];
+
 /**
- * The pivot of the case: the brief the team started with, and the problem the
- * evidence actually described. The old framing fades and rules itself out as
- * the new one lands, so the swap reads as a decision rather than a list.
- * Reveals once on scroll, no looping animation.
+ * The pivot of the case: the brief the team started with, ruled out, and the
+ * four questions we took into the design instead. The first one carries the
+ * constraint that shaped every later decision. Reveals once on scroll.
  */
 export default function ReframeStatement() {
   return (
@@ -45,19 +55,24 @@ export default function ReframeStatement() {
         &darr;
       </motion.span>
 
-      <motion.div
-        className="rf rf-after"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ delay: 0.68, duration: 0.45, ease: EASE }}
-      >
-        <span className="lab">What the tickets described</span>
-        <p className="q">
-          &ldquo;How can we reduce unnecessary support dependency by helping users find answers{" "}
-          <em>closer to the moment of friction</em>?&rdquo;
-        </p>
-      </motion.div>
+      <div className="rf-hmw">
+        <span className="lab">What we asked instead</span>
+        <ul>
+          {HMW.map((h, i) => (
+            <motion.li
+              key={h.q}
+              className={h.lead ? "is-lead" : undefined}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ delay: 0.65 + i * 0.1, duration: 0.45, ease: EASE }}
+            >
+              {h.lead ? <span className="tag">The constraint</span> : null}
+              {h.q}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
