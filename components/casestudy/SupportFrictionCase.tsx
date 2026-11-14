@@ -53,6 +53,10 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <TicketMachineScene />
+      </section>
+
       {/* 2 */}
       <section className="cs-reveal">
         <span className="cs-num">The pattern</span>
@@ -140,10 +144,6 @@ export default function SupportFrictionCase() {
 
       <section className="cs-shot cs-reveal">
         <ReframeStatement />
-      </section>
-
-      <section className="cs-shot cs-reveal">
-        <TicketMachineScene />
       </section>
 
       <section className="cs-reveal">
