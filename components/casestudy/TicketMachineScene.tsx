@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * Before the redesign: the user types a ticket, hits Send, and does it again.
@@ -77,7 +78,11 @@ const subscribeMotion = (cb: () => void) => {
 };
 
 export default function TicketMachineScene() {
-  const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
+  const allowed = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
+  const fig = useRef<HTMLElement>(null);
+  const onScreen = useOnScreen(fig);
+  // the loop only runs on screen; it restarts from the top when it comes back
+  const motion = allowed && onScreen;
   const [sent, setSent] = useState(0);
 
   // one more ticket each time the SEND key goes down
@@ -101,6 +106,7 @@ export default function TicketMachineScene() {
 
   return (
     <figure
+      ref={fig}
       className="cs-scene gh-scene hd-scene tm-scene"
       aria-label="Before: the user writes a support ticket, hits Enter, and does it again. Every ticket lands in a support queue that keeps growing."
     >

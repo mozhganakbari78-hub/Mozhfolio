@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * The greenhouse the product runs: a sensor reads the air, the controller
@@ -46,12 +47,14 @@ function Plant({ x, s = 1, d = 0 }: { x: number; s?: number; d?: number }) {
 
 export default function GreenhouseScene() {
   const [i, setI] = useState(4);
+  const fig = useRef<HTMLElement>(null);
+  const onScreen = useOnScreen(fig);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!onScreen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => setI((n) => (n + 1) % TEMPS.length), 1500);
     return () => window.clearInterval(id);
-  }, []);
+  }, [onScreen]);
 
   const temp = TEMPS[i];
   const hum = Math.round(74 - (temp - 28.6) * 3);
@@ -59,7 +62,7 @@ export default function GreenhouseScene() {
   const mullions = [300, 450, 600, 750, 900];
 
   return (
-    <figure className="cs-scene gh-scene" aria-label={`Greenhouse automation: the sensor reads ${temp.toFixed(1)} °C; the rule turns the fan on above ${LIMIT} °C`}>
+    <figure ref={fig} className={`cs-scene gh-scene${onScreen ? "" : " is-offscreen"}`} aria-label={`Greenhouse automation: the sensor reads ${temp.toFixed(1)} °C; the rule turns the fan on above ${LIMIT} °C`}>
       <svg viewBox={`0 150 ${W} ${H - 150}`} role="img" aria-hidden>
         {/* greenhouse frame */}
         <g className="gh-frame">
