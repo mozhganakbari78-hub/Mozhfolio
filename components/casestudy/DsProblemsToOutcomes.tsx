@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion, type TargetAndTransition, type Transition } from "framer-motion";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * The design system case in one picture: the scattered problems the team
@@ -46,7 +47,9 @@ export default function DsProblemsToOutcomes() {
   const inView = useInView(ref, { once: true, amount: 0.3 });
   const still = useReducedMotion() ?? false;
   const on = inView || still;
-  const live = on && !still;
+  // the idle motion (sparks, floating layers) runs only while it can be seen
+  const onScreen = useOnScreen(ref);
+  const live = on && !still && onScreen;
 
   const step = (
     from: TargetAndTransition,

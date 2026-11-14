@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * "How I work" in one picture: a tangle of loose strands on the left all
@@ -51,8 +52,9 @@ const STRANDS: string[] = (() => {
 
 export default function TangleToSystem() {
   const { ref, inView } = useInView();
+  const onScreen = useOnScreen(ref);
   return (
-    <div ref={ref} className={`tts${inView ? " is-on" : ""}`} aria-hidden="true">
+    <div ref={ref} className={`tts${inView ? " is-on" : ""}${onScreen ? "" : " is-offscreen"}`} aria-hidden="true">
       <svg viewBox={`0 0 ${W} ${H}`}>
         <defs>
           <linearGradient id="tts-fade" x1="0" x2="1" y1="0" y2="0">

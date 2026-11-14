@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * "Hard problems. Obvious screens." as an isometric stack. The idea: the
@@ -68,6 +69,7 @@ const curve = ([a, b, k]: [number, number, number]) => {
 export default function HeroIso() {
   const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => true);
   const world = useRef<HTMLDivElement>(null);
+  const onScreen = useOnScreen(world);
   // null until the first click: then the reader's choice wins; before it,
   // reduced motion means the screen is already in place
   const [choice, setChoice] = useState<boolean | null>(null);
@@ -90,7 +92,7 @@ export default function HeroIso() {
     return () => window.removeEventListener("pointermove", onMove);
   }, [motion]);
 
-  const cls = `iso-world${placed ? " is-landed" : ""}${choice !== null ? " was-landed" : ""}`;
+  const cls = `iso-world${placed ? " is-landed" : ""}${choice !== null ? " was-landed" : ""}${onScreen ? "" : " is-offscreen"}`;
 
   return (
     <div className="iso">
