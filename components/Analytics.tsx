@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Script from "next/script";
 
 // GA4 Measurement ID (looks like "G-XXXXXXXXXX").
@@ -10,7 +13,40 @@ const GA_MEASUREMENT_ID = "G-8CCZP9PFQ5";
 // Paste only the ID, not the whole snippet. Leave empty to disable.
 const CLARITY_PROJECT_ID = "y89v4kdh1n";
 
+// Analytics only run on the live site. Netlify previews and local builds
+// are never counted.
+const LIVE_HOSTS = ["mozhfolio.com", "www.mozhfolio.com"];
+
+// Opt-out for the site owner: visit any page with ?notrack once and that
+// browser is never counted again; ?track turns counting back on.
+const OPT_OUT_KEY = "mz-notrack";
+
+function shouldTrack() {
+  if (!LIVE_HOSTS.includes(window.location.hostname)) return false;
+  // Automated browsers (screenshots, tests, most bots) report themselves here.
+  if (navigator.webdriver) return false;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("notrack")) window.localStorage.setItem(OPT_OUT_KEY, "1");
+    if (params.has("track")) window.localStorage.removeItem(OPT_OUT_KEY);
+    return window.localStorage.getItem(OPT_OUT_KEY) !== "1";
+  } catch {
+    // Storage blocked: nothing remembered either way, so count the visit.
+    return true;
+  }
+}
+
 export default function Analytics() {
+  const [track, setTrack] = useState(false);
+
+  useEffect(() => {
+    // Decided once, in the browser, after the page has loaded.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTrack(shouldTrack());
+  }, []);
+
+  if (!track) return null;
+
   return (
     <>
       {GA_MEASUREMENT_ID && (
