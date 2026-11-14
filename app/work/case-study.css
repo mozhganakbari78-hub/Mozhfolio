@@ -2841,3 +2841,30 @@
   .qa-steps { gap: 8px; padding: 0 10px 14px; font-size: 11.5px; }
   .qa-steps b { font-size: 9.5px; }
 }
+
+/* ── problems → system → results (design system case). Wide drawing on
+   desktop, tall one on phones; both on the shared .gh-scene panel. */
+.dp-scene .dp-tall { display: none; }
+@media (max-width: 700px) {
+  .dp-scene .dp-wide { display: none; }
+  .dp-scene .dp-tall { display: block; }
+}
+.dp-scene .dp-pill rect { stroke-width: 1.1; }
+.dp-scene .dp-pill text { font-family: var(--font-sans), system-ui, sans-serif; font-size: 13px; fill: rgba(238, 240, 244, .9); }
+.dp-scene .dp-tall .dp-pill text { font-size: 12.5px; }
+.dp-scene .dp-pill.is-problem rect { fill: rgba(232, 131, 110, .07); stroke: rgba(232, 131, 110, .55); }
+.dp-scene .dp-pill.is-problem .ic { fill: var(--fail); }
+.dp-scene .dp-pill.is-result rect { fill: rgba(1, 116, 220, .12); stroke: rgba(124, 184, 245, .6); }
+.dp-scene .dp-pill.is-result .ic { fill: var(--accent-ink); }
+.dp-scene .dp-pill .mk { fill: none; stroke: #0f1013; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.dp-scene .dp-link { fill: none; stroke-width: 1.2; }
+.dp-scene .dp-link.is-problem { stroke: rgba(232, 131, 110, .45); }
+.dp-scene .dp-link.is-result { stroke: rgba(124, 184, 245, .6); }
+.dp-scene .dp-hex { fill: rgba(1, 116, 220, .08); stroke: rgba(124, 184, 245, .6); stroke-width: 1.4; stroke-linejoin: round; }
+.dp-scene .dp-glow { fill: rgba(1, 116, 220, .55); stroke: none; }
+.dp-scene.gh-scene .dp-glow { vector-effect: none; }
+.dp-scene .dp-layer { stroke-width: 1.2; stroke-linejoin: round; }
+.dp-scene .dp-layer.is-source { fill: #15171b; stroke: rgba(238, 240, 244, .45); }
+.dp-scene .dp-layer.is-identity { fill: #162131; stroke: rgba(124, 184, 245, .6); }
+.dp-scene .dp-layer.is-semantic { fill: #1d3a5f; stroke: var(--accent-ink); }
+.dp-scene .dp-cap { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; fill: var(--accent-ink); }
