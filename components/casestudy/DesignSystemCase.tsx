@@ -237,13 +237,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/error-messages/"
-        caseStudyName="Errors that say what's next"
+        href="/work/reducing-support-friction/"
+        caseStudyName="Answers where users get stuck"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Errors that say what&apos;s next{" "}
+          Answers where users get stuck{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

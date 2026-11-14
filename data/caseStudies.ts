@@ -29,14 +29,14 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "02",
-    slug: "error-messages",
-    title: "Errors that say what's next",
+    slug: "reducing-support-friction",
+    title: "Answers where users get stuck",
     short:
-      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+      "With no analytics, I read support tickets every day and saw the same questions coming back. Answers now reach users while they write a ticket, and fewer of those questions reach support.",
     description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+    meta: "Problem Framing · Content Architecture",
+    illustration: "support",
   },
   {
     index: "03",
@@ -51,14 +51,14 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     index: "04",
-    slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
+    slug: "error-messages",
+    title: "Errors that say what's next",
     short:
-      "With no analytics, we read support tickets every day and saw the same questions coming back. Answers now reach users while they write a ticket, and fewer of those questions reach support.",
+      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
     description:
-      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
-    meta: "Problem Framing · Content Architecture",
-    illustration: "support",
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
   },
   {
     index: "05",
