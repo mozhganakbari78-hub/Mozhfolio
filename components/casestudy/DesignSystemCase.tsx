@@ -36,14 +36,34 @@ export default function DesignSystemCase() {
       {/* 1 */}
       <section className="cs-reveal">
         <span className="cs-num">The starting point</span>
-        <h2>No design system, just a library and some styles</h2>
+        <h2>No design system, not even a structure</h2>
         <p>
-          The frontend used the Ant Design library. The Figma file had a set of colour styles and a
-          handful of components, with nothing tying them together.
+          When I joined, the Figma file had no structure at all. The pages of every product sat on
+          one Figma page, and nothing was documented. There was a set of colour styles and a
+          handful of components, with nothing tying them together. The frontend was already
+          building with the Ant Design library.
         </p>
         <p>
           Light and dark mode were two separate sets of colour styles, so every screen had to be
           designed twice: once for light, again for dark.
+        </p>
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>Two meetings before the first component</h2>
+        <p>
+          I set up a meeting with the product owner and proposed a complete design system, built
+          together with the frontend team. The goals were order in the files, faster design work,
+          and closer alignment with frontend for better output.
+        </p>
+        <p>
+          Then I met the frontend lead. The team was already building on Ant Design, so we agreed
+          the system would build on it too, not beside it.
+        </p>
+        <p>
+          Within one sprint, the core components and the design variables, colour, type and the
+          rest, were in place, set up around what the frontend and each platform needed.
         </p>
       </section>
 
