@@ -7,6 +7,7 @@ import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
 import ReframeStatement from "./ReframeStatement";
 import UserQuestions from "./UserQuestions";
+import AnswerFirstScene from "./AnswerFirstScene";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -140,11 +141,7 @@ export default function SupportFrictionCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <Mockup
-          src="/projects/faq-deck-breakdown.webp"
-          alt="A slide in Persian from the analysis deck: of the tickets from the last two years, 43% needed guidance or reassurance, 37% were looking for an answer, and 20% genuinely needed support, with examples for each group"
-          caption="From the deck we showed the PM and product owner (in Persian): two years of tickets, sorted by what each one needed"
-        />
+        <AnswerFirstScene />
       </section>
 
       <section className="cs-reveal">
