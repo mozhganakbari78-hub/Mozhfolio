@@ -2585,7 +2585,8 @@
 .cs-root .cs-results .l { font-size: 15.5px; line-height: 1.5; color: #8f9199; max-width: 30ch; }
 
 /* ── greenhouse scene (rule builder): line art with live motion ─────── */
-.gh-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; }
+/* scenes sit straight on the page: no panel, border or frame */
+.gh-scene { margin: 0; background: transparent; border: 0; overflow: hidden; }
 .gh-scene svg { display: block; width: 100%; height: auto; }
 .gh-scene svg * { vector-effect: non-scaling-stroke; }
 .gh-frame path, .gh-device path, .gh-device rect, .gh-device circle, .gh-plant path {
@@ -2657,14 +2658,26 @@
 /* ticket machine (support case): the old loop of write, send, repeat */
 .tm-cable { fill: none; stroke: rgba(238, 240, 244, .55); stroke-width: 1.4; stroke-linejoin: round; }
 .tm-key { fill: #15171b; stroke: rgba(238, 240, 244, .55); stroke-width: 1; }
-.tm-send .tm-send-key { fill: #2f86f5; stroke: #9cc8ff; stroke-width: 1.2; }
-.tm-send .tm-send-glow { fill: none; stroke: rgba(124, 184, 245, .55); stroke-width: 2; opacity: 0; }
-.tm-send text { font-family: var(--font-code), monospace; font-size: 12px; font-weight: 700; letter-spacing: .22em; fill: #fff; }
-.tm-send { transform-box: fill-box; transform-origin: center; }
-.tm-send.is-on { animation: tm-press 4s cubic-bezier(.4, 0, .2, 1) infinite; }
-.tm-send.is-on .tm-send-glow { animation: tm-glow 4s ease-out infinite; }
-@keyframes tm-press { 0%, 48%, 62%, 100% { transform: scale(1); } 52%, 56% { transform: scale(.88); } }
-@keyframes tm-glow { 0%, 50% { opacity: 0; } 53% { opacity: 1; } 70%, 100% { opacity: 0; } }
+.tm-enter-base { fill: #0f3368; stroke: #5c9be6; stroke-width: 1.2; }
+.tm-enter-key { fill: #2f86f5; stroke: #d6e9ff; stroke-width: 1.5; }
+.tm-enter text { font-family: var(--font-code), monospace; font-size: 11.5px; font-weight: 800; letter-spacing: .16em; fill: #fff; }
+.tm-enter-arrow { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tm-enter-ring { fill: none; stroke: #9cc8ff; stroke-width: 2.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.tm-enter-cap { transform-box: fill-box; transform-origin: center; }
+.tm-enter.is-on .tm-enter-cap { animation: tm-slam 4s cubic-bezier(.3, 0, .2, 1) infinite; }
+.tm-enter.is-on .tm-enter-ring { animation: tm-ring 4s ease-out infinite; }
+/* a small lift, then a hard press into the base at the moment the ticket goes */
+@keyframes tm-slam {
+  0%, 42% { transform: none; }
+  48% { transform: translate(-3px, -3px) scale(1.06); }
+  52%, 57% { transform: translate(3px, 3px) scale(.9); }
+  64%, 100% { transform: none; }
+}
+@keyframes tm-ring {
+  0%, 51% { opacity: 0; transform: scale(1); }
+  53% { opacity: 1; transform: scale(1.02); }
+  74%, 100% { opacity: 0; transform: scale(1.5); }
+}
 .tm-brand { font-size: 15px; font-weight: 600; fill: rgba(238, 240, 244, .85); }
 .tm-screen { fill: #0f1115; stroke: rgba(124, 184, 245, .5); stroke-width: 1.2; }
 .tm-screen-k { font-family: var(--font-code), monospace; font-size: 10px; letter-spacing: .14em; fill: var(--accent-ink); text-transform: uppercase; }
@@ -2688,7 +2701,7 @@
 .tm-land { animation: tm-land .55s cubic-bezier(.2, .8, .3, 1) both; }
 @keyframes tm-land { from { transform: translateY(-26px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .tm-send.is-on, .tm-type.is-on, .tm-led.is-on { animation: none !important; }
+  .tm-enter.is-on .tm-enter-cap, .tm-enter.is-on .tm-enter-ring, .tm-type.is-on, .tm-led.is-on { animation: none !important; }
 }
 
 /* ── error rewrites: compact before/after pairs ───────────────────────── */
@@ -2884,10 +2897,9 @@
 .dp-scene .dp-slab.is-semantic .r { fill: #1d5597; stroke: rgba(156, 200, 255, .6); }
 .dp-scene .dp-cap { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; fill: var(--accent-ink); }
 
-/* These four sit straight on the page, with no panel of their own:
-   design system (dp), FAQ three steps (qa) and ticket machine (tm),
-   error-case layers (rl). */
-.dp-scene, .qa-scene, .tm-scene, .rl-scene {
+/* The error-case layers have their own wrapper; like the .gh-scene ones,
+   they sit straight on the page. */
+.rl-scene {
   background: transparent;
   border: 0;
   border-radius: 0;
