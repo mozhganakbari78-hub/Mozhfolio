@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import DsArchitecture from "./DsArchitecture";
+import DsProblemsToOutcomes from "./DsProblemsToOutcomes";
 
 export default function DesignSystemCase() {
   return (
@@ -47,6 +48,10 @@ export default function DesignSystemCase() {
           Light and dark mode were two separate sets of colour styles, so every screen had to be
           designed twice: once for light, again for dark.
         </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <DsProblemsToOutcomes />
       </section>
 
       <section className="cs-reveal">
