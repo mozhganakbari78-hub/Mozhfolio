@@ -7,7 +7,7 @@ import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
 import ReframeStatement from "./ReframeStatement";
 import UserQuestions from "./UserQuestions";
-import AnswerFirstScene from "./AnswerFirstScene";
+import QuestionToAnswer from "./QuestionToAnswer";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -141,7 +141,7 @@ export default function SupportFrictionCase() {
       </section>
 
       <section className="cs-shot cs-reveal">
-        <AnswerFirstScene />
+        <QuestionToAnswer />
       </section>
 
       <section className="cs-reveal">
