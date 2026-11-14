@@ -102,7 +102,7 @@ export default function TicketMachineScene() {
   return (
     <figure
       className="cs-scene gh-scene hd-scene tm-scene"
-      aria-label="Before: the user writes a support ticket, presses Send, and does it again. Every ticket lands in a support queue that keeps growing."
+      aria-label="Before: the user writes a support ticket, hits Enter, and does it again. Every ticket lands in a support queue that keeps growing."
     >
       <svg viewBox="0 60 1200 620" role="img" aria-hidden>
         <defs>
@@ -137,18 +137,22 @@ export default function TicketMachineScene() {
         <Box at={KEYBOARD} x={-100} y={-45} w={200} d={90} h={16} />
         <g transform={faceTop(KEYBOARD, -100, -45, 16)}>
           {Array.from({ length: 3 }, (_, r) =>
-            Array.from({ length: 6 }, (_, c) => {
-              if (r === 2 && c >= 3) return null;
-              return <rect key={`${r}${c}`} x={10 + c * 31} y={9 + r * 25} width={25} height={19} rx={3} className="tm-key" />;
-            })
+            Array.from({ length: 4 }, (_, c) => (
+              <rect key={`${r}${c}`} x={10 + c * 31} y={9 + r * 25} width={25} height={19} rx={3} className="tm-key" />
+            ))
           )}
-          <g className={`tm-send${on}`}>
-            <rect x={101} y={57} width={91} height={23} rx={4} className="tm-send-glow" />
-            <rect x={103} y={59} width={87} height={19} rx={3} className="tm-send-key" />
-            <text x={146.5} y={73.5} textAnchor="middle">SEND</text>
+          {/* the big ENTER key: lifts, slams down, and sends a ripple out */}
+          <g className={`tm-enter${on}`}>
+            <rect x={130} y={5} width={64} height={77} rx={7} className="tm-enter-ring" />
+            <rect x={137} y={12} width={56} height={69} rx={5} className="tm-enter-base" />
+            <g className="tm-enter-cap">
+              <rect x={134} y={9} width={56} height={69} rx={5} className="tm-enter-key" />
+              <text x={162} y={31} textAnchor="middle">ENTER</text>
+              <path d="M174 41 L174 54 L150 54 M156 48 L150 54 L156 60" className="tm-enter-arrow" />
+            </g>
           </g>
         </g>
-        <Label x={60} y={612} k="USER" v="writes, presses Send" />
+        <Label x={60} y={612} k="USER" v="writes, hits Enter" />
 
         {/* the machine */}
         <Box at={MACHINE} x={-110} y={-80} w={220} d={160} h={240} />
