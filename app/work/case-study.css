@@ -2844,27 +2844,48 @@
 
 /* ── problems → system → results (design system case). Wide drawing on
    desktop, tall one on phones; both on the shared .gh-scene panel. */
+.dp-scene {
+  background:
+    radial-gradient(60% 70% at 50% 50%, rgba(1, 116, 220, .1), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, .045) 1px, transparent 1.2px) 0 0 / 22px 22px,
+    #0f1013;
+}
 .dp-scene .dp-tall { display: none; }
 @media (max-width: 700px) {
   .dp-scene .dp-wide { display: none; }
   .dp-scene .dp-tall { display: block; }
 }
-.dp-scene .dp-pill rect { stroke-width: 1.1; }
-.dp-scene .dp-pill text { font-family: var(--font-sans), system-ui, sans-serif; font-size: 13px; fill: rgba(238, 240, 244, .9); }
+.dp-scene .dp-pill rect { stroke-width: 1; }
+.dp-scene .dp-pill text { font-family: var(--font-sans), system-ui, sans-serif; font-size: 13px; letter-spacing: .01em; fill: rgba(238, 240, 244, .88); }
 .dp-scene .dp-tall .dp-pill text { font-size: 12.5px; }
-.dp-scene .dp-pill.is-problem rect { fill: rgba(232, 131, 110, .07); stroke: rgba(232, 131, 110, .55); }
+.dp-scene .dp-pill.is-problem rect { fill: rgba(232, 131, 110, .06); stroke: rgba(232, 131, 110, .4); }
 .dp-scene .dp-pill.is-problem .ic { fill: var(--fail); }
-.dp-scene .dp-pill.is-result rect { fill: rgba(1, 116, 220, .12); stroke: rgba(124, 184, 245, .6); }
+.dp-scene .dp-pill.is-problem .halo { fill: rgba(232, 131, 110, .18); }
+.dp-scene .dp-pill.is-result rect { fill: rgba(1, 116, 220, .14); stroke: rgba(124, 184, 245, .55); }
 .dp-scene .dp-pill.is-result .ic { fill: var(--accent-ink); }
-.dp-scene .dp-pill .mk { fill: none; stroke: #0f1013; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.dp-scene .dp-link { fill: none; stroke-width: 1.2; }
-.dp-scene .dp-link.is-problem { stroke: rgba(232, 131, 110, .45); }
-.dp-scene .dp-link.is-result { stroke: rgba(124, 184, 245, .6); }
-.dp-scene .dp-hex { fill: rgba(1, 116, 220, .08); stroke: rgba(124, 184, 245, .6); stroke-width: 1.4; stroke-linejoin: round; }
-.dp-scene .dp-glow { fill: rgba(1, 116, 220, .55); stroke: none; }
+.dp-scene .dp-pill.is-result .halo { fill: rgba(124, 184, 245, .2); }
+.dp-scene .dp-pill .mk { fill: none; stroke: #0f1013; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.dp-scene .dp-head { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; }
+.dp-scene .dp-head.is-problem { fill: rgba(232, 131, 110, .85); }
+.dp-scene .dp-head.is-result { fill: var(--accent-ink); }
+.dp-scene .dp-link { fill: none; stroke-width: 1.3; stroke-linecap: round; }
+.dp-scene .stop-problem { stop-color: rgba(232, 131, 110, .6); }
+.dp-scene .stop-system { stop-color: rgba(124, 184, 245, .85); }
+.dp-scene .stop-result { stop-color: rgba(124, 184, 245, .55); }
+.dp-scene .dp-spark { fill: #cfe5ff; }
+.dp-scene .dp-spark.is-in { fill: #ffd2c6; }
+.dp-scene .dp-hex { fill: rgba(1, 116, 220, .1); stroke: rgba(124, 184, 245, .7); stroke-width: 1.4; stroke-linejoin: round; }
+.dp-scene .dp-ring { fill: none; stroke: rgba(124, 184, 245, .22); stroke-width: 1; stroke-dasharray: 2 5; stroke-linejoin: round; }
+.dp-scene .dp-glow { fill: rgba(1, 116, 220, .6); stroke: none; }
 .dp-scene.gh-scene .dp-glow { vector-effect: none; }
-.dp-scene .dp-layer { stroke-width: 1.2; stroke-linejoin: round; }
-.dp-scene .dp-layer.is-source { fill: #15171b; stroke: rgba(238, 240, 244, .45); }
-.dp-scene .dp-layer.is-identity { fill: #162131; stroke: rgba(124, 184, 245, .6); }
-.dp-scene .dp-layer.is-semantic { fill: #1d3a5f; stroke: var(--accent-ink); }
-.dp-scene .dp-cap { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; fill: var(--accent-ink); }
+.dp-scene .dp-slab polygon { stroke-width: 1; stroke-linejoin: round; }
+.dp-scene .dp-slab.is-source .t { fill: #23262d; stroke: rgba(238, 240, 244, .45); }
+.dp-scene .dp-slab.is-source .l { fill: #17191e; stroke: rgba(238, 240, 244, .25); }
+.dp-scene .dp-slab.is-source .r { fill: #1c1e24; stroke: rgba(238, 240, 244, .25); }
+.dp-scene .dp-slab.is-identity .t { fill: #1b3654; stroke: rgba(124, 184, 245, .65); }
+.dp-scene .dp-slab.is-identity .l { fill: #102033; stroke: rgba(124, 184, 245, .35); }
+.dp-scene .dp-slab.is-identity .r { fill: #142940; stroke: rgba(124, 184, 245, .35); }
+.dp-scene .dp-slab.is-semantic .t { fill: #2a6cbd; stroke: #9cc8ff; }
+.dp-scene .dp-slab.is-semantic .l { fill: #17457d; stroke: rgba(156, 200, 255, .6); }
+.dp-scene .dp-slab.is-semantic .r { fill: #1d5597; stroke: rgba(156, 200, 255, .6); }
+.dp-scene .dp-cap { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; fill: var(--accent-ink); }
