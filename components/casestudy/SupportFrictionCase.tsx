@@ -3,10 +3,10 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
-import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
 import ReframeStatement from "./ReframeStatement";
 import UserQuestions from "./UserQuestions";
+import IntentRoutes from "./IntentRoutes";
 import QuestionToAnswer from "./QuestionToAnswer";
 
 /*
@@ -53,6 +53,10 @@ export default function SupportFrictionCase() {
         </p>
       </section>
 
+      <section className="cs-shot cs-reveal">
+        <TicketMachineScene />
+      </section>
+
       {/* 2 */}
       <section className="cs-reveal">
         <span className="cs-num">The pattern</span>
@@ -81,7 +85,6 @@ export default function SupportFrictionCase() {
           released: two years, about 1,000 tickets. Older ones described a product that no longer
           existed. We sorted them into groups with GPT and wrote up what we found.
         </p>
-        <TicketSplit />
       </section>
 
       <section className="cs-reveal">
@@ -99,28 +102,9 @@ export default function SupportFrictionCase() {
         <h2>Not everyone opens the ticket form for the same reason</h2>
         <p>
           Most users were looking for an answer, not for support. Only part of the tickets needed
-          a person. The design had to treat these as different needs:
+          a person. The design had to treat these as different needs.
         </p>
-        <ol className="cs-rules is-plain">
-          <li>
-            <span>
-              <strong>37% are looking for an answer.</strong>{" "}Show it to them where they already
-              are.
-            </span>
-          </li>
-          <li>
-            <span>
-              <strong>43% need guidance or reassurance.</strong>{" "}Their answer depends on their
-              role or access, so help where we can and never block the ticket.
-            </span>
-          </li>
-          <li>
-            <span>
-              <strong>20% need support from the start.</strong>{" "}Let them reach it without a
-              detour.
-            </span>
-          </li>
-        </ol>
+        <IntentRoutes />
       </section>
 
       <section className="cs-reveal">
@@ -160,10 +144,6 @@ export default function SupportFrictionCase() {
 
       <section className="cs-shot cs-reveal">
         <ReframeStatement />
-      </section>
-
-      <section className="cs-shot cs-reveal">
-        <TicketMachineScene />
       </section>
 
       <section className="cs-reveal">
