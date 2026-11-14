@@ -12,8 +12,8 @@ import {
 /**
  * The insight of the FAQ case as a picture: everyone comes in through the
  * same support page, for one of three reasons, and each reason gets its own
- * design response. Shares were measured on two years of tickets; the colours
- * match the ticket split above it. Static apart from a single reveal.
+ * design response. Shares were measured on two years of tickets. Static
+ * apart from a single reveal.
  */
 const ROUTES = [
   {

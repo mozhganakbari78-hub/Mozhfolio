@@ -3,7 +3,6 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import CsStats from "./CsStats";
-import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
 import ReframeStatement from "./ReframeStatement";
 import UserQuestions from "./UserQuestions";
@@ -82,7 +81,6 @@ export default function SupportFrictionCase() {
           released: two years, about 1,000 tickets. Older ones described a product that no longer
           existed. We sorted them into groups with GPT and wrote up what we found.
         </p>
-        <TicketSplit />
       </section>
 
       <section className="cs-reveal">
