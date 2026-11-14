@@ -20,8 +20,8 @@ export default function DesignSystemCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, built the system in Figma and co-governed it with the frontend lead"
-            team="2 designers, Frontend lead, Engineering"
+            role="Product Designer, started and owned the design system; set its rules with the frontend lead"
+            team="Frontend lead, Engineering, one other designer"
             results={[
               { value: "~8 → ~3", label: "repeat questions from developers, per day", icon: "ChatBubbleLeftRight" },
               { value: "4 products", label: "running on one set of components", icon: "Squares2X2" },
@@ -99,8 +99,8 @@ export default function DesignSystemCase() {
         <span className="cs-num">Decision 2</span>
         <h2>Name the tokens by what they&apos;re for</h2>
         <p>
-          I gave the tokens descriptive names, written for designers: my teammate and I knew
-          exactly where each colour belonged, and our designs came out consistent in design review.
+          I gave the tokens descriptive names, written for designers: each name said exactly where
+          the colour belonged, and designs came out consistent in design review.
         </p>
       </section>
 
@@ -134,7 +134,7 @@ export default function DesignSystemCase() {
         <p>
           I went back and gave the tokens the same names as the code: <code>background</code> and{" "}
           <code>surface</code> where the code named roles, <code>cardColor</code> and{" "}
-          <code>sideBar</code> where it named components. For us, a smooth handoff to development
+          <code>sideBar</code> where it named components. To me, a smooth handoff to development
           was worth more than names that read nicely to designers. That set the number too: 28
           role tokens, one for each name the code already used.
         </p>
@@ -149,7 +149,7 @@ export default function DesignSystemCase() {
         <span className="cs-num">Building on it</span>
         <h2>Ant Design first, custom only on purpose</h2>
         <p>
-          We kept Ant Design&apos;s defaults wherever they worked, and documented our own components
+          I kept Ant Design&apos;s defaults wherever they worked, and documented our own components
           where the product needed more, each with every variant and state. With the frontend lead
           I set up one path for anything new, and design reviews with engineering before each
           release to catch mismatches before users see them.
@@ -166,7 +166,7 @@ export default function DesignSystemCase() {
           them into separate layers:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Source.</b> 270 raw colours, in one place. No modes.</span></li>
+          <li><span><b>Source.</b> 270 raw colours, in one place. No modes. Up from 88 in version 1, because it now holds the palettes of all four products, not one.</span></li>
           <li><span><b>Identity.</b> One mode per product. Brand, primary, neutral and status colours (success, error, info, warning).</span></li>
           <li><span><b>Semantic.</b> Light and dark mode. Each role picks the right step from the product&apos;s identity.</span></li>
         </ol>
