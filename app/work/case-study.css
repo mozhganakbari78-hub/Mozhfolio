@@ -1256,6 +1256,59 @@
   color: var(--accent-ink);
 }
 
+/* the four "how might we" questions that replace the first framing */
+.cs-reframe .rf-hmw { width: 100%; }
+.cs-reframe .rf-hmw .lab {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.cs-reframe .rf-hmw ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.cs-reframe .rf-hmw li {
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 14px 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  min-width: 0;
+}
+.cs-reframe .rf-hmw li.is-lead {
+  border-color: rgba(124, 184, 245, 0.4);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(1, 116, 220, .14), transparent 65%),
+    var(--card);
+  color: var(--ink);
+  font-weight: 600;
+}
+.cs-reframe .rf-hmw .tag {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 6px;
+}
+@media (max-width: 900px) {
+  .cs-reframe .rf-hmw ul { grid-template-columns: 1fr; gap: 8px; }
+  .cs-reframe .rf-hmw li { padding: 12px 14px; font-size: 14px; }
+}
+
 /* ── user mindset at the moment of failure ─────────────────────────────── */
 .cs-mindset {
   display: grid;
@@ -2532,7 +2585,8 @@
 .cs-root .cs-results .l { font-size: 15.5px; line-height: 1.5; color: #8f9199; max-width: 30ch; }
 
 /* ── greenhouse scene (rule builder): line art with live motion ─────── */
-.gh-scene { margin: 0; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; }
+/* scenes sit straight on the page: no panel, border or frame */
+.gh-scene { margin: 0; background: transparent; border: 0; overflow: hidden; }
 .gh-scene svg { display: block; width: 100%; height: auto; }
 .gh-scene svg * { vector-effect: non-scaling-stroke; }
 .gh-frame path, .gh-device path, .gh-device rect, .gh-device circle, .gh-plant path {
@@ -2604,14 +2658,26 @@
 /* ticket machine (support case): the old loop of write, send, repeat */
 .tm-cable { fill: none; stroke: rgba(238, 240, 244, .55); stroke-width: 1.4; stroke-linejoin: round; }
 .tm-key { fill: #15171b; stroke: rgba(238, 240, 244, .55); stroke-width: 1; }
-.tm-send .tm-send-key { fill: #2f86f5; stroke: #9cc8ff; stroke-width: 1.2; }
-.tm-send .tm-send-glow { fill: none; stroke: rgba(124, 184, 245, .55); stroke-width: 2; opacity: 0; }
-.tm-send text { font-family: var(--font-code), monospace; font-size: 12px; font-weight: 700; letter-spacing: .22em; fill: #fff; }
-.tm-send { transform-box: fill-box; transform-origin: center; }
-.tm-send.is-on { animation: tm-press 4s cubic-bezier(.4, 0, .2, 1) infinite; }
-.tm-send.is-on .tm-send-glow { animation: tm-glow 4s ease-out infinite; }
-@keyframes tm-press { 0%, 48%, 62%, 100% { transform: scale(1); } 52%, 56% { transform: scale(.88); } }
-@keyframes tm-glow { 0%, 50% { opacity: 0; } 53% { opacity: 1; } 70%, 100% { opacity: 0; } }
+.tm-enter-base { fill: #0f3368; stroke: #5c9be6; stroke-width: 1.2; }
+.tm-enter-key { fill: #2f86f5; stroke: #d6e9ff; stroke-width: 1.5; }
+.tm-enter text { font-family: var(--font-code), monospace; font-size: 11.5px; font-weight: 800; letter-spacing: .16em; fill: #fff; }
+.tm-enter-arrow { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tm-enter-ring { fill: none; stroke: #9cc8ff; stroke-width: 2.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.tm-enter-cap { transform-box: fill-box; transform-origin: center; }
+.tm-enter.is-on .tm-enter-cap { animation: tm-slam 4s cubic-bezier(.3, 0, .2, 1) infinite; }
+.tm-enter.is-on .tm-enter-ring { animation: tm-ring 4s ease-out infinite; }
+/* a small lift, then a hard press into the base at the moment the ticket goes */
+@keyframes tm-slam {
+  0%, 42% { transform: none; }
+  48% { transform: translate(-3px, -3px) scale(1.06); }
+  52%, 57% { transform: translate(3px, 3px) scale(.9); }
+  64%, 100% { transform: none; }
+}
+@keyframes tm-ring {
+  0%, 51% { opacity: 0; transform: scale(1); }
+  53% { opacity: 1; transform: scale(1.02); }
+  74%, 100% { opacity: 0; transform: scale(1.5); }
+}
 .tm-brand { font-size: 15px; font-weight: 600; fill: rgba(238, 240, 244, .85); }
 .tm-screen { fill: #0f1115; stroke: rgba(124, 184, 245, .5); stroke-width: 1.2; }
 .tm-screen-k { font-family: var(--font-code), monospace; font-size: 10px; letter-spacing: .14em; fill: var(--accent-ink); text-transform: uppercase; }
@@ -2635,7 +2701,7 @@
 .tm-land { animation: tm-land .55s cubic-bezier(.2, .8, .3, 1) both; }
 @keyframes tm-land { from { transform: translateY(-26px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .tm-send.is-on, .tm-type.is-on, .tm-led.is-on { animation: none !important; }
+  .tm-enter.is-on .tm-enter-cap, .tm-enter.is-on .tm-enter-ring, .tm-type.is-on, .tm-led.is-on { animation: none !important; }
 }
 
 /* ── error rewrites: compact before/after pairs ───────────────────────── */
@@ -2720,4 +2786,214 @@
 .bs-mark-g { fill: none; stroke: #0f1013; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
 @media (prefers-reduced-motion: reduce) {
   .bs-bot.is-on, .bs-bot.is-on .bs-eye, .bs-bot.is-on .bs-tip { animation: none; }
+}
+
+/* error case, decision 2: the three rules as stacked layers (RuleLayers) */
+.rl-scene { margin: 8px 0 22px; border-radius: 16px; background: #0f1013; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; padding: 12px 8px 4px; }
+.rl-scene svg { display: block; width: 100%; height: auto; max-width: 720px; margin: 0 auto; overflow: visible; }
+.rl-face { fill: #17191d; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-side { fill: #121317; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-side2 { fill: #0e0f12; stroke: rgba(238, 240, 244, .6); stroke-width: 1.2; stroke-linejoin: round; }
+.rl-inset { fill: none; stroke: rgba(238, 240, 244, .14); stroke-width: 1; }
+.rl-plate.is-top .rl-face { fill: #121a26; stroke: var(--accent-ink); }
+.rl-plate.is-top .rl-side, .rl-plate.is-top .rl-side2 { stroke: var(--accent-ink); }
+.rl-card { fill: var(--accent); }
+.rl-dot { fill: #fff; }
+.rl-ink { fill: #fff; }
+.rl-ink.soft { fill: rgba(255, 255, 255, .6); }
+.rl-btn { fill: #fff; opacity: .9; }
+.rl-label text { font-size: 17px; fill: #d2d4df; }
+.rl-label circle { fill: rgba(238, 240, 244, .5); }
+.rl-label line { stroke: rgba(238, 240, 244, .28); stroke-width: 1; stroke-dasharray: 3 4; }
+.rl-label.is-top text { fill: var(--accent-ink); font-weight: 600; }
+.rl-label.is-top circle { fill: var(--accent-ink); }
+.rl-label.is-top line { stroke: rgba(124, 184, 245, .6); }
+
+/* ── question → answer (FAQ case): stuck, answer first, done. Three steps on
+   the shared .gh-scene panel, with their labels underneath. */
+.qa-scene .qa-body { fill: var(--paper); stroke: rgba(238, 240, 244, .8); stroke-width: 1.6; stroke-linejoin: round; }
+.qa-scene .qa-tangle { fill: none; stroke: rgba(238, 240, 244, .42); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.qa-scene .qa-phone { fill: #15171b; stroke: rgba(238, 240, 244, .8); stroke-width: 1.3; }
+.qa-scene .qa-screen { fill: rgba(1, 116, 220, .3); stroke: var(--accent-ink); stroke-width: 1; }
+.qa-scene .qa-warn { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.6; stroke-linejoin: round; }
+.qa-scene .qa-warn-mark { fill: none; stroke: var(--warn); stroke-width: 2.4; stroke-linecap: round; }
+.qa-scene .qa-arrow { fill: none; stroke: rgba(238, 240, 244, .55); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.qa-scene .qa-sheet { fill: #15171b; stroke: rgba(255, 255, 255, .12); stroke-width: 1; }
+.qa-scene .qa-card { fill: #181a1f; stroke: rgba(124, 184, 245, .45); stroke-width: 1.2; }
+.qa-scene .qa-search { fill: var(--paper); stroke: rgba(255, 255, 255, .14); stroke-width: 1; }
+.qa-scene .qa-faint { fill: none; stroke: rgba(238, 240, 244, .55); stroke-width: 1.3; stroke-linecap: round; }
+.qa-scene .qa-typed { fill: rgba(238, 240, 244, .6); }
+.qa-scene .qa-match { fill: rgba(1, 116, 220, .22); stroke: rgba(124, 184, 245, .6); stroke-width: 1; }
+.qa-scene .qa-dot { fill: none; stroke: rgba(238, 240, 244, .5); stroke-width: 1.3; }
+.qa-scene .qa-dot.is-match { fill: var(--accent-ink); stroke: var(--accent-ink); }
+.qa-scene .qa-row { fill: rgba(238, 240, 244, .28); }
+.qa-scene .qa-row.is-match { fill: rgba(238, 240, 244, .85); }
+.qa-scene .qa-star { fill: rgba(124, 184, 245, .16); stroke: var(--accent-ink); stroke-width: 1.6; stroke-linejoin: round; }
+.qa-scene .qa-ray { fill: none; stroke: var(--accent-ink); stroke-width: 1.6; stroke-linecap: round; }
+.qa-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 2px 22px 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+.qa-steps b {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+@media (max-width: 900px) {
+  .qa-steps { gap: 8px; padding: 0 10px 14px; font-size: 11.5px; }
+  .qa-steps b { font-size: 9.5px; }
+}
+
+/* ── problems → system → results (design system case). Wide drawing on
+   desktop, tall one on phones; both on the shared .gh-scene panel. */
+.dp-scene .dp-tall { display: none; }
+@media (max-width: 700px) {
+  .dp-scene .dp-wide { display: none; }
+  .dp-scene .dp-tall { display: block; }
+}
+.dp-scene .dp-pill rect { stroke-width: 1; }
+.dp-scene .dp-pill text { font-family: var(--font-sans), system-ui, sans-serif; font-size: 13px; letter-spacing: .01em; fill: rgba(238, 240, 244, .88); }
+.dp-scene .dp-tall .dp-pill text { font-size: 12.5px; }
+.dp-scene .dp-pill.is-problem rect { fill: rgba(232, 131, 110, .06); stroke: rgba(232, 131, 110, .4); }
+.dp-scene .dp-pill.is-problem .ic { fill: var(--fail); }
+.dp-scene .dp-pill.is-problem .halo { fill: rgba(232, 131, 110, .18); }
+.dp-scene .dp-pill.is-result rect { fill: rgba(1, 116, 220, .14); stroke: rgba(124, 184, 245, .55); }
+.dp-scene .dp-pill.is-result .ic { fill: var(--accent-ink); }
+.dp-scene .dp-pill.is-result .halo { fill: rgba(124, 184, 245, .2); }
+.dp-scene .dp-pill .mk { fill: none; stroke: var(--paper); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.dp-scene .dp-head { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; }
+.dp-scene .dp-head.is-problem { fill: rgba(232, 131, 110, .85); }
+.dp-scene .dp-head.is-result { fill: var(--accent-ink); }
+.dp-scene .dp-link { fill: none; stroke-width: 1.3; stroke-linecap: round; }
+.dp-scene .stop-problem { stop-color: rgba(232, 131, 110, .6); }
+.dp-scene .stop-system { stop-color: rgba(124, 184, 245, .85); }
+.dp-scene .stop-result { stop-color: rgba(124, 184, 245, .55); }
+.dp-scene .dp-spark { fill: #cfe5ff; }
+.dp-scene .dp-spark.is-in { fill: #ffd2c6; }
+.dp-scene .dp-hex { fill: rgba(1, 116, 220, .1); stroke: rgba(124, 184, 245, .7); stroke-width: 1.4; stroke-linejoin: round; }
+.dp-scene .dp-ring { fill: none; stroke: rgba(124, 184, 245, .22); stroke-width: 1; stroke-dasharray: 2 5; stroke-linejoin: round; }
+.dp-scene .dp-glow { fill: rgba(1, 116, 220, .6); stroke: none; }
+.dp-scene.gh-scene .dp-glow { vector-effect: none; }
+.dp-scene .dp-slab polygon { stroke-width: 1; stroke-linejoin: round; }
+.dp-scene .dp-slab.is-source .t { fill: #23262d; stroke: rgba(238, 240, 244, .45); }
+.dp-scene .dp-slab.is-source .l { fill: #17191e; stroke: rgba(238, 240, 244, .25); }
+.dp-scene .dp-slab.is-source .r { fill: #1c1e24; stroke: rgba(238, 240, 244, .25); }
+.dp-scene .dp-slab.is-identity .t { fill: #1b3654; stroke: rgba(124, 184, 245, .65); }
+.dp-scene .dp-slab.is-identity .l { fill: #102033; stroke: rgba(124, 184, 245, .35); }
+.dp-scene .dp-slab.is-identity .r { fill: #142940; stroke: rgba(124, 184, 245, .35); }
+.dp-scene .dp-slab.is-semantic .t { fill: #2a6cbd; stroke: #9cc8ff; }
+.dp-scene .dp-slab.is-semantic .l { fill: #17457d; stroke: rgba(156, 200, 255, .6); }
+.dp-scene .dp-slab.is-semantic .r { fill: #1d5597; stroke: rgba(156, 200, 255, .6); }
+.dp-scene .dp-cap { font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; fill: var(--accent-ink); }
+
+/* The error-case layers have their own wrapper; like the .gh-scene ones,
+   they sit straight on the page. */
+.rl-scene {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+.tm-scene .hd-grid { display: none; }
+
+/* ── intent routes (FAQ case, "The insight"): one support page, three
+   reasons, one design response each. Colours match the ticket split. */
+.cs-routes {
+  --r-self: #0174DC;  --r-self-ink: #7cb8f5;
+  --r-case: #2a9d8f;  --r-case-ink: #6fd3c2;
+  --r-support: #c0892f; --r-support-ink: #e0b455;
+  display: grid;
+  grid-template-columns: 172px 64px minmax(0, 1fr);
+  align-items: stretch;
+  margin: 24px 0 8px;
+}
+.cs-routes .rt-entry {
+  align-self: center;
+  display: grid;
+  gap: 3px;
+  padding: 16px 16px 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+.cs-routes .rt-entry .ic { width: 20px; height: 20px; color: var(--ink-soft); margin-bottom: 6px; }
+.cs-routes .rt-entry .k {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.cs-routes .rt-entry b { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.cs-routes .rt-entry .sub { font-size: 12.5px; color: var(--ink-faint); line-height: 1.4; }
+.cs-routes .rt-branch { display: block; width: 100%; height: 100%; overflow: visible; }
+.cs-routes .rt-branch path { fill: none; stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+.cs-routes .rt-branch .is-self { stroke: var(--r-self-ink); }
+.cs-routes .rt-branch .is-case { stroke: var(--r-case-ink); }
+.cs-routes .rt-branch .is-support { stroke: var(--r-support-ink); }
+.cs-routes .rt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 12px;
+}
+.cs-routes .rt-row {
+  --c: var(--r-self); --ci: var(--r-self-ink);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1.15fr);
+  align-items: stretch;
+  gap: 10px;
+}
+.cs-routes .rt-row.is-case { --c: var(--r-case); --ci: var(--r-case-ink); }
+.cs-routes .rt-row.is-support { --c: var(--r-support); --ci: var(--r-support-ink); }
+.cs-routes .intent {
+  display: grid;
+  align-content: center;
+  gap: 1px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--c);
+  background: var(--card);
+}
+.cs-routes .intent .pct { font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ci); }
+.cs-routes .intent .lbl { font-size: 13px; line-height: 1.35; color: var(--ink-soft); }
+.cs-routes .arrow { align-self: center; width: 18px; height: 18px; color: var(--ink-faint); }
+.cs-routes .resp {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--ci) 40%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.cs-routes .resp .ic { flex: none; width: 20px; height: 20px; color: var(--ci); }
+
+@media (max-width: 760px) {
+  .cs-routes { grid-template-columns: 1fr; gap: 0; }
+  .cs-routes .rt-entry { align-self: stretch; }
+  .cs-routes .rt-branch { display: none; }
+  .cs-routes .rt-list {
+    grid-auto-rows: auto;
+    gap: 14px;
+    margin: 0 0 0 18px;
+    padding: 16px 0 2px 16px;
+    border-left: 1px dashed var(--line);
+  }
+  .cs-routes .rt-row { grid-template-columns: 1fr; gap: 6px; }
+  .cs-routes .arrow { justify-self: start; margin-left: 14px; transform: rotate(90deg); width: 15px; height: 15px; }
 }

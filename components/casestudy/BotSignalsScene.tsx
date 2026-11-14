@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useOnScreen } from "@/lib/useOnScreen";
 
 /**
  * How a trading bot turns market inputs into outcomes. Five inputs on the
@@ -99,7 +100,10 @@ function Icon({ k }: { k: string }) {
 }
 
 export default function BotSignalsScene() {
-  const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
+  const allowed = useSyncExternalStore(subscribeMotion, allowsMotion, () => false);
+  const fig = useRef<HTMLElement>(null);
+  const onScreen = useOnScreen(fig);
+  const motion = allowed && onScreen;
   const [won, setWon] = useState(31);
   const [lost, setLost] = useState(14);
   const [hit, setHit] = useState<"won" | "lost" | null>(null);
@@ -139,7 +143,8 @@ export default function BotSignalsScene() {
 
   return (
     <figure
-      className="cs-scene bs-scene"
+      ref={fig}
+      className={`cs-scene bs-scene${onScreen ? "" : " is-offscreen"}`}
       aria-label="Market inputs (chart, price, news, market and indicators) send signals into a trading bot, which turns each one into an outcome: won or lost, with a running count of each."
     >
       <svg viewBox="0 0 1200 540" role="img" aria-hidden>

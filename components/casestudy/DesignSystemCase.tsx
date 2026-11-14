@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
 import DsArchitecture from "./DsArchitecture";
+import DsProblemsToOutcomes from "./DsProblemsToOutcomes";
 
 export default function DesignSystemCase() {
   return (
@@ -20,8 +21,8 @@ export default function DesignSystemCase() {
 
         <div className="cs-hero-side">
           <CsGlance
-            role="Product Designer, built the system in Figma and co-governed it with the frontend lead"
-            team="2 designers, Frontend lead, Engineering"
+            role="Product Designer, started and owned the design system; set its rules with the frontend lead"
+            team="Frontend lead, Engineering, one other designer"
             results={[
               { value: "~8 → ~3", label: "repeat questions from developers, per day", icon: "ChatBubbleLeftRight" },
               { value: "4 products", label: "running on one set of components", icon: "Squares2X2" },
@@ -36,14 +37,38 @@ export default function DesignSystemCase() {
       {/* 1 */}
       <section className="cs-reveal">
         <span className="cs-num">The starting point</span>
-        <h2>No design system, just a library and some styles</h2>
+        <h2>No design system, not even a structure</h2>
         <p>
-          The frontend used the Ant Design library. The Figma file had a set of colour styles and a
-          handful of components, with nothing tying them together.
+          When I joined, the Figma file had no structure at all. The pages of every product sat on
+          one Figma page, and nothing was documented. There was a set of colour styles and a
+          handful of components, with nothing tying them together. The frontend was already
+          building with the Ant Design library.
         </p>
         <p>
           Light and dark mode were two separate sets of colour styles, so every screen had to be
           designed twice: once for light, again for dark.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <DsProblemsToOutcomes />
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>Two meetings before the first component</h2>
+        <p>
+          I set up a meeting with the product owner and proposed a complete design system, built
+          together with the frontend team. The goals were order in the files, faster design work,
+          and closer alignment with frontend for better output.
+        </p>
+        <p>
+          Then I met the frontend lead. The team was already building on Ant Design, so we agreed
+          the system would build on it too, not beside it.
+        </p>
+        <p>
+          Within one sprint, the core components and the design variables, colour, type and the
+          rest, were in place, set up around what the frontend and each platform needed.
         </p>
       </section>
 
@@ -79,8 +104,8 @@ export default function DesignSystemCase() {
         <span className="cs-num">Decision 2</span>
         <h2>Name the tokens by what they&apos;re for</h2>
         <p>
-          I gave the tokens descriptive names, written for designers: my teammate and I knew
-          exactly where each colour belonged, and our designs came out consistent in design review.
+          I gave the tokens descriptive names, written for designers: each name said exactly where
+          the colour belonged, and designs came out consistent in design review.
         </p>
       </section>
 
@@ -114,7 +139,7 @@ export default function DesignSystemCase() {
         <p>
           I went back and gave the tokens the same names as the code: <code>background</code> and{" "}
           <code>surface</code> where the code named roles, <code>cardColor</code> and{" "}
-          <code>sideBar</code> where it named components. For us, a smooth handoff to development
+          <code>sideBar</code> where it named components. To me, a smooth handoff to development
           was worth more than names that read nicely to designers. That set the number too: 28
           role tokens, one for each name the code already used.
         </p>
@@ -129,7 +154,7 @@ export default function DesignSystemCase() {
         <span className="cs-num">Building on it</span>
         <h2>Ant Design first, custom only on purpose</h2>
         <p>
-          We kept Ant Design&apos;s defaults wherever they worked, and documented our own components
+          I kept Ant Design&apos;s defaults wherever they worked, and documented our own components
           where the product needed more, each with every variant and state. With the frontend lead
           I set up one path for anything new, and design reviews with engineering before each
           release to catch mismatches before users see them.
@@ -146,7 +171,7 @@ export default function DesignSystemCase() {
           them into separate layers:
         </p>
         <ol className="cs-rules is-plain">
-          <li><span><b>Source.</b> 270 raw colours, in one place. No modes.</span></li>
+          <li><span><b>Source.</b> 270 raw colours, in one place. No modes. Up from 88 in version 1, because it now holds the palettes of all four products, not one.</span></li>
           <li><span><b>Identity.</b> One mode per product. Brand, primary, neutral and status colours (success, error, info, warning).</span></li>
           <li><span><b>Semantic.</b> Light and dark mode. Each role picks the right step from the product&apos;s identity.</span></li>
         </ol>
@@ -237,13 +262,13 @@ export default function DesignSystemCase() {
       </section>
 
       <NextCaseLink
-        href="/work/error-messages/"
-        caseStudyName="Errors that say what's next"
+        href="/work/reducing-support-friction/"
+        caseStudyName="Answer first, ask later"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Errors that say what&apos;s next{" "}
+          Answer first, ask later{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

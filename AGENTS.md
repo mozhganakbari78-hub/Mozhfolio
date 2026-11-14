@@ -26,6 +26,12 @@ Where things are:
 - Open every pull request against `main`, never push to `main` directly.
 - Every pull request gets a Netlify preview link: `https://deploy-preview-<PR number>--mozhfolio.netlify.app`.
 - The `CASE_PASSWORD` secret lives in GitHub Settings, never in the code.
+- **Netlify previews:** until Netlify's production branch is switched to `main`, Netlify only builds previews for pull requests against the old branch `claude/compassionate-albattani-2xv7ko`. To get a preview, open a second, temporary draft PR from the same branch against that old branch, titled "[Preview only, do not merge]", and use its preview link. Close it once the real PR is merged. Never merge into the old branch.
+- The "Workers Builds: mozhfolio" check from Cloudflare fails on every PR. The site doesn't deploy through Cloudflare, so ignore that check.
+
+# Saved for later
+
+- A newer version of the FAQ case copy ("Bringing answers into the support journey") was written but not published. It is in commit `cadda3a` (PR #59). Use it only if I ask.
 
 # How to work with me
 

@@ -1,4 +1,5 @@
 import NextCaseLink from "./NextCaseLink";
+import CsStats from "./CsStats";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import Mockup from "./Mockup";
@@ -24,7 +25,7 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "~40% less complexity", label: "per the PM's report, easier for older and non-technical users", icon: "ArrowTrendingUp" },
+              { value: "~40% more", label: "rules completed after the redesign, measured at the Save step", icon: "ArrowTrendingUp" },
               { value: "4 of 4 managers", label: "built a rule unaided in testing", icon: "UserGroup" },
               { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
             ]}
@@ -270,15 +271,26 @@ WHEN always`}</pre>
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">Outcome</span>
-        <h2>Shipped to production</h2>
+        <h2>Shipped, and more rules completed</h2>
         <p>
           The rule builder is live, in Persian with a right-to-left layout, on a platform that
-          runs real greenhouses every day. The PM&apos;s report credited it with reducing
-          complexity by about 40% and making it easier for older and non-technical users.
+          runs real greenhouses every day.
         </p>
         <p>
-          I left before my own post-launch measurement. Before leaving, I defined three metrics for
-          the team:
+          Our measure of success was the last step: how much simpler building a rule had become,
+          and whether operators could set up their greenhouse&apos;s rules without calling support.
+          So the developers added analytics to the Save button at the end of the flow. Compared
+          with before the redesign, about 40% more rules were completed and saved.
+        </p>
+        <CsStats
+          items={[
+            { value: "~40%", label: "more rules saved, before vs after the redesign" },
+            { value: "4 of 4", label: "managers built a rule unaided in testing" },
+          ]}
+        />
+        <p>
+          I left before measuring further. Before leaving, I defined three more metrics for the
+          team:
         </p>
         <ol className="cs-rules is-plain">
           <li><span><b>Adoption.</b> Share of accounts with at least one scheduled rule.</span></li>
@@ -305,13 +317,13 @@ WHEN always`}</pre>
       </section>
 
       <NextCaseLink
-        href="/work/trading-bots/"
-        caseStudyName="Trading bots traders can trust"
+        href="/work/error-messages/"
+        caseStudyName="Errors that say what's next"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Trading bots traders can trust{" "}
+          Errors that say what&apos;s next{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

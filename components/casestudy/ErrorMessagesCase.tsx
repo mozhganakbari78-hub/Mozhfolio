@@ -3,9 +3,24 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CsGlance from "./CsGlance";
 import MessageRewrite, { type Rewrite } from "./MessageRewrite";
 import TicketRatio from "./TicketRatio";
+import RuleLayers from "./RuleLayers";
+import ScreenshotTickets from "./ScreenshotTickets";
+import DraftReview from "./DraftReview";
 
 
 const rewrites: Rewrite[] = [
+  {
+    label: "The cancelled request, from the example above",
+    before: {
+      fa: "شما ایجادکننده درخواست نیستید",
+      en: "“You are not the creator of the request.”",
+    },
+    after: {
+      fa: "شما ایجادکننده درخواست نیستید و دسترسی به لغو آن برای شما وجود ندارد؛ برای اطلاعات بیشتر می‌توانید با پشتیبانی تماس بگیرید.",
+      en: "“You are not the creator of the request and don’t have access to cancel it. For more information, you can contact support.”",
+    },
+    changes: ["what failed → why it failed", "no next step → contact support"],
+  },
   {
     label: "Internal jargon",
     before: {
@@ -82,6 +97,7 @@ export default function ErrorMessagesCase() {
           screenshot of an error message, and nothing else. Users weren&apos;t reporting bugs. They
           were asking what to do.
         </p>
+        <ScreenshotTickets />
       </section>
 
       {/* 2 */}
@@ -151,6 +167,7 @@ export default function ErrorMessagesCase() {
           <li>Give the next step.</li>
           <li>Never blame the user.</li>
         </ol>
+        <RuleLayers />
         <p className="cs-trade">
           <b>Trade-off:</b> slower than quickly patching the worst messages.
         </p>
@@ -164,6 +181,7 @@ export default function ErrorMessagesCase() {
           In banking, a plausible rewrite can quietly change what a message says about money or
           permissions. So AI handled the volume, and I reviewed every message by hand.
         </p>
+        <DraftReview />
         <p className="cs-trade">
           <b>Trade-off:</b> slower than trusting the drafts.
         </p>
@@ -212,13 +230,13 @@ export default function ErrorMessagesCase() {
       </section>
 
       <NextCaseLink
-        href="/work/iot-rule-builder/"
-        caseStudyName="Greenhouse rules in one sentence"
+        href="/work/trading-bots/"
+        caseStudyName="Trading bots traders can trust"
         className="cs-next"
       >
         <span className="l">Next case &rarr;</span>
         <div className="t">
-          Greenhouse rules in one sentence{" "}
+          Trading bots traders can trust{" "}
           <ArrowRightIcon style={{ width: 22, height: 22, display: "inline", verticalAlign: "middle" }} />
         </div>
       </NextCaseLink>

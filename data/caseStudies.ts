@@ -18,17 +18,6 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     index: "01",
-    slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
-    short:
-      "Asked to refresh the FAQ, I first asked whether anyone reads it. Answers now reach users while they write a ticket, and guidance questions fell by about 15%.",
-    description:
-      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
-    meta: "Problem Framing · Content Architecture",
-    illustration: "support",
-  },
-  {
-    index: "02",
     slug: "design-system",
     title: "A design system engineers used",
     short:
@@ -39,18 +28,18 @@ export const caseStudies: CaseStudy[] = [
     illustration: "designsystem",
   },
   {
-    index: "03",
-    slug: "error-messages",
-    title: "Errors that say what's next",
+    index: "02",
+    slug: "reducing-support-friction",
+    title: "Answer first, ask later",
     short:
-      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+      "With no analytics, I read support tickets every day and saw the same questions coming back. Answers now reach users while they write a ticket, and fewer of those questions reach support.",
     description:
-      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
-    meta: "UX Writing · Content Systems",
-    illustration: "errorcopy",
+      "Reframing an FAQ redesign into a guidance problem inside a live corporate banking platform, built on an analysis of ~1,000 support tickets.",
+    meta: "Problem Framing · Content Architecture",
+    illustration: "support",
   },
   {
-    index: "04",
+    index: "03",
     slug: "iot-rule-builder",
     title: "Greenhouse rules in one sentence",
     short:
@@ -59,6 +48,17 @@ export const caseStudies: CaseStudy[] = [
       "Designing an IoT rule builder for non-technical greenhouse operators: if-then rules in plain language, choices grounded in live sensor data, and scheduling that stays hidden until it's needed.",
     meta: "IoT · Logic Design",
     illustration: "rules",
+  },
+  {
+    index: "04",
+    slug: "error-messages",
+    title: "Errors that say what's next",
+    short:
+      "Three rules now shape every error state we hand off; \"what do I do now?\" tickets fell from 6 to 3 in 10.",
+    description:
+      "Auditing ~2,000 error messages on a corporate banking platform and turning them into a reusable framework: state the problem, give the next action, remove the blame.",
+    meta: "UX Writing · Content Systems",
+    illustration: "errorcopy",
   },
   {
     index: "05",

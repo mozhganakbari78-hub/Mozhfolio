@@ -271,9 +271,11 @@ button:disabled,
   background: rgba(0, 0, 0, .7); filter: blur(.9em); opacity: .38; transform: translateY(3.2em) scale(1.03);
 }
 .iso-shadow.is-on { animation: iso-shadow 6s ease-in-out infinite; }
+/* only opacity and transform move: animating the blur made the browser redo
+   the blur on every frame, which slowed scrolling on the whole page */
 @keyframes iso-shadow {
-  0%, 100% { opacity: .38; filter: blur(.9em); transform: translateY(3.2em) scale(1.03); }
-  50% { opacity: .28; filter: blur(1.1em); transform: translateY(3.5em) scale(1.05) rotateZ(1.2deg); }
+  0%, 100% { opacity: .38; transform: translateY(3.2em) scale(1.03); }
+  50% { opacity: .28; transform: translateY(3.5em) scale(1.06) rotateZ(1.2deg); }
 }
 .iso-shadow-enter { animation: iso-shadow-appear .95s cubic-bezier(.3, 0, .5, 1) .45s both; }
 @keyframes iso-shadow-appear { from { opacity: 0; } to { opacity: 1; } }
@@ -425,3 +427,7 @@ html:not(.hydrated) [data-reveal],
   opacity: 1 !important;
   transform: none !important;
 }
+
+/* Looping scenes add this while they are off screen (see lib/useOnScreen):
+   every CSS animation inside them pauses until they scroll back. */
+.is-offscreen, .is-offscreen * { animation-play-state: paused !important; }
