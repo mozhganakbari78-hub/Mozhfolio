@@ -6,6 +6,7 @@ import CsStats from "./CsStats";
 import TicketSplit from "./TicketSplit";
 import TicketMachineScene from "./TicketMachineScene";
 import ReframeStatement from "./ReframeStatement";
+import UserQuestions from "./UserQuestions";
 
 /*
  * Each case follows one line of thought from the brief to where the product
@@ -32,7 +33,7 @@ export default function SupportFrictionCase() {
             team="a fellow designer, the PM and product owner, the backend team"
             results={[
               { value: "~1,000", label: "support tickets from two years, sorted by what each one needed", icon: "Inbox" },
-              { value: "37%", label: "had one fixed answer, often a bank policy", icon: "Ticket" },
+              { value: "37%", label: "were looking for an answer the FAQ could give", icon: "Ticket" },
               { value: "1 page", label: "FAQ and ticket merged, with answers as users type. Live", icon: "DocumentText" },
             ]}
           />
@@ -55,21 +56,18 @@ export default function SupportFrictionCase() {
       <section className="cs-reveal">
         <span className="cs-num">The pattern</span>
         <h2>The same questions kept coming back</h2>
-        <p>Users asked things like:</p>
-        <p className="cs-quote">&ldquo;How do I add a signatory?&rdquo;</p>
+        <p>Users asked the same things again and again:</p>
+        <UserQuestions />
         <p>
-          That question has one answer. Bank policy requires a branch visit, and neither we nor
-          support can add, edit or remove a signatory. Each of these tickets still took the support
-          team&apos;s time away from the ones about things that weren&apos;t working.
+          Some have one fixed answer. &ldquo;How do I add a signatory?&rdquo; is one: bank policy
+          requires a branch visit, and neither we nor support can add, edit or remove a signatory.
+          Each of these tickets still took the support team&apos;s time away from the ones about
+          things that weren&apos;t working.
         </p>
-      </section>
-
-      <section className="cs-reveal">
-        <span className="cs-num">The first idea</span>
-        <h2>Put these questions in the FAQ</h2>
         <p>
           The platform had an FAQ page, but it was old: a short list of questions, not updated
-          since the new version was released. Updating it was the obvious fix.
+          since the new version was released. Our first idea was the obvious one: put these
+          questions in the FAQ.
         </p>
       </section>
 
@@ -96,14 +94,57 @@ export default function SupportFrictionCase() {
       </section>
 
       <section className="cs-reveal">
-        <span className="cs-num">Making the case</span>
-        <h2>A share of these tickets didn&apos;t need a person</h2>
+        <span className="cs-num">The insight</span>
+        <h2>Not everyone opens the ticket form for the same reason</h2>
         <p>
-          We took the breakdown to the PM and the product owner. The point was simple: a share of
-          these questions didn&apos;t need direct support, and the product could answer them. The PM
-          wanted the help desk spending less time on questions with a fixed answer and more on the
-          financial issues that need a person.
+          Most users were looking for an answer, not for support. Only part of the tickets needed
+          a person. The design had to treat these as different needs:
         </p>
+        <ol className="cs-rules is-plain">
+          <li>
+            <span>
+              <strong>37% are looking for an answer.</strong>{" "}Show it to them where they already
+              are.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>43% need guidance or reassurance.</strong>{" "}Their answer depends on their
+              role or access, so help where we can and never block the ticket.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>20% need support from the start.</strong>{" "}Let them reach it without a
+              detour.
+            </span>
+          </li>
+        </ol>
+      </section>
+
+      <section className="cs-reveal">
+        <span className="cs-num">Making the case</span>
+        <h2>The ticket form should be the last option</h2>
+        <p>
+          We took the breakdown to the PM and the product owner as a short deck. A share of these
+          questions didn&apos;t need direct support, and the product could answer them. It came down
+          to one principle:
+        </p>
+        <p className="cs-quote">
+          &ldquo;The ticket form should be the last option, not the first choice.&rdquo;
+        </p>
+        <p>
+          Answer first, ask later. The PM wanted the help desk spending less time on questions with
+          a fixed answer and more on the financial issues that need a person.
+        </p>
+      </section>
+
+      <section className="cs-shot cs-reveal">
+        <Mockup
+          src="/projects/faq-deck-breakdown.webp"
+          alt="A slide in Persian from the analysis deck: of the tickets from the last two years, 43% needed guidance or reassurance, 37% were looking for an answer, and 20% genuinely needed support, with examples for each group"
+          caption="From the deck we showed the PM and product owner (in Persian): two years of tickets, sorted by what each one needed"
+        />
       </section>
 
       <section className="cs-reveal">
@@ -142,8 +183,8 @@ export default function SupportFrictionCase() {
           <li>
             <span>
               <strong>Make users search the FAQ before filing a ticket.</strong>{" "}Ruled out: 43% of
-              tickets were about the user&apos;s own case, and blocking them would hurt the people
-              with the most at stake.
+              users needed guidance that depends on their own case, and blocking them would hurt
+              the people with the most at stake.
             </span>
           </li>
         </ol>

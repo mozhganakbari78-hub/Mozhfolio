@@ -1256,6 +1256,59 @@
   color: var(--accent-ink);
 }
 
+/* the four "how might we" questions that replace the first framing */
+.cs-reframe .rf-hmw { width: 100%; }
+.cs-reframe .rf-hmw .lab {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.cs-reframe .rf-hmw ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.cs-reframe .rf-hmw li {
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 14px 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  min-width: 0;
+}
+.cs-reframe .rf-hmw li.is-lead {
+  border-color: rgba(124, 184, 245, 0.4);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(1, 116, 220, .14), transparent 65%),
+    var(--card);
+  color: var(--ink);
+  font-weight: 600;
+}
+.cs-reframe .rf-hmw .tag {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 6px;
+}
+@media (max-width: 900px) {
+  .cs-reframe .rf-hmw ul { grid-template-columns: 1fr; gap: 8px; }
+  .cs-reframe .rf-hmw li { padding: 12px 14px; font-size: 14px; }
+}
+
 /* ── user mindset at the moment of failure ─────────────────────────────── */
 .cs-mindset {
   display: grid;
