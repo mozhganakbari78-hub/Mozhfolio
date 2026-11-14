@@ -30,7 +30,7 @@ export const caseStudies: CaseStudy[] = [
   {
     index: "02",
     slug: "reducing-support-friction",
-    title: "Answers where users get stuck",
+    title: "Answer first, ask later",
     short:
       "With no analytics, I read support tickets every day and saw the same questions coming back. Answers now reach users while they write a ticket, and fewer of those questions reach support.",
     description:

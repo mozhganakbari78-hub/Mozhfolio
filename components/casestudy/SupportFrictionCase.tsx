@@ -19,7 +19,7 @@ export default function SupportFrictionCase() {
       <header className="cs-hero">
         <div className="cs-hero-main">
           <span className="cs-eyebrow">Case study · Corporate banking</span>
-          <h1>Answers where users get stuck</h1>
+          <h1>Answer first, ask later</h1>
           <p className="cs-lede">
             We had no analytics, so I read support tickets every day. The same questions kept
             coming back, and a better FAQ alone wouldn&apos;t have answered them.
