@@ -69,7 +69,8 @@ const curve = ([a, b, k]: [number, number, number]) => {
 export default function HeroIso() {
   const motion = useSyncExternalStore(subscribeMotion, allowsMotion, () => true);
   const world = useRef<HTMLDivElement>(null);
-  const onScreen = useOnScreen(world);
+  // true from the start: the hero is the first thing on screen
+  const onScreen = useOnScreen(world, "120px", true);
   // null until the first click: then the reader's choice wins; before it,
   // reduced motion means the screen is already in place
   const [choice, setChoice] = useState<boolean | null>(null);
