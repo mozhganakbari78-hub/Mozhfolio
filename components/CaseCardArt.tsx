@@ -193,25 +193,25 @@ function DesignSystem() {
         <svg viewBox="0 0 260 120" className="w-full h-auto block" aria-hidden>
           {towers.map((t, ti) =>
             Array.from({ length: t.rows }, (_, r) => (
-              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - BH - r * (BH + 3)} c={t.c} delay={0.2 + 0.07 * (starts[ti] + r)} />
+              <Brick key={`${t.x}-${r}`} x={t.x} y={GROUND - BH - r * (BH + 3)} c={t.c} delay={0.08 + 0.035 * (starts[ti] + r)} />
             ))
           )}
           {/* windows */}
           {towers.map((t, i) => (
             <motion.rect
               key={`w${i}`} x={t.x + 8} y={GROUND - BH - (BH + 3) + 3} width={6} height={5} rx={1} fill={FG} opacity={0.7}
-              variants={{ hidden: { opacity: 0 }, show: { opacity: 0.7 } }} transition={{ delay: 0.98 + i * 0.1 }}
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 0.7 } }} transition={{ delay: 0.55 + i * 0.06 }}
             />
           ))}
           {/* crane over the purple tower, lowering one more brick */}
-          <motion.g variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} transition={{ delay: 0.68, duration: 0.4 }}>
+          <motion.g variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} transition={{ delay: 0.3, duration: 0.4 }}>
             <line x1={240} y1={GROUND} x2={240} y2={8} stroke={LINE} strokeWidth={1.5} />
             <line x1={186} y1={8} x2={254} y2={8} stroke={LINE} strokeWidth={1.5} />
             <line x1={240} y1={8} x2={254} y2={20} stroke={LINE} strokeWidth={1} />
           </motion.g>
           <motion.g
             variants={{ hidden: { y: -20, opacity: 0 }, show: { y: 0, opacity: 1 } }}
-            transition={{ delay: 0.83, duration: 0.7, ease: EASE }}
+            transition={{ delay: 0.45, duration: 0.6, ease: EASE }}
           >
             <line x1={201} y1={8} x2={201} y2={58} stroke={SUB} strokeWidth={1} strokeDasharray="2 2" />
             <rect x={195} y={58} width={5} height={3} rx={1} fill="#339599" opacity={0.85} />
@@ -220,7 +220,7 @@ function DesignSystem() {
           </motion.g>
           <line x1={0} x2={260} y1={GROUND + 0.5} y2={GROUND + 0.5} stroke={LINE} strokeWidth={1.2} />
         </svg>
-        <motion.span style={{ ...Mono, color: SUB }} {...rise(1.4)}>
+        <motion.span style={{ ...Mono, color: SUB }} {...rise(0.8)}>
           one set of parts, every product built from it
         </motion.span>
       </div>
