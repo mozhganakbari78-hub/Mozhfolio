@@ -37,13 +37,20 @@ export default function VisualWork() {
     const wrap = wrapRef.current;
     if (!rail || !wrap) return;
 
-    const SPEED = 0.55; // px per frame
+    // Speed is set in time, not per frame, so it is the same on 60 Hz and
+    // 120 Hz screens: one card passes about every 10 seconds, at any width.
+    const SECONDS_PER_CARD = 10;
+    const cardWidth = () => (rail.firstElementChild as HTMLElement | null)?.offsetWidth ?? 600;
 
     let onScreen = true;
+    let last = 0;
 
-    const tick = () => {
+    const tick = (now: number) => {
+      // Cap the step so returning to the tab doesn't make the rail jump.
+      const dt = last ? Math.min(now - last, 50) : 0;
+      last = now;
       if (!pausedRef.current) {
-        posRef.current += SPEED;
+        posRef.current += (cardWidth() / SECONDS_PER_CARD) * (dt / 1000);
         const half = rail.scrollWidth / 2;
         if (posRef.current >= half) posRef.current -= half;
         rail.style.transform = `translateX(-${posRef.current}px)`;
@@ -58,6 +65,7 @@ export default function VisualWork() {
       ([entry]) => {
         if (entry.isIntersecting && !onScreen) {
           onScreen = true;
+          last = 0;
           rafRef.current = requestAnimationFrame(tick);
         } else if (!entry.isIntersecting) {
           onScreen = false;
