@@ -25,9 +25,9 @@ export default function RuleBuilderCase() {
             role="Product Designer, owned the rule builder and operational trust"
             team="4 designers, PM, team lead, developers"
             results={[
-              { value: "~40% more", label: "rules completed after the redesign, measured at the Save step", icon: "ArrowTrendingUp" },
-              { value: "4 of 4 managers", label: "built a rule unaided in testing", icon: "UserGroup" },
+              { value: "~40%", label: "of rules started were completed and saved, measured at the Save step", icon: "ArrowTrendingUp" },
               { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
+              { value: "1 sentence", label: "every rule reads as \"if this, then that\", in the operator's own words", icon: "DocumentText" },
             ]}
           />
         </div>
@@ -271,25 +271,30 @@ WHEN always`}</pre>
       {/* 9 */}
       <section className="cs-reveal">
         <span className="cs-num">Outcome</span>
-        <h2>Shipped, and more rules completed</h2>
+        <h2>Shipped, and measured at the Save step</h2>
         <p>
           The rule builder is live, in Persian with a right-to-left layout, on a platform that
           runs real greenhouses every day.
         </p>
         <p>
-          Our measure of success was the last step: how much simpler building a rule had become,
-          and whether operators could set up their greenhouse&apos;s rules without calling support.
-          So the developers added analytics to the Save button at the end of the flow. Compared
-          with before the redesign, about 40% more rules were completed and saved.
+          Our main measure of success was whether operators could take a rule all the way to the
+          end, defining and saving it without help from support. In other words: had we made the
+          technical concepts simple enough for them to manage on their own?
+        </p>
+        <p>
+          To track it, the developers added an analytics event to the Save button on the last
+          step. About 40% of the rules people started were completed and saved. That number shows
+          how many reached the end and saved a rule; on its own, it doesn&apos;t prove they all did
+          it without support&apos;s help.
         </p>
         <CsStats
           items={[
-            { value: "~40%", label: "more rules saved, before vs after the redesign" },
-            { value: "4 of 4", label: "managers built a rule unaided in testing" },
+            { value: "~40%", label: "of rules started were completed and saved" },
           ]}
         />
         <p>
-          I left before measuring further. Before leaving, I defined three more metrics for the
+          After this phase I left the team for a new role, so I couldn&apos;t follow how people
+          used it after launch more closely. Before leaving, I defined three more metrics for the
           team:
         </p>
         <ol className="cs-rules is-plain">
