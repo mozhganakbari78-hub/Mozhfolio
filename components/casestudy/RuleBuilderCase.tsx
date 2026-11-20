@@ -27,6 +27,7 @@ export default function RuleBuilderCase() {
             results={[
               { value: "~40%", label: "of rules started were completed and saved, measured at the Save step", icon: "ArrowTrendingUp" },
               { value: "3 new capabilities", label: "scheduling, multi-condition rules and rule categories, with no logic editor", icon: "Sparkles" },
+              { value: "1 sentence", label: "every rule reads as \"if this, then that\", in the operator's own words", icon: "DocumentText" },
             ]}
           />
         </div>
